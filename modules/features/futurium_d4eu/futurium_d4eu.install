@@ -1,0 +1,268 @@
+<?php
+/**
+ * @file
+ * Installs the Futurium D4EU feature.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function futurium_d4eu_enable() {
+  $t = get_t();
+
+  drupal_set_message($t('Futurium d4eu feature is now active on your site.'));
+  variable_set('tags_desired_width', 30);
+
+  // Update text formats weights.
+  db_update('filter_format')
+    ->fields(array('weight' => -10))
+    ->condition('format', 'filtered_html')
+    ->execute();
+
+  db_update('filter_format')
+    ->fields(array('weight' => -9))
+    ->condition('format', 'full_html')
+    ->execute();
+
+  db_update('filter_format')
+    ->fields(array('weight' => -8))
+    ->condition('format', 'basic_html')
+    ->execute();
+
+  db_update('filter_format')
+    ->fields(array('weight' => -7))
+    ->condition('format', 'plain_text')
+    ->execute();
+
+  // Delete cache records.
+  db_delete('cache')
+    ->condition('cid', 'filter_formats:en')
+    ->execute();
+
+  db_delete('cache')
+    ->condition('cid', 'filter_formats')
+    ->execute();
+}
+
+/**
+ * Implements hook_disable().
+ */
+function futurium_d4eu_disable() {
+  $t = get_t();
+  drupal_set_message($t('Futurium d4eu feature is now disabled on your site.'));
+}
+
+/**
+ * Implements hook_install().
+ */
+function futurium_d4eu_install() {
+  $t = get_t();
+  drupal_set_message($t('Futurium d4eu feature is now installed on your site.'));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function futurium_d4eu_uninstall() {
+  $t = get_t();
+  drupal_set_message($t('Futurium d4eu feature is now uninstalled from your site.'));
+}
+
+/**
+ * Disable default contexts.
+ */
+function futurium_d4eu_update_7100() {
+  _futurium_d4eu_disable_contexts();
+}
+
+/**
+ * Change field_document behavior.
+ */
+function futurium_d4eu_update_7102() {
+  // Fetch the instance info array.
+  $instance_info = field_info_instance('node', 'field_document', 'document');
+  // Change a single property in the instance definition.
+  $instance_info['required'] = 0;
+  // Write the changed definition back.
+  field_update_instance($instance_info);
+}
+
+/**
+ * Change field_ideas behavior.
+ */
+function futurium_d4eu_update_7103() {
+  // Fetch the instance info array.
+  $instance_info = field_info_instance('node', 'field_ideas', 'ideas');
+  // Change a single property in the instance definition.
+  $instance_info['settings']['better_formats']['allowed_formats']['full_html'] = 'full_html';
+  $instance_info['settings']['better_formats']['allowed_formats']['basic_html'] = 'basic_html';
+  $instance_info['settings']['better_formats']['allowed_formats']['filtered_html'] = 'filtered_html';
+  $instance_info['settings']['better_formats']['allowed_formats']['plain_text'] = 'plain_text';
+  // Write the changed definition back.
+  field_update_instance($instance_info);
+}
+
+/**
+ * Overrides site defaults.
+ *
+ * Enables the sub features.
+ * Fine tunes permissions.
+ */
+function futurium_d4eu_update_7104() {
+  _futurium_d4eu_enable_sub_features();
+
+  // Disable obsolete modules.
+  $modules = array('migrate_ui', 'migrate', 'advanced_help');
+  foreach ($modules as $module) {
+    if (module_exists($module)) {
+      module_disable(array($module));
+    }
+  }
+
+  // Revokes permissions for authenticated user.
+  $permissions = array(
+    'view revisions',
+    'access workbench',
+    'view moderation history',
+    'view moderation messages',
+    'administer media wysiwyg view mode',
+  );
+  user_role_revoke_permissions(2, $permissions);
+
+  // Grants permissions to editor.
+  $permissions = array(
+    'access administration menu',
+    'view the administration theme',
+    'access administration pages',
+    'access content overview',
+  );
+  user_role_grant_permissions(5, $permissions);
+
+  // Revokes permissions from editor.
+  $permissions = array(
+    'administer filters',
+  );
+  user_role_revoke_permissions(5, $permissions);
+}
+
+/**
+ * Update text formats weights.
+ */
+function futurium_d4eu_update_7105() {
+  // Update text formats weights.
+  db_update('filter_format')
+    ->fields(array('weight' => -10))
+    ->condition('format', 'filtered_html')
+    ->execute();
+
+  db_update('filter_format')
+    ->fields(array('weight' => -9))
+    ->condition('format', 'full_html')
+    ->execute();
+
+  db_update('filter_format')
+    ->fields(array('weight' => -8))
+    ->condition('format', 'basic_html')
+    ->execute();
+
+  db_update('filter_format')
+    ->fields(array('weight' => -7))
+    ->condition('format', 'plain_text')
+    ->execute();
+
+  // Delete cache records.
+  db_delete('cache')
+    ->condition('cid', 'filter_formats:en')
+    ->execute();
+
+  db_delete('cache')
+    ->condition('cid', 'filter_formats')
+    ->execute();
+}
+
+/**
+ * Sets filtered HTML as default format for existing content.
+ */
+function futurium_d4eu_update_7106() {
+  db_update('field_data_body')
+    ->condition('entity_type', 'node')
+    ->expression('body_format', "'filtered_html'")
+    ->execute();
+
+  db_update('field_data_field_ideas')
+    ->condition('entity_type', 'node')
+    ->expression('field_ideas_format', "'filtered_html'")
+    ->execute();
+
+  db_update('field_revision_body')
+    ->condition('entity_type', 'node')
+    ->expression('body_format', "'filtered_html'")
+    ->execute();
+
+  db_update('field_revision_field_ideas')
+    ->condition('entity_type', 'node')
+    ->expression('field_ideas_format', "'filtered_html'")
+    ->execute();
+}
+
+/**
+ * Updates to v1.2.
+ */
+function futurium_d4eu_update_7107() {
+  _futurium_d4eu_vocabulary_options();
+  // Change permissions for editors
+  // (some permissions inherited by authenticated, must be run last).
+  _futurium_d4eu_hidelangfields();
+  // Fit extra node options for all content types.
+  _futurium_d4eu_fit_node_options();
+  // Delete group fields.
+  _futurium_d4eu_field_group_options();
+}
+
+/**
+ * Correct path for fivestar module.
+ */
+function futurium_d4eu_update_7108() {
+  // Get rate_widgets variable.
+  $rate_widgets = variable_get("rate_widgets");
+  // Assign right paths to the module files.
+  $rw_path = drupal_get_path('module', 'rate');
+
+  $rate_widgets[1]->css = $rw_path . '/templates/fivestar/fivestar.css';
+  $rate_widgets[1]->js = $rw_path . '/templates/fivestar/fivestar.js';
+  variable_set("rate_widgets", $rate_widgets);
+}
+/**
+ * Delete Stub duplicate tags and field_collection_d4eu.
+ */
+function futurium_d4eu_update_7109() {
+  $vid = taxonomy_vocabulary_machine_name_load('tags')->vid;
+
+  $terms = taxonomy_get_tree($vid, 0, NULL, FALSE);
+
+  // Loop all terms in tags.
+  foreach ($terms as $term) {
+    $matching_terms = taxonomy_get_term_by_name($term->name);
+    foreach ($matching_terms as $matching_term) {
+      if ($matching_term->vid == $vid && $matching_term->name == 'Stub') {
+        // Do Term Delete.
+        taxonomy_term_delete($matching_term->tid);
+      }
+    }
+  }
+
+  // Delete field_collection_d4eu.
+  field_delete_field('field_collection_d4eu');
+}
+
+/**
+ * Updates to v1.5.
+ */
+function futurium_d4eu_update_7110() {
+  // Change permissions for basic authenticated (must be run first).
+  _futurium_d4eu_set_basic_perm();
+  // Set additional vocabularies.
+  _futurium_d4eu_vocabulary_options();
+  // Change permissions for editors
+  // (some permissions inherited by authenticated, must be run last).
+}

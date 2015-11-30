@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Installs the Supertags feature.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function supertags_enable() {
+  drupal_set_message('Supertags feature is now active on your site.');
+}
+
+/**
+ * Implements hook_disable().
+ */
+function supertags_disable() {
+  drupal_set_message('Supertags feature is now disabled on your site.');
+}

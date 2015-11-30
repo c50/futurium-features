@@ -1,0 +1,913 @@
+<?php
+/**
+ * @file
+ * Code for the futurium Digital4EU feature.
+ */
+
+define('FUTURIUM_D4EU_TMP_IMAGE_FOLDER', 'temporary://pictures');
+
+include_once 'futurium_d4eu.features.inc';
+include_once 'futurium_d4eu.forms.inc';
+
+/**
+ * Sets feature api version.
+ *
+ * @return array
+ *   version
+ */
+function futurium_d4eu_feature_set_api() {
+  return array('version' => '1.0');
+}
+
+/**
+ * Implements hook_help().
+ */
+function futurium_d4eu_help($path, $arg) {
+  if ($path == 'admin/help#futurium_d4eu') {
+    return t('Futurium D4EU configuration.');
+  }
+}
+
+/**
+ * Implements hook_init().
+ *
+ * Creates a temporary folder for user picture migration.
+ */
+function futurium_d4eu_init() {
+  $uri = FUTURIUM_D4EU_TMP_IMAGE_FOLDER;
+  $directory = drupal_realpath($uri);
+  if (!file_prepare_directory($directory, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS)) {
+    form_error($form, t('The directory %directory is not writable', array('%directory' => $directory)));
+  }
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Hide field_creator for uid <> 1
+ */
+function futurium_d4eu_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  $current_user = user_uid_optional_load();
+  if ($current_user->uid != 1) {
+    $form['field_creator']['#access'] = FALSE;
+    $form['field_register_url']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function futurium_d4eu_permission() {
+  return array(
+    'access custom futurium fields' => array(
+      'title' => t('Access custom futurium fields'),
+      'description' => t('Access custom futurium fields.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Change the user register form.
+ */
+function futurium_d4eu_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  $reg_dest = drupal_get_destination();
+  $form['field_register_url'][LANGUAGE_NONE][0]['value']['#default_value'] = $reg_dest['destination'];
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Change the user login form.
+ */
+function futurium_d4eu_form_user_login_alter(&$form, &$form_state, $form_id) {
+  $form['name']['#description'] = t('Enter your username.');
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Alter the user login block form.
+ */
+function futurium_d4eu_form_user_login_block_alter(&$form, &$form_state, $form_id) {
+  $form['name']['#description'] = t('Enter your username.');
+}
+
+/**
+ * Implements hook_menu_block_blocks().
+ */
+function futurium_d4eu_menu_block_blocks() {
+  // The array key is the block delta used by menu block.
+  return array(
+    'd4eu-main-menu' => array(
+      'menu_name' => 'main-menu',
+      'parent_mlid' => 0,
+      'title_link' => 0,
+      'admin_title' => 'Main menu block',
+      'level' => 1,
+      'follow' => 0,
+      'depth' => 1,
+      'expanded' => 0,
+      'sort' => 0,
+    ),
+  );
+}
+
+/**
+ * Disables contexts.
+ */
+function _futurium_d4eu_disable_contexts() {
+
+  $dis_contexts = array(
+    'homepage',
+    'search',
+    'site_wide',
+    'workbench_moderate_all',
+  );
+
+  foreach ($dis_contexts as $dis_context) {
+    $context = context_load($dis_context);
+    if (isset($context->disabled)) {
+      if ($context->disabled == 1) {
+        return;
+      }
+    }
+    ctools_export_set_object_status($context);
+    watchdog('futurium_d4eu', 'Disabling contexts', array(), WATCHDOG_INFO);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Disables the wysiwyg editor for the block administration to save time and
+ * prevents screw ups by the wysiwyg editor.
+ */
+function futurium_d4eu_form_block_admin_configure_alter(&$form, &$form_state, $form_id) {
+  $form['settings']['options']['body']['#wysiwyg'] = FALSE;
+  $form['settings']['options']['body']['#suffix'] = '<em>' . t('Wysiwyg editor has been disabled by the futurium_d4eu module') . '</em>';
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * Cleans up the node edit form.
+ */
+function futurium_d4eu_form_node_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#node_edit_form'] == TRUE) {
+    $form['language']['#access'] = user_access('administer nodes');
+    $form['author']['#access'] = user_access('administer nodes');
+    if (isset($form['body'])) {
+      $form['body'][LANGUAGE_NONE][0]['summary']['#access'] = user_access('administer nodes');
+    }
+    if (isset($form['revision_information'])) {
+      $form['revision_information']['#access'] = user_access('administer nodes');
+    }
+    if (isset($form['comment_settings'])) {
+      $form['comment_settings']['#access'] = user_access('administer nodes');
+    }
+    if (isset($form['field_year_of_publication_d4eu'])) {
+      $form['field_year_of_publication_d4eu'][LANGUAGE_NONE][0]['#theme_wrappers'] = array('form_element');
+      unset($form['field_year_of_publication_d4eu'][LANGUAGE_NONE][0]['#description']);
+    }
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function futurium_d4eu_menu() {
+
+  $items = array();
+
+  // Add a menu to download an Excel worksheet of all content.
+  $items['admin/content/xls-all-content'] = array(
+    'title' => 'Download all content in Excel file',
+    'description' => 'Download content in Excel file (all content-types)',
+    'page callback' => 'drupal_goto',
+    'page arguments' => array('xls-all-content'),
+    'access callback' => TRUE,
+    'menu_name' => 'management',
+  );
+
+  $items['admin/config/content/futurium_d4eu'] = array(
+    'title' => 'Futurium D4EU',
+    'description' => 'Configuration for the Futurium D4eu module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('futurium_d4eu_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'futurium_d4eu.admin.inc',
+  );
+
+  $items['futurium_idea/related_content_autocomplete_callback'] = array(
+    'page callback' => '_futurium_idea_related_content_autocomplete_callback',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
+
+  // Provide a page for page 403.
+  $items['customerror/403'] = array(
+    'page callback' => '_futurium_d4eu_access_denied',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ *
+ * Runs form alter hooks of this modules after other those of other modules.
+ */
+function futurium_d4eu_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $module = 'futurium_d4eu';
+    if (isset($implementations[$module])) {
+      $group = array($module => $implementations[$module]);
+      unset($implementations[$module]);
+      $implementations = $implementations + $group;
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function futurium_d4eu_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['mini_teaser'] = array(
+    'label' => t('Mini teaser'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['comment']['view modes']['comment_teaser'] = array(
+    'label' => t('Comment teaser'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function futurium_d4eu_theme($existing, $type, $theme, $path) {
+  $theme = array();
+  $theme['node__mini_teaser'] = array(
+    'render element' => 'content',
+    'base hook' => 'node',
+    'template' => 'node--mini_teaser',
+    'path' => drupal_get_path('module', 'futurium_d4eu') . '/templates',
+  );
+  $theme['comment__comment_teaser'] = array(
+    'render element' => 'content',
+    'base hook' => 'comment',
+    'template' => 'comment--comment_teaser',
+    'path' => drupal_get_path('module', 'futurium_d4eu') . '/templates',
+  );
+  $theme['tear_off_calendar'] = array(
+    'variables' => array(
+      'from_date' => NULL,
+      'to_date' => NULL,
+    ),
+    'function' => '_futurium_d4eu_tear_off_calendar',
+  );
+  return $theme;
+}
+
+/**
+ * Implements hook_custom_theme().
+ */
+function futurium_d4eu_custom_theme() {
+  if (user_access('view the administration theme') && path_is_admin(current_path())) {
+    return variable_get('admin_theme');
+  }
+  if (drupal_get_http_header('Status', '403 Forbidden') !== FALSE) {
+    return variable_get('d4eu');
+  }
+}
+
+/**
+ * Implements template_preprocess_node().
+ */
+function futurium_d4eu_preprocess_node(&$vars) {
+  if ($vars['view_mode'] == 'mini_teaser') {
+    $vars['theme_hook_suggestions'][] = 'node__mini_teaser';
+    $vars['no_comment_text'] = '';
+    $vars['comments_text'] = t('comments');
+    $vars['latest_ago'] = t('latest') . ': ';
+    if ($vars['node']->comment_count == 1) {
+      $vars['comments_text'] = t('comment');
+      $vars['latest_ago'] = '';
+    }
+  }
+  $vars['type_name'] = strtolower(node_type_get_name($vars['node']));
+}
+
+/**
+ * Implements template_preprocess_comment().
+ */
+function futurium_d4eu_preprocess_comment(&$vars) {
+  if ($vars['elements']['#view_mode'] == 'comment_teaser') {
+    $vars['theme_hook_suggestions'][] = 'comment__comment_teaser';
+    $trim_config    = array(
+      'max_length'    => 140,
+      'ellipsis'      => TRUE,
+      'word_boundary' => TRUE,
+      'html'          => TRUE,
+    );
+    $comment_to_trim = $vars['elements']['#comment']->comment_body['und'][0]['value'];
+    $vars['trimmed_comment'] = views_trim_text($trim_config, $comment_to_trim);
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ *
+ * Accesses raw username if realname module is enabled.
+ */
+function futurium_d4eu_views_data_alter(&$data) {
+  $data['users']['username'] = array(
+    'title' => t('Username'),
+    'help' => t("The user or author username."),
+    'real field' => 'name',
+    'field' => array(
+      'handler' => 'views_handler_field_user',
+      'click sortable' => TRUE,
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+      'title' => t('Name'),
+      'help' => t("The user's actual, raw, username."),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function futurium_d4eu_node_view($node, $view_mode, $langcode) {
+
+  // Sets menu item active for certain content types.
+  switch ($node->type) {
+    case 'document':
+      menu_tree_set_path('main-menu', 'evidence');
+      break;
+
+    case 'ideas':
+      $extrafields = field_extra_fields_get_display('node', $node->type, $view_mode);
+
+      // Checks if the map field exists and then adds it to the node view.
+      if (isset($extrafields['related_content']) && isset($extrafields['related_content']['visible']) && $extrafields['related_content']['visible']) {
+        $node->content['related_content'] = _futurium_idea_related_content($node);
+      }
+      menu_tree_set_path('main-menu', 'ideas');
+      break;
+
+    case 'video_d4eu':
+      menu_tree_set_path('main-menu', 'videos');
+      break;
+
+    case 'blog_post':
+      menu_tree_set_path('main-menu', 'blog');
+      break;
+
+    case 'poll':
+      menu_tree_set_path('main-menu', 'polls');
+      break;
+
+    case 'event_d4eu':
+      menu_tree_set_path('main-menu', 'events');
+      break;
+  }
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function futurium_d4eu_user_view($account, $view_mode, $langcode) {
+
+  // Sets menu item active for certain content types.
+  menu_tree_set_path('main-menu', 'people');
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function futurium_d4eu_field_formatter_info() {
+  $formatters = array(
+    'tear_off_calendar' => array(
+      'label' => t('Tear-off calendar'),
+      'field types' => array('date', 'datestamp', 'datetime'),
+    ),
+  );
+  return $formatters;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function futurium_d4eu_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  $variables = array();
+  $uri = entity_uri('node', $entity);
+  $alias = drupal_get_path_alias($uri['path']);
+  $variables['alias'] = $alias;
+  if ($display['type'] == 'tear_off_calendar') {
+    foreach ($items as $delta => $item) {
+      if (!empty($entity->date_id)) {
+        continue;
+      }
+      else {
+        if (empty($item['value2']) || $item['value'] == $item['value2']) {
+          $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d'));
+          $element[$delta] = array('#markup' => theme('tear_off_calendar', $variables));
+        }
+        else {
+          $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d'));
+          $variables['to_date'] = explode('/', format_date($item['value2'], 'custom', 'Y/M/d'));
+          $element[$delta] = array('#markup' => theme('tear_off_calendar', $variables));
+        }
+      }
+    }
+  }
+  return $element;
+}
+
+/**
+ * Returns HTML for a date element formatted as a tear-off calendar.
+ *
+ * Provides markup to display a date like a tear-off calendar like e.g.
+ * https://www.pinterest.com/pin/384705993142402467/ .
+ */
+function _futurium_d4eu_tear_off_calendar($variables) {
+  if ($variables['from_date']) {
+    $from_date = "<a href='{$variables['alias']}'>
+      <div class='day-event-front-page'>{$variables['from_date'][2]}</div>
+      <div class='month-event-front-page'>{$variables['from_date'][1]}</div>
+      <div class='year-event-front-page'>{$variables['from_date'][0]}</div>
+    </a>";
+    if ($variables['to_date'] > $variables['from_date']) {
+      $to_date = "<a href='{$variables['alias']}'>
+      <div class='day-event-front-page'>{$variables['to_date'][2]}</div>
+      <div class='month-event-front-page'>{$variables['to_date'][1]}</div>
+      <div class='year-event-front-page'>{$variables['to_date'][0]}</div>
+    </a>";
+      return $from_date . $to_date;
+    }
+    else {
+      return $from_date;
+    }
+  }
+  else {
+    return;
+  }
+}
+
+/**
+ * Sets basic roles permissions at once (anonymous and authenticated).
+ */
+function _futurium_d4eu_set_basic_perm() {
+
+  // Changes for rid=1 => anonymous.
+  user_role_change_permissions(1,
+    array(
+      'access content' => 1,
+      'access comments' => 1,
+      'cancel own vote' => 1,
+      'download any document files' => 1,
+      'edit own comments' => 1,
+      'post comments' => 0,
+      'rate content' => 1,
+      'search content' => 1,
+      'skip CAPTCHA' => 1,
+      'use advanced search' => 1,
+      'use text format basic_html' => 1,
+      'use text format filtered_html' => 0,
+      'use text format full_html' => 0,
+      'view files' => 1,
+      'vote on polls' => 1,
+    )
+  );
+
+  // Changes for rid=2 => authenticated
+  // (not specified values belong to standard install).
+  user_role_change_permissions(2,
+    array(
+      'access ckeditor link' => 1,
+      'access comments' => 1,
+      'access content' => 1,
+      'access send by email' => 1,
+      'access site-wide contact form' => 1,
+      'access user contact forms' => 1,
+      'access user profiles' => 1,
+      'access workbench' => 0,
+      'add media from remote sources' => 1,
+      'cancel own vote' => 1,
+      'change own username' => 0,
+      'create any invite entities' => 1,
+      'create article content' => 0,
+      'create blog_post content' => 0,
+      'create document content' => 1,
+      'create event_d4eu content' => 1,
+      'create ideas content' => 1,
+      'create files' => 1,
+      'create page content' => 0,
+      'create poll content' => 1,
+      'delete own document content' => 1,
+      'delete own document files' => 1,
+      'delete own event_d4eu content' => 1,
+      'delete own ideas content' => 1,
+      'delete own page content' => 1,
+      'delete own poll content' => 0,
+      'delete own video files' => 1,
+      'delete own video_d4eu content' => 1,
+      'download any document files' => 1,
+      'download any image files' => 0,
+      'download any video files' => 1,
+      'download own document files' => 1,
+      'download own image files' => 1,
+      'download own video files' => 1,
+      'edit own article content' => 0,
+      'edit own comments' => 1,
+      'edit own document content' => 1,
+      'edit own document files' => 1,
+      'edit own event_d4eu content' => 1,
+      'edit own image files' => 1,
+      'edit own poll content' => 1,
+      'inspect all votes' => 0,
+      'moderate content from draft to needs_review' => 1,
+      'moderate content from needs_review to draft' => 1,
+      'moderate content from needs_review to published' => 1,
+      'moderate content from needs_review to validated' => 1,
+      'moderate content from published to archived' => 1,
+      'moderate content from validated to published' => 1,
+      'multisite_workbench_moderation_view_bulk_update' => 0,
+      'post comments' => 1,
+      'rate content' => 1,
+      'search content' => 1,
+      'show format selection for comment' => 0,
+      'show format selection for file' => 1,
+      'show format selection for node' => 1,
+      'show format selection for taxonomy_terms' => 0,
+      'show format selection for rules_config' => 0,
+      'show format selection for user' => 0,
+      'show format tips' => 1,
+      'show more format tips link' => 0,
+      'skip CAPTCHA' => 1,
+      'skip comment approval' => 1,
+      'translate content' => 0,
+      'use advanced search' => 1,
+      'use text format basic_html' => 1,
+      'use text format filtered_html' => 0,
+      'use text format full_html' => 0,
+      'use workbench_moderation my drafts tab' => 1,
+      'use workbench_moderation needs review tab' => 1,
+      'view own unpublished content' => 1,
+      'view files' => 1,
+      'view moderation history' => 0,
+      'view moderation messages' => 0,
+      'view own files' => 1,
+      'view own private files' => 1,
+      'view own unpublished content' => 1,
+      'view private files' => 0,
+      'view rate results page' => 0,
+      'view revisions' => 1,
+      'view the administration theme' => 0,
+      'vote on polls' => 1,
+    )
+  );
+
+  watchdog('futurium_d4eu', 'Setting permissions for authenticated and anonymous roles', array(), WATCHDOG_INFO);
+}
+
+/**
+ * Sets editor role permissions at once.
+ */
+function _futurium_d4eu_set_editor_perm() {
+
+  $vid = taxonomy_vocabulary_machine_name_load('flavors')->vid;
+
+  // Changes for rid=5 => editor permissions
+  // (not specified values inherited by authenticated role permissions).
+  user_role_change_permissions(5,
+    array(
+      'access administration menu' => 1,
+      'access administration pages' => 1,
+      'access content overview' => 1,
+      'access custom futurium fields' => 1,
+      'access workbench' => 0,
+      'administer comments' => 1,
+      'administer files' => 1,
+      'administer file types' => 0,
+      'administer filters' => 0,
+      'administer languages' => 0,
+      'administer media browser' => 0,
+      'administer menu' => 0,
+      'administer nodes' => 1,
+      'administer permissions' => 0,
+      'administer search' => 1,
+      'administer supertags' => 1,
+      'administer users' => 0,
+      'administer worbench moderation' => 0,
+      'bypass workbench moderation' => 1,
+      'cancel own vote' => 1,
+      'create blog_post content' => 1,
+      'create page content' => 1,
+      'delete any blog_post content' => 1,
+      'delete any document content' => 1,
+      'delete any document files' => 1,
+      'delete any event_d4eu content' => 1,
+      'delete any ideas content' => 1,
+      'delete any image files' => 1,
+      'delete any page content' => 1,
+      'delete any poll content' => 1,
+      'delete any video files' => 1,
+      'delete any video_d4eu content' => 1,
+      'delete own blog_post content' => 1,
+      'delete own page content' => 1,
+      'delete own poll content' => 1,
+      'delete revisions' => 1,
+      "delete terms in {$vid}" => 1,
+      'download any image files' => 1,
+      'edit any blog_post content' => 1,
+      'edit any document content' => 1,
+      'edit any document files' => 1,
+      'edit any event_d4eu content' => 1,
+      'edit any ideas content' => 1,
+      'edit any image files' => 1,
+      'edit any page content' => 1,
+      "edit terms in {$vid}" => 1,
+      'edit any poll content' => 1,
+      'edit any video files' => 1,
+      'edit any video_d4eu content' => 1,
+      'edit own blog_post content' => 1,
+      'edit own document content' => 1,
+      'edit own document files' => 1,
+      'edit own page content' => 1,
+      'inspect all votes' => 1,
+      'moderate content from draft to needs_review' => 1,
+      'moderate content from needs_review to draft' => 1,
+      'moderate content from needs_review to published' => 1,
+      'moderate content from needs_review to validated' => 1,
+      'moderate content from published to archived' => 1,
+      'moderate content from validated to published' => 1,
+      'revert revisions' => 1,
+      'show format selection for comment' => 1,
+      'show format selection for user' => 1,
+      'show more format tips link' => 1,
+      'use text format basic_html' => 1,
+      'use text format filtered_html' => 1,
+      'use text format full_html' => 0,
+      'use workbench_moderation my drafts tab' => 1,
+      'use workbench_moderation needs review tab' => 1,
+      'view all unpublished content' => 1,
+      'view moderation history' => 0,
+      'view moderation messages' => 0,
+      'view private files' => 1,
+      'view rate results page' => 1,
+      'view revisions' => 1,
+      'view the administration theme' => 1,
+    )
+  );
+
+  watchdog('futurium_d4eu', 'Setting role permissions for editors', array(), WATCHDOG_INFO);
+}
+
+/**
+ * Hide language fields.
+ */
+function _futurium_d4eu_hidelangfields() {
+
+  $type = array(
+    'video_d4eu',
+    'poll',
+    'document',
+    'event_d4eu',
+    'blog_post',
+    'page',
+  );
+
+  foreach ($type as $content_type) {
+    // Hides language field in default view mode of $type.
+    $settings = field_bundle_settings('node', $content_type);
+    $settings['extra_fields']['display']['language']['default']['visible']     = FALSE;
+    $settings['extra_fields']['display']['language']['default']['weight']      = 0;
+    $settings['extra_fields']['display']['language']['teaser']['visible']      = FALSE;
+    $settings['extra_fields']['display']['language']['teaser']['weight']       = 0;
+    $settings['extra_fields']['display']['language']['mini_teaser']['visible'] = FALSE;
+    $settings['extra_fields']['display']['language']['mini_teaser']['weight']  = 0;
+    field_bundle_settings('node', $content_type, $settings);
+  }
+}
+
+/**
+ * Set comments and language options for all available node types.
+ */
+function _futurium_d4eu_fit_node_options() {
+  // Check for all node types.
+  if ($types = node_type_get_types()) {
+    foreach (array_keys($types) as $type) {
+      variable_set('comment_form_location_' . $type, 1);
+      variable_set('language_content_type_' . $type, 0);
+      variable_set('i18n_node_extended_' . $type, '12');
+      variable_set('i18n_node_options_' . $type, array('required'));
+    }
+  }
+}
+
+/**
+ * Set Field_group options.
+ */
+function _futurium_d4eu_field_group_options() {
+  // Specify group names.
+  $group_names = array(
+    'group_blog_post_content',
+    'group_blog_post_metadata',
+    'group_document_content',
+    'group_document_metadata',
+  );
+  $bundles = array(
+    'blog_post',
+    'document',
+  );
+
+  foreach ($bundles as $bundle) {
+    foreach ($group_names as $group_name) {
+      if ($group = field_group_load_field_group($group_name, 'node', $bundle, 'form')) {
+        field_group_group_export_delete($group, FALSE);
+      }
+    }
+  }
+}
+
+/**
+ * Set additional vocabularies.
+ */
+function _futurium_d4eu_vocabulary_options() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('flavors');
+  if (!$vocabulary) {
+    $new_vocab = (object) array(
+      'name'         => 'Flavors',
+      'description'  => 'Flavors',
+      'machine_name' => 'flavors',
+      'hierarchy' => 0,
+      'module' => 'futurium_d4eu',
+      'weight' => -10,
+    );
+    taxonomy_vocabulary_save($new_vocab);
+  }
+}
+
+/**
+ * Implements hook_fivestar_widgets().
+ *
+ * Searches fivestar widgets in the theme.
+ */
+function futurium_d4eu_fivestar_widgets() {
+  static $widgets;
+  if (empty($widgets)) {
+    $path = drupal_get_path("theme", "d4eu");
+    $fivestar_folder = $path . '/fivestar/widgets/futurium';
+    if (file_exists($fivestar_folder)) {
+      $matches = file_scan_directory($fivestar_folder, '/.*\.css$/');
+      foreach ($matches as $match => $item) {
+        $widgets[$item->uri] = ucfirst($item->name);
+      }
+    }
+  }
+  return $widgets;
+}
+
+/**
+ * Implements hook_node_info().
+ */
+function futurium_d4eu_node_info() {
+  $items = array(
+    'event_d4eu' => array(
+      'name' => t('Event'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'video_d4eu' => array(
+      'name' => t('Video'),
+      'base' => 'node_content',
+      'description' => t('Post a video'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+  );
+  drupal_alter('node_info', $items);
+  return $items;
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ *
+ * Defines the related content functionality as a pseudo field, allowing it to
+ * be displayed, ordered or hidden via the UI.
+ */
+function futurium_d4eu_field_extra_fields() {
+  $extra = array();
+  $extra['node']['ideas']['display']['related_content'] = array(
+    'label' => t('Related content'),
+    'weight' => 9,
+  );
+  return $extra;
+}
+
+/**
+ * Generates the related content pseudo field.
+ *
+ * Related content pseudo field is a kind of a block containing two lists and
+ * four forms.
+ */
+function _futurium_idea_related_content($node) {
+  $account = user_uid_optional_load();
+
+  // Adds the 4 quick forms if the user has permission to edit ideas.
+  if (node_access("update", $node, $account) === TRUE) {
+    $build = array();
+    $build['related_content']['link_document'] = drupal_get_form('futurium_idea_link_document', $node);
+    $build['related_content']['link_poll'] = drupal_get_form('futurium_idea_link_poll', $node);
+    $build['related_content']['link_video'] = drupal_get_form('futurium_idea_link_video', $node);
+    $build['related_content']['link_event'] = drupal_get_form('futurium_idea_link_event', $node);
+    $build['related_content']['#prefix'] = '<a name="add-related-item"></a><div class="related-content-forms">';
+    $build['related_content']['#suffix'] = '</div>';
+    return $build;
+  }
+}
+
+/**
+ * Returns json formatted query result for autocomplete callback.
+ */
+function _futurium_idea_related_content_autocomplete_callback($type, $string = "") {
+  $matches = array();
+  if ($string) {
+    $result = db_select('node')
+      ->fields('node', array('nid', 'title'))
+      ->condition('title', '%' . db_like($string) . '%', 'LIKE')
+      ->condition('type', $type)
+      ->condition('status', 1)
+      ->range(0, 10)
+      ->execute();
+    foreach ($result as $node) {
+      $matches[$node->title . " [$node->nid]"] = check_plain($node->title);
+    }
+  }
+  drupal_json_output($matches);
+}
+
+/**
+ * Handle access denied after login.
+ */
+function _futurium_d4eu_access_denied() {
+  // authorize_access_denied_page()
+  drupal_add_http_header('Status', '403 Forbidden');
+  watchdog('access denied', 'authorize.php', NULL, WATCHDOG_WARNING);
+  drupal_set_title('Access denied');
+  $markup = t('Sorry, you are not allowed to access this page!');
+
+  if (!user_is_logged_in()) {
+    drupal_set_title('Please login');
+    $elements = drupal_get_form('user_login_block');
+    $form     = drupal_render($elements);
+    $markup = t('You are not allowed to access this page, please login or create an account.');
+    $markup .= $form;
+  }
+
+  return $markup;
+}
+
+/**
+ * Implements hook_default_invite_type().
+ */
+function futurium_d4eu_default_invite_type() {
+      $items = array();
+      $items['invite_by_email'] = entity_import('invite_type', '{
+    "type" : "invite_by_email",
+    "label" : "Invite by e-mail",
+    "weight" : 0,
+    "argument_keys" : [],
+    "argument" : [],
+    "invite_sending_controller" : { "invite_by_email" : "invite_by_email" },
+    "description" : "Invitation by e-mail.",
+    "data" : { "invite_by_email" : {
+        "use_default" : true,
+        "message_editable" : false,
+        "replace_tokens" : false
+      }
+    },
+    "rdf_mapping" : []
+  }');
+      return $items;
+}
