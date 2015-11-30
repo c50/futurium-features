@@ -1,0 +1,360 @@
+<?php
+
+/**
+ * @file
+ * Tests for supertags.module.
+ */
+
+/**
+ * Testing the "Supertags" feature compliance with requirements.
+ */
+class SupertagsQAWebTestCase extends DrupalWebTestCase {
+
+  /**
+   * Returns test information.
+   *
+   * @return array
+   *   Information array
+   */
+  public static function getInfo() {
+    return array(
+      'name'        => 'Supertags .info file',
+      'description' => 'Tests the feature .info file',
+      'group'       => 'Supertags',
+    );
+  }
+
+  /**
+   * Test Info File.
+   *
+   * TestFile <featurename>.info.
+   */
+  public function testInfoFile() {
+    $module = basename(__FILE__, ".test");
+    $path   = drupal_get_path('module', $module) . '/' . $module . '.info';
+    $info   = drupal_parse_info_file($path);
+
+    // Add name information. Ex: name=Newsletters.
+    $this->assertTrue(array_key_exists('name', $info), 'The module\'s name is available.');
+
+    // Add description information.
+    // Ex: description = Publish and send newsletters to lists of subscribers.
+    $this->assertTrue(array_key_exists('description', $info), 'The module\'s description is available.');
+
+    // Add package information.
+    // Ex: package = Multisite_features
+    $this->assertTrue(array_key_exists('package', $info), 'The module\'s package is available.');
+
+    // Add core information.
+    // Ex core = 7.x
+    $this->assertTrue(array_key_exists('core', $info), 'The Drupal core version is available.');
+    $this->assertEqual($info['core'], '7.x', 'Drupal core is 7.x');
+
+    // Add php information.
+    // Ex: php = 5.2.4
+    $this->assertTrue(array_key_exists('php', $info), 'The PHP version info is available.');
+    $this->assertEqual($info['php'], '5.3.29', 'PHP Version matches 5.3.29');
+
+    // Add version information
+    // Ex: version = 7.x-1.0
+    $this->assertTrue(array_key_exists('version', $info));
+
+    // Add feature information:
+    // features[features_api][] = api:1
+    $this->assertEqual($info['features']['features_api'][0], 'api:2', 'The Feature API dependency is available.');
+
+    // Remove menu dependencies:
+    if (array_key_exists('dependencies', $info)) {
+      // dependencies[] = "menu"
+      $this->assertFalse(in_array('menu', $info['dependencies']), 'There is no reference to the menu dependency.');
+
+      // Remove taxonomy dependencies
+      // dependencies[] = "taxonomy"
+      $this->assertFalse(in_array('taxonomy', $info['dependencies']), 'There is no reference to the taxonomy dependency.');
+    }
+    // Check other dependencies (modules + features) to be sure they are needed
+    // FIXME: manual check?
+    // Remove tags taxonomy:
+    // features[taxonomy][] = "tags"
+    if (array_key_exists('features', $info) && array_key_exists('taxonomy', $info['features'])) {
+      $this->assertFalse(in_array('tags', $info['features']['taxonomy']), 'The dependency to the tags taxonomy has been removed.');
+    }
+  }
+
+  /**
+   * Test install file.
+   */
+  public function testInstallFile() {
+    $module = basename(__FILE__, ".test");
+    $path   = drupal_get_path('module', $module) . '/' . $module . '.install';
+    $data   = file_get_contents($path);
+    $this->assertTrue(strpos($data, $module . '_enable'), 'The module contains a hook_enable');
+    $this->assertTrue(strpos($data, $module . '_disable'), 'The module contains a hook_disable');
+  }
+
+}
+
+/**
+ * Defines a base class for testing the Supertags module.
+ */
+class SupertagsSectionsVocabulary extends DrupalWebTestCase {
+  protected $adminUser;
+
+  /**
+   * Returns test information.
+   *
+   * @return array
+   *   Information array
+   */
+  public static function getInfo() {
+    return array(
+      'name'        => 'Supertags sections',
+      'description' => 'Tests the creation of Supertags sections.',
+      'group'       => 'Supertags',
+    );
+  }
+
+  /**
+   * Set up test environment.
+   */
+  public function setUp() {
+
+    parent::setUp(array('features'));
+
+    $modules = array('supertags', 'context', 'views');
+
+    foreach ($modules as $module) {
+      $success = module_enable(array($module));
+    }
+
+    $perms = module_invoke_all('permission');
+    foreach ($perms as $k => $perm) {
+      $perms_list[] = $k;
+    }
+
+    $this->checkPermissions($perms_list, TRUE);
+
+    $this->adminUser = $this->drupalCreateUser($perms_list);
+    $this->drupalLogin($this->adminUser);
+
+    // Create Basic page and Article node types.
+    // A notice will be thrown if there are no node bundles.
+    // See _supertags_content_types_with_field()
+    if ($this->profile != 'standard') {
+      $this->drupalCreateContentType(array('type' => 'page', 'name' => 'Basic page'));
+      $this->drupalCreateContentType(array('type' => 'article', 'name' => 'Article'));
+    }
+
+  }
+
+  /**
+   * Test Flavors vocabulary and fields.
+   */
+  protected function testVocabulary() {
+
+    $this->drupalGet('admin/structure/taxonomy/flavors');
+    $this->assertResponse(200, "Flavors taxonomy is available.");
+
+    $this->drupalGet('admin/structure/taxonomy/flavors/add');
+
+    $this->assertField('edit-field-flavor-active-und', 'Field "Active" exists.');
+    $this->assertField('edit-field-path-und-0-value', 'Field "Path" exists.');
+    $this->assertField('edit-field-class-und-0-value', 'Field "Class" exists.');
+    $this->assertRaw('id="field-flavor-tree-values"', 'Field "Flavor Tree" exists.');
+
+  }
+
+  /**
+   * Test the creation of a section.
+   */
+  public function testSectionCreation() {
+
+    features_revert();
+
+    // Attach supertags fields to "article" content type.
+    $fields = array(
+      'field_default_flavour' => array(
+        'label' => 'Default Flavor',
+        'name' => 'field_default_flavour',
+        'widget' => 'textfield',
+        'bundle' => 'article',
+      ),
+      'field_flavor_s_' => array(
+        'label' => 'Flavor(s)',
+        'name' => 'field_flavor_s_',
+        'widget' => 'textfield',
+        'bundle' => 'article',
+      ),
+    );
+
+    foreach ($fields as $field => $data) {
+      $instance = array(
+        'field_name' => $data['name'],
+        'entity_type' => 'node',
+        'label' => $data['label'],
+        'bundle' => $data['bundle'],
+        'required' => TRUE,
+        'settings' => array(),
+        'widget' => array(
+          'type' => $data['widget'],
+        ),
+      );
+      field_create_instance($instance);
+    }
+
+    $edit = array();
+    $title = $this->randomName(16);
+    $edit['name'] = $title;
+    $edit["description[value]"] = $this->randomName(16);
+    $edit["field_flavor_active[und]"] = TRUE;
+    $edit["field_class[und][0][value]"] = $title;
+    $edit["field_path[und][0][value]"] = $title;
+    $edit["rows[article][path]"] = 'articles';
+
+    $this->drupalPost('admin/structure/taxonomy/flavors/add', $edit, t('Save'));
+    $this->assertText(t('Created new term @title.', array('@title' => $title)));
+
+    $this->drupalPost('admin/config/development/performance', array(), t('Clear all caches'));
+
+    $this->drupalGet($title);
+    $this->assertText($title, 'Section ' . $title . ' exists.');
+
+    $this->drupalGet($title . '/articles');
+    $this->assertResponse(200, t("Section @title/articles' is available", array('@title' => $title)));
+
+    $this->drupalGet($title . '/pages');
+    $this->assertResponse(404, t("Section @title/pages isn't available", array('@title' => $title)));
+
+  }
+
+}
+
+/**
+ * Defines a base class for testing the Supertags module.
+ */
+class SupertagsSectionsContent extends DrupalWebTestCase {
+  protected $adminUser;
+
+  /**
+   * Returns test information.
+   *
+   * @return array
+   *   Information array
+   */
+  public static function getInfo() {
+    return array(
+      'name'        => 'Supertags section content',
+      'description' => 'Tests assigning content to a section.',
+      'group'       => 'Supertags',
+    );
+  }
+
+  /**
+   * Set up test environment.
+   */
+  public function setUp() {
+
+    parent::setUp(array('features'));
+
+    $modules = array('supertags', 'context', 'views', 'i18n_taxonomy');
+
+    foreach ($modules as $module) {
+      $success = module_enable(array($module));
+    }
+
+    $perms = module_invoke_all('permission');
+    foreach ($perms as $k => $perm) {
+      $perms_list[] = $k;
+    }
+
+    $this->checkPermissions($perms_list, TRUE);
+
+    $this->adminUser = $this->drupalCreateUser($perms_list);
+    $this->drupalLogin($this->adminUser);
+
+    // Create Basic page and Article node types.
+    // A notice will be thrown if there are no node bundles.
+    // See _supertags_content_types_with_field()
+    if ($this->profile != 'standard') {
+      $this->drupalCreateContentType(array('type' => 'page', 'name' => 'Basic page'));
+      $this->drupalCreateContentType(array('type' => 'article', 'name' => 'Article'));
+    }
+
+  }
+
+  /**
+   * Test the creation of section content.
+   */
+  public function testArticleCreation() {
+
+    features_revert();
+
+    // Attach supertags fields to "article" content type.
+    $fields = array(
+      'field_default_flavour' => array(
+        'label' => 'Default Flavor',
+        'name' => 'field_default_flavour',
+        'widget' => 'textfield',
+        'bundle' => 'article',
+      ),
+      'field_flavor_s_' => array(
+        'label' => 'Flavor(s)',
+        'name' => 'field_flavor_s_',
+        'widget' => 'textfield',
+        'bundle' => 'article',
+      ),
+    );
+
+    foreach ($fields as $field => $data) {
+      $instance = array(
+        'field_name' => $data['name'],
+        'entity_type' => 'node',
+        'label' => $data['label'],
+        'bundle' => $data['bundle'],
+        'required' => TRUE,
+        'settings' => array(),
+        'widget' => array(
+          'type' => $data['widget'],
+        ),
+      );
+      field_create_instance($instance);
+    }
+
+    // First, let's create a section.
+    $edit = array();
+    $title = $this->randomName(16);
+    $edit['name'] = $title;
+    $edit["description[value]"] = $this->randomName(16);
+    $edit["field_flavor_active[und]"] = TRUE;
+    $edit["field_class[und][0][value]"] = $title;
+    $edit["field_path[und][0][value]"] = $title;
+    $edit["rows[article][path]"] = 'articles';
+
+    $this->drupalPost('admin/structure/taxonomy/flavors/add', $edit, t('Save'));
+    $this->assertText(t('Created new term @title.', array('@title' => $title)));
+
+    $this->drupalPost('admin/config/development/performance', array(), t('Clear all caches'));
+
+    $terms = taxonomy_get_term_by_name($title, 'flavors');
+    $term = array_shift($terms);
+
+    // Now we create a node and assign it to the previously created section.
+    $this->drupalGet('node/add/article');
+
+    $edit = array();
+    $node_title = $this->randomName(16);
+    $edit['title'] = $node_title;
+    $edit["body[und][0][value]"] = $this->randomString(100);
+
+    $edit["field_default_flavour[und]"] = $term->tid;
+    $edit["field_flavor_s_[und]"] = $term->tid;
+
+    $this->drupalPost('node/add/article', $edit, t('Save'));
+
+    // Check that the created node is present on articles list.
+    $this->drupalGet($title . '/articles');
+    $this->assertText($node_title, 'Section ' . $title . ' exists.');
+
+  }
+
+}

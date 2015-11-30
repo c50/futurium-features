@@ -1,0 +1,38 @@
+<?php
+/**
+ * @file
+ * Installs the Futurium D4EU feature.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function futurium_core_enable() {
+  $t = get_t();
+  drupal_set_message($t('Futurium core feature is now active on your site.'));
+  module_enable(array('e_library_core'));
+}
+
+/**
+ * Implements hook_disable().
+ */
+function futurium_core_disable() {
+  $t = get_t();
+  drupal_set_message($t('Futurium core feature is now disabled on your site.'));
+}
+
+/**
+ * Implements hook_install().
+ */
+function futurium_core_install() {
+  $t = get_t();
+  drupal_set_message($t('Futurium core feature is now installed on your site.'));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function futurium_core_uninstall() {
+  $t = get_t();
+  drupal_set_message($t('Futurium core feature is now uninstalled from your site.'));
+}
