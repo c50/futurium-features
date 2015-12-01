@@ -1782,9 +1782,62 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-video_d4eu-body'
+  $field_instances['node-video_d4eu-body'] = array(
+      'bundle' => 'video_d4eu',
+      'default_value' => NULL,
+      'deleted' => 0,
+      'description' => '',
+      'display' => array(
+          'default' => array(
+              'label' => 'hidden',
+              'module' => 'text',
+              'settings' => array(),
+              'type' => 'text_default',
+              'weight' => 0,
+          ),
+          'mini_teaser' => array(
+              'label' => 'hidden',
+              'settings' => array(),
+              'type' => 'hidden',
+              'weight' => 2,
+          ),
+          'teaser' => array(
+              'label' => 'hidden',
+              'module' => 'text',
+              'settings' => array(
+                  'trim_length' => 600,
+              ),
+              'type' => 'text_summary_or_trimmed',
+              'weight' => 0,
+          ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_body',
+      'label' => 'Body',
+      'required' => FALSE,
+      'settings' => array(
+          'display_summary' => TRUE,
+          'entity_translation_sync' => FALSE,
+          'text_processing' => 1,
+          'user_field_privacy' => FALSE,
+          'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+          'module' => 'text',
+          'settings' => array(
+              'rows' => 20,
+              'summary_rows' => 5,
+          ),
+          'type' => 'text_textarea_with_summary',
+          'weight' => 2,
+      ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Author(s)');
+  t('Body');
   t('Comment');
   t('Date & time');
   t('Enter the URL of the external resource');
@@ -1795,7 +1848,6 @@ function futurium_d4eu_field_default_field_instances() {
   t('Leading picture');
   t('Organisation');
   t('Please separate tags with commas. For example <i>broadband, geoblocking, quantum mechanics, Italy</i>.');
-  t('Please separate tags with commas. For example <i>broadband, geoblocking, quantum mechanics, italy</i>.');
   t('Poll');
   t('Rate');
   t('Rate that idea.');
