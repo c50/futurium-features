@@ -1,0 +1,32 @@
+.region {
+  padding: 30px 0 30px 0;
+  float: left;
+  width: 100%;
+}
+
+.content-slider-wrapper .region {
+  padding: 0;
+}
+
+.container-fullwidth.footer {
+  background: $dark-grey;
+}
+
+.content-before-middle-wrapper, .content-after-middle-wrapper {
+  background: $light-grey;
+}
+
+.content-before-wrapper {
+  background: $brand-color;
+  color: #fff;
+  h2 {
+    color: #fff;;
+  }
+}
+
+.not-front {
+  .main-container {
+    background: $light-grey;
+  }
+}
+

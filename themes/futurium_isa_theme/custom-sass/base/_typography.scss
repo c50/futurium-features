@@ -1,0 +1,15 @@
+/**
+ * Basic typography style for copy text
+ */
+
+html{
+  @include rem-baseline;
+}
+
+body {
+  color: $text-color;
+  @include rem(font-size, 14px);
+  @include rem(line-height, 24px);
+  font-family:$text-font-stack;
+  font-weight: normal;
+}

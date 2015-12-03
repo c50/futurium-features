@@ -1,0 +1,94 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+
+/// Regular font family
+$text-font-stack: 'droid serif', serif;
+$header-font-stack: 'Oswald', sans-serif;
+
+
+/// pixel to rem converting
+$rem-baseline: 10px !default;
+$rem-fallback: true !default;
+$rem-px-only: false !default;
+
+/// Gutter width 
+$grid-gutter-width: 60px;
+
+/// Copy text color
+$text-color: #555 !default;
+
+/// Main brand color
+$brand-color: #95c500 !default;
+
+
+// Link color
+
+$link-color: $brand-color;
+$link-hover-color: darken($brand-color, 10%);
+
+/// Light grey
+$light-grey: #F8F8F8 !default;
+
+/// Medium grey
+$mid-grey: #999 !default;
+
+/// Dark grey
+$dark-grey: #090909 !default;
+
+
+/// Container's maximum width
+/// Below that is 100%
+$max-width: 1200px !default;
+
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+/// @see {mixin} respond-to
+$breakpoints: (
+  'small': (min-width: 320px),
+  'medium': (min-width: 768px),
+  'large': (min-width: 1024px),
+) !default;
+
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$base-url: '/assets/' !default;
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-font-weight:                normal !default;
+
+$btn-default-color:              #fff;
+$btn-default-bg:                 $brand-color;
+$btn-default-border:             darken($brand-color, 5%) !default;
+
+
+//== Pagination
+//
+//##
+
+
+$pagination-color:                     $link-color !default;
+$pagination-bg:                        #fff !default;
+$pagination-border:                    #ddd !default;
+
+$pagination-hover-color:               $link-hover-color !default;
+$pagination-hover-bg:                  $light-grey !default;
+$pagination-hover-border:              #ddd !default;
+
+$pagination-active-color:              #fff !default;
+$pagination-active-bg:                 $brand-color !default;
+$pagination-active-border:             $brand-color !default;
+
+//$pagination-disabled-color:            $gray-light !default;
+$pagination-disabled-bg:               #fff !default;
+$pagination-disabled-border:           #ddd !default;
+
