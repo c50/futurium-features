@@ -1,0 +1,25 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+/**
+ * basic info 
+ */
+.navbar{
+  background: $dark-grey;
+  margin-bottom: 0;
+  font-family: $header-font-stack;
+  text-transform: uppercase;
+}
+
+/**
+ * alignment of the navigation
+ */
+.navbar-nav{
+  float: right;
+}
+
+.navbar .logo{
+  margin-left:20px;
+}
+

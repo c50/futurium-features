@@ -1,0 +1,193 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+
+/* adds a border dashed top & bottom & adds padding */
+
+@mixin border-double{
+  @include rem(border-top, 1px dashed $mid-grey);
+  @include rem(border-bottom, 1px dashed $mid-grey);
+  @include rem(padding, 10px 0 10px 0);
+  @include rem(margin, 20px 0 20px 0);
+}
+
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+/// Responsive manager
+/// @param {String} $breakpoint - Breakpoint
+/// @requires $breakpoints
+/// @link http://sass-guidelin.es/#breakpoint-manager Sass Guidelines - Breakpoint Manager
+@mixin respond-to($breakpoint) {
+  $query: map-get($breakpoints, $breakpoint);
+  
+  @if not $query {
+    @error 'No value found for `#{$breakpoint}`. Please make sure it is defined in `$breakpoints` map.';
+  }
+
+  @media #{if(type-of($query) == 'string', unquote($query), inspect($query))} {
+    @content;
+  }
+}
+
+/// Flexbox
+/// Used for eq height of boxes.
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;  
+  -moz-box-ordinal-group: $val;     
+  -ms-flex-order: $val;     
+  -webkit-order: $val;  
+  order: $val;
+}
+
+
+/// Responsive breakpoints
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "small" {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint == "medium" {
+    @media (min-width: 768px) and (max-width: 1024px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint == "large" {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+/// Font-size in pixels & rem
+/// list-separator polyfill by Hugo Giraudel (https://sass-compatibility.github.io/#list_separator_function)
+@function rem-separator($list) {
+  @if function-exists("list-separator") == true {
+    @return list-separator($list);
+  }
+
+  $test-list: ();
+  @each $item in $list {
+    $test-list: append($test-list, $item, space);
+  }
+
+  @return if($test-list == $list, space, comma);
+}
+
+@mixin rem-baseline($zoom: 100%) {
+  font-size: $zoom / 16px * $rem-baseline;
+}
+
+@function rem-convert($to, $values...) {
+  $result: ();
+  $separator: rem-separator($values);
+
+  @each $value in $values {
+    @if type-of($value) == "number" and unit($value) == "rem" and $to == "px" {
+      $result: append($result, $value / 1rem * $rem-baseline, $separator);
+    } @else if type-of($value) == "number" and unit($value) == "px" and $to == "rem" {
+      $result: append($result, $value / ($rem-baseline / 1rem), $separator);
+    } @else if type-of($value) == "list" {
+      $result: append($result, rem-convert($to, $value...), $separator);
+    } @else {
+      $result: append($result, $value, $separator);
+    }
+  }
+
+  @return if(length($result) == 1, nth($result, 1), $result);
+}
+
+@function rem($values...) {
+  @if $rem-px-only {
+    @return rem-convert(px, $values...);
+  } @else {
+    @return rem-convert(rem, $values...);
+  }
+}
+
+@mixin rem($properties, $values...) {
+  @if type-of($properties) == "map" {
+    @each $property in map-keys($properties) {
+      @include rem($property, map-get($properties, $property));
+    }
+  } @else {
+    @each $property in $properties {
+      @if $rem-fallback or $rem-px-only {
+        #{$property}: rem-convert(px, $values...);
+      }
+      @if not $rem-px-only {
+        #{$property}: rem-convert(rem, $values...);
+      }
+    }
+  }
+}
+
+/// Vertically Centered
+
+@mixin vertically-centred
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/// No padding for lists
+
+.nopadding-list
+{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+

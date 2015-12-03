@@ -1,0 +1,379 @@
+<?php
+
+/**
+ * @file
+ * Hic sunt dracones.
+ */
+
+function futurium_isa_extras_enable() {
+  // Site default settings
+  variable_set('site_frontpage', 'home');
+  variable_set('user_pictures', '1');
+  variable_set('user_picture_default','');
+  variable_set('user_picture_dimensions','85x85');
+  variable_set('user_picture_file_size', '30');
+  variable_set('user_picture_guidelines', '');
+  variable_set('user_picture_path','');
+  variable_set('user_picture_style','');
+  variable_set('user_register','2');
+
+  // Theme settings
+  variable_set('theme_default', 'futurium_isa_theme');
+  variable_set('admin_theme', 'seven');
+  _bootstrap_default_settings();
+
+  // Page manager settings
+  variable_set('page_manager_node_view_disabled', 0);
+
+  drupal_flush_all_caches();
+}
+
+function futurium_isa_extras_admin_paths_alter(&$paths) {
+  $paths['user/*/edit'] = FALSE;
+}
+
+function futurium_isa_extras_preprocess_node(&$vars) {
+  $vars['classes_array'][] = "view-mode-" . $vars['view_mode'];
+  $vars['display_submitted'] = FALSE;
+}
+
+function futurium_isa_extras_menu() {
+  $items['home'] = array(
+    'title' => 'Home',
+    'page callback' => 'futurium_isa_extras_blank_page',
+    'access callback' => array(true),
+    'menu_name' => 'main-menu',
+    'weight' => 0,
+  );
+  $items['ideas'] = array(
+    'title' => 'Ideas',
+    'page callback' => 'futurium_isa_extras_blank_page',
+    'access callback' => array(true),
+    'menu_name' => 'main-menu',
+    'weight' => 1,
+  );
+  $items['events'] = array(
+    'title' => 'Events',
+    'page callback' => 'futurium_isa_extras_blank_page',
+    'access callback' => array(true),
+    'menu_name' => 'main-menu',
+    'weight' => 2,
+  );
+  return $items;
+}
+
+function futurium_isa_extras_blank_page(){
+  return "";
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function futurium_isa_extras_field_formatter_info() {
+  return array(
+    'entityreference_entity_author_picture' => array(
+      'label' => t('Entity author(s) picture(s)'),
+      'description' => t('Display the picture of the referenced entities author(s).'),
+      'field types' => array('entityreference'),
+      'settings' => array(
+        'link' => FALSE,
+        'image_style' => 'default',
+      ),
+    ),
+    'entityreference_entity_author_name' => array(
+      'label' => t('Entity author(s) name(s)'),
+      'description' => t('Display the name of the referenced entities author(s).'),
+      'field types' => array('entityreference'),
+      'settings' => array(
+        'link' => FALSE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function futurium_isa_extras_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  if ($display['type'] == 'entityreference_entity_author_picture' ||
+      $display['type'] == 'entityreference_entity_author_name') {
+    $element['link'] = array(
+      '#title' => t('Link to the referenced entity author'),
+      '#type' => 'checkbox',
+      '#default_value' => $settings['link'],
+    );
+  }
+
+  if ($display['type'] == 'entityreference_entity_author_picture') {
+    $options = image_style_options();
+    $element['image_style'] = array(
+      '#title' => t('Image style'),
+      '#type' => 'select',
+      '#options' => $options,
+      '#default_value' => $settings['image_style'],
+    );
+  }
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function futurium_isa_extras_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $summary = array();
+
+  if ($display['type'] == 'entityreference_entity_author_picture' ||
+      $display['type'] == 'entityreference_entity_author_name') {
+    $summary[] = $settings['link'] ? t('Link to the referenced entity author') : t('No link');
+  }
+
+  if ($display['type'] == 'entityreference_entity_author_picture') {
+    $summary[] = $settings['image_style'] ? t('Image style to apply to link') : t('Default');
+  }
+
+  return implode('<br />', $summary);
+}
+
+/**
+ * Implements hook_field_formatter_prepare_view().
+ */
+function futurium_isa_extras_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
+  $target_ids = array();
+
+  // Collect every possible entity attached to any of the entities.
+  foreach ($entities as $id => $entity) {
+    foreach ($items[$id] as $delta => $item) {
+      if (isset($item['target_id'])) {
+        $target_ids[] = $item['target_id'];
+      }
+    }
+  }
+
+  if ($target_ids) {
+    $target_entities = entity_load($field['settings']['target_type'], $target_ids);
+  }
+  else {
+    $target_entities = array();
+  }
+
+  // Iterate through the fieldable entities again to attach the loaded data.
+  foreach ($entities as $id => $entity) {
+    $rekey = FALSE;
+
+    foreach ($items[$id] as $delta => $item) {
+      // Check whether the referenced entity could be loaded.
+      if (isset($target_entities[$item['target_id']])) {
+        // Replace the instance value with the term data.
+        $items[$id][$delta]['entity'] = $target_entities[$item['target_id']];
+        // Check whether the user has access to the referenced entity.
+        $has_view_access = (entity_access('view', $field['settings']['target_type'], $target_entities[$item['target_id']]) !== FALSE);
+        $has_update_access = (entity_access('update', $field['settings']['target_type'], $target_entities[$item['target_id']]) !== FALSE);
+        $items[$id][$delta]['access'] = ($has_view_access || $has_update_access);
+      }
+      // Otherwise, unset the instance value, since the entity does not exist.
+      else {
+        unset($items[$id][$delta]);
+        $rekey = TRUE;
+      }
+    }
+
+    if ($rekey) {
+      // Rekey the items array.
+      $items[$id] = array_values($items[$id]);
+    }
+  }
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function futurium_isa_extras_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $result = array();
+  $settings = $display['settings'];
+
+  // Rebuild the items list to contain only those with access.
+  foreach ($items as $key => $item) {
+    if (empty($item['access'])) {
+      unset($items[$key]);
+    }
+  }
+
+  switch ($display['type']) {
+    case 'entityreference_entity_author_picture':
+
+      $delta_offset = 0;
+      // Add entity->uid first
+      if ($entity->uid) {
+        $account = user_load($entity->uid);
+        $picture = theme('user_picture', array('account' => $account,'style_name' => $display['settings']['image_style']));
+
+        if ($display['settings']['link'] && ($uri = entity_uri($field['settings']['target_type'], $item['entity']))) {
+          $l_options = array(
+            'html' => TRUE,
+          );
+
+          $result[$delta_offset] = array('#markup' => $picture); //, $uri['path'], $l_options));
+        }
+        else {
+          $result[$delta_offset] = array('#markup' => $picture);
+        }
+        $delta_offset = 1;
+      }
+
+      $handler = entityreference_get_selection_handler($field, $instance, $entity_type, $entity);
+
+      foreach ($items as $delta => $item) {
+        $label = $handler->getLabel($item['entity']);
+        // If the link is to be displayed and the entity has a uri, display a link.
+        // Note the assignment ($url = ) here is intended to be an assignment.
+
+        $account = user_load($item['entity']->uid);
+        $picture = theme('user_picture', array('account' => $account,'style_name' => $display['settings']['image_style']));
+
+        if ($display['settings']['link'] && ($uri = entity_uri($field['settings']['target_type'], $item['entity']))) {
+          $result[$delta + $delta_offset] = array('#markup' => $picture);//, $uri['path'], $l_options));
+        }
+        else {
+          $result[$delta + $delta_offset] = array('#markup' => $picture);
+        }
+
+      }
+      break;
+
+    case 'entityreference_entity_author_name':
+
+      // Add entity->uid first
+
+      $delta_offset = 0;
+      // Add entity->uid first
+      if ($entity->uid) {
+
+        $account = user_load($item['entity']->uid);
+
+        if ($display['settings']['link'] && ($uri = entity_uri($field['settings']['target_type'], $item['entity']))) {
+          $l_options = array(
+            'html' => TRUE,
+          );
+
+          $result[$delta_offset] = array('#markup' => l($account->name, $uri['path'], $l_options));
+        }
+        else {
+          $result[$delta_offset] = array('#markup' => $account->name);
+        }
+        $delta_offset = 1;
+      }
+
+      $handler = entityreference_get_selection_handler($field, $instance, $entity_type, $entity);
+
+      foreach ($items as $delta => $item) {
+        $label = $handler->getLabel($item['entity']);
+        // If the link is to be displayed and the entity has a uri, display a link.
+        // Note the assignment ($url = ) here is intended to be an assignment.
+
+        if ($display['settings']['link'] && ($uri = entity_uri($field['settings']['target_type'], $item['entity']))) {
+          $result[$delta + $delta_offset] = array('#markup' => l($label, $uri['path'], $uri['options']));
+        }
+        else {
+          $result[$delta + $delta_offset] = array('#markup' => check_plain($label));
+        }
+      }
+      break;
+  }
+
+  $row[0]['#markup'] = '';
+  foreach($result as $item) {
+    $row[0]['#markup'] .= $item['#markup'];
+  }
+
+  return $row;
+}
+
+
+
+function _bootstrap_default_settings() {
+  $settings = array(
+    'toggle_logo' => 0,
+    'toggle_name' => 1,
+    'toggle_slogan' => 1,
+    'toggle_node_user_picture' => 0,
+    'toggle_comment_user_picture' => 0,
+    'toggle_comment_user_verification' => 0,
+    'toggle_favicon' => 1,
+    'toggle_main_menu' => 1,
+    'toggle_secondary_menu' => 0,
+    'default_logo' => 1,
+    'logo_path' => "",
+    'logo_upload' => "",
+    'default_favicon' => 1,
+    'favicon_path' => "",
+    'favicon_upload' => "",
+    'general__active_tab' => "edit-theme-settings",
+    'bootstrap__active_tab' => "edit-javascript",
+    'bootstrap_breadcrumb' => "1",
+    'bootstrap_breadcrumb_home' => 0,
+    'bootstrap_breadcrumb_title' => 1,
+    'bootstrap_navbar_position' => "",
+    'bootstrap_navbar_inverse' => 1,
+    'bootstrap_region_well-navigation' => "",
+    'bootstrap_region_well-header' => "",
+    'bootstrap_region_well-highlighted' => "",
+    'bootstrap_region_well-help' => "",
+    'bootstrap_region_well-content_slider' => "",
+    'bootstrap_region_well-content_top' => "",
+    'bootstrap_region_well-content_before_middle' => "",
+    'bootstrap_region_well-content_before' => "",
+    'bootstrap_region_well-content' => "",
+    'bootstrap_region_well-content_after' => "",
+    'bootstrap_region_well-content_after_middle' => "",
+    'bootstrap_region_well-content_bottom' => "",
+    'bootstrap_region_well-sidebar_first' => "well",
+    'bootstrap_region_well-sidebar_second' => "",
+    'bootstrap_region_well-footer' => "",
+    'bootstrap_region_well-page_top' => "",
+    'bootstrap_region_well-page_bottom' => "",
+    'bootstrap_anchors_fix' => 1,
+    'bootstrap_anchors_smooth_scrolling' => 1,
+    'bootstrap_popover_enabled' => 1,
+    'bootstrap_popover_animation' => 1,
+    'bootstrap_popover_html' => 0,
+    'bootstrap_popover_placement' => "right",
+    'bootstrap_popover_selector' => "",
+    'bootstrap_popover_trigger' => array(
+      'click' => "click",
+      'hover' => 0,
+      'focus' => 0,
+      'manual' => 0,
+    ),
+    'bootstrap_popover_title' => "",
+    'bootstrap_popover_content' => "",
+    'bootstrap_popover_delay' => "0",
+    'bootstrap_popover_container' => "body",
+    'bootstrap_tooltip_enabled' => 1,
+    'bootstrap_tooltip_descriptions' => 1,
+    'bootstrap_tooltip_animation' => 1,
+    'bootstrap_tooltip_html' => 0,
+    'bootstrap_tooltip_placement' => "auto left",
+    'bootstrap_tooltip_selector' => "",
+    'bootstrap_tooltip_trigger' => array(
+      'click' => "click",
+      'hover' => 0,
+      'focus' => 0,
+      'manual' => 0,
+    ),
+    'bootstrap_tooltip_delay' => "0",
+    'bootstrap_tooltip_container' => "body",
+    'bootstrap_cdn' => "3.0.2",
+    'bootstrap_bootswatch' => "",
+    'bootstrap_rebuild_registry' => 0,
+    'bootstrap_toggle_jquery_error' => 0,
+    'jquery_update_jquery_version' => "",
+  );
+  variable_set('theme_futurium_isa_theme_settings', $settings);
+}
