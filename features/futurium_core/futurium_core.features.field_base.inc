@@ -164,80 +164,6 @@ function futurium_core_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_rate_comment'
-  $field_bases['field_rate_comment'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_rate_comment',
-    'foreign keys' => array(),
-    'indexes' => array(),
-    'locked' => 1,
-    'module' => 'fivestar',
-    'settings' => array(
-      'axis' => 'vote',
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'fivestar',
-  );
-
-  // Exported field_base: 'field_rate_ideas'
-  $field_bases['field_rate_ideas'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_rate_ideas',
-    'foreign keys' => array(),
-    'indexes' => array(),
-    'locked' => 1,
-    'module' => 'fivestar',
-    'settings' => array(
-      'axis' => 'vote',
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'fivestar',
-  );
-
-  // Exported field_base: 'field_related'
-  $field_bases['field_related'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_related',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
-    'indexes' => array(
-      'target_id' => array(
-        0 => 'target_id',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'entityreference',
-    'settings' => array(
-      'handler' => 'base',
-      'handler_settings' => array(
-        'sort' => array(
-          'type' => 'none',
-        ),
-        'target_bundles' => array(),
-      ),
-      'target_type' => 'node',
-    ),
-    'translatable' => 0,
-    'type' => 'entityreference',
-  );
-
   // Exported field_base: 'field_related_documents'
   $field_bases['field_related_documents'] = array(
     'active' => 1,
@@ -414,33 +340,6 @@ function futurium_core_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_teaser'
-  $field_bases['field_teaser'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_teaser',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'text_long',
-  );
-
   // Exported field_base: 'field_videosd4eu'
   $field_bases['field_videosd4eu'] = array(
     'active' => 1,
@@ -558,53 +457,6 @@ function futurium_core_field_default_field_bases() {
       ),
       'translatable' => 0,
       'type' => 'text',
-  );
-
-  // Exported field_base: 'field_related'
-  $field_bases['field_related'] = array(
-      'active' => 1,
-      'cardinality' => -1,
-      'deleted' => 0,
-      'entity_types' => array(),
-      'field_name' => 'field_related',
-      'indexes' => array(
-          'target_id' => array(
-              0 => 'target_id',
-          ),
-      ),
-      'locked' => 0,
-      'module' => 'entityreference',
-      'settings' => array(
-          'handler' => 'base',
-          'handler_settings' => array(
-              'sort' => array(
-                  'type' => 'none',
-              ),
-              'target_bundles' => array(),
-          ),
-          'target_type' => 'node',
-      ),
-      'translatable' => 0,
-      'type' => 'entityreference',
-  );
-
-  // Exported field_base: 'field_teaser'
-  $field_bases['field_teaser'] = array(
-      'active' => 1,
-      'cardinality' => 1,
-      'deleted' => 0,
-      'entity_types' => array(),
-      'field_name' => 'field_teaser',
-      'indexes' => array(
-          'format' => array(
-              0 => 'format',
-          ),
-      ),
-      'locked' => 0,
-      'module' => 'text',
-      'settings' => array(),
-      'translatable' => 0,
-      'type' => 'text_long',
   );
 
   return $field_bases;

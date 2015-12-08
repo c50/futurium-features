@@ -22,8 +22,9 @@ function futurium_core_ctools_plugin_api($module = NULL, $api = NULL) {
 function futurium_core_node_info() {
   $items = array(
     'event_d4eu' => array(
-      'name' => t('Event'),
+      'name' => t('Events'),
       'base' => 'node_content',
+      'description' => 'Create an event.',
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -37,9 +38,9 @@ function futurium_core_node_info() {
       'help' => '',
     ),
     'video_d4eu' => array(
-      'name' => t('Video'),
+      'name' => t('Videos'),
       'base' => 'node_content',
-      'description' => 'Post a video',
+      'description' => t('Post a video.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

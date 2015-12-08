@@ -9,7 +9,14 @@ html{
 body {
   color: $text-color;
   @include rem(font-size, 14px);
-  @include rem(line-height, 24px);
+  @include rem(line-height, 22px);
   font-family:$text-font-stack;
   font-weight: normal;
+}
+
+p {
+  margin: 0;
+  & + & {
+    @include rem(margin-top, 15px);
+  }
 }

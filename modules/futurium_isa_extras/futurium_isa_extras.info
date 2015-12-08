@@ -3,3 +3,4 @@ description = Extra functionality
 core = 7.x
 
 dependencies[] = flag
+dependencies[] = nodeaccess_userreference
