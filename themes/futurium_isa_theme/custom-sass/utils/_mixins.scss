@@ -174,7 +174,7 @@
 
 /// Vertically Centered
 
-@mixin vertically-centred
+@mixin vertically-centered
 {
     display: flex;
     align-items: center;
@@ -189,5 +189,122 @@
   padding: 0;
   margin: 0;
 }
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin btn-default {
+  @include rem(padding, 7px 10px 7px 10px);
+  border-radius: 0px;
+  @include rem(font-size, 14px);
+}
+
+
+
+
+@mixin social-button($type) {
+  background-image: url(../assets/img/#{$type});
+  background-repeat: no-repeat;
+  padding-left: 30px;
+  background-position: 10px center;
+}
+
+/* mixin for layout content types */
+
+@mixin contenttype($color) {
+  /* general elements */
+  a {
+    color: $color;
+    @include on-event{
+      color: $color;
+    }
+  }
+
+  h2.pane-title {
+    color: $color;
+    border-bottom: none;
+    @include rem(margin, 0 0 20px 0);
+    @extend h3;
+  }
+
+  h3 a {
+    color: darken($text-color, 2%);
+    @include on-event {
+      color: $color;
+    }
+  }
+
+  .btn-default {
+    @include btn-default;
+  }
+
+  .btn-primary, .flag-action, .unflag-action {
+    @include btn-default;
+    background: $color;
+    border-color: $color;
+    color: #fff;
+    border: none;
+    @include on-event {
+      background-color: darken($color, 10%);
+      color: #fff;
+    }
+  }
+
+
+  /* links to edit / manage display / ... */
+  .container-top {
+    background-color: darken($color, 20%);
+    /* temp fix? should header1 be removed from page.tpl.php */
+    h1.page-header {
+      display: none;
+    }
+    a {
+      color: #fff;
+      @include on-event{
+        color: #fff;
+      }
+    }
+
+  }
+  /* row1 theming */
+  .container-fullwidth.row1 {
+    color: #fff;
+    background: $color;
+    border-top: 3px solid darken($color, 15%);
+    border-bottom: 1px solid darken($color, 15%);
+    a {
+      color: #fff;
+      @include on-event {
+        color: #fff;
+      }
+    }
+    p {
+      @include rem(font-size, 18px);
+      @include rem(line-height, 24px);
+    }
+  }
+
+  
+  .share-links {
+    a {
+      padding: 10px;
+      background-color: darken($color, 10%);
+      @include on-event {
+        background-color: darken($color, 15%);
+        color: #fff;
+      }
+    } 
+  }
+  
+
+}
+
+
+
 
 

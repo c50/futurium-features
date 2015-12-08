@@ -30,10 +30,14 @@ a {
   }
 }
 
+p {
+  @include rem(margin-bottom, 20px);
+}
+
 /**
  * Makes the images responsive
  */
-img{
+img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -48,22 +52,40 @@ h1 {
   font-family: $text-font-stack;
 }
 
-h2, h3, h4, h5, h6 {
-  color: $dark-grey;
-  font-family: $header-font-stack;
-  text-transform: uppercase;
-  a {
-   color: $brand-color;
-   @include on-event{
-   	  text-decoration: none;
-   	  color: shade($brand-color, 10%);
-   }
+
+  h2, h3, h4, h5, h6 {
+    color: $brand-color;
+    font-family: $header-font-stack;
+    text-transform: uppercase;
+    a {
+     color: darken($text-color, 2%);
+     font-weight: bold;
+     font-family: $text-font-stack;
+     text-transform: none;
+     @include transition(color .3s ease);
+     @include on-event{
+       text-decoration: none;
+       color: $brand-color;
+       text-decoration: none;
+     }
+    }
   }
+
+
+
+h2 {
+  @include rem(margin-bottom, 30px);
 }
 
-h3.pane-title { 
-  @include rem(border-bottom, 1px dashed $mid-grey);
-  @include rem(padding, 0 0 20px 0); 
+h3 {
+  @include rem(margin-bottom, 20px);
+}
+
+
+#path a, #path a:visited {
+    color: #fff;
+    text-decoration: none;
+    border: 0;
 }
 
 /**
@@ -76,7 +98,7 @@ h3.pane-title {
   }
 }
 
-.block-boxes-simple{
+.block-boxes-simple {
   text-align: center;
 }
 
@@ -85,7 +107,7 @@ h3.pane-title {
  * Equal height solution
  * Add a .row-eq-height on the view 
  */
- .row-eq-height .row, .row-eq-height .row > div[class*='col-']{  
+ .row-eq-height .row, .row-eq-height .row > div[class*='col-'] {  
   @include flexbox();
   @include respond-to(small) {
   	display: block; // unset display flex;
@@ -99,61 +121,47 @@ h3.pane-title {
  * GENERAL VIEWS THEMING 
  */
 
- .front .view h3{
-  text-align: center;
+ .front .view h3 {
   @include rem(margin, 0 0 20px 0);
 }
 
-.views-field-field-tags{
+.views-field-field-tags {
   text-align: center;
   @include rem(margin, 0 0 20px 0);
   font-style: italic;
 }
 
-h2.block-title {
+  .block-title {
   text-align: center;
-  text-transform: uppercase;
 }
 
 /**
  * view-ideas 
  */
-.view-ideas.row-eq-height .row .col{
+.view-ideas.row-eq-height .row .col {
   @include rem(margin-top, 20px);
 }
 
-.view-ideas.row-eq-height .views-row-wrapper{
-  @include rem(padding, 20px);
-  @include rem(border, 1px solid $mid-grey);
-  background: #fff;
-}
-
-.view-ideas h2{
+.view-ideas h2 {
   text-align: center;
   color: $brand-color;
 }
 
-.view-ideas .row{
+.view-ideas .row {
   overflow: hidden;
 }
 
 /**
  * view-events 
  */
-.view-events .vertical-align{
+.view-events .vertical-align {
   vertical-align: middle;
 }
 
-.views-field-field-date-time{
+.views-field-field-date-time {
   font-weight: bold;
   @include border-double;
   text-align: center;
-}
-
-
-.author-picture img{
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .user-picture {
@@ -161,18 +169,18 @@ h2.block-title {
   @include rem(padding, 10px 0 10px 0);
 }
 
-.field-type-taxonomy-term-reference{
-  .field-item{
+.field-type-taxonomy-term-reference {
+  .field-item {
     display: inline-block;
     @include rem(padding, 0 10px 0 0);
   }
 }
 
 
-.media-element-container{
+.media-element-container {
 	@include rem(margin, 0 0 20px 0);
 	background: #fff;
- .field-name-field-caption{
+ .field-name-field-caption {
    color:$mid-grey;  
    @include rem(font-size, 14px);
    @include rem(padding, 5px 10px 5px 10px);
@@ -181,10 +189,10 @@ h2.block-title {
 }
 
 
-.panel-pane{
+.panel-pane {
   @include rem((
     margin: 0 0 0 0,
-    padding: 0 0 40px 0
+    padding: 0 0 0 0
   ));
 }
 
@@ -196,13 +204,6 @@ h2.block-title {
   @include rem(line-height, 30px);
 }
 
-
-
-h2.pane-title {
- @include rem(margin, 0 0 20px 0);
- @extend h3;
-}
-
 a.flag-action,
 a.unflag-action
  {
@@ -210,12 +211,92 @@ a.unflag-action
   @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
 }
 
-.field-type-entityreference{
-  .field-item{
+.field-type-entityreference {
+  .field-item {
     @include rem(border-bottom, 1px dashed $mid-grey);
     @include rem(padding, 10px 0 10px 0);
   }
 }
+
+.container-fullwidth {
+  padding: 40px 0 40px 0;
+}
+
+.container-fullwidth.navbar {
+  padding: 0 0 0 0;
+}
+
+
+.container-fullwidth.row1 {
+  h1, h2, h3, p, a{
+    color: #fff;
+  }
+}
+
+.container-fullwidth.row1 {
+  h1{
+    margin-top: 0;
+  }
+}
+
+
+/**
+ * settings for different content types 
+*/
+
+.page-ideas, .node-type-ideas {
+  @include contenttype($idea-color);
+}
+
+.page-events, .node-type-event-d4eu {
+  @include contenttype($event-color);
+}
+
+.page-library {
+  @include contenttype($library-color);
+}
+
+/* social buttons in header */
+
+li.facebook a.facebook{
+  @include social-button($facebook);
+}
+
+li.twitter a.twitter{
+  @include social-button($twitter);
+}
+
+li.google-plus a.google-plus{
+  @include social-button($google-plus);
+}
+
+.page-ideas h1{
+  background: url(../assets/img/ico-idea-big.png) left center no-repeat;
+  padding: 0 0 0 90px;
+  line-height: 75px;
+}
+
+.page-library h1{
+  background: url(../assets/img/ico-library-big.png) left center no-repeat;
+  padding: 0 0 0 90px;
+  line-height: 80px;
+}
+
+.page-events h1{
+  background: url(../assets/img/ico-event-big.png) left center no-repeat;
+  padding: 0 0 0 90px;
+  line-height: 80px;
+}
+
+
+.summary {
+  @include rem(font-size, 16px);
+  @include rem(line-height, 24px);
+  font-weight: 600;
+  @include rem(margin, 0 0 20px 0);
+}
+
+
 
 
 /**
@@ -225,8 +306,34 @@ a.unflag-action
   white-space: normal;
 }
 
+.authors-picture img {
+  border-radius: 50%;
+  shape-outside: border-box;
+  float: left;
+  border: 5px solid #fff;
+  width: 80px;
+  height: 80px;
+}
 
 
 
 
 
+.list-inline {
+  margin: 0 0 0 0;
+}
+
+.authors-name, .authors-picture, .share-links li {
+    line-height: 80px;
+    float: left;
+  }
+
+.pane-futurium-isa-extras-node-social-share {
+  .pane-content{
+    float: right;
+  }
+}
+
+.sidebar-right{
+  background: $light-grey;
+}
