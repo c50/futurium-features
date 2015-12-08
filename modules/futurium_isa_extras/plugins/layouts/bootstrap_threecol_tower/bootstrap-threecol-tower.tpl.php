@@ -129,7 +129,7 @@
   <?php if ($content['row8l'] || $content['row8c'] || $content['row8r']): ?>
   <div class="container-fullwidth row8">
     <div class="container row8">
-      <div class="ro row8">
+      <div class="row row8">
         <?php if ($content['row8l']): ?>
           <?php print $content['row8l']; ?>
         <?php endif; ?>
@@ -147,7 +147,7 @@
   <?php if ($content['row9l'] || $content['row9c'] || $content['row9r']): ?>
   <div class="container-fullwidth row9">
     <div class="container row9">
-      <div class="ro row9">
+      <div class="row row9">
         <?php if ($content['row9l']): ?>
           <?php print $content['row9l']; ?>
         <?php endif; ?>
