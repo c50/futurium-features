@@ -944,10 +944,10 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
-  /* Relationship: Content: Taxonomy terms on node */
-  $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
-  $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
+  /* Relationship: Content: Author */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'node';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -975,18 +975,6 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['fields']['created']['date_format'] = 'custom';
   $handler->display->display_options['fields']['created']['custom_date_format'] = 'j M';
   $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
-  /* Field: User: First name */
-  $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
-  $handler->display->display_options['fields']['field_firstname']['table'] = 'field_data_field_firstname';
-  $handler->display->display_options['fields']['field_firstname']['field'] = 'field_firstname';
-  $handler->display->display_options['fields']['field_firstname']['relationship'] = 'uid';
-  /* Field: User: Last name */
-  $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
-  $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
-  $handler->display->display_options['fields']['field_lastname']['field'] = 'field_lastname';
-  $handler->display->display_options['fields']['field_lastname']['relationship'] = 'uid';
-  $handler->display->display_options['fields']['field_lastname']['label'] = '';
-  $handler->display->display_options['fields']['field_lastname']['element_label_colon'] = FALSE;
   /* Field: User: Uid */
   $handler->display->display_options['fields']['uid']['id'] = 'uid';
   $handler->display->display_options['fields']['uid']['table'] = 'users';
@@ -1000,26 +988,6 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Taxonomy term: Name */
-  $handler->display->display_options['arguments']['name']['id'] = 'name';
-  $handler->display->display_options['arguments']['name']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['arguments']['name']['field'] = 'name';
-  $handler->display->display_options['arguments']['name']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['arguments']['name']['title_enable'] = TRUE;
-  $handler->display->display_options['arguments']['name']['title'] = '%1';
-  $handler->display->display_options['arguments']['name']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['name']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['name']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['name']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['name']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['name']['validate']['type'] = 'taxonomy_term';
-  $handler->display->display_options['arguments']['name']['validate_options']['vocabularies'] = array(
-    'futurium_topics' => 'futurium_topics',
-  );
-  $handler->display->display_options['arguments']['name']['validate_options']['type'] = 'name';
-  $handler->display->display_options['arguments']['name']['validate_options']['transform'] = TRUE;
-  $handler->display->display_options['arguments']['name']['limit'] = '0';
-  $handler->display->display_options['arguments']['name']['transform_dash'] = TRUE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1027,27 +995,11 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'evidence' => 'evidence',
-  );
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: Taxonomy terms on node */
-  $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
-  $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
-    'futurium_topics' => 'futurium_topics',
-    'classification' => 0,
-    'tags' => 0,
-  );
   /* Relationship: Content: Author */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';

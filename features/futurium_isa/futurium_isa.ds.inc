@@ -33,10 +33,11 @@ function futurium_isa_ds_field_settings_info() {
     'post_date' => array(
       'weight' => '0',
       'label' => 'hidden',
-      'format' => 'ds_post_date_long',
+      'format' => 'ds_post_date_day_fullmonth_year',
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_minimal',
+          'classes' => 'date',
         ),
       ),
     ),
@@ -98,7 +99,7 @@ function futurium_isa_ds_field_settings_info() {
     'post_date' => array(
       'weight' => '0',
       'label' => 'hidden',
-      'format' => 'ds_post_date_day_and_month',
+      'format' => 'ds_post_date_day_fullmonth_year',
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_minimal',
