@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <?php
-=======
-  <?php
->>>>>>> develop
 /**
  * @file
  * futurium_isa.features.field_base.inc
