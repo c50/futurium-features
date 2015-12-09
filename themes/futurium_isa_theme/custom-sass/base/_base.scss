@@ -100,7 +100,7 @@ h2.pane-title{
   @include rem(font-size, 30px);
 }
 
-.sidebar-right{
+.panel-sidebar{
   h2.pane-title{
     font-weight: normal;
     @include rem(font-size, 24px);
@@ -118,7 +118,7 @@ h4 a{
   font-weight: normal;
 }
 
-.wrapper-content{
+.panel-content{
   .panel-pane{
     @include rem(margin-bottom, 40px);
   }
@@ -126,7 +126,7 @@ h4 a{
 
 /// No padding for lists
 
-.nopadding-list {
+.nopadding {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -423,7 +423,7 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
-.sidebar-right{
+.panel-sidebar{
   background: $light-grey;
   @include rem(padding, 15px);
 }
