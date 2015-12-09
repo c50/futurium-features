@@ -5,6 +5,13 @@
 /**
  * Set up a decent box model on the root element
  */
+
+
+/////////////
+/////TESTING 
+/////////////
+
+
 html {
   box-sizing: border-box;
 }
@@ -15,6 +22,7 @@ html {
  * making all elements inheriting from the root box-sizing value
  * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
  */
+
 *, *::before, *::after {
   box-sizing: inherit;
 }
@@ -22,6 +30,7 @@ html {
 /**
  * Basic styles for links
  */
+
 a {
   color: $brand-color;
   text-decoration: none;
@@ -34,11 +43,15 @@ p {
   @include rem(margin-bottom, 20px);
 }
 
+p:last-child {
+  @include rem(margin-bottom, 20px);
+}
+
 /**
  * Makes the images responsive
  */
 img {
-  display: block;
+ /* display: block; */
   max-width: 100%;
   height: auto;
 }
@@ -54,7 +67,6 @@ h1 {
 
 
   h2, h3, h4, h5, h6 {
-    color: $brand-color;
     font-family: $header-font-stack;
     text-transform: uppercase;
     a {
@@ -65,27 +77,80 @@ h1 {
      @include transition(color .3s ease);
      @include on-event{
        text-decoration: none;
-       color: $brand-color;
-       text-decoration: none;
      }
     }
   }
 
-
-
 h2 {
-  @include rem(margin-bottom, 30px);
+  @include rem(margin-bottom, 20px);
 }
 
 h3 {
   @include rem(margin-bottom, 20px);
 }
 
+h4 {
+  @include rem(padding, 0 0 0 0);
+  @include rem(margin, 0 0 0 0);
+}
+
+
+h2.pane-title{
+  border-bottom: none;
+  @include rem(font-size, 30px);
+}
+
+.sidebar-right{
+  h2.pane-title{
+    font-weight: normal;
+    @include rem(font-size, 24px);
+    @include rem(padding, 0 0 15px 0);
+    @include rem(margin, 0 0 0 0);
+    @include rem(border-bottom, 1px solid $text-color);
+  }
+}
+
+
+
+
+
+h4 a{
+  font-weight: normal;
+}
+
+.wrapper-content{
+  .panel-pane{
+    @include rem(margin-bottom, 40px);
+  }
+}
+
+/// No padding for lists
+
+.nopadding-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li{
+    @include rem(padding, 20px 0 20px 0);
+    @include rem(border-bottom, 1px solid #ebebeb);
+    a{
+      color: $text-color;
+    }
+  }
+  li.views-row-last{
+    border-bottom: none;
+  }
+  .date{
+    font-family: $header-font-stack;
+    @include rem(font-size, 15px);
+    text-transform: uppercase;
+  }
+}
 
 #path a, #path a:visited {
-    color: #fff;
-    text-decoration: none;
-    border: 0;
+  color: #fff;
+  text-decoration: none;
+  border: 0;
 }
 
 /**
@@ -98,15 +163,14 @@ h3 {
   }
 }
 
-.block-boxes-simple {
-  text-align: center;
-}
-
 
 /**
  * Equal height solution
  * Add a .row-eq-height on the view 
  */
+
+/*
+
  .row-eq-height .row, .row-eq-height .row > div[class*='col-'] {  
   @include flexbox();
   @include respond-to(small) {
@@ -117,57 +181,14 @@ h3 {
   }
 }
 
-/**
- * GENERAL VIEWS THEMING 
- */
-
- .front .view h3 {
-  @include rem(margin, 0 0 20px 0);
-}
-
-.views-field-field-tags {
-  text-align: center;
-  @include rem(margin, 0 0 20px 0);
-  font-style: italic;
-}
-
-  .block-title {
-  text-align: center;
-}
-
-/**
- * view-ideas 
- */
-.view-ideas.row-eq-height .row .col {
-  @include rem(margin-top, 20px);
-}
-
-.view-ideas h2 {
-  text-align: center;
-  color: $brand-color;
-}
-
 .view-ideas .row {
   overflow: hidden;
 }
 
-/**
- * view-events 
- */
-.view-events .vertical-align {
-  vertical-align: middle;
-}
+*/
 
-.views-field-field-date-time {
-  font-weight: bold;
-  @include border-double;
-  text-align: center;
-}
 
-.user-picture {
-  text-align: center;
-  @include rem(padding, 10px 0 10px 0);
-}
+
 
 .field-type-taxonomy-term-reference {
   .field-item {
@@ -181,7 +202,7 @@ h3 {
 	@include rem(margin, 0 0 20px 0);
 	background: #fff;
  .field-name-field-caption {
-   color:$mid-grey;  
+   color: $mid-grey;  
    @include rem(font-size, 14px);
    @include rem(padding, 5px 10px 5px 10px);
    font-style: italic;
@@ -189,26 +210,18 @@ h3 {
 }
 
 
-.panel-pane {
-  @include rem((
-    margin: 0 0 0 0,
-    padding: 0 0 0 0
-  ));
-}
 
-.pane-node-field-teaser {
-  font-style: italic;
-  color: $mid-grey;
-  @include rem(border-bottom, 1px dashed $mid-grey);
-  @include rem(font-size, 20px);
-  @include rem(line-height, 30px);
-}
+.group-buttons{
+  a{
+   /* @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border); */
+   color: #fff;
+  }
+} 
 
 a.flag-action,
 a.unflag-action
  {
   @extend .btn;
-  @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
 }
 
 .field-type-entityreference {
@@ -227,7 +240,10 @@ a.unflag-action
 }
 
 
+/* default settings for row1 */
+
 .container-fullwidth.row1 {
+  background: #a4a4a4;
   h1, h2, h3, p, a{
     color: #fff;
   }
@@ -236,6 +252,13 @@ a.unflag-action
 .container-fullwidth.row1 {
   h1{
     margin-top: 0;
+  }
+}
+
+.row1r{
+  .panel-pane{
+    width: 100%;
+    float: left;
   }
 }
 
@@ -258,34 +281,103 @@ a.unflag-action
 
 /* social buttons in header */
 
-li.facebook a.facebook{
-  @include social-button($facebook);
+
+
+
+
+a.facebook:before {
+    @include fa(facebook);
 }
 
-li.twitter a.twitter{
-  @include social-button($twitter);
+a.twitter:before {
+    @include fa(twitter);
 }
 
-li.google-plus a.google-plus{
-  @include social-button($google-plus);
+a.google-plus:before {
+    @include fa(google-plus);
 }
+
+a.btn-more:before {
+   @include fa(plus);
+}
+
+.like-count:before {
+  @include fa(thumbs-up);
+}
+
+.date:before {
+  @include fa(clock-o);
+}
+
+.comment-count:before {
+  @include fa(comment);
+}
+
+.more-link a:before{
+  @include fa(plus);
+}
+
+.intro{
+  @include rem(margin, 0 0 25px 0);
+}
+
+.row1 {
+  .intro {
+    @include rem(font-size, 20px);
+    @include rem(line-height, 26px);
+  }
+}
+
+div.views-bootstrap-grid-plugin-style {
+  div.node-teaser {
+    @include rem(padding, 20px 0 40px 0);
+  }
+}
+
+
+/* icons for date - vote - comment */
+
+.wrapper-date-vote-comment {
+  @include rem(margin, 20px 0 30px 0);
+  .field {
+    display: inline-block;
+    @include rem(margin, 0 30px 0 0);
+  }
+}
+
+.field-name-author{
+  @include rem(font-size, 18px);
+  @include rem(padding, 0 0 20px 0);
+  @include rem(border-bottom, 1px solid #ccc);
+}
+
+
+
 
 .page-ideas h1{
-  background: url(../assets/img/ico-idea-big.png) left center no-repeat;
+  background: url(../assets/img/ico-idea-big-color.png) left top no-repeat;
   padding: 0 0 0 90px;
-  line-height: 75px;
+  min-height: 64px;
+  margin: 0 0 20px 0;
+}
+
+.page-ideas, .page-libarary, .page-events{
+  h1.no-icon{
+    background: none;
+    padding: 0 0 0 0;
+  }
 }
 
 .page-library h1{
-  background: url(../assets/img/ico-library-big.png) left center no-repeat;
+  background: url(../assets/img/ico-library-big-color.png) left top no-repeat;
   padding: 0 0 0 90px;
-  line-height: 80px;
+  line-height: 64px;
 }
 
 .page-events h1{
-  background: url(../assets/img/ico-event-big.png) left center no-repeat;
+  background: url(../assets/img/ico-event-big-color.png) left top no-repeat;
   padding: 0 0 0 90px;
-  line-height: 80px;
+  min-height: 64px;
 }
 
 
@@ -295,6 +387,7 @@ li.google-plus a.google-plus{
   font-weight: 600;
   @include rem(margin, 0 0 20px 0);
 }
+
 
 
 
@@ -311,29 +404,43 @@ li.google-plus a.google-plus{
   shape-outside: border-box;
   float: left;
   border: 5px solid #fff;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
-
-
-
-
 
 .list-inline {
   margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
 
 .authors-name, .authors-picture, .share-links li {
-    line-height: 80px;
     float: left;
   }
 
 .pane-futurium-isa-extras-node-social-share {
   .pane-content{
-    float: right;
+    float: left;
   }
 }
 
 .sidebar-right{
   background: $light-grey;
+  @include rem(padding, 15px);
 }
+
+
+/* expirimental */
+
+/* responsiveness to check */
+
+.row1{
+  display: flex;
+  height: 100%;
+  .row1r{
+    align-self: flex-end; 
+  } 
+}
+
+
+
+

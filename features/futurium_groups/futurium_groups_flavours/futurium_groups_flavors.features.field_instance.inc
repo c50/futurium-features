@@ -11,7 +11,7 @@ function futurium_groups_flavors_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'node-futurium_group-field_css_class'
-  $field_instances['node-futurium_group-futurium_group_field_css_class'] = array(
+  $field_instances['node-futurium_group-field_futurium_group_css_class'] = array(
     'bundle' => 'futurium_group',
     'default_value' => NULL,
     'deleted' => 0,

@@ -16,7 +16,7 @@ function futurium_groups_flavors_field_default_field_bases() {
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_css_class',
+    'field_name' => 'field_futurium_group_css_class',
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -38,7 +38,7 @@ function futurium_groups_flavors_field_default_field_bases() {
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_group_path',
+    'field_name' => 'field_futurium_group_path',
     'indexes' => array(
       'format' => array(
         0 => 'format',
