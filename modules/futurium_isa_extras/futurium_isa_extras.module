@@ -25,6 +25,12 @@ function futurium_isa_extras_enable() {
   // Page manager settings
   variable_set('page_manager_node_view_disabled', 0);
 
+  $allowed_tags = variable_get('security_allowed_tags', "");
+  if (!empty($allowed_tags)) {
+    $allowed_tags .= 'h1';
+    variable_set('security_allowed_tags', $allowed_tags);
+  }
+
   drupal_flush_all_caches();
 }
 

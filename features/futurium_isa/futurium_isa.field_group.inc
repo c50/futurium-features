@@ -55,7 +55,7 @@ function futurium_isa_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'wrapper-date-vote-comment',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
       0 => 'like',
       1 => 'comment_count',
@@ -121,7 +121,7 @@ function futurium_isa_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'group-buttons',
-    'weight' => '3',
+    'weight' => '4',
     'children' => array(
       0 => 'flag_like',
     ),
