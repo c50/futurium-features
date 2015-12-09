@@ -160,13 +160,9 @@ more-link';
             'visible' => TRUE,
           ),
         ),
-        'like' => array(
-          'default' => array(
-            'weight' => '50',
-            'visible' => TRUE,
-          ),
+        'author' => array(
           'node_header' => array(
-            'weight' => '50',
+            'weight' => '2',
             'visible' => TRUE,
           ),
         ),
