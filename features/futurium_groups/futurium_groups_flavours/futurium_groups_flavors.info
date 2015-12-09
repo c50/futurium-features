@@ -14,3 +14,4 @@ features[field_base][] = field_futurium_group_css_class
 features[field_base][] = field_futurium_group_path
 features[field_instance][] = node-futurium_group-field_futurium_group_css_class
 features[field_instance][] = node-futurium_group-field_futurium_group_path
+features[views_view][] = og_flavors
