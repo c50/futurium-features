@@ -72,7 +72,6 @@
  *
  * @ingroup themeable
  */
-$the_fat_lady_sings = FALSE;
 ?>
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
@@ -96,8 +95,16 @@ $the_fat_lady_sings = FALSE;
       </button>
     </div>
 
+        <div class="lang-drop pull-right">
+          <?php
+            $block = module_invoke('lang_dropdown', 'block_view', 'language');
+            print render($block['content']);
+          ?>
+        </div>
+
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
       <div class="navbar-collapse collapse">
+
         <nav role="navigation">
           <?php if (!empty($primary_nav)): ?>
             <?php print render($primary_nav); ?>
@@ -111,10 +118,10 @@ $the_fat_lady_sings = FALSE;
         </nav>
       </div>
     <?php endif; ?>
+
   </div>
 </header>
 
-<div class="main-container container-fullwidth">
 
   <header role="banner" id="page-header">
     <?php if (!empty($site_slogan)): ?>
@@ -124,73 +131,62 @@ $the_fat_lady_sings = FALSE;
     <?php print render($page['header']); ?>
   </header> <!-- /#page-header -->
 
-
   <?php if (!empty($page['sidebar_first'])): ?>
     <aside class="col-sm-3" role="complementary">
       <?php print render($page['sidebar_first']); ?>
     </aside>  <!-- /#sidebar-first -->
   <?php endif; ?>
 
-  <section<?php print $content_column_class; ?>>
-    <?php if( !empty($page['highlighted']) || !empty($breadcrumb) || !empty($page['help']) || !empty($action_links) || !empty($tabs['#primary']) || !empty($tabs['#secondary']) ): ?>
+  <section<?php //print $content_column_class; ?>>
+    <div class="container-top">
+     <div class="container">
       <div class="row">
-        <div class="container">
-          <div class="ro">
-            <div class="region other-stuff">
-              <?php if (!empty($page['highlighted'])): ?>
-                <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
-              <?php endif; ?>
-              <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
-              <?php print $messages; ?>
-              <?php if (!empty($tabs)): ?>
-                <?php print render($tabs); ?>
-              <?php endif; ?>
-              <?php if (!empty($page['help'])): ?>
-                <?php print render($page['help']); ?>
-              <?php endif; ?>
-              <?php if (!empty($action_links)): ?>
-                <ul class="action-links"><?php print render($action_links); ?></ul>
-              <?php endif; ?>
-            </div>
-          </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <?php if (!empty($page['highlighted'])): ?>
+          <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
+        <?php endif; ?>
+        <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+        <a id="main-content"></a>
+        <?php if (!empty($title) && $show_title): ?>
+          <?php print render($title_prefix); ?>
+          <h1 class="page-header"><?php print $title; ?></h1>
+          <?php print render($title_suffix); ?>
+        <?php endif; ?>
+        <?php print $messages; ?>
+        <?php if (!empty($tabs)): ?>
+          <?php print render($tabs); ?>
+        <?php endif; ?>
+        <?php if (!empty($page['help'])): ?>
+          <?php print render($page['help']); ?>
+        <?php endif; ?>
+        <?php if (!empty($action_links)): ?>
+          <ul class="action-links"><?php print render($action_links); ?></ul>
+        <?php endif; ?>
+        </div>
+         </div>
+      </div>
+    </div>
+
+    <?php if ($content_wrapper): ?>
+      <div class="container">
+    <?php endif; ?>
+    <?php print render($page['content']); ?>
+    <?php if ($content_wrapper): ?>
         </div>
       </div>
     <?php endif; ?>
-    <?php print render($page['content_slider']); ?>
-    <?php print render($page['content_top']); ?>
-    <?php print render($page['content_before_middle']); ?>
-    <?php print render($page['content_before']); ?>
-    <a id="main-content"></a>
-    <?php print render($title_prefix); ?>
-    <?php if (!empty($title) && $the_fat_lady_sings): ?>
-      <div class="row">
-        <div class="container">
-          <div class="ro">
-            <div class="region other-stuff">
-              <h1 class="page-header"><?php print $title; ?></h1>
-            </div>
-          </div>
-        </div>
-    </div>
+
+    </section>
+
+    <?php if (!empty($page['sidebar_second'])): ?>
+      <aside class="col-sm-3" role="complementary">
+        <?php print render($page['sidebar_second']); ?>
+      </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
-    <?php print render($title_suffix); ?>
-    <?php print render($page['content']); ?>
-    <?php print render($page['content_after']); ?>
-    <?php print render($page['content_after_middle']); ?>
-    <?php print render($page['content_bottom']); ?>
-  </section>
 
-  <?php if (!empty($page['sidebar_second'])): ?>
-    <aside class="col-sm-3" role="complementary">
-      <?php print render($page['sidebar_second']); ?>
-    </aside>  <!-- /#sidebar-second -->
-  <?php endif; ?>
+  </div>
 
-  <footer class="footer container-fullwidth">
-    <div class="acontainer">
-      <?php print render($page['footer']); ?>
-    </div>
-  </footer>
 
-</div>
-
+<footer class="footer container-fullwidth">
+  <?php print render($page['footer']); ?>
+</footer>

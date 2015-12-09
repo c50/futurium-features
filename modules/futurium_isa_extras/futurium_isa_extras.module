@@ -30,6 +30,16 @@ function futurium_isa_extras_enable() {
 
 function futurium_isa_extras_admin_paths_alter(&$paths) {
   $paths['user/*/edit'] = FALSE;
+  $paths['admin/structure/taxonomy/futurium_topics/add'] = FALSE;
+}
+
+function futurium_isa_extras_preprocess_page(&$vars) {
+  $vars['show_title'] = TRUE;
+  $item = menu_get_item();
+  $pages = array('topics','events', 'ideas');
+  if (in_array($item['path'], $pages)) {
+    $vars['show_title'] = FALSE;
+  }
 }
 
 function futurium_isa_extras_preprocess_node(&$vars) {
@@ -38,264 +48,66 @@ function futurium_isa_extras_preprocess_node(&$vars) {
 }
 
 function futurium_isa_extras_menu() {
-  $items['home'] = array(
-    'title' => 'Home',
-    'page callback' => 'futurium_isa_extras_blank_page',
-    'access callback' => array(true),
+
+  // Registration and login pages.
+  $items['account'] = array(
+    'title' => 'User account',
+    'title callback' => 'user_menu_title',
+    'page callback' => 'user_page',
+    'access callback' => TRUE,
+    'file path' => drupal_get_path('module', 'user'),
+    'file' => 'user.pages.inc',
+    'weight' => 10000,
     'menu_name' => 'main-menu',
-    'weight' => 0,
   );
-  $items['ideas'] = array(
-    'title' => 'Ideas',
-    'page callback' => 'futurium_isa_extras_blank_page',
-    'access callback' => array(true),
-    'menu_name' => 'main-menu',
-    'weight' => 1,
+  $items['account/login'] = array(
+    'title' => 'Log in',
+    'access callback' => 'user_is_anonymous',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
   );
-  $items['events'] = array(
-    'title' => 'Events',
-    'page callback' => 'futurium_isa_extras_blank_page',
-    'access callback' => array(true),
-    'menu_name' => 'main-menu',
-    'weight' => 2,
+
+  $items['account/register'] = array(
+    'title' => 'Create new account',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('user_register_form'),
+    'access callback' => 'user_register_access',
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  $items['account/password'] = array(
+    'title' => 'Request new password',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('user_pass'),
+    'access callback' => TRUE,
+    'type' => MENU_LOCAL_TASK,
+    'file path' => drupal_get_path('module', 'user'),
+    'file' => 'user.pages.inc',
+  );
+  $items['account/reset/%/%/%'] = array(
+    'title' => 'Reset password',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('user_pass_reset', 2, 3, 4),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file path' => drupal_get_path('module', 'user'),
+    'file' => 'user.pages.inc',
+  );
+
+  $items['account/logout'] = array(
+    'title' => 'Log out',
+    'access callback' => 'user_is_logged_in',
+    'page callback' => 'user_logout',
+    'weight' => 10,
+    'menu_name' => 'user-menu',
+    'file path' => drupal_get_path('module', 'user'),
+    'file' => 'user.pages.inc',
   );
   return $items;
 }
 
-function futurium_isa_extras_blank_page(){
-  return "";
+function futurium_isa_extras_menu_alter(&$items) {
+  $items['search/site']['menu_name'] = 'navigation';
 }
-
-/**
- * Implements hook_field_formatter_info().
- */
-function futurium_isa_extras_field_formatter_info() {
-  return array(
-    'entityreference_entity_author_picture' => array(
-      'label' => t('Entity author(s) picture(s)'),
-      'description' => t('Display the picture of the referenced entities author(s).'),
-      'field types' => array('entityreference'),
-      'settings' => array(
-        'link' => FALSE,
-        'image_style' => 'default',
-      ),
-    ),
-    'entityreference_entity_author_name' => array(
-      'label' => t('Entity author(s) name(s)'),
-      'description' => t('Display the name of the referenced entities author(s).'),
-      'field types' => array('entityreference'),
-      'settings' => array(
-        'link' => FALSE,
-      ),
-    ),
-  );
-}
-
-/**
- * Implements hook_field_formatter_settings_form().
- */
-function futurium_isa_extras_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
-  $display = $instance['display'][$view_mode];
-  $settings = $display['settings'];
-
-  if ($display['type'] == 'entityreference_entity_author_picture' ||
-      $display['type'] == 'entityreference_entity_author_name') {
-    $element['link'] = array(
-      '#title' => t('Link to the referenced entity author'),
-      '#type' => 'checkbox',
-      '#default_value' => $settings['link'],
-    );
-  }
-
-  if ($display['type'] == 'entityreference_entity_author_picture') {
-    $options = image_style_options();
-    $element['image_style'] = array(
-      '#title' => t('Image style'),
-      '#type' => 'select',
-      '#options' => $options,
-      '#default_value' => $settings['image_style'],
-    );
-  }
-
-  return $element;
-}
-
-/**
- * Implements hook_field_formatter_settings_summary().
- */
-function futurium_isa_extras_field_formatter_settings_summary($field, $instance, $view_mode) {
-  $display = $instance['display'][$view_mode];
-  $settings = $display['settings'];
-
-  $summary = array();
-
-  if ($display['type'] == 'entityreference_entity_author_picture' ||
-      $display['type'] == 'entityreference_entity_author_name') {
-    $summary[] = $settings['link'] ? t('Link to the referenced entity author') : t('No link');
-  }
-
-  if ($display['type'] == 'entityreference_entity_author_picture') {
-    $summary[] = $settings['image_style'] ? t('Image style to apply to link') : t('Default');
-  }
-
-  return implode('<br />', $summary);
-}
-
-/**
- * Implements hook_field_formatter_prepare_view().
- */
-function futurium_isa_extras_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
-  $target_ids = array();
-
-  // Collect every possible entity attached to any of the entities.
-  foreach ($entities as $id => $entity) {
-    foreach ($items[$id] as $delta => $item) {
-      if (isset($item['target_id'])) {
-        $target_ids[] = $item['target_id'];
-      }
-    }
-  }
-
-  if ($target_ids) {
-    $target_entities = entity_load($field['settings']['target_type'], $target_ids);
-  }
-  else {
-    $target_entities = array();
-  }
-
-  // Iterate through the fieldable entities again to attach the loaded data.
-  foreach ($entities as $id => $entity) {
-    $rekey = FALSE;
-
-    foreach ($items[$id] as $delta => $item) {
-      // Check whether the referenced entity could be loaded.
-      if (isset($target_entities[$item['target_id']])) {
-        // Replace the instance value with the term data.
-        $items[$id][$delta]['entity'] = $target_entities[$item['target_id']];
-        // Check whether the user has access to the referenced entity.
-        $has_view_access = (entity_access('view', $field['settings']['target_type'], $target_entities[$item['target_id']]) !== FALSE);
-        $has_update_access = (entity_access('update', $field['settings']['target_type'], $target_entities[$item['target_id']]) !== FALSE);
-        $items[$id][$delta]['access'] = ($has_view_access || $has_update_access);
-      }
-      // Otherwise, unset the instance value, since the entity does not exist.
-      else {
-        unset($items[$id][$delta]);
-        $rekey = TRUE;
-      }
-    }
-
-    if ($rekey) {
-      // Rekey the items array.
-      $items[$id] = array_values($items[$id]);
-    }
-  }
-}
-
-/**
- * Implements hook_field_formatter_view().
- */
-function futurium_isa_extras_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  $result = array();
-  $settings = $display['settings'];
-
-  // Rebuild the items list to contain only those with access.
-  foreach ($items as $key => $item) {
-    if (empty($item['access'])) {
-      unset($items[$key]);
-    }
-  }
-
-  switch ($display['type']) {
-    case 'entityreference_entity_author_picture':
-
-      $delta_offset = 0;
-      // Add entity->uid first
-      if ($entity->uid) {
-        $account = user_load($entity->uid);
-        $picture = theme('user_picture', array('account' => $account,'style_name' => $display['settings']['image_style']));
-
-        if ($display['settings']['link'] && ($uri = entity_uri($field['settings']['target_type'], $item['entity']))) {
-          $l_options = array(
-            'html' => TRUE,
-          );
-
-          $result[$delta_offset] = array('#markup' => $picture); //, $uri['path'], $l_options));
-        }
-        else {
-          $result[$delta_offset] = array('#markup' => $picture);
-        }
-        $delta_offset = 1;
-      }
-
-      $handler = entityreference_get_selection_handler($field, $instance, $entity_type, $entity);
-
-      foreach ($items as $delta => $item) {
-        $label = $handler->getLabel($item['entity']);
-        // If the link is to be displayed and the entity has a uri, display a link.
-        // Note the assignment ($url = ) here is intended to be an assignment.
-
-        $account = user_load($item['entity']->uid);
-        $picture = theme('user_picture', array('account' => $account,'style_name' => $display['settings']['image_style']));
-
-        if ($display['settings']['link'] && ($uri = entity_uri($field['settings']['target_type'], $item['entity']))) {
-          $result[$delta + $delta_offset] = array('#markup' => $picture);//, $uri['path'], $l_options));
-        }
-        else {
-          $result[$delta + $delta_offset] = array('#markup' => $picture);
-        }
-
-      }
-      break;
-
-    case 'entityreference_entity_author_name':
-
-      // Add entity->uid first
-
-      $delta_offset = 0;
-      // Add entity->uid first
-      if ($entity->uid) {
-
-        $account = user_load($item['entity']->uid);
-
-        if ($display['settings']['link'] && ($uri = entity_uri($field['settings']['target_type'], $item['entity']))) {
-          $l_options = array(
-            'html' => TRUE,
-          );
-
-          $result[$delta_offset] = array('#markup' => l($account->name, $uri['path'], $l_options));
-        }
-        else {
-          $result[$delta_offset] = array('#markup' => $account->name);
-        }
-        $delta_offset = 1;
-      }
-
-      $handler = entityreference_get_selection_handler($field, $instance, $entity_type, $entity);
-
-      foreach ($items as $delta => $item) {
-        $label = $handler->getLabel($item['entity']);
-        // If the link is to be displayed and the entity has a uri, display a link.
-        // Note the assignment ($url = ) here is intended to be an assignment.
-
-        if ($display['settings']['link'] && ($uri = entity_uri($field['settings']['target_type'], $item['entity']))) {
-          $result[$delta + $delta_offset] = array('#markup' => l($label, $uri['path'], $uri['options']));
-        }
-        else {
-          $result[$delta + $delta_offset] = array('#markup' => check_plain($label));
-        }
-      }
-      break;
-  }
-
-  $row[0]['#markup'] = '';
-  foreach($result as $item) {
-    $row[0]['#markup'] .= $item['#markup'];
-  }
-
-  return $row;
-}
-
-
 
 function _bootstrap_default_settings() {
   $settings = array(
@@ -376,4 +188,208 @@ function _bootstrap_default_settings() {
     'jquery_update_jquery_version' => "",
   );
   variable_set('theme_futurium_isa_theme_settings', $settings);
+}
+
+function futurium_isa_extras_block_info() {
+  $blocks['node_authors'] = array(
+    'info' => t('Node Authors'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+  $blocks['node_social_share'] = array(
+    'info' => t('Node Share'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+  return $blocks;
+}
+
+function futurium_isa_extras_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'node_social_share':
+
+      $variables = array(
+        'items' => array(),
+        'title' => '',
+        'type' => 'ul',
+        'attributes' => array('class' => array('share-links', 'list-inline')),
+      );
+
+      $url = urlencode(url(current_path(), array('absolute' => TRUE)));
+
+      $class = 'facebook';
+      $l_options = array('attributes' => array('class' => $class));
+      $variables['items'][] = array(
+        'data' => l(t("Facebook"), "https://www.facebook.com/sharer/sharer.php?u=" . $url, $l_options),
+        'class' => array($class),
+      );
+
+      $class = 'twitter';
+      $l_options = array('attributes' => array('class' => $class));
+      $variables['items'][] = array(
+        'data' => l(t("Twitter"), "https://twitter.com/home?status=" . $url, $l_options),
+        'class' => array($class),
+      );
+
+      $class = 'google-plus';
+      $l_options = array('attributes' => array('class' => $class));
+      $variables['items'][] = array(
+        'data' => l(t("Google Plus"), "https://plus.google.com/share?url=" . $url, $l_options),
+        'class' => array($class),
+      );
+
+      $block['content'] = theme('item_list', $variables);
+      break;
+
+    case 'node_authors':
+
+      $node = menu_get_object();
+      $block['content'] = "";
+      if (!empty($node)) {
+        $authors[] = $node->uid;
+        if (isset($node->field_authors[LANGUAGE_NONE]) && !empty($node->field_authors[LANGUAGE_NONE])) {
+          foreach ($node->field_authors[LANGUAGE_NONE] as $key => $value) {
+            $authors[] = $value['target_id'];
+          }
+        }
+
+        $output['names'][] = t('By') . ' ';
+        $x = 1;
+        $max = count($authors);
+
+        foreach ($authors as $key => $uid) {
+          $account = user_load($uid);
+          $name = theme('username', array('account' => $account));
+
+          $l_options = array(
+            'html' => TRUE,
+            'alt' => t('View !username profile', array('!username' => $name)),
+          );
+
+          $picture = theme(
+            'image_style', array(
+              'style_name' => 'thumbnail',
+              'path' => !empty($account->picture->uri) ? $account->picture->uri : variable_get('user_picture_default'),
+            )
+          );
+
+          $x++;
+
+          if ($max > 1) {
+            if($x > $max) {
+              $output['names'][] = ' ' . t('and') . ' ';
+            }
+          }
+
+          if ($max > 2) {
+            if($x == $max) {
+              $output['names'][] = ', ';
+            }
+          }
+
+          $output['images'][] = l($picture, 'user/' . $uid, $l_options);
+          $output['names'][] = l($name, 'user/' . $uid, $l_options);
+
+        }
+
+        $variables = array(
+          'items' => array(),
+          'title' => '',
+          'type' => 'ul',
+          'attributes' => array('class' => array('author-info', 'list-inline')),
+        );
+
+        foreach($output['images'] as $k => $v) {
+          $variables['items'][] = array(
+            'data' => $v,
+            'class' => array('authors-picture'),
+          );
+        }
+
+        foreach($output['names'] as $k => $v) {
+          $variables['items'][] = array(
+            'data' => $v,
+            'class' => array('authors-name'),
+          );
+        }
+        $block['content'] = theme('item_list', $variables);
+      }
+
+
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_ctools_plugin_directory()
+ */
+function futurium_isa_extras_ctools_plugin_directory($module, $plugin) {
+  if ($module == "panels" && in_array($plugin, array('layouts', 'styles'))) {
+    return "plugins/$plugin";
+  }
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function futurium_isa_extras_field_extra_fields() {
+  foreach (array('ideas', 'event_d4eu') as $node_type) {
+    // Flaggings
+    switch($node_type) {
+      case 'ideas':
+        $extrafield_name = 'like';
+        break;
+    }
+
+    $flag = flag_get_flag($extrafield_name);
+    if (isset($flag) && $flag) {
+      $extra['node'][$node_type]['display'][$extrafield_name] = array(
+        'label' => t("@flag_title counter", array('@flag_title' => $flag->title)),
+        'description' => t('@flag_name counter.', array('@flag_name' => $flag->name)),
+        'weight' => 50,
+      );
+    }
+
+    // Comment count
+    $extrafield_name = 'comment_count';
+    $extra['node'][$node_type]['display'][$extrafield_name] = array(
+      'label' => t("Comment count"),
+      'description' => t('Node comments count'),
+      'weight' => 51,
+    );
+
+  }
+  return $extra;
+ }
+
+/**
+ * Implements hook_node_view().
+ * Also HOOK_entity_view() can be used.
+ */
+function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
+
+  $extrafields = field_extra_fields_get_display('node', $node->type, $view_mode);
+
+  // Likes
+  $extrafield_name = 'like';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+
+    $flag = flag_get_flag($extrafield_name);
+    $count = $flag->get_count($node->nid);
+    $plural = format_plural($count, t('Like'), t('Likes'));
+    $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field like-count">' . $count . ' ' . $plural . '</div>');
+  }
+
+  // Comment count
+  $extrafield_name = 'comment_count';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+    $count = $node->comment_count;
+    $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field comment-count">' . $count . ' ' . format_plural($count, t('Comment'), t('Comments')) . '</div>');
+  }
+
 }

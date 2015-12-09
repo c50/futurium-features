@@ -97,7 +97,7 @@ function futurium_isa_default_box() {
 Quisque id fringilla sapien. Nulla fermentum imperdiet elit, vitae finibus sapien euismod vitae. Donec aliquet, ante id consectetur vulputate, elit purus tempus mi, nec volutpat risus orci id dolor.',
       'format' => 'full_html',
     ),
-    'additional_classes' => 'col col-md-4 grid-4 omega',
+    'additional_classes' => 'col',
   );
   $export['futurium_events_home_intro'] = $box;
 
@@ -115,7 +115,7 @@ Quisque id fringilla sapien. Nulla fermentum imperdiet elit, vitae finibus sapie
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices ac dui non sodales. Mauris rhoncus, sem non ullamcorper pretium, tellus lacus iaculis orci, at volutpat arcu mauris vestibulum ipsum.',
       'format' => 'full_html',
     ),
-    'additional_classes' => 'col col-md-4 grid-4 alpha',
+    'additional_classes' => 'col',
   );
   $export['futurium_futures_home_intro'] = $box;
 
@@ -133,7 +133,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices ac dui non
 Mauris pulvinar euismod lacus id placerat. Nunc dolor sem, congue quis auctor sed, condimentum a augue.',
       'format' => 'full_html',
     ),
-    'additional_classes' => 'col col-md-4 grid-4',
+    'additional_classes' => 'col',
   );
   $export['futurium_ideas_home_intro'] = $box;
 

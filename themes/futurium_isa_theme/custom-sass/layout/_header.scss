@@ -5,11 +5,26 @@
 /**
  * basic info 
  */
-.navbar{
-  background: $dark-grey;
+.navbar {
   margin-bottom: 0;
   font-family: $header-font-stack;
   text-transform: uppercase;
+  li>a {
+    @include rem(font-size, 18px);
+    @include rem(line-height, 80px);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  li a.no-text{
+    xdisplay: none;
+  }
+}
+
+.navbar>.container .navbar-brand{
+  @include rem(font-size, 18px);
+  @include rem(line-height, 80px);
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 /**

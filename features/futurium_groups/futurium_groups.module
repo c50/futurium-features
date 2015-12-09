@@ -1,0 +1,215 @@
+<?php
+/**
+ * @file
+ * Code for the Futurium Groups feature.
+ */
+
+include_once 'futurium_groups.features.inc';
+
+/**
+ * Administrative form.
+ */
+function futurium_groups_administration() {
+
+  $default = variable_get('futurium_groups_rewrite_group_urls', FALSE);
+
+  $form['futurium_groups_rewrite_group_urls'] = array(
+    '#title' => t("Rewrite group urls"),
+    '#type' => 'checkbox',
+    '#default_value' => $default,
+    '#description' => "Enables rewrite of the group paths.",
+  );
+
+  $form['#submit'] = array('futurium_groups_administration_form_submit');
+
+  return system_settings_form($form);
+
+}
+
+/**
+ * Submit handler for administrative tasks form.
+ *
+ * @param array $form
+ *    Form.
+ * @param array $form_state
+ *    Form state.
+ */
+function futurium_groups_administration_form_submit(array $form, array $form_state) {
+  /*
+  if (isset($form_state['triggering_element']['#name']) &&
+    $form_state['triggering_element']['#name'] == 'reset') {
+
+    $vocab = taxonomy_vocabulary_machine_name_load('flavors');
+    $tree = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
+    if (!empty($tree)) {
+      foreach ($tree as $key => $value) {
+        $flavor_path = _supertags_term_path($value);
+        // Reset all generated paths.
+        db_delete('menu_router')
+          ->condition('path', db_like($flavor_path) . '%', 'LIKE')
+          ->execute();
+
+        db_delete('menu_links')
+          ->condition('link_path', db_like($flavor_path) . '%', 'LIKE')
+          ->execute();
+      }
+    }
+  }
+  */
+}
+
+function futurium_groups_menu() {
+
+  $items['admin/config/futurium_groups'] = array(
+    'title' => 'Futurium groups settings',
+    'description' => 'Futurium groups settings and administration.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('futurium_groups_administration'),
+    'access arguments' => array('administer site configuration'),
+  );
+
+  return $items;
+}
+
+/**
+ * Initialize group context.
+ */
+function futurium_groups_init() {
+  $variables = array();
+  $item = menu_get_item();
+  $node = menu_get_object();
+  if ($node) {
+    // Group homepage.
+    if ($node->type == 'futurium_group') {
+      $variables['active_group'] = $node;
+      $variables['page_type'] = 'homepage';
+      $variables['page_context'] = $item;
+    }
+    else {
+      // Group content.
+      if (og_is_group_content_type('node', $node->type)) {
+        $groups = og_get_entity_groups('node', $node);
+        $master = FALSE;
+        foreach ($groups as $entity_type => $og_memberships) {
+          foreach ($og_memberships as $membership_id => $entity_id) {
+            if ($entity_type == 'node') {
+              $group_node = node_load($entity_id);
+              // Set default group.
+              if (empty($variables['active_group'])) {
+                $default_group = $group_node;
+                $variables['active_group'] = $group_node;
+              }
+              $variables['groups'][] = $group_node;
+            }
+          }
+        }
+        $variables['page_type'] = 'group_content';
+        $variables['page_context'] = $item;
+      }
+    }
+  }
+  if (!$node) {
+    if (substr($item['path'], 0, 6) == 'node/%') {
+      $node = node_load(arg(1));
+      $variables['active_group'] = $node;
+      $variables['page_context'] = $item;
+      $variables['page_type'] = $item['page_callback'];
+    }
+  }
+  drupal_alter('futurium_groups_context', $variables);
+  context_set("futurium_groups", $variables);
+}
+
+/*
+function futurium_groups_preprocess_html(&$variables) {
+  $context = context_get("futurium_groups");
+  if (isset($context['active_group'])) {
+    $node = $context['active_group'];
+
+    $body_class = _futurium_groups_get_group_body_css_class($node);
+    $variables['classes_array'][] = 'page-' . $body_class;
+    $variables['classes_array'][] = 'flavor-' . $body_class;
+  }
+}
+
+
+function _futurium_groups_get_group_body_css_class($node) {
+  if (isset($node->field_css_class[LANGUAGE_NONE][0]['value'])) {
+    return $node->field_css_class[LANGUAGE_NONE][0]['value'];
+  }
+}
+*/
+
+function futurium_groups_url_outbound_alter(&$path, &$options, $original_path) {
+  $rewrite_enabled = variable_get('futurium_groups_rewrite_group_urls', FALSE);
+  if ($rewrite_enabled) {
+    $context = context_get("futurium_groups");
+    if (isset($context['active_group'])) {
+      if (preg_match('|^taxonomy/term/([0-9]*)?|', $original_path, $matches)) {
+        $node = $context['active_group'];
+        if ($node) {
+          if ($node->type == 'futurium_group') {
+            $group_path = $node->field_group_path[LANGUAGE_NONE]['0']['value'];
+            $tid = $matches[1];
+            $path = str_replace('taxonomy/term/' . $tid, $group_path . '/tags/' . $tid, $original_path);
+          }
+        }
+      }
+    }
+    // Keep pointing to node/[nid]/edit.
+    if (substr($original_path, -4) != 'edit') {
+      if (preg_match('|^node/([0-9]*)?|', $original_path, $matches)) {
+        $node = node_load($matches[1]);
+        if ($node) {
+          if ($node->type == 'futurium_group') {
+            $group_path = $node->field_group_path[LANGUAGE_NONE]['0']['value'];
+            if (!empty($group_path)) {
+              $path = str_replace('node/' . $node->nid, $group_path, $original_path);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+function futurium_groups_url_inbound_alter(&$path, $original_path, $path_language) {
+  $rewrite_enabled = variable_get('futurium_groups_rewrite_group_urls', FALSE);
+  if ($rewrite_enabled) {
+    static $rewrites;
+
+    $arg1 = arg(0);
+    if (isset($rewrites[$arg1])) {
+      if ($rewrites[$arg1] != FALSE) {
+        $path = str_replace($arg1, $rewrites[$arg1], $path);
+      }
+    }
+    else {
+      $query = new EntityFieldQuery();
+
+      $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'futurium_group')
+        ->fieldCondition('field_group_path', 'value', $arg1, '=')
+        ->range(0, 1)
+        ->addMetaData('account', user_load(1));
+
+      $result = $query->execute();
+
+      if (isset($result['node'])) {
+        $group_nids = array_keys($result['node']);
+        $groups = entity_load('node', $group_nids);
+        $group = array_pop($groups);
+      }
+
+      if (isset($group)) {
+        $rewrites[$arg1] = 'node/' . $group->nid;
+        $path = str_replace($arg1, 'node/' . $group->nid, $path);
+      }
+      else {
+        $rewrites[$arg1] = FALSE;
+      }
+    }
+  }
+}
+

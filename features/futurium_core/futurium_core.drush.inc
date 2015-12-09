@@ -114,6 +114,14 @@ function drush_futurium_core_post_install_futurium() {
  */
 function drush_futurium_core_revert_futurium_config() {
 
+  // Changing Event_d4eu content type to Event
+  /*
+  $type = node_type_load('event_d4eu');
+  $type->name = "event";
+  $type->modified = TRUE;
+  node_type_save($type);
+  */
+
   // Changing Media Gallery Content type to Photo Gallery
   $type = node_type_load('article');
   $type->name = "Post";

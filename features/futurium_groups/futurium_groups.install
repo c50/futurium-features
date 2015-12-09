@@ -1,0 +1,13 @@
+<?php
+
+function futurium_groups_install() {
+  db_update('system')
+    ->fields(array('weight' => -1))
+    ->condition('name', 'og_context', '=')
+    ->execute();
+
+  db_update('system')
+    ->fields(array('weight' => 1))
+    ->condition('name', 'futurium_groups', '=')
+    ->execute();
+}

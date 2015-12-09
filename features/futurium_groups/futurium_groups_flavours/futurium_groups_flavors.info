@@ -1,0 +1,16 @@
+name = Futurium Groups Flavors
+core = 7.x
+package = Futurium
+version = 7.x-1.0
+dependencies[] = futurium_groups
+dependencies[] = og_access
+dependencies[] = og_context
+dependencies[] = og_register
+dependencies[] = og_ui
+dependencies[] = entityreference_prepopulate
+features[ctools][] = field_group:field_group:1
+features[features_api][] = api:2
+features[field_base][] = field_futurium_group_css_class
+features[field_base][] = field_futurium_group_path
+features[field_instance][] = node-futurium_group-field_futurium_group_css_class
+features[field_instance][] = node-futurium_group-field_futurium_group_path

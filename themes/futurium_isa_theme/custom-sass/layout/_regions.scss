@@ -1,8 +1,4 @@
-.region {
-  padding: 30px 0 30px 0;
-  float: left;
-  width: 100%;
-}
+
 
 .content-slider-wrapper .region {
   padding: 0;
@@ -12,9 +8,7 @@
   background: $dark-grey;
 }
 
-.content-before-middle-wrapper, .content-after-middle-wrapper {
-  background: $light-grey;
-}
+
 
 .content-before-wrapper {
   background: $brand-color;
@@ -24,9 +18,5 @@
   }
 }
 
-.not-front {
-  .main-container {
-    background: $light-grey;
-  }
-}
+
 
