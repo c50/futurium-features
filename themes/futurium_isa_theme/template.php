@@ -45,7 +45,6 @@ function futurium_isa_theme_preprocess_page(&$variables) {
 
   $hide_title_paths = array(
     'home',
-    'groups',
     'topics',
     'ideas',
     'library',

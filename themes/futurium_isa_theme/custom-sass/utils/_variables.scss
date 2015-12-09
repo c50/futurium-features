@@ -37,9 +37,15 @@ $library-color: $blue-grey;
 
 $light-grey: #F8F8F8;
 
-$facebook: "ico-btn-facebook.png";
-$twitter: "ico-btn-twitter.png";
-$google-plus: "ico-btn-google-plus.png";
+$facebook: "ico-facebook-small-white.png";
+$twitter: "ico-twitter-small-white.png";
+$google-plus: "ico-googleplus-small-white.png";
+$plus: "ico-plus-small-white.png";
+
+
+
+
+
 
 // Link color
 
@@ -136,7 +142,7 @@ $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
 $font-size-h1:            floor(($font-size-base * 3.4)) !default; // ~36px
-$font-size-h2:            floor(($font-size-base * 2.6)) !default; // ~30px
+$font-size-h2:            floor(($font-size-base * 2.2)) !default; // ~30px
 $font-size-h3:            ceil(($font-size-base * 1.7)) !default; // ~24px
 $font-size-h4:            ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-h5:            $font-size-base !default;

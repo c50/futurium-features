@@ -3,16 +3,6 @@
 // -----------------------------------------------------------------------------
 
 
-/* adds a border dashed top & bottom & adds padding */
-
-@mixin border-double{
-  @include rem(border-top, 1px dashed $mid-grey);
-  @include rem(border-bottom, 1px dashed $mid-grey);
-  @include rem(padding, 10px 0 10px 0);
-  @include rem(margin, 20px 0 20px 0);
-}
-
-
 /// Event wrapper
 /// @author Harry Roberts
 /// @param {Bool} $self [false] - Whether or not to include current selector
@@ -84,6 +74,17 @@
   -ms-flex-order: $val;     
   -webkit-order: $val;  
   order: $val;
+}
+
+
+/// mixin for transition
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
 }
 
 
@@ -181,37 +182,30 @@
     justify-content: center;
 }
 
-/// No padding for lists
 
-.nopadding-list
-{
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+/// PROJECT SPECEFIC MIXINS ////
+/// PROJECT SPECEFIC MIXINS ////
+/// PROJECT SPECEFIC MIXINS ////
 
-@mixin transition($args...) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  -ms-transition: $args;
-  -o-transition: $args;
-  transition: $args;
-}
+/// Base for a button 
+
+
 
 @mixin btn-default {
-  @include rem(padding, 7px 10px 7px 10px);
+  @include rem(padding, 10px 10px 10px 10px);
   border-radius: 0px;
   @include rem(font-size, 14px);
+  display: inline-block;
 }
 
 
+/* mixin for the font awesome icons */
 
-
-@mixin social-button($type) {
-  background-image: url(../assets/img/#{$type});
-  background-repeat: no-repeat;
-  padding-left: 30px;
-  background-position: 10px center;
+@mixin fa($icon) {
+    @extend .fa;
+    @extend .fa-#{$icon};
+    padding-right: 5px;
+    display: inline-block;
 }
 
 /* mixin for layout content types */
@@ -225,11 +219,9 @@
     }
   }
 
-  h2.pane-title {
-    color: $color;
-    border-bottom: none;
-    @include rem(margin, 0 0 20px 0);
-    @extend h3;
+
+  h2 a{
+    color: $text-color;
   }
 
   h3 a {
@@ -239,19 +231,24 @@
     }
   }
 
-  .btn-default {
-    @include btn-default;
-  }
-
-  .btn-primary, .flag-action, .unflag-action {
+  .btn-primary, .flag-action, .unflag-action, .flag-like a, .more-link a, 
+  .share-links a, a.btn-more{
     @include btn-default;
     background: $color;
-    border-color: $color;
     color: #fff;
     border: none;
     @include on-event {
       background-color: darken($color, 10%);
       color: #fff;
+    }
+  }
+
+  .row1{
+    .share-links a, a.btn-more, .flag-like a, .more-link a{
+      background-color: darken($color, 10%);
+      @include on-event {
+        background-color: darken($color, 15%);
+      }
     }
   }
 
@@ -266,7 +263,7 @@
     a {
       color: #fff;
       @include on-event{
-        color: #fff;
+        color: $text-color;
       }
     }
 
@@ -283,23 +280,13 @@
         color: #fff;
       }
     }
-    p {
-      @include rem(font-size, 18px);
-      @include rem(line-height, 24px);
-    }
   }
 
-  
-  .share-links {
-    a {
-      padding: 10px;
-      background-color: darken($color, 10%);
-      @include on-event {
-        background-color: darken($color, 15%);
-        color: #fff;
-      }
-    } 
+
+  .flag-like a:before{
+    @include fa(thumbs-up);
   }
+
   
 
 }
