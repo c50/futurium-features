@@ -117,6 +117,7 @@ function futurium_isa_ds_field_settings_info() {
       ),
     ),
     'field_ideas' => array(
+      'weight' => '3',
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_minimal',

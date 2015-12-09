@@ -1895,472 +1895,6 @@ $handler->conf['display'] = $display;
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'term_view__vision';
-  $handler->task = 'term_view';
-  $handler->subtask = '';
-  $handler->handler = 'panel_context';
-  $handler->weight = 0;
-  $handler->conf = array(
-    'title' => 'Vision',
-    'no_blocks' => 0,
-    'pipeline' => 'standard',
-    'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
-    'css_id' => '',
-    'css' => '',
-    'contexts' => array(),
-    'relationships' => array(),
-    'name' => 'vision',
-    'access' => array(
-      'plugins' => array(
-        1 => array(
-          'name' => 'term_vocabulary',
-          'settings' => array(
-            'machine_name' => array(
-              'futurium_topics' => 'futurium_topics',
-            ),
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
-      ),
-      'logic' => 'and',
-    ),
-  );
-  $display = new panels_display();
-  $display->layout = 'bootstrap_threecol_tower';
-  $display->layout_settings = array();
-  $display->panel_settings = array(
-    'style_settings' => array(
-      'default' => array(
-        'css_id' => '',
-        'css_class' => '',
-        'column' => array(
-          'xs' => '12',
-          'sm' => '12',
-          'md' => '12',
-          'lg' => '12',
-        ),
-        'offset' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'push' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'pull' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-      ),
-      'top' => NULL,
-      'left' => NULL,
-      'middle' => NULL,
-      'right' => NULL,
-      'bottom' => NULL,
-      'center' => NULL,
-      'row1l' => NULL,
-      'row1c' => NULL,
-      'row1r' => NULL,
-      'row2l' => array(
-        'css_id' => '',
-        'css_class' => '',
-        'column' => array(
-          'xs' => '9',
-          'sm' => '9',
-          'md' => '9',
-          'lg' => '9',
-        ),
-        'offset' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'push' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'pull' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-      ),
-      'row2c' => array(
-        'css_id' => '',
-        'css_class' => '',
-        'column' => array(
-          'xs' => '3',
-          'sm' => '3',
-          'md' => '3',
-          'lg' => '3',
-        ),
-        'offset' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'push' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'pull' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-      ),
-      'row2r' => NULL,
-      'row3l' => array(
-        'css_id' => '',
-        'css_class' => '',
-        'column' => array(
-          'xs' => '3',
-          'sm' => '3',
-          'md' => '3',
-          'lg' => '3',
-        ),
-        'offset' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'push' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'pull' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-      ),
-      'row3c' => array(
-        'css_id' => '',
-        'css_class' => '',
-        'column' => array(
-          'xs' => '9',
-          'sm' => '9',
-          'md' => '9',
-          'lg' => '9',
-        ),
-        'offset' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'push' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'pull' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-      ),
-      'row3r' => NULL,
-      'row4l' => NULL,
-      'row4c' => array(),
-      'row4r' => NULL,
-      'row5l' => NULL,
-      'row5c' => array(
-        'css_id' => '',
-        'css_class' => '',
-        'column' => array(
-          'xs' => '3',
-          'sm' => '3',
-          'md' => '3',
-          'lg' => '3',
-        ),
-        'offset' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'push' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'pull' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-      ),
-      'row5r' => NULL,
-      'row6l' => NULL,
-      'row6c' => NULL,
-      'row6r' => NULL,
-      'row7l' => NULL,
-      'row7c' => NULL,
-      'row7r' => NULL,
-      'row8l' => NULL,
-      'row8c' => NULL,
-      'row8r' => NULL,
-      'row9l' => NULL,
-      'row9c' => NULL,
-      'row9r' => NULL,
-      'row10l' => NULL,
-      'row10c' => NULL,
-      'row10r' => NULL,
-    ),
-    'style' => 'bootstrap_region',
-    'row2l' => array(
-      'style' => 'bootstrap_region',
-    ),
-    'row2c' => array(
-      'style' => 'bootstrap_region',
-    ),
-    'row3l' => array(
-      'style' => 'bootstrap_region',
-    ),
-    'row3c' => array(
-      'style' => 'bootstrap_region',
-    ),
-    'row5c' => array(
-      'style' => 'bootstrap_region',
-    ),
-    'row4c' => array(
-      'style' => 'bootstrap_region',
-    ),
-  );
-  $display->cache = array();
-  $display->title = '%term:i18n-name';
-  $display->uuid = 'ce8eda4e-d04f-4827-85cb-dde93e4bd41e';
-  $display->content = array();
-  $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-234b1f56-e286-415d-95d3-cdcf0564572d';
-    $pane->panel = 'row1l';
-    $pane->type = 'term_description';
-    $pane->subtype = 'term_description';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'context' => 'argument_term_1',
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '234b1f56-e286-415d-95d3-cdcf0564572d';
-    $display->content['new-234b1f56-e286-415d-95d3-cdcf0564572d'] = $pane;
-    $display->panels['row1l'][0] = 'new-234b1f56-e286-415d-95d3-cdcf0564572d';
-    $pane = new stdClass();
-    $pane->pid = 'new-2cdbc9b1-c57b-41a5-894d-fabccce20af7';
-    $pane->panel = 'row2c';
-    $pane->type = 'views';
-    $pane->subtype = 'og_members';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '5',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block_1',
-      'context' => array(
-        0 => 'argument_term_1.tid',
-      ),
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '2cdbc9b1-c57b-41a5-894d-fabccce20af7';
-    $display->content['new-2cdbc9b1-c57b-41a5-894d-fabccce20af7'] = $pane;
-    $display->panels['row2c'][0] = 'new-2cdbc9b1-c57b-41a5-894d-fabccce20af7';
-    $pane = new stdClass();
-    $pane->pid = 'new-6ffe0ec0-1d80-4929-b39d-d33acfa8fc10';
-    $pane->panel = 'row2c';
-    $pane->type = 'flag_link';
-    $pane->subtype = 'taxonomy_term';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'flag_name' => 'subscribe_topic',
-      'context' => 'argument_term_1',
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '6ffe0ec0-1d80-4929-b39d-d33acfa8fc10';
-    $display->content['new-6ffe0ec0-1d80-4929-b39d-d33acfa8fc10'] = $pane;
-    $display->panels['row2c'][1] = 'new-6ffe0ec0-1d80-4929-b39d-d33acfa8fc10';
-    $pane = new stdClass();
-    $pane->pid = 'new-ab3e1fc6-287f-49e3-8d36-6828d196b0b1';
-    $pane->panel = 'row2c';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'taxonomy_term:og_node_link';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'inline',
-      'formatter' => 'og_node_link_default',
-      'delta_limit' => '0',
-      'delta_offset' => '0',
-      'delta_reversed' => 0,
-      'formatter_settings' => array(),
-      'context' => 'argument_term_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = 'ab3e1fc6-287f-49e3-8d36-6828d196b0b1';
-    $display->content['new-ab3e1fc6-287f-49e3-8d36-6828d196b0b1'] = $pane;
-    $display->panels['row2c'][2] = 'new-ab3e1fc6-287f-49e3-8d36-6828d196b0b1';
-    $pane = new stdClass();
-    $pane->pid = 'new-768ca73f-d59a-49cc-8f55-6ca94cbc9480';
-    $pane->panel = 'row2c';
-    $pane->type = 'views';
-    $pane->subtype = 'topics';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 1,
-      'nodes_per_page' => '4',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block_1',
-      'context' => array(
-        0 => 'argument_term_1.tid',
-      ),
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array(
-      'css_id' => '',
-      'css_class' => '',
-    );
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $pane->uuid = '768ca73f-d59a-49cc-8f55-6ca94cbc9480';
-    $display->content['new-768ca73f-d59a-49cc-8f55-6ca94cbc9480'] = $pane;
-    $display->panels['row2c'][3] = 'new-768ca73f-d59a-49cc-8f55-6ca94cbc9480';
-    $pane = new stdClass();
-    $pane->pid = 'new-3bbb963c-bb50-4e3d-9608-fb798fed4752';
-    $pane->panel = 'row2l';
-    $pane->type = 'views';
-    $pane->subtype = 'og_nodes';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 1,
-      'nodes_per_page' => '0',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'default',
-      'context' => array(
-        0 => 'argument_term_1.tid',
-      ),
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '3bbb963c-bb50-4e3d-9608-fb798fed4752';
-    $display->content['new-3bbb963c-bb50-4e3d-9608-fb798fed4752'] = $pane;
-    $display->panels['row2l'][0] = 'new-3bbb963c-bb50-4e3d-9608-fb798fed4752';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
-  $handler->conf['display'] = $display;
-  $export['term_view__vision'] = $handler;
-
-  $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-  $handler->api_version = 1;
   $handler->name = 'user_view__panel_context_6967673a-0888-4c18-a3f1-3e10c148e311';
   $handler->task = 'user_view';
   $handler->subtask = '';
@@ -3264,296 +2798,296 @@ function futurium_isa_default_page_manager_pages() {
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['ideas'] = $page;
-//
-$page = new stdClass();
-$page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
-$page->api_version = 1;
-$page->name = 'library';
-$page->task = 'page';
-$page->admin_title = 'Library';
-$page->admin_description = '';
-$page->path = 'library';
-$page->access = array(
-  'type' => 'none',
-  'settings' => NULL,
-);
-$page->menu = array(
-  'type' => 'normal',
-  'title' => 'Library',
-  'name' => 'main-menu',
-  'weight' => '2',
-  'parent' => array(
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'library';
+  $page->task = 'page';
+  $page->admin_title = 'Library';
+  $page->admin_description = '';
+  $page->path = 'library';
+  $page->access = array(
     'type' => 'none',
-    'title' => '',
-    'name' => 'navigation',
-    'weight' => '0',
-  ),
-);
-$page->arguments = array();
-$page->conf = array(
-  'admin_paths' => FALSE,
-);
-$page->default_handlers = array();
-$handler = new stdClass();
-$handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-$handler->api_version = 1;
-$handler->name = 'page_library__panel_context_3bd6496c-ff5e-4600-9100-04b67f17466c';
-$handler->task = 'page';
-$handler->subtask = 'library';
-$handler->handler = 'panel_context';
-$handler->weight = 0;
-$handler->conf = array(
-  'title' => 'Panel',
-  'no_blocks' => 0,
-  'pipeline' => 'standard',
-  'body_classes_to_remove' => '',
-  'body_classes_to_add' => '',
-  'css_id' => '',
-  'css' => '',
-  'contexts' => array(),
-  'relationships' => array(),
-  'access' => array(
-    'logic' => 'and',
-  ),
-);
-$display = new panels_display();
-$display->layout = 'bootstrap_twocol_tower';
-$display->layout_settings = array();
-$display->panel_settings = array(
-  'style_settings' => array(
-    'default' => array(
-      'css_id' => '',
-      'css_class' => '',
-      'column' => array(
-        'xs' => '12',
-        'sm' => '12',
-        'md' => '12',
-        'lg' => '12',
-      ),
-      'offset' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'push' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'pull' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
+    'settings' => NULL,
+  );
+  $page->menu = array(
+    'type' => 'normal',
+    'title' => 'Library',
+    'name' => 'main-menu',
+    'weight' => '2',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
     ),
-    'top' => NULL,
+  );
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_library__panel_context_3bd6496c-ff5e-4600-9100-04b67f17466c';
+  $handler->task = 'page';
+  $handler->subtask = 'library';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'bootstrap_twocol_tower';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'top' => NULL,
+      'left' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '4',
+          'sm' => '4',
+          'md' => '4',
+          'lg' => '4',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'middle' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '8',
+          'sm' => '8',
+          'md' => '8',
+          'lg' => '8',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'right' => NULL,
+      'bottom' => NULL,
+      'row1l' => NULL,
+      'row1r' => NULL,
+      'row2l' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row2r' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '9',
+          'sm' => '9',
+          'md' => '9',
+          'lg' => '9',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row3l' => NULL,
+      'row3r' => NULL,
+      'row4l' => NULL,
+      'row4r' => NULL,
+      'row5l' => NULL,
+      'row5r' => NULL,
+      'row6l' => NULL,
+      'row6r' => NULL,
+      'row7l' => NULL,
+      'row7r' => NULL,
+      'row8l' => NULL,
+      'row8r' => NULL,
+      'row9l' => NULL,
+      'row9r' => NULL,
+      'row10l' => NULL,
+      'row10r' => NULL,
+    ),
     'left' => array(
-      'css_id' => '',
-      'css_class' => '',
-      'column' => array(
-        'xs' => '4',
-        'sm' => '4',
-        'md' => '4',
-        'lg' => '4',
-      ),
-      'offset' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'push' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'pull' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
+      'style' => 'bootstrap_region',
     ),
     'middle' => array(
-      'css_id' => '',
-      'css_class' => '',
-      'column' => array(
-        'xs' => '8',
-        'sm' => '8',
-        'md' => '8',
-        'lg' => '8',
-      ),
-      'offset' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'push' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'pull' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
+      'style' => 'bootstrap_region',
     ),
-    'right' => NULL,
-    'bottom' => NULL,
-    'row1l' => NULL,
-    'row1r' => NULL,
+    'style' => 'bootstrap_region',
     'row2l' => array(
-      'css_id' => '',
-      'css_class' => '',
-      'column' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '12',
-      ),
-      'offset' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'push' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'pull' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
+      'style' => 'bootstrap_region',
     ),
     'row2r' => array(
-      'css_id' => '',
-      'css_class' => '',
-      'column' => array(
-        'xs' => '9',
-        'sm' => '9',
-        'md' => '9',
-        'lg' => '9',
-      ),
-      'offset' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'push' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
-      'pull' => array(
-        'xs' => '0',
-        'sm' => '0',
-        'md' => '0',
-        'lg' => '0',
-      ),
+      'style' => 'bootstrap_region',
     ),
-    'row3l' => NULL,
-    'row3r' => NULL,
-    'row4l' => NULL,
-    'row4r' => NULL,
-    'row5l' => NULL,
-    'row5r' => NULL,
-    'row6l' => NULL,
-    'row6r' => NULL,
-    'row7l' => NULL,
-    'row7r' => NULL,
-    'row8l' => NULL,
-    'row8r' => NULL,
-    'row9l' => NULL,
-    'row9r' => NULL,
-    'row10l' => NULL,
-    'row10r' => NULL,
-  ),
-  'left' => array(
-    'style' => 'bootstrap_region',
-  ),
-  'middle' => array(
-    'style' => 'bootstrap_region',
-  ),
-  'style' => 'bootstrap_region',
-  'row2l' => array(
-    'style' => 'bootstrap_region',
-  ),
-  'row2r' => array(
-    'style' => 'bootstrap_region',
-  ),
-);
-$display->cache = array();
-$display->title = 'Library';
-$display->uuid = 'e03c4c38-3270-4c25-8cde-4cab1091955e';
-$display->content = array();
-$display->panels = array();
-  $pane = new stdClass();
-  $pane->pid = 'new-74abb4b8-0814-435b-9df6-4ae7a7a64d43';
-  $pane->panel = 'row1l';
-  $pane->type = 'custom';
-  $pane->subtype = 'custom';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'admin_title' => 'Intro',
-    'title' => '',
-    'body' => '<h1>Explore the library</h1><div class="intro"><span>Navigate through evidences, scientific papers or case studies that support ideas</span></div>',
-    'format' => 'full_html',
-    'substitute' => TRUE,
   );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 0;
-  $pane->locks = array();
-  $pane->uuid = '74abb4b8-0814-435b-9df6-4ae7a7a64d43';
-  $display->content['new-74abb4b8-0814-435b-9df6-4ae7a7a64d43'] = $pane;
-  $display->panels['row1l'][0] = 'new-74abb4b8-0814-435b-9df6-4ae7a7a64d43';
-  $pane = new stdClass();
-  $pane->pid = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
-  $pane->panel = 'row2l';
-  $pane->type = 'views_panes';
-  $pane->subtype = 'library-panel_pane_1';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'override_title' => 0,
-    'override_title_text' => '%1',
-    'override_title_heading' => 'h2',
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 0;
-  $pane->locks = array();
-  $pane->uuid = 'f1142d9b-5be4-44ee-8970-0bb33ea67916';
-  $display->content['new-f1142d9b-5be4-44ee-8970-0bb33ea67916'] = $pane;
-  $display->panels['row2l'][0] = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
-$display->hide_title = PANELS_TITLE_FIXED;
-$display->title_pane = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
-$handler->conf['display'] = $display;
-$page->default_handlers[$handler->name] = $handler;
+  $display->cache = array();
+  $display->title = 'Library';
+  $display->uuid = 'e03c4c38-3270-4c25-8cde-4cab1091955e';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-74abb4b8-0814-435b-9df6-4ae7a7a64d43';
+    $pane->panel = 'row1l';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Intro',
+      'title' => '',
+      'body' => '<h1>Explore the library</h1><div class="intro"><span>Navigate through evidences, scientific papers or case studies that support ideas</span></div>',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '74abb4b8-0814-435b-9df6-4ae7a7a64d43';
+    $display->content['new-74abb4b8-0814-435b-9df6-4ae7a7a64d43'] = $pane;
+    $display->panels['row1l'][0] = 'new-74abb4b8-0814-435b-9df6-4ae7a7a64d43';
+    $pane = new stdClass();
+    $pane->pid = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
+    $pane->panel = 'row2l';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'library-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '%1',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f1142d9b-5be4-44ee-8970-0bb33ea67916';
+    $display->content['new-f1142d9b-5be4-44ee-8970-0bb33ea67916'] = $pane;
+    $display->panels['row2l'][0] = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
   $pages['library'] = $page;
 
   return $pages;
