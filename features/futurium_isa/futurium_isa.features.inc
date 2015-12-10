@@ -8,9 +8,6 @@
  * Implements hook_ctools_plugin_api().
  */
 function futurium_isa_ctools_plugin_api($module = NULL, $api = NULL) {
-  if ($module == "bean_admin_ui" && $api == "bean") {
-    return array("version" => "5");
-  }
   if ($module == "boxes" && $api == "box") {
     return array("version" => "1");
   }
@@ -24,9 +21,6 @@ function futurium_isa_ctools_plugin_api($module = NULL, $api = NULL) {
     return array("version" => "1");
   }
   if ($module == "page_manager" && $api == "pages_default") {
-    return array("version" => "1");
-  }
-  if ($module == "pm_existing_pages" && $api == "pm_existing_pages") {
     return array("version" => "1");
   }
   if ($module == "strongarm" && $api == "strongarm") {

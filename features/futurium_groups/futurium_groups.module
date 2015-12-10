@@ -140,7 +140,7 @@ function futurium_groups_url_inbound_alter(&$path, $original_path, $path_languag
 
       $query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'futurium_group')
-        ->fieldCondition('field_group_path', 'value', $arg1, '=')
+        ->fieldCondition('field_futurium_group_path', 'value', $arg1, '=')
         ->range(0, 1)
         ->addMetaData('account', user_load(1));
 
