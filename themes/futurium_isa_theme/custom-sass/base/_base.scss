@@ -100,7 +100,7 @@ h2.pane-title{
   @include rem(font-size, 30px);
 }
 
-.panel-sidebar{
+.sidebar-right{
   h2.pane-title{
     font-weight: normal;
     @include rem(font-size, 24px);
@@ -124,7 +124,9 @@ h4 a{
   }
 }
 
+
 /// No padding for lists
+
 
 .nopadding {
   list-style: none;
@@ -198,6 +200,8 @@ h4 a{
 }
 
 
+
+
 .media-element-container {
 	@include rem(margin, 0 0 20px 0);
 	background: #fff;
@@ -218,10 +222,11 @@ h4 a{
   }
 } 
 
-a.flag-action,
-a.unflag-action
- {
-  @extend .btn;
+.group-buttons > div{
+  display: inline-block;
+  a{
+    @include rem(margin, 0 5px 0 0);
+  }
 }
 
 .field-type-entityreference {
@@ -311,6 +316,18 @@ a.btn-more:before {
 
 .comment-count:before {
   @include fa(comment);
+}
+
+.attending-count:before {
+  @include fa(male);
+}
+
+.location-city:before {
+  @include fa(map-marker);
+}
+
+.flag-outer-attending a:before {
+  @include fa(user-plus);
 }
 
 .more-link a:before{
@@ -418,29 +435,92 @@ div.views-bootstrap-grid-plugin-style {
   }
 
 .pane-futurium-isa-extras-node-social-share {
-  .pane-content{
+  .pane-content {
     float: left;
   }
 }
 
-.panel-sidebar{
+.sidebar-right {
   background: $light-grey;
   @include rem(padding, 15px);
+  .date:before{
+    content: none;
+  }
 }
 
+/* Comments */
 
-/* expirimental */
+.comment, .indented {
+  @include rem(margin, 0 0 40px 0);
+}
 
-/* responsiveness to check */
+.indented {
+  @include rem(margin, 20px 0 0 20px);
+}
 
-.row1{
-  display: flex;
-  height: 100%;
-  .row1r{
-    align-self: flex-end; 
+.wrapper-author-date{
+  @include rem(margin, 0 0 20px 0);
+  vertical-align: baseline;
+  .field{
+    display: inline-block;
+    @include rem(margin, 0 25px 0 0);
+    @include rem(padding, 0 0 0 0);
+  }
+  .field-name-author{
+    border-bottom: none;
   } 
 }
 
+.comment {
+  .links {
+    float: right;
+    clear: both;
+  }
+}
+
+.field-name-ds-user-picture img{
+  border-radius:50%;
+  overflow:hidden;
+}
+
+.field-name-comment-body {
+  border: 1px solid #ccc;
+  @include rem(padding, 20px);
+  @include rem(margin, 0 0 20px 0);
+}
+  
 
 
 
+
+@include respond-to(large) {
+  .row1 {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    .row1l {
+      align-self: flex-start;
+    }
+    .row1r {
+     /* align-self: flex-end; */
+     align-self: flex-end;
+    } 
+  }
+}
+
+
+.street-block > div {
+  display: inline-block;
+  @include rem(margin, 0 5px 0 0);
+}
+
+.events-pane{
+  .pane-content{
+    @include rem(margin, 15px 0 10px 0);
+  }
+  .field-name-field-coordinates{
+    .field-label{
+      @include rem(margin, 0 0 10px 0);
+    }
+  }
+}
