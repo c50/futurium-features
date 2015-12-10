@@ -421,6 +421,7 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field comment-count">' . $count . ' ' . format_plural($count, t('Comment'), t('Comments')) . '</div>');
   }
 
+  // Addressfield city only
   $extrafield_name = 'addressfield_city';
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])

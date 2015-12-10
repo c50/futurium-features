@@ -120,3 +120,98 @@ function futurium_isa_theme_menu_link(array $variables) {
   }
   return theme_menu_link($variables);
 }
+
+
+function futurium_isa_theme_date_display_range(&$variables) {
+  $date1 = $variables['date1'];
+  $date2 = $variables['date2'];
+  $timezone = $variables['timezone'];
+
+  $attributes_start = $variables['attributes_start'];
+  $attributes_end = $variables['attributes_end'];
+
+  $start_date_obj = $variables['dates']['value']['db']['object'];
+  $end_date_obj = $variables['dates']['value2']['db']['object'];
+
+  $start_day = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'j');
+  $end_day   = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'j');
+
+  $start_month = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'F');
+  $end_month   = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'F');
+
+  $start_year = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'Y');
+  $end_year   = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'Y');
+
+  $start_hour = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+  $end_hour = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+
+  $string = '!start-day !start-month !start-year - !start-hour to !end-day !end-month !end-year !end-hour';
+
+  // Same month and year.
+  if ($start_day == $end_day && $start_month == $end_month && $start_year == $end_year) {
+    // Handled by theme_date_display_single().
+    return;
+  }
+
+  if ($start_day != $end_day && $start_month == $end_month && $start_year == $end_year) {
+    $string = '!start-day - !end-day !start-month !start-year - !start-hour - !end-hour';
+  }
+
+  // Same year.
+  if ($start_day == $end_day && $start_month != $end_month && $start_year == $end_year) {
+    $string = '!start-day !start-month - !end-day !end-month !start-year - !start-hour - !end-hour';
+  }
+
+  if ($start_day != $end_day && $start_month != $end_month && $start_year == $end_year) {
+    $string = '!start-day !start-month - !end-day !end-month !start-year - !start-hour - !end-hour';
+  }
+
+  // Different years.
+  if ($start_day == $end_day && $start_month != $end_month && $start_year != $end_year) {
+    $string = '!start-day !start-month !start-year - !start-hour - !end-day !end-month !end-year !end-hour';
+  }
+
+  if ($start_day != $end_day && $start_month != $end_month && $start_year != $end_year) {
+    $string = '!start-day !start-month !start-year - !start-hour - !end-day !end-month !end-year !end-hour';
+  }
+
+  $date_vars = array(
+    '!start-day' => $start_day,
+    '!end-day' => $end_day,
+    '!start-month' => $start_month,
+    '!end-month' => $end_month,
+    '!start-year' => $start_year,
+    '!end-year' => $end_year,
+    '!start-hour' => $start_hour,
+    '!end-hour' => $end_hour,
+  );
+
+  return t($string, $date_vars);
+}
+
+function futurium_isa_theme_date_display_single($variables) {
+  $date = $variables['date'];
+  $timezone = $variables['timezone'];
+  $attributes = $variables['attributes'];
+
+  $string = '!start-day !start-month !start-year - !start-hour - !end-hour';
+
+  $start_date_obj = $variables['dates']['value']['db']['object'];
+  $end_date_obj = $variables['dates']['value2']['db']['object'];
+
+  $start_day = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'j');
+  $start_month = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'F');
+  $start_year = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'Y');
+  $start_hour = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+  $end_hour = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+
+  $date_vars = array(
+    '!start-day' => $start_day,
+    '!start-month' => $start_month,
+    '!start-year' => $start_year,
+    '!start-hour' => $start_hour,
+    '!end-hour' => $end_hour,
+  );
+
+  return t($string, $date_vars);
+}

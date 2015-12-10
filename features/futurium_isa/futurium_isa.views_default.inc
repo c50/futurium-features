@@ -830,7 +830,7 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['css_class'] = 'omega-grid row-eq-height';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
 
   /* Display: Recent/Topic */

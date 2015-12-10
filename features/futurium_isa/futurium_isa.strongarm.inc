@@ -134,7 +134,27 @@ attending';
       'token' => array(
         'custom_settings' => FALSE,
       ),
-      'comment_teaser' => array(
+    ),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_comment__comment_node_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_comment__comment_node_ideas';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -143,7 +163,7 @@ attending';
       'display' => array(),
     ),
   );
-  $export['field_bundle_settings_comment__comment_node_event_d4eu'] = $strongarm;
+  $export['field_bundle_settings_comment__comment_node_ideas'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
