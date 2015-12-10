@@ -13,10 +13,19 @@ function futurium_isa_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'date_format_day_fullmonth_year';
+  $strongarm->value = 'j F Y';
+  $export['date_format_day_fullmonth_year'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'ds_classes_fields';
   $strongarm->value = 'intro
 date
-more-link';
+more-link
+location
+attending';
   $export['ds_classes_fields'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -113,6 +122,93 @@ more-link';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_comment__comment_node_event_d4eu';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'comment_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_comment__comment_node_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__event_d4eu';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'node_header' => array(
+        'custom_settings' => TRUE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'flag_attending' => array(
+          'teaser' => array(
+            'weight' => '12',
+            'visible' => TRUE,
+          ),
+          'node_header' => array(
+            'weight' => '6',
+            'visible' => TRUE,
+          ),
+        ),
+        'attending' => array(
+          'teaser' => array(
+            'weight' => '54',
+            'visible' => TRUE,
+          ),
+          'node_header' => array(
+            'weight' => '8',
+            'visible' => TRUE,
+          ),
+        ),
+        'addressfield_city' => array(
+          'teaser' => array(
+            'weight' => '52',
+            'visible' => TRUE,
+          ),
+          'node_header' => array(
+            'weight' => '7',
+            'visible' => TRUE,
+          ),
+        ),
+        'comment_count' => array(
+          'teaser' => array(
+            'weight' => '51',
+            'visible' => FALSE,
+          ),
+          'node_header' => array(
+            'weight' => '51',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_node__event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__ideas';
   $strongarm->value = array(
     'view_modes' => array(
@@ -149,6 +245,16 @@ more-link';
           ),
           'node_header' => array(
             'weight' => '51',
+            'visible' => TRUE,
+          ),
+        ),
+        'attending_count' => array(
+          'default' => array(
+            'weight' => '50',
+            'visible' => TRUE,
+          ),
+          'node_header' => array(
+            'weight' => '50',
             'visible' => TRUE,
           ),
         ),

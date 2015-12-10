@@ -346,6 +346,9 @@ function futurium_isa_extras_field_extra_fields() {
       case 'ideas':
         $extrafield_name = 'like';
         break;
+      case 'event_d4eu':
+        $extrafield_name = 'attending';
+        break;
     }
 
     $flag = flag_get_flag($extrafield_name);
@@ -363,6 +366,14 @@ function futurium_isa_extras_field_extra_fields() {
       'label' => t("Comment count"),
       'description' => t('Node comments count'),
       'weight' => 51,
+    );
+
+    // City only
+    $extrafield_name = 'addressfield_city';
+    $extra['node']['event_d4eu']['display'][$extrafield_name] = array(
+      'label' => t("Addressfield City"),
+      'description' => t('Address field city only.'),
+      'weight' => 52,
     );
 
   }
@@ -389,6 +400,18 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field like-count">' . $count . ' ' . $plural . '</div>');
   }
 
+  // Attending
+  $extrafield_name = 'attending';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+
+    $flag = flag_get_flag($extrafield_name);
+    $count = $flag->get_count($node->nid);
+    $label = t('Going');
+    $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field attending-count">' . $count . ' ' . $label . '</div>');
+  }
+
   // Comment count
   $extrafield_name = 'comment_count';
   if (isset($extrafields[$extrafield_name])
@@ -398,4 +421,44 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field comment-count">' . $count . ' ' . format_plural($count, t('Comment'), t('Comments')) . '</div>');
   }
 
+  $extrafield_name = 'addressfield_city';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+    $location = $node->field_location[$node->language][0];
+    if (!empty($location)) {
+      $city = $location['locality'];
+      $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field location-city">' . $city . '</div>');
+    }
+  }
+
+}
+
+
+/**
+ * Implements hook_ds_fields_info().
+ */
+function futurium_isa_extras_ds_fields_info($entity_type) {
+  $fields = array();
+
+  $fields['comment']['author'] = array(
+    'title' => t('Author'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'function' => 'futurium_isa_extras_ds_field_author',
+  );
+
+  if (isset($fields[$entity_type])) {
+    return array($entity_type => $fields[$entity_type]);
+  }
+  return;
+}
+
+/**
+ * Render the article footnote field.
+ */
+function futurium_isa_extras_ds_field_author($field) {
+  $uid = $field['entity']->uid;
+  $account = user_load($uid);
+  $content = theme('username', array('account' => $account));
+  return $content;
 }

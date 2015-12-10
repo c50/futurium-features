@@ -12,6 +12,96 @@ function futurium_isa_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|event_d4eu|node_header';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'event_d4eu';
+  $ds_fieldsetting->view_mode = 'node_header';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link' => '0',
+        'wrapper' => 'h1',
+        'class' => '',
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+        ),
+      ),
+    ),
+    'body' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'intro',
+        ),
+      ),
+    ),
+    'field_date_time' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'date',
+        ),
+      ),
+    ),
+  );
+  $export['node|event_d4eu|node_header'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|event_d4eu|teaser';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'event_d4eu';
+  $ds_fieldsetting->view_mode = 'teaser';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link' => '1',
+        'wrapper' => 'h3',
+        'class' => '',
+        'ft' => array(),
+      ),
+    ),
+    'node_link' => array(
+      'weight' => '11',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link text' => 'Learn more about this event',
+        'wrapper' => '',
+        'class' => '',
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'more-link',
+        ),
+      ),
+    ),
+    'body' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'intro',
+        ),
+      ),
+    ),
+    'field_date_time' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'date',
+        ),
+      ),
+    ),
+  );
+  $export['node|event_d4eu|teaser'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'node|ideas|node_header';
   $ds_fieldsetting->entity_type = 'node';
   $ds_fieldsetting->bundle = 'ideas';
@@ -128,6 +218,114 @@ function futurium_isa_ds_field_settings_info() {
   );
   $export['node|ideas|teaser'] = $ds_fieldsetting;
 
+  // Comments
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'comment|comment_node_ideas|default';
+  $ds_fieldsetting->entity_type = 'comment';
+  $ds_fieldsetting->bundle = 'comment_node_ideas';
+  $ds_fieldsetting->view_mode = 'default';
+  $ds_fieldsetting->settings = array(
+    'links' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'post_date' => array(
+      'weight' => '5',
+      'label' => 'hidden',
+      'format' => 'ds_post_date_day_fullmonth_year',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'date',
+        ),
+      ),
+    ),
+    'author' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+        ),
+      ),
+    ),
+    'ds_user_picture' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'ds_picture_media_thumbnail_small',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+        ),
+      ),
+    ),
+    'comment_body' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+        ),
+      ),
+    ),
+  );
+  $export['comment|comment_node_ideas|default'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'comment|comment_node_event_d4eu|default';
+  $ds_fieldsetting->entity_type = 'comment';
+  $ds_fieldsetting->bundle = 'comment_node_event_d4eu';
+  $ds_fieldsetting->view_mode = 'default';
+  $ds_fieldsetting->settings = array(
+    'links' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'post_date' => array(
+      'weight' => '5',
+      'label' => 'hidden',
+      'format' => 'ds_post_date_day_fullmonth_year',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'date',
+        ),
+      ),
+    ),
+    'author' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+        ),
+      ),
+    ),
+    'ds_user_picture' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'ds_picture_media_thumbnail_small',
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+        ),
+      ),
+    ),
+    'comment_body' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+        ),
+      ),
+    ),
+  );
+  $export['comment|comment_node_event_d4eu|default'] = $ds_fieldsetting;
+
   return $export;
 }
 
@@ -139,47 +337,33 @@ function futurium_isa_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
-  $ds_layout->id = 'node|ideas|default';
+  $ds_layout->id = 'node|event_d4eu|node_header';
   $ds_layout->entity_type = 'node';
-  $ds_layout->bundle = 'ideas';
-  $ds_layout->view_mode = 'default';
-  $ds_layout->layout = 'ds_1col';
+  $ds_layout->bundle = 'event_d4eu';
+  $ds_layout->view_mode = 'node_header';
+  $ds_layout->layout = 'ds_1col_wrapper';
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'field_ideas',
-        1 => 'field_tags',
-        2 => 'field_related_documents',
-        3 => 'group_related_content',
-        4 => 'field_related_polls',
-        5 => 'field_related_videos',
-        6 => 'og_group_ref',
-        7 => 'field_related_events',
-        8 => 'group_content_access',
-        9 => 'flag_like',
-        10 => 'field_evidences',
-        11 => 'field_linker_evidences',
-        12 => 'field_linker_related',
-        13 => 'like',
-        14 => 'comment_count',
+        0 => 'title',
+        1 => 'field_date_time',
+        2 => 'group_date_vote_comment',
+        3 => 'body',
+        4 => 'group_buttons',
+        5 => 'flag_attending',
+        6 => 'addressfield_city',
+        7 => 'attending',
       ),
     ),
     'fields' => array(
-      'field_ideas' => 'ds_content',
-      'field_tags' => 'ds_content',
-      'field_related_documents' => 'ds_content',
-      'group_related_content' => 'ds_content',
-      'field_related_polls' => 'ds_content',
-      'field_related_videos' => 'ds_content',
-      'og_group_ref' => 'ds_content',
-      'field_related_events' => 'ds_content',
-      'group_content_access' => 'ds_content',
-      'flag_like' => 'ds_content',
-      'field_evidences' => 'ds_content',
-      'field_linker_evidences' => 'ds_content',
-      'field_linker_related' => 'ds_content',
-      'like' => 'ds_content',
-      'comment_count' => 'ds_content',
+      'title' => 'ds_content',
+      'field_date_time' => 'ds_content',
+      'group_date_vote_comment' => 'ds_content',
+      'body' => 'ds_content',
+      'group_buttons' => 'ds_content',
+      'flag_attending' => 'ds_content',
+      'addressfield_city' => 'ds_content',
+      'attending' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -191,7 +375,51 @@ function futurium_isa_ds_layout_settings_info() {
     'layout_link_attribute' => '',
     'layout_link_custom' => '',
   );
-  $export['node|ideas|default'] = $ds_layout;
+  $export['node|event_d4eu|node_header'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|event_d4eu|teaser';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'event_d4eu';
+  $ds_layout->view_mode = 'teaser';
+  $ds_layout->layout = 'ds_1col_wrapper';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'field_date_time',
+        2 => 'group_date_vote_comment',
+        3 => 'body',
+        4 => 'group_buttons',
+        5 => 'node_link',
+        6 => 'flag_attending',
+        7 => 'addressfield_city',
+        8 => 'attending',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'field_date_time' => 'ds_content',
+      'group_date_vote_comment' => 'ds_content',
+      'body' => 'ds_content',
+      'group_buttons' => 'ds_content',
+      'node_link' => 'ds_content',
+      'flag_attending' => 'ds_content',
+      'addressfield_city' => 'ds_content',
+      'attending' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|event_d4eu|teaser'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
@@ -220,7 +448,6 @@ function futurium_isa_ds_layout_settings_info() {
       'title' => 'ds_content',
       'author' => 'ds_content',
       'group_date_vote_comment' => 'ds_content',
-      'field_ideas' => 'ds_content',
       'group_buttons' => 'ds_content',
       'flag_like' => 'ds_content',
       'like' => 'ds_content',
@@ -281,6 +508,84 @@ function futurium_isa_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['node|ideas|teaser'] = $ds_layout;
+
+  // Comments
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'comment|comment_node_ideas|default';
+  $ds_layout->entity_type = 'comment';
+  $ds_layout->bundle = 'comment_node_ideas';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'group_wrapper_author_date',
+        1 => 'comment_body',
+        2 => 'links',
+        3 => 'ds_user_picture',
+        4 => 'author',
+        5 => 'post_date',
+      ),
+    ),
+    'fields' => array(
+      'group_wrapper_author_date' => 'ds_content',
+      'comment_body' => 'ds_content',
+      'links' => 'ds_content',
+      'ds_user_picture' => 'ds_content',
+      'author' => 'ds_content',
+      'post_date' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['comment|comment_node_ideas|default'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'comment|comment_node_event_d4eu|default';
+  $ds_layout->entity_type = 'comment';
+  $ds_layout->bundle = 'comment_node_event_d4eu';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'group_wrapper_author_date',
+        1 => 'comment_body',
+        2 => 'links',
+        3 => 'ds_user_picture',
+        4 => 'author',
+        5 => 'post_date',
+      ),
+    ),
+    'fields' => array(
+      'group_wrapper_author_date' => 'ds_content',
+      'comment_body' => 'ds_content',
+      'links' => 'ds_content',
+      'ds_user_picture' => 'ds_content',
+      'author' => 'ds_content',
+      'post_date' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['comment|comment_node_event_d4eu|default'] = $ds_layout;
 
   return $export;
 }
