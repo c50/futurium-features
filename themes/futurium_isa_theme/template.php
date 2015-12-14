@@ -13,8 +13,8 @@ function futurium_isa_theme_preprocess_region(&$variables) {
 }
 
 
-
 function futurium_isa_theme_preprocess_page(&$variables) {
+
   unset($variables['navbar_classes_array'][1]);
   $variables['navbar_classes_array'][] = 'container-fullwidth';
 
@@ -39,7 +39,7 @@ function futurium_isa_theme_preprocess_page(&$variables) {
   $panels_callbacks = array(
     'page_manager_page_execute',
     'page_manager_node_view_page',
-    'pm_existing_pages_pm_existing_pages_page'
+    'page_manager_user_view_page',
   );
   $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks);
 
@@ -48,9 +48,10 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     'groups',
     'ideas',
     'library',
-    'events'
+    'events',
+    'node/%',
   );
-  $variables['show_title'] = !in_array($item['path'], $hide_title_paths);
+  $variables['show_title'] = !in_array($item['page_callback'], $panels_callbacks);
 
 }
 
@@ -112,6 +113,7 @@ function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+// Adds classes to user account menu item.
 function futurium_isa_theme_menu_link(array $variables) {
   if ($variables['element']['#original_link']['menu_name'] == 'main-menu' && $variables['element']['#original_link']['link_path'] == 'account') {
     $variables['element']['#localized_options']['attributes']['class'][] = "no-text";
@@ -119,4 +121,118 @@ function futurium_isa_theme_menu_link(array $variables) {
     $variables['element']['#localized_options']['attributes']['class'][] = "glyphicon-user";
   }
   return theme_menu_link($variables);
+}
+
+
+function futurium_isa_theme_date_display_range(&$variables) {
+  $date1 = $variables['date1'];
+  $date2 = $variables['date2'];
+  $timezone = $variables['timezone'];
+
+  $attributes_start = $variables['attributes_start'];
+  $attributes_end = $variables['attributes_end'];
+
+  $start_date_obj = $variables['dates']['value']['db']['object'];
+  $end_date_obj = $variables['dates']['value2']['db']['object'];
+
+  $start_day = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'j');
+  $end_day   = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'j');
+
+  $start_month = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'F');
+  $end_month   = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'F');
+
+  $start_year = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'Y');
+  $end_year   = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'Y');
+
+  $start_hour = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+  $end_hour = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+
+  $string = '!start-day !start-month !start-year - !start-hour to !end-day !end-month !end-year !end-hour';
+
+  // Same month and year.
+  if ($start_day == $end_day && $start_month == $end_month && $start_year == $end_year) {
+    // Handled by theme_date_display_single().
+    return;
+  }
+
+  if ($start_day != $end_day && $start_month == $end_month && $start_year == $end_year) {
+    $string = '!start-day - !end-day !start-month !start-year - !start-hour - !end-hour';
+  }
+
+  // Same year.
+  if ($start_day == $end_day && $start_month != $end_month && $start_year == $end_year) {
+    $string = '!start-day !start-month - !end-day !end-month !start-year - !start-hour - !end-hour';
+  }
+
+  if ($start_day != $end_day && $start_month != $end_month && $start_year == $end_year) {
+    $string = '!start-day !start-month - !end-day !end-month !start-year - !start-hour - !end-hour';
+  }
+
+  // Different years.
+  if ($start_day == $end_day && $start_month != $end_month && $start_year != $end_year) {
+    $string = '!start-day !start-month !start-year - !start-hour - !end-day !end-month !end-year !end-hour';
+  }
+
+  if ($start_day != $end_day && $start_month != $end_month && $start_year != $end_year) {
+    $string = '!start-day !start-month !start-year - !start-hour - !end-day !end-month !end-year !end-hour';
+  }
+
+  $date_vars = array(
+    '!start-day' => $start_day,
+    '!end-day' => $end_day,
+    '!start-month' => $start_month,
+    '!end-month' => $end_month,
+    '!start-year' => $start_year,
+    '!end-year' => $end_year,
+    '!start-hour' => $start_hour,
+    '!end-hour' => $end_hour,
+  );
+
+  return t($string, $date_vars);
+}
+
+function futurium_isa_theme_date_display_single($variables) {
+  $date = $variables['date'];
+  $timezone = $variables['timezone'];
+  $attributes = $variables['attributes'];
+
+  $string = '!start-day !start-month !start-year - !start-hour - !end-hour';
+
+  $start_date_obj = $variables['dates']['value']['db']['object'];
+  $end_date_obj = $variables['dates']['value2']['db']['object'];
+
+  $start_day = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'j');
+  $start_month = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'F');
+  $start_year = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'Y');
+  $start_hour = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+  $end_hour = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+
+  $date_vars = array(
+    '!start-day' => $start_day,
+    '!start-month' => $start_month,
+    '!start-year' => $start_year,
+    '!start-hour' => $start_hour,
+    '!end-hour' => $end_hour,
+  );
+
+  return t($string, $date_vars);
+}
+
+
+/**
+ * Implements hook_field_group_pre_render_alter().
+ *
+ * Fixes non-working fieldset in bootstrap themes.
+ */
+function futurium_isa_theme_field_group_pre_render_alter(&$element, $group, & $form) {
+  if(isset($element['#type']) && $element['#type'] == 'fieldset' && !isset($element['#id'])){
+    $element['#id'] = drupal_html_id('fieldset');
+  }
+}
+
+/*
+ * Implements of hook_js_alter
+ */
+function futurium_isa_theme_js_alter(&$js) {
+  unset($js['misc/collapse.js']);
 }
