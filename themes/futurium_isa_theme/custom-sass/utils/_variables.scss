@@ -25,11 +25,25 @@ $sec-color: #95c500 !default;
 
 /// Color for visions and ideas
 
+// Link color
+
+$link-color: $brand-color;
+
+/// Medium grey
+$mid-grey: #999 !default;
+
+/// Dark grey
+$dark-grey: #090909 !default;
+
+
+$midmid-grey: #a4a4a4;
 $green: #65c250;
 $orange: #FF9137;
 $pink: #E477C8;
 $blue-grey: #799bbe;
 
+
+$group-color: $midmid-grey;
 $vision-color: $green;
 $idea-color: $orange;
 $event-color: $pink;
@@ -47,15 +61,7 @@ $plus: "ico-plus-small-white.png";
 
 
 
-// Link color
 
-$link-color: $brand-color;
-
-/// Medium grey
-$mid-grey: #999 !default;
-
-/// Dark grey
-$dark-grey: #090909 !default;
 
 /// Container's maximum width
 /// Below that is 100%

@@ -39,6 +39,10 @@ a {
   }
 }
 
+.front a{
+  color: $text-color;
+}
+
 p {
   @include rem(margin-bottom, 20px);
 }
@@ -105,7 +109,7 @@ h2.pane-title{
     font-weight: normal;
     @include rem(font-size, 24px);
     @include rem(padding, 0 0 15px 0);
-    @include rem(margin, 0 0 0 0);
+    @include rem(margin, 0 0 20px 0);
     @include rem(border-bottom, 1px solid $text-color);
   }
 }
@@ -133,11 +137,14 @@ h4 a{
   padding: 0;
   margin: 0;
   li{
-    @include rem(padding, 20px 0 20px 0);
+    @include rem(padding, 15px 0 15px 0);
     @include rem(border-bottom, 1px solid #ebebeb);
     a{
       color: $text-color;
     }
+  }
+  li.views-row-first{
+    padding-top: 0;
   }
   li.views-row-last{
     border-bottom: none;
@@ -189,7 +196,88 @@ h4 a{
 
 */
 
+.front{
+  .panel-pane {
+    @include rem(margin, 0 0 30px 0);
+  }
 
+  .more-link a {
+    @include btn-default(#dddbdb);
+    color: $text-color;
+    @include on-event {
+      color: darken($text-color, 10%);
+    }
+  }
+
+  .pane-ideas {
+    @include blockhp($idea-color); 
+    h2:before{
+      @include fa(lightbulb-o);
+    }
+    .views-field-count {
+      color: $mid-grey;
+    } 
+  }
+
+  .pane-people {
+    @include blockhp($group-color);
+    h2:before {
+      @include fa(user);
+    }
+    .views-row {
+      @include rem(padding, 0 0 10px 0);
+    }
+    .left {
+      float:left;
+      @include rem(margin, 0 10px 0 0);
+    }
+    .views-field-nid{
+      color: $mid-grey;
+    }
+  }
+
+  .pane-events {
+    @include blockhp($event-color);
+    h2:before {
+      @include fa(calendar);
+    }
+    .date:before {
+      content: none;
+      padding: 0;
+    }
+  }
+
+  /* theming for stream */
+
+  .node-event-d4eu{
+    h3:before{
+      @include fa(calendar);
+      color:#fff;
+      background: $event-color;
+      border-radius: 50%;
+      @include rem(padding, 8px 0 0 9px);
+      @include rem(width, 35px);
+      @include rem(height, 35px);
+      @include rem(margin-right, 10px);
+      @include rem(font-size, 18px);
+    }
+  }
+
+  .node-ideas{
+    h3:before{
+      @include fa(lightbulb-o);
+      color:#fff;
+      background: $idea-color;
+      border-radius: 50%;
+      @include rem(padding, 6px 0 0 11px);
+      @include rem(width, 35px);
+      @include rem(height, 35px);
+      @include rem(margin-right, 10px);
+      @include rem(font-size, 24px);
+    }
+  }
+
+}
 
 
 .field-type-taxonomy-term-reference {
@@ -223,9 +311,14 @@ h4 a{
 } 
 
 .group-buttons > div{
-  display: inline-block;
+  float: left;
+  clear: right;
   a{
     @include rem(margin, 0 5px 0 0);
+  }
+  .flag-throbber{
+    float: left;
+    clear: right; 
   }
 }
 
@@ -248,7 +341,7 @@ h4 a{
 /* default settings for row1 */
 
 .container-fullwidth.row1 {
-  background: #a4a4a4;
+  background: $midmid-grey;
   h1, h2, h3, p, a{
     color: #fff;
   }
@@ -299,7 +392,7 @@ h4 a{
 
 
 .btn{
-  @include btn-default;
+  @include btn-default($mid-grey);
 }
 
 a.facebook:before {
@@ -367,6 +460,30 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
+.view-homepage {
+
+  .panel-pane{
+
+  }
+
+  .views-row {
+    @include rem(padding, 40px 0 40px 0);
+    @include rem(border-bottom, 5px solid #d7d7d7);
+  }
+  .views-row-first {
+    @include rem(padding-top, 0);
+  }
+  .views-row-last {
+    border-bottom: none;
+  } 
+  h3 {
+    margin-top: 0;
+  }
+
+
+}
+
+
 
 /* icons for date - vote - comment */
 
@@ -380,12 +497,12 @@ div.views-bootstrap-grid-plugin-style {
 
 .field-name-author{
  /* @include rem(font-size, 18px); */
- @include rem(margin, 20px 0 0 0);
+  @include rem(margin, 20px 0 0 0);
   @include rem(padding, 0 0 15px 0);
   @include rem(border-bottom, 1px solid #ccc);
 }
 
-.page-events .date, .node-type-event-d4eu .date{
+.node-event-d4eu .date{
   @extend .field-name-author;
 }
 
@@ -463,10 +580,15 @@ div.views-bootstrap-grid-plugin-style {
 .sidebar-right {
   background: $light-grey;
   @include rem(padding, 15px);
-  .date:before{
+  .date:before {
     content: none;
   }
 }
+
+/* hp blocks */
+
+
+
 
 /* Comments */
 
@@ -498,12 +620,14 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
-.field-name-ds-user-picture img {
+.field-name-ds-user-picture img, .views-field-picture img {
   border-radius:50%;
   overflow:hidden;
   width: 35px;
   height: 35px;
 }
+
+
 
 .field-name-comment-body {
   border: 1px solid #ccc;

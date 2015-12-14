@@ -191,15 +191,16 @@
 
 
 
-@mixin btn-default {
+@mixin btn-default($color) {
   @include rem(padding, 10px 10px 10px 10px);
   @include rem(font-size, 14px);
-  background: $mid-grey;
+  background: $color;
+  display: inline-block;
   border-radius: 0px;
   border: none;
   color: #fff;
   @include on-event {
-    background-color: darken($mid-grey, 10%); 
+    background-color: darken($color, 10%); 
     color: #fff; 
   } 
 }
@@ -226,11 +227,7 @@
   }
 
   .more-link a {
-    @include btn-default;
-    background: $color;
-    @include on-event {
-      background-color: darken($color, 10%); 
-    }
+    @include btn-default($color);
   } 
 
   /* row1 theming */
@@ -252,7 +249,7 @@
 
   .row1{
     .share-links a, .flag-link-toggle, a.btn-more, .more-link a {
-      @include btn-default;
+      @include btn-default($color);
       background-color: darken($color, 10%);
       @include on-event {
         background-color: darken($color, 15%);
@@ -297,11 +294,25 @@
 
   .btn-primary, .flag-action, .unflag-action, .flag-like a, .more-link a, 
   .share-links a, a.btn-more {
-    @include btn-default;
+    @include btn-default($color);
+  }
+}
+
+@mixin blockhp($color) {
+  h2 {
+    @include rem(padding, 15px);
+    @include rem(margin, 0);
+    @include rem(font-size, 24px);
+    color: #fff;
+    font-weight: bold;
     background: $color;
-    @include on-event {
-      background-color: darken($color, 10%); 
-    } 
+
+  }
+  .pane-content {
+    @include rem(padding, 15px);
+    background: #f8f8f8;
+    @include rem (border, 1px solid #d7d7d7);
+    border-top: none;
   }
 }
 
