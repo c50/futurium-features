@@ -13,8 +13,8 @@ function futurium_isa_theme_preprocess_region(&$variables) {
 }
 
 
-
 function futurium_isa_theme_preprocess_page(&$variables) {
+
   unset($variables['navbar_classes_array'][1]);
   $variables['navbar_classes_array'][] = 'container-fullwidth';
 
@@ -39,7 +39,7 @@ function futurium_isa_theme_preprocess_page(&$variables) {
   $panels_callbacks = array(
     'page_manager_page_execute',
     'page_manager_node_view_page',
-    'pm_existing_pages_pm_existing_pages_page'
+    'page_manager_user_view_page',
   );
   $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks);
 
@@ -48,9 +48,10 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     'groups',
     'ideas',
     'library',
-    'events'
+    'events',
+    'node/%',
   );
-  $variables['show_title'] = !in_array($item['path'], $hide_title_paths);
+  $variables['show_title'] = !in_array($item['page_callback'], $panels_callbacks);
 
 }
 
@@ -112,6 +113,7 @@ function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+// Adds classes to user account menu item.
 function futurium_isa_theme_menu_link(array $variables) {
   if ($variables['element']['#original_link']['menu_name'] == 'main-menu' && $variables['element']['#original_link']['link_path'] == 'account') {
     $variables['element']['#localized_options']['attributes']['class'][] = "no-text";
@@ -214,4 +216,23 @@ function futurium_isa_theme_date_display_single($variables) {
   );
 
   return t($string, $date_vars);
+}
+
+
+/**
+ * Implements hook_field_group_pre_render_alter().
+ *
+ * Fixes non-working fieldset in bootstrap themes.
+ */
+function futurium_isa_theme_field_group_pre_render_alter(&$element, $group, & $form) {
+  if(isset($element['#type']) && $element['#type'] == 'fieldset' && !isset($element['#id'])){
+    $element['#id'] = drupal_html_id('fieldset');
+  }
+}
+
+/*
+ * Implements of hook_js_alter
+ */
+function futurium_isa_theme_js_alter(&$js) {
+  unset($js['misc/collapse.js']);
 }

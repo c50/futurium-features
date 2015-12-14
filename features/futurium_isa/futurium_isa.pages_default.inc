@@ -1766,6 +1766,134 @@ function futurium_isa_default_page_manager_handlers() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
+  $handler->name = 'node_edit__panel_context_52afa37e-4eb5-4d02-bc65-07f0d11e68ee';
+  $handler->task = 'node_edit';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => '',
+    'access' => array(
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'bootstrap_threecol_tower';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'top' => NULL,
+      'left' => NULL,
+      'middle' => NULL,
+      'right' => NULL,
+      'bottom' => NULL,
+      'row1l' => NULL,
+      'row1c' => NULL,
+      'row1r' => NULL,
+      'row2l' => NULL,
+      'row2c' => NULL,
+      'row2r' => NULL,
+      'row3l' => NULL,
+      'row3c' => NULL,
+      'row3r' => NULL,
+      'row4l' => NULL,
+      'row4c' => NULL,
+      'row4r' => NULL,
+      'row5l' => NULL,
+      'row5c' => NULL,
+      'row5r' => NULL,
+      'row6l' => NULL,
+      'row6c' => NULL,
+      'row6r' => NULL,
+      'row7l' => NULL,
+      'row7c' => NULL,
+      'row7r' => NULL,
+      'row8l' => NULL,
+      'row8c' => NULL,
+      'row8r' => NULL,
+      'row9l' => NULL,
+      'row9c' => NULL,
+      'row9r' => NULL,
+      'row10l' => NULL,
+      'row10c' => NULL,
+      'row10r' => NULL,
+    ),
+    'style' => 'bootstrap_region',
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = 'e5c8b57b-54de-42f1-915e-20adff354536';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-86523247-cd7f-459b-bc85-ce0059d4b9f3';
+    $pane->panel = 'row2l';
+    $pane->type = 'form';
+    $pane->subtype = 'form';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'argument_node_edit_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '86523247-cd7f-459b-bc85-ce0059d4b9f3';
+    $display->content['new-86523247-cd7f-459b-bc85-ce0059d4b9f3'] = $pane;
+    $display->panels['row2l'][0] = 'new-86523247-cd7f-459b-bc85-ce0059d4b9f3';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $export['node_edit__panel_context_52afa37e-4eb5-4d02-bc65-07f0d11e68ee'] = $handler;
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
   $handler->name = 'user_view__panel_context_6967673a-0888-4c18-a3f1-3e10c148e311';
   $handler->task = 'user_view';
   $handler->subtask = '';
@@ -2351,13 +2479,121 @@ function futurium_isa_default_page_manager_pages() {
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
-      'default' => NULL,
+      'default' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
       'row1l' => NULL,
       'row1c' => NULL,
       'row1r' => NULL,
-      'row2l' => NULL,
-      'row2c' => NULL,
-      'row2r' => NULL,
+      'row2l' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '3',
+          'sm' => '3',
+          'md' => '3',
+          'lg' => '3',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row2c' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '6',
+          'sm' => '6',
+          'md' => '6',
+          'lg' => '6',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row2r' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '3',
+          'sm' => '3',
+          'md' => '3',
+          'lg' => '3',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
       'row3l' => NULL,
       'row3c' => NULL,
       'row3r' => NULL,
@@ -2383,12 +2619,162 @@ function futurium_isa_default_page_manager_pages() {
       'row10c' => NULL,
       'row10r' => NULL,
     ),
+    'style' => 'bootstrap_region',
+    'row2l' => array(
+      'style' => 'bootstrap_region',
+    ),
+    'row2c' => array(
+      'style' => 'bootstrap_region',
+    ),
+    'row2r' => array(
+      'style' => 'bootstrap_region',
+    ),
   );
   $display->cache = array();
   $display->title = '';
   $display->uuid = 'd0c6c36f-9d6c-443b-9a28-22cf73129995';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-b7f8fe00-3b1f-443b-b634-c432fd0b6319';
+    $pane->panel = 'row2c';
+    $pane->type = 'views';
+    $pane->subtype = 'homepage';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '5',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block',
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b7f8fe00-3b1f-443b-b634-c432fd0b6319';
+    $display->content['new-b7f8fe00-3b1f-443b-b634-c432fd0b6319'] = $pane;
+    $display->panels['row2c'][0] = 'new-b7f8fe00-3b1f-443b-b634-c432fd0b6319';
+    $pane = new stdClass();
+    $pane->pid = 'new-eb571c94-187d-4641-be18-43bfd228cb1f';
+    $pane->panel = 'row2l';
+    $pane->type = 'views';
+    $pane->subtype = 'ideas';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '6',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_3',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'eb571c94-187d-4641-be18-43bfd228cb1f';
+    $display->content['new-eb571c94-187d-4641-be18-43bfd228cb1f'] = $pane;
+    $display->panels['row2l'][0] = 'new-eb571c94-187d-4641-be18-43bfd228cb1f';
+    $pane = new stdClass();
+    $pane->pid = 'new-96ca7897-3f24-4cd3-84dd-68ad31538432';
+    $pane->panel = 'row2r';
+    $pane->type = 'views';
+    $pane->subtype = 'people';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '4',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '96ca7897-3f24-4cd3-84dd-68ad31538432';
+    $display->content['new-96ca7897-3f24-4cd3-84dd-68ad31538432'] = $pane;
+    $display->panels['row2r'][0] = 'new-96ca7897-3f24-4cd3-84dd-68ad31538432';
+    $pane = new stdClass();
+    $pane->pid = 'new-30fa2790-e50d-490d-a6cc-daf31a315b84';
+    $pane->panel = 'row2r';
+    $pane->type = 'views';
+    $pane->subtype = 'events';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '3',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_2',
+      'override_title' => 1,
+      'override_title_text' => 'Events',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '30fa2790-e50d-490d-a6cc-daf31a315b84';
+    $display->content['new-30fa2790-e50d-490d-a6cc-daf31a315b84'] = $pane;
+    $display->panels['row2r'][1] = 'new-30fa2790-e50d-490d-a6cc-daf31a315b84';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -2604,7 +2990,7 @@ function futurium_isa_default_page_manager_pages() {
     $pane->configuration = array(
       'override_pager_settings' => 0,
       'use_pager' => 0,
-      'nodes_per_page' => '3',
+      'nodes_per_page' => '4',
       'pager_id' => '0',
       'offset' => '0',
       'more_link' => 0,
@@ -2614,7 +3000,7 @@ function futurium_isa_default_page_manager_pages() {
       'args' => '',
       'url' => '',
       'display' => 'block_1',
-      'override_title' => 0,
+      'override_title' => 1,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
@@ -2649,7 +3035,7 @@ function futurium_isa_default_page_manager_pages() {
       'args' => '',
       'url' => '',
       'display' => 'block',
-      'override_title' => 0,
+      'override_title' => 1,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );

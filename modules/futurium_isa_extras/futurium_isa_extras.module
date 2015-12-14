@@ -31,6 +31,8 @@ function futurium_isa_extras_enable() {
     variable_set('security_allowed_tags', $allowed_tags);
   }
 
+  module_disable(array('nexteuropa_multilingual'));
+
   drupal_flush_all_caches();
 }
 
@@ -39,6 +41,7 @@ function futurium_isa_extras_admin_paths_alter(&$paths) {
   $paths['admin/structure/taxonomy/futurium_topics/add'] = FALSE;
 }
 
+/* Moved to theme
 function futurium_isa_extras_preprocess_page(&$vars) {
   $vars['show_title'] = TRUE;
   $item = menu_get_item();
@@ -47,6 +50,7 @@ function futurium_isa_extras_preprocess_page(&$vars) {
     $vars['show_title'] = FALSE;
   }
 }
+*/
 
 function futurium_isa_extras_preprocess_node(&$vars) {
   $vars['classes_array'][] = "view-mode-" . $vars['view_mode'];
@@ -66,6 +70,7 @@ function futurium_isa_extras_menu() {
     'weight' => 10000,
     'menu_name' => 'main-menu',
   );
+
   $items['account/login'] = array(
     'title' => 'Log in',
     'access callback' => 'user_is_anonymous',
@@ -89,6 +94,7 @@ function futurium_isa_extras_menu() {
     'file path' => drupal_get_path('module', 'user'),
     'file' => 'user.pages.inc',
   );
+
   $items['account/reset/%/%/%'] = array(
     'title' => 'Reset password',
     'page callback' => 'drupal_get_form',
@@ -108,6 +114,7 @@ function futurium_isa_extras_menu() {
     'file path' => drupal_get_path('module', 'user'),
     'file' => 'user.pages.inc',
   );
+
   return $items;
 }
 
@@ -463,3 +470,29 @@ function futurium_isa_extras_ds_field_author($field) {
   $content = theme('username', array('account' => $account));
   return $content;
 }
+
+// Modules likely to be disabled
+// Ask David - build.properties
+/*
+Bootstrap - Photo Gallery
+Dashboard
+Devel generate
+Feature Set
+JS injector
+Language selector (Page)
+Language selector (Site)
+Multisite autosave
+Multisite Create Button
+Multisite custom error
+Multisite Dynamic Base theme
+Multisite_Rules_Configuration
+NextEuropa Editorial
+NextEuropa Multilingual
+NextEuropa Pages
+NextEuropa Pages feature.
+solr_config
+Uninstall TagClouds module
+TagClouds
+Testing
+Workbench Moderation View for multisite
+*/

@@ -649,6 +649,61 @@ function futurium_isa_views_default_views() {
   $export['events'] = $view;
 
   $view = new view();
+  $view->name = 'homepage';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Homepage';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Homepage';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['links'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event_d4eu' => 'event_d4eu',
+    'ideas' => 'ideas',
+  );
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $export['homepage'] = $view;
+
+  $view = new view();
   $view->name = 'ideas';
   $view->description = '';
   $view->tag = 'default';
@@ -661,8 +716,10 @@ function futurium_isa_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Most Popular Ideas';
-  $handler->display->display_options['css_class'] = 'omega-grid omega-12-onecol ';
+  $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'Find more ideas';
+  $handler->display->display_options['link_display'] = 'page_1';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -833,42 +890,26 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
 
-  /* Display: Recent/Topic */
-  $handler = $view->new_display('block', 'Recent/Topic', 'block_2');
+  /* Display: Ideas Home */
+  $handler = $view->new_display('block', 'Ideas Home', 'block_3');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Ideas';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
-  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
-  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['style_options']['class'] = 'nopadding';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+    'count' => 'count',
+  );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Global: Fieldset */
-  $handler->display->display_options['fields']['fieldset']['id'] = 'fieldset';
-  $handler->display->display_options['fields']['fieldset']['table'] = 'views';
-  $handler->display->display_options['fields']['fieldset']['field'] = 'fieldset';
-  $handler->display->display_options['fields']['fieldset']['label'] = 'Bordered';
-  $handler->display->display_options['fields']['fieldset']['children'] = array(
-    0 => 'fieldset_1',
-  );
-  $handler->display->display_options['fields']['fieldset']['fieldset']['type'] = 'div';
-  $handler->display->display_options['fields']['fieldset']['fieldset']['classes'] = 'views-row-wrapper';
-  /* Field: Global: Fieldset */
-  $handler->display->display_options['fields']['fieldset_1']['id'] = 'fieldset_1';
-  $handler->display->display_options['fields']['fieldset_1']['table'] = 'views';
-  $handler->display->display_options['fields']['fieldset_1']['field'] = 'fieldset';
-  $handler->display->display_options['fields']['fieldset_1']['label'] = 'Vertical Align';
-  $handler->display->display_options['fields']['fieldset_1']['children'] = array(
-    0 => 'title',
-    1 => 'field_tags',
-    2 => 'field_ideas',
-    3 => 'view_node',
-    4 => 'picture',
-    5 => 'created',
-    6 => 'count',
-  );
-  $handler->display->display_options['fields']['fieldset_1']['fieldset']['type'] = 'div';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -876,54 +917,8 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_type'] = 'h3';
+  $handler->display->display_options['fields']['title']['element_type'] = '0';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Field: Tags */
-  $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
-  $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
-  $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
-  $handler->display->display_options['fields']['field_tags']['label'] = '';
-  $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_tags']['delta_limit'] = '1';
-  $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
-  /* Field: Content: Ideas and experience */
-  $handler->display->display_options['fields']['field_ideas']['id'] = 'field_ideas';
-  $handler->display->display_options['fields']['field_ideas']['table'] = 'field_data_field_ideas';
-  $handler->display->display_options['fields']['field_ideas']['field'] = 'field_ideas';
-  $handler->display->display_options['fields']['field_ideas']['label'] = '';
-  $handler->display->display_options['fields']['field_ideas']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_ideas']['type'] = 'text_trimmed';
-  $handler->display->display_options['fields']['field_ideas']['settings'] = array(
-    'trim_length' => '300',
-  );
-  /* Field: Content: Link */
-  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['label'] = '';
-  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['view_node']['text'] = 'read more';
-  /* Field: User: Picture */
-  $handler->display->display_options['fields']['picture']['id'] = 'picture';
-  $handler->display->display_options['fields']['picture']['table'] = 'users';
-  $handler->display->display_options['fields']['picture']['field'] = 'picture';
-  $handler->display->display_options['fields']['picture']['relationship'] = 'uid';
-  $handler->display->display_options['fields']['picture']['label'] = '';
-  $handler->display->display_options['fields']['picture']['element_type'] = '0';
-  $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['picture']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['picture']['element_wrapper_class'] = 'author-picture';
-  $handler->display->display_options['fields']['picture']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['picture']['image_style'] = 'user_picture_48x48';
-  /* Field: Content: Post date */
-  $handler->display->display_options['fields']['created']['id'] = 'created';
-  $handler->display->display_options['fields']['created']['table'] = 'node';
-  $handler->display->display_options['fields']['created']['field'] = 'created';
-  $handler->display->display_options['fields']['created']['label'] = '';
-  $handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['created']['date_format'] = 'custom';
-  $handler->display->display_options['fields']['created']['custom_date_format'] = 'j M';
-  $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
   /* Field: Flags: Flag counter */
   $handler->display->display_options['fields']['count']['id'] = 'count';
   $handler->display->display_options['fields']['count']['table'] = 'flag_counts';
@@ -932,21 +927,15 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['fields']['count']['label'] = '';
   $handler->display->display_options['fields']['count']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['count']['separator'] = '';
-  $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Has taxonomy term ID */
-  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
-  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
-  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['tid']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['tid']['validate']['type'] = 'taxonomy_term';
-  $handler->display->display_options['arguments']['tid']['validate_options']['vocabularies'] = array(
-    'futurium_topics' => 'futurium_topics',
-  );
+  $handler->display->display_options['fields']['count']['format_plural'] = TRUE;
+  $handler->display->display_options['fields']['count']['format_plural_singular'] = '(1 vote)';
+  $handler->display->display_options['fields']['count']['format_plural_plural'] = '(@count votes)';
+
+  /* Display: All ideas */
+  $handler = $view->new_display('page', 'All ideas', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Ideas';
+  $handler->display->display_options['path'] = 'ideas/all';
   $export['ideas'] = $view;
 
   $view = new view();
@@ -1252,6 +1241,106 @@ function futurium_isa_views_default_views() {
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $export['poll'] = $view;
+
+  $view = new view();
+  $view->name = 'people';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'users';
+  $view->human_name = 'People';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'People';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'access user profiles';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: User: Content authored */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'users';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  /* Field: Global: Fieldset */
+  $handler->display->display_options['fields']['fieldset']['id'] = 'fieldset';
+  $handler->display->display_options['fields']['fieldset']['table'] = 'views';
+  $handler->display->display_options['fields']['fieldset']['field'] = 'fieldset';
+  $handler->display->display_options['fields']['fieldset']['label'] = 'Left';
+  $handler->display->display_options['fields']['fieldset']['children'] = array(
+    0 => 'picture',
+  );
+  $handler->display->display_options['fields']['fieldset']['fieldset']['type'] = 'div';
+  $handler->display->display_options['fields']['fieldset']['fieldset']['classes'] = 'left';
+  /* Field: User: Picture */
+  $handler->display->display_options['fields']['picture']['id'] = 'picture';
+  $handler->display->display_options['fields']['picture']['table'] = 'users';
+  $handler->display->display_options['fields']['picture']['field'] = 'picture';
+  $handler->display->display_options['fields']['picture']['label'] = '';
+  $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['picture']['image_style'] = 'media_thumbnail_small';
+  /* Field: Global: Fieldset */
+  $handler->display->display_options['fields']['fieldset_1']['id'] = 'fieldset_1';
+  $handler->display->display_options['fields']['fieldset_1']['table'] = 'views';
+  $handler->display->display_options['fields']['fieldset_1']['field'] = 'fieldset';
+  $handler->display->display_options['fields']['fieldset_1']['label'] = 'Right';
+  $handler->display->display_options['fields']['fieldset_1']['children'] = array(
+    0 => 'name',
+    1 => 'nid',
+  );
+  $handler->display->display_options['fields']['fieldset_1']['fieldset']['type'] = 'div';
+  $handler->display->display_options['fields']['fieldset_1']['fieldset']['classes'] = 'right';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  /* Field: COUNT(Content: Nid) */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['nid']['group_type'] = 'count';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nid']['separator'] = '';
+  $handler->display->display_options['fields']['nid']['format_plural'] = TRUE;
+  $handler->display->display_options['fields']['nid']['format_plural_singular'] = '(1 idea)';
+  $handler->display->display_options['fields']['nid']['format_plural_plural'] = '(@count ideas)';
+  /* Sort criterion: User: Created date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'users';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: User: Active */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'users';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'people';
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $export['people'] = $view;
+
 
   return $export;
 }
