@@ -276,19 +276,31 @@ h4 a{
   @include contenttype($idea-color);
 }
 
+.node-ideas{
+  @include teaser($idea-color);
+}
+
 .page-events, .node-type-event-d4eu {
   @include contenttype($event-color);
+}
+
+.node-event-d4eu{
+  @include teaser($event-color);
 }
 
 .page-library {
   @include contenttype($library-color);
 }
 
-/* social buttons in header */
+
+
+/* Buttons */
 
 
 
-
+.btn{
+  @include btn-default;
+}
 
 a.facebook:before {
     @include fa(facebook);
@@ -330,8 +342,12 @@ a.btn-more:before {
   @include fa(user-plus);
 }
 
-.more-link a:before{
+.more-link a:before {
   @include fa(plus);
+}
+
+.flag-like a:before {
+    @include fa(thumbs-up);
 }
 
 .intro{
@@ -355,7 +371,7 @@ div.views-bootstrap-grid-plugin-style {
 /* icons for date - vote - comment */
 
 .wrapper-date-vote-comment {
-  @include rem(margin, 20px 0 30px 0);
+  @include rem(margin, 15px 0 30px 0);
   .field {
     display: inline-block;
     @include rem(margin, 0 30px 0 0);
@@ -363,11 +379,15 @@ div.views-bootstrap-grid-plugin-style {
 }
 
 .field-name-author{
-  @include rem(font-size, 18px);
-  @include rem(padding, 0 0 20px 0);
+ /* @include rem(font-size, 18px); */
+ @include rem(margin, 20px 0 0 0);
+  @include rem(padding, 0 0 15px 0);
   @include rem(border-bottom, 1px solid #ccc);
 }
 
+.page-events .date, .node-type-event-d4eu .date{
+  @extend .field-name-author;
+}
 
 
 
@@ -478,9 +498,11 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
-.field-name-ds-user-picture img{
+.field-name-ds-user-picture img {
   border-radius:50%;
   overflow:hidden;
+  width: 35px;
+  height: 35px;
 }
 
 .field-name-comment-body {
@@ -523,4 +545,14 @@ div.views-bootstrap-grid-plugin-style {
       @include rem(margin, 0 0 10px 0);
     }
   }
+}
+
+/* My account hack in menu */
+
+.no-text{
+ font-size:0 !important;
+}
+
+.no-text:before{
+ font-size:16px;
 }

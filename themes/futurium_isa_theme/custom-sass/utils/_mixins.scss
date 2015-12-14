@@ -193,8 +193,15 @@
 
 @mixin btn-default {
   @include rem(padding, 10px 10px 10px 10px);
-  border-radius: 0px;
   @include rem(font-size, 14px);
+  background: $mid-grey;
+  border-radius: 0px;
+  border: none;
+  color: #fff;
+  @include on-event {
+    background-color: darken($mid-grey, 10%); 
+    color: #fff; 
+  } 
 }
 
 
@@ -207,66 +214,25 @@
    /* display: inline-block; */
 }
 
-/* mixin for layout content types */
+/* mixin for layout content types (does markup of row1) */
 
 @mixin contenttype($color) {
-  /* general elements */
+    
   a {
     color: $color;
-    @include on-event{
-      color: $color;
-    }
-  }
-
-
-  h2 a{
-    color: $text-color;
-  }
-
-  h3 a {
-    color: darken($text-color, 2%);
     @include on-event {
       color: $color;
     }
   }
 
-  .btn-primary, .flag-action, .unflag-action, .flag-like a, .more-link a, 
-  .share-links a, a.btn-more{
+  .more-link a {
     @include btn-default;
     background: $color;
-    color: #fff;
-    border: none;
     @include on-event {
-      background-color: darken($color, 10%);
-      color: #fff;
+      background-color: darken($color, 10%); 
     }
-  }
+  } 
 
-  .row1{
-    .share-links a, .flag-link-toggle, a.btn-more, .more-link a{
-      background-color: darken($color, 10%);
-      @include on-event {
-        background-color: darken($color, 15%);
-      }
-    }
-  }
-
-
-  /* links to edit / manage display / ... */
-  .container-top {
-    background-color: darken($color, 20%);
-    /* temp fix? should header1 be removed from page.tpl.php */
-    h1.page-header {
-      display: none;
-    }
-    a {
-      color: #fff;
-      @include on-event{
-        color: $text-color;
-      }
-    }
-
-  }
   /* row1 theming */
   .container-fullwidth.row1 {
     color: #fff;
@@ -279,20 +245,65 @@
         color: #fff;
       }
     }
-    .field-name-author{
+    .field-name-author {
       @include rem(border-bottom, 1px solid lighten($color, 20%));
     }
   }
 
-
-  .flag-like a:before{
-    @include fa(thumbs-up);
+  .row1{
+    .share-links a, .flag-link-toggle, a.btn-more, .more-link a {
+      @include btn-default;
+      background-color: darken($color, 10%);
+      @include on-event {
+        background-color: darken($color, 15%);
+      }
+    }
   }
 
-  
+  /* links to edit / manage display / ... */
+  .container-top {
+    background-color: darken($color, 20%);
+    /* temp fix? should header1 be removed from page.tpl.php */
+    h1.page-header {
+      display: none;
+    }
+    a {
+      color: #fff;
+      @include on-event {
+        color: $text-color;
+      }
+    }
+
+  }
 
 }
 
+
+
+@mixin teaser($color) {
+  a {
+    color: $color;
+    @include on-event {
+      color: $color;
+    }
+  }
+
+  h2 a, h3 a {
+    color: darken($text-color, 2%);
+    @include on-event {
+      color: $color;
+    }
+  }
+
+  .btn-primary, .flag-action, .unflag-action, .flag-like a, .more-link a, 
+  .share-links a, a.btn-more {
+    @include btn-default;
+    background: $color;
+    @include on-event {
+      background-color: darken($color, 10%); 
+    } 
+  }
+}
 
 
 
