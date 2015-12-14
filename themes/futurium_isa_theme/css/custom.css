@@ -1,0 +1,39 @@
+.activity-message.liked {
+  background: url(http://iconshow.me/media/images/Application/Modern-Flat-style-Icons/png/24/Like.png) no-repeat 0 0;
+}
+
+.activity-message.new-content {
+  background: url(http://iconbug.com/data/5b/24/ad26794fe1fb7c5c05caf7abf3c6eb72.png) no-repeat 0 0;
+}
+
+.activity-message.attending {
+  background: url(http://icons.iconarchive.com/icons/custom-icon-design/flatastic-5/24/Event-search-icon.png) no-repeat 0 0;
+}
+
+span.activity-message {
+  background-size: contain !important;
+  padding-left: 30px;
+}
+
+.front .container-fullwidth.row1 {
+  padding: 0;
+}
+
+.shadow-content{
+  position: absolute;
+  height: 120px;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  z-index: 2;
+}
+
+.shadow{
+  position: absolute;
+  height: 120px;
+  bottom: 0;
+  width: 100%;
+  background: gray;
+  opacity: 0.5;
+  z-index: 1;
+}
