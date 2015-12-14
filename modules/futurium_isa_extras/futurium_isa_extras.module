@@ -23,7 +23,7 @@ function futurium_isa_extras_enable() {
   _bootstrap_default_settings();
 
   // Page manager settings
-  variable_set('page_manager_node_view_disabled', 0);
+  //variable_set('page_manager_node_view_disabled', 0);
 
   $allowed_tags = variable_get('security_allowed_tags', "");
   if (!empty($allowed_tags)) {
@@ -31,7 +31,9 @@ function futurium_isa_extras_enable() {
     variable_set('security_allowed_tags', $allowed_tags);
   }
 
-  module_disable(array('nexteuropa_multilingual'));
+  // Temporary, grants anonymous the right to see every node.
+  $drupal_role = user_role_load_by_name('anonymous user');
+  user_role_change_permissions($drupal_role->rid, array('bypass node access' => TRUE));
 
   drupal_flush_all_caches();
 }
@@ -40,17 +42,6 @@ function futurium_isa_extras_admin_paths_alter(&$paths) {
   $paths['user/*/edit'] = FALSE;
   $paths['admin/structure/taxonomy/futurium_topics/add'] = FALSE;
 }
-
-/* Moved to theme
-function futurium_isa_extras_preprocess_page(&$vars) {
-  $vars['show_title'] = TRUE;
-  $item = menu_get_item();
-  $pages = array('topics','events', 'ideas');
-  if (in_array($item['path'], $pages)) {
-    $vars['show_title'] = FALSE;
-  }
-}
-*/
 
 function futurium_isa_extras_preprocess_node(&$vars) {
   $vars['classes_array'][] = "view-mode-" . $vars['view_mode'];
@@ -472,7 +463,6 @@ function futurium_isa_extras_ds_field_author($field) {
 }
 
 // Modules likely to be disabled
-// Ask David - build.properties
 /*
 Bootstrap - Photo Gallery
 Dashboard

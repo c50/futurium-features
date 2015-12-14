@@ -2507,7 +2507,34 @@ function futurium_isa_default_page_manager_pages() {
           'lg' => '0',
         ),
       ),
-      'row1l' => NULL,
+      'row1l' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
       'row1c' => NULL,
       'row1r' => NULL,
       'row2l' => array(
@@ -2629,12 +2656,49 @@ function futurium_isa_default_page_manager_pages() {
     'row2r' => array(
       'style' => 'bootstrap_region',
     ),
+    'row1l' => array(
+      'style' => 'bootstrap_region',
+    ),
   );
   $display->cache = array();
   $display->title = '';
   $display->uuid = 'd0c6c36f-9d6c-443b-9a28-22cf73129995';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-d1c09831-147b-4e02-8691-2ee50dcabd60';
+    $pane->panel = 'row1l';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Banner Image',
+      'title' => '',
+      'body' => '<div class="image-wrapper" style="position:relative">
+    <img src="http://www.opentaxconsultancy.co.uk/img/banner.jpg">
+
+    <div class="shadow-content" style="position: absolute; height: 120px; bottom: 0; width: 100%; padding:20px;">
+      <h1>Some random idea</h1>
+      <div class="more-link" style="position:absolute; left:20px;bottom:20px;"><a href="#">Learn more</a></div>
+    </div>
+    <div class="shadow" style="position: absolute; height: 120px; bottom: 0; width: 100%; background: gray; opacity: 0.5;">
+    </div>
+  </div>',
+      'format' => 'nowysiwig',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd1c09831-147b-4e02-8691-2ee50dcabd60';
+    $display->content['new-d1c09831-147b-4e02-8691-2ee50dcabd60'] = $pane;
+    $display->panels['row1l'][0] = 'new-d1c09831-147b-4e02-8691-2ee50dcabd60';
     $pane = new stdClass();
     $pane->pid = 'new-b7f8fe00-3b1f-443b-b634-c432fd0b6319';
     $pane->panel = 'row2c';
@@ -2705,6 +2769,41 @@ function futurium_isa_default_page_manager_pages() {
     $pane->uuid = 'eb571c94-187d-4641-be18-43bfd228cb1f';
     $display->content['new-eb571c94-187d-4641-be18-43bfd228cb1f'] = $pane;
     $display->panels['row2l'][0] = 'new-eb571c94-187d-4641-be18-43bfd228cb1f';
+    $pane = new stdClass();
+    $pane->pid = 'new-23afba6b-bbb3-4126-9bd8-003e4b5952ce';
+    $pane->panel = 'row2l';
+    $pane->type = 'views';
+    $pane->subtype = 'messages';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '10',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '23afba6b-bbb3-4126-9bd8-003e4b5952ce';
+    $display->content['new-23afba6b-bbb3-4126-9bd8-003e4b5952ce'] = $pane;
+    $display->panels['row2l'][1] = 'new-23afba6b-bbb3-4126-9bd8-003e4b5952ce';
     $pane = new stdClass();
     $pane->pid = 'new-96ca7897-3f24-4cd3-84dd-68ad31538432';
     $pane->panel = 'row2r';
