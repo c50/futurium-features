@@ -37,3 +37,7 @@ span.activity-message {
   opacity: 0.5;
   z-index: 1;
 }
+
+.activity-message em {
+  font-weight: bold;
+}
