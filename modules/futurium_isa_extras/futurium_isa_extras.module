@@ -136,7 +136,7 @@ function _bootstrap_default_settings() {
     'bootstrap_breadcrumb_home' => 0,
     'bootstrap_breadcrumb_title' => 1,
     'bootstrap_navbar_position' => "",
-    'bootstrap_navbar_inverse' => 1,
+    'bootstrap_navbar_inverse' => 0,
     'bootstrap_region_well-navigation' => "",
     'bootstrap_region_well-header' => "",
     'bootstrap_region_well-highlighted' => "",
