@@ -196,10 +196,31 @@ h4 a{
 
 */
 
+.activity-message.attending:before {
+  @include fa(user-plus);
+}
+
+.activity-message.liked:before{
+  @include fa(thumbs-up);
+}
+
+.activity-message.new-content:before {
+  @include fa(lightbulb-o);
+}
+
 .front{
   .panel-pane {
     @include rem(margin, 0 0 30px 0);
   }
+  .row1 .panel-pane{
+    margin: 0 0 0 0;
+  }
+
+  .container-fullwidth.row1 {
+    padding: 0;
+    background: none;
+  }
+
 
   .more-link a {
     @include btn-default(#dddbdb);
@@ -211,6 +232,16 @@ h4 a{
 
   .pane-ideas {
     @include blockhp($idea-color); 
+    h2:before{
+      @include fa(lightbulb-o);
+    }
+    .views-field-count {
+      color: $mid-grey;
+    } 
+  }
+
+  .pane-messages {
+    @include blockhp($group-color); 
     h2:before{
       @include fa(lightbulb-o);
     }
@@ -333,7 +364,17 @@ h4 a{
   padding: 40px 0 40px 0;
 }
 
+
+
 .container-fullwidth.navbar {
+  padding: 0 0 0 0;
+}
+
+.main-container.container-fullwidth{
+  padding: 0 0 0 0;
+}
+
+.main-container > .container-fullwidth{
   padding: 0 0 0 0;
 }
 
@@ -461,10 +502,6 @@ div.views-bootstrap-grid-plugin-style {
 }
 
 .view-homepage {
-
-  .panel-pane{
-
-  }
 
   .views-row {
     @include rem(padding, 40px 0 40px 0);
@@ -671,6 +708,10 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
+.navbar-default{
+  border: none;
+}
+
 /* My account hack in menu */
 
 .no-text{
@@ -679,4 +720,33 @@ div.views-bootstrap-grid-plugin-style {
 
 .no-text:before{
  font-size:16px;
+}
+
+
+/* TEMP STUFF --- TEMP STUFF */
+
+.image-wrapper{
+  height: 338px;
+}
+
+.shadow-content{
+  opacity: 0.5;
+  position: absolute;
+  height: 150px;
+  width: 1160px;
+  padding: 20px;
+  margin: 0;
+  bottom: 0;
+  background: #000;
+  h1{
+    opacity: 1;
+  }
+}
+
+.shadow{
+  
+}
+
+.activity-message em {
+  font-weight: bold;
 }

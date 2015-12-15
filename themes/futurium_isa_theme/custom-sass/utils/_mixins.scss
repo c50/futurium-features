@@ -211,7 +211,7 @@
 @mixin fa($icon) {
     @extend .fa;
     @extend .fa-#{$icon};
-    padding-right: 5px;
+    padding-right: 8px;
    /* display: inline-block; */
 }
 
