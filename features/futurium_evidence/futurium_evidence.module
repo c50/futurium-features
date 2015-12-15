@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Futurium Evidence feature.
+ */
+
+include_once 'futurium_evidence.features.inc';

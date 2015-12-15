@@ -19,13 +19,25 @@ span.activity-message {
   padding: 0;
 }
 
+.front .container-fullwidth.row1 .panel-pane {
+  margin: 0;
+}
+
+.slide-image-wrapper{
+  position: relative;
+}
+
 .shadow-content{
   position: absolute;
-  height: 120px;
+  height: 140px;
   bottom: 0;
   width: 100%;
   padding: 20px;
   z-index: 2;
+}
+
+.shadow-content h1{
+  margin-bottom: 0;
 }
 
 .shadow{

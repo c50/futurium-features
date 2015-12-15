@@ -262,7 +262,7 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'Find more events';
-  $handler->display->display_options['link_display'] = 'page_1';
+  $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -385,6 +385,7 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['title'] = 'Upcoming events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'omega-grid';
+  $handler->display->display_options['link_url'] = 'events';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
@@ -501,6 +502,7 @@ function futurium_isa_views_default_views() {
 
   /* Display: Upcoming Sidebar */
   $handler = $view->new_display('block', 'Upcoming Sidebar', 'block_2');
+  $handler->display->display_options['link_url'] = 'events';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['class'] = 'nopadding';
@@ -645,7 +647,7 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'read more';
-  $handler->display->display_options['path'] = 'events/upcoming';
+  $handler->display->display_options['path'] = 'events/all';
   $export['events'] = $view;
 
   $view = new view();
@@ -719,7 +721,7 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'Find more ideas';
-  $handler->display->display_options['link_display'] = 'page_1';
+  $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -866,6 +868,7 @@ function futurium_isa_views_default_views() {
   $handler = $view->new_display('block', 'Popular', 'block');
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
   $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['link_url'] = 'ideas';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Flags: Flag counter */
   $handler->display->display_options['sorts']['count']['id'] = 'count';
@@ -894,6 +897,7 @@ function futurium_isa_views_default_views() {
   $handler = $view->new_display('block', 'Ideas Home', 'block_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Ideas';
+  $handler->display->display_options['link_url'] = 'ideas';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
@@ -961,7 +965,8 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '12';
   $handler->display->display_options['style_plugin'] = 'views_bootstrap_grid_plugin_style';
   $handler->display->display_options['style_options']['columns'] = '2';
-  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['links'] = FALSE;
   /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
@@ -1022,7 +1027,7 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'document' => 'document',
+    'evidence' => 'evidence',
   );
 
   /* Display: Content pane */

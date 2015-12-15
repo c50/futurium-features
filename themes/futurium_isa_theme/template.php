@@ -28,8 +28,6 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     $variables['content_column_class'] = ' class="container-fullwidth"';
   }
 
-  $variables['navbar_classes_array'][] = 'navbar-inverse';
-
   $search_form = drupal_get_form('search_form');
   $search_box = drupal_render($search_form);
   $variables['search_box'] = $search_box;

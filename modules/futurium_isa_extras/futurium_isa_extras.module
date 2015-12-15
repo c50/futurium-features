@@ -424,7 +424,7 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])
       && $extrafields[$extrafield_name]['visible']) {
-    $location = $node->field_location[$node->language][0];
+    $location = $node->field_location[LANGUAGE_NONE][0];
     if (!empty($location)) {
       $city = $location['locality'];
       $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field location-city">' . $city . '</div>');
