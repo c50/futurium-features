@@ -297,5 +297,23 @@ attending';
   $strongarm->value = FALSE;
   $export['page_manager_node_edit_disabled'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_document';
+  $strongarm->value = array(
+    0 => 'status',
+    1 => 'moderation',
+    2 => 'revision',
+  );
+  $export['node_options_document'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workbench_moderation_default_state_document';
+  $strongarm->value = 'published';
+  $export['workbench_moderation_default_state_document'] = $strongarm;
+
   return $export;
 }

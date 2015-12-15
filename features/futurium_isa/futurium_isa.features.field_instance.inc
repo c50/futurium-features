@@ -107,7 +107,7 @@ function futurium_isa_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 15,
       ),
       'type' => 'text_textarea',
       'weight' => 2,
