@@ -159,7 +159,7 @@ function futurium_linker_form($form, $form_state) {
       'callback' => "_futurium_linker_no_results",
     ),
     '#maxlength' => 255,
-    '#prefix' => '<div id="search-box">',
+    '#prefix' => '<div id="search-box-wrapper" style="display:none;">',
     '#suffix' => '</div>',
   );
 
@@ -295,7 +295,8 @@ function _futurium_linker_radio_changed($form, &$form_state) {
   $commands[] = ajax_command_invoke('#edit-related', 'hide');
   $commands[] = ajax_command_invoke('#edit-search-box', 'val', array(""));
 
-  $commands[] = ajax_command_replace('.form-item-search-box', render($new_autocomplete));
+  $commands[] = ajax_command_replace('#search-box-wrapper', render($new_autocomplete));
+  $commands[] = ajax_command_invoke('#search-box-wrapper', 'show');
   $commands[] = ajax_command_html('#futurium_linker-feedback', '<div class="temporary-messages">'. theme('status_messages') . '</div>');
   return array('#type' => 'ajax','#commands' => $commands);
 
