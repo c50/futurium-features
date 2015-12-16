@@ -25,6 +25,28 @@ function futurium_messages_views_api($module = NULL, $api = NULL) {
  */
 function futurium_messages_default_message_type() {
   $items = array();
+  $items['comment_created'] = entity_import('message_type', '{
+    "name" : "comment_created",
+    "description" : "Comment created",
+    "argument_keys" : [],
+    "argument" : [],
+    "category" : "message_type",
+    "data" : {
+      "token options" : { "clear" : 0 },
+      "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
+    },
+    "language" : "en",
+    "arguments" : null,
+    "message_text" : { "en" : [
+        {
+          "value" : "\\u003Cspan class=\\u0022activity-message new-comment\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Ecommented on\\u003C\\/em\\u003E [message:field-node-ref:title]\\u003C\\/span\\u003E",
+          "format" : "nowysiwig",
+          "safe_value" : "\\u003Cspan class=\\u0022activity-message new-comment\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Ecommented on\\u003C\\/em\\u003E [message:field-node-ref:title]\\u003C\\/span\\u003E"
+        }
+      ]
+    },
+    "rdf_mapping" : []
+  }');
   $items['content_created'] = entity_import('message_type', '{
     "name" : "content_created",
     "description" : "Content created",
