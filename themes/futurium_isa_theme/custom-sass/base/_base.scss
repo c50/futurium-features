@@ -39,7 +39,7 @@ a {
   }
 }
 
-.front a{
+.front a {
   color: $text-color;
 }
 
@@ -99,13 +99,13 @@ h4 {
 }
 
 
-h2.pane-title{
+h2.pane-title {
   border-bottom: none;
   @include rem(font-size, 30px);
 }
 
-.sidebar-right{
-  h2.pane-title{
+.sidebar-right {
+  h2.pane-title {
     font-weight: normal;
     @include rem(font-size, 24px);
     @include rem(padding, 0 0 15px 0);
@@ -118,12 +118,12 @@ h2.pane-title{
 
 
 
-h4 a{
+h4 a {
   font-weight: normal;
 }
 
-.panel-content{
-  .panel-pane{
+.panel-content {
+  .panel-pane {
     @include rem(margin-bottom, 40px);
   }
 }
@@ -136,20 +136,20 @@ h4 a{
   list-style: none;
   padding: 0;
   margin: 0;
-  li{
+  li {
     @include rem(padding, 15px 0 15px 0);
     @include rem(border-bottom, 1px solid #ebebeb);
-    a{
+    a {
       color: $text-color;
     }
   }
-  li.views-row-first{
+  li.views-row-first {
     padding-top: 0;
   }
-  li.views-row-last{
+  li.views-row-last {
     border-bottom: none;
   }
-  .date{
+  .date {
     font-family: $header-font-stack;
     @include rem(font-size, 15px);
     text-transform: uppercase;
@@ -200,7 +200,7 @@ h4 a{
   @include fa(user-plus);
 }
 
-.activity-message.liked:before{
+.activity-message.liked:before {
   @include fa(thumbs-up);
 }
 
@@ -212,7 +212,7 @@ h4 a{
   .panel-pane {
     @include rem(margin, 0 0 30px 0);
   }
-  .row1 .panel-pane{
+  .row1 .panel-pane {
     margin: 0 0 0 0;
   }
 
@@ -232,7 +232,7 @@ h4 a{
 
   .pane-ideas {
     @include blockhp($idea-color); 
-    h2:before{
+    h2:before {
       @include fa(lightbulb-o);
     }
     .views-field-count {
@@ -242,7 +242,7 @@ h4 a{
 
   .pane-messages {
     @include blockhp($group-color); 
-    h2:before{
+    h2:before {
       @include fa(lightbulb-o);
     }
     .views-field-count {
@@ -280,8 +280,8 @@ h4 a{
 
   /* theming for stream */
 
-  .node-event-d4eu{
-    h3:before{
+  .node-event-d4eu {
+    h3:before {
       @include fa(calendar);
       color:#fff;
       background: $event-color;
@@ -294,8 +294,8 @@ h4 a{
     }
   }
 
-  .node-ideas{
-    h3:before{
+  .node-ideas {
+    h3:before {
       @include fa(lightbulb-o);
       color:#fff;
       background: $idea-color;
@@ -341,13 +341,13 @@ h4 a{
   }
 } 
 
-.group-buttons > div{
+.group-buttons > div {
   float: left;
   clear: right;
-  a{
+  a {
     @include rem(margin, 0 5px 0 0);
   }
-  .flag-throbber{
+  .flag-throbber {
     float: left;
     clear: right; 
   }
@@ -370,22 +370,20 @@ h4 a{
   padding: 0 0 0 0;
 }
 
-.main-container.container-fullwidth{
+.main-container.container-fullwidth {
   padding: 0 0 0 0;
 }
 
-.main-container > .container-fullwidth{
+.main-container > .container-fullwidth {
   padding: 0 0 0 0;
 }
 
 
 /* default settings for row1 */
 
-.container-fullwidth.row1 {
-  background: $midmid-grey;
-  h1, h2, h3, p, a{
-    color: #fff;
-  }
+.not-front{
+  @include contenttype($mid-grey);
+  @include teaser($mid-grey);
 }
 
 .container-fullwidth.row1 {
@@ -394,11 +392,15 @@ h4 a{
   }
 }
 
-.row1r{
-  .panel-pane{
+.row1r { 
+  .panel-pane {
     width: 100%;
     float: left;
   }
+}
+
+.nav-tabs{
+  border-bottom: none;
 }
 
 
@@ -422,9 +424,11 @@ h4 a{
   @include teaser($event-color);
 }
 
-.page-library {
+.page-library, .node-type-evidence {
   @include contenttype($library-color);
 }
+
+
 
 
 
@@ -532,7 +536,7 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
-.field-name-author{
+.field-name-author {
  /* @include rem(font-size, 18px); */
   @include rem(margin, 20px 0 0 0);
   @include rem(padding, 0 0 15px 0);
@@ -545,7 +549,7 @@ div.views-bootstrap-grid-plugin-style {
 
 
 
-.page-ideas h1{
+.page-ideas h1 {
   background: url(../assets/img/ico-idea-big-color.png) left top no-repeat;
   padding: 0 0 0 90px;
   min-height: 64px;
@@ -553,19 +557,19 @@ div.views-bootstrap-grid-plugin-style {
 }
 
 .page-ideas, .page-libarary, .page-events{
-  h1.no-icon{
+  h1.no-icon {
     background: none;
     padding: 0 0 0 0;
   }
 }
 
-.page-library h1{
+.page-library h1 {
   background: url(../assets/img/ico-library-big-color.png) left top no-repeat;
   padding: 0 0 0 90px;
   line-height: 64px;
 }
 
-.page-events h1{
+.page-events h1 {
   background: url(../assets/img/ico-event-big-color.png) left top no-repeat;
   padding: 0 0 0 90px;
   min-height: 64px;
@@ -637,10 +641,10 @@ div.views-bootstrap-grid-plugin-style {
   @include rem(margin, 20px 0 0 20px);
 }
 
-.wrapper-author-date{
+.wrapper-author-date {
   @include rem(margin, 0 0 20px 0);
   vertical-align: baseline;
-  .field{
+  .field {
     display: inline-block;
     @include rem(margin, 0 25px 0 0);
     @include rem(padding, 0 0 0 0);
@@ -697,56 +701,68 @@ div.views-bootstrap-grid-plugin-style {
   @include rem(margin, 0 5px 0 0);
 }
 
-.events-pane{
-  .pane-content{
+.events-pane {
+  .pane-content {
     @include rem(margin, 15px 0 10px 0);
   }
-  .field-name-field-coordinates{
-    .field-label{
+  .field-name-field-coordinates {
+    .field-label {
       @include rem(margin, 0 0 10px 0);
     }
   }
 }
 
-.navbar-default{
+.navbar-default {
   border: none;
 }
 
 /* My account hack in menu */
 
-.no-text{
+.no-text {
  font-size:0 !important;
 }
 
-.no-text:before{
+.no-text:before {
  font-size:16px;
 }
 
 
 /* TEMP STUFF --- TEMP STUFF */
 
+.slide-image-wrapper{
+  border-top: 5px solid $idea-color;
+}
+
 .image-wrapper{
   height: 338px;
 }
 
 .shadow-content{
-  opacity: 0.5;
-  position: absolute;
-  height: 150px;
+  height: 130px;
   width: 1160px;
-  padding: 20px;
-  margin: 0;
+  position: absolute;
+  left: 15px;
   bottom: 0;
-  background: #000;
-  h1{
-    opacity: 1;
+  padding: 10px 20px 10px 20px;
+  z-index: 20;
+  h1 {
+    font-weight: bold;
+    @include rem(font-size, 36px);
   }
+  .more-link a{
+    @include btn-default($idea-color);
+  }
+
 }
 
 .shadow{
-  
+  opacity: 0.5;
+  position: absolute;
+  height: 130px;
+  width: 1160px;
+  margin: 0;
+  bottom: 0;
+  left: 15px;
+  background: #000;
 }
 
-.activity-message em {
-  font-weight: bold;
-}
