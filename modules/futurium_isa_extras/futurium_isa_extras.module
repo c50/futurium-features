@@ -18,8 +18,10 @@ function futurium_isa_extras_enable() {
   variable_set('user_register','2');
 
   // Theme settings
+  /*
   variable_set('theme_default', 'futurium_isa_theme');
   variable_set('admin_theme', 'seven');
+  */
   _bootstrap_default_settings();
 
   // Page manager settings
@@ -114,6 +116,21 @@ function futurium_isa_extras_menu_alter(&$items) {
 }
 
 function _bootstrap_default_settings() {
+
+  theme_disable(array('bartik', 'ec_resp'));
+
+  $enable = array(
+    'theme_default' => 'futurium_isa_theme',
+    'admin_theme' => 'seven',
+  );
+  theme_enable($enable);
+
+  foreach ($enable as $var => $theme) {
+    if (!is_numeric($var)) {
+      variable_set($var, $theme);
+    }
+  }
+
   $settings = array(
     'toggle_logo' => 0,
     'toggle_name' => 1,
@@ -136,7 +153,7 @@ function _bootstrap_default_settings() {
     'bootstrap_breadcrumb_home' => 0,
     'bootstrap_breadcrumb_title' => 1,
     'bootstrap_navbar_position' => "",
-    'bootstrap_navbar_inverse' => 1,
+    'bootstrap_navbar_inverse' => 0,
     'bootstrap_region_well-navigation' => "",
     'bootstrap_region_well-header' => "",
     'bootstrap_region_well-highlighted' => "",
@@ -192,6 +209,7 @@ function _bootstrap_default_settings() {
     'jquery_update_jquery_version' => "",
   );
   variable_set('theme_futurium_isa_theme_settings', $settings);
+
 }
 
 function futurium_isa_extras_block_info() {
@@ -205,6 +223,7 @@ function futurium_isa_extras_block_info() {
   );
   return $blocks;
 }
+
 
 function futurium_isa_extras_block_view($delta = '') {
   $block = array();
@@ -243,83 +262,6 @@ function futurium_isa_extras_block_view($delta = '') {
       );
 
       $block['content'] = theme('item_list', $variables);
-      break;
-
-    case 'node_authors':
-
-      $node = menu_get_object();
-      $block['content'] = "";
-      if (!empty($node)) {
-        $authors[] = $node->uid;
-        if (isset($node->field_authors[LANGUAGE_NONE]) && !empty($node->field_authors[LANGUAGE_NONE])) {
-          foreach ($node->field_authors[LANGUAGE_NONE] as $key => $value) {
-            $authors[] = $value['target_id'];
-          }
-        }
-
-        $output['names'][] = t('By') . ' ';
-        $x = 1;
-        $max = count($authors);
-
-        foreach ($authors as $key => $uid) {
-          $account = user_load($uid);
-          $name = theme('username', array('account' => $account));
-
-          $l_options = array(
-            'html' => TRUE,
-            'alt' => t('View !username profile', array('!username' => $name)),
-          );
-
-          $picture = theme(
-            'image_style', array(
-              'style_name' => 'thumbnail',
-              'path' => !empty($account->picture->uri) ? $account->picture->uri : variable_get('user_picture_default'),
-            )
-          );
-
-          $x++;
-
-          if ($max > 1) {
-            if($x > $max) {
-              $output['names'][] = ' ' . t('and') . ' ';
-            }
-          }
-
-          if ($max > 2) {
-            if($x == $max) {
-              $output['names'][] = ', ';
-            }
-          }
-
-          $output['images'][] = l($picture, 'user/' . $uid, $l_options);
-          $output['names'][] = l($name, 'user/' . $uid, $l_options);
-
-        }
-
-        $variables = array(
-          'items' => array(),
-          'title' => '',
-          'type' => 'ul',
-          'attributes' => array('class' => array('author-info', 'list-inline')),
-        );
-
-        foreach($output['images'] as $k => $v) {
-          $variables['items'][] = array(
-            'data' => $v,
-            'class' => array('authors-picture'),
-          );
-        }
-
-        foreach($output['names'] as $k => $v) {
-          $variables['items'][] = array(
-            'data' => $v,
-            'class' => array('authors-name'),
-          );
-        }
-        $block['content'] = theme('item_list', $variables);
-      }
-
-
       break;
   }
   return $block;
