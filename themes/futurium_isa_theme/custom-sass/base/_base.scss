@@ -98,15 +98,12 @@ h4 {
   @include rem(margin, 0 0 0 0);
 }
 
-
-/* 
-
-h2.pane-title {
-  border-bottom: none;
-  @include rem(font-size, 30px);
+.front{
+  h2.pane-title {
+    border-bottom: none;
+    @include rem(font-size, 30px);
+  }
 }
-
-*/
 
 h2.pane-title {
   font-weight: normal;
@@ -208,10 +205,10 @@ h4 a {
 }
 
 .activity-message.new-content:before {
-  @include fa(lightbulb-o);
+  @include fa(plus-square);
 }
 
-.activity-message.ideas:before {
+.activity-message.new-comment:before {
   @include fa(comment);
 }
 
@@ -419,7 +416,7 @@ h4 a {
   @include contenttype($idea-color);
 }
 
-.node-ideas{
+.node-teaser.node-ideas{
   @include teaser($idea-color);
 }
 
@@ -427,7 +424,7 @@ h4 a {
   @include contenttype($event-color);
 }
 
-.node-event-d4eu{
+.node-teaser.node-event-d4eu{
   @include teaser($event-color);
 }
 
@@ -753,6 +750,7 @@ div.views-bootstrap-grid-plugin-style {
 }
 
 .pane-futurium-linker-futurium-linker {
+  @include rem(margin, 30px 0 30px 0);
   @include rem(padding, 15px);
   border: 1px solid $midmid-grey;
   border-radius: 4px;
@@ -781,10 +779,13 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
-
-
 /* END STUFF FOR THE LINKER MODULE */
 
+.row2l{
+  .panel-pane{
+    @include rem(margin, 0 0 30px 0);
+  }
+}
 
 
 
@@ -792,6 +793,7 @@ div.views-bootstrap-grid-plugin-style {
 
 .slide-image-wrapper{
   border-top: 5px solid $idea-color;
+
 }
 
 .image-wrapper{
@@ -808,6 +810,7 @@ div.views-bootstrap-grid-plugin-style {
   z-index: 20;
   h1 {
     font-weight: bold;
+    color: #fff;
     @include rem(font-size, 36px);
   }
   .more-link a{
