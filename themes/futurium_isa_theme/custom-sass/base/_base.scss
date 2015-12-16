@@ -247,7 +247,7 @@ h4 a {
   .pane-messages {
     @include blockhp($group-color); 
     h2:before {
-      @include fa(lightbulb-o);
+      @include fa(history);
     }
     .views-field-count {
       color: $mid-grey;
