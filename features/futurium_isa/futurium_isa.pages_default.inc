@@ -2041,7 +2041,7 @@ function futurium_isa_default_page_manager_handlers() {
     ),
   );
   $display->cache = array();
-  $display->title = '%user:field_firstname %user:field_lastname';
+  $display->title = '%user:name';
   $display->uuid = '69e2cbf7-423b-4507-86a4-70ad4d326738';
   $display->content = array();
   $display->panels = array();
@@ -2130,8 +2130,8 @@ function futurium_isa_default_page_manager_handlers() {
       'admin_title' => '',
       'title' => '',
       'body' => '<p>Facebook</p>
-<p>Twitter</p>
-<p>Linkedin</p>',
+  <p>Twitter</p>
+  <p>Linkedin</p>',
       'format' => 'full_html',
       'substitute' => 1,
     );
@@ -2146,6 +2146,44 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->uuid = '23dced38-5182-43d9-96d2-0df5dee6ba9f';
     $display->content['new-23dced38-5182-43d9-96d2-0df5dee6ba9f'] = $pane;
     $display->panels['row1r'][0] = 'new-23dced38-5182-43d9-96d2-0df5dee6ba9f';
+    $pane = new stdClass();
+    $pane->pid = 'new-15f1dac2-ce43-4d7d-83ff-6bf5452d982a';
+    $pane->panel = 'row2l';
+    $pane->type = 'views';
+    $pane->subtype = 'messages';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '6',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_2',
+      'context' => array(
+        0 => 'argument_entity_id:user_1.uid',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '15f1dac2-ce43-4d7d-83ff-6bf5452d982a';
+    $display->content['new-15f1dac2-ce43-4d7d-83ff-6bf5452d982a'] = $pane;
+    $display->panels['row2l'][0] = 'new-15f1dac2-ce43-4d7d-83ff-6bf5452d982a';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
