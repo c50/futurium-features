@@ -99,20 +99,23 @@ h4 {
 }
 
 
+/* 
+
 h2.pane-title {
   border-bottom: none;
   @include rem(font-size, 30px);
 }
 
-.sidebar-right {
-  h2.pane-title {
-    font-weight: normal;
-    @include rem(font-size, 24px);
-    @include rem(padding, 0 0 15px 0);
-    @include rem(margin, 0 0 20px 0);
-    @include rem(border-bottom, 1px solid $text-color);
-  }
+*/
+
+h2.pane-title {
+  font-weight: normal;
+  @include rem(font-size, 24px);
+  @include rem(padding, 0 0 15px 0);
+  @include rem(margin, 0 0 20px 0);
+  @include rem(border-bottom, 1px solid $text-color);
 }
+
 
 
 
@@ -206,6 +209,10 @@ h4 a {
 
 .activity-message.new-content:before {
   @include fa(lightbulb-o);
+}
+
+.activity-message.ideas:before {
+  @include fa(comment);
 }
 
 .front{
@@ -725,6 +732,60 @@ div.views-bootstrap-grid-plugin-style {
 .no-text:before {
  font-size:16px;
 }
+
+
+/* STUFF FOR THE LINKER MODULE */
+
+.autocomplete-suggestion.node-type-ideas:before, .view-node-relations .ideas:before {
+  @include fa(lightbulb-o);
+}
+
+.autocomplete-suggestion.node-type-event_d4eu:before, .view-node-relations .event_d4eu:before {
+  @include fa(calendar);
+}
+
+.autocomplete-suggestion.node-type-evidence:before, .view-node-relations .evidence:before{
+  @include fa(file-text-o);
+}
+
+.pane-node-relations {
+
+}
+
+.pane-futurium-linker-futurium-linker {
+  @include rem(padding, 15px);
+  border: 1px solid $midmid-grey;
+  border-radius: 4px;
+  h2.pane-title{
+    margin: -15px -15px 15px -15px;
+    background: $light-grey;
+    padding: 15px 15px 15px 15px;
+    border-radius: 4px;
+    border-bottom: 1px solid $midmid-grey;
+    font-size: 14px;
+    font-family: $text-font-stack;
+    text-transform: inherit;
+  }
+  .form-submit:before {
+    @include fa(link);
+  }
+}
+
+
+#node-preview{
+  .node-teaser {
+    @include rem(padding, 15px);
+    background: $light-grey;
+    border: 1px dashed $midmid-grey;
+    @include rem(margin, 0 0 15px 0);
+  }
+}
+
+
+
+/* END STUFF FOR THE LINKER MODULE */
+
+
 
 
 /* TEMP STUFF --- TEMP STUFF */
