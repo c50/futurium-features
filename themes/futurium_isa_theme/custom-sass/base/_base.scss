@@ -351,10 +351,6 @@ h4 a {
   a {
     @include rem(margin, 0 5px 0 0);
   }
-  .flag-throbber {
-    float: left;
-    clear: right; 
-  }
 }
 
 .field-type-entityreference {
@@ -610,6 +606,9 @@ div.views-bootstrap-grid-plugin-style {
 .list-inline {
   margin: 0 0 0 0;
   padding: 0 0 0 0;
+  li{
+    padding-left: 0;
+  }
 }
 
 .authors-name, .authors-picture, .share-links li {
