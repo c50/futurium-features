@@ -32,13 +32,6 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['style_plugin'] = 'list';
-  $handler->display->display_options['style_options']['grouping'] = array(
-    0 => array(
-      'field' => 'type',
-      'rendered' => 1,
-      'rendered_strip' => 0,
-    ),
-  );
   $handler->display->display_options['style_options']['class'] = 'nopadding';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Content: Relation: related to (node ↔ node) */
