@@ -18,14 +18,9 @@ function futurium_isa_extras_enable() {
   variable_set('user_register','2');
 
   // Theme settings
-  /*
-  variable_set('theme_default', 'futurium_isa_theme');
-  variable_set('admin_theme', 'seven');
-  */
   _bootstrap_default_settings();
 
   // Page manager settings
-  //variable_set('page_manager_node_view_disabled', 0);
 
   $allowed_tags = variable_get('security_allowed_tags', "");
   if (!empty($allowed_tags)) {
@@ -36,6 +31,9 @@ function futurium_isa_extras_enable() {
   // Temporary, grants anonymous the right to see every node.
   $drupal_role = user_role_load_by_name('anonymous user');
   user_role_change_permissions($drupal_role->rid, array('bypass node access' => TRUE));
+
+  // Set default user picture.
+  futurium_isa_extras_set_default_pic();
 
   drupal_flush_all_caches();
 }
@@ -402,6 +400,17 @@ function futurium_isa_extras_ds_field_author($field) {
   $account = user_load($uid);
   $content = theme('username', array('account' => $account));
   return $content;
+}
+
+
+function futurium_isa_extras_set_default_pic() {
+  $module_path = drupal_get_path('module', 'futurium_isa_extras');
+  $full_path = $module_path . '/default_images/user_picture.jpg';
+
+  $source = drupal_realpath($full_path);
+
+  file_unmanaged_copy($source);
+  variable_set('user_picture_default', 'public://user_picture.jpg');
 }
 
 // Modules likely to be disabled

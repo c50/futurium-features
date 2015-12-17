@@ -1,6 +1,6 @@
 name = Futurium Relations
 core = 7.x
-package = Features
+package = Futurium
 version = 7.x-1.0
 dependencies[] = relation
 dependencies[] = views

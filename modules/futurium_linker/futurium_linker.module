@@ -159,7 +159,7 @@ function futurium_linker_form($form, $form_state) {
       'callback' => "_futurium_linker_no_results",
     ),
     '#maxlength' => 255,
-    '#prefix' => '<div id="search-box">',
+    '#prefix' => '<div id="search-box-wrapper" style="display:none;">',
     '#suffix' => '</div>',
   );
 
@@ -183,7 +183,6 @@ function futurium_linker_form($form, $form_state) {
     ),
   );
 
-
 /* Create new content */
 
   $form['no-results'] = array(
@@ -194,30 +193,16 @@ function futurium_linker_form($form, $form_state) {
 
   $form['no-results']['wrap_start'] = array(
     '#type' => 'markup',
-    '#markup' => '<tr><td class="no-result-wrapper" colspan="3" ><div class="no-result-label">Content "<span></span>" not found.</div></td></tr>',
-  );
-
-/*
-  $form['no-results']['evidence']['create_evidence'] = array(
-    '#type' => 'link',
-    '#title' => 'Create evidence',
-    '#prefix' => '<td class="button-wrap new-evidence-button">',
-    '#suffix' => '</td></tr>',
-    '#href' => 'node/add/evidence-1-paragraphs',
-    '#options' => array(
-      'query' => array(
-        'relation_type' => 'proven_by',
-        'relation_link_to' => $node->nid,
-      ),
-    ),
+    '#markup' => '<tr><td class="no-result-wrapper" colspan="3"><div class="no-result-label">Content "<span></span>" not found.</div></td></tr>',
   );
 
   // Get targets for related relationships
-  $form['no-results']['related']['type'] = array(
-    '#field_prefix' => '<tr class="new-related"><td class="label-wrap new-related-label">Create new related content</td><td class="select-wrap new-related-select">',
-    '#suffix' => '</td>',
+  $form['no-results']['wrap_start_2'] = array(
+    '#type' => 'markup',
+    '#markup' => '<tr class="new-related"><td class="label-wrap new-related-label"></td><td class="select-wrap new-related-select"></td></tr>',
   );
 
+/*
   $form['no-results']['related']['create_related'] = array(
     '#type' => 'button',
     '#value' => 'Create related content',
@@ -264,15 +249,56 @@ function _futurium_linker_no_results($form, $form_state) {
     $commands[] = ajax_command_invoke('#edit-results', 'hide');
     $commands[] = ajax_command_invoke('.new-content', 'fadeIn');
 
+
     if ($form_state['input']['link_type'] == 'proven_by') {
-      $commands[] = ajax_command_invoke('.new-evidence', 'show');
       $commands[] = ajax_command_invoke('.new-related', 'hide');
     }
     else {
-      $commands[] = ajax_command_invoke('.new-evidence', 'hide');
       $commands[] = ajax_command_invoke('.new-related', 'show');
     }
+
+    $new_title = $form_state['input']['search_box'];
+    $selected_relation = $form_state['input']['link_type'];
+    $relation = relation_type_load($selected_relation);
+
+    $content_types = node_type_get_types();
+
+    if (!$relation->directional) {
+      // Relation is not directional, use source bundles.
+      $relation_bundles = $relation->source_bundles;
+      $relation_bundles = array_reverse($relation_bundles);
+      foreach ($relation_bundles as $key => $entity_bundle) {
+        $bundle = str_replace('node:', '', $entity_bundle);
+        $bundles[] = $bundle;
+
+        $classes = array(
+          'node-add-button',
+          'bundle',
+          'btn-primary',
+        );
+
+        $query = array(
+          'origin_nid' => $form_state['input']['link_origin'],
+          'relation_type' => $selected_relation,
+          'new_title' => $new_title,
+        );
+
+        $attributes = array(
+          'attributes' => array(
+            'class' => $classes,
+          ),
+          'query' => $query,
+        );
+
+        $bundle_link_path = str_replace('_', '-', $bundle);
+        $links[] = l("Add ".$content_types[$bundle]->name, 'node/add/' . $bundle_link_path, $attributes, array('query' => $query));
+      }
+    }
+
+    $imploded = implode(' ', $links);
+    $commands[] = ajax_command_replace('.select-wrap.new-related-select', '<td class="select-wrap new-related-select">' . $imploded . '</td>');
   }
+
   return array('#type' => 'ajax','#commands' => $commands);
 }
 
@@ -295,7 +321,8 @@ function _futurium_linker_radio_changed($form, &$form_state) {
   $commands[] = ajax_command_invoke('#edit-related', 'hide');
   $commands[] = ajax_command_invoke('#edit-search-box', 'val', array(""));
 
-  $commands[] = ajax_command_replace('.form-item-search-box', render($new_autocomplete));
+  $commands[] = ajax_command_replace('#search-box-wrapper', render($new_autocomplete));
+  $commands[] = ajax_command_invoke('#search-box-wrapper', 'show');
   $commands[] = ajax_command_html('#futurium_linker-feedback', '<div class="temporary-messages">'. theme('status_messages') . '</div>');
   return array('#type' => 'ajax','#commands' => $commands);
 
@@ -419,21 +446,6 @@ function _futurium_linker_link($form, $form_state){
 }
 
 
-// UNDER DEV
-
-function _futurium_linker_add_content($form, $form_state) {
-  module_load_include('inc', 'node', 'node.pages');
-
-  $form = node_add('ideas');
-  $output = drupal_render($form);
-
-  $commands[] = ajax_command_html('#node-form-holder .inside', $output);
-  $commands[] = ajax_command_invoke('#node-form-holder', 'fadeIn');
-  $commands[] = ajax_command_css('body', array('overflow-y' => 'hidden'));
-
-  return array('#type' => 'ajax','#commands' => $commands);
-}
-
 function _futurium_linker_delete_link($ajax, $nid, $field, $index) {
   $entity = entity_load_single('node', $nid);
   $deleted_nid = $entity->{$field}[LANGUAGE_NONE][$index]['target_id'];
@@ -501,6 +513,8 @@ function _futurium_linker_link_nodes($nid1, $nid2, $relation_type) {
 
   $relation = relation_type_load($relation_type);
 
+
+  $reverse = FALSE;
   // Directional relation.
   if ($relation->directional) {
     if (in_array('node:' . $o_n->type, $relation->target_bundles)){
@@ -556,4 +570,28 @@ function _futurium_linker_link_nodes($nid1, $nid2, $relation_type) {
     'type' => $message_type,
     'fade' => $fade,
   );
+}
+
+
+function futurium_linker_form_node_form_alter(&$form, $form_state) {
+  if (isset($_GET['origin_nid']) && isset($_GET['relation_type'])) {
+    $form['relation_type'] = array(
+      '#type' => 'hidden',
+      '#value' => $_GET['relation_type'],
+    );
+    $form['related_to'] = array(
+      '#type' => 'hidden',
+      '#value' => $_GET['origin_nid'],
+    );
+    if (isset($_GET['new_title'])) {
+      $form['title']['#value'] = $_GET['new_title'];
+    }
+  }
+}
+
+
+function futurium_linker_node_insert($node) {
+  if (isset($node->relation_type) && isset($node->related_to)) {
+    _futurium_linker_link_nodes($node->related_to, $node->nid, $node->relation_type);
+  }
 }
