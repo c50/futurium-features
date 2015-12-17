@@ -766,6 +766,9 @@ div.views-bootstrap-grid-plugin-style {
   .form-submit:before {
     @include fa(link);
   }
+  .input-group{
+    @include rem(margin-top, 15px);
+  }
 }
 
 

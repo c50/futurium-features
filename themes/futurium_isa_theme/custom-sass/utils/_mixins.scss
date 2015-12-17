@@ -264,6 +264,9 @@
   .container-top {
     background-color: darken($color, 20%);
     /* temp fix? should header1 be removed from page.tpl.php */
+    .alert{
+      @include rem(margin, 20px 0 20px 0);  
+    }
     h1.page-header {
       display: none;
     }
