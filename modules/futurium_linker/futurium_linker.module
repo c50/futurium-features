@@ -257,6 +257,7 @@ function _futurium_linker_no_results($form, $form_state) {
       $commands[] = ajax_command_invoke('.new-related', 'show');
     }
 
+    $new_title = $form_state['input']['search_box'];
     $selected_relation = $form_state['input']['link_type'];
     $relation = relation_type_load($selected_relation);
 
@@ -279,6 +280,7 @@ function _futurium_linker_no_results($form, $form_state) {
         $query = array(
           'origin_nid' => $form_state['input']['link_origin'],
           'relation_type' => $selected_relation,
+          'new_title' => $new_title,
         );
 
         $attributes = array(
@@ -294,7 +296,7 @@ function _futurium_linker_no_results($form, $form_state) {
     }
 
     $imploded = implode(' ', $links);
-    $commands[] = ajax_command_append('.select-wrap.new-related-select', $imploded);
+    $commands[] = ajax_command_replace('.select-wrap.new-related-select', '<td class="select-wrap new-related-select">' . $imploded . '</td>');
   }
 
   return array('#type' => 'ajax','#commands' => $commands);
@@ -581,6 +583,9 @@ function futurium_linker_form_node_form_alter(&$form, $form_state) {
       '#type' => 'hidden',
       '#value' => $_GET['origin_nid'],
     );
+    if (isset($_GET['new_title'])) {
+      $form['title']['#value'] = $_GET['new_title'];
+    }
   }
 }
 
