@@ -139,16 +139,21 @@ function supertags_field_default_field_bases() {
   $field_bases['field_block_region'] = array(
     'active' => 1,
     'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
     'field_name' => 'field_block_region',
+    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
       ),
     ),
+    'locked' => 1,
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
         'content_top' => 'Landing page (Top)',
+        'issues_top' => 'Issue List (Top)',
         'ideas_top' => 'Ideas List (Top)',
         'evidence_top' => 'Evidence List (Top)',
         'videos_top' => 'Videos List (Top)',
@@ -157,7 +162,9 @@ function supertags_field_default_field_bases() {
         'events_top' => 'Events List (Top)',
         'people_top' => 'People List (Top)',
       ),
+      'allowed_values_function' => '',
     ),
+    'translatable' => 0,
     'type' => 'list_text',
   );
 
@@ -312,6 +319,78 @@ function supertags_field_default_field_bases() {
       'allowed_values' => array(
         0 => array(
           'vocabulary' => 'flavors',
+          'parent' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'i18n_taxonomy_allowed_values',
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_digital4eu_supertags'
+  $field_bases['field_digital4eu_supertags'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_digital4eu_supertags',
+    'foreign keys' => array(
+      'tid' => array(
+        'columns' => array(
+          'tid' => 'tid',
+        ),
+        'table' => 'taxonomy_term_data',
+      ),
+    ),
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'tags',
+          'parent' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'i18n_taxonomy_allowed_values',
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_digital4eu_untags'
+  $field_bases['field_digital4eu_untags'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_digital4eu_untags',
+    'foreign keys' => array(
+      'tid' => array(
+        'columns' => array(
+          'tid' => 'tid',
+        ),
+        'table' => 'taxonomy_term_data',
+      ),
+    ),
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'tags',
           'parent' => 0,
         ),
       ),

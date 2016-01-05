@@ -7,7 +7,7 @@
 /**
  * Expose flavors as a context condition.
  */
-class FlavorCondition extends context_condition {
+class SupertagsFlavorCondition extends context_condition {
   /**
    * Values to be present in the condition form.
    *
