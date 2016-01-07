@@ -30,34 +30,58 @@ function futurium_d4eu_views_api($module = NULL, $api = NULL) {
 }
 
 /**
- * Implements hook_image_default_styles().
+ * Implements hook_default_invite_type().
  */
-function futurium_d4eu_image_default_styles() {
-  $styles = array();
+function futurium_d4eu_default_invite_type() {
+  $items = array();
+  $items['invite_by_email'] = entity_import('invite_type', '{
+    "type" : "invite_by_email",
+    "label" : "Invite by e-mail",
+    "weight" : 0,
+    "argument_keys" : [],
+    "argument" : [],
+    "invite_sending_controller" : { "invite_by_email" : "invite_by_email" },
+    "description" : "Invitation by e-mail.",
+    "data" : { "invite_by_email" : {
+        "use_default" : true,
+        "message_editable" : false,
+        "replace_tokens" : false
+      }
+    },
+    "rdf_mapping" : []
+  }');
+  return $items;
+}
 
-  // Exported image style: mini_teaser_thumbnail.
-  $styles['mini_teaser_thumbnail'] = array(
-    'name' => 'mini_teaser_thumbnail',
-    'label' => 'Mini teaser thumbnail (250x)',
-    'effects' => array(
-      1 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'image',
-        'name' => 'image_scale',
-        'data' => array(
-          'width' => 250,
-          'height' => '',
-          'upscale' => 0,
-        ),
-        'weight' => 1,
-      ),
+/**
+ * Implements hook_node_info().
+ */
+function futurium_d4eu_node_info() {
+  $items = array(
+    'event_d4eu' => array(
+      'name' => t('Event'),
+      'base' => 'node_content',
+      'description' => t('Create an event here'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'issue' => array(
+      'name' => t('Issue'),
+      'base' => 'node_content',
+      'description' => t('Post an issue here'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'video_d4eu' => array(
+      'name' => t('Video'),
+      'base' => 'node_content',
+      'description' => t('Post a video here'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
     ),
   );
-
-  return $styles;
+  return $items;
 }
