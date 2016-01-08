@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * futurium_messages.features.filter.inc
+ * futurium_isa.features.filter.inc
  */
 
 /**

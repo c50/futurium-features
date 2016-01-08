@@ -331,31 +331,28 @@ function futurium_isa_field_group_info() {
   );
   $export['group_page_metadata|node|page|form'] = $field_group;
 
-  // Comments
-
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_wrapper_author_date|comment|comment_node_ideas|default';
-  $field_group->group_name = 'group_wrapper_author_date';
-  $field_group->entity_type = 'comment';
-  $field_group->bundle = 'comment_node_ideas';
-  $field_group->mode = 'default';
+  $field_group->identifier = 'group_shortcut_buttons|user|user|user_header';
+  $field_group->group_name = 'group_shortcut_buttons';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'user_header';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'wrapper-author-date',
-    'weight' => '0',
+    'label' => 'Shortcuts',
+    'weight' => '3',
     'children' => array(
-      0 => 'post_date',
-      1 => 'author',
-      2 => 'ds_user_picture',
+      0 => 'follow',
+      1 => 'edit',
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'wrapper-author-date',
+      'label' => 'Shortcuts',
       'instance_settings' => array(
         'id' => '',
-        'classes' => 'wrapper-author-date field-group-div',
+        'classes' => 'group-shortcut-buttons field-group-div',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
@@ -365,7 +362,43 @@ function futurium_isa_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_wrapper_author_date|comment|comment_node_ideas|default'] = $field_group;
+  $export['group_shortcut_buttons|user|user|user_header'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_user_fields|user|user|user_header';
+  $field_group->group_name = 'group_user_fields';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'user_header';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Fields',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_age',
+      1 => 'field_education',
+      2 => 'field_gender',
+      3 => 'field_location',
+      4 => 'field_profession',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Fields',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-user-fields field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'none',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_user_fields|user|user|user_header'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -400,6 +433,40 @@ function futurium_isa_field_group_info() {
     ),
   );
   $export['group_wrapper_author_date|comment|comment_node_event_d4eu|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_wrapper_author_date|comment|comment_node_ideas|default';
+  $field_group->group_name = 'group_wrapper_author_date';
+  $field_group->entity_type = 'comment';
+  $field_group->bundle = 'comment_node_ideas';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'wrapper-author-date',
+    'weight' => '0',
+    'children' => array(
+      0 => 'post_date',
+      1 => 'author',
+      2 => 'ds_user_picture',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'wrapper-author-date',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'wrapper-author-date field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_wrapper_author_date|comment|comment_node_ideas|default'] = $field_group;
 
   return $export;
 }

@@ -1,10 +1,12 @@
 <?php
-
 /**
  * @file
  * template.php
  */
 
+/**
+ * Implements hook_preprocess_region().
+ */
 function futurium_isa_theme_preprocess_region(&$variables) {
   $region = str_replace('_', '-', $variables['elements']['#region']);
   $wrapper_classes_array[] = $region . '-wrapper';
@@ -12,7 +14,9 @@ function futurium_isa_theme_preprocess_region(&$variables) {
   $variables['wrapper_classes'] = implode(' ', $wrapper_classes_array);
 }
 
-
+/**
+ * Implements hook_preprocess_page().
+ */
 function futurium_isa_theme_preprocess_page(&$variables) {
 
   unset($variables['navbar_classes_array'][1]);
@@ -38,21 +42,18 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     'page_manager_page_execute',
     'page_manager_node_view_page',
     'page_manager_user_view_page',
+    'page_manager_user_edit_page',
+    'page_manager_node_add',
+    'entity_translation_edit_page',
   );
   $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks);
 
-  $hide_title_paths = array(
-    'home',
-    'groups',
-    'ideas',
-    'library',
-    'events',
-    'node/%',
-  );
   $variables['show_title'] = !in_array($item['page_callback'], $panels_callbacks);
-
 }
 
+/**
+ * Implements hook_status_messages().
+ */
 function futurium_isa_theme_status_messages($variables) {
   $display = $variables['display'];
   $output = '';
@@ -64,15 +65,10 @@ function futurium_isa_theme_status_messages($variables) {
     'info' => t('Informative message'),
   );
 
-  // Map Drupal message types to their corresponding Bootstrap classes.
-  // @see http://twitter.github.com/bootstrap/components.html#alerts
   $status_class = array(
     'status' => 'success',
     'error' => 'danger',
     'warning' => 'warning',
-    // Not supported, but in theory a module could send any type of message.
-    // @see drupal_set_message()
-    // @see theme_status_messages()
     'info' => 'info',
   );
 
@@ -101,8 +97,10 @@ function futurium_isa_theme_status_messages($variables) {
   return $output;
 }
 
-/*
- *  Form alter to add missing bootstrap classes and role to search form.
+/**
+ * Implements hook_form_alter().
+ *
+ * Form alter to add missing bootstrap classes and role to search form.
  */
 function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'search_form') {
@@ -111,9 +109,14 @@ function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
-// Adds classes to user account menu item.
+/**
+ * Implements hook_menu_link().
+ *
+ * Adds classes to user account menu item.
+ */
 function futurium_isa_theme_menu_link(array $variables) {
-  if ($variables['element']['#original_link']['menu_name'] == 'main-menu' && $variables['element']['#original_link']['link_path'] == 'account') {
+  if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
+    ($variables['element']['#original_link']['link_path'] == 'user' || $variables['element']['#original_link']['link_path'] == 'user/login')) {
     $variables['element']['#localized_options']['attributes']['class'][] = "no-text";
     $variables['element']['#localized_options']['attributes']['class'][] = "glyphicon";
     $variables['element']['#localized_options']['attributes']['class'][] = "glyphicon-user";
@@ -121,7 +124,9 @@ function futurium_isa_theme_menu_link(array $variables) {
   return theme_menu_link($variables);
 }
 
-
+/**
+ * Implements hook_date_display_range().
+ */
 function futurium_isa_theme_date_display_range(&$variables) {
   $date1 = $variables['date1'];
   $date2 = $variables['date2'];
@@ -189,15 +194,23 @@ function futurium_isa_theme_date_display_range(&$variables) {
   return t($string, $date_vars);
 }
 
+/**
+ * Implements hook_date_display_single().
+ */
 function futurium_isa_theme_date_display_single($variables) {
   $date = $variables['date'];
   $timezone = $variables['timezone'];
   $attributes = $variables['attributes'];
 
-  $string = '!start-day !start-month !start-year - !start-hour - !end-hour';
-
   $start_date_obj = $variables['dates']['value']['db']['object'];
   $end_date_obj = $variables['dates']['value2']['db']['object'];
+
+  if ($start_date_obj != $end_date_obj) {
+    $string = '!start-day !start-month !start-year - !start-hour - !end-hour';
+  }
+  else{
+    $string = '!start-day !start-month !start-year - !start-hour';
+  }
 
   $start_day = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'j');
   $start_month = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'F');
@@ -216,7 +229,6 @@ function futurium_isa_theme_date_display_single($variables) {
   return t($string, $date_vars);
 }
 
-
 /**
  * Implements hook_field_group_pre_render_alter().
  *
@@ -228,9 +240,49 @@ function futurium_isa_theme_field_group_pre_render_alter(&$element, $group, & $f
   }
 }
 
-/*
- * Implements of hook_js_alter
+/**
+ * Implements hook_js_alter.
+ *
+ * Fixes non-working fieldset in bootstrap themes.
  */
 function futurium_isa_theme_js_alter(&$js) {
   unset($js['misc/collapse.js']);
+}
+
+/**
+ * Implements hook_preprocess_rate_template_fivestar.
+ *
+ * Customize rate widgets.
+ */
+function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
+  global $base_url;
+  extract($variables);
+  foreach ($links as $key => $link){
+    if ($results['rating'] >= $link['value']){
+      $class = 'rate-fivestar-btn-filled';
+    }
+    else {
+      $class = 'rate-fivestar-btn-empty';
+    }
+    switch ($variables['display_options']['title']) {
+      case 'Desirability':
+        $icon = "futurium-rate futurium-rate-desirability";
+        //$icon = "glyphicon glyphicon-star";
+        break;
+      case 'Feasibility':
+        $icon = "futurium-rate futurium-rate-feasibility";
+        //$icon = "glyphicon glyphicon-star";
+        break;
+      case 'Impact':
+        $icon = "futurium-rate futurium-rate-impact";
+        //$icon = "glyphicon glyphicon-star";
+        break;
+      default:
+        $icon = "glyphicon glyphicon-star";
+        break;
+    }
+    $link_options = array('html' => TRUE, 'attributes' => array('class' => $class));
+
+    $variables['stars'][$key] = l('<i class="' . $icon . '"></i>', $base_url . $link['href'], $link_options);
+  }
 }
