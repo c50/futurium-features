@@ -7,6 +7,8 @@
 // CUSTOM VARIABLES
 // -----------------------------------------------------------------------------
 
+$test: 50%;
+
 /// Regular font family
 $text-font-stack: 'droid serif', serif;
 $header-font-stack: 'Oswald', sans-serif;
@@ -18,6 +20,7 @@ $rem-px-only: false !default;
 
 /// Copy text color
 $text-color: #666 !default;
+
 
 /// Main brand color
 $brand-color: #98CC4D !default;

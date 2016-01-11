@@ -1,3 +1,19 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
+
+.group-buttons{
+  a{
+   /* @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border); */
+   color: #fff;
+  }
+} 
+
+.group-buttons > div {
+  float: left;
+  clear: right;
+  a {
+    @include rem(margin, 0 5px 0 0);
+  }
+}
+

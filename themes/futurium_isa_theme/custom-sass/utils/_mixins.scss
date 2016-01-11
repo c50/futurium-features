@@ -232,19 +232,9 @@
 
   /* row1 theming */
   .container-fullwidth.row1 {
-    color: #fff;
-    background: $color;
+    background: $color; 
     border-top: 3px solid darken($color, 15%);
     border-bottom: 1px solid darken($color, 15%);
-    a {
-      color: #fff;
-      @include on-event {
-        color: #fff;
-      }
-    }
-    h1, h2, h3, p {
-      color: #fff;
-    }
     .field-name-author {
       @include rem(border-bottom, 1px solid lighten($color, 20%));
     }

@@ -2,7 +2,11 @@
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
 
-/* social media icons */
+
+.container-fullwidth.footer{
+  background: $dark-grey;
+  @include rem(padding, 40px 0 40px 0);
+}
 
 .footer{
   margin: 0 0 0 0;
@@ -36,8 +40,5 @@ ul.social-icons{
   }
 }
 
-.container-fullwidth.footer{
-  @include rem(padding, 40px 0 40px 0);
-}
 
-/* /social media icons */
+

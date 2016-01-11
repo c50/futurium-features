@@ -6,12 +6,6 @@
  * Set up a decent box model on the root element
  */
 
-
-/////////////
-/////TESTING 
-/////////////
-
-
 html {
   box-sizing: border-box;
 }
@@ -27,9 +21,9 @@ html {
   box-sizing: inherit;
 }
 
-/**
- * Basic styles for links
- */
+/********************** **/
+/* Basic styles content */
+/***********************/
 
 a {
   color: $brand-color;
@@ -37,10 +31,6 @@ a {
   @include on-event {
     text-decoration: underline;
   }
-}
-
-.front a {
-  color: $text-color;
 }
 
 p {
@@ -51,11 +41,10 @@ p:last-child {
   @include rem(margin-bottom, 20px);
 }
 
-/**
- * Makes the images responsive
- */
+/* Makes the images responsive */
+
 img {
- /* display: block; */
+  /* display: block; */
   max-width: 100%;
   height: auto;
 }
@@ -64,45 +53,31 @@ img {
  * Basic styles for headers
  * @include on-event does: &:hover, &:active, &:focus
  */
+
 h1 {
   color: $dark-grey;
   font-family: $text-font-stack;
 }
 
-
-  h2, h3, h4, h5, h6 {
-    font-family: $header-font-stack;
-    text-transform: uppercase;
-    a {
-     color: darken($text-color, 2%);
-     font-weight: bold;
-     font-family: $text-font-stack;
-     text-transform: none;
-     @include transition(color .3s ease);
-     @include on-event{
-       text-decoration: none;
-     }
+h2, h3, h4, h5, h6 {
+  font-family: $header-font-stack;
+  text-transform: uppercase;
+  @include rem(margin-bottom, 20px);
+  a {
+    color: darken($text-color, 2%);
+    font-weight: bold;
+    font-family: $text-font-stack;
+    text-transform: none;
+    @include transition(color .3s ease);
+    @include on-event{
+      text-decoration: none;
     }
   }
-
-h2 {
-  @include rem(margin-bottom, 20px);
-}
-
-h3 {
-  @include rem(margin-bottom, 20px);
 }
 
 h4 {
   @include rem(padding, 0 0 0 0);
   @include rem(margin, 0 0 0 0);
-}
-
-.front{
-  h2.pane-title {
-    border-bottom: none;
-    @include rem(font-size, 30px);
-  }
 }
 
 h2.pane-title {
@@ -113,23 +88,21 @@ h2.pane-title {
   @include rem(border-bottom, 1px solid $text-color);
 }
 
-
-
-
-
-
 h4 a {
   font-weight: normal;
 }
 
-.panel-content {
-  .panel-pane {
-    @include rem(margin-bottom, 40px);
-  }
+/******* */
+/* TABS */
+/***** */
+
+.nav-tabs{
+  border-bottom: none;
 }
 
-
-/// No padding for lists
+/*********************** */
+/* No padding for lists */
+/********************* */
 
 
 .nopadding {
@@ -156,253 +129,31 @@ h4 a {
   }
 }
 
-#path a, #path a:visited {
+/***********************************/
+/* DEFAULT MARKUP FOR CONTENTTYPE */
+/**********************************/
+
+/**
+ * mixin that does all the colouring of buttons, text, ... 
+ */
+
+.container-fullwidth.row1{
   color: #fff;
-  text-decoration: none;
-  border: 0;
-}
-
-/**
- * Basic styles for boxes (remove the bullets)
- * We use boxes instead of blocks
- */
-.boxes-box-controls {
-  li {
-  	list-style: none;
-  }
-}
-
-
-/**
- * Equal height solution
- * Add a .row-eq-height on the view 
- */
-
-/*
-
- .row-eq-height .row, .row-eq-height .row > div[class*='col-'] {  
-  @include flexbox();
-  @include respond-to(small) {
-  	display: block; // unset display flex;
-  }
-  @include respond-to(medium) {
-  	display: block; // unset display flex;
-  }
-}
-
-.view-ideas .row {
-  overflow: hidden;
-}
-
-*/
-
-.activity-message.attending:before {
-  @include fa(user-plus);
-}
-
-.activity-message.liked:before {
-  @include fa(thumbs-up);
-}
-
-.activity-message.new-content:before {
-  @include fa(plus-square);
-}
-
-.activity-message.new-comment:before {
-  @include fa(comment);
-}
-
-.front{
-  .panel-pane {
-    @include rem(margin, 0 0 30px 0);
-  }
-  .row1 .panel-pane {
-    margin: 0 0 0 0;
-  }
-
-  .container-fullwidth.row1 {
-    padding: 0;
-    background: none;
-  }
-
-
-  .more-link a {
-    @include btn-default(#dddbdb);
-    color: $text-color;
-    @include on-event {
-      color: darken($text-color, 10%);
-    }
-  }
-
-  .pane-ideas {
-    @include blockhp($idea-color); 
-    h2:before {
-      @include fa(lightbulb-o);
-    }
-    .views-field-count {
-      color: $mid-grey;
-    } 
-  }
-
-  .pane-messages {
-    @include blockhp($group-color); 
-    h2:before {
-      @include fa(history);
-    }
-    .views-field-count {
-      color: $mid-grey;
-    } 
-  }
-
-  .pane-people {
-    @include blockhp($group-color);
-    h2:before {
-      @include fa(user);
-    }
-    .views-row {
-      @include rem(padding, 0 0 10px 0);
-    }
-    .left {
-      float:left;
-      @include rem(margin, 0 10px 0 0);
-    }
-    .views-field-nid{
-      color: $mid-grey;
-    }
-  }
-
-  .pane-events {
-    @include blockhp($event-color);
-    h2:before {
-      @include fa(calendar);
-    }
-    .date:before {
-      content: none;
-      padding: 0;
-    }
-  }
-
-  /* theming for stream */
-
-  .node-event-d4eu {
-    h3:before {
-      @include fa(calendar);
-      color:#fff;
-      background: $event-color;
-      border-radius: 50%;
-      @include rem(padding, 8px 0 0 9px);
-      @include rem(width, 35px);
-      @include rem(height, 35px);
-      @include rem(margin-right, 10px);
-      @include rem(font-size, 18px);
-    }
-  }
-
-  .node-ideas {
-    h3:before {
-      @include fa(lightbulb-o);
-      color:#fff;
-      background: $idea-color;
-      border-radius: 50%;
-      @include rem(padding, 6px 0 0 11px);
-      @include rem(width, 35px);
-      @include rem(height, 35px);
-      @include rem(margin-right, 10px);
-      @include rem(font-size, 24px);
-    }
-  }
-
-}
-
-
-.field-type-taxonomy-term-reference {
-  .field-item {
-    display: inline-block;
-    @include rem(padding, 0 10px 0 0);
-  }
-}
-
-
-
-
-.media-element-container {
-	@include rem(margin, 0 0 20px 0);
-	background: #fff;
- .field-name-field-caption {
-   color: $mid-grey;  
-   @include rem(font-size, 14px);
-   @include rem(padding, 5px 10px 5px 10px);
-   font-style: italic;
- }
-}
-
-
-
-.group-buttons{
-  a{
-   /* @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border); */
-   color: #fff;
-  }
-} 
-
-.group-buttons > div {
-  float: left;
-  clear: right;
   a {
-    @include rem(margin, 0 5px 0 0);
+    color: #fff;
+    @include on-event {
+    color: #fff;
+    }
+  }
+  h1, h2, h3, p {
+    color: #fff;
   }
 }
-
-.field-type-entityreference {
-  .field-item {
-    @include rem(border-bottom, 1px dashed $mid-grey);
-    @include rem(padding, 10px 0 10px 0);
-  }
-}
-
-.container-fullwidth {
-  padding: 40px 0 40px 0;
-}
-
-
-
-.container-fullwidth.navbar {
-  padding: 0 0 0 0;
-}
-
-.main-container.container-fullwidth {
-  padding: 0 0 0 0;
-}
-
-.main-container > .container-fullwidth {
-  padding: 0 0 0 0;
-}
-
-
-/* default settings for row1 */
 
 .not-front{
   @include contenttype($mid-grey);
   @include teaser($mid-grey);
 }
-
-.container-fullwidth.row1 {
-  h1{
-    margin-top: 0;
-  }
-}
-
-.row1r { 
-  .panel-pane {
-    width: 100%;
-    float: left;
-  }
-}
-
-.nav-tabs{
-  border-bottom: none;
-}
-
 
 /**
  * settings for different content types 
@@ -410,6 +161,7 @@ h4 a {
 
 .page-ideas, .node-type-ideas {
   @include contenttype($idea-color);
+
 }
 
 .node-teaser.node-ideas{
@@ -429,6 +181,73 @@ h4 a {
 }
 
 
+
+/**
+ * Activity stuff
+ */
+
+.activity-message.attending:before {
+  @include fa(user-plus);
+}
+
+.activity-message.liked:before {
+  @include fa(thumbs-up);
+}
+
+.activity-message.new-content:before {
+  @include fa(plus-square);
+}
+
+.activity-message.new-comment:before {
+  @include fa(comment);
+}
+
+
+/* theming for stream */
+
+.node-event-d4eu {
+  h3:before {
+    @include fa(calendar);
+    color:#fff;
+    background: $event-color;
+    border-radius: 50%;
+
+    @include rem(padding, 8px 0 0 9px);
+    @include rem(width, 35px);
+    @include rem(height, 35px);
+    @include rem(margin-right, 10px);
+    @include rem(font-size, 18px);
+  }
+}
+
+.node-ideas {
+  h3:before {
+    @include fa(lightbulb-o);
+    color:#fff;
+    background: $idea-color;
+    border-radius: 50%;
+    /* @include border-radius(50%); */
+    @include rem(padding, 6px 0 0 11px);
+    @include rem(width, 35px);
+    @include rem(height, 35px);
+    @include rem(margin-right, 10px);
+    @include rem(font-size, 24px);
+  }
+}
+
+.field-type-taxonomy-term-reference {
+  .field-item {
+    display: inline-block;
+    @include rem(padding, 0 10px 0 0);
+  }
+}
+
+.field-type-entityreference {
+  .field-item {
+    @include rem(border-bottom, 1px dashed $mid-grey);
+    @include rem(padding, 10px 0 10px 0);
+  }
+}
 
 
 
@@ -621,20 +440,15 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
-.sidebar-right {
-  background: $light-grey;
-  @include rem(padding, 15px);
-  .date:before {
-    content: none;
-  }
-}
-
-/* hp blocks */
 
 
 
 
+
+
+/*************/
 /* Comments */
+/*************/
 
 .comment, .indented {
   @include rem(margin, 0 0 40px 0);
@@ -671,8 +485,6 @@ div.views-bootstrap-grid-plugin-style {
   height: 35px;
 }
 
-
-
 .field-name-comment-body {
   border: 1px solid #ccc;
   @include rem(padding, 20px);
@@ -680,8 +492,11 @@ div.views-bootstrap-grid-plugin-style {
 }
   
 
+/*********************/
+/* RESPONSIVE STUFF */
+/********************/
 
-
+/* bottom aligned of right column in header */
 
 @include respond-to(large) {
   .row1 {
@@ -698,6 +513,12 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
+
+/***********/
+/* EVENTS */
+/***********/
+
+/* Event details block (address, ...) */
 
 .street-block > div {
   display: inline-block;
@@ -719,18 +540,33 @@ div.views-bootstrap-grid-plugin-style {
   border: none;
 }
 
-/* My account hack in menu */
+/********************************/
+/* NEEDS TO MOVE TO COMPONENTS */
+/******************************/
 
-.no-text {
- font-size:0 !important;
+.media-element-container {
+  @include rem(margin, 0 0 20px 0);
+  background: #fff;
+ .field-name-field-caption {
+   color: $mid-grey;  
+   @include rem(font-size, 14px);
+   @include rem(padding, 5px 10px 5px 10px);
+   font-style: italic;
+ }
 }
 
-.no-text:before {
- font-size:16px;
-}
 
 
 /* STUFF FOR THE LINKER MODULE */
+
+.view-node-relations{
+  .item-list{
+    @include rem(margin, 40px 0 0 0);
+  }
+  h3{
+    @extend h2.pane-title; 
+  }
+}
 
 .autocomplete-suggestion.node-type-ideas:before, .view-node-relations .ideas:before {
   @include fa(lightbulb-o);
@@ -763,6 +599,7 @@ div.views-bootstrap-grid-plugin-style {
     font-family: $text-font-stack;
     text-transform: inherit;
   }
+
   .form-submit:before {
     @include fa(link);
   }
@@ -793,9 +630,15 @@ div.views-bootstrap-grid-plugin-style {
 
 /* TEMP STUFF --- TEMP STUFF */
 
+
+#path a, #path a:visited {
+  color: #fff;
+  text-decoration: none;
+  border: 0;
+}
+
 .slide-image-wrapper{
   border-top: 5px solid $idea-color;
-
 }
 
 .image-wrapper{
@@ -815,13 +658,12 @@ div.views-bootstrap-grid-plugin-style {
     color: #fff;
     @include rem(font-size, 36px);
   }
-  .more-link a{
+  .more-link a {
     @include btn-default($idea-color);
   }
-
 }
 
-.shadow{
+.shadow {
   opacity: 0.5;
   position: absolute;
   height: 130px;
@@ -832,3 +674,31 @@ div.views-bootstrap-grid-plugin-style {
   background: #000;
 }
 
+/**
+ * Equal height solution
+ * Add a .row-eq-height on the view 
+ */
+
+
+
+/*
+
+ .row-eq-height .row, .row-eq-height .row > div[class*='col-'] {  
+  @include flexbox();
+  @include respond-to(small) {
+    display: block; // unset display flex;
+  }
+  @include respond-to(medium) {
+    display: block; // unset display flex;
+  }
+ }
+
+*/
+
+/*
+
+.view-ideas .row {
+  overflow: hidden;
+}
+
+*/

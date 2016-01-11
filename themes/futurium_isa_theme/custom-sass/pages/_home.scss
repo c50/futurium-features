@@ -2,3 +2,81 @@
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
 
+.front{
+  a{
+  	color: $text-color;
+  }
+
+  .more-link a {
+    @include btn-default(#dddbdb);
+    color: $text-color;
+    @include on-event {
+      color: darken($text-color, 10%);
+    }
+  }
+
+  h2.pane-title {
+    border-bottom: none;
+    @include rem(font-size, 30px);
+  }
+
+  .panel-pane {
+    @include rem(margin, 0 0 30px 0);
+  }
+  .row1 .panel-pane {
+    margin: 0 0 0 0;
+  }
+
+  .container-fullwidth.row1 {
+    padding: 0;
+    background: none;
+  }
+
+  .pane-ideas {
+    @include blockhp($idea-color); 
+    h2:before {
+      @include fa(lightbulb-o);
+    }
+    .views-field-count {
+      color: $mid-grey;
+    } 
+  }
+
+  .pane-messages {
+    @include blockhp($group-color); 
+    h2:before {
+      @include fa(history);
+    }
+    .views-field-count {
+      color: $mid-grey;
+    } 
+  }
+
+  .pane-people {
+    @include blockhp($group-color);
+    h2:before {
+      @include fa(user);
+    }
+    .views-row {
+      @include rem(padding, 0 0 10px 0);
+    }
+    .left {
+      float:left;
+      @include rem(margin, 0 10px 0 0);
+    }
+    .views-field-nid{
+      color: $mid-grey;
+    }
+  }
+
+  .pane-events {
+    @include blockhp($event-color);
+    h2:before {
+      @include fa(calendar);
+    }
+    .date:before {
+      content: none;
+      padding: 0;
+    }
+  }
+}

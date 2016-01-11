@@ -1,22 +1,87 @@
 
 
+
+.container-fullwidth {
+  padding: 40px 0 40px 0;
+}
+
+.container-fullwidth.navbar {
+  padding: 0 0 0 0;
+}
+
+.main-container.container-fullwidth {
+  padding: 0 0 0 0;
+}
+
+
+
+/*****************/
+/* ROW1 SETTINGS*/
+/***************/
+
+
+.container-fullwidth.row1 {
+  h1{
+    margin-top: 0;
+  }
+}
+
+.row1r { 
+  .panel-pane {
+    width: 100%;
+    float: left;
+  }
+}
+
+
+
+
+/*******************/
+/* BOXES SETTINGS */
+/*****************/
+
+/**
+ * Basic styles for boxes (remove the bullets)
+ * We use boxes instead of blocks
+ */
+
+.boxes-box-controls {
+  li {
+  	list-style: none;
+  }
+}
+
+/*******************/
+/* PANEL SETTINGS */
+/*****************/
+
+.panel-content {
+  .panel-pane {
+    @include rem(margin-bottom, 40px);
+  }
+}
+
+/*******************/
+/* SIDEBAR REGION */
+/*****************/
+
+.sidebar-right {
+  background: $light-grey;
+  @include rem(padding, 15px);
+  .date:before {
+    content: none;
+  }
+}
+
+/******************/
+/* SLIDER REGION */
+/****************/
+
 .content-slider-wrapper .region {
   padding: 0;
 }
 
-.container-fullwidth.footer {
-  background: $dark-grey;
-}
 
-
-
-.content-before-wrapper {
-  background: $brand-color;
-  color: #fff;
-  h2 {
-    color: #fff;;
-  }
-}
 
 
 
