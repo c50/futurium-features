@@ -1,10 +1,12 @@
 <?php
-
 /**
  * @file
  * template.php
  */
 
+/**
+ * Implements hook_preprocess_region().
+ */
 function futurium_isa_theme_preprocess_region(&$variables) {
   $region = str_replace('_', '-', $variables['elements']['#region']);
   $wrapper_classes_array[] = $region . '-wrapper';
@@ -12,9 +14,11 @@ function futurium_isa_theme_preprocess_region(&$variables) {
   $variables['wrapper_classes'] = implode(' ', $wrapper_classes_array);
 }
 
-
-
+/**
+ * Implements hook_preprocess_page().
+ */
 function futurium_isa_theme_preprocess_page(&$variables) {
+
   unset($variables['navbar_classes_array'][1]);
   $variables['navbar_classes_array'][] = 'container-fullwidth';
 
@@ -28,8 +32,6 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     $variables['content_column_class'] = ' class="container-fullwidth"';
   }
 
-  $variables['navbar_classes_array'][] = 'navbar-inverse';
-
   $search_form = drupal_get_form('search_form');
   $search_box = drupal_render($search_form);
   $variables['search_box'] = $search_box;
@@ -39,21 +41,19 @@ function futurium_isa_theme_preprocess_page(&$variables) {
   $panels_callbacks = array(
     'page_manager_page_execute',
     'page_manager_node_view_page',
-    'pm_existing_pages_pm_existing_pages_page'
+    'page_manager_user_view_page',
+    'page_manager_user_edit_page',
+    'page_manager_node_add',
+    'entity_translation_edit_page',
   );
   $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks);
 
-  $hide_title_paths = array(
-    'home',
-    'groups',
-    'ideas',
-    'library',
-    'events'
-  );
-  $variables['show_title'] = !in_array($item['path'], $hide_title_paths);
-
+  $variables['show_title'] = !in_array($item['page_callback'], $panels_callbacks);
 }
 
+/**
+ * Implements hook_status_messages().
+ */
 function futurium_isa_theme_status_messages($variables) {
   $display = $variables['display'];
   $output = '';
@@ -65,15 +65,10 @@ function futurium_isa_theme_status_messages($variables) {
     'info' => t('Informative message'),
   );
 
-  // Map Drupal message types to their corresponding Bootstrap classes.
-  // @see http://twitter.github.com/bootstrap/components.html#alerts
   $status_class = array(
     'status' => 'success',
     'error' => 'danger',
     'warning' => 'warning',
-    // Not supported, but in theory a module could send any type of message.
-    // @see drupal_set_message()
-    // @see theme_status_messages()
     'info' => 'info',
   );
 
@@ -102,8 +97,10 @@ function futurium_isa_theme_status_messages($variables) {
   return $output;
 }
 
-/*
- *  Form alter to add missing bootstrap classes and role to search form.
+/**
+ * Implements hook_form_alter().
+ *
+ * Form alter to add missing bootstrap classes and role to search form.
  */
 function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'search_form') {
@@ -112,11 +109,180 @@ function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+/**
+ * Implements hook_menu_link().
+ *
+ * Adds classes to user account menu item.
+ */
 function futurium_isa_theme_menu_link(array $variables) {
-  if ($variables['element']['#original_link']['menu_name'] == 'main-menu' && $variables['element']['#original_link']['link_path'] == 'account') {
+  if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
+    ($variables['element']['#original_link']['link_path'] == 'user' || $variables['element']['#original_link']['link_path'] == 'user/login')) {
     $variables['element']['#localized_options']['attributes']['class'][] = "no-text";
     $variables['element']['#localized_options']['attributes']['class'][] = "glyphicon";
     $variables['element']['#localized_options']['attributes']['class'][] = "glyphicon-user";
   }
   return theme_menu_link($variables);
+}
+
+/**
+ * Implements hook_date_display_range().
+ */
+function futurium_isa_theme_date_display_range(&$variables) {
+  $date1 = $variables['date1'];
+  $date2 = $variables['date2'];
+  $timezone = $variables['timezone'];
+
+  $attributes_start = $variables['attributes_start'];
+  $attributes_end = $variables['attributes_end'];
+
+  $start_date_obj = $variables['dates']['value']['db']['object'];
+  $end_date_obj = $variables['dates']['value2']['db']['object'];
+
+  $start_day = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'j');
+  $end_day   = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'j');
+
+  $start_month = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'F');
+  $end_month   = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'F');
+
+  $start_year = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'Y');
+  $end_year   = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'Y');
+
+  $start_hour = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+  $end_hour = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+
+  $string = '!start-day !start-month !start-year - !start-hour to !end-day !end-month !end-year !end-hour';
+
+  // Same month and year.
+  if ($start_day == $end_day && $start_month == $end_month && $start_year == $end_year) {
+    // Handled by theme_date_display_single().
+    return;
+  }
+
+  if ($start_day != $end_day && $start_month == $end_month && $start_year == $end_year) {
+    $string = '!start-day - !end-day !start-month !start-year - !start-hour - !end-hour';
+  }
+
+  // Same year.
+  if ($start_day == $end_day && $start_month != $end_month && $start_year == $end_year) {
+    $string = '!start-day !start-month - !end-day !end-month !start-year - !start-hour - !end-hour';
+  }
+
+  if ($start_day != $end_day && $start_month != $end_month && $start_year == $end_year) {
+    $string = '!start-day !start-month - !end-day !end-month !start-year - !start-hour - !end-hour';
+  }
+
+  // Different years.
+  if ($start_day == $end_day && $start_month != $end_month && $start_year != $end_year) {
+    $string = '!start-day !start-month !start-year - !start-hour - !end-day !end-month !end-year !end-hour';
+  }
+
+  if ($start_day != $end_day && $start_month != $end_month && $start_year != $end_year) {
+    $string = '!start-day !start-month !start-year - !start-hour - !end-day !end-month !end-year !end-hour';
+  }
+
+  $date_vars = array(
+    '!start-day' => $start_day,
+    '!end-day' => $end_day,
+    '!start-month' => $start_month,
+    '!end-month' => $end_month,
+    '!start-year' => $start_year,
+    '!end-year' => $end_year,
+    '!start-hour' => $start_hour,
+    '!end-hour' => $end_hour,
+  );
+
+  return t($string, $date_vars);
+}
+
+/**
+ * Implements hook_date_display_single().
+ */
+function futurium_isa_theme_date_display_single($variables) {
+  $date = $variables['date'];
+  $timezone = $variables['timezone'];
+  $attributes = $variables['attributes'];
+
+  $start_date_obj = $variables['dates']['value']['db']['object'];
+  $end_date_obj = $variables['dates']['value2']['db']['object'];
+
+  if ($start_date_obj != $end_date_obj) {
+    $string = '!start-day !start-month !start-year - !start-hour - !end-hour';
+  }
+  else{
+    $string = '!start-day !start-month !start-year - !start-hour';
+  }
+
+  $start_day = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'j');
+  $start_month = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'F');
+  $start_year = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'Y');
+  $start_hour = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+  $end_hour = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'H:i');
+
+  $date_vars = array(
+    '!start-day' => $start_day,
+    '!start-month' => $start_month,
+    '!start-year' => $start_year,
+    '!start-hour' => $start_hour,
+    '!end-hour' => $end_hour,
+  );
+
+  return t($string, $date_vars);
+}
+
+/**
+ * Implements hook_field_group_pre_render_alter().
+ *
+ * Fixes non-working fieldset in bootstrap themes.
+ */
+function futurium_isa_theme_field_group_pre_render_alter(&$element, $group, & $form) {
+  if(isset($element['#type']) && $element['#type'] == 'fieldset' && !isset($element['#id'])){
+    $element['#id'] = drupal_html_id('fieldset');
+  }
+}
+
+/**
+ * Implements hook_js_alter.
+ *
+ * Fixes non-working fieldset in bootstrap themes.
+ */
+function futurium_isa_theme_js_alter(&$js) {
+  unset($js['misc/collapse.js']);
+}
+
+/**
+ * Implements hook_preprocess_rate_template_fivestar.
+ *
+ * Customize rate widgets.
+ */
+function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
+  global $base_url;
+  extract($variables);
+  foreach ($links as $key => $link){
+    if ($results['rating'] >= $link['value']){
+      $class = 'rate-fivestar-btn-filled';
+    }
+    else {
+      $class = 'rate-fivestar-btn-empty';
+    }
+    switch ($variables['display_options']['title']) {
+      case 'Desirability':
+        $icon = "futurium-rate futurium-rate-desirability";
+        //$icon = "glyphicon glyphicon-star";
+        break;
+      case 'Feasibility':
+        $icon = "futurium-rate futurium-rate-feasibility";
+        //$icon = "glyphicon glyphicon-star";
+        break;
+      case 'Impact':
+        $icon = "futurium-rate futurium-rate-impact";
+        //$icon = "glyphicon glyphicon-star";
+        break;
+      default:
+        $icon = "glyphicon glyphicon-star";
+        break;
+    }
+    $link_options = array('html' => TRUE, 'attributes' => array('class' => $class));
+
+    $variables['stars'][$key] = l('<i class="' . $icon . '"></i>', $base_url . $link['href'], $link_options);
+  }
 }

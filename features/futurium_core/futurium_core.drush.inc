@@ -132,5 +132,20 @@ function drush_futurium_core_revert_futurium_config() {
   $type->modified = TRUE;
   node_type_save($type);
 
+  // Disable not needed multisite modules
+  module_disable(array('nexteuropa_multilingual', 'ecas'));
+
+  // Rebuild permissions
+  // Should go into futurium groups
+  node_access_rebuild();
+
+  //Temporary, Publishes unpublished library items.
+  $type = "document";
+  $nodes = node_load_multiple(array(), array('type' => $type));
+  foreach ($nodes as $node) {
+    $node->status = 1;
+    node_save($node);
+  }
+
   drush_print(dt('Futurium Configuration has been applied.'));
 }
