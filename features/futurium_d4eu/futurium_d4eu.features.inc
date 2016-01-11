@@ -52,36 +52,3 @@ function futurium_d4eu_default_invite_type() {
   }');
   return $items;
 }
-
-/**
- * Implements hook_node_info().
- */
-function futurium_d4eu_node_info() {
-  $items = array(
-    'event_d4eu' => array(
-      'name' => t('Event'),
-      'base' => 'node_content',
-      'description' => t('Create an event here'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-    'issue' => array(
-      'name' => t('Issue'),
-      'base' => 'node_content',
-      'description' => t('Post an issue here'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-    'video_d4eu' => array(
-      'name' => t('Video'),
-      'base' => 'node_content',
-      'description' => t('Post a video here'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-  );
-  return $items;
-}
