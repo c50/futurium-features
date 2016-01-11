@@ -155,7 +155,7 @@ function drush_futurium_core_revert_futurium_config() {
   }
 
   // Disable not needed multisite modules
-  module_disable(array('nexteuropa_multilingual'));
+  module_disable(array('nexteuropa_multilingual', 'ecas'));
 
   // Rebuild permissions
   // Should go into futurium groups

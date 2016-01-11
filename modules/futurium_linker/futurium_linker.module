@@ -584,7 +584,7 @@ function futurium_linker_form_node_form_alter(&$form, $form_state) {
       '#value' => $_GET['origin_nid'],
     );
     if (isset($_GET['new_title'])) {
-      $form['title']['#value'] = $_GET['new_title'];
+      $form['title']['#default_value'] = $_GET['new_title'];
     }
   }
 }

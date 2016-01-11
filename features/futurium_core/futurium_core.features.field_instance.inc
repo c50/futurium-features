@@ -38,7 +38,7 @@ function futurium_core_field_default_field_instances() {
     'widget' => array(
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 0,
@@ -73,7 +73,7 @@ function futurium_core_field_default_field_instances() {
     'widget' => array(
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 0,
@@ -108,7 +108,7 @@ function futurium_core_field_default_field_instances() {
     'widget' => array(
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 0,
@@ -398,7 +398,7 @@ function futurium_core_field_default_field_instances() {
       'weight' => -5,
     ),
   );
-
+/*
   // Exported field_instance: 'node-event_d4eu-body'
   $field_instances['node-event_d4eu-body'] = array(
     'bundle' => 'event_d4eu',
@@ -512,7 +512,7 @@ function futurium_core_field_default_field_instances() {
       'weight' => 4,
     ),
   );
-
+*/
   // Exported field_instance: 'node-event_d4eu-field_leading_picture_d4eu'
   $field_instances['node-event_d4eu-field_leading_picture_d4eu'] = array(
     'bundle' => 'event_d4eu',
@@ -641,7 +641,7 @@ function futurium_core_field_default_field_instances() {
       'weight' => 6,
     ),
   );
-
+/*
   // Exported field_instance: 'node-ideas-field_ideas'
   $field_instances['node-ideas-field_ideas'] = array(
     'bundle' => 'ideas',
@@ -716,13 +716,13 @@ function futurium_core_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 20,
       ),
       'type' => 'text_textarea',
       'weight' => 2,
     ),
   );
-
+*/
   // Exported field_instance: 'node-ideas-field_related_documents'
   $field_instances['node-ideas-field_related_documents'] = array(
     'bundle' => 'ideas',

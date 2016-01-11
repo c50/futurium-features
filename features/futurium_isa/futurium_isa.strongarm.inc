@@ -168,6 +168,13 @@ attending';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_flagging__follow_user';
+  $strongarm->value = array();
+  $export['field_bundle_settings_flagging__follow_user'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__event_d4eu';
   $strongarm->value = array(
     'view_modes' => array(
@@ -193,31 +200,31 @@ attending';
         ),
         'attending' => array(
           'teaser' => array(
-            'weight' => '54',
+            'weight' => '2',
             'visible' => TRUE,
           ),
           'node_header' => array(
-            'weight' => '8',
+            'weight' => '2',
             'visible' => TRUE,
           ),
         ),
         'addressfield_city' => array(
           'teaser' => array(
-            'weight' => '52',
+            'weight' => '1',
             'visible' => TRUE,
           ),
           'node_header' => array(
-            'weight' => '7',
+            'weight' => '1',
             'visible' => TRUE,
           ),
         ),
         'comment_count' => array(
           'teaser' => array(
-            'weight' => '51',
+            'weight' => '16',
             'visible' => FALSE,
           ),
           'node_header' => array(
-            'weight' => '51',
+            'weight' => '17',
             'visible' => FALSE,
           ),
         ),
@@ -238,6 +245,30 @@ attending';
       'node_header' => array(
         'custom_settings' => TRUE,
       ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -252,9 +283,13 @@ attending';
             'visible' => TRUE,
           ),
         ),
-        'author' => array(
+        'like' => array(
+          'default' => array(
+            'weight' => '50',
+            'visible' => TRUE,
+          ),
           'node_header' => array(
-            'weight' => '2',
+            'weight' => '50',
             'visible' => TRUE,
           ),
         ),
@@ -268,16 +303,6 @@ attending';
             'visible' => TRUE,
           ),
         ),
-        'attending_count' => array(
-          'default' => array(
-            'weight' => '50',
-            'visible' => TRUE,
-          ),
-          'node_header' => array(
-            'weight' => '50',
-            'visible' => TRUE,
-          ),
-        ),
       ),
     ),
   );
@@ -286,9 +311,77 @@ attending';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'page_manager_node_view_disabled';
-  $strongarm->value = FALSE;
-  $export['page_manager_node_view_disabled'] = $strongarm;
+  $strongarm->name = 'field_bundle_settings_user__user';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'user_header' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(
+        'account' => array(
+          'weight' => '2',
+        ),
+        'timezone' => array(
+          'weight' => '16',
+        ),
+        'picture' => array(
+          'weight' => '15',
+        ),
+        'contact' => array(
+          'weight' => '12',
+        ),
+        'locale' => array(
+          'weight' => '13',
+        ),
+        'wysiwyg' => array(
+          'weight' => '14',
+        ),
+      ),
+      'display' => array(
+        'summary' => array(
+          'default' => array(
+            'weight' => '5',
+            'visible' => TRUE,
+          ),
+          'user_header' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
+        ),
+        'follow' => array(
+          'user_header' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+        ),
+        'edit' => array(
+          'user_header' => array(
+            'weight' => '2',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_user__user'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'fivestar_tags';
+  $strongarm->value = 'vote, desirability, feasibility, impact';
+  $export['fivestar_tags'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -300,20 +393,9 @@ attending';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_document';
-  $strongarm->value = array(
-    0 => 'status',
-    1 => 'moderation',
-    2 => 'revision',
-  );
-  $export['node_options_document'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_moderation_default_state_document';
-  $strongarm->value = 'published';
-  $export['workbench_moderation_default_state_document'] = $strongarm;
+  $strongarm->name = 'page_manager_node_view_disabled';
+  $strongarm->value = FALSE;
+  $export['page_manager_node_view_disabled'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -321,6 +403,330 @@ attending';
   $strongarm->name = 'page_manager_user_view_disabled';
   $strongarm->value = FALSE;
   $export['page_manager_user_view_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rate_widgets';
+  $strongarm->value = array(
+    0 => (object) array(
+      'name' => 'rate_fivestar',
+      'tag' => 'vote',
+      'title' => 'rate_fivestar',
+      'node_types' => array(),
+      'comment_types' => array(),
+      'options' => array(
+        0 => array(
+          0 => '0',
+          1 => '1',
+        ),
+        1 => array(
+          0 => '25',
+          1 => '2',
+        ),
+        2 => array(
+          0 => '50',
+          1 => '3',
+        ),
+        3 => array(
+          0 => '75',
+          1 => '4',
+        ),
+        4 => array(
+          0 => '100',
+          1 => '5',
+        ),
+      ),
+      'template' => 'fivestar',
+      'node_display' => '2',
+      'teaser_display' => FALSE,
+      'comment_display' => '2',
+      'node_display_mode' => '1',
+      'teaser_display_mode' => '1',
+      'comment_display_mode' => '1',
+      'roles' => array(
+        2 => '2',
+        3 => 0,
+        1 => 0,
+        4 => 0,
+        5 => 0,
+      ),
+      'allow_voting_by_author' => 1,
+      'noperm_behaviour' => '1',
+      'displayed' => '1',
+      'displayed_just_voted' => '2',
+      'description' => '',
+      'description_in_compact' => TRUE,
+      'delete_vote_on_second_click' => '0',
+      'use_source_translation' => TRUE,
+      'value_type' => 'percent',
+      'theme' => 'rate_template_fivestar',
+      'css' => 'sites/all/modules/contrib/rate/templates/fivestar/fivestar.css',
+      'js' => 'sites/all/modules/contrib/rate/templates/fivestar/fivestar.js',
+      'translate' => TRUE,
+    ),
+    1 => (object) array(
+      'name' => 'rateme',
+      'tag' => 'desirability',
+      'title' => 'Desirability',
+      'node_types' => array(
+        0 => 'ideas',
+      ),
+      'comment_types' => array(),
+      'options' => array(
+        0 => array(
+          0 => '20',
+          1 => '',
+        ),
+        1 => array(
+          0 => '40',
+          1 => '',
+        ),
+        2 => array(
+          0 => '60',
+          1 => '',
+        ),
+        3 => array(
+          0 => '80',
+          1 => '',
+        ),
+        4 => array(
+          0 => '100',
+          1 => '',
+        ),
+      ),
+      'template' => 'fivestar',
+      'node_display' => '0',
+      'teaser_display' => FALSE,
+      'comment_display' => '0',
+      'node_display_mode' => '1',
+      'teaser_display_mode' => '1',
+      'comment_display_mode' => '1',
+      'roles' => array(
+        4 => 0,
+        1 => 0,
+        2 => 0,
+        5 => 0,
+        6 => 0,
+        3 => 0,
+      ),
+      'allow_voting_by_author' => 1,
+      'noperm_behaviour' => '1',
+      'displayed' => '1',
+      'displayed_just_voted' => '2',
+      'description' => '',
+      'description_in_compact' => TRUE,
+      'delete_vote_on_second_click' => '0',
+      'use_source_translation' => FALSE,
+      'value_type' => 'percent',
+      'theme' => 'rate_template_fivestar',
+      'css' => 'sites/all/modules/contrib/rate/templates/fivestar/fivestar.css',
+      'js' => 'sites/all/modules/contrib/rate/templates/fivestar/fivestar.js',
+      'translate' => TRUE,
+    ),
+    2 => (object) array(
+      'name' => 'rateme2',
+      'tag' => 'feasibility',
+      'title' => 'Feasibility',
+      'node_types' => array(
+        0 => 'future',
+      ),
+      'comment_types' => array(),
+      'options' => array(
+        0 => array(
+          0 => '0',
+          1 => '1',
+        ),
+        1 => array(
+          0 => '25',
+          1 => '2',
+        ),
+        2 => array(
+          0 => '50',
+          1 => '3',
+        ),
+        3 => array(
+          0 => '75',
+          1 => '4',
+        ),
+        4 => array(
+          0 => '100',
+          1 => '5',
+        ),
+      ),
+      'template' => 'fivestar',
+      'node_display' => '0',
+      'teaser_display' => FALSE,
+      'comment_display' => '0',
+      'node_display_mode' => '1',
+      'teaser_display_mode' => '1',
+      'comment_display_mode' => '1',
+      'roles' => array(
+        4 => 0,
+        1 => 0,
+        2 => 0,
+        5 => 0,
+        6 => 0,
+        3 => 0,
+      ),
+      'allow_voting_by_author' => 1,
+      'noperm_behaviour' => '1',
+      'displayed' => '1',
+      'displayed_just_voted' => '2',
+      'description' => '',
+      'description_in_compact' => TRUE,
+      'delete_vote_on_second_click' => '0',
+      'use_source_translation' => FALSE,
+      'value_type' => 'percent',
+      'theme' => 'rate_template_fivestar',
+      'css' => 'sites/all/modules/contrib/rate/templates/fivestar/fivestar.css',
+      'js' => 'sites/all/modules/contrib/rate/templates/fivestar/fivestar.js',
+      'translate' => TRUE,
+    ),
+    3 => (object) array(
+      'name' => 'rateme3',
+      'tag' => 'impact',
+      'title' => 'Impact',
+      'node_types' => array(
+        0 => 'ideas',
+      ),
+      'comment_types' => array(),
+      'options' => array(
+        0 => array(
+          0 => '0',
+          1 => '1',
+        ),
+        1 => array(
+          0 => '25',
+          1 => '2',
+        ),
+        2 => array(
+          0 => '50',
+          1 => '3',
+        ),
+        3 => array(
+          0 => '75',
+          1 => '4',
+        ),
+        4 => array(
+          0 => '100',
+          1 => '5',
+        ),
+      ),
+      'template' => 'fivestar',
+      'node_display' => '2',
+      'teaser_display' => FALSE,
+      'comment_display' => '2',
+      'node_display_mode' => '1',
+      'teaser_display_mode' => '1',
+      'comment_display_mode' => '1',
+      'roles' => array(
+        4 => 0,
+        1 => 0,
+        2 => 0,
+        5 => 0,
+        6 => 0,
+        3 => 0,
+      ),
+      'allow_voting_by_author' => 1,
+      'noperm_behaviour' => '1',
+      'displayed' => '1',
+      'displayed_just_voted' => '2',
+      'description' => '',
+      'description_in_compact' => TRUE,
+      'delete_vote_on_second_click' => '0',
+      'use_source_translation' => FALSE,
+      'value_type' => 'percent',
+      'theme' => 'rate_template_fivestar',
+      'css' => 'sites/all/modules/contrib/rate/templates/fivestar/fivestar.css',
+      'js' => 'sites/all/modules/contrib/rate/templates/fivestar/fivestar.js',
+      'translate' => TRUE,
+    ),
+  );
+  $export['rate_widgets'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'socialfield_services';
+  $strongarm->value = array(
+    'facebook' => array(
+      'name' => 'Facebook',
+      'icon' => 'icon-facebook',
+      'validation_pattern' => '*facebook.com/*',
+    ),
+    'twitter' => array(
+      'name' => 'Twitter',
+      'icon' => 'icon-twitter',
+      'validation_pattern' => '*twitter.com/*',
+    ),
+    'googleplus' => array(
+      'name' => 'Google+',
+      'icon' => 'icon-gplus',
+      'validation_pattern' => '*plus.google.com/*',
+    ),
+    'linkedin' => array(
+      'name' => 'LinkedIn',
+      'icon' => 'icon-linkedin',
+      'validation_pattern' => '*linkedin.com/*',
+    ),
+    'youtube' => array(
+      'name' => 'YouTube',
+      'icon' => 'icon-youtube',
+      'validation_pattern' => '*youtube.com/*',
+    ),
+    'vimeo' => array(
+      'name' => 'Vimeo',
+      'icon' => 'icon-vimeo',
+      'validation_pattern' => '*vimeo.com/*',
+    ),
+    'delicious' => array(
+      'name' => 'Delicious',
+      'icon' => 'icon-delicious',
+      'validation_pattern' => '*delicious.com/*',
+    ),
+    'digg' => array(
+      'name' => 'Digg',
+      'icon' => 'icon-digg',
+      'validation_pattern' => '*digg.com/*',
+    ),
+    'flickr' => array(
+      'name' => 'Flickr',
+      'icon' => 'icon-flickr',
+      'validation_pattern' => '*flickr.com/*',
+    ),
+    'yahoo' => array(
+      'name' => 'Yahoo!',
+      'icon' => 'icon-yahoo',
+      'validation_pattern' => '*yahoo.com/*',
+    ),
+    'myspace' => array(
+      'name' => 'Myspace',
+      'icon' => 'icon-myspace',
+      'validation_pattern' => '*myspace.com/*',
+    ),
+    'pinterest' => array(
+      'name' => 'Pinterest',
+      'icon' => 'icon-pinterest',
+      'validation_pattern' => '*pinterest.com/*',
+    ),
+    'reddit' => array(
+      'name' => 'Reddit',
+      'icon' => 'icon-reddit',
+      'validation_pattern' => '*reddit.com/*',
+    ),
+    'slideshare' => array(
+      'name' => 'Slideshare',
+      'icon' => 'icon-slideshare',
+      'validation_pattern' => '*slideshare.net/*',
+    ),
+    'stumbleupon' => array(
+      'name' => 'Stumbleupon',
+      'icon' => 'icon-stumbleupon',
+      'validation_pattern' => '*stumbleupon.com/*',
+    ),
+  );
+  $export['socialfield_services'] = $strongarm;
 
   return $export;
 }
