@@ -1,0 +1,13 @@
+name = Futurium Relations
+core = 7.x
+package = Futurium
+version = 7.x-1.0
+dependencies[] = relation
+dependencies[] = views
+dependencies[] = futurium_linker
+features[ctools][] = relation:relation_type_default:1
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[relation_type][] = related
+features[views_view][] = node_relations
+features_exclude[dependencies][ctools] = ctools

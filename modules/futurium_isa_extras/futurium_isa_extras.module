@@ -18,34 +18,30 @@ function futurium_isa_extras_enable() {
   variable_set('user_register','2');
 
   // Theme settings
-  variable_set('theme_default', 'futurium_isa_theme');
-  variable_set('admin_theme', 'seven');
   _bootstrap_default_settings();
 
-  // Page manager settings
-  variable_set('page_manager_node_view_disabled', 0);
-
+  // Add H1 tags to allowed tags
   $allowed_tags = variable_get('security_allowed_tags', "");
   if (!empty($allowed_tags)) {
     $allowed_tags .= 'h1';
     variable_set('security_allowed_tags', $allowed_tags);
   }
 
+  // Temporary, grants anonymous the right to see/edit every node.
+  $drupal_role = user_role_load_by_name('anonymous user');
+  user_role_change_permissions($drupal_role->rid, array('bypass node access' => TRUE));
+
+  // Set default user picture.
+  futurium_isa_extras_set_default_pic();
+
+  // Set fivestar tags
+  //variable_set('fivestar_tags', "vote, desirability, feasibility, impact");
+
   drupal_flush_all_caches();
 }
 
 function futurium_isa_extras_admin_paths_alter(&$paths) {
   $paths['user/*/edit'] = FALSE;
-  $paths['admin/structure/taxonomy/futurium_topics/add'] = FALSE;
-}
-
-function futurium_isa_extras_preprocess_page(&$vars) {
-  $vars['show_title'] = TRUE;
-  $item = menu_get_item();
-  $pages = array('topics','events', 'ideas');
-  if (in_array($item['path'], $pages)) {
-    $vars['show_title'] = FALSE;
-  }
 }
 
 function futurium_isa_extras_preprocess_node(&$vars) {
@@ -53,69 +49,16 @@ function futurium_isa_extras_preprocess_node(&$vars) {
   $vars['display_submitted'] = FALSE;
 }
 
-function futurium_isa_extras_menu() {
-
-  // Registration and login pages.
-  $items['account'] = array(
-    'title' => 'User account',
-    'title callback' => 'user_menu_title',
-    'page callback' => 'user_page',
-    'access callback' => TRUE,
-    'file path' => drupal_get_path('module', 'user'),
-    'file' => 'user.pages.inc',
-    'weight' => 10000,
-    'menu_name' => 'main-menu',
-  );
-  $items['account/login'] = array(
-    'title' => 'Log in',
-    'access callback' => 'user_is_anonymous',
-    'type' => MENU_DEFAULT_LOCAL_TASK,
-  );
-
-  $items['account/register'] = array(
-    'title' => 'Create new account',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('user_register_form'),
-    'access callback' => 'user_register_access',
-    'type' => MENU_LOCAL_TASK,
-  );
-
-  $items['account/password'] = array(
-    'title' => 'Request new password',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('user_pass'),
-    'access callback' => TRUE,
-    'type' => MENU_LOCAL_TASK,
-    'file path' => drupal_get_path('module', 'user'),
-    'file' => 'user.pages.inc',
-  );
-  $items['account/reset/%/%/%'] = array(
-    'title' => 'Reset password',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('user_pass_reset', 2, 3, 4),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-    'file path' => drupal_get_path('module', 'user'),
-    'file' => 'user.pages.inc',
-  );
-
-  $items['account/logout'] = array(
-    'title' => 'Log out',
-    'access callback' => 'user_is_logged_in',
-    'page callback' => 'user_logout',
-    'weight' => 10,
-    'menu_name' => 'user-menu',
-    'file path' => drupal_get_path('module', 'user'),
-    'file' => 'user.pages.inc',
-  );
-  return $items;
-}
-
 function futurium_isa_extras_menu_alter(&$items) {
   $items['search/site']['menu_name'] = 'navigation';
+  $items['user']['weight'] = 10000;
+  $items['user']['menu_name'] = 'main-menu';
+  $items['user/login']['weight'] = 10001;
+  $items['user/login']['menu_name'] = 'main-menu';
 }
 
 function _bootstrap_default_settings() {
+
   $settings = array(
     'toggle_logo' => 0,
     'toggle_name' => 1,
@@ -138,7 +81,7 @@ function _bootstrap_default_settings() {
     'bootstrap_breadcrumb_home' => 0,
     'bootstrap_breadcrumb_title' => 1,
     'bootstrap_navbar_position' => "",
-    'bootstrap_navbar_inverse' => 1,
+    'bootstrap_navbar_inverse' => 0,
     'bootstrap_region_well-navigation' => "",
     'bootstrap_region_well-header' => "",
     'bootstrap_region_well-highlighted' => "",
@@ -193,6 +136,21 @@ function _bootstrap_default_settings() {
     'bootstrap_toggle_jquery_error' => 0,
     'jquery_update_jquery_version' => "",
   );
+
+  theme_disable(array('bartik', 'ec_resp'));
+
+  $enable = array(
+    'theme_default' => 'futurium_isa_theme',
+    'admin_theme' => 'seven',
+  );
+  theme_enable($enable);
+
+  foreach ($enable as $var => $theme) {
+    if (!is_numeric($var)) {
+      variable_set($var, $theme);
+    }
+  }
+
   variable_set('theme_futurium_isa_theme_settings', $settings);
 }
 
@@ -207,6 +165,7 @@ function futurium_isa_extras_block_info() {
   );
   return $blocks;
 }
+
 
 function futurium_isa_extras_block_view($delta = '') {
   $block = array();
@@ -246,83 +205,6 @@ function futurium_isa_extras_block_view($delta = '') {
 
       $block['content'] = theme('item_list', $variables);
       break;
-
-    case 'node_authors':
-
-      $node = menu_get_object();
-      $block['content'] = "";
-      if (!empty($node)) {
-        $authors[] = $node->uid;
-        if (isset($node->field_authors[LANGUAGE_NONE]) && !empty($node->field_authors[LANGUAGE_NONE])) {
-          foreach ($node->field_authors[LANGUAGE_NONE] as $key => $value) {
-            $authors[] = $value['target_id'];
-          }
-        }
-
-        $output['names'][] = t('By') . ' ';
-        $x = 1;
-        $max = count($authors);
-
-        foreach ($authors as $key => $uid) {
-          $account = user_load($uid);
-          $name = theme('username', array('account' => $account));
-
-          $l_options = array(
-            'html' => TRUE,
-            'alt' => t('View !username profile', array('!username' => $name)),
-          );
-
-          $picture = theme(
-            'image_style', array(
-              'style_name' => 'thumbnail',
-              'path' => !empty($account->picture->uri) ? $account->picture->uri : variable_get('user_picture_default'),
-            )
-          );
-
-          $x++;
-
-          if ($max > 1) {
-            if($x > $max) {
-              $output['names'][] = ' ' . t('and') . ' ';
-            }
-          }
-
-          if ($max > 2) {
-            if($x == $max) {
-              $output['names'][] = ', ';
-            }
-          }
-
-          $output['images'][] = l($picture, 'user/' . $uid, $l_options);
-          $output['names'][] = l($name, 'user/' . $uid, $l_options);
-
-        }
-
-        $variables = array(
-          'items' => array(),
-          'title' => '',
-          'type' => 'ul',
-          'attributes' => array('class' => array('author-info', 'list-inline')),
-        );
-
-        foreach($output['images'] as $k => $v) {
-          $variables['items'][] = array(
-            'data' => $v,
-            'class' => array('authors-picture'),
-          );
-        }
-
-        foreach($output['names'] as $k => $v) {
-          $variables['items'][] = array(
-            'data' => $v,
-            'class' => array('authors-name'),
-          );
-        }
-        $block['content'] = theme('item_list', $variables);
-      }
-
-
-      break;
   }
   return $block;
 }
@@ -341,10 +223,13 @@ function futurium_isa_extras_ctools_plugin_directory($module, $plugin) {
  */
 function futurium_isa_extras_field_extra_fields() {
   foreach (array('ideas', 'event_d4eu') as $node_type) {
-    // Flaggings
+    // Flaggings (Like & Attending)
     switch($node_type) {
       case 'ideas':
         $extrafield_name = 'like';
+        break;
+      case 'event_d4eu':
+        $extrafield_name = 'attending';
         break;
     }
 
@@ -365,7 +250,30 @@ function futurium_isa_extras_field_extra_fields() {
       'weight' => 51,
     );
 
+    // City only
+    $extrafield_name = 'addressfield_city';
+    $extra['node']['event_d4eu']['display'][$extrafield_name] = array(
+      'label' => t("Addressfield City"),
+      'description' => t('Address field city only.'),
+      'weight' => 52,
+    );
+
   }
+
+  $extrafield_name = 'follow';
+  $extra['user']['user']['display'][$extrafield_name] = array(
+    'label' => t("Follow"),
+    'description' => t('Follow user.'),
+    'weight' => 51,
+  );
+
+  $extrafield_name = 'edit';
+  $extra['user']['user']['display'][$extrafield_name] = array(
+    'label' => t("Edit"),
+    'description' => t('Edit account.'),
+    'weight' => 52,
+  );
+
   return $extra;
  }
 
@@ -389,6 +297,18 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field like-count">' . $count . ' ' . $plural . '</div>');
   }
 
+  // Attending
+  $extrafield_name = 'attending';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+
+    $flag = flag_get_flag($extrafield_name);
+    $count = $flag->get_count($node->nid);
+    $label = t('Going');
+    $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field attending-count">' . $count . ' ' . $label . '</div>');
+  }
+
   // Comment count
   $extrafield_name = 'comment_count';
   if (isset($extrafields[$extrafield_name])
@@ -398,4 +318,111 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field comment-count">' . $count . ' ' . format_plural($count, t('Comment'), t('Comments')) . '</div>');
   }
 
+  // Addressfield city only
+  $extrafield_name = 'addressfield_city';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+    $location = $node->field_location[LANGUAGE_NONE][0];
+    if (!empty($location)) {
+      $city = $location['locality'];
+      $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field location-city">' . $city . '</div>');
+    }
+  }
+
 }
+
+/**
+ * Implements hook_user_view().
+ */
+function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
+
+  $extrafields = field_extra_fields_get_display('user', 'user', $view_mode);
+
+  // Follow
+  $extrafield_name = 'follow';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+
+    $flag = flag_get_flag($extrafield_name);
+    $account->content[$extrafield_name] = array('#markup' => flag_create_link('follow_user', $account->uid));
+  }
+
+  // Edit
+  $extrafield_name = 'edit';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+
+    global $user;
+    if ($user->uid == $account->uid || user_access('administer users')) {
+      $link_options = array('attributes' => array('class' => 'flag flag-action flag-link-toggle flag-processed'));
+      $account->content[$extrafield_name] = array('#markup' => l("Edit profile", 'user/' . $account->uid . '/edit', $link_options));
+    }
+  }
+
+}
+
+/**
+ * Implements hook_ds_fields_info().
+ */
+function futurium_isa_extras_ds_fields_info($entity_type) {
+  $fields = array();
+
+  $fields['comment']['author'] = array(
+    'title' => t('Author'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'function' => 'futurium_isa_extras_ds_field_author',
+  );
+
+  if (isset($fields[$entity_type])) {
+    return array($entity_type => $fields[$entity_type]);
+  }
+  return;
+}
+
+/**
+ * Render the article footnote field.
+ */
+function futurium_isa_extras_ds_field_author($field) {
+  $uid = $field['entity']->uid;
+  $account = user_load($uid);
+  $content = theme('username', array('account' => $account));
+  return $content;
+}
+
+
+function futurium_isa_extras_set_default_pic() {
+  $module_path = drupal_get_path('module', 'futurium_isa_extras');
+  $full_path = $module_path . '/default_images/user_picture.jpg';
+
+  $source = drupal_realpath($full_path);
+
+  file_unmanaged_copy($source);
+  variable_set('user_picture_default', 'public://user_picture.jpg');
+}
+
+// Modules likely to be disabled
+/*
+Bootstrap - Photo Gallery
+Dashboard
+Devel generate
+Feature Set
+JS injector
+Language selector (Page)
+Language selector (Site)
+Multisite autosave
+Multisite Create Button
+Multisite custom error
+Multisite Dynamic Base theme
+Multisite_Rules_Configuration
+NextEuropa Editorial
+NextEuropa Multilingual
+NextEuropa Pages
+NextEuropa Pages feature.
+solr_config
+TagClouds
+Testing
+Workbench Moderation View for multisite
+*/

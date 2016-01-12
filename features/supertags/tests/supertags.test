@@ -121,7 +121,7 @@ class SupertagsSectionsVocabulary extends DrupalWebTestCase {
 
     parent::setUp(array('features'));
 
-    $modules = array('supertags', 'context', 'views');
+    $modules = array('supertags', 'context', 'views', 'i18n_taxonomy');
 
     foreach ($modules as $module) {
       $success = module_enable(array($module));
@@ -144,32 +144,6 @@ class SupertagsSectionsVocabulary extends DrupalWebTestCase {
       $this->drupalCreateContentType(array('type' => 'page', 'name' => 'Basic page'));
       $this->drupalCreateContentType(array('type' => 'article', 'name' => 'Article'));
     }
-
-  }
-
-  /**
-   * Test Flavors vocabulary and fields.
-   */
-  protected function testVocabulary() {
-
-    $this->drupalGet('admin/structure/taxonomy/flavors');
-    $this->assertResponse(200, "Flavors taxonomy is available.");
-
-    $this->drupalGet('admin/structure/taxonomy/flavors/add');
-
-    $this->assertField('edit-field-flavor-active-und', 'Field "Active" exists.');
-    $this->assertField('edit-field-path-und-0-value', 'Field "Path" exists.');
-    $this->assertField('edit-field-class-und-0-value', 'Field "Class" exists.');
-    $this->assertRaw('id="field-flavor-tree-values"', 'Field "Flavor Tree" exists.');
-
-  }
-
-  /**
-   * Test the creation of a section.
-   */
-  public function testSectionCreation() {
-
-    features_revert();
 
     // Attach supertags fields to "article" content type.
     $fields = array(
@@ -202,6 +176,30 @@ class SupertagsSectionsVocabulary extends DrupalWebTestCase {
       field_create_instance($instance);
     }
 
+  }
+
+  /**
+   * Test Flavors vocabulary and fields.
+   */
+  protected function testVocabulary() {
+
+    $this->drupalGet('admin/structure/taxonomy/flavors');
+    $this->assertResponse(200, "Flavors taxonomy is available.");
+
+    $this->drupalGet('admin/structure/taxonomy/flavors/add');
+
+    $this->assertField('edit-field-flavor-active-und', 'Field "Active" exists.');
+    $this->assertField('edit-field-path-und-0-value', 'Field "Path" exists.');
+    $this->assertField('edit-field-class-und-0-value', 'Field "Class" exists.');
+    $this->assertRaw('id="field-flavor-tree-values"', 'Field "Flavor Tree" exists.');
+
+  }
+
+  /**
+   * Test the creation of a section.
+   */
+  public function testSectionCreation() {
+
     $edit = array();
     $title = $this->randomName(16);
     $edit['name'] = $title;
@@ -209,7 +207,12 @@ class SupertagsSectionsVocabulary extends DrupalWebTestCase {
     $edit["field_flavor_active[und]"] = TRUE;
     $edit["field_class[und][0][value]"] = $title;
     $edit["field_path[und][0][value]"] = $title;
+
+    // Set content type defaults.
+    $edit["rows[article][label]"] = 'Article';
+    $edit["rows[article][label_plural]"] = 'Articles';
     $edit["rows[article][path]"] = 'articles';
+    $edit["rows[article][enabled]"] = TRUE;
 
     $this->drupalPost('admin/structure/taxonomy/flavors/add', $edit, t('Save'));
     $this->assertText(t('Created new term @title.', array('@title' => $title)));
@@ -224,6 +227,62 @@ class SupertagsSectionsVocabulary extends DrupalWebTestCase {
 
     $this->drupalGet($title . '/pages');
     $this->assertResponse(404, t("Section @title/pages isn't available", array('@title' => $title)));
+
+  }
+
+  /**
+   * Test the creation of a section with overriden values.
+   */
+  public function testRandomSectionCreation() {
+
+    $edit = array();
+    $title = $this->randomName(16);
+
+    $section_title = $this->randomName(16);
+    $section_title_plural = $section_title . 's';
+    $path = $this->randomName(16);
+
+    $edit['name'] = $title;
+    $edit["description[value]"] = $this->randomName(16);
+    $edit["field_flavor_active[und]"] = TRUE;
+    $edit["field_class[und][0][value]"] = $title;
+    $edit["field_path[und][0][value]"] = $title;
+
+    // Set content type defaults.
+    $edit["rows[article][label]"] = $section_title;
+    $edit["rows[article][label_plural]"] = $section_title_plural;
+    $edit["rows[article][path]"] = $path;
+    $edit["rows[article][enabled]"] = TRUE;
+
+    $this->drupalPost('admin/structure/taxonomy/flavors/add', $edit, t('Save'));
+    $this->assertText(t('Created new term @title.', array('@title' => $title)));
+
+    $this->drupalPost('admin/config/development/performance', array(), t('Clear all caches'));
+
+    $this->drupalGet($title);
+    $this->assertText($title, 'Section ' . $title . ' exists.');
+
+    // Now we create a node and assign it to the previously created section.
+    $terms = taxonomy_get_term_by_name($title, 'flavors');
+    $term = array_shift($terms);
+
+    $this->drupalGet('node/add/article');
+
+    $edit = array();
+    $node_title = $this->randomName(16);
+    $edit['title'] = $node_title;
+    $edit["body[und][0][value]"] = $this->randomString(100);
+
+    $edit["field_default_flavour[und]"] = $term->tid;
+    $edit["field_flavor_s_[und]"] = $term->tid;
+
+    $this->drupalPost('node/add/article', $edit, t('Save'));
+
+    $this->drupalGet($title . '/' . $path);
+    $this->assertResponse(200, t("Section @title/articles' is available", array('@title' => $title)));
+
+    $this->drupalGet($title . '/articles');
+    $this->assertResponse(404, t("Section @title/articles isn't available", array('@title' => $title)));
 
   }
 
@@ -259,7 +318,7 @@ class SupertagsSectionsContent extends DrupalWebTestCase {
     $modules = array('supertags', 'context', 'views', 'i18n_taxonomy');
 
     foreach ($modules as $module) {
-      $success = module_enable(array($module));
+      $success = module_enable(array($module), TRUE);
     }
 
     $perms = module_invoke_all('permission');
@@ -287,20 +346,18 @@ class SupertagsSectionsContent extends DrupalWebTestCase {
    */
   public function testArticleCreation() {
 
-    features_revert();
-
     // Attach supertags fields to "article" content type.
     $fields = array(
       'field_default_flavour' => array(
         'label' => 'Default Flavor',
         'name' => 'field_default_flavour',
-        'widget' => 'textfield',
+        'widget' => 'select',
         'bundle' => 'article',
       ),
       'field_flavor_s_' => array(
         'label' => 'Flavor(s)',
         'name' => 'field_flavor_s_',
-        'widget' => 'textfield',
+        'widget' => 'select',
         'bundle' => 'article',
       ),
     );
@@ -328,7 +385,10 @@ class SupertagsSectionsContent extends DrupalWebTestCase {
     $edit["field_flavor_active[und]"] = TRUE;
     $edit["field_class[und][0][value]"] = $title;
     $edit["field_path[und][0][value]"] = $title;
+    $edit["rows[article][label]"] = 'Article';
+    $edit["rows[article][label_plural]"] = 'Articles';
     $edit["rows[article][path]"] = 'articles';
+    $edit["rows[article][enabled]"] = TRUE;
 
     $this->drupalPost('admin/structure/taxonomy/flavors/add', $edit, t('Save'));
     $this->assertText(t('Created new term @title.', array('@title' => $title)));

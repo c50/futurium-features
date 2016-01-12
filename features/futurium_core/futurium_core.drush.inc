@@ -115,43 +115,36 @@ function drush_futurium_core_post_install_futurium() {
 function drush_futurium_core_revert_futurium_config() {
 
   // Changing Event_d4eu content type to Event
-  /*
   $type = node_type_load('event_d4eu');
-  $type->name = "event";
-  $type->modified = TRUE;
-  node_type_save($type);
-  */
-
-  // Changing Media Gallery Content type to Photo Gallery
-  $type = node_type_load('article');
-  $type->name = "Post";
+  $type->description = "Create an event here";
   $type->modified = TRUE;
   node_type_save($type);
 
-  // Set default moderation state as published.
-  $node_types = node_type_get_types();
-  foreach($node_types as $node){
-    variable_set('workbench_moderation_default_state_' . $node->type, workbench_moderation_state_published());
-  }
+  // Changing Event_d4eu content type to Event
+  $type = node_type_load('issue');
+  $type->description = "Post an issue here";
+  $type->modified = TRUE;
+  node_type_save($type);
 
-  // Stage comment-CT-related variables.
-  $service = multisite_config_service('system');
-  $service->setVariable('comment_article', COMMENT_NODE_CLOSED);
-  $service->setVariable('comment_document', COMMENT_NODE_CLOSED);
+  // Changing Event_d4eu content type to Event
+  $type = node_type_load('video_d4eu');
+  $type->description = "Post a video here";
+  $type->modified = TRUE;
+  node_type_save($type);
 
-  // Remove Latest Content block from homepage context.
-  $context = module_invoke('context', 'load', 'homepage');
-  unset($context->reactions['block']['blocks']['views-multisite_settings_core-block_1']);
-  module_invoke('context', 'save', $context);
+  // Disable not needed multisite modules
+  module_disable(array('nexteuropa_multilingual', 'ecas'));
 
-  $links = menu_load_links('main-menu');
-  foreach($links as $item) {
-    if ($item['link_path'] == '<front>') {
-      $item['hidden'] = 1;
-      menu_link_save($item);
-      menu_cache_clear('main-menu');
-      break;
-    }
+  // Rebuild permissions
+  // Should go into futurium groups
+  node_access_rebuild();
+
+  //Temporary, Publishes unpublished library items.
+  $type = "document";
+  $nodes = node_load_multiple(array(), array('type' => $type));
+  foreach ($nodes as $node) {
+    $node->status = 1;
+    node_save($node);
   }
 
   drush_print(dt('Futurium Configuration has been applied.'));

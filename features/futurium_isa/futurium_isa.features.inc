@@ -8,9 +8,6 @@
  * Implements hook_ctools_plugin_api().
  */
 function futurium_isa_ctools_plugin_api($module = NULL, $api = NULL) {
-  if ($module == "bean_admin_ui" && $api == "bean") {
-    return array("version" => "5");
-  }
   if ($module == "boxes" && $api == "box") {
     return array("version" => "1");
   }
@@ -26,7 +23,7 @@ function futurium_isa_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "page_manager" && $api == "pages_default") {
     return array("version" => "1");
   }
-  if ($module == "pm_existing_pages" && $api == "pm_existing_pages") {
+  if ($module == "panels_mini" && $api == "panels_default") {
     return array("version" => "1");
   }
   if ($module == "strongarm" && $api == "strongarm") {
@@ -85,6 +82,39 @@ function futurium_isa_flag_default_flags() {
     ),
     'api_version' => 3,
   );
+  // Exported flag: "Follow User".
+  $flags['follow_user'] = array(
+    'entity_type' => 'user',
+    'title' => 'Follow User',
+    'global' => 0,
+    'types' => array(),
+    'flag_short' => 'Follow',
+    'flag_long' => '',
+    'flag_message' => '',
+    'unflag_short' => 'Unfollow',
+    'unflag_long' => '',
+    'unflag_message' => '',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'weight' => 0,
+    'show_in_links' => array(
+      'full' => 0,
+      'diff_standard' => 0,
+      'token' => 0,
+      'user_header' => 0,
+    ),
+    'show_as_field' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'show_contextual_link' => 0,
+    'show_on_profile' => 0,
+    'access_uid' => 'others',
+    'api_version' => 3,
+    'module' => 'futurium_isa',
+    'locked' => array(
+      0 => 'name',
+    ),
+  );
   // Exported flag: "Like".
   $flags['like'] = array(
     'entity_type' => 'node',
@@ -126,4 +156,45 @@ function futurium_isa_flag_default_flags() {
   );
   return $flags;
 
+}
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function futurium_isa_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: user_picture_normal.
+  $styles['user_picture_normal'] = array(
+    'label' => 'user_picture_normal',
+    'effects' => array(
+      2 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 170,
+          'height' => '',
+          'upscale' => 1,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: user_picture_small.
+  $styles['user_picture_small'] = array(
+    'label' => 'user_picture_small',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 70,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
 }

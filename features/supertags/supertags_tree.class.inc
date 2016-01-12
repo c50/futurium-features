@@ -5,11 +5,11 @@
  */
 
 /**
- * Class Node.
+ * Class SupertagsNode.
  *
  * Represents a node of the tree.
  */
-class Node {
+class SupertagsNode {
 
   public $parentNode = NULL;
   public $text = '';
@@ -36,10 +36,10 @@ class Node {
   /**
    * Add a child to a node.
    *
-   * @param Node $node
+   * @param SupertagsNode $node
    *   Object of class node.
    */
-  public function addChild(Node $node) {
+  public function addChild(SupertagsNode $node) {
     $this->children[] = $node;
   }
 
@@ -76,7 +76,7 @@ class Node {
     $term = taxonomy_term_load($this->tid);
 
     $children_tids = $this->findChildren();
-    $link = _replace_path_argument($link_path, $term, $children_tids);
+    $link = _supertags_tree_replace_path_argument($link_path, $term, $children_tids);
 
     $classes = $selected ? $this->depth . " selected-tree-item" : $this->depth;
 
@@ -102,7 +102,7 @@ class Node {
       $term = taxonomy_term_load($child->tid);
 
       $children_tids = $child->findChildren();
-      $link = _replace_path_argument($link_path, $term, $children_tids);
+      $link = _supertags_tree_replace_path_argument($link_path, $term, $children_tids);
 
       $markup .= '<li class="depth-' . $child->depth . '">' . $link . '</li>';
     }
@@ -117,7 +117,7 @@ class Node {
  *
  * A tree data structure. Branches are objects of type Node.
  */
-class Tree {
+class SupertagsTree {
 
   public $root = NULL;
 
@@ -155,7 +155,7 @@ class Tree {
       'parentNode' => $parent_node,
       'depth' => isset($parent_node->depth) ? $parent_node->depth + 1 : 1,
     );
-    $node = new Node($node_properties);
+    $node = new SupertagsNode($node_properties);
   }
 
   /**
@@ -168,7 +168,7 @@ class Tree {
    *   HTML markup.
    */
   public function printTree($link_path = NULL) {
-    $markup = $this->_printTree($this->root, $link_path);
+    $markup = $this->privatePrintTree($this->root, $link_path);
     return $markup;
   }
 
@@ -317,7 +317,7 @@ class Tree {
    * @return string
    *   Markup result.
    */
-  private function _printTree($node, $link_path = NULL) {
+  private function privatePrintTree($node, $link_path = NULL) {
     static $last_depth = 0;
 
     $markup = "";
@@ -327,7 +327,7 @@ class Tree {
     if ($node->depth != 0) {
       $term = taxonomy_term_load($node->tid);
 
-      $link = _replace_path_argument($link_path, $term);
+      $link = _supertags_tree_replace_path_argument($link_path, $term);
 
       if ($last_depth < $node->depth) {
         $open_tag = '<ul class="depth-' . $node->depth . '">';
@@ -340,7 +340,7 @@ class Tree {
       $last_depth = $node->depth;
     }
     foreach ($node->children as $child) {
-      $markup .= $this->_printTree($child, $link_path);
+      $markup .= $this->privatePrintTree($child, $link_path);
     }
     $markup = str_repeat("</li></ul>", $node->depth);
     return $markup;
@@ -359,7 +359,7 @@ class Tree {
  * @return string
  *   Result links.
  */
-function _replace_path_argument($link_path, $term_object) {
+function _supertags_tree_replace_path_argument($link_path, $term_object) {
   $query_components = array();
 
   $tags_desired_width = variable_get('tags_desired_width', 30);

@@ -45,7 +45,7 @@ function supertags_menu() {
   $items['home'] = array(
     'title' => "Futurium",
     'access callback' => array(TRUE),
-    'page callback' => 'supertags_flavor_page',
+    'page callback' => '_supertags_flavor_page',
     'page arguments' => array(0),
     'type' => MENU_NORMAL_ITEM,
   );
@@ -59,7 +59,7 @@ function supertags_menu() {
 
   $items['dashboard'] = array(
     'title' => 'Dashboard',
-    'page callback' => 'supertags_dashboard_main_page',
+    'page callback' => '_supertags_dashboard_main_page',
     'access callback' => '_supertags_flavor_pages_access',
     'access arguments' => array(NULL, 'dashboard-main'),
     'weight' => 1000,
@@ -74,7 +74,6 @@ function supertags_menu() {
 
       // Create a flavor context.
       _supertags_create_context($contexts, $value->name, $flavor_path);
-
       // Create a menu per flavor.
       _supertags_create_menu($value->name, $flavor_path);
 
@@ -83,7 +82,7 @@ function supertags_menu() {
         'title' => $value->name,
         'access callback' => '_supertags_flavor_pages_access',
         'access arguments' => array($value),
-        'page callback' => 'supertags_flavor_page',
+        'page callback' => '_supertags_flavor_page',
         'page arguments' => array(0),
         'type' => MENU_NORMAL_ITEM,
       );
@@ -93,7 +92,7 @@ function supertags_menu() {
         'title' => 'People',
         'access callback' => '_supertags_flavor_pages_access',
         'access arguments' => array($value, 'people'),
-        'page callback' => 'supertags_flavor_user_page',
+        'page callback' => '_supertags_flavor_user_page',
         'page arguments' => array(0),
         'menu_name' => $flavor_path . '-menu',
         'weight' => 100,
@@ -102,7 +101,7 @@ function supertags_menu() {
 
       $items[$flavor_path . '/dashboard'] = array(
         'title' => 'Manage ' . $value->name,
-        'page callback' => 'supertags_dashboard_content_page',
+        'page callback' => '_supertags_dashboard_content_page',
         'page arguments' => array($value),
         'access callback' => '_supertags_flavor_pages_access',
         'access arguments' => array($value, 'dashboard'),
@@ -112,7 +111,7 @@ function supertags_menu() {
 
       $items[$flavor_path . '/dashboard/content'] = array(
         'title' => 'Content',
-        'page callback' => 'supertags_dashboard_content_page',
+        'page callback' => '_supertags_dashboard_content_page',
         'page arguments' => array($value),
         'access callback' => '_supertags_flavor_pages_access',
         'access arguments' => array($value, 'dashboard'),
@@ -122,7 +121,7 @@ function supertags_menu() {
 
       $items[$flavor_path . '/dashboard/comments'] = array(
         'title' => 'Comments',
-        'page callback' => 'supertags_dashboard_comments_page',
+        'page callback' => '_supertags_dashboard_comments_page',
         'page arguments' => array($value),
         'access callback' => '_supertags_flavor_pages_access',
         'access arguments' => array($value, 'dashboard'),
@@ -132,7 +131,7 @@ function supertags_menu() {
 
       $items[$flavor_path . '/dashboard/people'] = array(
         'title' => 'Users',
-        'page callback' => 'supertags_dashboard_users_page',
+        'page callback' => '_supertags_dashboard_users_page',
         'page arguments' => array($value),
         'access callback' => '_supertags_flavor_pages_access',
         'access arguments' => array($value, 'dashboard'),
@@ -142,7 +141,7 @@ function supertags_menu() {
 
       $items[$flavor_path . '/dashboard/blocks'] = array(
         'title' => 'Blocks',
-        'page callback' => 'supertags_dashboard_blocks_page',
+        'page callback' => '_supertags_dashboard_blocks_page',
         'page arguments' => array($value),
         'access callback' => '_supertags_flavor_pages_access',
         'access arguments' => array($value, 'dashboard'),
@@ -152,7 +151,7 @@ function supertags_menu() {
 
       $items[$flavor_path . '/dashboard/settings'] = array(
         'title' => 'Settings',
-        'page callback' => 'supertags_dashboard_settings_page',
+        'page callback' => '_supertags_dashboard_settings_page',
         'page arguments' => array($value),
         'access callback' => '_supertags_flavor_pages_access',
         'access arguments' => array($value, 'dashboard'),
@@ -193,7 +192,7 @@ function supertags_menu() {
             'title' => $settings['label_plural'],
             'access callback' => '_supertags_flavor_pages_access',
             'access arguments' => array($value),
-            'page callback' => 'supertags_flavor_page',
+            'page callback' => '_supertags_flavor_page',
             'page arguments' => array(0, 1, 2),
             'menu_name' => $flavor_path . '-menu',
             'weight' => $settings['weight'],
@@ -211,6 +210,22 @@ function supertags_menu() {
     'access callback' => TRUE,
     'page arguments' => array(2),
     'type' => MENU_CALLBACK,
+  );
+
+  $items['admin/supertags'] = array(
+    'title' => 'Administer supertags',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file path' => drupal_get_path('module', 'system'),
+    'file' => 'system.admin.inc',
+  );
+
+  $items['admin/config/development/supertags'] = array(
+    'title' => 'Supertags settings',
+    'description' => 'Supertags settings and administration.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_supertags_administration'),
+    'access arguments' => array('administer supertags'),
   );
 
   return $items;
@@ -237,7 +252,7 @@ function supertags_admin_paths() {
 /**
  * Page callback for dashboard main page.
  */
-function supertags_dashboard_main_page() {
+function _supertags_dashboard_main_page() {
   $count = 0;
   $perms['super_admin'] = user_access('administer supertags');
 
@@ -280,7 +295,7 @@ function supertags_dashboard_main_page() {
 /**
  * Page callback for dashboard user pages.
  */
-function supertags_dashboard_users_page($flavor) {
+function _supertags_dashboard_users_page($flavor) {
   drupal_set_title($flavor->name . " users");
   $markup = "";
   $markup .= views_embed_view('flavors_people', 'block_dashboard');
@@ -290,7 +305,7 @@ function supertags_dashboard_users_page($flavor) {
 /**
  * Page callback for flavor dashboard.
  */
-function supertags_dashboard_settings_page($flavor) {
+function _supertags_dashboard_settings_page($flavor) {
   drupal_set_title($flavor->name . " settings");
   $markup = "";
   $context = _supertags_get_context();
@@ -307,7 +322,7 @@ function supertags_dashboard_settings_page($flavor) {
 /**
  * Page callback for flavor dashboard.
  */
-function supertags_dashboard_content_page($flavor) {
+function _supertags_dashboard_content_page($flavor) {
   drupal_set_title($flavor->name . " content");
 
   $flavor_path = _supertags_term_path($flavor);
@@ -320,7 +335,7 @@ function supertags_dashboard_content_page($flavor) {
 /**
  * Page callback for flavor dashboard.
  */
-function supertags_dashboard_comments_page($flavor) {
+function _supertags_dashboard_comments_page($flavor) {
   drupal_set_title($flavor->name . " comments");
 
   $markup = views_embed_view('flavors_admin_comments', 'block');
@@ -330,7 +345,7 @@ function supertags_dashboard_comments_page($flavor) {
 /**
  * Page callback for flavor dashboard.
  */
-function supertags_dashboard_blocks_page($flavor) {
+function _supertags_dashboard_blocks_page($flavor) {
   drupal_set_title($flavor->name . " blocks");
 
   $flavor_path = _supertags_term_path($flavor);
@@ -718,7 +733,7 @@ function supertags_theme($existing, $type, $theme, $path) {
     'render element' => 'page',
     'path' => $path . '/templates',
   );
-  $themes['formtable_form_table'] = array(
+  $themes['supertags_overrides_table_form_table'] = array(
     'render element' => 'form',
   );
   return $themes;
@@ -750,7 +765,7 @@ function supertags_context_plugins() {
     'handler' => array(
       'path' => drupal_get_path('module', 'supertags') . '/context',
       'file' => 'supertags_context_condition_flavor.inc',
-      'class' => 'FlavorCondition',
+      'class' => 'SupertagsFlavorCondition',
       'parent' => 'context_condition',
     ),
   );
@@ -758,7 +773,7 @@ function supertags_context_plugins() {
     'handler' => array(
       'path' => drupal_get_path('module', 'supertags') . '/context',
       'file' => 'supertags_context_condition_flavor_landing_page.inc',
-      'class' => 'FlavorLandingPageCondition',
+      'class' => 'SupertagsFlavorLandingPageCondition',
       'parent' => 'context_condition',
     ),
   );
@@ -917,6 +932,11 @@ function supertags_preprocess_page(&$variables) {
 
     if (isset($context['landing_page'])) {
       $variables['landing_page'] = $context['landing_page'];
+
+      $context = context_load("all_flavors_landing_pages");
+      if ($context) {
+        context_set('supertags', $context);
+      }
 
       if (isset($flavor)) {
         $variables['site_slogan'] = $flavor['name'];
@@ -1170,13 +1190,6 @@ function _supertags_content_types_with_field() {
   $bundles_with_field = $field_map[$flavor_field_name];
   if (isset($bundles_with_field['bundles']['node'])) {
     $content_types_with_field = $bundles_with_field['bundles']['node'];
-
-    if (is_array($content_types_with_field) && !empty($content_types_with_field)) {
-      $page = array_search('page', $content_types_with_field);
-      if ($page !== FALSE) {
-        unset($content_types_with_field[$page]);
-      }
-    }
   }
   return $content_types_with_field;
 }
@@ -1184,7 +1197,7 @@ function _supertags_content_types_with_field() {
 /**
  * Page callback for flavors.
  */
-function supertags_flavor_page() {
+function _supertags_flavor_page() {
   $markup = "";
 
   if ($flavor_term = _supertags_flavor_context()) {
@@ -1224,7 +1237,9 @@ function supertags_flavor_page() {
       }
 
       $context = context_load('all_flavors_listings');
-      context_set('context', $context->name, $context);
+      if ($context) {
+        context_set('context', $context->name, $context);
+      }
 
       $markup .= (!empty($tags))
         ? views_embed_view('flavors', $display_id, $flavor, $tags)
@@ -1246,7 +1261,7 @@ function supertags_flavor_page() {
 /**
  * People page callback.
  */
-function supertags_flavor_user_page() {
+function _supertags_flavor_user_page() {
   $markup = "";
 
   if ($flavor_term = _supertags_flavor_context()) {
@@ -1318,7 +1333,7 @@ function _supertags_ctas_block_content() {
         );
 
         $path = $context['flavor']['path'] . '/add/' . str_replace('_', '-', $context['content_type']['machine_name']);
-        $label = substr($context['content_type']['name'], 0, -1);
+        $label = drupal_substr($context['content_type']['name'], 0, -1);
 
         if (!empty($context['content_type']['overrides']['title'])) {
           $label = $context['content_type']['overrides']['title'];
@@ -1549,14 +1564,14 @@ function _supertags_autocomplete($flavor_tid, $string) {
 /**
  * Prints a tree.
  *
- * @param Tree $tree
+ * @param SupertagsTree $tree
  *    The tree object to print.
  * @param int $tid
  *    The selected tree item id.
  * @param string $link_path
  *    An override to apply the term item paths.
  */
-function _supertags_print_tree(Tree $tree, $tid = 0, $link_path = NULL) {
+function _supertags_print_tree(SupertagsTree $tree, $tid = 0, $link_path = NULL) {
   if ($tid != 0) {
     $node = $tree->findNode($tid);
     if (!empty($node)) {
@@ -1610,8 +1625,8 @@ function _supertags_build_branches(&$field_collection_items, $flavor_term_tid) {
     'parentNode' => NULL,
     'depth' => 0,
   );
-  $root = new Node($root_properties);
-  $tree = new Tree($root);
+  $root = new SupertagsNode($root_properties);
+  $tree = new SupertagsTree($root);
 
   static $branches_to_ignore = array();
 
@@ -1647,7 +1662,7 @@ function _supertags_build_branches(&$field_collection_items, $flavor_term_tid) {
  *    String in plural.
  */
 function _supertags_plural($string) {
-  if (substr($string, -1) != 's') {
+  if (drupal_substr($string, -1) != 's') {
     $string .= 's';
   }
   return $string;
@@ -1673,6 +1688,11 @@ function _supertags_get_context() {
       case 'node/%/edit':
         $obj = menu_get_object();
 
+        $context = context_load('node_pages');
+        if ($context) {
+          context_set('supertags', $context);
+        }
+
         $flavor_fields = _supertags_fields();
         $flavor_primary = $flavor_fields['flavor_primary'];
         $flavor_field = $flavor_fields['flavor'];
@@ -1689,9 +1709,9 @@ function _supertags_get_context() {
             $content_type_arg = $obj->type;
 
             $mapping = _supertags_content_type_mapping($flavor_term->tid);
-            $arg['content_type'] = $mapping[$obj->type];
 
             if (in_array($content_type_arg, $content_types)) {
+              $arg['content_type'] = $mapping[$obj->type];
               $types = node_type_get_types();
               $content_type = $types[$content_type_arg];
             }
@@ -1991,57 +2011,24 @@ function _supertags_term_class($term) {
  */
 function _supertags_content_type_mapping($flavor_tid = NULL) {
 
-  $default = array(
-    'issues' => array(
-      'label' => 'Issue',
-      'label_plural' => 'Issues',
-      'path' => 'issues',
-      'weight' => '0',
-      'enabled' => '0',
-    ),
-    'document' => array(
-      'label' => 'Idea',
-      'label_plural' => 'Ideas',
-      'path' => 'ideas',
-      'weight' => '2',
-      'enabled' => '1',
-    ),
-    'video_d4eu' => array(
-      'label' => 'Video',
-      'label_plural' => 'Videos',
-      'path' => 'videos',
-      'weight' => '3',
-      'enabled' => '1',
-    ),
-    'blog_post' => array(
-      'label' => 'Blog post',
-      'label_plural' => 'Blogs',
-      'path' => 'blogs',
-      'weight' => '4',
-      'enabled' => '1',
-    ),
-    'poll' => array(
-      'label' => 'Poll',
-      'label_plural' => 'Polls',
-      'path' => 'polls',
-      'weight' => '5',
-      'enabled' => '1',
-    ),
-    'event_d4eu' => array(
-      'label' => 'Event',
-      'label_plural' => 'Events',
-      'path' => 'events',
-      'weight' => '6',
-      'enabled' => '1',
-    ),
-    'page' => array(
-      'label' => 'Page',
-      'label_plural' => 'Pages',
-      'path' => 'pages',
-      'weight' => '7',
-      'enabled' => '0',
-    ),
-  );
+  $content_types = node_type_get_types();
+  $content_types_with_field = _supertags_content_types_with_field();
+
+  $weight = 10;
+  foreach ($content_types_with_field as $index => $content_type_machine_name) {
+    if (isset($content_types[$content_type_machine_name])) {
+      $current_content_type = $content_types[$content_type_machine_name];
+      $default[$content_type_machine_name] = array(
+        'original' => $current_content_type->name,
+        'label' => $current_content_type->name,
+        'label_plural' => $current_content_type->name,
+        'path' => $current_content_type->type,
+        'weight' => $weight,
+        'enabled' => 0,
+      );
+    }
+    $weight++;
+  }
 
   if ($flavor_tid) {
     $default_settings = unserialize(variable_get('topic_' . $flavor_tid . '_settings', ''));
@@ -2052,7 +2039,6 @@ function _supertags_content_type_mapping($flavor_tid = NULL) {
       }
     }
   }
-
   return $default;
 }
 
@@ -2225,6 +2211,16 @@ function supertags_form_node_form_alter(&$form, &$form_state) {
       $form[$fields['flavor']][LANGUAGE_NONE]['#default_value'] = array($flavor->tid);
     }
   }
+
+  if (isset($_GET['field_tags']) && is_numeric($_GET['field_tags'])) {
+    if (isset($form['field_tags'][LANGUAGE_NONE]['#default_value'])) {
+      $term = taxonomy_term_load($_GET['field_tags']);
+      if ($term !== FALSE) {
+        $form['field_tags'][LANGUAGE_NONE]['#default_value'] = array($term->name);
+      }
+    }
+  }
+
 }
 
 /**
@@ -2240,23 +2236,6 @@ function supertags_form_taxonomy_form_term_alter(&$form, &$form_state) {
 
     $form['relations']['#prefix'] = '<div style="display:none">';
     $form['relations']['#suffix'] = '</div>';
-
-    // Configure which content types should be available to sections.
-    $content_types = node_type_get_types();
-
-    // Get content types that have a field instance.
-    $field_info = field_info_field('field_futurium_topic');
-    $content_types_with_field = $field_info['bundles']['node'];
-    $content_types_with_field = _supertags_content_types_with_field();
-
-    $content_types_with_field_default_value = array();
-    foreach ($content_types_with_field as $index => $machine_name) {
-      $content_types_with_field_default_value[$machine_name] = $content_types[$machine_name]->name;
-    }
-
-    foreach ($content_types as $machine_name => $data) {
-      $content_types_options[$machine_name] = $data->name;
-    }
 
     $topic = (object) $form['#term'];
 
@@ -2282,13 +2261,14 @@ function supertags_form_taxonomy_form_term_alter(&$form, &$form_state) {
 
     $idx = 0;
 
-    foreach ($content_types_with_field_default_value as $machine_name => $name) {
-      $row_settings = $default_settings[$machine_name];
+    $content_types = node_type_get_types();
+
+    foreach ($default_settings as $machine_name => $row_settings) {
 
       $rows[$machine_name] = array(
         'title' => array(
           '#type' => 'item',
-          '#markup' => $name,
+          '#markup' => $content_types[$machine_name]->name,
         ),
         'label' => array(
           '#type' => 'textfield',
@@ -2319,11 +2299,11 @@ function supertags_form_taxonomy_form_term_alter(&$form, &$form_state) {
       );
     }
 
-    uasort($rows, '_form_compare_weights');
+    uasort($rows, '_supertags_overrides_form_compare_weights');
 
     $form['table'] = array(
       '#prefix' => '<br><label>' . t("Overrides") . '</label>',
-      '#theme' => 'formtable_form_table',
+      '#theme' => 'supertags_overrides_table_form_table',
       '#header' => $header,
       'rows' => $rows,
       '#weight' => 5,
@@ -2337,7 +2317,7 @@ function supertags_form_taxonomy_form_term_alter(&$form, &$form_state) {
 /**
  * Helper function to sort rows.
  */
-function _form_compare_weights($a, $b) {
+function _supertags_overrides_form_compare_weights($a, $b) {
   return $a['weight']['#default_value'] > $b['weight']['#default_value'];
 }
 
@@ -2504,7 +2484,7 @@ function _supertags_is_active($term) {
 /**
  * Theme callback for the form table.
  */
-function theme_formtable_form_table(&$variables) {
+function theme_supertags_overrides_table_form_table(&$variables) {
   // Get the useful values.
   $form = $variables['form'];
   $rows = $form['rows'];
@@ -2534,4 +2514,52 @@ function theme_formtable_form_table(&$variables) {
 
   // Redner the table and return.
   return drupal_render($content);
+}
+
+/**
+ * Administrative form.
+ */
+function _supertags_administration() {
+
+  $form['reset_paths'] = array(
+    '#value' => t("Reset paths"),
+    '#type' => 'submit',
+    '#name' => 'reset',
+    '#description' => t("Resets all flavor related paths. Click here if you're having problems with duplicate menu items."),
+  );
+
+  $form['#submit'] = array('supertags_administration_form_submit');
+
+  return system_settings_form($form);
+
+}
+
+/**
+ * Submit handler for administrative tasks form.
+ *
+ * @param array $form
+ *    Form.
+ * @param array $form_state
+ *    Form state.
+ */
+function supertags_administration_form_submit(array $form, array $form_state) {
+  if (isset($form_state['triggering_element']['#name']) &&
+    $form_state['triggering_element']['#name'] == 'reset') {
+
+    $vocab = taxonomy_vocabulary_machine_name_load('flavors');
+    $tree = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
+    if (!empty($tree)) {
+      foreach ($tree as $key => $value) {
+        $flavor_path = _supertags_term_path($value);
+        // Reset all generated paths.
+        db_delete('menu_router')
+          ->condition('path', db_like($flavor_path) . '%', 'LIKE')
+          ->execute();
+
+        db_delete('menu_links')
+          ->condition('link_path', db_like($flavor_path) . '%', 'LIKE')
+          ->execute();
+      }
+    }
+  }
 }
