@@ -1454,6 +1454,58 @@ function futurium_isa_default_page_manager_handlers() {
     $display->content['new-3b2b83dd-adfb-481e-b79c-9e4c7bf269cf'] = $pane;
     $display->panels['row1l'][0] = 'new-3b2b83dd-adfb-481e-b79c-9e4c7bf269cf';
     $pane = new stdClass();
+    $pane->pid = 'new-bd52807f-f997-4a4f-ba89-ec4ee86a018b';
+    $pane->panel = 'row1r';
+    $pane->type = 'rate_widget';
+    $pane->subtype = 'rate_widget';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'build_mode' => '1',
+      'widget_name' => '3',
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 1,
+      'override_title_text' => 'Impact',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'bd52807f-f997-4a4f-ba89-ec4ee86a018b';
+    $display->content['new-bd52807f-f997-4a4f-ba89-ec4ee86a018b'] = $pane;
+    $display->panels['row1r'][0] = 'new-bd52807f-f997-4a4f-ba89-ec4ee86a018b';
+    $pane = new stdClass();
+    $pane->pid = 'new-dd7c53fc-a2b9-40bf-ac1a-4617db1871cf';
+    $pane->panel = 'row1r';
+    $pane->type = 'rate_widget';
+    $pane->subtype = 'rate_widget';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'build_mode' => '1',
+      'widget_name' => '2',
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 1,
+      'override_title_text' => 'Feasibility',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'dd7c53fc-a2b9-40bf-ac1a-4617db1871cf';
+    $display->content['new-dd7c53fc-a2b9-40bf-ac1a-4617db1871cf'] = $pane;
+    $display->panels['row1r'][1] = 'new-dd7c53fc-a2b9-40bf-ac1a-4617db1871cf';
+    $pane = new stdClass();
     $pane->pid = 'new-8dc41bbb-7faa-4476-843e-5f977a854684';
     $pane->panel = 'row1r';
     $pane->type = 'block';
@@ -1471,11 +1523,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '8dc41bbb-7faa-4476-843e-5f977a854684';
     $display->content['new-8dc41bbb-7faa-4476-843e-5f977a854684'] = $pane;
-    $display->panels['row1r'][0] = 'new-8dc41bbb-7faa-4476-843e-5f977a854684';
+    $display->panels['row1r'][2] = 'new-8dc41bbb-7faa-4476-843e-5f977a854684';
     $pane = new stdClass();
     $pane->pid = 'new-064e630b-0850-4bdd-a66f-8493133ca695';
     $pane->panel = 'row2l';
@@ -1537,58 +1589,6 @@ function futurium_isa_default_page_manager_handlers() {
     $display->content['new-d8a33c89-d231-461c-a7a6-dc1a5eb3a858'] = $pane;
     $display->panels['row2l'][1] = 'new-d8a33c89-d231-461c-a7a6-dc1a5eb3a858';
     $pane = new stdClass();
-    $pane->pid = 'new-bd52807f-f997-4a4f-ba89-ec4ee86a018b';
-    $pane->panel = 'row2l';
-    $pane->type = 'rate_widget';
-    $pane->subtype = 'rate_widget';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'build_mode' => '1',
-      'widget_name' => '3',
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 1,
-      'override_title_text' => 'Impact',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = 'bd52807f-f997-4a4f-ba89-ec4ee86a018b';
-    $display->content['new-bd52807f-f997-4a4f-ba89-ec4ee86a018b'] = $pane;
-    $display->panels['row2l'][2] = 'new-bd52807f-f997-4a4f-ba89-ec4ee86a018b';
-    $pane = new stdClass();
-    $pane->pid = 'new-dd7c53fc-a2b9-40bf-ac1a-4617db1871cf';
-    $pane->panel = 'row2l';
-    $pane->type = 'rate_widget';
-    $pane->subtype = 'rate_widget';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'build_mode' => '1',
-      'widget_name' => '2',
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 1,
-      'override_title_text' => 'Feasibility',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $pane->uuid = 'dd7c53fc-a2b9-40bf-ac1a-4617db1871cf';
-    $display->content['new-dd7c53fc-a2b9-40bf-ac1a-4617db1871cf'] = $pane;
-    $display->panels['row2l'][3] = 'new-dd7c53fc-a2b9-40bf-ac1a-4617db1871cf';
-    $pane = new stdClass();
     $pane->pid = 'new-99396859-4ddf-41d8-a8ef-d0472fa507ea';
     $pane->panel = 'row2l';
     $pane->type = 'node_comments';
@@ -1609,11 +1609,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '99396859-4ddf-41d8-a8ef-d0472fa507ea';
     $display->content['new-99396859-4ddf-41d8-a8ef-d0472fa507ea'] = $pane;
-    $display->panels['row2l'][4] = 'new-99396859-4ddf-41d8-a8ef-d0472fa507ea';
+    $display->panels['row2l'][2] = 'new-99396859-4ddf-41d8-a8ef-d0472fa507ea';
     $pane = new stdClass();
     $pane->pid = 'new-187e3f2c-a257-4459-953b-ed3da549df42';
     $pane->panel = 'row2l';
@@ -1634,11 +1634,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = '187e3f2c-a257-4459-953b-ed3da549df42';
     $display->content['new-187e3f2c-a257-4459-953b-ed3da549df42'] = $pane;
-    $display->panels['row2l'][5] = 'new-187e3f2c-a257-4459-953b-ed3da549df42';
+    $display->panels['row2l'][3] = 'new-187e3f2c-a257-4459-953b-ed3da549df42';
     $pane = new stdClass();
     $pane->pid = 'new-ec388fe7-b64a-4c95-af44-7f41de49c3f0';
     $pane->panel = 'row2r';
