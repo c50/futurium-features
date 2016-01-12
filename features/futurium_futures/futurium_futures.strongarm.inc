@@ -84,7 +84,7 @@ function futurium_futures_strongarm() {
         'custom_settings' => FALSE,
       ),
       'node_header' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'print' => array(
         'custom_settings' => FALSE,
@@ -105,7 +105,38 @@ function futurium_futures_strongarm() {
           'weight' => '6',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'flag_like' => array(
+          'teaser' => array(
+            'weight' => '14',
+            'visible' => FALSE,
+          ),
+          'node_header' => array(
+            'weight' => '17',
+            'visible' => TRUE,
+          ),
+        ),
+        'like' => array(
+          'teaser' => array(
+            'weight' => '4',
+            'visible' => TRUE,
+          ),
+          'node_header' => array(
+            'weight' => '1',
+            'visible' => TRUE,
+          ),
+        ),
+        'comment_count' => array(
+          'teaser' => array(
+            'weight' => '5',
+            'visible' => TRUE,
+          ),
+          'node_header' => array(
+            'weight' => '2',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__future'] = $strongarm;

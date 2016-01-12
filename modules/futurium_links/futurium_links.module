@@ -1,0 +1,351 @@
+<?php
+/**
+ * @file
+ * Hic sunt dracones.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function futurium_links_permission() {
+  $perms['administer futurium_links'] = array(
+    'title' => t('Administer Linker'),
+    'description' => t('Perform administration tasks for Futurium Links.'),
+  );
+  $perms['use futurium_links'] = array(
+    'title' => t('Use Futurium Links'),
+    'description' => t('Use Futurium Links to connect nodes.'),
+  );
+  return $perms;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function futurium_links_menu() {
+  $items['node/futurium_links/autocomplete'] = array(
+    'page callback' => '_futurium_links_node_autocomplete',
+    'page arguments' => array(3, 4),
+    'access arguments' => array('use futurium_links'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function futurium_links_block_info() {
+  $relations = relation_list_types();
+  foreach ($relations as $k => $v) {
+    $relation_name = preg_replace("/\([^)]+\)/", "", $v);
+
+    $blocks['relation_add_' . $k] = array(
+      'info' => t('Add @relation_name relation', array(
+        '@relation_name' => $relation_name,
+      )),
+      'cache' => DRUPAL_NO_CACHE,
+    );
+  }
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function futurium_links_block_view($delta = '') {
+  $block = array();
+
+  $node = menu_get_object();
+
+  if (!empty($node)) {
+    if (substr($delta, 0, 13) == 'relation_add_') {
+      $relation_type = str_replace('relation_add_', '', $delta);
+
+      $relation = relation_type_load($relation_type);
+
+      $bundles = array();
+      $source_bundles = $relation->source_bundles;
+      $target_bundles = $relation->target_bundles;
+      $current_bundle = 'node:' . $node->type;
+
+      if ($relation->directional) {
+        if (in_array($current_bundle, $source_bundles, TRUE)) {
+          // Current is source for this relation, use target bundles.
+          $bundles = $target_bundles;
+          $direction = 0;
+        }
+
+        if (in_array($current_bundle, $target_bundles, TRUE)) {
+          // Current is target for this relation, use source bundles.
+          $direction = 1;
+          $bundles = $source_bundles;
+        }
+      }
+      else {
+        // The relation is not directional, in that case use sources as well.
+        $bundles = $source_bundles;
+        $direction = 0;
+      }
+
+      if (!empty($bundles)) {
+
+        foreach ($bundles as $k => $value) {
+          $bundles[$k] = str_replace('node:', '', $value);
+        }
+
+        $form = drupal_get_form('futurium_links_form', $relation, $bundles);
+        $block['subject'] = relation_get_type_label($relation, $direction);
+        $block['content'] = drupal_render($form);
+
+      }
+    }
+  }
+  return $block;
+}
+
+/**
+ * Form to create relations.
+ */
+function futurium_links_form($form, $form_state, $relation, $bundles) {
+  $node = menu_get_object();
+
+  if (!isset($node->nid) && isset($form_state['input']['origin'])) {
+    $node = node_load($form_state['input']['origin']);
+  }
+
+  $bundles_param = implode('+', $bundles);
+  $wrapper_id = $relation->relation_type;
+
+  $form['#prefix'] = '<div id="relation-' . $wrapper_id . '">';
+  $form['#suffix'] = '</div>';
+
+  $form['origin'] = array(
+    '#type' => 'hidden',
+    '#value' => $node->nid,
+  );
+
+  $form['search'] = array(
+    '#type' => 'textfield',
+    '#autocomplete_path' => 'node/futurium_links/autocomplete/' . $bundles_param,
+    '#attributes' => array(
+      'placeholder' => t('Search for content to link'),
+    ),
+    '#ajax' => array(
+      'event' => 'autocompleteHidden',
+      'callback' => "_futurium_links_results",
+    ),
+    '#maxlength' => 255,
+  );
+
+  $form['relation_name'] = array(
+    '#type' => 'hidden',
+    '#value' => $relation->relation_type,
+  );
+
+  $form['node_preview'] = array(
+    '#markup' => '<div class="node-preview"></div>',
+  );
+
+  $form['#attached'] = array(
+    'js' => array(
+      drupal_get_path('module', 'futurium_links') . '/futurium_links.js' => array(
+        'type' => 'file',
+        'scope' => 'footer',
+        'weight' => 100,
+      ),
+    ),
+    'css' => array(
+      drupal_get_path('module', 'futurium_links') . '/futurium_links.css',
+    ),
+  );
+
+  $form['feedback'] = array(
+    '#markup' => '<div class="feedback"></div>',
+  );
+
+  $form['link'] = array(
+    '#value' => "Link",
+    '#type' => 'button',
+    '#ajax' => array(
+      'callback' => '_futurium_links_link',
+    ),
+    '#prefix' => '<span class="button-wrap" style="display:none">',
+    '#suffix' => '</span>',
+  );
+  return $form;
+}
+
+
+/**
+ * Callback for autocomplete box.
+ */
+function _futurium_links_node_autocomplete($bundles, $string) {
+
+  $matches = array();
+  if ($string && !empty($bundles)) {
+
+    $bundles = explode('+', $bundles);
+
+    $query = db_select('node', 'n');
+
+    $query
+      ->fields('n', array('title', 'nid'))
+      ->condition('n.title', '%' . db_like($string) . '%', 'LIKE')
+      ->condition('n.type', $bundles, 'IN')
+      ->range(0, 10);
+
+    $result = $query->execute();
+
+    while ($node = $result->fetchAssoc()) {
+      $n = node_load($node['nid']);
+      $classes = array('autocomplete-suggestion');
+      $label = '<span';
+      if (isset($n->workbench_moderation['current']->state)) {
+        $classes[] = $n->workbench_moderation['current']->state;
+      }
+      $classes[] = 'node-type-' . $n->type;
+      $label .= ' class="' . implode($classes, ' ') . '">';
+      $label .= check_plain($node['title']);
+      $label .= '</span>';
+
+      $matches[$node['title'] . " [" . $node['nid'] . "]"] = $label;
+    }
+
+  }
+  drupal_json_output($matches);
+}
+
+/**
+ * Ajax callback.
+ */
+function _futurium_links_results($form, $form_state) {
+  // Check for a valid result.
+  $trigger = $form_state['triggering_element'];
+  $result = _futurium_links_parse_result($trigger['#value']);
+
+  if ($result !== FALSE) {
+    $n = node_load($result);
+    $relation_type = $form_state['values']['relation_name'];
+    $wrapper = '#relation-' . $relation_type;
+    $markup = node_view($n, 'teaser');
+    $commands[] = ajax_command_replace($wrapper . ' .node-preview', '<div class="node-preview">' . drupal_render($markup) . '</div>');
+    $commands[] = ajax_command_invoke($wrapper . ' .button-wrap', 'show');
+  }
+  return array('#type' => 'ajax', '#commands' => $commands);
+}
+
+
+/**
+ * Helper function to extract selected node from autocomplete field.
+ */
+function _futurium_links_parse_result($value) {
+  $result = preg_match('/\[([0-9]+)\]$/', $value, $matches);
+  if ($result > 0) {
+    $result = $matches[0];
+    $result = str_replace('[', '', $result);
+    $result = str_replace(']', '', $result);
+    return $result;
+  }
+  return FALSE;
+}
+
+/**
+ * Callback to create the link.
+ */
+function _futurium_links_link($form, $form_state) {
+
+  $origin_nid = $form_state['input']['origin'];
+  $target_nid = _futurium_links_parse_result($form_state['input']['search']);
+  $relation  = $form_state['input']['relation_name'];
+
+  $message = _futurium_links_link_nodes($origin_nid, $target_nid, $relation);
+
+  drupal_set_message($message['message'], $message['type']);
+
+  $wrapper_id = '#relation-' . $relation;
+
+  $commands[] = ajax_command_replace($wrapper_id . ' .feedback', '<div class="feedback"><div class="temporary-messages">' . theme_status_messages(array()) . '</div></div>');
+  $commands[] = ajax_command_remove($wrapper_id . ' .node-preview > div');
+  $commands[] = ajax_command_invoke($wrapper_id . ' .button-wrap', 'hide');
+  $commands[] = array('command' => 'fadeMessages');
+
+  return array('#type' => 'ajax', '#commands' => $commands);
+}
+
+/**
+ * Helper function to create the relation.
+ */
+function _futurium_links_link_nodes($nid1, $nid2, $relation_type) {
+  if ($nid1 == $nid2) {
+    return array(
+      'message' => t('Creating relation failed. Cannot link entity with itself.'),
+      'type' => 'error',
+      'fade' => TRUE,
+    );
+  }
+  $origin_nid = $nid1;
+  $target_nid = $nid2;
+
+  $o_n = node_load($origin_nid);
+  $t_n = node_load($target_nid);
+
+  $relation = relation_type_load($relation_type);
+
+  $reverse = FALSE;
+  // Directional relation.
+  if ($relation->directional) {
+    if (in_array('node:' . $o_n->type, $relation->target_bundles)) {
+      $reverse = TRUE;
+    }
+  }
+
+  $endpoints = array(
+    array('entity_type' => 'node', 'entity_id' => $o_n->nid),
+    array('entity_type' => 'node', 'entity_id' => $t_n->nid),
+  );
+
+  if ($reverse) {
+    $endpoints = array_reverse($endpoints);
+  }
+
+  $results = relation_relation_exists($endpoints, $relation_type);
+
+  if (empty($results)) {
+    $new_relation = relation_create($relation_type, $endpoints);
+    $rid = relation_save($new_relation);
+
+    $relation_label = $reverse ? $relation->reverse_label : $relation->label;
+
+    if ($rid) {
+      $vars = array(
+        '@origin_node' => $o_n->title,
+        '@origin_type' => $o_n->type,
+        '@target_node' => $t_n->title,
+        '@target_type' => $o_n->type,
+        '@relation_label' => strtolower($relation_label),
+      );
+
+      $message = t('Relation created: @origin_node is <em>@relation_label</em> @target_node', $vars);
+      $message_type = 'status';
+      $fade = TRUE;
+    }
+    else {
+      $message = t('Creating relationship failed.');
+      $message_type = 'error';
+      $fade = FALSE;
+    }
+  }
+  else {
+    $existing = array_shift($results);
+    $message = t('Relationship already exists.');
+    $message_type = 'warning';
+    $fade = TRUE;
+  }
+
+  return array(
+    'message' => $message,
+    'type' => $message_type,
+    'fade' => $fade,
+  );
+}
