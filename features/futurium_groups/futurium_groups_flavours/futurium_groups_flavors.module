@@ -7,17 +7,38 @@
 function futurium_groups_flavors_preprocess_html(&$variables) {
   $context = context_get("futurium_groups");
   if (isset($context['active_group'])) {
+
     $node = $context['active_group'];
 
     $body_class = _futurium_groups_get_group_body_css_class($node);
     $variables['classes_array'][] = 'page-' . $body_class;
-    $variables['classes_array'][] = 'flavor-' . $body_class;
+    $variables['classes_array'][] = 'flavour-' . $body_class;
+
+    if ($context['page_type'] == 'homepage') {
+      $variables['classes_array'][] = 'flavour-landing-page';
+      $variables['classes_array'][] = 'front';
+    }
   }
 }
 
+function futurium_groups_flavors_process_page(&$variables) {
+  $item = menu_get_item();
+  if ($item['path'] == 'node/%') {
+    global $theme;
+    if ($theme == 'd4eu') {
+      $variables['theme_hook_suggestions'][] = 'page__normal_page';
+      $context = context_get("futurium_groups");
+      if (isset($context['active_group'])) {
+        if ($context['page_type'] == 'homepage') {
+          $variables['landing_page'] = TRUE;
+          $variables['theme_hook_suggestions'][] = 'page__landing_page';
+        }
+      }
+    }
+  }
+}
 
 function _futurium_groups_get_group_body_css_class($node) {
-  dsm($node);
   if (isset($node->field_futurium_group_css_class[LANGUAGE_NONE][0]['value'])) {
     return $node->field_futurium_group_css_class[LANGUAGE_NONE][0]['value'];
   }
@@ -26,16 +47,18 @@ function _futurium_groups_get_group_body_css_class($node) {
 /**
  * Implements hook_node_insert().
  */
+/*
 function futurium_groups_node_insert($node) {
   if ($node->type === 'futurium_group') {
     _futurium_groups_create_menu($node);
     _futurium_groups_create_context($node);
   }
 }
-
+*/
 /**
  * Implements hook_node_insert().
  */
+/*
 function futurium_groups_node_delete($node) {
   if ($node->type === 'futurium_group') {
     $menu = menu_load("group_menu_" . $node->nid);
@@ -45,7 +68,7 @@ function futurium_groups_node_delete($node) {
     context_delete($context);
   }
 }
-
+*/
 /**
  * Helper function to create a menu per group.
  */
@@ -309,3 +332,49 @@ function mymodule_hide_new_extra_field($entity_type, $bundle, $field_name) {
   }
 }
 */
+
+
+function _futurium_groups_flavors_migrate_content() {
+  $field = field_info_field('field_default_flavour');
+
+  $vocab = taxonomy_vocabulary_machine_name_load('flavors');
+  $tree = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
+  set_time_limit(0);
+  global $user;
+  if (!empty($tree)) {
+    foreach ($tree as $key => $term) {
+      $node = new stdClass();
+      $node->title = $term->name;
+      $node->type = "futurium_group";
+      node_object_prepare($node);
+      $node->language = LANGUAGE_NONE;
+      $node->uid = $user->uid;
+      $node->status = 1;
+      $node->promote = 0;
+      $node->comment = 0;
+
+      $node->field_group_description[LANGUAGE_NONE][0]['value'] = $term->description;
+      $node->field_futurium_group_path[LANGUAGE_NONE][0]['value'] = $term->field_path[LANGUAGE_NONE][0]['value'];
+      $node->field_futurium_group_css_class[LANGUAGE_NONE][0]['value'] = $term->field_class[LANGUAGE_NONE][0]['value'];
+
+      $node = node_submit($node);
+      node_save($node);
+
+      $created_nid = $node->nid;
+
+      $res = db_query("SELECT * FROM {field_data_field_default_flavour} WHERE field_default_flavour_tid = :tid", array(':tid' => $term->tid))->fetchAll();
+
+      foreach ($res as $record) {
+        $entity_type = $record->entity_type;
+        $entity_id = $record->entity_id;
+        $bundle = $record->bundle;
+        $entity = call_user_func($entity_type . '_load', $entity_id);
+        $entity->og_group_ref[LANGUAGE_NONE][0] = array(
+          'target_id' => $created_nid,
+        );
+        field_attach_presave($entity_type, $entity);
+        field_attach_update($entity_type, $entity);
+      }
+    }
+  }
+}

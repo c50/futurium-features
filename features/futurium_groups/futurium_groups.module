@@ -20,43 +20,10 @@ function futurium_groups_administration() {
     '#description' => "Enables rewrite of the group paths.",
   );
 
-  $form['#submit'] = array('futurium_groups_administration_form_submit');
-
   return system_settings_form($form);
 
 }
 
-/**
- * Submit handler for administrative tasks form.
- *
- * @param array $form
- *    Form.
- * @param array $form_state
- *    Form state.
- */
-function futurium_groups_administration_form_submit(array $form, array $form_state) {
-  /*
-  if (isset($form_state['triggering_element']['#name']) &&
-    $form_state['triggering_element']['#name'] == 'reset') {
-
-    $vocab = taxonomy_vocabulary_machine_name_load('flavors');
-    $tree = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
-    if (!empty($tree)) {
-      foreach ($tree as $key => $value) {
-        $flavor_path = _supertags_term_path($value);
-        // Reset all generated paths.
-        db_delete('menu_router')
-          ->condition('path', db_like($flavor_path) . '%', 'LIKE')
-          ->execute();
-
-        db_delete('menu_links')
-          ->condition('link_path', db_like($flavor_path) . '%', 'LIKE')
-          ->execute();
-      }
-    }
-  }
-  */
-}
 
 function futurium_groups_menu() {
 
@@ -80,7 +47,7 @@ function futurium_groups_init() {
   $node = menu_get_object();
   if ($node) {
     // Group homepage.
-    if ($node->type == 'futurium_group') {
+    if ($node->type == 'futurium_group' && $item['path'] == 'node/%') {
       $variables['active_group'] = $node;
       $variables['page_type'] = 'homepage';
       $variables['page_context'] = $item;
@@ -120,26 +87,9 @@ function futurium_groups_init() {
   context_set("futurium_groups", $variables);
 }
 
-/*
-function futurium_groups_preprocess_html(&$variables) {
-  $context = context_get("futurium_groups");
-  if (isset($context['active_group'])) {
-    $node = $context['active_group'];
-
-    $body_class = _futurium_groups_get_group_body_css_class($node);
-    $variables['classes_array'][] = 'page-' . $body_class;
-    $variables['classes_array'][] = 'flavor-' . $body_class;
-  }
-}
-
-
-function _futurium_groups_get_group_body_css_class($node) {
-  if (isset($node->field_css_class[LANGUAGE_NONE][0]['value'])) {
-    return $node->field_css_class[LANGUAGE_NONE][0]['value'];
-  }
-}
-*/
-
+/**
+ * URL rewrites.
+ */
 function futurium_groups_url_outbound_alter(&$path, &$options, $original_path) {
   $rewrite_enabled = variable_get('futurium_groups_rewrite_group_urls', FALSE);
   if ($rewrite_enabled) {
@@ -190,7 +140,7 @@ function futurium_groups_url_inbound_alter(&$path, $original_path, $path_languag
 
       $query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'futurium_group')
-        ->fieldCondition('field_group_path', 'value', $arg1, '=')
+        ->fieldCondition('field_futurium_group_path', 'value', $arg1, '=')
         ->range(0, 1)
         ->addMetaData('account', user_load(1));
 

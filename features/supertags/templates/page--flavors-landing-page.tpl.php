@@ -11,7 +11,7 @@
     <div class="container">
       <?php echo $regions['header_top']; ?>
       <div class="headerBannerContainer">
-        <div id="main-logo"><img id="banner-flag" src="<?php echo $logo; ?>" alt="European Commission logo"></div>
+        <div id="main-logo"><img id="banner-flag" src="<?php echo $logo; ?>" alt="<?php echo t("European Commission logo"); ?>"></div>
         <div id="main-title"><span><?php echo $site_name; ?></span></div>
         <div id="sub-title"><span><?php echo $site_slogan; ?></span></div>
       </div>
