@@ -108,71 +108,76 @@ function futurium_links_block_view($delta = '') {
  * Form to create relations.
  */
 function futurium_links_form($form, $form_state, $relation, $bundles) {
-  $node = menu_get_object();
 
-  if (!isset($node->nid) && isset($form_state['input']['origin'])) {
-    $node = node_load($form_state['input']['origin']);
-  }
+  if (user_access('use futurium_links')) {
 
-  $bundles_param = implode('+', $bundles);
-  $wrapper_id = $relation->relation_type;
+    $node = menu_get_object();
 
-  $form['#prefix'] = '<div id="relation-' . $wrapper_id . '">';
-  $form['#suffix'] = '</div>';
+    if (!isset($node->nid) && isset($form_state['input']['origin'])) {
+      $node = node_load($form_state['input']['origin']);
+    }
 
-  $form['origin'] = array(
-    '#type' => 'hidden',
-    '#value' => $node->nid,
-  );
+    $bundles_param = implode('+', $bundles);
+    $wrapper_id = $relation->relation_type;
 
-  $form['search'] = array(
-    '#type' => 'textfield',
-    '#autocomplete_path' => 'node/futurium_links/autocomplete/' . $bundles_param,
-    '#attributes' => array(
-      'placeholder' => t('Search for content to link'),
-    ),
-    '#ajax' => array(
-      'event' => 'autocompleteHidden',
-      'callback' => "_futurium_links_results",
-    ),
-    '#maxlength' => 255,
-  );
+    $form['#prefix'] = '<div id="relation-' . $wrapper_id . '">';
+    $form['#suffix'] = '</div>';
 
-  $form['relation_name'] = array(
-    '#type' => 'hidden',
-    '#value' => $relation->relation_type,
-  );
+    $form['origin'] = array(
+      '#type' => 'hidden',
+      '#value' => $node->nid,
+    );
 
-  $form['node_preview'] = array(
-    '#markup' => '<div class="node-preview"></div>',
-  );
-
-  $form['#attached'] = array(
-    'js' => array(
-      drupal_get_path('module', 'futurium_links') . '/futurium_links.js' => array(
-        'type' => 'file',
-        'scope' => 'footer',
-        'weight' => 100,
+    $form['search'] = array(
+      '#type' => 'textfield',
+      '#autocomplete_path' => 'node/futurium_links/autocomplete/' . $bundles_param,
+      '#attributes' => array(
+        'placeholder' => t('Search for content to link'),
       ),
-    ),
-    'css' => array(
-      drupal_get_path('module', 'futurium_links') . '/futurium_links.css',
-    ),
-  );
+      '#ajax' => array(
+        'event' => 'autocompleteHidden',
+        'callback' => "_futurium_links_results",
+      ),
+      '#maxlength' => 255,
+    );
 
-  $form['feedback'] = array(
-    '#markup' => '<div class="feedback"></div>',
-  );
+    $form['relation_name'] = array(
+      '#type' => 'hidden',
+      '#value' => $relation->relation_type,
+    );
 
-  $form['link'] = array(
-    '#value' => "Link",
-    '#type' => 'button',
-    '#ajax' => array(
-      'callback' => '_futurium_links_link',
-    ),
-    '#prefix' => '<span class="button-wrap" style="display:none">',
-    '#suffix' => '</span>',
-  );
+    $form['node_preview'] = array(
+      '#markup' => '<div class="node-preview"></div>',
+    );
+
+    $form['#attached'] = array(
+      'js' => array(
+        drupal_get_path('module', 'futurium_links') . '/futurium_links.js' => array(
+          'type' => 'file',
+          'scope' => 'footer',
+          'weight' => 100,
+        ),
+      ),
+      'css' => array(
+        drupal_get_path('module', 'futurium_links') . '/futurium_links.css',
+      ),
+    );
+
+    $form['feedback'] = array(
+      '#markup' => '<div class="feedback"></div>',
+    );
+
+    $form['link'] = array(
+      '#value' => "Link",
+      '#type' => 'button',
+      '#ajax' => array(
+        'callback' => '_futurium_links_link',
+      ),
+      '#prefix' => '<span class="button-wrap" style="display:none">',
+      '#suffix' => '</span>',
+    );
+
+  }
   return $form;
 }
 
