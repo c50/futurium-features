@@ -2,7 +2,7 @@
   "name": "ec-europa/futurium-features",
   "description": "Futurium features, modules and themes",
   "type": "library",
-  "license": "proprietary",
+  "license": "GPL v2",
   "homepage": "https://github.com/ec-europa/futurium-features",
   "authors": [
     {
