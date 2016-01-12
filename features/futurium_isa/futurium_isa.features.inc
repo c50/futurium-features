@@ -109,11 +109,11 @@ function futurium_isa_flag_default_flags() {
     'show_contextual_link' => 0,
     'show_on_profile' => 0,
     'access_uid' => 'others',
+    'api_version' => 3,
     'module' => 'futurium_isa',
     'locked' => array(
       0 => 'name',
     ),
-    'api_version' => 3,
   );
   // Exported flag: "Like".
   $flags['like'] = array(
@@ -121,8 +121,8 @@ function futurium_isa_flag_default_flags() {
     'title' => 'Like',
     'global' => 0,
     'types' => array(
-      0 => 'future',
-      1 => 'ideas',
+      0 => 'ideas',
+      1 => 'future',
     ),
     'flag_short' => 'Like',
     'flag_long' => '',
@@ -140,7 +140,6 @@ function futurium_isa_flag_default_flags() {
       'search_index' => 0,
       'search_result' => 0,
       'diff_standard' => 0,
-      'node_header' => 0,
       'print' => 0,
       'token' => 0,
       'revision' => 0,
@@ -192,6 +191,22 @@ function futurium_isa_image_default_styles() {
           'width' => 70,
           'height' => '',
           'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: carousel_full.
+  $styles['carousel_full'] = array(
+    'label' => 'carousel_full',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1200,
+          'height' => 350,
+          'upscale' => 1,
         ),
         'weight' => 1,
       ),

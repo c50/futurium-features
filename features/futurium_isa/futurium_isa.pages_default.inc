@@ -2797,21 +2797,21 @@ function futurium_isa_default_page_manager_pages() {
     $pane->panel = 'row1l';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => 'Banner Image',
       'title' => '',
       'body' => '<div class="slide-image-wrapper">
-          <img src="http://www.opentaxconsultancy.co.uk/img/banner.jpg">
+            <img src="http://www.opentaxconsultancy.co.uk/img/banner.jpg">
 
-          <div class="shadow-content">
-            <h1>Some random idea</h1>
-            <div class="more-link"><a href="#">Learn more</a></div>
-          </div>
-          <div class="shadow">
-          </div>
-        </div>',
+            <div class="shadow-content">
+              <h1>Some random idea</h1>
+              <div class="more-link"><a href="#">Learn more</a></div>
+            </div>
+            <div class="shadow">
+            </div>
+          </div>',
       'format' => 'nowysiwig',
       'substitute' => TRUE,
     );
@@ -2826,6 +2826,41 @@ function futurium_isa_default_page_manager_pages() {
     $pane->uuid = 'd1c09831-147b-4e02-8691-2ee50dcabd60';
     $display->content['new-d1c09831-147b-4e02-8691-2ee50dcabd60'] = $pane;
     $display->panels['row1l'][0] = 'new-d1c09831-147b-4e02-8691-2ee50dcabd60';
+    $pane = new stdClass();
+    $pane->pid = 'new-7f2447a0-9a1e-4d5c-b20f-43f0f8da7f78';
+    $pane->panel = 'row1l';
+    $pane->type = 'views';
+    $pane->subtype = 'carousel';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '5',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block',
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '7f2447a0-9a1e-4d5c-b20f-43f0f8da7f78';
+    $display->content['new-7f2447a0-9a1e-4d5c-b20f-43f0f8da7f78'] = $pane;
+    $display->panels['row1l'][1] = 'new-7f2447a0-9a1e-4d5c-b20f-43f0f8da7f78';
     $pane = new stdClass();
     $pane->pid = 'new-b7f8fe00-3b1f-443b-b634-c432fd0b6319';
     $pane->panel = 'row2c';
