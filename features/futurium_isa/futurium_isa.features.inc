@@ -204,11 +204,19 @@ function futurium_isa_image_default_styles() {
       1 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 1200,
-          'height' => 350,
-          'upscale' => 1,
+          'width' => 1160,
+          'height' => '',
+          'upscale' => 0,
         ),
         'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1160,
+          'height' => 350,
+        ),
+        'weight' => 2,
       ),
     ),
   );
