@@ -47,10 +47,13 @@ function futurium_linkafter_block_info() {
  * Implements hook_block_view().
  */
 function futurium_linkafter_block_view($delta = '') {
+  $block = array();
   switch ($delta) {
     case 'relation_link_add':
-      $form = drupal_get_form('futurium_linkafter_form');
-      $block['content'] = drupal_render($form);
+      if (user_access('use futurium_linkafter')) {
+        $form = drupal_get_form('futurium_linkafter_form');
+        $block['content'] = drupal_render($form);
+      }
       break;
   }
 
