@@ -95,12 +95,12 @@
       </button>
     </div>
 
-        <div class="lang-drop pull-right">
-          <?php
-            $block = module_invoke('lang_dropdown', 'block_view', 'language');
-            print render($block['content']);
-          ?>
-        </div>
+    <div class="lang-drop pull-right">
+      <?php
+        $block = module_invoke('lang_dropdown', 'block_view', 'language');
+        print render($block['content']);
+      ?>
+    </div>
 
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
       <div class="navbar-collapse collapse">
@@ -143,7 +143,6 @@
       if (
         !empty($page['highlighted']) ||
         !empty($breadcrumb) ||
-        (!empty($title) && $show_title) ||
         !empty($messages) ||
         !empty($tabs['#primary']) ||
         !empty($page['help']) ||
@@ -158,11 +157,6 @@
           <?php endif; ?>
           <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
           <a id="main-content"></a>
-          <?php if (!empty($title) && $show_title): ?>
-            <?php print render($title_prefix); ?>
-            <h1 class="page-header"><?php print $title; ?></h1>
-            <?php print render($title_suffix); ?>
-          <?php endif; ?>
           <?php print $messages; ?>
           <?php if (!empty($tabs)): ?>
             <?php print render($tabs); ?>
@@ -182,6 +176,13 @@
     <?php if ($content_wrapper): ?>
       <div class="container">
     <?php endif; ?>
+
+    <?php if (!empty($title) && $show_title):?>
+    <?php print render($title_prefix); ?>
+      <h1 class="page-header"><?php print $title; ?></h1>
+        <?php print render($title_suffix); ?>
+    <?php endif; ?>
+
     <?php print render($page['content']); ?>
     <?php if ($content_wrapper): ?>
         </div>

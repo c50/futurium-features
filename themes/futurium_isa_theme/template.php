@@ -14,11 +14,7 @@ function futurium_isa_theme_preprocess_region(&$variables) {
   $variables['wrapper_classes'] = implode(' ', $wrapper_classes_array);
 }
 
-/**
- * Implements hook_preprocess_page().
- */
 function futurium_isa_theme_preprocess_page(&$variables) {
-
   unset($variables['navbar_classes_array'][1]);
   $variables['navbar_classes_array'][] = 'container-fullwidth';
 
@@ -45,10 +41,12 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     'page_manager_user_edit_page',
     'page_manager_node_add',
     'entity_translation_edit_page',
+    'page_manager_term_view_page',
   );
-  $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks);
+  $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks, TRUE);
 
-  $variables['show_title'] = !in_array($item['page_callback'], $panels_callbacks);
+  $variables['show_title'] = !in_array($item['page_callback'], $panels_callbacks, TRUE);
+
 }
 
 /**
