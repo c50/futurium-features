@@ -41,6 +41,7 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     'page_manager_user_edit_page',
     'page_manager_node_add',
     'entity_translation_edit_page',
+    'page_manager_term_view_page',
   );
   $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks, TRUE);
 
