@@ -8,6 +8,7 @@ dependencies[] = addressfield
 dependencies[] = bootstrap_panels_horizontal_tabs
 dependencies[] = boxes
 dependencies[] = computed_field
+dependencies[] = ctools_view_access
 dependencies[] = ds_extras
 dependencies[] = ds_format
 dependencies[] = field_group

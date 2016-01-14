@@ -600,7 +600,7 @@ function _futurium_linker_link_nodes($nid1, $nid2, $relation_type) {
   );
 }
 
-
+/*
 function futurium_linker_form_node_form_alter(&$form, $form_state) {
   if (isset($_GET['origin_nid']) && isset($_GET['relation_type'])) {
     $form['relation_type'] = array(
@@ -623,3 +623,4 @@ function futurium_linker_node_insert($node) {
     _futurium_linker_link_nodes($node->related_to, $node->nid, $node->relation_type);
   }
 }
+*/

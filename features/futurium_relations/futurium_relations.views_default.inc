@@ -29,9 +29,10 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['type'] = 'mini';
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
@@ -104,7 +105,7 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
 
   /* Display: Supports */
-  $handler = $view->new_display('block', 'Supports', 'block');
+  $handler = $view->new_display('block', 'Supports', 'support');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Supports';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
@@ -127,18 +128,18 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
 
   /* Display: Implemented by */
-  $handler = $view->new_display('block', 'Implemented by', 'block_1');
+  $handler = $view->new_display('block', 'Implemented by', 'implement');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Implemented by';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: Relation: implemented by (node → node) */
+  /* Relationship: Content: Relation: to implement (node → node) */
   $handler->display->display_options['relationships']['relation_implemented_by_node']['id'] = 'relation_implemented_by_node';
   $handler->display->display_options['relationships']['relation_implemented_by_node']['table'] = 'node';
   $handler->display->display_options['relationships']['relation_implemented_by_node']['field'] = 'relation_implemented_by_node';
   $handler->display->display_options['relationships']['relation_implemented_by_node']['r_index'] = '-1';
   $handler->display->display_options['relationships']['relation_implemented_by_node']['entity_deduplication_left'] = 0;
   $handler->display->display_options['relationships']['relation_implemented_by_node']['entity_deduplication_right'] = 0;
-  /* Relationship: Content: Relation: implemented by (node → relation) */
+  /* Relationship: Content: Relation: to implement (node → relation) */
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['id'] = 'relation_base_left_implemented_by';
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['table'] = 'node';
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['field'] = 'relation_base_left_implemented_by';
@@ -164,7 +165,7 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
 
   /* Display: Discuss */
-  $handler = $view->new_display('block', 'Discuss', 'block_2');
+  $handler = $view->new_display('block', 'Discuss', 'discuss');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Discussed at';
   $handler->display->display_options['defaults']['relationships'] = FALSE;

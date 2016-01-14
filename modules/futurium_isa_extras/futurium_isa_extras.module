@@ -30,8 +30,8 @@ function futurium_isa_extras_enable() {
   }
 
   // Temporary, grants anonymous the right to see/edit every node.
-  $drupal_role = user_role_load_by_name('anonymous user');
-  user_role_change_permissions($drupal_role->rid, array('bypass node access' => TRUE));
+  //$drupal_role = user_role_load_by_name('anonymous user');
+  //user_role_change_permissions($drupal_role->rid, array('bypass node access' => TRUE));
 
   // Set default user picture.
   futurium_isa_extras_set_default_pic();
@@ -347,7 +347,7 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
       && $extrafields[$extrafield_name]['visible']) {
     $location = $node->field_location[LANGUAGE_NONE][0];
     if (!empty($location)) {
-      $city = $location['locality'];
+      $city = ucwords($location['locality']);
       $node->content[$extrafield_name] = array(
         '#markup' => '<div class="field fake-field location-city">' . $city . '</div>',
       );
@@ -383,7 +383,12 @@ function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
     if ($user->uid == $account->uid || user_access('administer users')) {
       $link_options = array(
         'attributes' => array(
-          'class' => 'flag flag-action flag-link-toggle flag-processed',
+          'class' => array(
+            'flag',
+            'flag-action',
+            'flag-link-toggle',
+            'flag-processed',
+          ),
         ),
       );
       $account->content[$extrafield_name] = array(
