@@ -72,10 +72,7 @@
     content: none;
   }
   .panel-pane{
-    @include rem(padding, 15px); 
-    @include rem(margin, 0 0 30px 0);
-    background: $light-grey;
-    border: 1px solid darken($light-grey, 10%);
+    @include panel;
   }
 }
 

@@ -32,6 +32,13 @@
     background: none;
   }
 
+  .pane-futures {
+    @include blockhp($future-color);
+    h2:before {
+      @include fa(rocket);
+    }
+  }
+
   .pane-ideas {
     @include blockhp($idea-color); 
     h2:before {

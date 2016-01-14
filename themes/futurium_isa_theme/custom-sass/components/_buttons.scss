@@ -13,9 +13,15 @@
 .group-buttons > div {
   float: left;
   clear: right;
-  @include rem(margin, 0 0 20px 0);
+  @include rem(margin, 0 0 0 0);
   a {
     @include rem(margin, 0 5px 0 0);
+  }
+}
+
+@include respond-to(small) {
+  .group-buttons > div {
+    @include rem(margin, 0 0 20px 0);
   }
 }
 
