@@ -69,7 +69,7 @@ h2, h3, h4, h5, h6 {
     font-family: $text-font-stack;
     text-transform: none;
     @include transition(color .3s ease);
-    @include on-event{
+    @include on-event {
       text-decoration: none;
     }
   }
@@ -145,8 +145,12 @@ h4 a {
     color: #fff;
     }
   }
-  h1, h2, h3, p {
+  h1, h2, h3, p, div {
     color: #fff;
+  }
+  h2.pane-title{
+    border: none;
+    margin: 0;
   }
 }
 
@@ -161,7 +165,10 @@ h4 a {
 
 .page-ideas, .node-type-ideas {
   @include contenttype($idea-color);
+}
 
+.page-futures, .node-type-future{
+  @include contenttype($future-color);
 }
 
 .node-teaser.node-ideas{
@@ -178,6 +185,10 @@ h4 a {
 
 .page-library, .node-type-evidence {
   @include contenttype($library-color);
+}
+
+.page-user{
+  @include contenttype($greenblue);
 }
 
 
@@ -304,8 +315,27 @@ a.btn-more:before {
 }
 
 .flag-like a:before {
-    @include fa(thumbs-up);
+  @include fa(thumbs-up);
 }
+
+/* rating */
+
+ul.rate-fivestar-processed{
+  @include rem(padding, 0 0 0 0);
+}
+
+.futurium-rate-desirability:before {
+  @include fa(thumbs-up); 
+}
+
+.futurium-rate-impact {
+  @include fa(smile-o); 
+}
+
+.futurium-rate-feasibility {
+  @include fa(balance-scale);
+}
+
 
 .intro{
   @include rem(margin, 0 0 25px 0);
@@ -316,6 +346,27 @@ a.btn-more:before {
     @include rem(font-size, 20px);
     @include rem(line-height, 26px);
   }
+  .pane-rate-widget, .group-user-fields {
+    @include rem(padding, 20px);
+    @include rem(margin, 0 0 20px 0);
+  }
+}
+
+.pane-node-field-time-horizon{
+  @extend .pane-rate-widget;
+}
+
+.node-type-ideas .pane-rate-widget {
+  background: darken($idea-color, 10%);
+}
+
+.node-type-future .pane-node-field-time-horizon, 
+.node-type-future .pane-rate-widget {
+  background: darken($future-color, 10%);
+}
+
+.group-user-fields{
+  background: darken($user-color, 10%);
 }
 
 div.views-bootstrap-grid-plugin-style {
@@ -339,7 +390,6 @@ div.views-bootstrap-grid-plugin-style {
   h3 {
     margin-top: 0;
   }
-
 
 }
 
@@ -441,7 +491,36 @@ div.views-bootstrap-grid-plugin-style {
 }
 
 
+/******** **/
+/* people */
+/*********/
 
+.view-people {
+  .views-row {
+    /* float: left;
+    width: 100%; */
+    @include rem(margin, 0 0 20px 0);
+  }
+  .left {
+    float:left;
+    .views-field-picture{
+      @include rem(margin, 0 10px 0 0);
+    }
+  }
+  .right {
+    
+  }
+}
+
+.page-people {
+  
+  .view-row-container {
+    background: $light-grey;
+    border: 1px solid darken($light-grey, 10%);
+    @include rem(padding, 15px);
+    @include rem(margin, 0 0 30px 0);
+  }
+}
 
 
 
@@ -476,20 +555,43 @@ div.views-bootstrap-grid-plugin-style {
     float: right;
     clear: both;
   }
+  .field-name-ds-user-picture img, .views-field-picture img {
+    border-radius:50%;
+    overflow:hidden;
+    width: 35px;
+    height: 35px;
+  }
 }
 
-.field-name-ds-user-picture img, .views-field-picture img {
-  border-radius:50%;
-  overflow:hidden;
-  width: 35px;
-  height: 35px;
-}
 
 .field-name-comment-body {
   border: 1px solid #ccc;
   @include rem(padding, 20px);
   @include rem(margin, 0 0 20px 0);
 }
+
+/*****************/
+/* USER PROFILE */
+/***************/
+
+.page-user .container-fullwidth.row2 {
+  background: url(../assets/img/bg-user-menu.gif) left top;
+  background-repeat: repeat-x;
+}
+
+.page-user .container-fullwidth.row2:only-child {
+  background: none;
+}
+
+.group-user-fields {
+  .field-label {
+    min-width: 40%;
+  }
+  .field-items {
+    width: 55%;
+  }
+}
+
   
 
 /*********************/
@@ -503,6 +605,7 @@ div.views-bootstrap-grid-plugin-style {
     display: flex;
     flex-direction: row;
     height: 100%;
+    flex: 1 100%; /* We tell all items to be 100% width */
     .row1l {
       align-self: flex-start;
     }
@@ -547,12 +650,22 @@ div.views-bootstrap-grid-plugin-style {
 .media-element-container {
   @include rem(margin, 0 0 20px 0);
   background: #fff;
- .field-name-field-caption {
-   color: $mid-grey;  
-   @include rem(font-size, 14px);
-   @include rem(padding, 5px 10px 5px 10px);
-   font-style: italic;
- }
+  .field-name-field-caption {
+    color: $mid-grey;  
+    @include rem(font-size, 14px);
+    @include rem(padding, 5px 10px 5px 10px);
+    font-style: italic;
+  }
+}
+
+/**************/
+/* PAGE USER */
+/************/
+
+.page-user {
+  .container-fullwidth.row2 {
+    @include rem(padding-top, 0);
+  }
 }
 
 
@@ -625,6 +738,16 @@ div.views-bootstrap-grid-plugin-style {
     @include rem(margin, 0 0 30px 0);
   }
 }
+
+
+.bootstrap-panels-horizontal-tabs{
+  @extend .col-lg-12;
+  .container{
+    padding: 0;
+  }
+}
+
+
 
 
 
