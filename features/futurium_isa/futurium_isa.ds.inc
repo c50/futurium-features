@@ -334,6 +334,9 @@ function futurium_isa_ds_field_settings_info() {
       'weight' => '1',
       'label' => 'hidden',
       'format' => 'default',
+      'formatter_settings' => array(
+        'wrapper' => 'h1',
+      ),
     ),
     'ds_user_picture' => array(
       'weight' => '0',
