@@ -183,7 +183,7 @@ function futurium_linker_form($form, $form_state) {
     ),
   );
 
-/* Create new content */
+  /* Create new content */
 
   $form['no-results'] = array(
     '#type' => 'markup',
@@ -201,18 +201,6 @@ function futurium_linker_form($form, $form_state) {
     '#type' => 'markup',
     '#markup' => '<tr class="new-related"><td class="label-wrap new-related-label"></td><td class="select-wrap new-related-select"></td></tr>',
   );
-
-/*
-  $form['no-results']['related']['create_related'] = array(
-    '#type' => 'button',
-    '#value' => 'Create related content',
-    '#prefix' => '<td class="button-wrap new-related-button">',
-    '#suffix' => '</td></tr>',
-    '#ajax' => array(
-      'callback' => '_futurium_linker_add_content',
-    ),
-  );
-*/
 
   $form['#attached'] = array(
     'js' => array(
@@ -267,6 +255,46 @@ function _futurium_linker_no_results($form, $form_state) {
       // Relation is not directional, use source bundles.
       $relation_bundles = $relation->source_bundles;
       $relation_bundles = array_reverse($relation_bundles);
+      foreach ($relation_bundles as $key => $entity_bundle) {
+        $bundle = str_replace('node:', '', $entity_bundle);
+        $bundles[] = $bundle;
+
+        $classes = array(
+          'node-add-button',
+          'bundle',
+          'btn-primary',
+        );
+
+        $query = array(
+          'origin_nid' => $form_state['input']['link_origin'],
+          'relation_type' => $selected_relation,
+          'new_title' => $new_title,
+        );
+
+        $attributes = array(
+          'attributes' => array(
+            'class' => $classes,
+          ),
+          'query' => $query,
+        );
+
+        $bundle_link_path = str_replace('_', '-', $bundle);
+        $links[] = l("Add ".$content_types[$bundle]->name, 'node/add/' . $bundle_link_path, $attributes, array('query' => $query));
+      }
+    }
+    else {
+      // Relation is directional, look if current content is in source or target
+      // bundles and use the opposite one.
+      $current = 'node:' . $form_state['input']['current_content_type'];
+
+      if (in_array($current, $relation->target_bundles)) {
+        $relation_bundles = $relation->source_bundles;
+      }
+
+      if (in_array($current, $relation->source_bundles)) {
+        $relation_bundles = $relation->target_bundles;
+      }
+
       foreach ($relation_bundles as $key => $entity_bundle) {
         $bundle = str_replace('node:', '', $entity_bundle);
         $bundles[] = $bundle;

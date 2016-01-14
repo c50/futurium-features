@@ -1,26 +1,28 @@
 <?php
-
 /**
  * @file
  * Hic sunt dracones.
  */
 
+/**
+ * Implements hook_enable().
+ */
 function futurium_isa_extras_enable() {
-  // Site default settings
+  // Site default settings.
   variable_set('site_frontpage', 'home');
   variable_set('user_pictures', '1');
-  variable_set('user_picture_default','');
-  variable_set('user_picture_dimensions','85x85');
+  variable_set('user_picture_default', '');
+  variable_set('user_picture_dimensions', '85x85');
   variable_set('user_picture_file_size', '30');
   variable_set('user_picture_guidelines', '');
-  variable_set('user_picture_path','');
-  variable_set('user_picture_style','');
-  variable_set('user_register','2');
+  variable_set('user_picture_path', '');
+  variable_set('user_picture_style', '');
+  variable_set('user_register', '2');
 
-  // Theme settings
+  // Theme settings.
   _bootstrap_default_settings();
 
-  // Add H1 tags to allowed tags
+  // Add H1 tags to allowed tags.
   $allowed_tags = variable_get('security_allowed_tags', "");
   if (!empty($allowed_tags)) {
     $allowed_tags .= 'h1';
@@ -34,21 +36,27 @@ function futurium_isa_extras_enable() {
   // Set default user picture.
   futurium_isa_extras_set_default_pic();
 
-  // Set fivestar tags
-  //variable_set('fivestar_tags', "vote, desirability, feasibility, impact");
-
   drupal_flush_all_caches();
 }
 
+/**
+ * Implements hook_admin_paths_alter().
+ */
 function futurium_isa_extras_admin_paths_alter(&$paths) {
   $paths['user/*/edit'] = FALSE;
 }
 
+/**
+ * Implements hook_preprocess_node().
+ */
 function futurium_isa_extras_preprocess_node(&$vars) {
   $vars['classes_array'][] = "view-mode-" . $vars['view_mode'];
   $vars['display_submitted'] = FALSE;
 }
 
+/**
+ * Implements hook_menu_alter().
+ */
 function futurium_isa_extras_menu_alter(&$items) {
   $items['search/site']['menu_name'] = 'navigation';
   $items['user']['weight'] = 10000;
@@ -57,6 +65,9 @@ function futurium_isa_extras_menu_alter(&$items) {
   $items['user/login']['menu_name'] = 'main-menu';
 }
 
+/**
+ * Helper to set default theme settings.
+ */
 function _bootstrap_default_settings() {
 
   $settings = array(
@@ -154,19 +165,24 @@ function _bootstrap_default_settings() {
   variable_set('theme_futurium_isa_theme_settings', $settings);
 }
 
+/**
+ * Implements hook_block_info().
+ */
 function futurium_isa_extras_block_info() {
   $blocks['node_authors'] = array(
     'info' => t('Node Authors'),
-    'cache' => DRUPAL_NO_CACHE
+    'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['node_social_share'] = array(
     'info' => t('Node Share'),
-    'cache' => DRUPAL_NO_CACHE
+    'cache' => DRUPAL_NO_CACHE,
   );
   return $blocks;
 }
 
-
+/**
+ * Implements hook_block_view().
+ */
 function futurium_isa_extras_block_view($delta = '') {
   $block = array();
 
@@ -175,7 +191,7 @@ function futurium_isa_extras_block_view($delta = '') {
 
       $variables = array(
         'items' => array(),
-        'title' => '',
+        'title' => NULL,
         'type' => 'ul',
         'attributes' => array('class' => array('share-links', 'list-inline')),
       );
@@ -210,7 +226,7 @@ function futurium_isa_extras_block_view($delta = '') {
 }
 
 /**
- * Implements hook_ctools_plugin_directory()
+ * Implements hook_ctools_plugin_directory().
  */
 function futurium_isa_extras_ctools_plugin_directory($module, $plugin) {
   if ($module == "panels" && in_array($plugin, array('layouts', 'styles'))) {
@@ -222,12 +238,14 @@ function futurium_isa_extras_ctools_plugin_directory($module, $plugin) {
  * Implements hook_field_extra_fields().
  */
 function futurium_isa_extras_field_extra_fields() {
-  foreach (array('ideas', 'event_d4eu') as $node_type) {
-    // Flaggings (Like & Attending)
-    switch($node_type) {
+  foreach (array('future', 'ideas', 'event_d4eu') as $node_type) {
+    // Flaggings (Like & Attending).
+    switch ($node_type) {
       case 'ideas':
+      case 'future':
         $extrafield_name = 'like';
         break;
+
       case 'event_d4eu':
         $extrafield_name = 'attending';
         break;
@@ -242,24 +260,24 @@ function futurium_isa_extras_field_extra_fields() {
       );
     }
 
-    // Comment count
+    // Comment count.
     $extrafield_name = 'comment_count';
     $extra['node'][$node_type]['display'][$extrafield_name] = array(
       'label' => t("Comment count"),
       'description' => t('Node comments count'),
       'weight' => 51,
     );
-
-    // City only
-    $extrafield_name = 'addressfield_city';
-    $extra['node']['event_d4eu']['display'][$extrafield_name] = array(
-      'label' => t("Addressfield City"),
-      'description' => t('Address field city only.'),
-      'weight' => 52,
-    );
-
   }
 
+  // City only.
+  $extrafield_name = 'addressfield_city';
+  $extra['node']['event_d4eu']['display'][$extrafield_name] = array(
+    'label' => t("Addressfield City"),
+    'description' => t('Address field city only.'),
+    'weight' => 52,
+  );
+
+  // Follow flag.
   $extrafield_name = 'follow';
   $extra['user']['user']['display'][$extrafield_name] = array(
     'label' => t("Follow"),
@@ -267,6 +285,7 @@ function futurium_isa_extras_field_extra_fields() {
     'weight' => 51,
   );
 
+  // Edit profile link.
   $extrafield_name = 'edit';
   $extra['user']['user']['display'][$extrafield_name] = array(
     'label' => t("Edit"),
@@ -275,17 +294,16 @@ function futurium_isa_extras_field_extra_fields() {
   );
 
   return $extra;
- }
+}
 
 /**
  * Implements hook_node_view().
- * Also HOOK_entity_view() can be used.
  */
 function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
 
   $extrafields = field_extra_fields_get_display('node', $node->type, $view_mode);
 
-  // Likes
+  // Likes.
   $extrafield_name = 'like';
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])
@@ -297,7 +315,7 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field like-count">' . $count . ' ' . $plural . '</div>');
   }
 
-  // Attending
+  // Attending.
   $extrafield_name = 'attending';
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])
@@ -306,19 +324,23 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     $flag = flag_get_flag($extrafield_name);
     $count = $flag->get_count($node->nid);
     $label = t('Going');
-    $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field attending-count">' . $count . ' ' . $label . '</div>');
+    $node->content[$extrafield_name] = array(
+      '#markup' => '<div class="field fake-field attending-count">' . $count . ' ' . $label . '</div>',
+    );
   }
 
-  // Comment count
+  // Comment count.
   $extrafield_name = 'comment_count';
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])
       && $extrafields[$extrafield_name]['visible']) {
     $count = $node->comment_count;
-    $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field comment-count">' . $count . ' ' . format_plural($count, t('Comment'), t('Comments')) . '</div>');
+    $node->content[$extrafield_name] = array(
+      '#markup' => '<div class="field fake-field comment-count">' . $count . ' ' . format_plural($count, t('Comment'), t('Comments')) . '</div>',
+    );
   }
 
-  // Addressfield city only
+  // Addressfield city only.
   $extrafield_name = 'addressfield_city';
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])
@@ -326,7 +348,9 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     $location = $node->field_location[LANGUAGE_NONE][0];
     if (!empty($location)) {
       $city = $location['locality'];
-      $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field location-city">' . $city . '</div>');
+      $node->content[$extrafield_name] = array(
+        '#markup' => '<div class="field fake-field location-city">' . $city . '</div>',
+      );
     }
   }
 
@@ -339,7 +363,7 @@ function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
 
   $extrafields = field_extra_fields_get_display('user', 'user', $view_mode);
 
-  // Follow
+  // Follow.
   $extrafield_name = 'follow';
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])
@@ -349,7 +373,7 @@ function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
     $account->content[$extrafield_name] = array('#markup' => flag_create_link('follow_user', $account->uid));
   }
 
-  // Edit
+  // Edit.
   $extrafield_name = 'edit';
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])
@@ -357,8 +381,14 @@ function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
 
     global $user;
     if ($user->uid == $account->uid || user_access('administer users')) {
-      $link_options = array('attributes' => array('class' => 'flag flag-action flag-link-toggle flag-processed'));
-      $account->content[$extrafield_name] = array('#markup' => l("Edit profile", 'user/' . $account->uid . '/edit', $link_options));
+      $link_options = array(
+        'attributes' => array(
+          'class' => 'flag flag-action flag-link-toggle flag-processed',
+        ),
+      );
+      $account->content[$extrafield_name] = array(
+        '#markup' => l(t("Edit profile"), 'user/' . $account->uid . '/edit', $link_options),
+      );
     }
   }
 
@@ -379,7 +409,6 @@ function futurium_isa_extras_ds_fields_info($entity_type) {
   if (isset($fields[$entity_type])) {
     return array($entity_type => $fields[$entity_type]);
   }
-  return;
 }
 
 /**
@@ -392,7 +421,9 @@ function futurium_isa_extras_ds_field_author($field) {
   return $content;
 }
 
-
+/**
+ * Helper function to set default user picture.
+ */
 function futurium_isa_extras_set_default_pic() {
   $module_path = drupal_get_path('module', 'futurium_isa_extras');
   $full_path = $module_path . '/default_images/user_picture.jpg';
@@ -425,4 +456,4 @@ solr_config
 TagClouds
 Testing
 Workbench Moderation View for multisite
-*/
+ */

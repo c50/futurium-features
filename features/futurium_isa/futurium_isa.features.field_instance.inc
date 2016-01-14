@@ -10,9 +10,9 @@
 function futurium_isa_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_page-comment_body'.
-  $field_instances['comment-comment_node_page-comment_body'] = array(
-    'bundle' => 'comment_node_page',
+  // Exported field_instance: 'node-event_d4eu-body'.
+  $field_instances['node-event_d4eu-body'] = array(
+    'bundle' => 'event_d4eu',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -24,84 +24,70 @@ function futurium_isa_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'mini_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'node_header' => array(
+        'label' => 'hidden',
+        'module' => 'smart_trim',
+        'settings' => array(
+          'more_link' => FALSE,
+          'more_text' => 'Read more',
+          'summary_handler' => 'full',
+          'trim_length' => 300,
+          'trim_link' => FALSE,
+          'trim_options' => array(
+            'text' => 'text',
+          ),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
+        ),
+        'type' => 'smart_trim_format',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'smart_trim',
+        'settings' => array(
+          'more_link' => FALSE,
+          'more_text' => 'Read more',
+          'summary_handler' => 'full',
+          'trim_length' => 300,
+          'trim_link' => FALSE,
+          'trim_options' => array(
+            'text' => 'text',
+          ),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
+        ),
+        'type' => 'smart_trim_format',
+        'weight' => 3,
+      ),
     ),
-    'entity_type' => 'comment',
-    'field_name' => 'comment_body',
-    'label' => 'Comment',
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Body',
     'required' => FALSE,
     'settings' => array(
+      'display_summary' => TRUE,
       'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
+      'text_processing' => 1,
+      'user_field_privacy' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 20,
+        'summary_rows' => 5,
       ),
-      'type' => 'text_textarea',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'comment-comment_node_poll-comment_body'.
-  $field_instances['comment-comment_node_poll-comment_body'] = array(
-    'bundle' => 'comment_node_poll',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'comment_body',
-    'label' => 'Comment',
-    'required' => 1,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'basic_html' => array(
-              'weight' => 5,
-            ),
-            'filtered_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => 0,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-          ),
-        ),
-      ),
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 0,
+      'type' => 'text_textarea_with_summary',
+      'weight' => 2,
     ),
   );
 
@@ -176,6 +162,98 @@ function futurium_isa_field_default_field_instances() {
       ),
       'type' => 'geocoder',
       'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-event_d4eu-field_date_time'.
+  $field_instances['node-event_d4eu-field_date_time'] = array(
+    'bundle' => 'event_d4eu',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 2,
+      ),
+      'mini_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 0,
+      ),
+      'node_header' => array(
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'day_fullmonth_year',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'day_fullmonth_year',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+        ),
+        'type' => 'date_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_date_time',
+    'label' => 'Date & time',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'd/m/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 4,
     ),
   );
 
@@ -340,157 +418,6 @@ function futurium_isa_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-event_d4eu-body'
-  $field_instances['node-event_d4eu-body'] = array(
-    'bundle' => 'event_d4eu',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'mini_teaser' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'smart_trim',
-        'settings' => array(
-          'more_text' => 'Read more',
-          'summary_handler' => 'full',
-          'trim_length' => 300,
-          'trim_options' => array(
-            'text' => 'text',
-          ),
-          'trim_suffix' => '...',
-          'trim_type' => 'chars',
-        ),
-        'type' => 'smart_trim_format',
-        'weight' => 3,
-      ),
-      'node_header' => array(
-        'label' => 'hidden',
-        'module' => 'smart_trim',
-        'settings' => array(
-          'more_text' => 'Read more',
-          'summary_handler' => 'full',
-          'trim_length' => 300,
-          'trim_options' => array(
-            'text' => 'text',
-          ),
-          'trim_suffix' => '...',
-          'trim_type' => 'chars',
-        ),
-        'type' => 'smart_trim_format',
-        'weight' => 3,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => TRUE,
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-event_d4eu-field_date_time'
-  $field_instances['node-event_d4eu-field_date_time'] = array(
-    'bundle' => 'event_d4eu',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-        ),
-        'type' => 'date_default',
-        'weight' => 2,
-      ),
-      'mini_teaser' => array(
-        'label' => 'hidden',
-        'module' => 'futurium_d4eu',
-        'settings' => array(),
-        'type' => 'tear_off_calendar',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'day_fullmonth_year',
-          'fromto' => 'both',
-        ),
-        'type' => 'date_default',
-        'weight' => 1,
-      ),
-      'node_header' => array(
-        'label' => 'hidden',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'day_fullmonth_year',
-          'fromto' => 'both',
-        ),
-        'type' => 'date_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_date_time',
-    'label' => 'Date & time',
-    'required' => 0,
-    'settings' => array(
-      'default_value' => 'now',
-      'default_value2' => 'same',
-      'default_value_code' => '',
-      'default_value_code2' => '',
-      'entity_translation_sync' => FALSE,
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'date',
-      'settings' => array(
-        'increment' => 15,
-        'input_format' => 'd/m/Y - H:i:s',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
-      ),
-      'type' => 'date_popup',
-      'weight' => 4,
     ),
   );
 
@@ -1009,8 +936,9 @@ function futurium_isa_field_default_field_instances() {
   t('Age');
   t('Biography');
   t('Birthday');
-  t('Comment');
+  t('Body');
   t('Coordinates');
+  t('Date & time');
   t('Education');
   t('Gender');
   t('Ideas and experience');

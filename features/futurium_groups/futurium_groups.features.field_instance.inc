@@ -686,6 +686,12 @@ function futurium_groups_field_default_field_instances() {
         'type' => 'og_list_default',
         'weight' => 0,
       ),
+      'user_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'user',
     'field_name' => 'og_user_node',
