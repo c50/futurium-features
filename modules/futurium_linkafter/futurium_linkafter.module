@@ -52,6 +52,7 @@ function futurium_linkafter_block_view($delta = '') {
     case 'relation_link_add':
       if (user_access('use futurium_linkafter')) {
         $form = drupal_get_form('futurium_linkafter_form');
+        $block['subject'] = t("Add related content");
         $block['content'] = drupal_render($form);
       }
       break;
@@ -104,12 +105,13 @@ function _futurium_linkafter_node_autocomplete($origin_nid, $bundles, $string) {
         $classes[] = 'relation-type-' . $value;
         $label .= ' class="' . implode($classes, ' ') . '">';
 
-        if (count($possible_relations) > 1) {
+        //if (count($possible_relations) > 1) {
           $label .= $rel_label .' '. check_plain($node['title']);
-        }
+        /*}
         else {
           $label .= check_plain($node['title']);
         }
+        */
         $label .= '</span>';
 
         $matches[$array_key] = $label ;
@@ -243,7 +245,7 @@ function futurium_linkafter_form($form, &$form_state) {
 
     $search_bundles = implode('+', $search_bundles);
 
-    $form['#prefix'] = '<div id="linkafter"><h2>Relations</h2>';
+    $form['#prefix'] = '<div id="linkafter">';
     $form['#suffix'] = '</div>';
 
     $form['origin'] = array(
@@ -293,6 +295,11 @@ function futurium_linkafter_form($form, &$form_state) {
     $form['link'] = array(
       '#value' => "Link",
       '#type' => 'button',
+      '#attributes' => array(
+        'class' => array(
+          'btn-add-relation',
+        )
+      ),
       '#ajax' => array(
         'callback' => '_futurium_linkafter_link',
       ),

@@ -196,6 +196,7 @@ function futurium_isa_theme_date_display_range(&$variables) {
  * Implements hook_date_display_single().
  */
 function futurium_isa_theme_date_display_single($variables) {
+
   $date = $variables['date'];
   $timezone = $variables['timezone'];
   $attributes = $variables['attributes'];
@@ -223,6 +224,13 @@ function futurium_isa_theme_date_display_single($variables) {
     '!start-hour' => $start_hour,
     '!end-hour' => $end_hour,
   );
+
+  $obj = menu_get_object();
+  if (!empty($obj)) {
+    if ($obj->type == 'future') {
+      return $date;
+    }
+  }
 
   return t($string, $date_vars);
 }
@@ -299,4 +307,17 @@ function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
   }
   $variables['info'] = implode(' ', $info);
 
+}
+
+function futurium_isa_theme_views_view_grouping($vars) {
+  $view = $vars['view'];
+  $title = $vars['title'];
+  $content = $vars['content'];
+
+  $output = '<div class="view-grouping">';
+  $output .= '<div class="view-grouping-header">' . $title . '</div>';
+  $output .= '<div class="view-grouping-content">' . $content . '</div>' ;
+  $output .= '</div>';
+
+  return $output;
 }

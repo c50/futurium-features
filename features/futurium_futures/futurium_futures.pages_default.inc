@@ -300,7 +300,7 @@ function futurium_futures_default_page_manager_handlers() {
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
-        'format_type' => 'day_fullmonth_year',
+        'format_type' => 'fullmonth_year',
         'multiple_number' => '',
         'multiple_from' => '',
         'multiple_to' => '',
@@ -539,7 +539,7 @@ function futurium_futures_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'Supported by',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -577,7 +577,7 @@ function futurium_futures_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'Implemented on',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -615,7 +615,7 @@ function futurium_futures_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'To be discussed at',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();

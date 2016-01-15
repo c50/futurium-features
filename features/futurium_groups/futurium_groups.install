@@ -11,3 +11,12 @@ function futurium_groups_install() {
     ->condition('name', 'futurium_groups', '=')
     ->execute();
 }
+
+function futurium_groups_post_features_enable_feature($component) {
+  // Rebuild permissions
+  // Should go into futurium groups
+  if ($component == 'views_view') {
+    node_access_rebuild();
+    drupal_set_message("Node permissions rebuilt.");
+  }
+}
