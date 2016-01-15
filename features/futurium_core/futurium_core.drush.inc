@@ -114,38 +114,5 @@ function drush_futurium_core_post_install_futurium() {
  */
 function drush_futurium_core_revert_futurium_config() {
 
-  // Changing Event_d4eu content type to Event
-  $type = node_type_load('event_d4eu');
-  $type->description = "Create an event here";
-  $type->modified = TRUE;
-  node_type_save($type);
-
-  // Changing Event_d4eu content type to Event
-  $type = node_type_load('issue');
-  $type->description = "Post an issue here";
-  $type->modified = TRUE;
-  node_type_save($type);
-
-  // Changing Event_d4eu content type to Event
-  $type = node_type_load('video_d4eu');
-  $type->description = "Post a video here";
-  $type->modified = TRUE;
-  node_type_save($type);
-
-  // Disable not needed multisite modules
-  module_disable(array('nexteuropa_multilingual', 'ecas'));
-
-  // Rebuild permissions
-  // Should go into futurium groups
-  node_access_rebuild();
-
-  //Temporary, Publishes unpublished library items.
-  $type = "document";
-  $nodes = node_load_multiple(array(), array('type' => $type));
-  foreach ($nodes as $node) {
-    $node->status = 1;
-    node_save($node);
-  }
-
   drush_print(dt('Futurium Configuration has been applied.'));
 }

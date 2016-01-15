@@ -111,12 +111,6 @@ function supertags_context_default_contexts() {
           'region' => 'identity',
           'weight' => '-10',
         ),
-        'boxes-social_links' => array(
-          'module' => 'boxes',
-          'delta' => 'social_links',
-          'region' => 'sidebar_right',
-          'weight' => '-58',
-        ),
         'supertags-supertags' => array(
           'module' => 'supertags',
           'delta' => 'supertags',
@@ -243,12 +237,6 @@ function supertags_context_default_contexts() {
           'module' => 'supertags',
           'delta' => 'ctas',
           'region' => 'identity',
-          'weight' => '-10',
-        ),
-        'boxes-social_links' => array(
-          'module' => 'boxes',
-          'delta' => 'social_links',
-          'region' => 'sidebar_right',
           'weight' => '-10',
         ),
         'supertags-tag_cloud_tags' => array(

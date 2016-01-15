@@ -469,6 +469,7 @@ function supertags_field_default_field_instances() {
     'label' => 'Link',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -2069,6 +2070,50 @@ function supertags_field_default_field_instances() {
       'settings' => array(),
       'type' => 'field_collection_embed',
       'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-flavors-field_notification_list'.
+  $field_instances['taxonomy_term-flavors-field_notification_list'] = array(
+    'bundle' => 'flavors',
+    'default_value' => NULL,
+    'default_value_function' => '',
+    'deleted' => 0,
+    'description' => 'Users to notify when new content or comment is created under this flavor.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_notification_list',
+    'label' => 'Notification List',
+    'required' => 0,
+    'settings' => array(
+      'behaviors' => array(
+        'prepopulate' => array(
+          'status' => 0,
+        ),
+      ),
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 3,
     ),
   );
 
