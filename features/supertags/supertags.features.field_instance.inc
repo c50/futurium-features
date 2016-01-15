@@ -10,7 +10,7 @@
 function supertags_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'bean-user_blocks-field_block_body'
+  // Exported field_instance: 'bean-user_blocks-field_block_body'.
   $field_instances['bean-user_blocks-field_block_body'] = array(
     'bundle' => 'user_blocks',
     'default_value' => NULL,
@@ -76,7 +76,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-user_blocks-field_block_classes'
+  // Exported field_instance: 'bean-user_blocks-field_block_classes'.
   $field_instances['bean-user_blocks-field_block_classes'] = array(
     'bundle' => 'user_blocks',
     'default_value' => NULL,
@@ -137,7 +137,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-user_blocks-field_block_delta'
+  // Exported field_instance: 'bean-user_blocks-field_block_delta'.
   $field_instances['bean-user_blocks-field_block_delta'] = array(
     'bundle' => 'user_blocks',
     'default_value' => NULL,
@@ -171,7 +171,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-user_blocks-field_block_region'
+  // Exported field_instance: 'bean-user_blocks-field_block_region'.
   $field_instances['bean-user_blocks-field_block_region'] = array(
     'bundle' => 'user_blocks',
     'default_value' => NULL,
@@ -206,7 +206,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-user_blocks-field_block_type'
+  // Exported field_instance: 'bean-user_blocks-field_block_type'.
   $field_instances['bean-user_blocks-field_block_type'] = array(
     'bundle' => 'user_blocks',
     'default_value' => NULL,
@@ -240,7 +240,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-user_blocks-field_default_flavour'
+  // Exported field_instance: 'bean-user_blocks-field_default_flavour'.
   $field_instances['bean-user_blocks-field_default_flavour'] = array(
     'bundle' => 'user_blocks',
     'default_value' => NULL,
@@ -272,7 +272,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-user_blocks-field_flavor_s_'
+  // Exported field_instance: 'bean-user_blocks-field_flavor_s_'.
   $field_instances['bean-user_blocks-field_flavor_s_'] = array(
     'bundle' => 'user_blocks',
     'default_value' => NULL,
@@ -304,7 +304,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-user_blocks-field_links'
+  // Exported field_instance: 'bean-user_blocks-field_links'.
   $field_instances['bean-user_blocks-field_links'] = array(
     'bundle' => 'user_blocks',
     'default_value' => NULL,
@@ -343,7 +343,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-user_blocks-field_roles'
+  // Exported field_instance: 'bean-user_blocks-field_roles'.
   $field_instances['bean-user_blocks-field_roles'] = array(
     'bundle' => 'user_blocks',
     'default_value' => NULL,
@@ -377,7 +377,8 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_flavor_tree-field_children_tags'
+  // Exported field_instance:
+  // 'field_collection_item-field_flavor_tree-field_children_tags'.
   $field_instances['field_collection_item-field_flavor_tree-field_children_tags'] = array(
     'bundle' => 'field_flavor_tree',
     'default_value' => NULL,
@@ -413,7 +414,8 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_flavor_tree-field_parent_tag'
+  // Exported field_instance:
+  // 'field_collection_item-field_flavor_tree-field_parent_tag'.
   $field_instances['field_collection_item-field_flavor_tree-field_parent_tag'] = array(
     'bundle' => 'field_flavor_tree',
     'default_value' => NULL,
@@ -449,7 +451,8 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_links-field_call_to_action'
+  // Exported field_instance:
+  // 'field_collection_item-field_links-field_call_to_action'.
   $field_instances['field_collection_item-field_links-field_call_to_action'] = array(
     'bundle' => 'field_links',
     'default_value' => NULL,
@@ -484,6 +487,7 @@ function supertags_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'required',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -500,7 +504,8 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_links-field_link_type'
+  // Exported field_instance:
+  // 'field_collection_item-field_links-field_link_type'.
   $field_instances['field_collection_item-field_links-field_link_type'] = array(
     'bundle' => 'field_links',
     'default_value' => array(
@@ -538,7 +543,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-blog_post-field_default_flavour'
+  // Exported field_instance: 'node-blog_post-field_default_flavour'.
   $field_instances['node-blog_post-field_default_flavour'] = array(
     'bundle' => 'blog_post',
     'default_value' => NULL,
@@ -588,7 +593,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-blog_post-field_digital4eu_supertags'
+  // Exported field_instance: 'node-blog_post-field_digital4eu_supertags'.
   $field_instances['node-blog_post-field_digital4eu_supertags'] = array(
     'bundle' => 'blog_post',
     'default_value' => NULL,
@@ -641,7 +646,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-blog_post-field_digital4eu_untags'
+  // Exported field_instance: 'node-blog_post-field_digital4eu_untags'.
   $field_instances['node-blog_post-field_digital4eu_untags'] = array(
     'bundle' => 'blog_post',
     'default_value' => NULL,
@@ -694,7 +699,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-blog_post-field_flavor_s_'
+  // Exported field_instance: 'node-blog_post-field_flavor_s_'.
   $field_instances['node-blog_post-field_flavor_s_'] = array(
     'bundle' => 'blog_post',
     'default_value' => NULL,
@@ -744,7 +749,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_default_flavour'
+  // Exported field_instance: 'node-document-field_default_flavour'.
   $field_instances['node-document-field_default_flavour'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -788,7 +793,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_digital4eu_supertags'
+  // Exported field_instance: 'node-document-field_digital4eu_supertags'.
   $field_instances['node-document-field_digital4eu_supertags'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -835,7 +840,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_digital4eu_untags'
+  // Exported field_instance: 'node-document-field_digital4eu_untags'.
   $field_instances['node-document-field_digital4eu_untags'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -882,7 +887,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_flavor_s_'
+  // Exported field_instance: 'node-document-field_flavor_s_'.
   $field_instances['node-document-field_flavor_s_'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -926,7 +931,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_d4eu-field_default_flavour'
+  // Exported field_instance: 'node-event_d4eu-field_default_flavour'.
   $field_instances['node-event_d4eu-field_default_flavour'] = array(
     'bundle' => 'event_d4eu',
     'default_value' => NULL,
@@ -970,7 +975,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_d4eu-field_digital4eu_supertags'
+  // Exported field_instance: 'node-event_d4eu-field_digital4eu_supertags'.
   $field_instances['node-event_d4eu-field_digital4eu_supertags'] = array(
     'bundle' => 'event_d4eu',
     'default_value' => NULL,
@@ -1017,7 +1022,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_d4eu-field_digital4eu_untags'
+  // Exported field_instance: 'node-event_d4eu-field_digital4eu_untags'.
   $field_instances['node-event_d4eu-field_digital4eu_untags'] = array(
     'bundle' => 'event_d4eu',
     'default_value' => NULL,
@@ -1064,7 +1069,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_d4eu-field_flavor_s_'
+  // Exported field_instance: 'node-event_d4eu-field_flavor_s_'.
   $field_instances['node-event_d4eu-field_flavor_s_'] = array(
     'bundle' => 'event_d4eu',
     'default_value' => NULL,
@@ -1108,7 +1113,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_default_flavour'
+  // Exported field_instance: 'node-ideas-field_default_flavour'.
   $field_instances['node-ideas-field_default_flavour'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -1152,7 +1157,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_digital4eu_supertags'
+  // Exported field_instance: 'node-ideas-field_digital4eu_supertags'.
   $field_instances['node-ideas-field_digital4eu_supertags'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -1199,7 +1204,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_digital4eu_untags'
+  // Exported field_instance: 'node-ideas-field_digital4eu_untags'.
   $field_instances['node-ideas-field_digital4eu_untags'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -1246,7 +1251,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_flavor_s_'
+  // Exported field_instance: 'node-ideas-field_flavor_s_'.
   $field_instances['node-ideas-field_flavor_s_'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -1290,7 +1295,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-issue-field_default_flavour'
+  // Exported field_instance: 'node-issue-field_default_flavour'.
   $field_instances['node-issue-field_default_flavour'] = array(
     'bundle' => 'issue',
     'default_value' => NULL,
@@ -1334,7 +1339,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-issue-field_flavor_s_'
+  // Exported field_instance: 'node-issue-field_flavor_s_'.
   $field_instances['node-issue-field_flavor_s_'] = array(
     'bundle' => 'issue',
     'default_value' => NULL,
@@ -1378,7 +1383,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-page-field_default_flavour'
+  // Exported field_instance: 'node-page-field_default_flavour'.
   $field_instances['node-page-field_default_flavour'] = array(
     'bundle' => 'page',
     'default_value' => NULL,
@@ -1422,7 +1427,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-page-field_flavor_s_'
+  // Exported field_instance: 'node-page-field_flavor_s_'.
   $field_instances['node-page-field_flavor_s_'] = array(
     'bundle' => 'page',
     'default_value' => NULL,
@@ -1466,7 +1471,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-poll-field_default_flavour'
+  // Exported field_instance: 'node-poll-field_default_flavour'.
   $field_instances['node-poll-field_default_flavour'] = array(
     'bundle' => 'poll',
     'default_value' => NULL,
@@ -1510,7 +1515,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-poll-field_digital4eu_supertags'
+  // Exported field_instance: 'node-poll-field_digital4eu_supertags'.
   $field_instances['node-poll-field_digital4eu_supertags'] = array(
     'bundle' => 'poll',
     'default_value' => NULL,
@@ -1557,7 +1562,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-poll-field_digital4eu_untags'
+  // Exported field_instance: 'node-poll-field_digital4eu_untags'.
   $field_instances['node-poll-field_digital4eu_untags'] = array(
     'bundle' => 'poll',
     'default_value' => NULL,
@@ -1604,7 +1609,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-poll-field_flavor_s_'
+  // Exported field_instance: 'node-poll-field_flavor_s_'.
   $field_instances['node-poll-field_flavor_s_'] = array(
     'bundle' => 'poll',
     'default_value' => NULL,
@@ -1648,7 +1653,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-video_d4eu-field_default_flavour'
+  // Exported field_instance: 'node-video_d4eu-field_default_flavour'.
   $field_instances['node-video_d4eu-field_default_flavour'] = array(
     'bundle' => 'video_d4eu',
     'default_value' => NULL,
@@ -1692,7 +1697,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-video_d4eu-field_digital4eu_supertags'
+  // Exported field_instance: 'node-video_d4eu-field_digital4eu_supertags'.
   $field_instances['node-video_d4eu-field_digital4eu_supertags'] = array(
     'bundle' => 'video_d4eu',
     'default_value' => array(
@@ -1782,7 +1787,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-video_d4eu-field_digital4eu_untags'
+  // Exported field_instance: 'node-video_d4eu-field_digital4eu_untags'.
   $field_instances['node-video_d4eu-field_digital4eu_untags'] = array(
     'bundle' => 'video_d4eu',
     'default_value' => NULL,
@@ -1829,7 +1834,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-video_d4eu-field_flavor_s_'
+  // Exported field_instance: 'node-video_d4eu-field_flavor_s_'.
   $field_instances['node-video_d4eu-field_flavor_s_'] = array(
     'bundle' => 'video_d4eu',
     'default_value' => NULL,
@@ -1873,7 +1878,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-flavors-field_class'
+  // Exported field_instance: 'taxonomy_term-flavors-field_class'.
   $field_instances['taxonomy_term-flavors-field_class'] = array(
     'bundle' => 'flavors',
     'default_value' => NULL,
@@ -1935,7 +1940,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-flavors-field_flavor_active'
+  // Exported field_instance: 'taxonomy_term-flavors-field_flavor_active'.
   $field_instances['taxonomy_term-flavors-field_flavor_active'] = array(
     'bundle' => 'flavors',
     'default_value' => array(
@@ -1974,7 +1979,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-flavors-field_flavor_image'
+  // Exported field_instance: 'taxonomy_term-flavors-field_flavor_image'.
   $field_instances['taxonomy_term-flavors-field_flavor_image'] = array(
     'bundle' => 'flavors',
     'deleted' => 0,
@@ -2041,7 +2046,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-flavors-field_flavor_tree'
+  // Exported field_instance: 'taxonomy_term-flavors-field_flavor_tree'.
   $field_instances['taxonomy_term-flavors-field_flavor_tree'] = array(
     'bundle' => 'flavors',
     'default_value' => NULL,
@@ -2117,7 +2122,7 @@ function supertags_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-flavors-field_path'
+  // Exported field_instance: 'taxonomy_term-flavors-field_path'.
   $field_instances['taxonomy_term-flavors-field_path'] = array(
     'bundle' => 'flavors',
     'default_value' => NULL,
@@ -2197,12 +2202,14 @@ function supertags_field_default_field_instances() {
   t('Link');
   t('Link Type');
   t('Links');
+  t('Notification List');
   t('Parent tag');
   t('Path');
   t('The CSS class that will be used with the flavor.');
   t('The link title and path. To separate into two lines, use a | on the title field. Example: First Line|Second Line');
   t('The path that will be used for the flavor.');
   t('The type of link. (Whether is a Call to action, normal link, etc).');
+  t('Users to notify when new content or comment is created under this flavor.');
   t('Visibility per role');
   t('digital4eu_supertags');
   t('digital4eu_untags');
