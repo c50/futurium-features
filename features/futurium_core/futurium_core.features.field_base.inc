@@ -17,14 +17,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_authors_d4eu',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -47,7 +39,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_date_time',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'date',
@@ -78,14 +69,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_ideas',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -107,14 +90,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_leading_picture_d4eu',
-    'foreign keys' => array(
-      'fid' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
     'indexes' => array(
       'fid' => array(
         0 => 'fid',
@@ -140,7 +115,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_link_d4eu',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'link',
@@ -171,14 +145,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_related_documents',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -215,14 +181,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_related_events',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -259,14 +217,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_related_polls',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -303,14 +253,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_related_videos',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -347,14 +289,6 @@ function futurium_core_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_videosd4eu',
-    'foreign keys' => array(
-      'file_managed' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
     'indexes' => array(
       'fid' => array(
         0 => 'fid',
@@ -398,65 +332,6 @@ function futurium_core_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'datestamp',
-  );
-
-  // Exported field_base: 'field_organisation'
-  $field_bases['field_organisation'] = array(
-      'active' => 1,
-      'cardinality' => 1,
-      'deleted' => 0,
-      'entity_types' => array(),
-      'field_name' => 'field_organisation',
-      'foreign keys' => array(
-          'format' => array(
-              'columns' => array(
-                  'format' => 'format',
-              ),
-              'table' => 'filter_format',
-          ),
-      ),
-      'indexes' => array(
-          'format' => array(
-              0 => 'format',
-          ),
-      ),
-      'locked' => 1,
-      'module' => 'text',
-      'settings' => array(
-          'max_length' => 255,
-      ),
-      'translatable' => 0,
-      'type' => 'text',
-  );
-
-  // Exported field_base: 'field_register_url'
-  $field_bases['field_register_url'] = array(
-      'active' => 1,
-      'cardinality' => 1,
-      'deleted' => 0,
-      'entity_types' => array(),
-      'field_name' => 'field_register_url',
-      'foreign keys' => array(
-          'format' => array(
-              'columns' => array(
-                  'format' => 'format',
-              ),
-              'table' => 'filter_format',
-          ),
-      ),
-      'indexes' => array(
-          'format' => array(
-              0 => 'format',
-          ),
-      ),
-      'locked' => 1,
-      'module' => 'text',
-      'settings' => array(
-          'entity_translation_sync' => FALSE,
-          'max_length' => 255,
-      ),
-      'translatable' => 0,
-      'type' => 'text',
   );
 
   return $field_bases;

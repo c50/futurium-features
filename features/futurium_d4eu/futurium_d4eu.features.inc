@@ -30,6 +30,39 @@ function futurium_d4eu_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function futurium_d4eu_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: mini_teaser_thumbnail.
+  $styles['mini_teaser_thumbnail'] = array(
+    'name' => 'mini_teaser_thumbnail',
+    'label' => 'Mini teaser thumbnail (250x)',
+    'effects' => array(
+      1 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 250,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_default_invite_type().
  */
 function futurium_d4eu_default_invite_type() {
@@ -50,5 +83,23 @@ function futurium_d4eu_default_invite_type() {
     },
     "rdf_mapping" : []
   }');
+  return $items;
+}
+
+/**
+ * Implements hook_node_info().
+ */
+function futurium_d4eu_node_info() {
+  $items = array(
+    'issue' => array(
+      'name' => t('Issue'),
+      'base' => 'node_content',
+      'description' => t('Post an issue here'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+  );
+  drupal_alter('node_info', $items);
   return $items;
 }
