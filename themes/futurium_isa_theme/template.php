@@ -14,11 +14,7 @@ function futurium_isa_theme_preprocess_region(&$variables) {
   $variables['wrapper_classes'] = implode(' ', $wrapper_classes_array);
 }
 
-/**
- * Implements hook_preprocess_page().
- */
 function futurium_isa_theme_preprocess_page(&$variables) {
-
   unset($variables['navbar_classes_array'][1]);
   $variables['navbar_classes_array'][] = 'container-fullwidth';
 
@@ -45,10 +41,12 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     'page_manager_user_edit_page',
     'page_manager_node_add',
     'entity_translation_edit_page',
+    'page_manager_term_view_page',
   );
-  $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks);
+  $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks, TRUE);
 
-  $variables['show_title'] = !in_array($item['page_callback'], $panels_callbacks);
+  $variables['show_title'] = !in_array($item['page_callback'], $panels_callbacks, TRUE);
+
 }
 
 /**
@@ -208,7 +206,7 @@ function futurium_isa_theme_date_display_single($variables) {
   if ($start_date_obj != $end_date_obj) {
     $string = '!start-day !start-month !start-year - !start-hour - !end-hour';
   }
-  else{
+  else {
     $string = '!start-day !start-month !start-year - !start-hour';
   }
 
@@ -235,30 +233,27 @@ function futurium_isa_theme_date_display_single($variables) {
  * Fixes non-working fieldset in bootstrap themes.
  */
 function futurium_isa_theme_field_group_pre_render_alter(&$element, $group, & $form) {
-  if(isset($element['#type']) && $element['#type'] == 'fieldset' && !isset($element['#id'])){
+  if (isset($element['#type']) && $element['#type'] == 'fieldset' && !isset($element['#id'])) {
     $element['#id'] = drupal_html_id('fieldset');
   }
 }
 
 /**
- * Implements hook_js_alter.
- *
- * Fixes non-working fieldset in bootstrap themes.
+ * Implements hook_js_alter().
  */
 function futurium_isa_theme_js_alter(&$js) {
   unset($js['misc/collapse.js']);
 }
 
 /**
- * Implements hook_preprocess_rate_template_fivestar.
- *
- * Customize rate widgets.
+ * Implements hook_preprocess_rate_template_fivestar().
  */
 function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
   global $base_url;
   extract($variables);
-  foreach ($links as $key => $link){
-    if ($results['rating'] >= $link['value']){
+
+  foreach ($links as $key => $link) {
+    if ($results['rating'] >= $link['value']) {
       $class = 'rate-fivestar-btn-filled';
     }
     else {
@@ -267,16 +262,20 @@ function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
     switch ($variables['display_options']['title']) {
       case 'Desirability':
         $icon = "futurium-rate futurium-rate-desirability";
-        //$icon = "glyphicon glyphicon-star";
         break;
+
       case 'Feasibility':
         $icon = "futurium-rate futurium-rate-feasibility";
-        //$icon = "glyphicon glyphicon-star";
         break;
+
       case 'Impact':
         $icon = "futurium-rate futurium-rate-impact";
-        //$icon = "glyphicon glyphicon-star";
         break;
+
+      case 'Likelihood':
+        $icon = "futurium-rate futurium-rate-likelihood";
+        break;
+
       default:
         $icon = "glyphicon glyphicon-star";
         break;
@@ -285,4 +284,19 @@ function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
 
     $variables['stars'][$key] = l('<i class="' . $icon . '"></i>', $base_url . $link['href'], $link_options);
   }
+
+  $info = array();
+  if ($mode == RATE_CLOSED) {
+    $info[] = t('Voting is closed.');
+  }
+  if ($mode != RATE_COMPACT && $mode != RATE_COMPACT_DISABLED) {
+    if (isset($results['user_vote'])) {
+      $vote_value = $variables['links'][1]['value'] - $variables['links'][0]['value'];
+      $vote = round($results['user_vote'] / $vote_value);
+      $info[] = t('You voted !vote.', array('!vote' => $vote));
+    }
+    $info[] = t('Total votes: !count', array('!count' => $results['count']));
+  }
+  $variables['info'] = implode(' ', $info);
+
 }

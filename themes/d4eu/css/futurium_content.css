@@ -231,17 +231,14 @@
   display: none;
 }
 
-.view-events .item-list li .node-event-d4eu,
 .view-recent-activity .item-list li .node-event-d4eu {
   padding: 0 10px 10px 0;
 }
 
-.view-events .item-list li .node-event-d4eu .content-type-label .label,
 .view-recent-activity .item-list li .node-event-d4eu .content-type-label .label {
   display: none;
 }
 
-.view-events .item-list li .node-event-d4eu .content-type-label,
 .view-recent-activity .item-list li .node-event-d4eu .content-type-label {
   float: left;
   width: auto;
@@ -251,19 +248,15 @@
   margin-top: -7px;
   padding: 0 15px 13px 0;
 }
-.view-events .item-list li .node-event-d4eu .listNodeUpdated:before,
 .view-recent-activity .item-list li .node-event-d4eu .listNodeUpdated:before {
   display: none;
 }
 
-.view-events .item-list li .node-event-d4eu h2,
-.view-events .item-list li .node-event-d4eu .content,
 .view-recent-activity .item-list li .node-event-d4eu h2,
 .view-recent-activity .item-list li .node-event-d4eu .content {
   padding-left: 80px;
 }
 
-.view-events .item-list li .node-event-d4eu .field-name-field-date-time a,
 .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a {
   text-decoration: none;
   color: #244455;
@@ -284,14 +277,12 @@
   background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(217, 227, 228, 1) 100%);
 }
 
-.view-events .item-list li .node-event-d4eu .field-name-field-date-time a + a,
 .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a + a {
   color: #555;
   border-color: #aaa;
   position: relative;
 }
 
-.view-events .item-list li .node-event-d4eu .field-name-field-date-time a + a:before,
 .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a + a:before {
   content: "➔";
   font-size: 30px;
@@ -301,14 +292,12 @@
   color: #aaa;
 }
 
-.view-events .item-list li .node-event-d4eu .field-name-field-date-time a .day-event-front-page,
 .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a .day-event-front-page {
   font-size: 22px;
   font-weight: bold;
   line-height: 21px;
 }
 
-.view-events .item-list li .node-event-d4eu .field-name-field-date-time a .month-event-front-page,
 .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a .month-event-front-page {
   font-size: 14px;
   font-weight: bold;
@@ -316,7 +305,6 @@
   text-transform: uppercase;
 }
 
-.view-events .item-list li .node-event-d4eu .field-name-field-date-time a .year-event-front-page,
 .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a .year-event-front-page {
   font-size: 13px;
   line-height: 12px;
@@ -360,7 +348,6 @@
   text-align: right;
 }
 
-.view-events .item-list li h2,
 .view-recent-activity .item-list li h2 {
   margin: 0;
   padding-left: 0;
@@ -371,18 +358,15 @@
   line-height: 1.2em;
 }
 
-.view-events .item-list li .content,
 .view-recent-activity .item-list li .content {
   padding-left: 20px;
   font-size: 85%;
 }
 
-.view-events .item-list li h2 a,
 .view-recent-activity .item-list li h2 a {
   text-decoration: none;
 }
 
-.view-events .item-list li h2 a:hover,
 .view-recent-activity .item-list li h2 a:hover {
   text-decoration: underline;
 }

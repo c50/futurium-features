@@ -13,18 +13,17 @@ function futurium_isa_default_panels_mini() {
   $mini = new stdClass();
   $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
   $mini->api_version = 1;
-  $mini->name = 'user_data_block';
+  $mini->name = 'event_date_location';
   $mini->category = '';
-  $mini->admin_title = 'User data block';
+  $mini->admin_title = 'Event Date Location';
   $mini->admin_description = '';
   $mini->requiredcontexts = array(
     0 => array(
-      'identifier' => 'User',
-      'keyword' => 'user',
-      'name' => 'user',
-      'type' => 'select',
-      'uid' => '',
-      'optional' => 1,
+      'identifier' => 'Node',
+      'keyword' => 'node',
+      'name' => 'entity:node',
+      'entity_id' => '',
+      'optional' => 0,
       'id' => 1,
     ),
   );
@@ -36,34 +35,37 @@ function futurium_isa_default_panels_mini() {
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
-      'top' => NULL,
-      'left' => NULL,
-      'right' => NULL,
-      'bottom' => NULL,
       'middle' => NULL,
     ),
   );
   $display->cache = array();
   $display->title = '';
-  $display->uuid = 'b4c7962a-15fe-4618-a387-44f44d6408d7';
+  $display->uuid = '8015bd17-6930-40ac-a6c0-84223bbcbfd3';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-8cd16791-0e61-4a01-982b-4e87a43d0a32';
+    $pane->pid = 'new-d07ad1c7-c58b-434a-ab08-a026ab9c06e8';
     $pane->panel = 'middle';
     $pane->type = 'entity_field';
-    $pane->subtype = 'user:field_profession';
+    $pane->subtype = 'node:field_date_time';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'inline',
-      'formatter' => 'text_default',
+      'label' => 'title',
+      'formatter' => 'date_default',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'requiredcontext_user_1',
-      'override_title' => 0,
+      'formatter_settings' => array(
+        'format_type' => 'day_fullmonth_year',
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_to' => '',
+        'fromto' => 'both',
+        'show_remaining_days' => 0,
+      ),
+      'context' => 'requiredcontext_entity:node_1',
+      'override_title' => 1,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
@@ -75,25 +77,30 @@ function futurium_isa_default_panels_mini() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '8cd16791-0e61-4a01-982b-4e87a43d0a32';
-    $display->content['new-8cd16791-0e61-4a01-982b-4e87a43d0a32'] = $pane;
-    $display->panels['middle'][0] = 'new-8cd16791-0e61-4a01-982b-4e87a43d0a32';
+    $pane->uuid = 'd07ad1c7-c58b-434a-ab08-a026ab9c06e8';
+    $display->content['new-d07ad1c7-c58b-434a-ab08-a026ab9c06e8'] = $pane;
+    $display->panels['middle'][0] = 'new-d07ad1c7-c58b-434a-ab08-a026ab9c06e8';
     $pane = new stdClass();
-    $pane->pid = 'new-93f70cb8-e5ea-483f-96b0-87e8f007d984';
+    $pane->pid = 'new-787e91c4-f7eb-4413-b027-b30db187a4f5';
     $pane->panel = 'middle';
     $pane->type = 'entity_field';
-    $pane->subtype = 'user:field_education';
+    $pane->subtype = 'node:field_location';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'inline',
-      'formatter' => 'text_default',
-      'delta_limit' => '0',
+      'label' => 'title',
+      'formatter' => 'addressfield_default',
+      'delta_limit' => 0,
       'delta_offset' => '0',
-      'delta_reversed' => 0,
-      'formatter_settings' => array(),
-      'context' => 'requiredcontext_user_1',
-      'override_title' => 0,
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'use_widget_handlers' => 1,
+        'format_handlers' => array(
+          'address' => 'address',
+        ),
+      ),
+      'context' => 'requiredcontext_entity:node_1',
+      'override_title' => 1,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
@@ -105,30 +112,50 @@ function futurium_isa_default_panels_mini() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '93f70cb8-e5ea-483f-96b0-87e8f007d984';
-    $display->content['new-93f70cb8-e5ea-483f-96b0-87e8f007d984'] = $pane;
-    $display->panels['middle'][1] = 'new-93f70cb8-e5ea-483f-96b0-87e8f007d984';
+    $pane->uuid = '787e91c4-f7eb-4413-b027-b30db187a4f5';
+    $display->content['new-787e91c4-f7eb-4413-b027-b30db187a4f5'] = $pane;
+    $display->panels['middle'][1] = 'new-787e91c4-f7eb-4413-b027-b30db187a4f5';
     $pane = new stdClass();
-    $pane->pid = 'new-3f7ea431-e258-474d-95e8-3b2722a7caeb';
+    $pane->pid = 'new-f04e799a-7261-4230-aa2d-2142d2cc23b3';
     $pane->panel = 'middle';
     $pane->type = 'entity_field';
-    $pane->subtype = 'user:field_location';
+    $pane->subtype = 'node:field_coordinates';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'inline',
-      'formatter' => 'addressfield_default',
+      'label' => 'title',
+      'formatter' => 'geofield_map_map',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
-        'use_widget_handlers' => 1,
-        'format_handlers' => array(
-          'address' => 'address',
+        'geofield_map_width' => '100%',
+        'geofield_map_height' => '300px',
+        'geofield_map_zoom' => '8',
+        'geofield_map_min_zoom' => '0',
+        'geofield_map_max_zoom' => '0',
+        'geofield_map_controltype' => 'default',
+        'geofield_map_mtc' => 'standard',
+        'geofield_map_pancontrol' => 1,
+        'geofield_map_maptype' => 'map',
+        'geofield_map_baselayers_map' => 1,
+        'geofield_map_baselayers_satellite' => 1,
+        'geofield_map_baselayers_hybrid' => 1,
+        'geofield_map_baselayers_physical' => 0,
+        'geofield_map_scale' => 0,
+        'geofield_map_overview' => 0,
+        'geofield_map_overview_opened' => 0,
+        'geofield_map_scrollwheel' => 0,
+        'geofield_map_draggable' => 0,
+        'geofield_map_streetview_show' => 0,
+        'geofield_map_center' => array(
+          'lat' => '',
+          'lon' => '',
+          'geocode' => 'Find my location',
         ),
       ),
-      'context' => 'requiredcontext_user_1',
-      'override_title' => 0,
+      'context' => 'requiredcontext_entity:node_1',
+      'override_title' => 1,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
@@ -140,86 +167,13 @@ function futurium_isa_default_panels_mini() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = '3f7ea431-e258-474d-95e8-3b2722a7caeb';
-    $display->content['new-3f7ea431-e258-474d-95e8-3b2722a7caeb'] = $pane;
-    $display->panels['middle'][2] = 'new-3f7ea431-e258-474d-95e8-3b2722a7caeb';
-    $pane = new stdClass();
-    $pane->pid = 'new-ce8e5937-1b9f-4710-82f5-b8cb34fec142';
-    $pane->panel = 'middle';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'user:field_gender';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'inline',
-      'formatter' => 'i18n_list_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'requiredcontext_user_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $pane->uuid = 'ce8e5937-1b9f-4710-82f5-b8cb34fec142';
-    $display->content['new-ce8e5937-1b9f-4710-82f5-b8cb34fec142'] = $pane;
-    $display->panels['middle'][3] = 'new-ce8e5937-1b9f-4710-82f5-b8cb34fec142';
-    $pane = new stdClass();
-    $pane->pid = 'new-2eed5476-1d5e-4579-a93e-ddbac9bb107e';
-    $pane->panel = 'middle';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'user:field_age';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        1 => array(
-          'name' => 'php',
-          'settings' => array(
-            'description' => 'Birthday not empty',
-            'php' => '$entity = $contexts[\'requiredcontext_user_1\']->data;
-return (isset($entity->field_birthday[LANGUAGE_NONE][0][\'value\']) && !empty($entity->field_birthday[LANGUAGE_NONE][0][\'value\']));
-',
-          ),
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'label' => 'inline',
-      'formatter' => 'computed_field_plain',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'requiredcontext_user_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 4;
-    $pane->locks = array();
-    $pane->uuid = '2eed5476-1d5e-4579-a93e-ddbac9bb107e';
-    $display->content['new-2eed5476-1d5e-4579-a93e-ddbac9bb107e'] = $pane;
-    $display->panels['middle'][4] = 'new-2eed5476-1d5e-4579-a93e-ddbac9bb107e';
+    $pane->uuid = 'f04e799a-7261-4230-aa2d-2142d2cc23b3';
+    $display->content['new-f04e799a-7261-4230-aa2d-2142d2cc23b3'] = $pane;
+    $display->panels['middle'][2] = 'new-f04e799a-7261-4230-aa2d-2142d2cc23b3';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-8cd16791-0e61-4a01-982b-4e87a43d0a32';
+  $display->title_pane = 'new-d07ad1c7-c58b-434a-ab08-a026ab9c06e8';
   $mini->display = $display;
-  $export['user_data_block'] = $mini;
+  $export['event_date_location'] = $mini;
 
   $mini = new stdClass();
   $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */

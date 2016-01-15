@@ -17,14 +17,6 @@ function futurium_d4eu_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_issue',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -46,14 +38,6 @@ function futurium_d4eu_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_organisation',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -68,14 +52,13 @@ function futurium_d4eu_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_rate_issue'
-  $field_bases['field_rate_issue'] = array(
+  // Exported field_base: 'field_rate_comment'
+  $field_bases['field_rate_comment'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_rate_issue',
-    'foreign keys' => array(),
+    'field_name' => 'field_rate_comment',
     'indexes' => array(),
     'locked' => 1,
     'module' => 'fivestar',
@@ -94,7 +77,6 @@ function futurium_d4eu_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_rate_ideas',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 1,
     'module' => 'fivestar',
@@ -106,14 +88,13 @@ function futurium_d4eu_field_default_field_bases() {
     'type' => 'fivestar',
   );
 
-  // Exported field_base: 'field_rate_comment'
-  $field_bases['field_rate_comment'] = array(
+  // Exported field_base: 'field_rate_issue'
+  $field_bases['field_rate_issue'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_rate_comment',
-    'foreign keys' => array(),
+    'field_name' => 'field_rate_issue',
     'indexes' => array(),
     'locked' => 1,
     'module' => 'fivestar',
@@ -132,14 +113,6 @@ function futurium_d4eu_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_register_url',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',

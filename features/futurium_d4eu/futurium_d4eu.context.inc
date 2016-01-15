@@ -13,6 +13,57 @@ function futurium_d4eu_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'content_by_topic';
+  $context->description = 'This context is used to visualise the exposed search form to explore content by topic';
+  $context->tag = 'content';
+  $context->conditions = array(
+    'views' => array(
+      'values' => array(
+        'content_by_topic' => 'content_by_topic',
+        'content_by_topic:page_1' => 'content_by_topic:page_1',
+        'content_by_topic:page_10' => 'content_by_topic:page_10',
+        'content_by_topic:page_12' => 'content_by_topic:page_12',
+        'content_by_topic:page_2' => 'content_by_topic:page_2',
+        'content_by_topic:page_3' => 'content_by_topic:page_3',
+        'content_by_topic:page_4' => 'content_by_topic:page_4',
+        'content_by_topic:page_5' => 'content_by_topic:page_5',
+        'content_by_topic:page_6' => 'content_by_topic:page_6',
+        'content_by_topic:page_7' => 'content_by_topic:page_7',
+        'content_by_topic:page_8' => 'content_by_topic:page_8',
+        'content_by_topic:page_9' => 'content_by_topic:page_9',
+        'content_by_topic:search_content' => 'content_by_topic:search_content',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-4f31e3c12451f97a9993ac7ddb46a66c' => array(
+          'module' => 'views',
+          'delta' => '4f31e3c12451f97a9993ac7ddb46a66c',
+          'region' => 'sidebar_right',
+          'weight' => '-38',
+        ),
+        'views-977c9fda091109234fc999d3edd8e290' => array(
+          'module' => 'views',
+          'delta' => '977c9fda091109234fc999d3edd8e290',
+          'region' => 'content_top',
+          'weight' => '10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('This context is used to visualise the exposed search form to explore content by topic');
+  t('content');
+  $export['content_by_topic'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'futurium_homepage';
   $context->description = 'Futurium Homepage.';
   $context->tag = 'A) Futurium';
@@ -180,58 +231,6 @@ function futurium_d4eu_context_default_contexts() {
   t('Extend user profiles display');
   t('users');
   $export['user_page'] = $context;
-
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'content_by_topic';
-  $context->description = 'This context is used to visualise the exposed search form to explore content by topic';
-  $context->tag = 'content';
-  $context->conditions = array(
-    'views' => array(
-      'values' => array(
-        'content_by_topic' => 'content_by_topic',
-        'content_by_topic:page_1' => 'content_by_topic:page_1',
-        'content_by_topic:page_10' => 'content_by_topic:page_10',
-        'content_by_topic:page_12' => 'content_by_topic:page_12',
-        'content_by_topic:page_2' => 'content_by_topic:page_2',
-        'content_by_topic:page_3' => 'content_by_topic:page_3',
-        'content_by_topic:page_4' => 'content_by_topic:page_4',
-        'content_by_topic:page_5' => 'content_by_topic:page_5',
-        'content_by_topic:page_6' => 'content_by_topic:page_6',
-        'content_by_topic:page_7' => 'content_by_topic:page_7',
-        'content_by_topic:page_8' => 'content_by_topic:page_8',
-        'content_by_topic:page_9' => 'content_by_topic:page_9',
-        'content_by_topic:search_content' => 'content_by_topic:search_content',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'views-4f31e3c12451f97a9993ac7ddb46a66c' => array(
-          'module' => 'views',
-          'delta' => '4f31e3c12451f97a9993ac7ddb46a66c',
-          'region' => 'sidebar_right',
-          'weight' => '-38',
-        ),
-        'views-977c9fda091109234fc999d3edd8e290' => array(
-          'module' => 'views',
-          'delta' => '977c9fda091109234fc999d3edd8e290',
-          'region' => 'content_top',
-          'weight' => '10',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('This context is used to visualise the exposed search form to explore content by topic');
-  t('content');
-
-  $export['content_by_topic'] = $context;
 
   return $export;
 }

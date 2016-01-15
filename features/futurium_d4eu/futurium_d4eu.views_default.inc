@@ -346,7 +346,6 @@ function futurium_d4eu_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = '0';
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-
   $export['content_by_topic'] = $view;
 
   $view = new view();
