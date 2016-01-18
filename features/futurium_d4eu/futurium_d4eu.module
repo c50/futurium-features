@@ -487,12 +487,18 @@ function _futurium_d4eu_tear_off_calendar($variables) {
     $from_date = "<div class='day-event-front-page'>{$variables['from_date'][2]}</div>
       <div class='month-event-front-page'>{$variables['from_date'][1]}</div>
       <div class='year-event-front-page'>{$variables['from_date'][0]}</div>";
-    $from_date = l($from_date, $variables['alias'], array (html => TRUE,));
+    $from_date = l($from_date, $variables['alias'], array(
+      'html' => TRUE
+      )
+    );
     if ($variables['to_date'] > $variables['from_date']) {
       $to_date = "<div class='day-event-front-page'>{$variables['to_date'][2]}</div>
       <div class='month-event-front-page'>{$variables['to_date'][1]}</div>
       <div class='year-event-front-page'>{$variables['to_date'][0]}</div>";
-      $to_date = l($to_date, $variables['alias'], array (html => TRUE,));
+      $to_date = l($to_date, $variables['alias'], array(
+        'html' => TRUE
+        )
+      );
       return $from_date . $to_date;
     }
     else {
