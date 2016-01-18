@@ -46,6 +46,9 @@ function futurium_groups_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'teaser_w_pic' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -66,6 +69,10 @@ function futurium_groups_strongarm() {
             'weight' => '1',
             'visible' => FALSE,
           ),
+          'teaser_w_pic' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
         ),
         'edit_group' => array(
           'node_header' => array(
@@ -74,6 +81,14 @@ function futurium_groups_strongarm() {
           ),
           'teaser' => array(
             'weight' => '10',
+            'visible' => FALSE,
+          ),
+          'default' => array(
+            'weight' => '52',
+            'visible' => TRUE,
+          ),
+          'teaser_w_pic' => array(
+            'weight' => '11',
             'visible' => FALSE,
           ),
         ),

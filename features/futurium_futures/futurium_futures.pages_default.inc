@@ -17,7 +17,7 @@ function futurium_futures_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -26;
+  $handler->weight = -30;
   $handler->conf = array(
     'title' => 'Future',
     'no_blocks' => 0,
@@ -700,7 +700,9 @@ function futurium_futures_default_page_manager_pages() {
   $page->admin_title = 'Futures';
   $page->admin_description = '';
   $page->path = 'futures';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+  );
   $page->menu = array(
     'type' => 'normal',
     'title' => 'Futures',
@@ -809,7 +811,7 @@ function futurium_futures_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<h1>Explore new ideas and find answers in the Ideas Market Place</h1><div class="intro">This is the place where everybody can share, discuss and support ideas</div>',
+      'body' => '<h1>Share your vision of what the world might look like</h1><div class="intro">and the chalenges and opportunities associated with it.</div>',
       'format' => 'full_html',
       'substitute' => TRUE,
     );

@@ -366,6 +366,12 @@ attending';
             'visible' => FALSE,
           ),
         ),
+        'user_city' => array(
+          'user_header' => array(
+            'visible' => TRUE,
+            'weight' => 15,
+          ),
+        ),
         'follow' => array(
           'user_header' => array(
             'weight' => '1',
