@@ -62,7 +62,8 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['fields']['type']['field'] = 'type';
   $handler->display->display_options['fields']['type']['label'] = '';
   $handler->display->display_options['fields']['type']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['type']['alter']['text'] = '[type]';
+  $handler->display->display_options['fields']['type']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['type']['alter']['text'] = 'Related [type]';
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type_1']['id'] = 'type_1';
@@ -132,14 +133,14 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Implemented by';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: Relation: to implement (node → node) */
+  /* Relationship: Content: Relation: implemented by (node → node) */
   $handler->display->display_options['relationships']['relation_implemented_by_node']['id'] = 'relation_implemented_by_node';
   $handler->display->display_options['relationships']['relation_implemented_by_node']['table'] = 'node';
   $handler->display->display_options['relationships']['relation_implemented_by_node']['field'] = 'relation_implemented_by_node';
   $handler->display->display_options['relationships']['relation_implemented_by_node']['r_index'] = '-1';
   $handler->display->display_options['relationships']['relation_implemented_by_node']['entity_deduplication_left'] = 0;
   $handler->display->display_options['relationships']['relation_implemented_by_node']['entity_deduplication_right'] = 0;
-  /* Relationship: Content: Relation: to implement (node → relation) */
+  /* Relationship: Content: Relation: implemented by (node → relation) */
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['id'] = 'relation_base_left_implemented_by';
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['table'] = 'node';
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['field'] = 'relation_base_left_implemented_by';

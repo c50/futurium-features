@@ -269,6 +269,14 @@ function futurium_isa_extras_field_extra_fields() {
     );
   }
 
+  // Edit profile link.
+  $extrafield_name = 'edit_group';
+  $extra['node']['futurium_group']['display'][$extrafield_name] = array(
+    'label' => t("Edit Group"),
+    'description' => t('Edit group.'),
+    'weight' => 52,
+  );
+
   // City only.
   $extrafield_name = 'addressfield_city';
   $extra['node']['event_d4eu']['display'][$extrafield_name] = array(
@@ -354,6 +362,30 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     }
   }
 
+  // Edit group.
+  $extrafield_name = 'edit_group';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+
+    //global $user;
+    //if ($user->uid == $account->uid || user_access('administer users')) {
+      $link_options = array(
+        'attributes' => array(
+          'class' => array(
+            'flag',
+            'flag-action',
+            'flag-link-toggle',
+            'flag-processed',
+          ),
+        ),
+      );
+      $node->content[$extrafield_name] = array(
+        '#markup' => l(t("Edit group profile"), 'node/' . $node->nid . '/edit', $link_options),
+      );
+    //}
+  }
+
 }
 
 /**
@@ -411,13 +443,34 @@ function futurium_isa_extras_ds_fields_info($entity_type) {
     'function' => 'futurium_isa_extras_ds_field_author',
   );
 
+  $fields['node']['member_count'] = array(
+    'title' => t('Member count'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'function' => 'futurium_isa_extras_ds_field_member_count',
+    'ui_limit' => array('futurium_group|teaser', 'futurium_group|node_header'),
+  );
+
+  $fields['node']['futures_count'] = array(
+    'title' => t('Futures count'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'function' => 'futurium_isa_extras_ds_field_futures_count',
+    'ui_limit' => array('futurium_group|teaser', 'futurium_group|node_header'),
+  );
+
+  $fields['node']['ideas_count'] = array(
+    'title' => t('Ideas count'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'function' => 'futurium_isa_extras_ds_field_ideas_count',
+    'ui_limit' => array('futurium_group|teaser', 'futurium_group|node_header'),
+  );
+
   if (isset($fields[$entity_type])) {
     return array($entity_type => $fields[$entity_type]);
   }
 }
 
 /**
- * Render the article footnote field.
+ * Render the node author field.
  */
 function futurium_isa_extras_ds_field_author($field) {
   $uid = $field['entity']->uid;
@@ -427,16 +480,116 @@ function futurium_isa_extras_ds_field_author($field) {
 }
 
 /**
+ * Render the group member count field.
+ */
+function futurium_isa_extras_ds_field_member_count($field) {
+  $nid = $field['entity']->nid;
+  $count = '<div class="field fake-field member-count">' . futurium_isa_extras_count_group_members($nid) . '</div>';
+  return render($count);
+}
+
+/**
+ * Render the group member count field.
+ */
+function futurium_isa_extras_ds_field_futures_count($field) {
+  $nid = $field['entity']->nid;
+  $count = '<div class="field fake-field futures-count">' . futurium_isa_extras_count_group_content($nid, 'future') . '</div>';
+  return render($count);
+}
+
+/**
+ * Render the group member count field.
+ */
+function futurium_isa_extras_ds_field_ideas_count($field) {
+  $nid = $field['entity']->nid;
+  $count = '<div class="field fake-field ideas-count">' . futurium_isa_extras_count_group_content($nid, 'ideas') . '</div>';
+  return render($count);
+}
+
+/**
  * Helper function to set default user picture.
  */
 function futurium_isa_extras_set_default_pic() {
   $module_path = drupal_get_path('module', 'futurium_isa_extras');
-  $full_path = $module_path . '/default_images/user_picture.jpg';
+  $full_path = $module_path . '/default_images/user_picture.png';
 
   $source = drupal_realpath($full_path);
 
   file_unmanaged_copy($source);
-  variable_set('user_picture_default', 'public://user_picture.jpg');
+  variable_set('user_picture_default', 'public://user_picture.png');
+}
+
+/**
+ * Helper function to count group members.
+ */
+function futurium_isa_extras_count_group_members($nid) {
+
+  $group_type = 'node';
+  $group = entity_load_single($group_type, $nid);
+
+  if (!$group || !og_is_group($group_type, $group)) {
+    // Arguments are not a valid group.
+    return;
+  }
+
+  $items = array();
+
+  $base_query = new EntityFieldQuery();
+  $base_query
+    ->entityCondition('entity_type', 'og_membership')
+    ->propertyCondition('group_type', $group_type, '=')
+    ->propertyCondition('gid', $nid, '=')
+    ->count();
+
+  $query = clone $base_query;
+  $count = $query
+    ->propertyCondition('entity_type', 'user', '=')
+    ->execute();
+
+  return $count;
+
+}
+
+/**
+ * Helper function to count group content.
+ */
+function futurium_isa_extras_count_group_content($nid, $content_type) {
+
+  $group_type = 'node';
+  $group = entity_load_single($group_type, $nid);
+
+  if (!$group || !og_is_group($group_type, $group)) {
+    // Arguments are not a valid group.
+    return;
+  }
+
+  $items = array();
+
+  $base_query = new EntityFieldQuery();
+  $base_query
+    ->entityCondition('entity_type', 'og_membership')
+    ->propertyCondition('group_type', $group_type, '=')
+    ->propertyCondition('gid', $nid, '=')
+  ;
+
+  $query = clone $base_query;
+  $count = $query
+    ->propertyCondition('entity_type', 'node', '=')
+    ->execute();
+
+  $sub_query = db_select('node')
+    ->fields('node', array('nid'))
+    ->condition('type', $content_type, '=');
+
+  $query = db_select('og_membership')
+    ->fields('og_membership', array('etid'))
+    ->condition('group_type', 'node', '=')
+    ->condition('gid', $nid, '=')
+    ->condition('etid', $sub_query, 'IN');
+
+  $results = $query->execute()->fetchAll();
+
+  return count($results);
 }
 
 // Modules likely to be disabled

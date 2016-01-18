@@ -138,18 +138,17 @@
   <?php endif; ?>
 
   <section<?php //print $content_column_class; ?>>
-    
-      <?php
-      if (
-        !empty($page['highlighted']) ||
-        !empty($breadcrumb) ||
-        !empty($messages) ||
-        !empty($tabs['#primary']) ||
-        !empty($page['help']) ||
-        !empty($action_links)
-      ):
-      ?>
-      <div class="container-top">
+    <?php
+    if (
+      !empty($page['highlighted']) ||
+      !empty($breadcrumb) ||
+      !empty($messages) ||
+      !empty($tabs['#primary']) ||
+      !empty($page['help']) ||
+      !empty($action_links)
+    ):
+    ?>
+    <div class="container-top">
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

@@ -13,259 +13,6 @@ function futurium_isa_default_page_manager_handlers() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'term_view__panel_context_645c8220-980b-4c7b-b066-e549b2bfe76f';
-  $handler->task = 'term_view';
-  $handler->subtask = '';
-  $handler->handler = 'panel_context';
-  $handler->weight = 0;
-  $handler->conf = array(
-    'title' => 'Panel',
-    'no_blocks' => 0,
-    'pipeline' => 'standard',
-    'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
-    'css_id' => '',
-    'css' => '',
-    'contexts' => array(),
-    'relationships' => array(),
-    'name' => '',
-  );
-  $display = new panels_display();
-  $display->layout = 'bootstrap_twocol_tower';
-  $display->layout_settings = array();
-  $display->panel_settings = array(
-    'style_settings' => array(
-      'default' => NULL,
-      'row1l' => NULL,
-      'row1r' => NULL,
-      'row2l' => NULL,
-      'row2r' => NULL,
-      'row3l' => NULL,
-      'row3r' => NULL,
-      'row4l' => NULL,
-      'row4r' => NULL,
-      'row5l' => NULL,
-      'row5r' => NULL,
-      'row6l' => NULL,
-      'row6r' => NULL,
-      'row7l' => NULL,
-      'row7r' => NULL,
-      'row8l' => NULL,
-      'row8r' => NULL,
-      'row9l' => NULL,
-      'row9r' => NULL,
-      'row10l' => NULL,
-      'row10r' => NULL,
-    ),
-  );
-  $display->cache = array();
-  $display->title = '';
-  $display->uuid = 'cbe273ed-bc73-488a-8026-38b1f0135929';
-  $display->content = array();
-  $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-a5182cfb-9cbc-4fa7-a619-88f9fac89be9';
-    $pane->panel = 'row1l';
-    $pane->type = 'term_name';
-    $pane->subtype = 'term_name';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'link' => 0,
-      'markup' => 'h1',
-      'id' => '',
-      'class' => '',
-      'context' => 'argument_term_1',
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'a5182cfb-9cbc-4fa7-a619-88f9fac89be9';
-    $display->content['new-a5182cfb-9cbc-4fa7-a619-88f9fac89be9'] = $pane;
-    $display->panels['row1l'][0] = 'new-a5182cfb-9cbc-4fa7-a619-88f9fac89be9';
-    $pane = new stdClass();
-    $pane->pid = 'new-3ca355a0-4bb7-40d4-8d57-7c24f600fa23';
-    $pane->panel = 'row2l';
-    $pane->type = 'views';
-    $pane->subtype = 'futurium_taxonomy_term';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 1,
-      'nodes_per_page' => '0',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block_1',
-      'context' => array(
-        0 => 'argument_term_1.tid',
-        1 => 'argument_term_1.tid',
-      ),
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '3ca355a0-4bb7-40d4-8d57-7c24f600fa23';
-    $display->content['new-3ca355a0-4bb7-40d4-8d57-7c24f600fa23'] = $pane;
-    $display->panels['row2l'][0] = 'new-3ca355a0-4bb7-40d4-8d57-7c24f600fa23';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
-  $handler->conf['display'] = $display;
-  $export['term_view__panel_context_645c8220-980b-4c7b-b066-e549b2bfe76f'] = $handler;
-
-  $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-  $handler->api_version = 1;
-  $handler->name = 'node_edit__panel_context_52afa37e-4eb5-4d02-bc65-07f0d11e68ee';
-  $handler->task = 'node_edit';
-  $handler->subtask = '';
-  $handler->handler = 'panel_context';
-  $handler->weight = 0;
-  $handler->conf = array(
-    'title' => 'Panel',
-    'no_blocks' => 0,
-    'pipeline' => 'standard',
-    'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
-    'css_id' => '',
-    'css' => '',
-    'contexts' => array(),
-    'relationships' => array(),
-    'name' => '',
-    'access' => array(
-      'logic' => 'and',
-    ),
-  );
-  $display = new panels_display();
-  $display->layout = 'bootstrap_threecol_tower';
-  $display->layout_settings = array();
-  $display->panel_settings = array(
-    'style_settings' => array(
-      'default' => array(
-        'css_id' => '',
-        'css_class' => '',
-        'column' => array(
-          'xs' => '12',
-          'sm' => '12',
-          'md' => '12',
-          'lg' => '12',
-        ),
-        'offset' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'push' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'pull' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-      ),
-      'top' => NULL,
-      'left' => NULL,
-      'middle' => NULL,
-      'right' => NULL,
-      'bottom' => NULL,
-      'row1l' => NULL,
-      'row1c' => NULL,
-      'row1r' => NULL,
-      'row2l' => NULL,
-      'row2c' => NULL,
-      'row2r' => NULL,
-      'row3l' => NULL,
-      'row3c' => NULL,
-      'row3r' => NULL,
-      'row4l' => NULL,
-      'row4c' => NULL,
-      'row4r' => NULL,
-      'row5l' => NULL,
-      'row5c' => NULL,
-      'row5r' => NULL,
-      'row6l' => NULL,
-      'row6c' => NULL,
-      'row6r' => NULL,
-      'row7l' => NULL,
-      'row7c' => NULL,
-      'row7r' => NULL,
-      'row8l' => NULL,
-      'row8c' => NULL,
-      'row8r' => NULL,
-      'row9l' => NULL,
-      'row9c' => NULL,
-      'row9r' => NULL,
-      'row10l' => NULL,
-      'row10c' => NULL,
-      'row10r' => NULL,
-    ),
-    'style' => 'bootstrap_region',
-  );
-  $display->cache = array();
-  $display->title = '';
-  $display->uuid = 'e5c8b57b-54de-42f1-915e-20adff354536';
-  $display->content = array();
-  $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-86523247-cd7f-459b-bc85-ce0059d4b9f3';
-    $pane->panel = 'row2l';
-    $pane->type = 'form';
-    $pane->subtype = 'form';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'context' => 'argument_node_edit_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '86523247-cd7f-459b-bc85-ce0059d4b9f3';
-    $display->content['new-86523247-cd7f-459b-bc85-ce0059d4b9f3'] = $pane;
-    $display->panels['row2l'][0] = 'new-86523247-cd7f-459b-bc85-ce0059d4b9f3';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
-  $handler->conf['display'] = $display;
-  $export['node_edit__panel_context_52afa37e-4eb5-4d02-bc65-07f0d11e68ee'] = $handler;
-
-  $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-  $handler->api_version = 1;
   $handler->name = 'node_view__event';
   $handler->task = 'node_view';
   $handler->subtask = '';
@@ -874,6 +621,285 @@ function futurium_isa_default_page_manager_handlers() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
+  $handler->name = 'term_view__panel_context_645c8220-980b-4c7b-b066-e549b2bfe76f';
+  $handler->task = 'term_view';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => '',
+  );
+  $display = new panels_display();
+  $display->layout = 'bootstrap_twocol_tower';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'row1l' => NULL,
+      'row1r' => NULL,
+      'row2l' => NULL,
+      'row2r' => NULL,
+      'row3l' => NULL,
+      'row3r' => NULL,
+      'row4l' => NULL,
+      'row4r' => NULL,
+      'row5l' => NULL,
+      'row5r' => NULL,
+      'row6l' => NULL,
+      'row6r' => NULL,
+      'row7l' => NULL,
+      'row7r' => NULL,
+      'row8l' => NULL,
+      'row8r' => NULL,
+      'row9l' => NULL,
+      'row9r' => NULL,
+      'row10l' => NULL,
+      'row10r' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = 'cbe273ed-bc73-488a-8026-38b1f0135929';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-a5182cfb-9cbc-4fa7-a619-88f9fac89be9';
+    $pane->panel = 'row1l';
+    $pane->type = 'term_name';
+    $pane->subtype = 'term_name';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'link' => 0,
+      'markup' => 'h1',
+      'id' => '',
+      'class' => '',
+      'context' => 'argument_term_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a5182cfb-9cbc-4fa7-a619-88f9fac89be9';
+    $display->content['new-a5182cfb-9cbc-4fa7-a619-88f9fac89be9'] = $pane;
+    $display->panels['row1l'][0] = 'new-a5182cfb-9cbc-4fa7-a619-88f9fac89be9';
+    $pane = new stdClass();
+    $pane->pid = 'new-3ca355a0-4bb7-40d4-8d57-7c24f600fa23';
+    $pane->panel = 'row2l';
+    $pane->type = 'views';
+    $pane->subtype = 'futurium_taxonomy_term';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '0',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_1',
+      'context' => array(
+        0 => 'argument_term_1.tid',
+        1 => 'argument_term_1.tid',
+      ),
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3ca355a0-4bb7-40d4-8d57-7c24f600fa23';
+    $display->content['new-3ca355a0-4bb7-40d4-8d57-7c24f600fa23'] = $pane;
+    $display->panels['row2l'][0] = 'new-3ca355a0-4bb7-40d4-8d57-7c24f600fa23';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $export['term_view__panel_context_645c8220-980b-4c7b-b066-e549b2bfe76f'] = $handler;
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'node_edit__panel_context_52afa37e-4eb5-4d02-bc65-07f0d11e68ee';
+  $handler->task = 'node_edit';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => '',
+    'access' => array(
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'bootstrap_threecol_tower';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'top' => NULL,
+      'left' => NULL,
+      'middle' => NULL,
+      'right' => NULL,
+      'bottom' => NULL,
+      'row1l' => NULL,
+      'row1c' => NULL,
+      'row1r' => NULL,
+      'row2l' => NULL,
+      'row2c' => NULL,
+      'row2r' => NULL,
+      'row3l' => NULL,
+      'row3c' => NULL,
+      'row3r' => NULL,
+      'row4l' => NULL,
+      'row4c' => NULL,
+      'row4r' => NULL,
+      'row5l' => NULL,
+      'row5c' => NULL,
+      'row5r' => NULL,
+      'row6l' => NULL,
+      'row6c' => NULL,
+      'row6r' => NULL,
+      'row7l' => NULL,
+      'row7c' => NULL,
+      'row7r' => NULL,
+      'row8l' => NULL,
+      'row8c' => NULL,
+      'row8r' => NULL,
+      'row9l' => NULL,
+      'row9c' => NULL,
+      'row9r' => NULL,
+      'row10l' => NULL,
+      'row10c' => NULL,
+      'row10r' => NULL,
+    ),
+    'style' => 'bootstrap_region',
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = 'e5c8b57b-54de-42f1-915e-20adff354536';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-3a87e70a-53e4-4585-880f-e5ca11ad8a1e';
+    $pane->panel = 'row1l';
+    $pane->type = 'page_title';
+    $pane->subtype = 'page_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'markup' => 'h1',
+      'class' => '',
+      'id' => '',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3a87e70a-53e4-4585-880f-e5ca11ad8a1e';
+    $display->content['new-3a87e70a-53e4-4585-880f-e5ca11ad8a1e'] = $pane;
+    $display->panels['row1l'][0] = 'new-3a87e70a-53e4-4585-880f-e5ca11ad8a1e';
+    $pane = new stdClass();
+    $pane->pid = 'new-86523247-cd7f-459b-bc85-ce0059d4b9f3';
+    $pane->panel = 'row2l';
+    $pane->type = 'form';
+    $pane->subtype = 'form';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'argument_node_edit_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '86523247-cd7f-459b-bc85-ce0059d4b9f3';
+    $display->content['new-86523247-cd7f-459b-bc85-ce0059d4b9f3'] = $pane;
+    $display->panels['row2l'][0] = 'new-86523247-cd7f-459b-bc85-ce0059d4b9f3';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $export['node_edit__panel_context_52afa37e-4eb5-4d02-bc65-07f0d11e68ee'] = $handler;
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
   $handler->name = 'node_view__evidence';
   $handler->task = 'node_view';
   $handler->subtask = '';
@@ -1258,7 +1284,7 @@ function futurium_isa_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'Supports',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -1889,7 +1915,7 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'override_pager_settings' => 0,
-      'use_pager' => 0,
+      'use_pager' => 1,
       'nodes_per_page' => '3',
       'pager_id' => '0',
       'offset' => '0',
@@ -1904,7 +1930,7 @@ function futurium_isa_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'Supported by',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -1927,7 +1953,7 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'override_pager_settings' => 0,
-      'use_pager' => 0,
+      'use_pager' => 1,
       'nodes_per_page' => '3',
       'pager_id' => '0',
       'offset' => '0',
@@ -1942,7 +1968,7 @@ function futurium_isa_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'Implemented on',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -1965,7 +1991,7 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'override_pager_settings' => 0,
-      'use_pager' => 0,
+      'use_pager' => 1,
       'nodes_per_page' => '3',
       'pager_id' => '0',
       'offset' => '0',
@@ -1980,7 +2006,7 @@ function futurium_isa_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'To be discussed at',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -3571,7 +3597,7 @@ function futurium_isa_default_page_manager_pages() {
       'args' => '',
       'url' => '',
       'display' => 'block_1',
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
@@ -3606,7 +3632,7 @@ function futurium_isa_default_page_manager_pages() {
       'args' => '',
       'url' => '',
       'display' => 'block',
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
