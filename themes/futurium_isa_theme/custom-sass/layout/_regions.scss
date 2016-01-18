@@ -1,4 +1,6 @@
-
+/***************/
+/* CONTAINERS */
+/*************/
 
 
 .container-fullwidth {
@@ -13,6 +15,28 @@
   padding: 0 0 0 0;
 }
 
+
+/***************/
+/* NAVIGATION */
+/*************/
+
+.navbar-brand {
+  @include rem(padding, 0 0 20px 0);
+}
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+  @include rem(margin, 0 0 20px 0);
+}
+
+.navbar-header {
+  float: left;
+  width: 20%;
+}
+
+.navbar-collapse {
+  float: left;
+  width: 80%;
+}
 
 
 /*****************/
@@ -67,12 +91,24 @@
 /*****************/
 
 .sidebar-right {
- 
+  
+  h2.pane-title{
+    @include rem(margin, 15px 15px 15px 15px);
+  }
+
   .date:before {
     content: none;
   }
   .panel-pane{
     @include panel;
+    h3 {
+      @include rem(margin-top, 0);
+      @include rem(padding, 0 0 10px 0);
+      border-bottom: 1px solid $mid-grey;
+    }
+  }
+  .pane-content {
+    @include rem(padding, 15px);   
   }
 }
 

@@ -674,17 +674,29 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
-
-
 /* STUFF FOR THE LINKER MODULE */
 
-.view-node-relations{
-  .item-list{
-    @include rem(margin, 40px 0 0 0);
+
+/* hide button from preview */
+.preview {
+  .flag-outer-attending .flag-link-toggle{
+    display: none;
   }
-  h3{
-    @extend h2.pane-title; 
-  }
+}
+
+/* settings for previewing content before linkinsg */
+div.panel-pane .preview .node{
+  @include rem(margin, 0 0 20px 0);
+  @include rem(padding, 20px);
+  background: #000;
+  opacity: 0.5;
+  z-index: 10;
+  border:10px solid red;
+}
+
+
+.autocomplete-suggestion.node-type-future:before, .view-node-relations .future:before {
+  @include fa(rocket);
 }
 
 .autocomplete-suggestion.node-type-ideas:before, .view-node-relations .ideas:before {
@@ -699,34 +711,10 @@ div.views-bootstrap-grid-plugin-style {
   @include fa(file-text-o);
 }
 
-.pane-node-relations {
 
+.btn-add-relation:before {
+  @include fa(link);
 }
-
-.pane-futurium-linker-futurium-linker {
-  @include rem(margin, 30px 0 30px 0);
-  @include rem(padding, 15px);
-  border: 1px solid $midmid-grey;
-  border-radius: 4px;
-  h2.pane-title{
-    margin: -15px -15px 15px -15px;
-    background: $light-grey;
-    padding: 15px 15px 15px 15px;
-    border-radius: 4px;
-    border-bottom: 1px solid $midmid-grey;
-    font-size: 14px;
-    font-family: $text-font-stack;
-    text-transform: inherit;
-  }
-
-  .form-submit:before {
-    @include fa(link);
-  }
-  .input-group{
-    @include rem(margin-top, 15px);
-  }
-}
-
 
 #node-preview{
   .node-teaser {
@@ -744,7 +732,6 @@ div.views-bootstrap-grid-plugin-style {
     @include rem(margin, 0 0 30px 0);
   }
 }
-
 
 .bootstrap-panels-horizontal-tabs {
   @extend .col-lg-12;
@@ -791,7 +778,7 @@ div.views-bootstrap-grid-plugin-style {
   height: 130px;
   width: 1160px;
   position: absolute;
-  left: 15px;
+  left: 0;
   bottom: 0;
   padding: 10px 20px 10px 20px;
   z-index: 20;
@@ -812,35 +799,7 @@ div.views-bootstrap-grid-plugin-style {
   width: 1160px;
   margin: 0;
   bottom: 0;
-  left: 15px;
+  left: 0;
   background: #000;
 }
 
-/**
- * Equal height solution
- * Add a .row-eq-height on the view 
- */
-
-
-
-/*
-
- .row-eq-height .row, .row-eq-height .row > div[class*='col-'] {  
-  @include flexbox();
-  @include respond-to(small) {
-    display: block; // unset display flex;
-  }
-  @include respond-to(medium) {
-    display: block; // unset display flex;
-  }
- }
-
-*/
-
-/*
-
-.view-ideas .row {
-  overflow: hidden;
-}
-
-*/
