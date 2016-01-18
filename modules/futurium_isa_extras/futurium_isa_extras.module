@@ -424,7 +424,7 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
         ),
       );
       $node->content[$extrafield_name] = array(
-        '#markup' => l(t("Edit group profile"), 'node/' . $node->nid . '/edit', $link_options),
+        '#markup' => l(t("Edit group"), 'node/' . $node->nid . '/edit', $link_options),
       );
     //}
   }

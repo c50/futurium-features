@@ -141,7 +141,7 @@
     <?php
     if (
       !empty($page['highlighted']) ||
-      !empty($breadcrumb) ||
+      //!empty($breadcrumb) ||
       !empty($messages) ||
       !empty($tabs['#primary']) ||
       !empty($page['help']) ||
@@ -155,7 +155,7 @@
           <?php if (!empty($page['highlighted'])): ?>
             <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
           <?php endif; ?>
-          <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+          <?php //if (!empty($breadcrumb)): print $breadcrumb; endif;?>
           <a id="main-content"></a>
           <?php print $messages; ?>
           <?php if (!empty($tabs)): ?>
