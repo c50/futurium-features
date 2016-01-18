@@ -1,3 +1,60 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
+
+.group-buttons{
+ 
+  a{
+   /* @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border); */
+   color: #fff;
+  }
+} 
+
+.group-buttons > div {
+  float: left;
+  clear: right;
+  @include rem(margin, 0 0 0 0);
+  a {
+    @include rem(margin, 0 5px 0 0);
+  }
+}
+
+@include respond-to(small) {
+  .group-buttons > div {
+    @include rem(margin, 0 0 20px 0);
+  }
+}
+
+
+/************************/
+/* TAB/PILL NAVIGATION */
+/**********************/
+
+ul.nav-pills {
+  /* background: $lighter-grey; */
+  font-family: $header-font-stack;
+  text-transform: uppercase;
+  @include rem(margin-bottom, 30px);
+}
+
+.nav-pills>li>a {
+  border-radius: 0;
+  color: $text-color;
+  @include on-event {
+  	background: none;
+  	background-color: transparent;
+  }
+}
+
+.nav-pills>li.active>a, 
+.nav-pills>li.active>a:hover, 
+.nav-pills>li.active>a:focus {
+  color: $text-color;
+  background: none;
+}
+
+.nav-pills>li.active>a {
+  background: none;
+  border-bottom: 5px solid $user-color;
+}
+

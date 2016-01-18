@@ -7,6 +7,8 @@
 // CUSTOM VARIABLES
 // -----------------------------------------------------------------------------
 
+$test: 50%;
+
 /// Regular font family
 $text-font-stack: 'droid serif', serif;
 $header-font-stack: 'Oswald', sans-serif;
@@ -19,23 +21,41 @@ $rem-px-only: false !default;
 /// Copy text color
 $text-color: #666 !default;
 
+
 /// Main brand color
 $brand-color: #98CC4D !default;
 $sec-color: #95c500 !default;
 
 /// Color for visions and ideas
 
+// Link color
+
+$link-color: $brand-color;
+
+/// Medium grey
+$mid-grey: #999 !default;
+
+/// Dark grey
+$dark-grey: #090909 !default;
+
+
+$midmid-grey: #a4a4a4;
 $green: #65c250;
 $orange: #FF9137;
 $pink: #E477C8;
 $blue-grey: #799bbe;
+$greenblue: #467E8A;
 
-$vision-color: $green;
+
+$group-color: $midmid-grey;
+$future-color: $green;
 $idea-color: $orange;
 $event-color: $pink;
 $library-color: $blue-grey;
+$user-color: $greenblue;
 
 $light-grey: #F8F8F8;
+$lighter-grey: #EBEBEB;
 
 $facebook: "ico-facebook-small-white.png";
 $twitter: "ico-twitter-small-white.png";
@@ -47,15 +67,7 @@ $plus: "ico-plus-small-white.png";
 
 
 
-// Link color
 
-$link-color: $brand-color;
-
-/// Medium grey
-$mid-grey: #999 !default;
-
-/// Dark grey
-$dark-grey: #090909 !default;
 
 /// Container's maximum width
 /// Below that is 100%
@@ -541,17 +553,17 @@ $nav-pills-active-link-hover-color:         $component-active-color !default;
 //
 //##
 
-$pagination-color:                     $link-color !default;
-$pagination-bg:                        #fff !default;
-$pagination-border:                    #ddd !default;
+$pagination-color:                     $text-color;
+$pagination-bg:                        #fff;
+$pagination-border:                    darken($light-grey, 20%);
 
-$pagination-hover-color:               $link-hover-color !default;
-$pagination-hover-bg:                  $gray-lighter !default;
-$pagination-hover-border:              #ddd !default;
+$pagination-hover-color:               #fff;
+$pagination-hover-bg:                  darken($mid-grey, 5%);
+$pagination-hover-border:              darken($mid-grey, 5%);
 
 $pagination-active-color:              #fff !default;
-$pagination-active-bg:                 $brand-primary !default;
-$pagination-active-border:             $brand-primary !default;
+$pagination-active-bg:                 lighten($mid-grey, 5%);
+$pagination-active-border:             lighten($mid-grey, 5%);
 
 $pagination-disabled-color:            $gray-light !default;
 $pagination-disabled-bg:               #fff !default;
