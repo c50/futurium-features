@@ -154,44 +154,96 @@ h4 a {
   }
 }
 
+
 .not-front{
-  @include contenttype($mid-grey);
+  @include contenttype($mid-grey, wrench);
   @include teaser($mid-grey);
 }
 
 /**
  * settings for different content types 
-*/
 
+
+
+/* idea */
 .page-ideas, .node-type-ideas {
-  @include contenttype($idea-color);
+  @include contenttype($idea-color, lightbulb-o);
 }
 
-.page-futures, .node-type-future{
-  @include contenttype($future-color);
-}
-
-.node-teaser.node-ideas{
+.node-teaser.node-ideas {
   @include teaser($idea-color);
+  h3:before {
+    @include icon-node-teaser($idea-color, lightbulb-o);
+    @include rem(padding, 6px 0 0 11px);
+    @include rem(font-size, 24px);
+  }
 }
 
-.page-events, .node-type-event-d4eu {
-  @include contenttype($event-color);
+/* future */
+.page-futures, .node-type-future {
+  @include contenttype($future-color, rocket);
+}
+
+.node-teaser.node-future{
+  @include teaser($future-color);
+  h3:before {
+    @include icon-node-teaser($future-color, rocket);
+    @include rem(padding, 8px 0 0 8px);
+    @include rem(font-size, 18px);
+  }
+}
+
+/* group */
+.html.node-type-futurium-group {
+  @include contenttype($group-color, group);
+}
+
+.node-teaser.node-futurium-group {
+  @include teaser($group-color);
+  h3:before {
+    @include icon-node-teaser($group-color, group);
+    @include rem(padding, 8px 0 0 8px);
+    @include rem(font-size, 18px);
+  }
+}
+
+/* events */
+.html.page-events, .html.node-type-event-d4eu {
+  @include contenttype($event-color, calendar);
 }
 
 .node-teaser.node-event-d4eu{
   @include teaser($event-color);
+  h3:before {
+    @include icon-node-teaser($event-color, calendar); 
+    @include rem(padding, 8px 0 0 9px);
+    @include rem(font-size, 18px);
+  }
 }
 
-.page-library, .node-type-evidence {
-  @include contenttype($library-color);
+
+/* evidence */
+.html.page-library, .node-type-evidence {
+  @include contenttype($library-color, file-text-o);
 }
 
+.node-teaser.node-evidence {
+  @include teaser($library-color);
+  h3:before {
+    @include icon-node-teaser($library-color, file-text-o);
+    @include rem(padding, 8px 0 0 10px);
+    @include rem(font-size, 18px);
+  }
+}
+
+
+/* user */
 .page-user{
-  @include contenttype($greenblue);
+  @include contenttype($greenblue, user);
+  .row1 h1:before {
+    content: none; /* remove icon on page-user */
+  }
 }
-
-
 
 /**
  * Activity stuff
@@ -216,35 +268,6 @@ h4 a {
 
 /* theming for stream */
 
-.node-event-d4eu {
-  h3:before {
-    @include fa(calendar);
-    color:#fff;
-    background: $event-color;
-    border-radius: 50%;
-
-    @include rem(padding, 8px 0 0 9px);
-    @include rem(width, 35px);
-    @include rem(height, 35px);
-    @include rem(margin-right, 10px);
-    @include rem(font-size, 18px);
-  }
-}
-
-.node-ideas {
-  h3:before {
-    @include fa(lightbulb-o);
-    color:#fff;
-    background: $idea-color;
-    border-radius: 50%;
-    /* @include border-radius(50%); */
-    @include rem(padding, 6px 0 0 11px);
-    @include rem(width, 35px);
-    @include rem(height, 35px);
-    @include rem(margin-right, 10px);
-    @include rem(font-size, 24px);
-  }
-}
 
 .field-type-taxonomy-term-reference {
   .field-item {
@@ -300,6 +323,10 @@ a.btn-more:before {
 
 .attending-count:before {
   @include fa(male);
+}
+
+.member-count:before {
+  @include fa(user);
 }
 
 .location-city:before {
@@ -417,14 +444,6 @@ div.views-bootstrap-grid-plugin-style {
 }
 
 
-
-.page-ideas h1 {
-  background: url(../assets/img/ico-idea-big-color.png) left top no-repeat;
-  padding: 0 0 0 90px;
-  min-height: 64px;
-  margin: 0 0 20px 0;
-}
-
 .page-ideas, .page-libarary, .page-events{
   h1.no-icon {
     background: none;
@@ -432,17 +451,7 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
-.page-library h1 {
-  background: url(../assets/img/ico-library-big-color.png) left top no-repeat;
-  padding: 0 0 0 90px;
-  line-height: 64px;
-}
 
-.page-events h1 {
-  background: url(../assets/img/ico-event-big-color.png) left top no-repeat;
-  padding: 0 0 0 90px;
-  min-height: 64px;
-}
 
 
 .summary {
@@ -695,11 +704,15 @@ div.panel-pane .preview .node{
 }
 
 
-.autocomplete-suggestion.node-type-future:before, .view-node-relations .future:before {
+.autocomplete-suggestion.node-type-future:before, 
+.view-node-relations .future:before,
+.futures-count:before {
   @include fa(rocket);
 }
 
-.autocomplete-suggestion.node-type-ideas:before, .view-node-relations .ideas:before {
+.autocomplete-suggestion.node-type-ideas:before, 
+.view-node-relations .ideas:before,
+.ideas-count:before {
   @include fa(lightbulb-o);
 }
 
@@ -747,7 +760,6 @@ div.panel-pane .preview .node{
     margin-right: -15px;
   }
   .node-teaser{
-    @extend .col-lg-6;
     @include rem(margin, 30px 0 0 0);
   }  
 }

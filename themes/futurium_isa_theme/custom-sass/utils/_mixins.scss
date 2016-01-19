@@ -211,6 +211,18 @@
   border: 1px solid darken($light-grey, 10%);
 }
 
+/* sets an icon for the teaser title */
+
+@mixin icon-node-teaser($color, $icon) {
+  color:#fff;
+  border-radius: 50%;
+  @include rem(width, 35px);
+  @include rem(height, 35px);
+  @include rem(margin-right, 10px);
+  background: $color;
+  @include fa($icon);    
+}
+
 /* mixin for the font awesome icons */
 
 @mixin fa($icon) {
@@ -222,7 +234,7 @@
 
 /* mixin for layout content types (does markup of row1) */
 
-@mixin contenttype($color) {
+@mixin contenttype($color, $icon) {
     
   a {
     color: $color;
@@ -253,6 +265,22 @@
         background-color: darken($color, 15%);
       }
     }
+    h1 {
+      @include rem(padding, 0 0 0 0);
+      @include rem(margin, 0 0 20px 0);
+    }
+    h1:before {
+      @include fa($icon);
+      @include rem(padding, 18px);
+      @include rem(margin, 0 0.5em 0 0);
+      @include rem(font-size, 36px); 
+      color: $color;
+      text-align: center;
+      border-radius: 50%;
+      width: 70px;
+      line-height: 35px; 
+      background: #fff;
+    } 
   }
 
   /* links to edit / manage display / ... */
