@@ -301,6 +301,72 @@ function futurium_groups_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-future-og_group_ref'.
+  $field_instances['node-future-og_group_ref'] = array(
+    'bundle' => 'future',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'og_ui',
+        'settings' => array(),
+        'type' => 'og_list_default',
+        'weight' => 6,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'og_group_ref',
+    'label' => 'Groups audience',
+    'required' => FALSE,
+    'settings' => array(
+      'behaviors' => array(
+        'og_widget' => array(
+          'admin' => array(
+            'widget_type' => 'entityreference_autocomplete',
+          ),
+          'default' => array(
+            'widget_type' => 'options_select',
+          ),
+          'status' => TRUE,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'view modes' => array(
+      'full' => array(
+        'custom settings' => FALSE,
+        'label' => 'Full',
+        'type' => 'og_list_default',
+      ),
+      'teaser' => array(
+        'custom settings' => FALSE,
+        'label' => 'Teaser',
+        'type' => 'og_list_default',
+      ),
+    ),
+    'widget' => array(
+      'module' => 'og',
+      'settings' => array(),
+      'type' => 'og_complex',
+      'weight' => 7,
+    ),
+  );
+
   // Exported field_instance: 'node-futurium_group-field_group_description'.
   $field_instances['node-futurium_group-field_group_description'] = array(
     'bundle' => 'futurium_group',
@@ -332,6 +398,15 @@ function futurium_groups_field_default_field_instances() {
         ),
         'type' => 'text_summary_or_trimmed',
         'weight' => 3,
+      ),
+      'teaser_w_pic' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 300,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'node',
@@ -382,6 +457,16 @@ function futurium_groups_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser_w_pic' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'thumbnail',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
     ),
@@ -460,6 +545,12 @@ function futurium_groups_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 12,
       ),
+      'teaser_w_pic' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'group_access',
@@ -520,6 +611,12 @@ function futurium_groups_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 14,
       ),
+      'teaser_w_pic' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
     ),
     'display_label' => 1,
     'entity_type' => 'node',
@@ -553,64 +650,6 @@ function futurium_groups_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-futurium_group-group_register'.
-  $field_instances['node-futurium_group-group_register'] = array(
-    'bundle' => 'futurium_group',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 4,
-      ),
-      'node_header' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 14,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 13,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'group_register',
-    'label' => 'Group register',
-    'required' => TRUE,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'view modes' => array(
-      'full' => array(
-        'label' => 'above',
-        'type' => 'options_onoff',
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'type' => 'options_onoff',
-      ),
-    ),
-    'widget' => array(
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 6,
-    ),
-    'widget_type' => 'options_select',
-  );
-
   // Exported field_instance: 'node-futurium_group-og_roles_permissions'.
   $field_instances['node-futurium_group-og_roles_permissions'] = array(
     'bundle' => 'futurium_group',
@@ -640,6 +679,12 @@ function futurium_groups_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 11,
+      ),
+      'teaser_w_pic' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
       ),
     ),
     'entity_type' => 'node',
@@ -837,7 +882,6 @@ function futurium_groups_field_default_field_instances() {
   t('Group');
   t('Group description');
   t('Group membership');
-  t('Group register');
   t('Group roles and permissions');
   t('Group visibility');
   t('Groups audience');

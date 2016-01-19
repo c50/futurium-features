@@ -380,7 +380,7 @@ function futurium_isa_field_group_info() {
       0 => 'field_age',
       1 => 'field_education',
       2 => 'field_gender',
-      3 => 'field_location',
+      3 => 'user_city',
       4 => 'field_profession',
     ),
     'format_type' => 'div',

@@ -414,7 +414,7 @@ function futurium_isa_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 20,
       ),
       'type' => 'text_textarea',
       'weight' => 2,
@@ -535,7 +535,7 @@ function futurium_isa_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 10,
+        'rows' => 20,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',

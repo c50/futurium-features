@@ -14,7 +14,7 @@ function futurium_relations_default_panels_mini() {
   $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
   $mini->api_version = 1;
   $mini->name = 'relation_discuss';
-  $mini->category = '';
+  $mini->category = 'Relations';
   $mini->admin_title = 'Relation Discuss';
   $mini->admin_description = '';
   $mini->requiredcontexts = array(
@@ -113,7 +113,7 @@ function futurium_relations_default_panels_mini() {
   $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
   $mini->api_version = 1;
   $mini->name = 'relation_implemented_by';
-  $mini->category = '';
+  $mini->category = 'Relations';
   $mini->admin_title = 'Relation Implemented by';
   $mini->admin_description = '';
   $mini->requiredcontexts = array(
@@ -212,7 +212,7 @@ function futurium_relations_default_panels_mini() {
   $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
   $mini->api_version = 1;
   $mini->name = 'relation_supported_by';
-  $mini->category = '';
+  $mini->category = 'Relations';
   $mini->admin_title = 'Relation Supported by ';
   $mini->admin_description = '';
   $mini->requiredcontexts = array(
