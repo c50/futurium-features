@@ -1423,7 +1423,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = TRUE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href=\'/past-events/%1?flavour=%1\'>Past events for %1</a>';
+  $handler->display->display_options['footer']['area']['content'] = '<a href=\'../past-events/%1?flavour=%1\'>Past events for %1</a>';
   $handler->display->display_options['footer']['area']['format'] = 'filtered_html';
   $handler->display->display_options['footer']['area']['tokenize'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -1552,6 +1552,8 @@ function supertags_views_default_views() {
   $handler = $view->new_display('page', 'Page past events', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Past Events';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'view-events';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -1560,6 +1562,14 @@ function supertags_views_default_views() {
   $handler->display->display_options['row_options']['view_mode'] = 'mini_teaser';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['footer'] = FALSE;
+  /* Footer: Global: Text area */
+  $handler->display->display_options['footer']['area']['id'] = 'area';
+  $handler->display->display_options['footer']['area']['table'] = 'views';
+  $handler->display->display_options['footer']['area']['field'] = 'area';
+  $handler->display->display_options['footer']['area']['empty'] = TRUE;
+  $handler->display->display_options['footer']['area']['content'] = '<a href=\'../%1/events\'>Planned events for %1</a>';
+  $handler->display->display_options['footer']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['footer']['area']['tokenize'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Taxonomy terms on node */
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
@@ -1589,7 +1599,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['arguments']['field_path_value']['table'] = 'field_data_field_path';
   $handler->display->display_options['arguments']['field_path_value']['field'] = 'field_path_value';
   $handler->display->display_options['arguments']['field_path_value']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['arguments']['field_path_value']['default_action'] = 'default';
   $handler->display->display_options['arguments']['field_path_value']['default_argument_type'] = 'raw';
   $handler->display->display_options['arguments']['field_path_value']['default_argument_options']['index'] = '0';
   $handler->display->display_options['arguments']['field_path_value']['default_argument_options']['use_alias'] = TRUE;

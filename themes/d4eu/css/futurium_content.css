@@ -387,6 +387,7 @@
   text-decoration: underline;
 }
 
+.view-events .item-list li .listNodeComments,
 .view-recent-activity .item-list li .listNodeComments {
   color: #a9d8f4;
   float: right;
@@ -394,24 +395,30 @@
   clear: right;
   margin-top: 3px;
 }
+.view-events .item-list li .listNodeComments a,
 .view-recent-activity .item-list li .listNodeComments a {
   color: #a9d8f4;
   text-decoration: none;
 }
+.view-events .item-list li .listNodeComments a:hover,
 .view-recent-activity .item-list li .listNodeComments a:hover {
   text-decoration: underline;
 }
+.view-events .item-list li .listNodeComments strong,
 .view-recent-activity .item-list li .listNodeComments strong {
   color: #2577aa;
 }
+.view-events .item-list li .listNodeComments .listNodeCommented,
 .view-recent-activity .item-list li .listNodeComments .listNodeCommented {
   color: #55a0ce;
 }
+.view-events .item-list li .listNodeComments .commentedAgo,
 .view-recent-activity .item-list li .listNodeComments .commentedAgo {
   color: #aaa;
   font-size: 85%;
   margin-left: 0.5em;
 }
+.view-events .item-list li .listNodeComments .commentedAgo > span,
 .view-recent-activity .item-list li .listNodeComments .commentedAgo > span {
   color: #777;
 }
