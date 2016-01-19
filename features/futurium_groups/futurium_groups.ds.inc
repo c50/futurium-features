@@ -194,7 +194,6 @@ function futurium_groups_ds_field_settings_info() {
           'func' => 'theme_ds_field_minimal',
         ),
       ),
-
     ),
     'futures_count' => array(
       'weight' => '1',
@@ -205,7 +204,6 @@ function futurium_groups_ds_field_settings_info() {
           'func' => 'theme_ds_field_minimal',
         ),
       ),
-
     ),
     'ideas_count' => array(
       'weight' => '2',

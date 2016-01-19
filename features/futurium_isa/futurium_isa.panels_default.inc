@@ -14,7 +14,7 @@ function futurium_isa_default_panels_mini() {
   $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
   $mini->api_version = 1;
   $mini->name = 'event_date_location';
-  $mini->category = '';
+  $mini->category = 'Events';
   $mini->admin_title = 'Event Date Location';
   $mini->admin_description = '';
   $mini->requiredcontexts = array(
@@ -468,7 +468,7 @@ function futurium_isa_default_panels_mini() {
   $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
   $mini->api_version = 1;
   $mini->name = 'user_events';
-  $mini->category = '';
+  $mini->category = 'User';
   $mini->admin_title = 'User Events';
   $mini->admin_description = '';
   $mini->requiredcontexts = array(
@@ -663,8 +663,286 @@ function futurium_isa_default_panels_mini() {
   $mini = new stdClass();
   $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
   $mini->api_version = 1;
+  $mini->name = 'user_evidence';
+  $mini->category = 'User';
+  $mini->admin_title = 'User Evidence';
+  $mini->admin_description = '';
+  $mini->requiredcontexts = array(
+    0 => array(
+      'identifier' => 'User',
+      'keyword' => 'user',
+      'name' => 'user',
+      'type' => 'select',
+      'uid' => '',
+      'optional' => 0,
+      'id' => 1,
+    ),
+  );
+  $mini->contexts = array();
+  $mini->relationships = array();
+  $display = new panels_display();
+  $display->layout = 'bootstrap_twocol_tower';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row1l' => NULL,
+      'row1r' => NULL,
+      'row2l' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '8',
+          'lg' => '8',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row2r' => NULL,
+      'row3l' => NULL,
+      'row3r' => NULL,
+      'row4l' => NULL,
+      'row4r' => NULL,
+      'row5l' => NULL,
+      'row5r' => NULL,
+      'row6l' => NULL,
+      'row6r' => NULL,
+      'row7l' => NULL,
+      'row7r' => NULL,
+      'row8l' => NULL,
+      'row8r' => NULL,
+      'row9l' => NULL,
+      'row9r' => NULL,
+      'row10l' => NULL,
+      'row10r' => NULL,
+    ),
+    'style' => 'bootstrap_region',
+    'row2l' => array(
+      'style' => 'bootstrap_region',
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = 'd3c160fe-0668-4de1-a7ae-594a5df4a6c4';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-8edb82c2-27cf-499d-8b4c-2b90bc9765c5';
+    $pane->panel = 'row2l';
+    $pane->type = 'views';
+    $pane->subtype = 'library';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '12',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_1',
+      'context' => array(
+        0 => 'requiredcontext_user_1.uid',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'My Evidence',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8edb82c2-27cf-499d-8b4c-2b90bc9765c5';
+    $display->content['new-8edb82c2-27cf-499d-8b4c-2b90bc9765c5'] = $pane;
+    $display->panels['row2l'][0] = 'new-8edb82c2-27cf-499d-8b4c-2b90bc9765c5';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-8edb82c2-27cf-499d-8b4c-2b90bc9765c5';
+  $mini->display = $display;
+  $export['user_evidence'] = $mini;
+
+  $mini = new stdClass();
+  $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
+  $mini->api_version = 1;
+  $mini->name = 'user_futures';
+  $mini->category = 'User';
+  $mini->admin_title = 'User Futures';
+  $mini->admin_description = '';
+  $mini->requiredcontexts = array(
+    0 => array(
+      'identifier' => 'User',
+      'keyword' => 'user',
+      'name' => 'user',
+      'type' => 'select',
+      'uid' => '',
+      'optional' => 0,
+      'id' => 1,
+    ),
+  );
+  $mini->contexts = array();
+  $mini->relationships = array();
+  $display = new panels_display();
+  $display->layout = 'bootstrap_twocol_tower';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '8',
+          'lg' => '8',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row1l' => NULL,
+      'row1r' => NULL,
+      'row2l' => NULL,
+      'row2r' => NULL,
+      'row3l' => NULL,
+      'row3r' => NULL,
+      'row4l' => NULL,
+      'row4r' => NULL,
+      'row5l' => NULL,
+      'row5r' => NULL,
+      'row6l' => NULL,
+      'row6r' => NULL,
+      'row7l' => NULL,
+      'row7r' => NULL,
+      'row8l' => NULL,
+      'row8r' => NULL,
+      'row9l' => NULL,
+      'row9r' => NULL,
+      'row10l' => NULL,
+      'row10r' => NULL,
+    ),
+    'style' => 'bootstrap_region',
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '81193548-87d1-444b-a665-cf9522ae4736';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-23066d16-e75d-4277-9177-69af14ff1ff5';
+    $pane->panel = 'row2l';
+    $pane->type = 'views';
+    $pane->subtype = 'futures';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '6',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_2',
+      'override_title' => 1,
+      'override_title_text' => 'My Futures',
+      'override_title_heading' => 'h2',
+      'context' => array(
+        0 => 'requiredcontext_user_1.uid',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '23066d16-e75d-4277-9177-69af14ff1ff5';
+    $display->content['new-23066d16-e75d-4277-9177-69af14ff1ff5'] = $pane;
+    $display->panels['row2l'][0] = 'new-23066d16-e75d-4277-9177-69af14ff1ff5';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-23066d16-e75d-4277-9177-69af14ff1ff5';
+  $mini->display = $display;
+  $export['user_futures'] = $mini;
+
+  $mini = new stdClass();
+  $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
+  $mini->api_version = 1;
   $mini->name = 'user_groups';
-  $mini->category = '';
+  $mini->category = 'User';
   $mini->admin_title = 'User Groups';
   $mini->admin_description = '';
   $mini->requiredcontexts = array();
@@ -784,7 +1062,7 @@ function futurium_isa_default_panels_mini() {
       'url' => '',
       'display' => 'block',
       'override_title' => 1,
-      'override_title_text' => 'Groups you are a member of',
+      'override_title_text' => 'My Groups',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -806,8 +1084,162 @@ function futurium_isa_default_panels_mini() {
   $mini = new stdClass();
   $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
   $mini->api_version = 1;
+  $mini->name = 'user_ideas';
+  $mini->category = 'User';
+  $mini->admin_title = 'User Ideas';
+  $mini->admin_description = '';
+  $mini->requiredcontexts = array(
+    0 => array(
+      'identifier' => 'User',
+      'keyword' => 'user',
+      'name' => 'user',
+      'type' => 'select',
+      'uid' => '',
+      'optional' => 0,
+      'id' => 1,
+    ),
+  );
+  $mini->contexts = array();
+  $mini->relationships = array();
+  $display = new panels_display();
+  $display->layout = 'bootstrap_twocol_tower';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row2l' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '8',
+          'lg' => '8',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row1l' => NULL,
+      'row1r' => NULL,
+      'row2r' => NULL,
+      'row3l' => NULL,
+      'row3r' => NULL,
+      'row4l' => NULL,
+      'row4r' => NULL,
+      'row5l' => NULL,
+      'row5r' => NULL,
+      'row6l' => NULL,
+      'row6r' => NULL,
+      'row7l' => NULL,
+      'row7r' => NULL,
+      'row8l' => NULL,
+      'row8r' => NULL,
+      'row9l' => NULL,
+      'row9r' => NULL,
+      'row10l' => NULL,
+      'row10r' => NULL,
+    ),
+    'style' => 'bootstrap_region',
+    'row2l' => array(
+      'style' => 'bootstrap_region',
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '2614fdc4-7ad9-4165-8628-071f8525d375';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-46066fdd-7e41-4b16-b5b3-cb08171eb90f';
+    $pane->panel = 'row2l';
+    $pane->type = 'views';
+    $pane->subtype = 'ideas';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '6',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_2',
+      'context' => array(
+        0 => 'requiredcontext_user_1.uid',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'My Ideas',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '46066fdd-7e41-4b16-b5b3-cb08171eb90f';
+    $display->content['new-46066fdd-7e41-4b16-b5b3-cb08171eb90f'] = $pane;
+    $display->panels['row2l'][0] = 'new-46066fdd-7e41-4b16-b5b3-cb08171eb90f';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-46066fdd-7e41-4b16-b5b3-cb08171eb90f';
+  $mini->display = $display;
+  $export['user_ideas'] = $mini;
+
+  $mini = new stdClass();
+  $mini->disabled = FALSE; /* Edit this to true to make a default mini disabled initially */
+  $mini->api_version = 1;
   $mini->name = 'user_overview';
-  $mini->category = '';
+  $mini->category = 'User';
   $mini->admin_title = 'User Overview';
   $mini->admin_description = '';
   $mini->requiredcontexts = array(

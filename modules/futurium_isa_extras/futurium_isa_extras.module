@@ -58,6 +58,7 @@ function futurium_isa_extras_preprocess_node(&$vars) {
  * Implements hook_menu_alter().
  */
 function futurium_isa_extras_menu_alter(&$items) {
+  unset($items['message/create/private-message']);
   $items['search/site']['menu_name'] = 'navigation';
   $items['user']['weight'] = 10000;
   $items['user']['menu_name'] = 'main-menu';
