@@ -13,7 +13,6 @@ dependencies[] = message
 dependencies[] = message_digest
 dependencies[] = message_notify
 dependencies[] = message_private
-dependencies[] = message_private_og
 dependencies[] = rules
 dependencies[] = strongarm
 dependencies[] = views
