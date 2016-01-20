@@ -39,7 +39,10 @@ attending';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ds_classes_regions';
-  $strongarm->value = '';
+  $strongarm->value = 'col-xs-2 col-sm-2 col-md-2 col-lg-2|Bootstrap Two columns
+col-xs-10 col-sm-10 col-md-10 col-lg-10|Bootstrap Ten columns
+row|Bootstrap Row
+';
   $export['ds_classes_regions'] = $strongarm;
 
   $strongarm = new stdClass();
