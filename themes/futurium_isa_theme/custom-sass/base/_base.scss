@@ -80,6 +80,10 @@ h4 {
   @include rem(margin, 0 0 0 0);
 }
 
+h2{
+  margin-top: 0;
+}
+
 h2.pane-title {
   font-weight: normal;
   @include rem(font-size, 24px);
@@ -90,6 +94,14 @@ h2.pane-title {
 
 h4 a {
   font-weight: normal;
+}
+
+/* hack to make long content in dropdownbox work */
+
+.dropdown-menu>li>a {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 18px;
 }
 
 /******* */
@@ -148,7 +160,7 @@ h4 a {
   h1, h2, h3, p, div {
     color: #fff;
   }
-  h2.pane-title{
+  h2.pane-title {
     border: none;
     margin: 0;
   }
@@ -166,7 +178,7 @@ h4 a {
 
 
 /* idea */
-.page-ideas, .node-type-ideas {
+body.page-ideas, body.node-type-ideas {
   @include contenttype($idea-color, lightbulb-o);
 }
 
@@ -180,7 +192,7 @@ h4 a {
 }
 
 /* future */
-.page-futures, .node-type-future {
+body.page-futures, body.node-type-future {
   @include contenttype($future-color, rocket);
 }
 
@@ -194,11 +206,11 @@ h4 a {
 }
 
 /* group */
-.html.node-type-futurium-group {
+body.node-type-futurium-group {
   @include contenttype($group-color, group);
 }
 
-.node-teaser.node-futurium-group {
+.node.node-futurium-group {
   @include teaser($group-color);
   h3:before {
     @include icon-node-teaser($group-color, group);
@@ -208,7 +220,7 @@ h4 a {
 }
 
 /* events */
-.html.page-events, .html.node-type-event-d4eu {
+body.page-events, body.node-type-event-d4eu {
   @include contenttype($event-color, calendar);
 }
 
@@ -396,11 +408,11 @@ ul.rate-fivestar-processed{
   background: darken($user-color, 10%);
 }
 
-div.views-bootstrap-grid-plugin-style {
-  div.node-teaser {
-    @include rem(padding, 20px 0 40px 0);
-  }
+div.view div.node-teaser,
+div.view div.view-mode-teaser_w_pic {
+  @include rem(padding, 20px 0 40px 0);
 }
+
 
 .view-homepage {
 
@@ -583,9 +595,15 @@ div.views-bootstrap-grid-plugin-style {
 /* USER PROFILE */
 /***************/
 
-.page-user .container-fullwidth.row2 {
-  background: url(../assets/img/bg-user-menu.gif) left top;
-  background-repeat: repeat-x;
+.page-user, .node-type-futurium-group {
+  .container-fullwidth.row2 {
+    background: url(../assets/img/bg-user-menu.gif) left top;
+    background-repeat: repeat-x;
+    @include rem(padding-top, 0);
+  }
+  .container-fullwidth.row2 .container-fullwidth.row2 {
+    background: none;
+  }
 }
 
 .page-user .container-fullwidth.row2:only-child {
@@ -673,15 +691,7 @@ div.views-bootstrap-grid-plugin-style {
   }
 }
 
-/**************/
-/* PAGE USER */
-/************/
 
-.page-user {
-  .container-fullwidth.row2 {
-    @include rem(padding-top, 0);
-  }
-}
 
 /* STUFF FOR THE LINKER MODULE */
 

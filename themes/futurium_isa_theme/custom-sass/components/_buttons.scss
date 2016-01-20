@@ -58,3 +58,9 @@ ul.nav-pills {
   border-bottom: 5px solid $user-color;
 }
 
+.node-type-futurium-group{
+  .nav-pills>li.active>a {
+    border-bottom: 5px solid $group-color;
+  }
+}
+
