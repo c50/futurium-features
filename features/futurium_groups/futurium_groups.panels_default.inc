@@ -64,10 +64,10 @@ function futurium_groups_default_panels_mini() {
       ),
       'row2l' => array(
         'css_id' => '',
-        'css_class' => '',
+        'css_class' => 'shiat',
         'column' => array(
-          'xs' => '12',
-          'sm' => '12',
+          'xs' => '8',
+          'sm' => '8',
           'md' => '8',
           'lg' => '8',
         ),
@@ -92,7 +92,34 @@ function futurium_groups_default_panels_mini() {
       ),
       'row1l' => NULL,
       'row1r' => NULL,
-      'row2r' => NULL,
+      'row2r' => array(
+        'css_id' => '',
+        'css_class' => 'sidebar-right',
+        'column' => array(
+          'xs' => '4',
+          'sm' => '4',
+          'md' => '4',
+          'lg' => '4',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
       'row3l' => NULL,
       'row3r' => NULL,
       'row4l' => NULL,
@@ -112,6 +139,9 @@ function futurium_groups_default_panels_mini() {
     ),
     'style' => 'bootstrap_region',
     'row2l' => array(
+      'style' => 'bootstrap_region',
+    ),
+    'row2r' => array(
       'style' => 'bootstrap_region',
     ),
   );
@@ -158,6 +188,31 @@ function futurium_groups_default_panels_mini() {
     $pane->uuid = '3e83fd21-0732-4e89-8b86-868f8393ef26';
     $display->content['new-3e83fd21-0732-4e89-8b86-868f8393ef26'] = $pane;
     $display->panels['row2l'][0] = 'new-3e83fd21-0732-4e89-8b86-868f8393ef26';
+    $pane = new stdClass();
+    $pane->pid = 'new-001137b0-2543-4682-bead-cce3e597f300';
+    $pane->panel = 'row2r';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Add Future',
+      'title' => 'Links',
+      'body' => '<a class="add-content-link add-group-content-link" href="/node/add/futures?og_group_ref=%node:nid">Add a Future to "%node:title"</a>',
+      'format' => 'nowysiwig',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '001137b0-2543-4682-bead-cce3e597f300';
+    $display->content['new-001137b0-2543-4682-bead-cce3e597f300'] = $pane;
+    $display->panels['row2r'][0] = 'new-001137b0-2543-4682-bead-cce3e597f300';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $mini->display = $display;
@@ -219,8 +274,8 @@ function futurium_groups_default_panels_mini() {
         'css_id' => '',
         'css_class' => '',
         'column' => array(
-          'xs' => '12',
-          'sm' => '12',
+          'xs' => '8',
+          'sm' => '8',
           'md' => '8',
           'lg' => '8',
         ),
@@ -247,10 +302,10 @@ function futurium_groups_default_panels_mini() {
       'row1r' => NULL,
       'row2r' => array(
         'css_id' => '',
-        'css_class' => '',
+        'css_class' => 'sidebar-right',
         'column' => array(
-          'xs' => '12',
-          'sm' => '12',
+          'xs' => '4',
+          'sm' => '4',
           'md' => '4',
           'lg' => '4',
         ),
@@ -349,9 +404,9 @@ function futurium_groups_default_panels_mini() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Add content',
-      'title' => '',
-      'body' => '<a href="/node/add/ideas?og_group_ref=%node:nid">Add Idea</a>',
+      'admin_title' => 'Add Idea',
+      'title' => 'Links',
+      'body' => '<a class="add-content-link add-group-content-link" href="/node/add/ideas?og_group_ref=%node:nid">Add an Idea to "%node:title"</a>',
       'format' => 'nowysiwig',
       'substitute' => 1,
     );
@@ -361,7 +416,7 @@ function futurium_groups_default_panels_mini() {
     );
     $pane->css = array(
       'css_id' => '',
-      'css_class' => 'more-link',
+      'css_class' => '',
     );
     $pane->extras = array();
     $pane->position = 0;

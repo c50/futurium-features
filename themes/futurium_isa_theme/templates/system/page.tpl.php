@@ -144,8 +144,8 @@
       //!empty($breadcrumb) ||
       !empty($messages) ||
       !empty($tabs['#primary']) ||
-      !empty($page['help']) ||
-      !empty($action_links)
+      //!empty($action_links) ||
+      !empty($page['help'])
     ):
     ?>
     <div class="container-top">
@@ -164,7 +164,7 @@
           <?php if (!empty($page['help'])): ?>
             <?php print render($page['help']); ?>
           <?php endif; ?>
-          <?php if (!empty($action_links)): ?>
+          <?php if (!empty($action_links) && FALSE): ?>
             <ul class="action-links"><?php print render($action_links); ?></ul>
           <?php endif; ?>
           </div>

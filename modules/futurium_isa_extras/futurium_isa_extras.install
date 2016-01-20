@@ -4,3 +4,42 @@
  * @file
  * Install Futurium_ISA Extras feature.
  */
+
+/**
+ * Implements hook_enable().
+ */
+function futurium_isa_extras_enable() {
+  // Site default settings.
+  variable_set('site_frontpage', 'home');
+  variable_set('user_pictures', '1');
+  variable_set('user_picture_default', '');
+  variable_set('user_picture_dimensions', '85x85');
+  variable_set('user_picture_file_size', '30');
+  variable_set('user_picture_guidelines', '');
+  variable_set('user_picture_path', '');
+  variable_set('user_picture_style', '');
+  variable_set('user_register', '2');
+
+  // Theme settings.
+  _bootstrap_default_settings();
+
+  // Add H1 tags to allowed tags.
+  $allowed_tags = variable_get('security_allowed_tags', "");
+  if (!empty($allowed_tags)) {
+    $allowed_tags .= 'h1';
+    variable_set('security_allowed_tags', $allowed_tags);
+  }
+
+  // Temporary, grants anonymous the right to see/edit every node.
+  //$drupal_role = user_role_load_by_name('anonymous user');
+  //user_role_change_permissions($drupal_role->rid, array('bypass node access' => TRUE));
+
+  // Set default user picture.
+  futurium_isa_extras_set_default_pic();
+
+  $contexts = variable_get('context_status', array());
+  $contexts['site_wide'] = TRUE;
+  variable_set('context_status', $contexts);
+
+  drupal_flush_all_caches();
+}

@@ -38,7 +38,7 @@ function futurium_groups_views_api($module = NULL, $api = NULL) {
 function futurium_groups_node_info() {
   $items = array(
     'futurium_group' => array(
-      'name' => t('Futurium Group'),
+      'name' => t('Group'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
