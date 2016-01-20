@@ -188,7 +188,7 @@ function futurium_groups_default_panels_mini() {
     $pane->configuration = array(
       'admin_title' => 'Add Future',
       'title' => 'Links',
-      'body' => '<a class="add-content-link add-group-content-link" href="/node/add/futures?og_group_ref=%node:nid">Add a Future to "%node:title"</a>',
+      'body' => '<a class="add-content-link add-group-content-link" href="/node/add/future?og_group_ref=%node:nid">Add a Future to "%node:title"</a>',
       'format' => 'nowysiwig',
       'substitute' => 1,
     );
