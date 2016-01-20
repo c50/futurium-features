@@ -122,5 +122,41 @@ function futurium_isa_user_default_permissions() {
     'module' => 'flag',
   );
 
+  // Exported permission: 'flag like'.
+  $permissions['flag like'] = array(
+    'name' => 'flag like',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
+  // Exported permission: 'unflag like'.
+  $permissions['unflag like'] = array(
+    'name' => 'unflag like',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
+  // Exported permission: 'flag attending'.
+  $permissions['flag attending'] = array(
+    'name' => 'flag attending',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
+  // Exported permission: 'unflag attending'.
+  $permissions['unflag attending'] = array(
+    'name' => 'unflag attending',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
   return $permissions;
 }
