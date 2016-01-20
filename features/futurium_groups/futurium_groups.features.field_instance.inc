@@ -305,6 +305,7 @@ function futurium_groups_field_default_field_instances() {
   $field_instances['node-future-og_group_ref'] = array(
     'bundle' => 'future',
     'default_value' => NULL,
+    'default_value_function' => 'entityreference_prepopulate_field_default_value',
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -342,6 +343,17 @@ function futurium_groups_field_default_field_instances() {
             'widget_type' => 'options_select',
           ),
           'status' => TRUE,
+        ),
+        'prepopulate' => array(
+          'action' => 'hide',
+          'action_on_edit' => 1,
+          'fallback' => 'hide',
+          'providers' => array(
+            'og_context' => 0,
+            'url' => 1,
+          ),
+          'skip_perm' => 'administer site configuration',
+          'status' => 1,
         ),
       ),
       'entity_translation_sync' => FALSE,
