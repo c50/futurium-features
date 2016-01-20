@@ -1595,7 +1595,7 @@ function futurium_isa_default_panels_mini() {
       ),
       'row2r' => array(
         'css_id' => '',
-        'css_class' => '',
+        'css_class' => 'sidebar-right',
         'column' => array(
           'xs' => '12',
           'sm' => '12',
@@ -1627,12 +1627,6 @@ function futurium_isa_default_panels_mini() {
       'row4r' => NULL,
       'row5l' => NULL,
       'row5r' => NULL,
-    ),
-    'left' => array(
-      'style' => 'bootstrap_region',
-    ),
-    'right' => array(
-      'style' => 'bootstrap_region',
     ),
     'row1l' => array(
       'style' => 'bootstrap_region',
