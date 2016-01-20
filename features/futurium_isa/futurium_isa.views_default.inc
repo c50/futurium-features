@@ -1546,6 +1546,7 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['fields']['view_2']['field'] = 'view';
   $handler->display->display_options['fields']['view_2']['label'] = '';
   $handler->display->display_options['fields']['view_2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_2']['element_wrapper_class'] = 'comment-count';
   $handler->display->display_options['fields']['view_2']['view'] = 'user_comments';
   $handler->display->display_options['fields']['view_2']['display'] = 'block';
   $handler->display->display_options['fields']['view_2']['arguments'] = '[!uid]';
