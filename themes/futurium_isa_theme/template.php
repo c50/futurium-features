@@ -4,6 +4,15 @@
  * template.php
  */
 
+function futurium_isa_theme_preprocess_html(&$variables) {
+  $item = menu_get_item();
+  if (substr($item['path'], 0, 8) == 'node/add') {
+    $content_type = str_replace('node/add/', "", $item['path']);
+    $class = 'node-type-' . str_replace("_", "-", $content_type);
+    $variables['classes_array'][] = $class;
+  }
+}
+
 /**
  * Implements hook_preprocess_region().
  */

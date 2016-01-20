@@ -32,6 +32,18 @@ function futurium_isa_context_default_contexts() {
           'region' => 'footer',
           'weight' => '-10',
         ),
+        'devel-execute_php' => array(
+          'module' => 'devel',
+          'delta' => 'execute_php',
+          'region' => 'footer',
+          'weight' => '-9',
+        ),
+        'devel-switch_user' => array(
+          'module' => 'devel',
+          'delta' => 'switch_user',
+          'region' => 'footer',
+          'weight' => '-8',
+        ),
       ),
     ),
   );

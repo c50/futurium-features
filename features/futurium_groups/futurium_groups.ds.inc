@@ -155,7 +155,7 @@ function futurium_groups_ds_field_settings_info() {
       'format' => 'default',
       'formatter_settings' => array(
         'link' => 1,
-        'wrapper' => 'h2',
+        'wrapper' => 'h3',
         'ft' => array(
           'func' => 'theme_ds_field_minimal',
         ),
@@ -341,7 +341,7 @@ function futurium_groups_ds_layout_settings_info() {
     'regions' => array(
       'right' => array(
         0 => 'node_link',
-        2 => 'member_count',
+        1 => 'member_count',
         3 => 'futures_count',
         4 => 'title',
         5 => 'ideas_count',
@@ -351,7 +351,7 @@ function futurium_groups_ds_layout_settings_info() {
         9 => 'group_buttons',
       ),
       'left' => array(
-        1 => 'field_leading_picture_d4eu',
+        2 => 'field_leading_picture_d4eu',
       ),
     ),
     'fields' => array(
@@ -366,7 +366,17 @@ function futurium_groups_ds_layout_settings_info() {
       'field_group_description' => 'right',
       'group_buttons' => 'right',
     ),
-    'classes' => array(),
+    'classes' => array(
+      'layout_class' => array(
+        'row' => 'row',
+      ),
+      'left' => array(
+        'col-xs-2 col-sm-2 col-md-2 col-lg-2' => 'col-xs-2 col-sm-2 col-md-2 col-lg-2',
+      ),
+      'right' => array(
+        'col-xs-10 col-sm-10 col-md-10 col-lg-10' => 'col-xs-10 col-sm-10 col-md-10 col-lg-10',
+      ),
+    ),
     'wrappers' => array(
       'left' => 'div',
       'right' => 'div',

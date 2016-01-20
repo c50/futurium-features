@@ -5,41 +5,6 @@
  */
 
 /**
- * Implements hook_enable().
- */
-function futurium_isa_extras_enable() {
-  // Site default settings.
-  variable_set('site_frontpage', 'home');
-  variable_set('user_pictures', '1');
-  variable_set('user_picture_default', '');
-  variable_set('user_picture_dimensions', '85x85');
-  variable_set('user_picture_file_size', '30');
-  variable_set('user_picture_guidelines', '');
-  variable_set('user_picture_path', '');
-  variable_set('user_picture_style', '');
-  variable_set('user_register', '2');
-
-  // Theme settings.
-  _bootstrap_default_settings();
-
-  // Add H1 tags to allowed tags.
-  $allowed_tags = variable_get('security_allowed_tags', "");
-  if (!empty($allowed_tags)) {
-    $allowed_tags .= 'h1';
-    variable_set('security_allowed_tags', $allowed_tags);
-  }
-
-  // Temporary, grants anonymous the right to see/edit every node.
-  //$drupal_role = user_role_load_by_name('anonymous user');
-  //user_role_change_permissions($drupal_role->rid, array('bypass node access' => TRUE));
-
-  // Set default user picture.
-  futurium_isa_extras_set_default_pic();
-
-  drupal_flush_all_caches();
-}
-
-/**
  * Implements hook_admin_paths_alter().
  */
 function futurium_isa_extras_admin_paths_alter(&$paths) {
@@ -212,12 +177,21 @@ function futurium_isa_extras_block_view($delta = '') {
         if ($obj->type == 'futurium_group') {
           module_load_include('inc', 'og_ui', 'og_ui.admin');
           $form = drupal_get_form('message_ui_instance_message_manage', 'private_message');
-          //dsm($form);
-          $form['additional_settings']['#prefix'] = '<div style="display:none">';
-          $form['additional_settings']['#suffix'] = '</div>';
+
+          $group_users = futurium_isa_extras_get_users_in_group($obj->nid);
+          foreach($group_users as $k => $data) {
+            $form['field_message_user_ref'][LANGUAGE_NONE][$k+1]['target_id']['#default_value'] = "$data->name ($data->uid)";
+            $form['field_message_user_ref']['#prefix'] = '<div style="display:none">';
+            $form['field_message_user_ref']['#suffix'] = '</div>';
+          }
+
           $form['field_message_group_ref'][LANGUAGE_NONE]['#value'] = $obj->nid;
           $form['field_message_group_ref']['#prefix'] = '<div style="display:none">';
           $form['field_message_group_ref']['#suffix'] = '</div>';
+
+          $form['additional_settings']['#prefix'] = '<div style="display:none">';
+          $form['additional_settings']['#suffix'] = '</div>';
+
           $block['content'] = drupal_render($form);
         }
       }
@@ -397,12 +371,14 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])
       && $extrafields[$extrafield_name]['visible']) {
-    $location = $node->field_location[LANGUAGE_NONE][0];
-    if (!empty($location)) {
-      $city = ucwords($location['locality']);
-      $node->content[$extrafield_name] = array(
-        '#markup' => '<div class="field fake-field location-city">' . $city . '</div>',
-      );
+    if (isset($node->field_location[LANGUAGE_NONE][0])) {
+      $location = $node->field_location[LANGUAGE_NONE][0];
+      if (!empty($location)) {
+        $city = ucwords($location['locality']);
+        $node->content[$extrafield_name] = array(
+          '#markup' => '<div class="field fake-field location-city">' . $city . '</div>',
+        );
+      }
     }
   }
 
@@ -445,7 +421,6 @@ function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
       && isset($extrafields[$extrafield_name]['visible'])
       && $extrafields[$extrafield_name]['visible']) {
 
-    $flag = flag_get_flag($extrafield_name);
     $account->content[$extrafield_name] = array('#markup' => flag_create_link('follow_user', $account->uid));
   }
 
@@ -657,6 +632,20 @@ function futurium_isa_extras_count_group_content($nid, $content_type) {
   $results = $query->execute()->fetchAll();
 
   return count($results);
+}
+
+
+function futurium_isa_extras_get_users_in_group($gid) {
+  $query = db_select('users', 'u');
+
+  $query
+    ->condition('u.uid', 0, '<>')
+    ->condition('u.status', 1, '=')
+    ->fields('u', array('uid', 'name'))
+    ->join('og_membership', 'ogm', "ogm.gid = :gid AND u.uid = ogm.etid AND ogm.entity_type = 'user'", array(':gid' => $gid));
+  $result = $query->execute()->fetchAll();
+
+  return $result;
 }
 
 function futurium_isa_extras_form_alter($form, $form_state, $form_id) {
