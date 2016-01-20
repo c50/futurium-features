@@ -1106,7 +1106,7 @@ function futurium_isa_default_panels_mini() {
     $pane->configuration = array(
       'admin_title' => 'Add Future',
       'title' => 'Links',
-      'body' => '<a class="add-content-link" href="/node/add/futures">Create a Future</a>',
+      'body' => '<a class="add-content-link" href="/node/add/future">Create a Future</a>',
       'format' => 'nowysiwig',
       'substitute' => 1,
     );
