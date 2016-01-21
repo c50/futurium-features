@@ -135,8 +135,12 @@ function _bootstrap_default_settings() {
  * Implements hook_block_info().
  */
 function futurium_isa_extras_block_info() {
+  $blocks['contextualized_links'] = array(
+    'info' => t('Contextualized Links'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
   $blocks['group_add_member'] = array(
-    'info' => t('Grooup Add member'),
+    'info' => t('Group Add member'),
     'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['group_send_message'] = array(
@@ -160,9 +164,102 @@ function futurium_isa_extras_block_info() {
 function futurium_isa_extras_block_view($delta = '') {
   $block = array();
 
+  $item = menu_get_item();
+  if (substr($item['path'],0, 5) == 'user/') {
+    $uid = arg(1);
+    $obj = user_load($uid);
+  }
+
+  if (substr($item['path'],0, 5) == 'node/') {
+    $nid = arg(1);
+    $obj = node_load($nid);
+    if ($obj->type == 'futurium_group') {
+      $link_options = array(
+        'query' => array(
+          'og_group_ref' => $obj->nid,
+        ),
+      );
+    }
+  }
+
   switch ($delta) {
+    case 'contextualized_links':
+
+      switch($item['path']) {
+        case 'user/%':
+          $links['add-group'] = l('Add Group', 'node/add/futurium-group');
+          $links['add-future'] = l('Add Future', 'node/add/future');
+          $links['add-idea'] = l('Add Idea', 'node/add/ideas');
+          $links['add-evidence'] = l('Add Evidence', 'node/add/evidence');
+          $links['add-event'] = l('Add Event', 'node/add/evidence');
+          break;
+
+        case 'user/%/groups':
+          $links['add-group'] = l('Add Group', 'node/add/futurium-group');
+          break;
+
+        case 'user/%/futures':
+          $links['add-future'] = l('Add Future', 'node/add/future');
+          break;
+
+        case 'user/%/ideas':
+          $links['add-idea'] = l('Add Idea', 'node/add/ideas');
+          break;
+
+        case 'user/%/evidence':
+          $links['add-evidence'] = l('Add Evidence', 'node/add/evidence');
+          break;
+
+        case 'user/%/events':
+          $links['add-event'] = l('Add Event', 'node/add/evidence');
+          break;
+
+        case 'node/%':
+          $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
+          $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
+          $links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
+          $links['add-event'] = l('Add Event', 'node/add/evidence', $link_options);
+         break;
+
+        case 'node/%/futures':
+         $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
+         break;
+
+        case 'node/%/ideas':
+         $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
+         break;
+
+        case 'node/%/members':
+         $links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
+         break;
+
+      }
+
+      $variables = array(
+        'items' => array(),
+        // Leave the title element empty to omit the title.
+        'title' => NULL,
+        'type' => 'ul',
+        'attributes' => array(
+          'class' => array(
+            'anopadding',
+          ),
+        ),
+      );
+
+      if (!empty($links)) {
+        foreach($links as $k => $link) {
+          $variables['items'][] = array(
+            'data' => $link,
+            'class' => array($k),
+          );
+        }
+
+        $block['subject'] = t('Actions');
+        $block['content'] = theme('item_list', $variables);
+      }
+      break;
     case 'group_add_member':
-      $obj = menu_get_object();
       if (!empty($obj)) {
         if ($obj->type == 'futurium_group') {
           module_load_include('inc', 'og_ui', 'og_ui.admin');
@@ -172,7 +269,6 @@ function futurium_isa_extras_block_view($delta = '') {
       }
       break;
     case 'group_send_message':
-      $obj = menu_get_object();
       if (!empty($obj)) {
         if ($obj->type == 'futurium_group') {
           module_load_include('inc', 'og_ui', 'og_ui.admin');

@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * perms.features.user_permission.inc
+ * futurium_isa.features.user_permission.inc
  */
 
 /**
@@ -10,7 +10,7 @@
 function futurium_isa_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: 'create new event_d4eu content'.
+  // Exported permission: 'create event_d4eu content'.
   $permissions['create event_d4eu content'] = array(
     'name' => 'create event_d4eu content',
     'roles' => array(
@@ -19,7 +19,7 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'create new evidence content'.
+  // Exported permission: 'create evidence content'.
   $permissions['create evidence content'] = array(
     'name' => 'create evidence content',
     'roles' => array(
@@ -28,7 +28,7 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'create new future content'.
+  // Exported permission: 'create future content'.
   $permissions['create future content'] = array(
     'name' => 'create future content',
     'roles' => array(
@@ -37,7 +37,7 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'create new futurium_group content'.
+  // Exported permission: 'create futurium_group content'.
   $permissions['create futurium_group content'] = array(
     'name' => 'create futurium_group content',
     'roles' => array(
@@ -46,7 +46,7 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'create new ideas content'.
+  // Exported permission: 'create ideas content'.
   $permissions['create ideas content'] = array(
     'name' => 'create ideas content',
     'roles' => array(
@@ -55,15 +55,7 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
-  $permissions['edit any ideas content'] = array(
-    'name' => 'edit any ideas content',
-    'roles' => array(
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'edit own event_d4eu content'.
+  // Exported permission: 'edit any event_d4eu content'.
   $permissions['edit any event_d4eu content'] = array(
     'name' => 'edit any event_d4eu content',
     'roles' => array(
@@ -72,7 +64,7 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit own evidence content'.
+  // Exported permission: 'edit any evidence content'.
   $permissions['edit any evidence content'] = array(
     'name' => 'edit any evidence content',
     'roles' => array(
@@ -81,7 +73,7 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit own future content'.
+  // Exported permission: 'edit any future content'.
   $permissions['edit any future content'] = array(
     'name' => 'edit any future content',
     'roles' => array(
@@ -90,9 +82,9 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit own ideas content'.
-  $permissions['edit own ideas content'] = array(
-    'name' => 'edit own ideas content',
+  // Exported permission: 'edit any ideas content'.
+  $permissions['edit any ideas content'] = array(
+    'name' => 'edit any ideas content',
     'roles' => array(
       'authenticated user' => 'authenticated user',
     ),
@@ -144,18 +136,18 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'flag follow_user'.
-  $permissions['flag follow_user'] = array(
-    'name' => 'flag follow_user',
+  // Exported permission: 'flag attending'.
+  $permissions['flag attending'] = array(
+    'name' => 'flag attending',
     'roles' => array(
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'flag',
   );
 
-  // Exported permission: 'unflag follow_user'.
-  $permissions['unflag follow_user'] = array(
-    'name' => 'unflag follow_user',
+  // Exported permission: 'flag follow_user'.
+  $permissions['flag follow_user'] = array(
+    'name' => 'flag follow_user',
     'roles' => array(
       'authenticated user' => 'authenticated user',
     ),
@@ -171,27 +163,27 @@ function futurium_isa_user_default_permissions() {
     'module' => 'flag',
   );
 
-  // Exported permission: 'unflag like'.
-  $permissions['unflag like'] = array(
-    'name' => 'unflag like',
-    'roles' => array(
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'flag',
-  );
-
-  // Exported permission: 'flag attending'.
-  $permissions['flag attending'] = array(
-    'name' => 'flag attending',
-    'roles' => array(
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'flag',
-  );
-
   // Exported permission: 'unflag attending'.
   $permissions['unflag attending'] = array(
     'name' => 'unflag attending',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
+  // Exported permission: 'unflag follow_user'.
+  $permissions['unflag follow_user'] = array(
+    'name' => 'unflag follow_user',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
+  // Exported permission: 'unflag like'.
+  $permissions['unflag like'] = array(
+    'name' => 'unflag like',
     'roles' => array(
       'authenticated user' => 'authenticated user',
     ),

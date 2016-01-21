@@ -441,7 +441,7 @@ function futurium_isa_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_d4eu-field_leading_picture_d4eu'
+  // Exported field_instance: 'node-ideas-field_leading_picture_d4eu'.
   $field_instances['node-ideas-field_leading_picture_d4eu'] = array(
     'bundle' => 'ideas',
     'deleted' => 0,
@@ -583,9 +583,21 @@ function futurium_isa_field_default_field_instances() {
       ),
       'user_header' => array(
         'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'smart_trim',
+        'settings' => array(
+          'more_link' => 0,
+          'more_text' => 'Read more',
+          'summary_handler' => 'full',
+          'trim_length' => 300,
+          'trim_link' => 0,
+          'trim_options' => array(
+            'text' => 'text',
+          ),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
+        ),
+        'type' => 'smart_trim_format',
         'weight' => 2,
       ),
     ),
@@ -849,6 +861,7 @@ function futurium_isa_field_default_field_instances() {
       ),
       'user_header' => array(
         'label' => 'inline',
+        'settings' => array(),
         'type' => 'hidden',
         'weight' => 14,
       ),
@@ -1036,6 +1049,7 @@ function futurium_isa_field_default_field_instances() {
   t('Education');
   t('Gender');
   t('Ideas and experience');
+  t('Leading picture');
   t('Location');
   t('Profession');
   t('Social Links');

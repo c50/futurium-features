@@ -84,3 +84,51 @@
 .social-links ul li {
   margin: 10px 0px !important;
 }
+
+/* Demo */
+
+.dropdown-menu>li>a {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 18px;
+}
+
+.view-footer .more-link {
+  margin: 10px 0;
+  padding: 10px 0;
+  display: block;
+}
+
+.node-type-futurium-group .bootstrap-twocol-tower > .container-fullwidth.row2,
+.node-type-futurium-group .bootstrap-threecol-tower > .container-fullwidth.row2,
+.page-user .container-fullwidth.row2 {
+  padding-top: 0;
+  padding-top: 0;
+}
+.node-type-futurium-group .bootstrap-twocol-tower > .container-fullwidth.row2,
+.node-type-futurium-group .bootstrap-threecol-tower > .container-fullwidth.row2,
+.page-user .container-fullwidth.row2 {
+  background: url(http://futurium_isa.dev.europa.eu/sites/all/themes/futurium_isa_theme/assets/img/bg-user-menu.gif) left top;
+  background-repeat: repeat-x;
+}
+
+.view-messages.view-display-id-block_2 .node h3 {
+  display: none;
+}
+
+.node-type-futurium-group .container-fullwidth.row2,
+.page-user:not(.page-user-edit) .container-fullwidth.row2 {
+  height: 50px;
+}
+
+.page-user:not(.page-user-edit) .row3l .panel-pane {
+  margin: 0 0 30px 0;
+  margin: 0 0 3rem 0;
+}
+
+.node-type-futurium-group.page-node-edit .bootstrap-threecol-tower > .container-fullwidth.row2,
+.page-user.page-user-edit .container-fullwidth.row2 {
+  background: none;
+  background-repeat: repeat-x;
+  margin-top: 20px;
+}
