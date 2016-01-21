@@ -55,9 +55,49 @@ function futurium_isa_user_default_permissions() {
     'module' => 'node',
   );
 
+  $permissions['edit any ideas content'] = array(
+    'name' => 'edit any ideas content',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'node',
+  );
 
+  // Exported permission: 'edit own event_d4eu content'.
+  $permissions['edit any event_d4eu content'] = array(
+    'name' => 'edit any event_d4eu content',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'node',
+  );
 
+  // Exported permission: 'edit own evidence content'.
+  $permissions['edit any evidence content'] = array(
+    'name' => 'edit any evidence content',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'node',
+  );
 
+  // Exported permission: 'edit own future content'.
+  $permissions['edit any future content'] = array(
+    'name' => 'edit any future content',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own ideas content'.
+  $permissions['edit own ideas content'] = array(
+    'name' => 'edit own ideas content',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'node',
+  );
 
   // Exported permission: 'edit own event_d4eu content'.
   $permissions['edit own event_d4eu content'] = array(

@@ -246,6 +246,102 @@ row|Bootstrap Row
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_event_d4eu';
+  $strongarm->value = '0';
+  $export['comment_anonymous_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_event_d4eu';
+  $strongarm->value = 1;
+  $export['comment_default_mode_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_event_d4eu';
+  $strongarm->value = '10';
+  $export['comment_default_per_page_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_event_d4eu';
+  $strongarm->value = 1;
+  $export['comment_form_location_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_event_d4eu';
+  $strongarm->value = '2';
+  $export['comment_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_event_d4eu';
+  $strongarm->value = '0';
+  $export['comment_preview_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_event_d4eu';
+  $strongarm->value = 0;
+  $export['comment_subject_field_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_event_d4eu';
+  $strongarm->value = '0';
+  $export['language_content_type_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_event_d4eu';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_event_d4eu';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_event_d4eu';
+  $strongarm->value = array(
+    0 => 'revision',
+    1 => 'status',
+  );
+  $export['node_options_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_event_d4eu';
+  $strongarm->value = '1';
+  $export['node_preview_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_event_d4eu';
+  $strongarm->value = 1;
+  $export['node_submitted_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__ideas';
   $strongarm->value = array(
     'view_modes' => array(
@@ -321,6 +417,102 @@ row|Bootstrap Row
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_ideas';
+  $strongarm->value = '0';
+  $export['comment_anonymous_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_ideas';
+  $strongarm->value = 1;
+  $export['comment_default_mode_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_ideas';
+  $strongarm->value = '10';
+  $export['comment_default_per_page_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_ideas';
+  $strongarm->value = 1;
+  $export['comment_form_location_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_ideas';
+  $strongarm->value = '2';
+  $export['comment_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_ideas';
+  $strongarm->value = '0';
+  $export['comment_preview_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_ideas';
+  $strongarm->value = 0;
+  $export['comment_subject_field_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_ideas';
+  $strongarm->value = '0';
+  $export['language_content_type_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_ideas';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_ideas';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_ideas';
+  $strongarm->value = array(
+    0 => 'revision',
+    1 => 'status',
+  );
+  $export['node_options_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_ideas';
+  $strongarm->value = '1';
+  $export['node_preview_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_ideas';
+  $strongarm->value = 1;
+  $export['node_submitted_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_user__user';
   $strongarm->value = array(
     'view_modes' => array(
@@ -384,6 +576,12 @@ row|Bootstrap Row
         'edit' => array(
           'user_header' => array(
             'weight' => '2',
+            'visible' => TRUE,
+          ),
+        ),
+        'logout' => array(
+          'user_header' => array(
+            'weight' => '3',
             'visible' => TRUE,
           ),
         ),

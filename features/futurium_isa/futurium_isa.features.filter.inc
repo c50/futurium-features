@@ -18,11 +18,6 @@ function futurium_isa_filter_default_formats() {
     'status' => 1,
     'weight' => 0,
     'filters' => array(
-      'toolbox_sanitize' => array(
-        'weight' => 0,
-        'status' => 1,
-        'settings' => array(),
-      ),
       'filter_htmlcorrector' => array(
         'weight' => 10,
         'status' => 1,

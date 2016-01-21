@@ -849,14 +849,7 @@ function futurium_isa_field_default_field_instances() {
       ),
       'user_header' => array(
         'label' => 'inline',
-        'module' => 'addressfield',
-        'settings' => array(
-          'format_handlers' => array(
-            0 => 'address',
-          ),
-          'use_widget_handlers' => 1,
-        ),
-        'type' => 'addressfield_default',
+        'type' => 'hidden',
         'weight' => 14,
       ),
     ),

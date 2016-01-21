@@ -346,6 +346,7 @@ function futurium_isa_field_group_info() {
     'children' => array(
       0 => 'follow',
       1 => 'edit',
+      2 => 'logout',
     ),
     'format_type' => 'div',
     'format_settings' => array(

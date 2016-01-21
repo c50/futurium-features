@@ -201,5 +201,7 @@
 
 
 <footer class="footer container-fullwidth">
-  <?php print render($page['footer']); ?>
+  <div class="footer-wrapper container">
+    <?php print render($page['footer']); ?>
+  </div>
 </footer>
