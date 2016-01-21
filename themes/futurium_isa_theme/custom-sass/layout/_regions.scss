@@ -108,10 +108,10 @@
       border-bottom: 1px solid $mid-grey;
     }
   }
-  .pane-content {
-    @include rem(padding, 15px);
+  .panel-pane > .pane-content {
+    @include rem(padding, 0 15px 15px 15px);
     h2.pane-title {
-      @include rem(margin, 0 0 25px 0);
+      @include rem(margin, 15px 0 25px 0);
     }   
   }
 }
@@ -128,7 +128,6 @@
 .content-slider-wrapper .region {
   padding: 0;
 }
-
 
 
 div.panel-pane div.node.row {

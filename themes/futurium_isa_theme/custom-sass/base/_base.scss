@@ -80,7 +80,7 @@ h4 {
   @include rem(margin, 0 0 0 0);
 }
 
-h2{
+h2, h3{
   margin-top: 0;
 }
 
@@ -543,8 +543,15 @@ div.view div.view-mode-teaser_w_pic {
   }
 }
 
+/*****************
+/* view-user-groups
+/******************/
 
-
+.view-user-groups {
+  .views-row {
+    @include rem(margin, 0 0 20px 0);
+  }
+}
 
 /*************/
 /* Comments */
@@ -603,6 +610,14 @@ div.view div.view-mode-teaser_w_pic {
   }
   .container-fullwidth.row2 .container-fullwidth.row2 {
     background: none;
+  }
+}
+
+.view-user-group-members {
+  .views-row {
+    display: inline-block;
+    clear: right;
+    @include rem(margin, 0 10px 0 0);
   }
 }
 
