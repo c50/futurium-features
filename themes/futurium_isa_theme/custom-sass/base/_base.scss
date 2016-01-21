@@ -144,6 +144,7 @@ h4 a {
 .wrapper-date-vote-comment{
   .date{
     font-family: $text-font-stack;
+    text-transform: inherit;
   }
 }
 
@@ -618,14 +619,15 @@ div.view div.view-mode-teaser_w_pic {
 /* USER PROFILE */
 /***************/
 
-.page-user, .node-type-futurium-group {
+
+/* create background for menu tabs on page-user and page-group */
+
+.page-user:not(.page-user-edit), .node-type-futurium-group {
   .container-fullwidth.row2 {
     background: url(../assets/img/bg-user-menu.gif) left top;
     background-repeat: repeat-x;
-    @include rem(padding-top, 0);
-  }
-  .container-fullwidth.row2 .container-fullwidth.row2 {
-    background: none;
+    @include rem(min-height, 50px);
+    @include rem(padding, 0);
   }
 }
 

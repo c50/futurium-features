@@ -34,7 +34,6 @@ ul.nav-pills {
   /* background: $lighter-grey; */
   font-family: $header-font-stack;
   text-transform: uppercase;
-  @include rem(margin-bottom, 30px);
 }
 
 .nav-pills>li>a {
@@ -53,13 +52,14 @@ ul.nav-pills {
   background: none;
 }
 
-.nav-pills>li.active>a {
+
+.nav-pills>li>a.active {
   background: none;
   border-bottom: 5px solid $user-color;
 }
 
 .node-type-futurium-group{
-  .nav-pills>li.active>a {
+  .nav-pills>li>a.active {
     border-bottom: 5px solid $group-color;
   }
 }
@@ -69,7 +69,7 @@ ul.nav-pills {
 /* TABS */
 /*******/
 
-.nav-tabs>li.active>a {
+.nav-tabs>li>a.active {
   color: $text-color;
 }
 
