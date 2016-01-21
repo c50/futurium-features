@@ -2716,9 +2716,9 @@ function futurium_isa_default_page_manager_pages() {
   $page->path = 'node/%node/futures';
   $page->access = array();
   $page->menu = array(
-    'type' => 'tab',
+    'type' => 'action',
     'title' => 'Futures',
-    'name' => 'navigation',
+    'name' => 'menu-group-tabs',
     'weight' => '1',
     'parent' => array(
       'type' => 'none',
@@ -3046,10 +3046,10 @@ function futurium_isa_default_page_manager_pages() {
   $page->path = 'node/%node/ideas';
   $page->access = array();
   $page->menu = array(
-    'type' => 'tab',
+    'type' => 'action',
     'title' => 'Ideas',
     'name' => 'navigation',
-    'weight' => '1',
+    'weight' => '2',
     'parent' => array(
       'type' => 'none',
       'title' => '',
@@ -3376,10 +3376,10 @@ function futurium_isa_default_page_manager_pages() {
   $page->path = 'node/%node/members';
   $page->access = array();
   $page->menu = array(
-    'type' => 'tab',
+    'type' => 'action',
     'title' => 'Members',
     'name' => 'navigation',
-    'weight' => '1',
+    'weight' => '3',
     'parent' => array(
       'type' => 'none',
       'title' => '',
@@ -4735,7 +4735,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/events';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Events',
+    'name' => 'navigation',
+    'weight' => '5',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,
@@ -5045,7 +5056,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/evidence';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Evidence',
+    'name' => 'navigation',
+    'weight' => '4',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,
@@ -5317,7 +5339,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/futures';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Futures',
+    'name' => 'navigation',
+    'weight' => '2',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,
@@ -5589,7 +5622,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/groups';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Groups',
+    'name' => 'navigation',
+    'weight' => '1',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,
@@ -5861,7 +5905,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/ideas';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Ideas',
+    'name' => 'navigation',
+    'weight' => '3',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,
