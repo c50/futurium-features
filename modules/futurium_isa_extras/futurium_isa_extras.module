@@ -319,6 +319,14 @@ function futurium_isa_extras_field_extra_fields() {
     'weight' => 53,
   );
 
+  // Edit profile link.
+  $extrafield_name = 'logout';
+  $extra['user']['user']['display'][$extrafield_name] = array(
+    'label' => t("Logout"),
+    'description' => t('Log out.'),
+    'weight' => 52,
+  );
+
   return $extra;
 }
 
@@ -448,7 +456,31 @@ function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
     }
   }
 
-  // Edit.
+  // Logout.
+  $extrafield_name = 'logout';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+
+    global $user;
+    if ($user->uid == $account->uid) {
+      $link_options = array(
+        'attributes' => array(
+          'class' => array(
+            'flag',
+            'flag-action',
+            'flag-link-toggle',
+            'flag-processed',
+          ),
+        ),
+      );
+      $account->content[$extrafield_name] = array(
+        '#markup' => l(t("Logout"), 'user/logout', $link_options),
+      );
+    }
+  }
+
+  // City and Country.
   $extrafield_name = 'user_city';
   if (isset($extrafields[$extrafield_name])
       && isset($extrafields[$extrafield_name]['visible'])
@@ -650,6 +682,10 @@ function futurium_isa_extras_get_users_in_group($gid) {
 
 function futurium_isa_extras_form_alter($form, $form_state, $form_id) {
   //dsm($form_id);
+}
+
+function futurium_isa_cron() {
+
 }
 
 // Modules likely to be disabled

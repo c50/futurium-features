@@ -28,7 +28,7 @@ function futurium_evidence_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_per_page_evidence';
-  $strongarm->value = '50';
+  $strongarm->value = '10';
   $export['comment_default_per_page_evidence'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -49,14 +49,14 @@ function futurium_evidence_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_evidence';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['comment_preview_evidence'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_evidence';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['comment_subject_field_evidence'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -138,7 +138,8 @@ function futurium_evidence_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_evidence';
   $strongarm->value = array(
-    0 => 'status',
+    0 => 'revision',
+    1 => 'status',
   );
   $export['node_options_evidence'] = $strongarm;
 
