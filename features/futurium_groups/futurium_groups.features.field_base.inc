@@ -115,7 +115,7 @@ function futurium_groups_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          0 => 'futurium_group',
+          'futurium_group' => 'futurium_group',
         ),
       ),
       'handler_submit' => 'Change handler',
