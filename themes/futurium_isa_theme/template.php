@@ -330,3 +330,11 @@ function futurium_isa_theme_views_view_grouping($vars) {
 
   return $output;
 }
+
+function futurium_isa_theme_menu_tree__menu_user_tabs($variables) {
+  return '<ul class="menu nav nav-pills">' . $variables['tree'] . '</ul>';
+}
+
+function futurium_isa_theme_menu_tree__menu_group_tabs($variables) {
+  return '<ul class="menu nav nav-pills">' . $variables['tree'] . '</ul>';
+}
