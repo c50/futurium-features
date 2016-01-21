@@ -135,9 +135,15 @@ h4 a {
     border-bottom: none;
   }
   .date {
-    font-family: $header-font-stack;
     @include rem(font-size, 15px);
     text-transform: uppercase;
+    font-family: $header-font-stack;
+  }
+}
+
+.wrapper-date-vote-comment{
+  .date{
+    font-family: $text-font-stack;
   }
 }
 
@@ -413,26 +419,15 @@ div.view div.view-mode-teaser_w_pic {
   @include rem(padding, 20px 0 40px 0);
 }
 
+/* views-row border management */
 
 .view-homepage {
-
-  .views-row {
-    @include rem(padding, 40px 0 40px 0);
-    @include rem(border-bottom, 5px solid #d7d7d7);
-  }
-  .views-row-first {
-    @include rem(padding-top, 0);
-  }
-  .views-row-last {
-    border-bottom: none;
-  } 
-  h3 {
-    margin-top: 0;
-  }
-
+  @include views-row-border;
 }
 
-
+.view-group-content {
+  @include views-row-border;
+}
 
 /* icons for date - vote - comment */
 
@@ -516,20 +511,34 @@ div.view div.view-mode-teaser_w_pic {
 /* people */
 /*********/
 
-.view-people {
+.view-people, .view-group-people{
   .views-row {
-    /* float: left;
-    width: 100%; */
     @include rem(margin, 0 0 20px 0);
+    position: relative;
   }
   .left {
-    float:left;
+    /* float: left; */
+    display: inline-block;
+    vertical-align: text-bottom;
     .views-field-picture{
       @include rem(margin, 0 10px 0 0);
     }
   }
+  .middle {
+    display: inline-block;
+  }
   .right {
-    
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.front{
+  .view-people{
+    .right{
+      position: relative;
+    }
   }
 }
 
@@ -541,6 +550,13 @@ div.view div.view-mode-teaser_w_pic {
     @include rem(padding, 15px);
     @include rem(margin, 0 0 30px 0);
   }
+}
+
+.view-group-people .col {
+  background: $light-grey;
+  border: 1px solid darken($light-grey, 10%);
+  @include rem(padding, 15px);
+  @include rem(margin, 0 0 30px 0);
 }
 
 /*****************
@@ -617,8 +633,12 @@ div.view div.view-mode-teaser_w_pic {
   .views-row {
     display: inline-block;
     clear: right;
-    @include rem(margin, 0 10px 0 0);
+    @include rem(margin, 10px 10px 0 0);
   }
+}
+
+.member-count {
+  color: $mid-grey;
 }
 
 .page-user .container-fullwidth.row2:only-child {
@@ -633,6 +653,11 @@ div.view div.view-mode-teaser_w_pic {
     width: 55%;
   }
 }
+
+/***********/
+/* GROUPS */
+/*********/
+
 
   
 

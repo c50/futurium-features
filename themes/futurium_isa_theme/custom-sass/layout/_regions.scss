@@ -91,7 +91,9 @@
 /*****************/
 
 .sidebar-right {
-  
+  a {
+    color: $text-color;
+  }
 
   h2.pane-title{
     @include rem(margin, 15px 15px 15px 15px);

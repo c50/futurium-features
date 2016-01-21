@@ -280,6 +280,9 @@
       width: 70px;
       line-height: 35px; 
       background: #fff;
+    }
+    .group-shortcut-buttons a{
+      @include rem(margin, 0 10px 0 0);
     } 
   }
 
@@ -345,6 +348,30 @@
   }
 }
 
+@mixin views-row-border {
+  .views-row {
+    @include rem(padding, 40px 0 40px 0);
+    @include rem(border-bottom, 5px solid #d7d7d7);
+    div.node-teaser {
+      padding: 0;
+    }
+  }
+  .views-row-first {
+    @include rem(padding-top, 0);
+  }
+  .views-row-last {
+    border-bottom: none;
+  } 
+  h3 {
+    margin-top: 0;
+  }
+  
+}
 
 
+/* temp stuff */
+
+.navbar-nav .last {
+  display: none;
+}
 
