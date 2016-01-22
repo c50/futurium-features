@@ -116,7 +116,7 @@
   display: none;
 }
 
-.node-type-futurium-group:not(.page-node-edit) .container-fullwidth.row2,
+.node-type-futurium-group:not(.page-node-edit, .page-node-add) .container-fullwidth.row2,
 .page-user:not(.page-user-edit) .container-fullwidth.row2 {
   height: 50px;
 }
@@ -126,6 +126,7 @@
   margin: 0 0 3rem 0;
 }
 
+.node-type-futurium-group.page-node-add .bootstrap-threecol-tower > .container-fullwidth.row2,
 .node-type-futurium-group.page-node-edit .bootstrap-threecol-tower > .container-fullwidth.row2,
 .page-user.page-user-edit .container-fullwidth.row2 {
   background: none;
