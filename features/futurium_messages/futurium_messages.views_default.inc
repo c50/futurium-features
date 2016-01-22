@@ -50,9 +50,27 @@ function futurium_messages_views_default_views() {
 
   /* Display: All */
   $handler = $view->new_display('block', 'All', 'block');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Message: Render message (Get text) */
+  $handler->display->display_options['fields']['message_render']['id'] = 'message_render';
+  $handler->display->display_options['fields']['message_render']['table'] = 'message';
+  $handler->display->display_options['fields']['message_render']['field'] = 'message_render';
+  $handler->display->display_options['fields']['message_render']['label'] = '';
+  $handler->display->display_options['fields']['message_render']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['message_render']['partials'] = 1;
+  $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
 
   /* Display: Node Activity */
   $handler = $view->new_display('block', 'Node Activity', 'block_1');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Message: Render message (Get text) */
+  $handler->display->display_options['fields']['message_render']['id'] = 'message_render';
+  $handler->display->display_options['fields']['message_render']['table'] = 'message';
+  $handler->display->display_options['fields']['message_render']['field'] = 'message_render';
+  $handler->display->display_options['fields']['message_render']['label'] = '';
+  $handler->display->display_options['fields']['message_render']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['message_render']['partials'] = 1;
+  $handler->display->display_options['fields']['message_render']['partials_delta'] = '1';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Message: Node ref (field_node_ref) */
   $handler->display->display_options['arguments']['field_node_ref_target_id']['id'] = 'field_node_ref_target_id';
@@ -92,8 +110,8 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['fields']['message_render']['field'] = 'message_render';
   $handler->display->display_options['fields']['message_render']['label'] = '';
   $handler->display->display_options['fields']['message_render']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['message_render']['partials'] = 0;
-  $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
+  $handler->display->display_options['fields']['message_render']['partials'] = 1;
+  $handler->display->display_options['fields']['message_render']['partials_delta'] = '1';
   /* Field: Message: Node ref */
   $handler->display->display_options['fields']['field_node_ref']['id'] = 'field_node_ref';
   $handler->display->display_options['fields']['field_node_ref']['table'] = 'field_data_field_node_ref';
@@ -101,6 +119,7 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['fields']['field_node_ref']['label'] = '';
   $handler->display->display_options['fields']['field_node_ref']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['field_node_ref']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_node_ref']['element_wrapper_class'] = 'notitle';
   $handler->display->display_options['fields']['field_node_ref']['type'] = 'entityreference_entity_view';
   $handler->display->display_options['fields']['field_node_ref']['settings'] = array(
     'view_mode' => 'teaser',
