@@ -131,7 +131,7 @@ h4 a {
   li.views-row-first {
     padding-top: 0;
   }
-  li.views-row-last {
+  li.views-row-last, .last {
     border-bottom: none;
   }
   .date {
@@ -362,6 +362,34 @@ a.btn-more:before {
 
 .flag-like a:before {
   @include fa(thumbs-up);
+}
+
+/* menu add content */
+
+.add-group a:before {
+  @include fa(group);
+  min-width: 10%;
+}
+
+.add-future a:before {
+  @include fa(rocket);
+  min-width: 10%;
+}
+
+.add-idea a:before {
+  @include fa(lightbulb-o);
+  min-width: 10%;
+}
+
+.add-evidence a:before {
+  @include fa(file-text-o);
+  min-width: 10%;
+}
+
+
+.add-event a:before {
+  @include fa(calendar);
+  min-width: 10%;
 }
 
 /* rating */
