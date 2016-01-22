@@ -2455,8 +2455,8 @@ function futurium_isa_default_page_manager_handlers() {
       'context' => array(
         0 => 'argument_entity_id:user_1.uid',
       ),
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => 'Groups',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -2611,7 +2611,17 @@ function futurium_isa_default_page_manager_pages() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => 'logged-in-user',
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'create event_d4eu content',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
@@ -2714,11 +2724,27 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_title = 'Group Futures';
   $page->admin_description = '';
   $page->path = 'node/%node/futures';
-  $page->access = array();
+  $page->access = array(
+    'logic' => 'and',
+    'plugins' => array(
+      0 => array(
+        'context' => array(
+          0 => 'argument_entity_id:node_1',
+          1 => 'logged-in-user',
+        ),
+        'name' => 'og_member',
+        'settings' => array(
+          'state' => array(
+            1 => 1,
+          ),
+        ),
+      ),
+    ),
+  );
   $page->menu = array(
-    'type' => 'tab',
+    'type' => 'action',
     'title' => 'Futures',
-    'name' => 'navigation',
+    'name' => 'menu-group-tabs',
     'weight' => '1',
     'parent' => array(
       'type' => 'none',
@@ -3044,12 +3070,28 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_title = 'Group Ideas';
   $page->admin_description = '';
   $page->path = 'node/%node/ideas';
-  $page->access = array();
+  $page->access = array(
+    'logic' => 'and',
+    'plugins' => array(
+      0 => array(
+        'context' => array(
+          0 => 'argument_entity_id:node_1',
+          1 => 'logged-in-user',
+        ),
+        'name' => 'og_member',
+        'settings' => array(
+          'state' => array(
+            1 => 1,
+          ),
+        ),
+      ),
+    ),
+  );
   $page->menu = array(
-    'type' => 'tab',
+    'type' => 'action',
     'title' => 'Ideas',
     'name' => 'navigation',
-    'weight' => '1',
+    'weight' => '2',
     'parent' => array(
       'type' => 'none',
       'title' => '',
@@ -3374,12 +3416,28 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_title = 'Group Members';
   $page->admin_description = '';
   $page->path = 'node/%node/members';
-  $page->access = array();
+  $page->access = array(
+    'logic' => 'and',
+    'plugins' => array(
+      0 => array(
+        'context' => array(
+          0 => 'argument_entity_id:node_1',
+          1 => 'logged-in-user',
+        ),
+        'name' => 'og_member',
+        'settings' => array(
+          'state' => array(
+            1 => 1,
+          ),
+        ),
+      ),
+    ),
+  );
   $page->menu = array(
-    'type' => 'tab',
+    'type' => 'action',
     'title' => 'Members',
     'name' => 'navigation',
-    'weight' => '1',
+    'weight' => '3',
     'parent' => array(
       'type' => 'none',
       'title' => '',
@@ -3673,7 +3731,20 @@ function futurium_isa_default_page_manager_pages() {
     $pane->type = 'block';
     $pane->subtype = 'futurium_isa_extras-group_add_member';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => array(
+            0 => 'argument_entity_id:node_1',
+            1 => 'logged-in-user',
+          ),
+          'name' => 'og_perm',
+          'settings' => array(
+            'perm' => 'add user',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => 'Add a new member',
@@ -3696,7 +3767,20 @@ function futurium_isa_default_page_manager_pages() {
     $pane->type = 'block';
     $pane->subtype = 'futurium_isa_extras-group_send_message';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => array(
+            0 => 'argument_entity_id:node_1',
+            1 => 'logged-in-user',
+          ),
+          'name' => 'og_perm',
+          'settings' => array(
+            'perm' => 'approve and deny subscription',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => 'Send to your group',
@@ -4415,7 +4499,17 @@ function futurium_isa_default_page_manager_pages() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => 'logged-in-user',
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'create ideas content',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => 'Add Idea Link',
       'title' => '',
@@ -4735,7 +4829,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/events';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Events',
+    'name' => 'navigation',
+    'weight' => '5',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,
@@ -5045,7 +5150,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/evidence';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Evidence',
+    'name' => 'navigation',
+    'weight' => '4',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,
@@ -5317,7 +5433,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/futures';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Futures',
+    'name' => 'navigation',
+    'weight' => '2',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,
@@ -5589,7 +5716,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/groups';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Groups',
+    'name' => 'navigation',
+    'weight' => '1',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,
@@ -5861,7 +5999,18 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'user/%user/ideas';
   $page->access = array();
-  $page->menu = array();
+  $page->menu = array(
+    'type' => 'action',
+    'title' => 'Ideas',
+    'name' => 'navigation',
+    'weight' => '3',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
   $page->arguments = array(
     'user' => array(
       'id' => 1,

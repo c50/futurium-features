@@ -230,7 +230,7 @@ function futurium_isa_extras_block_view($delta = '') {
          break;
 
         case 'node/%/members':
-         $links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
+         //$links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
          break;
 
       }
@@ -242,7 +242,7 @@ function futurium_isa_extras_block_view($delta = '') {
         'type' => 'ul',
         'attributes' => array(
           'class' => array(
-            'anopadding',
+            'nopadding',
           ),
         ),
       );
@@ -492,8 +492,9 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
       && isset($extrafields[$extrafield_name]['visible'])
       && $extrafields[$extrafield_name]['visible']) {
 
-    //global $user;
-    //if ($user->uid == $account->uid || user_access('administer users')) {
+    global $user;
+    $account = user_load($user->uid);
+    if (og_user_access('node', $node->nid, 'edit group', $account)) {
       $link_options = array(
         'attributes' => array(
           'class' => array(
@@ -507,7 +508,7 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
       $node->content[$extrafield_name] = array(
         '#markup' => l(t("Edit group"), 'node/' . $node->nid . '/edit', $link_options),
       );
-    //}
+    }
   }
 
 }

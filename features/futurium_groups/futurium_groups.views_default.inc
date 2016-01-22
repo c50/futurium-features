@@ -593,6 +593,7 @@ function futurium_groups_views_default_views() {
   $handler->display->display_options['fields']['view_2']['field'] = 'view';
   $handler->display->display_options['fields']['view_2']['label'] = '';
   $handler->display->display_options['fields']['view_2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_2']['element_wrapper_class'] = 'comment-count';
   $handler->display->display_options['fields']['view_2']['view'] = 'user_comments';
   $handler->display->display_options['fields']['view_2']['display'] = 'block';
   $handler->display->display_options['fields']['view_2']['arguments'] = '[!uid]';
@@ -676,6 +677,18 @@ function futurium_groups_views_default_views() {
   $handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
   /* Field: Global: Fieldset */
+  $handler->display->display_options['fields']['fieldset_3']['id'] = 'fieldset_3';
+  $handler->display->display_options['fields']['fieldset_3']['table'] = 'views';
+  $handler->display->display_options['fields']['fieldset_3']['field'] = 'fieldset';
+  $handler->display->display_options['fields']['fieldset_3']['label'] = 'Wrapper';
+  $handler->display->display_options['fields']['fieldset_3']['children'] = array(
+    0 => 'fieldset',
+    1 => 'fieldset_2',
+    2 => 'fieldset_1',
+  );
+  $handler->display->display_options['fields']['fieldset_3']['fieldset']['type'] = 'div';
+  $handler->display->display_options['fields']['fieldset_3']['fieldset']['classes'] = 'views-row-container';
+  /* Field: Global: Fieldset */
   $handler->display->display_options['fields']['fieldset']['id'] = 'fieldset';
   $handler->display->display_options['fields']['fieldset']['table'] = 'views';
   $handler->display->display_options['fields']['fieldset']['field'] = 'fieldset';
@@ -741,6 +754,7 @@ function futurium_groups_views_default_views() {
   $handler->display->display_options['fields']['view_2']['field'] = 'view';
   $handler->display->display_options['fields']['view_2']['label'] = '';
   $handler->display->display_options['fields']['view_2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_2']['element_wrapper_class'] = 'comment-count';
   $handler->display->display_options['fields']['view_2']['view'] = 'user_comments';
   $handler->display->display_options['fields']['view_2']['display'] = 'block';
   $handler->display->display_options['fields']['view_2']['arguments'] = '[!uid]';
