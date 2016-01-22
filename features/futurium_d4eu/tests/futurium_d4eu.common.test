@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Common testing class for this Drupal site.
+ */
+
+/**
+ * Bypasses sandboxing, runs test on local DB.
+ */
+abstract class FuturiumD4euDrupalWebTestCase extends DrupalWebTestCase {
+
+  /**
+   * Overrides default set up handler to prevent database sand-boxing.
+   */
+  protected function setUp() {
+    $this->public_files_directory = $this->originalFileDirectory;
+    drupal_set_time_limit($this->timeLimit);
+    $this->setup = TRUE;
+  }
+
+  /**
+   * Overrides default tear down handler to prevent database sandbox deletion.
+   */
+  protected function tearDown() {
+    // In case a fatal error occurred that was not in the test process read the
+    // log to pick up any fatal errors.
+    simpletest_log_read($this->testId, $this->databasePrefix, get_class($this), TRUE);
+
+    // Close the CURL handler.
+    $this->curlClose();
+  }
+
+}

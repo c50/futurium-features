@@ -8,7 +8,7 @@
 /**
  * Testing the "Futurium D4EU" feature compliance with requrements.
  */
-class FuturiumDataQAWebTestCase extends DrupalWebTestCase {
+class FuturiumCoreQAWebTestCase extends DrupalWebTestCase {
 
   /**
    * Returns test information.
@@ -18,8 +18,8 @@ class FuturiumDataQAWebTestCase extends DrupalWebTestCase {
    */
   public static function getInfo() {
     return array(
-      'name'        => 'Futurium Data QA',
-      'description' => 'Tests the content types that the Futurium Data feature provides.',
+      'name'        => 'Futurium Core QA',
+      'description' => 'Tests the content types that the Futurium Core feature provides.',
       'group'       => 'Futurium',
     );
   }
