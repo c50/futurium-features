@@ -116,8 +116,8 @@
   display: none;
 }
 
-.node-type-futurium-group:not(.page-node-edit, .page-node-add) .container-fullwidth.row2,
-.page-user:not(.page-user-edit) .container-fullwidth.row2 {
+.page-user:not(.page-user-edit) .container-fullwidth.row2,
+.node-type-futurium-group:not(.page-node-edit):not(.page-node-add) .container-fullwidth.row2{
   height: 50px;
 }
 
