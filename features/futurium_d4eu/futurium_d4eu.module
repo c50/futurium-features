@@ -484,17 +484,21 @@ function futurium_d4eu_field_formatter_view($entity_type, $entity, $field, $inst
  */
 function _futurium_d4eu_tear_off_calendar($variables) {
   if ($variables['from_date']) {
-    $from_date = "<a href='{$variables['alias']}'>
-      <div class='day-event-front-page'>{$variables['from_date'][2]}</div>
+    $from_date = "<div class='day-event-front-page'>{$variables['from_date'][2]}</div>
       <div class='month-event-front-page'>{$variables['from_date'][1]}</div>
-      <div class='year-event-front-page'>{$variables['from_date'][0]}</div>
-    </a>";
+      <div class='year-event-front-page'>{$variables['from_date'][0]}</div>";
+    $from_date = l($from_date, $variables['alias'], array(
+      'html' => TRUE
+      )
+    );
     if ($variables['to_date'] > $variables['from_date']) {
-      $to_date = "<a href='{$variables['alias']}'>
-      <div class='day-event-front-page'>{$variables['to_date'][2]}</div>
+      $to_date = "<div class='day-event-front-page'>{$variables['to_date'][2]}</div>
       <div class='month-event-front-page'>{$variables['to_date'][1]}</div>
-      <div class='year-event-front-page'>{$variables['to_date'][0]}</div>
-    </a>";
+      <div class='year-event-front-page'>{$variables['to_date'][0]}</div>";
+      $to_date = l($to_date, $variables['alias'], array(
+        'html' => TRUE
+        )
+      );
       return $from_date . $to_date;
     }
     else {
@@ -553,6 +557,7 @@ function _futurium_d4eu_set_basic_perm() {
       'create document content' => 1,
       'create event_d4eu content' => 1,
       'create ideas content' => 1,
+      'create issue content' => 1,
       'create files' => 1,
       'create page content' => 0,
       'create poll content' => 1,
@@ -560,6 +565,7 @@ function _futurium_d4eu_set_basic_perm() {
       'delete own document files' => 1,
       'delete own event_d4eu content' => 1,
       'delete own ideas content' => 1,
+      'delete own issue content' => 1,
       'delete own page content' => 1,
       'delete own poll content' => 0,
       'delete own video files' => 1,
@@ -576,6 +582,7 @@ function _futurium_d4eu_set_basic_perm() {
       'edit own document files' => 1,
       'edit own event_d4eu content' => 1,
       'edit own image files' => 1,
+      'edit own issue content' => 1,
       'edit own poll content' => 1,
       'inspect all votes' => 0,
       'moderate content from draft to needs_review' => 1,
@@ -661,6 +668,7 @@ function _futurium_d4eu_set_editor_perm() {
       'delete any document files' => 1,
       'delete any event_d4eu content' => 1,
       'delete any ideas content' => 1,
+      'delete any issue content' => 1,
       'delete any image files' => 1,
       'delete any page content' => 1,
       'delete any poll content' => 1,
@@ -677,6 +685,7 @@ function _futurium_d4eu_set_editor_perm() {
       'edit any document files' => 1,
       'edit any event_d4eu content' => 1,
       'edit any ideas content' => 1,
+      'edit any issue content' => 1,
       'edit any image files' => 1,
       'edit any page content' => 1,
       "edit terms in {$vid}" => 1,

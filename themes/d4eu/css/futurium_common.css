@@ -1002,8 +1002,12 @@ fieldset[disabled] .btn-default.active {
 
 /* item-list */
 .item-list {
-  margin: 40px -1% 0;
+  margin: 0px -1% 0;
   padding: 15px 1% 20px;
+}
+
+.view-header+.view-content .item-list {
+  margin: -15px -1% 0;
   border-top: solid 3px #c1c1c1;
 }
 

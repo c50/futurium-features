@@ -17,7 +17,7 @@ function futurium_futures_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -26;
+  $handler->weight = -30;
   $handler->conf = array(
     'title' => 'Future',
     'no_blocks' => 0,
@@ -223,16 +223,6 @@ function futurium_futures_default_page_manager_handlers() {
       'row4r' => NULL,
       'row5l' => NULL,
       'row5r' => NULL,
-      'row6l' => NULL,
-      'row6r' => NULL,
-      'row7l' => NULL,
-      'row7r' => NULL,
-      'row8l' => NULL,
-      'row8r' => NULL,
-      'row9l' => NULL,
-      'row9r' => NULL,
-      'row10l' => NULL,
-      'row10r' => NULL,
     ),
     'style' => 'bootstrap_region',
     'row2l' => array(
@@ -300,7 +290,7 @@ function futurium_futures_default_page_manager_handlers() {
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
-        'format_type' => 'day_fullmonth_year',
+        'format_type' => 'fullmonth_year',
         'multiple_number' => '',
         'multiple_from' => '',
         'multiple_to' => '',
@@ -539,7 +529,7 @@ function futurium_futures_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'Supported by',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -577,7 +567,7 @@ function futurium_futures_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'Implemented on',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -615,7 +605,7 @@ function futurium_futures_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'To be discussed at',
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -700,7 +690,9 @@ function futurium_futures_default_page_manager_pages() {
   $page->admin_title = 'Futures';
   $page->admin_description = '';
   $page->path = 'futures';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+  );
   $page->menu = array(
     'type' => 'normal',
     'title' => 'Futures',
@@ -781,16 +773,6 @@ function futurium_futures_default_page_manager_pages() {
       'row4r' => NULL,
       'row5l' => NULL,
       'row5r' => NULL,
-      'row6l' => NULL,
-      'row6r' => NULL,
-      'row7l' => NULL,
-      'row7r' => NULL,
-      'row8l' => NULL,
-      'row8r' => NULL,
-      'row9l' => NULL,
-      'row9r' => NULL,
-      'row10l' => NULL,
-      'row10r' => NULL,
     ),
     'style' => 'bootstrap_region',
   );
@@ -809,7 +791,7 @@ function futurium_futures_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<h1>Explore new ideas and find answers in the Ideas Market Place</h1><div class="intro">This is the place where everybody can share, discuss and support ideas</div>',
+      'body' => '<h1>Share your vision of what the world might look like</h1><div class="intro">and the chalenges and opportunities associated with it.</div>',
       'format' => 'full_html',
       'substitute' => TRUE,
     );
@@ -830,7 +812,17 @@ function futurium_futures_default_page_manager_pages() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => 'logged-in-user',
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'create future content',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',

@@ -343,6 +343,14 @@ function futurium_isa_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'ds_picture_user_picture_normal',
     ),
+    'field_biography' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'intro',
+        ),
+      ),
+    ),
   );
   $export['user|user|user_header'] = $ds_fieldsetting;
 
@@ -623,15 +631,16 @@ function futurium_isa_ds_layout_settings_info() {
         3 => 'edit',
         4 => 'field_biography',
         5 => 'group_shortcut_buttons',
+        6 => 'logout',
       ),
       'right' => array(
-        6 => 'group_user_fields',
-        7 => 'field_social_links',
-        8 => 'field_profession',
-        9 => 'field_education',
-        10 => 'field_location',
-        11 => 'field_gender',
-        12 => 'field_age',
+        7 => 'group_user_fields',
+        8 => 'field_social_links',
+        9 => 'field_profession',
+        10 => 'field_education',
+        11 => 'user_city',
+        12 => 'field_gender',
+        13 => 'field_age',
       ),
     ),
     'fields' => array(
@@ -641,15 +650,20 @@ function futurium_isa_ds_layout_settings_info() {
       'edit' => 'middle',
       'field_biography' => 'middle',
       'group_shortcut_buttons' => 'middle',
+      'logout' => 'middle',
       'group_user_fields' => 'right',
       'field_social_links' => 'right',
       'field_profession' => 'right',
       'field_education' => 'right',
-      'field_location' => 'right',
+      'user_city' => 'right',
       'field_gender' => 'right',
       'field_age' => 'right',
     ),
-    'classes' => array(),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
     'wrappers' => array(
       'left' => 'div',
       'middle' => 'div',

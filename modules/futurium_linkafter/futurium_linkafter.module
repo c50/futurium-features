@@ -52,6 +52,7 @@ function futurium_linkafter_block_view($delta = '') {
     case 'relation_link_add':
       if (user_access('use futurium_linkafter')) {
         $form = drupal_get_form('futurium_linkafter_form');
+        $block['subject'] = t("Add related content");
         $block['content'] = drupal_render($form);
       }
       break;
@@ -104,12 +105,8 @@ function _futurium_linkafter_node_autocomplete($origin_nid, $bundles, $string) {
         $classes[] = 'relation-type-' . $value;
         $label .= ' class="' . implode($classes, ' ') . '">';
 
-        if (count($possible_relations) > 1) {
-          $label .= $rel_label .' '. check_plain($node['title']);
-        }
-        else {
-          $label .= check_plain($node['title']);
-        }
+        $label .= t("@relation_label", array('@relation_label' => $rel_label)) .' '. check_plain($node['title']);
+
         $label .= '</span>';
 
         $matches[$array_key] = $label ;
@@ -139,6 +136,7 @@ function _futurium_linkafter_results($form, &$form_state) {
   }
   else {
     $commands[] = ajax_command_remove($wrapper . ' .preview .node');
+    $commands[] = ajax_command_invoke($wrapper . ' .no-content-wrap', 'show');
   }
   return array('#type' => 'ajax', '#commands' => $commands);
 }
@@ -207,7 +205,7 @@ function futurium_linkafter_form($form, &$form_state) {
   }
 
   if ($node) {
-    _futurium_linkafter_create_links($node->nid);
+    $links = _futurium_linkafter_create_links($node->nid);
 
     $current_bundle = 'node:' . $node->type;
     $relations = relation_get_types();
@@ -243,7 +241,7 @@ function futurium_linkafter_form($form, &$form_state) {
 
     $search_bundles = implode('+', $search_bundles);
 
-    $form['#prefix'] = '<div id="linkafter"><h2>Relations</h2>';
+    $form['#prefix'] = '<div id="linkafter">';
     $form['#suffix'] = '</div>';
 
     $form['origin'] = array(
@@ -293,11 +291,34 @@ function futurium_linkafter_form($form, &$form_state) {
     $form['link'] = array(
       '#value' => "Link",
       '#type' => 'button',
+      '#attributes' => array(
+        'class' => array(
+          'btn-add-relation',
+        )
+      ),
       '#ajax' => array(
         'callback' => '_futurium_linkafter_link',
       ),
       '#prefix' => '<span class="button-wrap" style="display:none">',
       '#suffix' => '</span>',
+    );
+
+    $links_markup = "";
+    foreach ($links as $relation => $links) {
+      foreach($links as $index => $content_type_link) {
+        $links_markup .= $content_type_link . ' ';
+      }
+    }
+
+    $form['new'] = array(
+      '#prefix' => '<div class="no-content-wrap" style="display:none;">',
+      '#suffix' => '</div>',
+      '#markup' => '<div class="field-item">
+          <label>Not found.</label><br>
+          <label>Add new...</label>
+          <div class="content"> ' . $links_markup . '</div>
+        </div>
+      ',
     );
 
   }
@@ -393,7 +414,7 @@ function _futurium_linkafter_create_links($nid) {
     foreach ($p_content_types as $key => $value) {
       $relation = relation_type_load($relation_type);
       $content_type_name = node_type_get_name($value);
-      $path = 'node/add/' . $value;
+      $path = 'node/add/' . str_replace("_", "-", $value);
       $link_options = array(
         'query' => array(
           'relation_type' => $relation_type,
@@ -405,6 +426,7 @@ function _futurium_linkafter_create_links($nid) {
       $links[$label][] = l(t('@content_type', array('@content_type' => $content_type_name)), $path, $link_options);
     }
   }
+  return $links;
 
 }
 
@@ -489,14 +511,14 @@ function _futurium_linkafter_is_relation_reversed($nid1, $relation_type) {
 
 
 function futurium_linkafter_form_node_form_alter(&$form, $form_state) {
-  if (isset($_GET['origin_nid']) && isset($_GET['relation_type'])) {
+  if (isset($_GET['related_to']) && isset($_GET['relation_type'])) {
     $form['relation_type'] = array(
       '#type' => 'hidden',
       '#value' => $_GET['relation_type'],
     );
     $form['related_to'] = array(
       '#type' => 'hidden',
-      '#value' => $_GET['origin_nid'],
+      '#value' => $_GET['related_to'],
     );
     if (isset($_GET['new_title'])) {
       $form['title']['#default_value'] = $_GET['new_title'];
@@ -507,7 +529,7 @@ function futurium_linkafter_form_node_form_alter(&$form, $form_state) {
 
 function futurium_linkafter_node_insert($node) {
   if (isset($node->relation_type) && isset($node->related_to)) {
-    _futurium_linker_link_nodes($node->related_to, $node->nid, $node->relation_type);
+    _futurium_linkafter_link_nodes($node->related_to, $node->nid, $node->relation_type);
   }
 }
 

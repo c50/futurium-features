@@ -191,40 +191,134 @@
 
 
 
-@mixin btn-default {
+@mixin btn-default($color) {
   @include rem(padding, 10px 10px 10px 10px);
-  border-radius: 0px;
   @include rem(font-size, 14px);
+  background: $color;
   display: inline-block;
+  border-radius: 0px;
+  border: none;
+  color: #fff;
+  @include on-event {
+    background-color: darken($color, 10%); 
+    color: #fff; 
+  } 
 }
 
+@mixin panel{
+  @include rem(margin, 0 0 30px 0);
+  background: $light-grey;
+  border: 1px solid darken($light-grey, 10%);
+}
+
+/* sets an icon for the teaser title */
+
+@mixin icon-node-teaser($color, $icon) {
+  color:#fff;
+  border-radius: 50%;
+  @include rem(width, 35px);
+  @include rem(height, 35px);
+  @include rem(margin-right, 10px);
+  background: $color;
+  @include fa($icon);    
+}
 
 /* mixin for the font awesome icons */
 
 @mixin fa($icon) {
     @extend .fa;
     @extend .fa-#{$icon};
-    padding-right: 5px;
-    display: inline-block;
+    padding-right: 8px;
+   /* display: inline-block; */
 }
 
-/* mixin for layout content types */
+/* mixin for layout content types (does markup of row1) */
 
-@mixin contenttype($color) {
-  /* general elements */
+@mixin contenttype($color, $icon) {
+    
   a {
     color: $color;
-    @include on-event{
+    @include on-event {
       color: $color;
     }
   }
 
+  .more-link a, a.more-link {
+    @include btn-default($color);
+  } 
 
-  h2 a{
-    color: $text-color;
+  /* row1 theming */
+  .container-fullwidth.row1 {
+    background: $color; 
+    border-top: 3px solid darken($color, 15%);
+    border-bottom: 1px solid darken($color, 15%);
+    .field-name-author {
+      @include rem(border-bottom, 1px solid lighten($color, 20%));
+    }
   }
 
-  h3 a {
+  .row1{
+    .share-links a, .flag-link-toggle, a.btn-more, .more-link a, .btn {
+      @include btn-default($color);
+      background-color: darken($color, 10%); 
+      @include on-event {
+        background-color: darken($color, 15%);
+      }
+    }
+    h1 {
+      @include rem(padding, 0 0 0 0);
+      @include rem(margin, 0 0 20px 0);
+    }
+    h1:before {
+      @include fa($icon);
+      @include rem(padding, 18px);
+      @include rem(margin, 0 0.5em 0 0);
+      @include rem(font-size, 36px); 
+      color: $color;
+      text-align: center;
+      border-radius: 50%;
+      width: 70px;
+      line-height: 35px; 
+      background: #fff;
+    }
+    .group-shortcut-buttons a{
+      @include rem(margin, 0 10px 0 0);
+    } 
+  }
+
+  /* links to edit / manage display / ... */
+  .container-top {
+    background-color: darken($color, 20%);
+    @include rem(padding, 20px 0 0 0);
+    /* temp fix? should header1 be removed from page.tpl.php */
+    .alert{
+      @include rem(margin, 20px 0 20px 0);  
+    }
+    h1.page-header {
+      display: none;
+    }
+    a {
+      color: #fff;
+      @include on-event {
+        color: $text-color;
+      }
+    }
+
+  }
+
+}
+
+
+
+@mixin teaser($color) {
+  a {
+    color: $color;
+    @include on-event {
+      color: $color;
+    }
+  }
+
+  h2 a, h3 a {
     color: darken($text-color, 2%);
     @include on-event {
       color: $color;
@@ -232,66 +326,52 @@
   }
 
   .btn-primary, .flag-action, .unflag-action, .flag-like a, .more-link a, 
-  .share-links a, a.btn-more{
-    @include btn-default;
-    background: $color;
-    color: #fff;
-    border: none;
-    @include on-event {
-      background-color: darken($color, 10%);
-      color: #fff;
-    }
+  .share-links a, a.btn-more {
+    @include btn-default($color);
   }
+}
 
-  .row1{
-    .share-links a, a.btn-more, .flag-like a, .more-link a{
-      background-color: darken($color, 10%);
-      @include on-event {
-        background-color: darken($color, 15%);
-      }
-    }
-  }
-
-
-  /* links to edit / manage display / ... */
-  .container-top {
-    background-color: darken($color, 20%);
-    /* temp fix? should header1 be removed from page.tpl.php */
-    h1.page-header {
-      display: none;
-    }
-    a {
-      color: #fff;
-      @include on-event{
-        color: $text-color;
-      }
-    }
-
-  }
-  /* row1 theming */
-  .container-fullwidth.row1 {
+@mixin blockhp($color) {
+  h2 {
+    @include rem(padding, 10px 15px 10px 15px);
+    @include rem(margin, 0);
+    @include rem(font-size, 20px);
     color: #fff;
     background: $color;
-    border-top: 3px solid darken($color, 15%);
-    border-bottom: 1px solid darken($color, 15%);
-    a {
-      color: #fff;
-      @include on-event {
-        color: #fff;
-      }
+
+  }
+  .pane-content {
+    @include rem(padding, 15px);
+    background: #f8f8f8;
+    @include rem (border, 1px solid #d7d7d7);
+    border-top: none;
+  }
+}
+
+@mixin views-row-border {
+  .views-row {
+    @include rem(padding, 40px 0 40px 0);
+    @include rem(border-bottom, 5px solid #d7d7d7);
+    div.node-teaser {
+      padding: 0;
     }
   }
-
-
-  .flag-like a:before{
-    @include fa(thumbs-up);
+  .views-row-first {
+    @include rem(padding-top, 0);
   }
-
+  .views-row-last {
+    border-bottom: none;
+  } 
+  h3 {
+    margin-top: 0;
+  }
   
-
 }
 
 
+/* temp stuff */
 
-
+.navbar-nav .last {
+  display: none;
+}
 

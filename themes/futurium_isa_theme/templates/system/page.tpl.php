@@ -138,24 +138,24 @@
   <?php endif; ?>
 
   <section<?php //print $content_column_class; ?>>
+    <?php
+    if (
+      !empty($page['highlighted']) ||
+      //!empty($breadcrumb) ||
+      !empty($messages) ||
+      !empty($tabs['#primary']) ||
+      //!empty($action_links) ||
+      !empty($page['help'])
+    ):
+    ?>
     <div class="container-top">
-      <?php
-      if (
-        !empty($page['highlighted']) ||
-        !empty($breadcrumb) ||
-        !empty($messages) ||
-        !empty($tabs['#primary']) ||
-        !empty($page['help']) ||
-        !empty($action_links)
-      ):
-      ?>
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <?php if (!empty($page['highlighted'])): ?>
             <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
           <?php endif; ?>
-          <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+          <?php //if (!empty($breadcrumb)): print $breadcrumb; endif;?>
           <a id="main-content"></a>
           <?php print $messages; ?>
           <?php if (!empty($tabs)): ?>
@@ -164,7 +164,7 @@
           <?php if (!empty($page['help'])): ?>
             <?php print render($page['help']); ?>
           <?php endif; ?>
-          <?php if (!empty($action_links)): ?>
+          <?php if (!empty($action_links) && FALSE): ?>
             <ul class="action-links"><?php print render($action_links); ?></ul>
           <?php endif; ?>
           </div>
@@ -201,5 +201,7 @@
 
 
 <footer class="footer container-fullwidth">
-  <?php print render($page['footer']); ?>
+  <div class="footer-wrapper container">
+    <?php print render($page['footer']); ?>
+  </div>
 </footer>

@@ -62,6 +62,33 @@ function futurium_messages_default_rules_configuration() {
       ]
     }
   }');
+  $items['rules_fill_message_with_og'] = entity_import('rules_config', '{ "rules_fill_message_with_og" : {
+      "LABEL" : "Fill Message With OG",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "Futurium Messages" ],
+      "REQUIRES" : [ "rules", "message" ],
+      "ON" : { "message_insert" : [] },
+      "IF" : [
+        { "entity_has_field" : { "entity" : [ "message" ], "field" : "field_node_ref" } },
+        { "entity_has_field" : { "entity" : [ "message:field-node-ref" ], "field" : "og_group_ref" } },
+        { "list_count_is" : {
+            "list" : [ "message:field-node-ref:og-group-ref" ],
+            "op" : "\\u003E",
+            "value" : "0"
+          }
+        },
+        { "entity_has_field" : { "entity" : [ "message" ], "field" : "og_group_ref" } }
+      ],
+      "DO" : [
+        { "data_set" : {
+            "data" : [ "message:og-group-ref" ],
+            "value" : [ "message:field-node-ref:og-group-ref" ]
+          }
+        }
+      ]
+    }
+  }');
   $items['rules_flagged_with_attending'] = entity_import('rules_config', '{ "rules_flagged_with_attending" : {
       "LABEL" : "Flagged with Attending",
       "PLUGIN" : "reaction rule",
