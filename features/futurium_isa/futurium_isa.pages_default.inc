@@ -2455,8 +2455,8 @@ function futurium_isa_default_page_manager_handlers() {
       'context' => array(
         0 => 'argument_entity_id:user_1.uid',
       ),
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => 'Groups',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -2611,7 +2611,17 @@ function futurium_isa_default_page_manager_pages() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => 'logged-in-user',
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'create event_d4eu content',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
@@ -2714,7 +2724,23 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_title = 'Group Futures';
   $page->admin_description = '';
   $page->path = 'node/%node/futures';
-  $page->access = array();
+  $page->access = array(
+    'logic' => 'and',
+    'plugins' => array(
+      0 => array(
+        'context' => array(
+          0 => 'argument_entity_id:node_1',
+          1 => 'logged-in-user',
+        ),
+        'name' => 'og_member',
+        'settings' => array(
+          'state' => array(
+            1 => 1,
+          ),
+        ),
+      ),
+    ),
+  );
   $page->menu = array(
     'type' => 'action',
     'title' => 'Futures',
@@ -3044,7 +3070,23 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_title = 'Group Ideas';
   $page->admin_description = '';
   $page->path = 'node/%node/ideas';
-  $page->access = array();
+  $page->access = array(
+    'logic' => 'and',
+    'plugins' => array(
+      0 => array(
+        'context' => array(
+          0 => 'argument_entity_id:node_1',
+          1 => 'logged-in-user',
+        ),
+        'name' => 'og_member',
+        'settings' => array(
+          'state' => array(
+            1 => 1,
+          ),
+        ),
+      ),
+    ),
+  );
   $page->menu = array(
     'type' => 'action',
     'title' => 'Ideas',
@@ -3374,7 +3416,23 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_title = 'Group Members';
   $page->admin_description = '';
   $page->path = 'node/%node/members';
-  $page->access = array();
+  $page->access = array(
+    'logic' => 'and',
+    'plugins' => array(
+      0 => array(
+        'context' => array(
+          0 => 'argument_entity_id:node_1',
+          1 => 'logged-in-user',
+        ),
+        'name' => 'og_member',
+        'settings' => array(
+          'state' => array(
+            1 => 1,
+          ),
+        ),
+      ),
+    ),
+  );
   $page->menu = array(
     'type' => 'action',
     'title' => 'Members',
@@ -3673,7 +3731,20 @@ function futurium_isa_default_page_manager_pages() {
     $pane->type = 'block';
     $pane->subtype = 'futurium_isa_extras-group_add_member';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => array(
+            0 => 'argument_entity_id:node_1',
+            1 => 'logged-in-user',
+          ),
+          'name' => 'og_perm',
+          'settings' => array(
+            'perm' => 'add user',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => 'Add a new member',
@@ -3696,7 +3767,20 @@ function futurium_isa_default_page_manager_pages() {
     $pane->type = 'block';
     $pane->subtype = 'futurium_isa_extras-group_send_message';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => array(
+            0 => 'argument_entity_id:node_1',
+            1 => 'logged-in-user',
+          ),
+          'name' => 'og_perm',
+          'settings' => array(
+            'perm' => 'approve and deny subscription',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => 'Send to your group',
@@ -4415,7 +4499,17 @@ function futurium_isa_default_page_manager_pages() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => 'logged-in-user',
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'create ideas content',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => 'Add Idea Link',
       'title' => '',

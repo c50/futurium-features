@@ -195,7 +195,34 @@ function futurium_groups_default_page_manager_handlers() {
       'row4r' => NULL,
       'row5l' => NULL,
       'row5r' => NULL,
-      'row2l' => NULL,
+      'row2l' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
     ),
     'style' => 'bootstrap_region',
     'row1l' => array(
@@ -294,7 +321,23 @@ function futurium_groups_default_page_manager_handlers() {
     $pane->type = 'block';
     $pane->subtype = 'menu-menu-group-tabs';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'argument_entity_id:node_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => '',
@@ -312,12 +355,101 @@ function futurium_groups_default_page_manager_handlers() {
     $display->content['new-5be7b300-74bf-4e01-87d7-8f285c64ce97'] = $pane;
     $display->panels['row2l'][0] = 'new-5be7b300-74bf-4e01-87d7-8f285c64ce97';
     $pane = new stdClass();
+    $pane->pid = 'new-30bcfae7-033d-4971-885c-b3a0c1ad5d69';
+    $pane->panel = 'row3l';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'view_access',
+          'settings' => array(
+            'view_instance' => 'group_content:block_3',
+            'view_arguments' => '%node',
+            'label' => 'Group Content - block_3',
+          ),
+          'not' => TRUE,
+        ),
+        1 => array(
+          'name' => 'og_perm',
+          'settings' => array(
+            'perm' => 'administer group',
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'argument_entity_id:node_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'No content group',
+      'title' => '',
+      'body' => '<div class="group-just-created">
+
+  <div class="congratulations">
+  Congratulations! You just created a new group!
+  </div>
+
+  <div class="and-now">
+  And now?
+  </div>
+
+  <div class="actions">
+  <div class="invite">Let\'s get started by inviting other people to join your group.</div>
+  <div class="add-vision">You can also submit your first Vision of the Future</div>
+  <div class="propose">or propose a fresh new Policy Idea.</div>
+  </div>
+
+  </div>',
+      'format' => 'nowysiwig',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '30bcfae7-033d-4971-885c-b3a0c1ad5d69';
+    $display->content['new-30bcfae7-033d-4971-885c-b3a0c1ad5d69'] = $pane;
+    $display->panels['row3l'][0] = 'new-30bcfae7-033d-4971-885c-b3a0c1ad5d69';
+    $pane = new stdClass();
     $pane->pid = 'new-216c8630-ccdc-4d9c-bbcc-b2792fdfe293';
     $pane->panel = 'row3l';
     $pane->type = 'views';
     $pane->subtype = 'group_content';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'view_access',
+          'settings' => array(
+            'view_instance' => 'group_content:block_3',
+            'view_arguments' => '%node',
+            'label' => 'Group Content - block_3',
+          ),
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'og_member',
+          'settings' => array(
+            'state' => array(
+              1 => '1',
+            ),
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'argument_entity_id:node_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_pager_settings' => 0,
       'use_pager' => 1,
@@ -344,18 +476,32 @@ function futurium_groups_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '216c8630-ccdc-4d9c-bbcc-b2792fdfe293';
     $display->content['new-216c8630-ccdc-4d9c-bbcc-b2792fdfe293'] = $pane;
-    $display->panels['row3l'][0] = 'new-216c8630-ccdc-4d9c-bbcc-b2792fdfe293';
+    $display->panels['row3l'][1] = 'new-216c8630-ccdc-4d9c-bbcc-b2792fdfe293';
     $pane = new stdClass();
     $pane->pid = 'new-d8223df7-76a5-4180-8cbc-0ac2c68e5851';
     $pane->panel = 'row3r';
     $pane->type = 'block';
     $pane->subtype = 'futurium_isa_extras-contextualized_links';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'og_perm',
+          'settings' => array(
+            'perm' => 'update group',
+          ),
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'argument_entity_id:node_1',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
@@ -441,9 +587,9 @@ function futurium_groups_default_page_manager_pages() {
         'css_id' => '',
         'css_class' => '',
         'column' => array(
-          'xs' => '1',
-          'sm' => '1',
-          'md' => '1',
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
           'lg' => '12',
         ),
         'offset' => array(

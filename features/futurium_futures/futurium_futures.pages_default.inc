@@ -812,7 +812,17 @@ function futurium_futures_default_page_manager_pages() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'context' => 'logged-in-user',
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'create future content',
+          ),
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
