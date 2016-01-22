@@ -43,6 +43,45 @@ function futurium_isa_views_api($module = NULL, $api = NULL) {
  */
 function futurium_isa_flag_default_flags() {
   $flags = array();
+  // Exported flag: "Activity Tracker".
+  $flags['activity_tracker'] = array(
+    'entity_type' => 'node',
+    'title' => 'Activity Tracker',
+    'global' => 1,
+    'types' => array(),
+    'flag_short' => 'Flag this item',
+    'flag_long' => '',
+    'flag_message' => '',
+    'unflag_short' => 'Unflag this item',
+    'unflag_long' => '',
+    'unflag_message' => '',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'weight' => 0,
+    'show_in_links' => array(
+      'full' => 0,
+      'teaser' => 0,
+      'rss' => 0,
+      'search_index' => 0,
+      'search_result' => 0,
+      'diff_standard' => 0,
+      'node_header' => 0,
+      'print' => 0,
+      'token' => 0,
+      'teaser_w_pic' => 0,
+      'revision' => 0,
+    ),
+    'show_as_field' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'show_contextual_link' => 0,
+    'i18n' => 0,
+    'module' => 'futurium_isa',
+    'locked' => array(
+      0 => 'name',
+    ),
+    'api_version' => 3,
+  );
   // Exported flag: "Attending".
   $flags['attending'] = array(
     'entity_type' => 'node',
@@ -109,11 +148,11 @@ function futurium_isa_flag_default_flags() {
     'show_contextual_link' => 0,
     'show_on_profile' => 0,
     'access_uid' => 'others',
-    'api_version' => 3,
     'module' => 'futurium_isa',
     'locked' => array(
       0 => 'name',
     ),
+    'api_version' => 3,
   );
   // Exported flag: "Like".
   $flags['like'] = array(
@@ -164,6 +203,30 @@ function futurium_isa_flag_default_flags() {
  */
 function futurium_isa_image_default_styles() {
   $styles = array();
+
+  // Exported image style: carousel_full.
+  $styles['carousel_full'] = array(
+    'label' => 'carousel_full',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1160,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1160,
+          'height' => 350,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
 
   // Exported image style: user_picture_normal.
   $styles['user_picture_normal'] = array(

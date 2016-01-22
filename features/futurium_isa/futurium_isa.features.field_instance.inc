@@ -357,20 +357,40 @@ function futurium_isa_field_default_field_instances() {
       ),
       'node_header' => array(
         'label' => 'hidden',
-        'module' => 'text',
+        'module' => 'smart_trim',
         'settings' => array(
+          'more_link' => FALSE,
+          'more_text' => 'Read more',
+          'summary_handler' => 'full',
           'trim_length' => 300,
+          'trim_link' => FALSE,
+          'trim_options' => array(
+            'text' => 'text',
+          ),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
         ),
-        'type' => 'text_summary_or_trimmed',
+        'type' => 'smart_trim_format',
         'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'text',
+        'module' => 'smart_trim',
         'settings' => array(
+          'more_link' => FALSE,
+          'more_text' => 'Read more',
+          'summary_handler' => 'full',
           'trim_length' => 300,
+          'trim_link' => FALSE,
+          'trim_options' => array(
+            'text' => 'text',
+          ),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
         ),
-        'type' => 'text_summary_or_trimmed',
+        'type' => 'smart_trim_format',
         'weight' => 3,
       ),
     ),
@@ -414,9 +434,96 @@ function futurium_isa_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 20,
       ),
       'type' => 'text_textarea',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-ideas-field_leading_picture_d4eu'.
+  $field_instances['node-ideas-field_leading_picture_d4eu'] = array(
+    'bundle' => 'ideas',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 1,
+      ),
+      'mini_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_leading_picture_d4eu',
+    'label' => 'Leading picture',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'avportal' => 0,
+          'dailymotion' => 0,
+          'flickr' => 0,
+          'node' => 0,
+          'private' => 'private',
+          'public' => 'public',
+          'vimeo' => 0,
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'elibrary_browser_tab--media_browser_1' => 0,
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'media_internet' => 'media_internet',
+          'upload' => 'upload',
+          'youtube' => 0,
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'media_generic',
       'weight' => 2,
     ),
   );
@@ -476,9 +583,21 @@ function futurium_isa_field_default_field_instances() {
       ),
       'user_header' => array(
         'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'smart_trim',
+        'settings' => array(
+          'more_link' => 0,
+          'more_text' => 'Read more',
+          'summary_handler' => 'full',
+          'trim_length' => 300,
+          'trim_link' => 0,
+          'trim_options' => array(
+            'text' => 'text',
+          ),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
+        ),
+        'type' => 'smart_trim_format',
         'weight' => 2,
       ),
     ),
@@ -490,15 +609,9 @@ function futurium_isa_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
           'nowysiwig' => 'nowysiwig',
-          'plain_text' => 'plain_text',
-          'wysiwyg' => 'wysiwyg',
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
@@ -535,7 +648,7 @@ function futurium_isa_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 10,
+        'rows' => 20,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
@@ -748,14 +861,8 @@ function futurium_isa_field_default_field_instances() {
       ),
       'user_header' => array(
         'label' => 'inline',
-        'module' => 'addressfield',
-        'settings' => array(
-          'format_handlers' => array(
-            0 => 'address',
-          ),
-          'use_widget_handlers' => 1,
-        ),
-        'type' => 'addressfield_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 14,
       ),
     ),
@@ -942,6 +1049,7 @@ function futurium_isa_field_default_field_instances() {
   t('Education');
   t('Gender');
   t('Ideas and experience');
+  t('Leading picture');
   t('Location');
   t('Profession');
   t('Social Links');

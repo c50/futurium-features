@@ -6,12 +6,6 @@
  * Set up a decent box model on the root element
  */
 
-
-/////////////
-/////TESTING 
-/////////////
-
-
 html {
   box-sizing: border-box;
 }
@@ -27,9 +21,9 @@ html {
   box-sizing: inherit;
 }
 
-/**
- * Basic styles for links
- */
+/********************** **/
+/* Basic styles content */
+/***********************/
 
 a {
   color: $brand-color;
@@ -47,11 +41,10 @@ p:last-child {
   @include rem(margin-bottom, 20px);
 }
 
-/**
- * Makes the images responsive
- */
+/* Makes the images responsive */
+
 img {
- /* display: block; */
+  /* display: block; */
   max-width: 100%;
   height: auto;
 }
@@ -60,33 +53,26 @@ img {
  * Basic styles for headers
  * @include on-event does: &:hover, &:active, &:focus
  */
+
 h1 {
   color: $dark-grey;
   font-family: $text-font-stack;
 }
 
-
-  h2, h3, h4, h5, h6 {
-    font-family: $header-font-stack;
-    text-transform: uppercase;
-    a {
-     color: darken($text-color, 2%);
-     font-weight: bold;
-     font-family: $text-font-stack;
-     text-transform: none;
-     @include transition(color .3s ease);
-     @include on-event{
-       text-decoration: none;
-     }
+h2, h3, h4, h5, h6 {
+  font-family: $header-font-stack;
+  text-transform: uppercase;
+  @include rem(margin-bottom, 20px);
+  a {
+    color: darken($text-color, 2%);
+    font-weight: bold;
+    font-family: $text-font-stack;
+    text-transform: none;
+    @include transition(color .3s ease);
+    @include on-event {
+      text-decoration: none;
     }
   }
-
-h2 {
-  @include rem(margin-bottom, 20px);
-}
-
-h3 {
-  @include rem(margin-bottom, 20px);
 }
 
 h4 {
@@ -94,100 +80,212 @@ h4 {
   @include rem(margin, 0 0 0 0);
 }
 
-
-h2.pane-title{
-  border-bottom: none;
-  @include rem(font-size, 30px);
+h2, h3{
+  margin-top: 0;
 }
 
-.sidebar-right{
-  h2.pane-title{
-    font-weight: normal;
-    @include rem(font-size, 24px);
-    @include rem(padding, 0 0 15px 0);
-    @include rem(margin, 0 0 0 0);
-    @include rem(border-bottom, 1px solid $text-color);
-  }
+h2.pane-title {
+  font-weight: normal;
+  @include rem(font-size, 24px);
+  @include rem(padding, 0 0 15px 0);
+  @include rem(margin, 0 0 20px 0);
+  @include rem(border-bottom, 1px solid $text-color);
 }
 
-
-
-
-
-h4 a{
+h4 a {
   font-weight: normal;
 }
 
-.wrapper-content{
-  .panel-pane{
-    @include rem(margin-bottom, 40px);
-  }
+/* hack to make long content in dropdownbox work */
+
+.dropdown-menu>li>a {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 18px;
 }
 
-/// No padding for lists
+/******* */
+/* TABS */
+/***** */
 
-.nopadding-list {
+.nav-tabs{
+  border-bottom: none;
+}
+
+/*********************** */
+/* No padding for lists */
+/********************* */
+
+
+.nopadding {
   list-style: none;
   padding: 0;
   margin: 0;
-  li{
-    @include rem(padding, 20px 0 20px 0);
+  li {
+    @include rem(padding, 15px 0 15px 0);
     @include rem(border-bottom, 1px solid #ebebeb);
-    a{
+    a {
       color: $text-color;
     }
   }
-  li.views-row-last{
+  li.views-row-first {
+    padding-top: 0;
+  }
+  li.views-row-last, .last {
     border-bottom: none;
   }
-  .date{
-    font-family: $header-font-stack;
+  .date {
     @include rem(font-size, 15px);
     text-transform: uppercase;
+    font-family: $header-font-stack;
   }
 }
 
-#path a, #path a:visited {
+.wrapper-date-vote-comment{
+  .date{
+    font-family: $text-font-stack;
+    text-transform: inherit;
+  }
+}
+
+/***********************************/
+/* DEFAULT MARKUP FOR CONTENTTYPE */
+/**********************************/
+
+/**
+ * mixin that does all the colouring of buttons, text, ... 
+ */
+
+.container-fullwidth.row1{
   color: #fff;
-  text-decoration: none;
-  border: 0;
+  a {
+    color: #fff;
+    @include on-event {
+    color: #fff;
+    }
+  }
+  h1, h2, h3, p, div {
+    color: #fff;
+  }
+  h2.pane-title {
+    border: none;
+    margin: 0;
+  }
+}
+
+
+.not-front{
+  @include contenttype($mid-grey, wrench);
+  @include teaser($mid-grey);
 }
 
 /**
- * Basic styles for boxes (remove the bullets)
- * We use boxes instead of blocks
- */
-.boxes-box-controls {
-  li {
-  	list-style: none;
+ * settings for different content types 
+
+
+
+/* idea */
+body.page-ideas, body.node-type-ideas {
+  @include contenttype($idea-color, lightbulb-o);
+}
+
+.node-teaser.node-ideas {
+  @include teaser($idea-color);
+  h3:before {
+    @include icon-node-teaser($idea-color, lightbulb-o);
+    @include rem(padding, 6px 0 0 11px);
+    @include rem(font-size, 24px);
   }
 }
 
+/* future */
+body.page-futures, body.node-type-future {
+  @include contenttype($future-color, rocket);
+}
+
+.node-teaser.node-future{
+  @include teaser($future-color);
+  h3:before {
+    @include icon-node-teaser($future-color, rocket);
+    @include rem(padding, 8px 0 0 8px);
+    @include rem(font-size, 18px);
+  }
+}
+
+/* group */
+body.node-type-futurium-group {
+  @include contenttype($group-color, group);
+}
+
+.node.node-futurium-group {
+  @include teaser($group-color);
+  h3:before {
+    @include icon-node-teaser($group-color, group);
+    @include rem(padding, 8px 0 0 8px);
+    @include rem(font-size, 18px);
+  }
+}
+
+/* events */
+body.page-events, body.node-type-event-d4eu {
+  @include contenttype($event-color, calendar);
+}
+
+.node-teaser.node-event-d4eu{
+  @include teaser($event-color);
+  h3:before {
+    @include icon-node-teaser($event-color, calendar); 
+    @include rem(padding, 8px 0 0 9px);
+    @include rem(font-size, 18px);
+  }
+}
+
+
+/* evidence */
+.html.page-library, .node-type-evidence {
+  @include contenttype($library-color, file-text-o);
+}
+
+.node-teaser.node-evidence {
+  @include teaser($library-color);
+  h3:before {
+    @include icon-node-teaser($library-color, file-text-o);
+    @include rem(padding, 8px 0 0 10px);
+    @include rem(font-size, 18px);
+  }
+}
+
+
+/* user */
+.page-user{
+  @include contenttype($greenblue, user);
+  .row1 h1:before {
+    content: none; /* remove icon on page-user */
+  }
+}
 
 /**
- * Equal height solution
- * Add a .row-eq-height on the view 
+ * Activity stuff
  */
 
-/*
-
- .row-eq-height .row, .row-eq-height .row > div[class*='col-'] {  
-  @include flexbox();
-  @include respond-to(small) {
-  	display: block; // unset display flex;
-  }
-  @include respond-to(medium) {
-  	display: block; // unset display flex;
-  }
+.activity-message.attending:before {
+  @include fa(user-plus);
 }
 
-.view-ideas .row {
-  overflow: hidden;
+.activity-message.liked:before {
+  @include fa(thumbs-up);
 }
 
-*/
+.activity-message.new-content:before {
+  @include fa(plus-square);
+}
+
+.activity-message.new-comment:before {
+  @include fa(comment);
+}
 
 
+/* theming for stream */
 
 
 .field-type-taxonomy-term-reference {
@@ -197,33 +295,6 @@ h4 a{
   }
 }
 
-
-.media-element-container {
-	@include rem(margin, 0 0 20px 0);
-	background: #fff;
- .field-name-field-caption {
-   color: $mid-grey;  
-   @include rem(font-size, 14px);
-   @include rem(padding, 5px 10px 5px 10px);
-   font-style: italic;
- }
-}
-
-
-
-.group-buttons{
-  a{
-   /* @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border); */
-   color: #fff;
-  }
-} 
-
-a.flag-action,
-a.unflag-action
- {
-  @extend .btn;
-}
-
 .field-type-entityreference {
   .field-item {
     @include rem(border-bottom, 1px dashed $mid-grey);
@@ -231,59 +302,15 @@ a.unflag-action
   }
 }
 
-.container-fullwidth {
-  padding: 40px 0 40px 0;
+
+
+/* Buttons */
+
+
+
+.btn{
+  @include btn-default($mid-grey);
 }
-
-.container-fullwidth.navbar {
-  padding: 0 0 0 0;
-}
-
-
-/* default settings for row1 */
-
-.container-fullwidth.row1 {
-  background: #a4a4a4;
-  h1, h2, h3, p, a{
-    color: #fff;
-  }
-}
-
-.container-fullwidth.row1 {
-  h1{
-    margin-top: 0;
-  }
-}
-
-.row1r{
-  .panel-pane{
-    width: 100%;
-    float: left;
-  }
-}
-
-
-/**
- * settings for different content types 
-*/
-
-.page-ideas, .node-type-ideas {
-  @include contenttype($idea-color);
-}
-
-.page-events, .node-type-event-d4eu {
-  @include contenttype($event-color);
-}
-
-.page-library {
-  @include contenttype($library-color);
-}
-
-/* social buttons in header */
-
-
-
-
 
 a.facebook:before {
     @include fa(facebook);
@@ -313,9 +340,76 @@ a.btn-more:before {
   @include fa(comment);
 }
 
-.more-link a:before{
+.attending-count:before {
+  @include fa(male);
+}
+
+.member-count:before {
+  @include fa(user);
+}
+
+.location-city:before {
+  @include fa(map-marker);
+}
+
+.flag-outer-attending a:before {
+  @include fa(user-plus);
+}
+
+.more-link a:before {
   @include fa(plus);
 }
+
+.flag-like a:before {
+  @include fa(thumbs-up);
+}
+
+/* menu add content */
+
+.add-group a:before {
+  @include fa(group);
+  min-width: 10%;
+}
+
+.add-future a:before {
+  @include fa(rocket);
+  min-width: 10%;
+}
+
+.add-idea a:before {
+  @include fa(lightbulb-o);
+  min-width: 10%;
+}
+
+.add-evidence a:before {
+  @include fa(file-text-o);
+  min-width: 10%;
+}
+
+
+.add-event a:before {
+  @include fa(calendar);
+  min-width: 10%;
+}
+
+/* rating */
+
+ul.rate-fivestar-processed{
+  @include rem(padding, 0 0 0 0);
+}
+
+.futurium-rate-desirability:before {
+  @include fa(thumbs-up); 
+}
+
+.futurium-rate-impact {
+  @include fa(smile-o); 
+}
+
+.futurium-rate-feasibility {
+  @include fa(balance-scale);
+}
+
 
 .intro{
   @include rem(margin, 0 0 25px 0);
@@ -326,59 +420,74 @@ a.btn-more:before {
     @include rem(font-size, 20px);
     @include rem(line-height, 26px);
   }
-}
-
-div.views-bootstrap-grid-plugin-style {
-  div.node-teaser {
-    @include rem(padding, 20px 0 40px 0);
+  .pane-rate-widget, .group-user-fields {
+    @include rem(padding, 20px);
+    @include rem(margin, 0 0 20px 0);
   }
 }
 
+.pane-node-field-time-horizon{
+  @extend .pane-rate-widget;
+}
+
+.node-type-ideas .pane-rate-widget {
+  background: darken($idea-color, 10%);
+}
+
+.node-type-future .pane-node-field-time-horizon, 
+.node-type-future .pane-rate-widget {
+  background: darken($future-color, 10%);
+}
+
+.group-user-fields{
+  background: darken($user-color, 10%);
+}
+
+div.view div.node-teaser,
+div.view div.view-mode-teaser_w_pic {
+  @include rem(padding, 20px 0 40px 0);
+}
+
+/* views-row border management */
+
+.view-homepage {
+  @include views-row-border;
+}
+
+.view-group-content {
+  @include views-row-border;
+}
 
 /* icons for date - vote - comment */
 
 .wrapper-date-vote-comment {
-  @include rem(margin, 20px 0 30px 0);
+  @include rem(margin, 15px 0 30px 0);
   .field {
     display: inline-block;
     @include rem(margin, 0 30px 0 0);
   }
 }
 
-.field-name-author{
-  @include rem(font-size, 18px);
-  @include rem(padding, 0 0 20px 0);
+.field-name-author {
+ /* @include rem(font-size, 18px); */
+  @include rem(margin, 20px 0 0 0);
+  @include rem(padding, 0 0 15px 0);
   @include rem(border-bottom, 1px solid #ccc);
 }
 
-
-
-
-.page-ideas h1{
-  background: url(../assets/img/ico-idea-big-color.png) left top no-repeat;
-  padding: 0 0 0 90px;
-  min-height: 64px;
-  margin: 0 0 20px 0;
+.node-event-d4eu .date{
+  @extend .field-name-author;
 }
 
+
 .page-ideas, .page-libarary, .page-events{
-  h1.no-icon{
+  h1.no-icon {
     background: none;
     padding: 0 0 0 0;
   }
 }
 
-.page-library h1{
-  background: url(../assets/img/ico-library-big-color.png) left top no-repeat;
-  padding: 0 0 0 90px;
-  line-height: 64px;
-}
 
-.page-events h1{
-  background: url(../assets/img/ico-event-big-color.png) left top no-repeat;
-  padding: 0 0 0 90px;
-  min-height: 64px;
-}
 
 
 .summary {
@@ -411,6 +520,9 @@ div.views-bootstrap-grid-plugin-style {
 .list-inline {
   margin: 0 0 0 0;
   padding: 0 0 0 0;
+  li{
+    padding-left: 0;
+  }
 }
 
 .authors-name, .authors-picture, .share-links li {
@@ -418,29 +530,390 @@ div.views-bootstrap-grid-plugin-style {
   }
 
 .pane-futurium-isa-extras-node-social-share {
-  .pane-content{
+  .pane-content {
     float: left;
   }
 }
 
-.sidebar-right{
-  background: $light-grey;
-  @include rem(padding, 15px);
+
+/******** **/
+/* people */
+/*********/
+
+.view-people, .view-group-people{
+  .views-row {
+    @include rem(margin, 0 0 20px 0);
+    position: relative;
+  }
+  .left {
+    /* float: left; */
+    display: inline-block;
+    vertical-align: text-bottom;
+    .views-field-picture{
+      @include rem(margin, 0 10px 0 0);
+    }
+  }
+  .middle {
+    display: inline-block;
+  }
+  .right {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }
 
+.front{
+  .view-people{
+    .right{
+      position: relative;
+    }
+  }
+}
 
-/* expirimental */
+.page-people {
+  
+  .views-row-container {
+    background: $light-grey;
+    border: 1px solid darken($light-grey, 10%);
+    @include rem(padding, 15px);
+    @include rem(margin, 0 0 30px 0);
+  }
+}
 
-/* responsiveness to check */
+.view-group-people .col {
+  background: $light-grey;
+  border: 1px solid darken($light-grey, 10%);
+  @include rem(padding, 15px);
+  @include rem(margin, 0 0 30px 0);
+}
 
-.row1{
-  display: flex;
-  height: 100%;
-  .row1r{
-    align-self: flex-end; 
+/*****************
+/* view-user-groups
+/******************/
+
+.view-user-groups {
+  .views-row {
+    @include rem(margin, 0 0 20px 0);
+  }
+}
+
+/*************/
+/* Comments */
+/*************/
+
+.comment, .indented {
+  @include rem(margin, 0 0 40px 0);
+}
+
+.indented {
+  @include rem(margin, 20px 0 0 20px);
+}
+
+.wrapper-author-date {
+  @include rem(margin, 0 0 20px 0);
+  vertical-align: baseline;
+  .field {
+    display: inline-block;
+    @include rem(margin, 0 25px 0 0);
+    @include rem(padding, 0 0 0 0);
+  }
+  .field-name-author{
+    border-bottom: none;
   } 
 }
 
+.comment {
+  .links {
+    float: right;
+    clear: both;
+  }
+  .field-name-ds-user-picture img, .views-field-picture img {
+    border-radius:50%;
+    overflow:hidden;
+    width: 35px;
+    height: 35px;
+  }
+}
 
 
+.field-name-comment-body {
+  border: 1px solid #ccc;
+  @include rem(padding, 20px);
+  @include rem(margin, 0 0 20px 0);
+}
+
+/*****************/
+/* USER PROFILE */
+/***************/
+
+
+/* create background for menu tabs on page-user and page-group */
+
+.page-user:not(.page-user-edit), .node-type-futurium-group {
+  .container-fullwidth.row2 {
+    background: url(../assets/img/bg-user-menu.gif) left top;
+    background-repeat: repeat-x;
+    @include rem(min-height, 50px);
+    @include rem(padding, 0);
+  }
+}
+
+.view-user-group-members {
+  .views-row {
+    display: inline-block;
+    clear: right;
+    @include rem(margin, 10px 10px 0 0);
+  }
+}
+
+.member-count {
+  color: $mid-grey;
+}
+
+.page-user .container-fullwidth.row2:only-child {
+  background: none;
+}
+
+.group-user-fields {
+  .field-label {
+    min-width: 40%;
+  }
+  .field-items {
+    width: 55%;
+  }
+}
+
+/* TEMP TEMP STUF */
+
+/******************/
+/* VIEW MESSAGES */
+/****************/
+
+#views-exposed-form-messages-block-2 {
+  display: none;
+}
+
+.view-messages {
+  h3 {
+    margin-bottom: 0;
+  }
+  .views-row {
+    @include rem(padding, 30px 0 30px 0);
+  }
+  .views-row.views-row-first {
+    padding-top: 30px;
+  }
+  .views-row div.node-teaser {
+    padding: 0;
+  }
+
+}
+
+
+  
+
+/*********************/
+/* RESPONSIVE STUFF */
+/********************/
+
+/* bottom aligned of right column in header */
+
+@include respond-to(large) {
+  .row1 {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    flex: 1 100%; /* We tell all items to be 100% width */
+    .row1l {
+      align-self: flex-start;
+    }
+    .row1r {
+     /* align-self: flex-end; */
+     align-self: flex-end;
+    } 
+  }
+}
+
+
+
+
+/***********/
+/* EVENTS */
+/***********/
+
+/* Event details block (address, ...) */
+
+.pane-event-date-location {
+  @include panel /* gives the panel markup, bg, border, padding */
+}
+
+.street-block > div {
+  display: inline-block;
+  @include rem(margin, 0 5px 0 0);
+}
+
+.events-pane {
+  .pane-content {
+    @include rem(margin, 15px 0 10px 0);
+  }
+  .field-name-field-coordinates {
+    .field-label {
+      @include rem(margin, 0 0 10px 0);
+    }
+  }
+}
+
+.navbar-default {
+  border: none;
+}
+
+/********************************/
+/* NEEDS TO MOVE TO COMPONENTS */
+/******************************/
+
+.media-element-container {
+  @include rem(margin, 0 0 20px 0);
+  background: #fff;
+  .field-name-field-caption {
+    color: $mid-grey;  
+    @include rem(font-size, 14px);
+    @include rem(padding, 5px 10px 5px 10px);
+    font-style: italic;
+  }
+}
+
+
+
+/* STUFF FOR THE LINKER MODULE */
+
+
+/* hide button from preview */
+.preview {
+  .flag-outer-attending .flag-link-toggle{
+    display: none;
+  }
+}
+
+/* settings for previewing content before linkinsg */
+div.panel-pane .preview .node{
+  @include rem(margin, 0 0 20px 0);
+  @include rem(padding, 20px);
+  background: #000;
+  opacity: 0.5;
+  z-index: 10;
+  border:10px solid red;
+}
+
+
+.autocomplete-suggestion.node-type-future:before, 
+.view-node-relations .future:before,
+.futures-count:before {
+  @include fa(rocket);
+}
+
+.autocomplete-suggestion.node-type-ideas:before, 
+.view-node-relations .ideas:before,
+.ideas-count:before {
+  @include fa(lightbulb-o);
+}
+
+.autocomplete-suggestion.node-type-event_d4eu:before, .view-node-relations .event_d4eu:before {
+  @include fa(calendar);
+}
+
+.autocomplete-suggestion.node-type-evidence:before, .view-node-relations .evidence:before{
+  @include fa(file-text-o);
+}
+
+
+.btn-add-relation:before {
+  @include fa(link);
+}
+
+#node-preview{
+  .node-teaser {
+    @include rem(padding, 15px);
+    background: $light-grey;
+    border: 1px dashed $midmid-grey;
+    @include rem(margin, 0 0 15px 0);
+  }
+}
+
+/* END STUFF FOR THE LINKER MODULE */
+
+.row2l{
+  .panel-pane{
+    @include rem(margin, 0 0 30px 0);
+  }
+}
+
+.bootstrap-panels-horizontal-tabs {
+  @extend .col-lg-12;
+  .container{
+    padding: 0;
+  }
+}
+
+
+.page-taxonomy {
+  .content-wrapper{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .node-teaser{
+    @include rem(margin, 30px 0 0 0);
+  }  
+}
+
+
+/* TEMP STUFF --- TEMP STUFF */
+
+
+#path a, #path a:visited {
+  color: #fff;
+  text-decoration: none;
+  border: 0;
+}
+
+.carousel-control {
+  width: 5%;
+}
+
+.slide-image-wrapper{
+  border-top: 5px solid $idea-color;
+}
+
+.image-wrapper{
+  height: 338px;
+}
+
+.shadow-content{
+  height: 130px;
+  width: 1160px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 10px 20px 10px 20px;
+  z-index: 20;
+  h1 {
+    font-weight: bold;
+    color: #fff;
+    @include rem(font-size, 36px);
+  }
+  .more-link a {
+    @include btn-default($idea-color);
+  }
+}
+
+.shadow {
+  opacity: 0.5;
+  position: absolute;
+  height: 130px;
+  width: 1160px;
+  margin: 0;
+  bottom: 0;
+  left: 0;
+  background: #000;
+}
 

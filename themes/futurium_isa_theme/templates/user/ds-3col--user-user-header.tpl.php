@@ -15,11 +15,11 @@
     <?php print $left; ?>
   </<?php print $left_wrapper ?>>
 
-  <<?php print $middle_wrapper ?> class="col col-lg-7 group-middle<?php print $middle_classes;?>">
+  <<?php print $middle_wrapper ?> class="col col-lg-6 group-middle<?php print $middle_classes;?>">
     <?php print $middle; ?>
   </<?php print $middle_wrapper ?>>
 
-  <<?php print $right_wrapper ?> class="col col-lg-3 group-right<?php print $right_classes;?>">
+  <<?php print $right_wrapper ?> class="col col-lg-4 group-right<?php print $right_classes;?>">
     <?php print $right; ?>
   </<?php print $right_wrapper ?>>
 

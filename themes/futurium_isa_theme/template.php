@@ -4,6 +4,15 @@
  * template.php
  */
 
+function futurium_isa_theme_preprocess_html(&$variables) {
+  $item = menu_get_item();
+  if (substr($item['path'], 0, 8) == 'node/add') {
+    $content_type = str_replace('node/add/', "", $item['path']);
+    $class = 'node-type-' . str_replace("_", "-", $content_type);
+    $variables['classes_array'][] = $class;
+  }
+}
+
 /**
  * Implements hook_preprocess_region().
  */
@@ -196,6 +205,7 @@ function futurium_isa_theme_date_display_range(&$variables) {
  * Implements hook_date_display_single().
  */
 function futurium_isa_theme_date_display_single($variables) {
+
   $date = $variables['date'];
   $timezone = $variables['timezone'];
   $attributes = $variables['attributes'];
@@ -223,6 +233,13 @@ function futurium_isa_theme_date_display_single($variables) {
     '!start-hour' => $start_hour,
     '!end-hour' => $end_hour,
   );
+
+  $obj = menu_get_object();
+  if (!empty($obj)) {
+    if ($obj->type == 'future') {
+      return $date;
+    }
+  }
 
   return t($string, $date_vars);
 }
@@ -299,4 +316,25 @@ function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
   }
   $variables['info'] = implode(' ', $info);
 
+}
+
+function futurium_isa_theme_views_view_grouping($vars) {
+  $view = $vars['view'];
+  $title = $vars['title'];
+  $content = $vars['content'];
+
+  $output = '<div class="view-grouping">';
+  $output .= '<div class="view-grouping-header">' . $title . '</div>';
+  $output .= '<div class="view-grouping-content">' . $content . '</div>' ;
+  $output .= '</div>';
+
+  return $output;
+}
+
+function futurium_isa_theme_menu_tree__menu_user_tabs($variables) {
+  return '<ul class="menu nav nav-pills">' . $variables['tree'] . '</ul>';
+}
+
+function futurium_isa_theme_menu_tree__menu_group_tabs($variables) {
+  return '<ul class="menu nav nav-pills">' . $variables['tree'] . '</ul>';
 }

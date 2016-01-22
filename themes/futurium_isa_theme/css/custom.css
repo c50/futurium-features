@@ -1,3 +1,6 @@
+
+
+
 @font-face {
   font-family: 'fontello';
   src: url('../font/fontello.eot?80955042');
@@ -8,18 +11,8 @@
   font-weight: normal;
   font-style: normal;
 }
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'fontello';
-    src: url('../font/fontello.svg?80955042#fontello') format('svg');
-  }
-}
-*/
 
- [class^="icon-"]:before, [class*=" icon-"]:before {
+[class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
@@ -67,6 +60,9 @@
 
 
 /* thumbs on -  */
+
+
+
 .rate-fivestar-btn-filled {
   display: inline-block;
   width: 16px;
@@ -74,7 +70,13 @@
   text-indent: 0;
   background-image:none;
 }
-/* thumbs of */
+
+
+
+/* thumbs off */
+
+
+
 .rate-fivestar-btn-empty {
   opacity: 0.5;
   background-image:none;
@@ -89,4 +91,62 @@
   font-size: 28px;
   width: auto;
   height: auto;
+}
+
+
+.social-links ul li {
+  margin: 10px 0px !important;
+}
+
+/* Demo */
+
+
+.view-footer .more-link {
+  margin: 10px 0;
+  padding: 10px 0;
+  display: block;
+}
+
+/*
+
+.node-type-futurium-group .bootstrap-twocol-tower > .container-fullwidth.row2,
+.node-type-futurium-group .bootstrap-threecol-tower > .container-fullwidth.row2,
+.page-user .container-fullwidth.row2 {
+  padding-top: 0;
+  padding-top: 0;
+}
+.node-type-futurium-group .bootstrap-twocol-tower > .container-fullwidth.row2,
+.node-type-futurium-group .bootstrap-threecol-tower > .container-fullwidth.row2,
+.page-user .container-fullwidth.row2 {
+  background: url(http://futurium_isa.dev.europa.eu/sites/all/themes/futurium_isa_theme/assets/img/bg-user-menu.gif) left top;
+  background-repeat: repeat-x;
+}
+
+*/
+
+.view-messages.view-display-id-block_2 .node h3 {
+  display: none;
+}
+
+
+/*
+
+.node-type-futurium-group .container-fullwidth.row2,
+.node-type-futurium-group:not(.page-node-edit) .container-fullwidth.row2,
+.page-user:not(.page-user-edit) .container-fullwidth.row2 {
+  height: 50px;
+}
+
+*/
+
+.page-user:not(.page-user-edit) .row3l .panel-pane {
+  margin: 0 0 30px 0;
+  margin: 0 0 3rem 0;
+}
+
+.node-type-futurium-group.page-node-edit .bootstrap-threecol-tower > .container-fullwidth.row2,
+.page-user.page-user-edit .container-fullwidth.row2 {
+  background: none;
+  background-repeat: repeat-x;
+  margin-top: 20px;
 }

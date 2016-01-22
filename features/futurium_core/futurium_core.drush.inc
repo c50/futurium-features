@@ -114,5 +114,16 @@ function drush_futurium_core_post_install_futurium() {
  */
 function drush_futurium_core_revert_futurium_config() {
 
+  // Remove duplicate home button
+  $links = menu_load_links('main-menu');
+  foreach($links as $item) {
+    if ($item['link_path'] == '<front>') {
+      $item['hidden'] = 1;
+      menu_link_save($item);
+      menu_cache_clear('main-menu');
+      break;
+    }
+  }
+
   drush_print(dt('Futurium Configuration has been applied.'));
 }

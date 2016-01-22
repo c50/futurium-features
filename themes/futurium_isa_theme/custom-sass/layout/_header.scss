@@ -2,9 +2,10 @@
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
 
-/**
- * basic info 
- */
+/*******************************/
+/* General navigation theming */
+/*****************************/
+
 .navbar {
   margin-bottom: 0;
   font-family: $header-font-stack;
@@ -16,9 +17,25 @@
     padding-bottom: 0;
   }
   li a.no-text{
-    xdisplay: none;
+    
   }
 }
+
+/*************************/
+/* Alignment navigation */
+/***********************/
+
+.navbar-nav{
+  float: right;
+}
+
+.navbar .logo{
+  margin-left:20px;
+}
+
+/*********************************/
+/* Brand theming (name website) */
+/*******************************/
 
 .navbar>.container .navbar-brand{
   @include rem(font-size, 18px);
@@ -27,14 +44,18 @@
   padding-bottom: 0;
 }
 
-/**
- * alignment of the navigation
- */
-.navbar-nav{
-  float: right;
+/****************************/
+/* My account hack in menu */
+/**************************/
+
+.no-text {
+ font-size:0 !important;
 }
 
-.navbar .logo{
-  margin-left:20px;
+.no-text:before {
+ font-size:16px;
 }
+
+
+
 

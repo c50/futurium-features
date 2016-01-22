@@ -6,6 +6,7 @@
   'vendor/normalize',
   'vendor/bootstrap-sass/bootstrap',
   'vendor/font-awesome/font-awesome';
+  /* 'compass'; */
 
 // 2. Configuration and helpers
 @import
@@ -20,19 +21,19 @@
   'base/helpers';
 
 // 4. Layout-related sections
-@import
+  @import
   'layout/regions',
   'layout/header',
   'layout/footer';
 
 // 5. Components
-@import
-  'components/buttons';
+ @import
+ 'components/buttons';
 
-// 6. Page-specific styles
-@import
+ //6. Page-specific styles
+  @import
   'pages/home';
 
 // 7. Themes
-@import
+  @import
   'themes/default';

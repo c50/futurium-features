@@ -84,33 +84,6 @@ function futurium_groups_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'group_register'.
-  $field_bases['group_register'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'group_register',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'no_ui' => TRUE,
-    'settings' => array(
-      'allowed_values' => array(
-        0 => 'Do not show on registration page',
-        1 => 'Show on registration page',
-      ),
-      'allowed_values_function' => '',
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'list_boolean',
-  );
-
   // Exported field_base: 'og_group_ref'.
   $field_bases['og_group_ref'] = array(
     'active' => 1,
@@ -142,7 +115,7 @@ function futurium_groups_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          0 => 'futurium_group',
+          'futurium_group' => 'futurium_group',
         ),
       ),
       'handler_submit' => 'Change handler',
