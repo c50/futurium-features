@@ -223,5 +223,6 @@ features_exclude[variable][node_preview_ideas] = node_preview_ideas
 features_exclude[variable][node_submitted_ideas] = node_submitted_ideas
 files[] = user_picture.class.inc
 files[] = tests/futurium_d4eu.test
+files[] = tests/futurium_d4eu.common.test
 multisite_version = 2.1
 php = 5.2.4

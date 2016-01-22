@@ -99,7 +99,7 @@ class FuturiumD4euQAWebTestCase extends DrupalWebTestCase {
 /**
  * Defines a base class for testing the Futurium Digital for Europe module.
  */
-class FuturiumD4euDevelopmentTestCase extends DrupalWebTestCase {
+class FuturiumD4euDevelopmentTestCase extends FuturiumD4euDrupalWebTestCase {
   protected $adminUser;
   protected $editUser;
 
@@ -121,7 +121,6 @@ class FuturiumD4euDevelopmentTestCase extends DrupalWebTestCase {
    * Set up test environment.
    */
   public function setUp() {
-
     parent::setUp(array('futurium_d4eu'));
 
     $this->adminUser = $this->drupalCreateUser(
@@ -134,6 +133,7 @@ class FuturiumD4euDevelopmentTestCase extends DrupalWebTestCase {
         'administer taxonomy',
         'administer users',
         'administer views',
+        'create issue content',
       )
     );
 
@@ -141,49 +141,31 @@ class FuturiumD4euDevelopmentTestCase extends DrupalWebTestCase {
       array(
         'administer files',
         'access content',
+        'access custom futurium fields',
         'administer nodes',
-        'administer taxonomy',
-        'administer views',
-        'create ideas content',
-        'create event_d4eu content',
-        'create video_d4eu content',
+        'create issue content',
+        'edit any issue content',
       )
     );
   }
 
   /**
-   * Test node ideas for editor.
+   * Test node issue for editor on a specific flavor.
    */
-  protected function testIdeasAccess() {
+  protected function testIssueAccess() {
     // Login an editor user.
     $this->drupalLogin($this->editUser);
 
     $edit = array(
       'title' => $this->randomName(8),
+      'field_issue[und][0][value]' => $this->randomName(45),
+      'field_default_flavour[und]' => 749,
+      'field_flavor_s_[und][749]' => 1,
     );
 
     // Checks is Ideas node form.
-    $this->drupalPost('node/add/ideas', $edit, t('Save'));
-    $this->assertText(t('has been created.'), t('An ideas content has been created.'));
-
-    // Logs out.
-    $this->drupalLogout();
-  }
-
-  /**
-   * Test node event for editor.
-   */
-  protected function testEventAccess() {
-    // Login an editor user.
-    $this->drupalLogin($this->editUser);
-
-    $edit = array(
-      'title' => $this->randomName(8),
-    );
-
-    // Checks is event node form.
-    $this->drupalPost('node/add/event-d4eu', $edit, t('Save'));
-    $this->assertText(t('has been created.'), t('An event has been created.'));
+    $this->drupalPost('node/add/issue', $edit, t('Save'));
+    $this->assertText(t('has been created.'), t('An issue content has been created.'));
 
     // Logs out.
     $this->drupalLogout();
