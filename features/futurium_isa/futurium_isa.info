@@ -159,6 +159,7 @@ features[user_permission][] = flag like
 features[user_permission][] = unflag attending
 features[user_permission][] = unflag follow_user
 features[user_permission][] = unflag like
+features[user_permission][] = use futurium_linkafter
 features[variable][] = comment_anonymous_event_d4eu
 features[variable][] = comment_anonymous_ideas
 features[variable][] = comment_default_mode_event_d4eu
