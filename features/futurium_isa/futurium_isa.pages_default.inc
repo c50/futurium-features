@@ -4792,6 +4792,42 @@ function futurium_isa_default_page_manager_pages() {
     $display->content['new-74abb4b8-0814-435b-9df6-4ae7a7a64d43'] = $pane;
     $display->panels['row1l'][0] = 'new-74abb4b8-0814-435b-9df6-4ae7a7a64d43';
     $pane = new stdClass();
+    $pane->pid = 'new-10914b57-4e0b-40f2-b0f8-381a52e2d005';
+    $pane->panel = 'row1l';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'create evidence content',
+          ),
+          'context' => 'logged-in-user',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'Add Library Item Link',
+      'title' => '',
+      'body' => '<a class="btn" href="node/add/evidence">Add a Library item</a>',
+      'format' => 'nowysiwig',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '10914b57-4e0b-40f2-b0f8-381a52e2d005';
+    $display->content['new-10914b57-4e0b-40f2-b0f8-381a52e2d005'] = $pane;
+    $display->panels['row1l'][1] = 'new-10914b57-4e0b-40f2-b0f8-381a52e2d005';
+    $pane = new stdClass();
     $pane->pid = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
     $pane->panel = 'row2l';
     $pane->type = 'views_panes';

@@ -225,6 +225,7 @@ features[views_view][] = library
 features[views_view][] = people
 features[views_view][] = poll
 features[views_view][] = user_comments
+features[views_view][] = revisions
 features_exclude[dependencies][og] = og
 features_exclude[dependencies][og_ui] = og_ui
 features_exclude[dependencies][cce_basic_config] = cce_basic_config

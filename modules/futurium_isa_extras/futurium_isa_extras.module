@@ -777,12 +777,59 @@ function futurium_isa_extras_get_users_in_group($gid) {
   return $result;
 }
 
-function futurium_isa_extras_form_alter($form, $form_state, $form_id) {
-  //dsm($form_id);
+/**
+ * Implements hook_ckeditor_plugin().
+ */
+function futurium_isa_extras_ckeditor_plugin() {
+  watchdog("CP", drupal_get_path('module', 'futurium_isa_extras') . '/plugins/ckeditor/confighelper/');
+  return array(
+    'confighelper' => array(
+      'name' => 'confighelper',
+      'desc' => t('Config Helper'),
+      'path' => drupal_get_path('module', 'futurium_isa_extras') . '/plugins/ckeditor/confighelper/',
+    ),
+  );
+}
+
+/**
+ * Implements hook_wysiwyg_plugin().
+ *
+ * @see hook_wysiwyg_plugin()
+ */
+function futurium_isa_extras_wysiwyg_plugin($editor, $version) {
+  switch ($editor) {
+    case 'ckeditor':
+      watchdog("WW", drupal_get_path('module', 'futurium_isa_extras') . '/plugins/ckeditor/confighelper/');
+      return array(
+        'confighelper' => array(
+          'path' => drupal_get_path('module', 'futurium_isa_extras') . '/plugins/ckeditor/confighelper/',
+          'file' => 'plugin.js',
+          'load' => TRUE,
+          'buttons' => array(
+            'heck_why_not' => t('Do something awesome'),
+          ),
+        ),
+      );
+      break;
+  }
+}
+
+function futurium_isa_extras_form_alter(&$form, $form_state, $form_id) {
+  $form['body']['#attributes']['placeholder'] = array("Something");
 }
 
 function futurium_isa_cron() {
 
+}
+
+function futurium_isa_extras_entity_info_alter(&$entity_info) {
+  //dsm($entity_info);
+  $entity_info['message']['access callback'] = 'futurium_isa_extras_message_access';
+}
+
+function futurium_isa_extras_message_access($op, $entity, $account = NULL, $entity_type = 'message') {
+  //dsm(get_defined_vars());
+  return FALSE;
 }
 
 // Modules likely to be disabled

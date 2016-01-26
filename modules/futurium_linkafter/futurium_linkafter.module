@@ -176,6 +176,10 @@ function _futurium_linkafter_parse_relation($value) {
  */
 function _futurium_linkafter_link($form, &$form_state) {
 
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+
+
   $origin_nid = $form_state['input']['origin'];
   $target_nid = _futurium_linkafter_parse_result($form_state['input']['search']);
   $relation = _futurium_linkafter_parse_relation($form_state['input']['search']);
@@ -191,6 +195,11 @@ function _futurium_linkafter_link($form, &$form_state) {
   $commands[] = ajax_command_remove($wrapper . ' .preview .node');
   $commands[] = ajax_command_invoke('#linkafter .button-wrap', 'hide');
   $commands[] = array('command' => 'fadeMessages');
+
+  if ($message['type'] == 'status') {
+    $path = 'node/' . $target_nid;
+    $commands[] = ctools_ajax_command_redirect($path);
+  }
 
   return array('#type' => 'ajax', '#commands' => $commands);
 }
