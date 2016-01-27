@@ -10,7 +10,8 @@
 function futurium_d4eu_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_blog_post-field_rate_comment'
+  // Exported field_instance:
+  // 'comment-comment_node_blog_post-field_rate_comment'.
   $field_instances['comment-comment_node_blog_post-field_rate_comment'] = array(
     'bundle' => 'comment_node_blog_post',
     'default_value' => NULL,
@@ -61,7 +62,8 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'comment-comment_node_document-field_rate_comment'
+  // Exported field_instance:
+  // 'comment-comment_node_document-field_rate_comment'.
   $field_instances['comment-comment_node_document-field_rate_comment'] = array(
     'bundle' => 'comment_node_document',
     'default_value' => NULL,
@@ -112,7 +114,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'comment-comment_node_event_d4eu-comment_body'
+  // Exported field_instance: 'comment-comment_node_event_d4eu-comment_body'.
   $field_instances['comment-comment_node_event_d4eu-comment_body'] = array(
     'bundle' => 'comment_node_event_d4eu',
     'default_value' => NULL,
@@ -121,7 +123,9 @@ function futurium_d4eu_field_default_field_instances() {
     'display' => array(
       'comment_teaser' => array(
         'label' => 'above',
+        'settings' => array(),
         'type' => 'hidden',
+        'weight' => 10,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -151,85 +155,8 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'comment-comment_node_ideas-comment_body'
-  $field_instances['comment-comment_node_ideas-comment_body'] = array(
-    'bundle' => 'comment_node_ideas',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'comment_teaser' => array(
-        'label' => 'above',
-        'type' => 'hidden',
-      ),
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'comment_body',
-    'label' => 'Comment',
-    'required' => TRUE,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 10,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'comment-comment_node_video_d4eu-comment_body'
-  $field_instances['comment-comment_node_video_d4eu-comment_body'] = array(
-    'bundle' => 'comment_node_video_d4eu',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'comment_teaser' => array(
-        'label' => 'above',
-        'type' => 'hidden',
-      ),
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'comment_body',
-    'label' => 'Comment',
-    'required' => TRUE,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 10,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'comment-comment_node_event_d4eu-field_rate_comment'
+  // Exported field_instance:
+  // 'comment-comment_node_event_d4eu-field_rate_comment'.
   $field_instances['comment-comment_node_event_d4eu-field_rate_comment'] = array(
     'bundle' => 'comment_node_event_d4eu',
     'default_value' => NULL,
@@ -280,7 +207,48 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'comment-comment_node_ideas-field_rate_comment'
+  // Exported field_instance: 'comment-comment_node_ideas-comment_body'.
+  $field_instances['comment-comment_node_ideas-comment_body'] = array(
+    'bundle' => 'comment_node_ideas',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'comment_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'comment',
+    'field_name' => 'comment_body',
+    'label' => 'Comment',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 10,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance: 'comment-comment_node_ideas-field_rate_comment'.
   $field_instances['comment-comment_node_ideas-field_rate_comment'] = array(
     'bundle' => 'comment_node_ideas',
     'default_value' => NULL,
@@ -331,7 +299,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'comment-comment_node_issue-field_rate_comment'
+  // Exported field_instance: 'comment-comment_node_issue-field_rate_comment'.
   $field_instances['comment-comment_node_issue-field_rate_comment'] = array(
     'bundle' => 'comment_node_issue',
     'default_value' => NULL,
@@ -382,7 +350,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'comment-comment_node_poll-field_rate_comment'
+  // Exported field_instance: 'comment-comment_node_poll-field_rate_comment'.
   $field_instances['comment-comment_node_poll-field_rate_comment'] = array(
     'bundle' => 'comment_node_poll',
     'default_value' => NULL,
@@ -433,7 +401,49 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'comment-comment_node_video_d4eu-field_rate_comment'
+  // Exported field_instance: 'comment-comment_node_video_d4eu-comment_body'.
+  $field_instances['comment-comment_node_video_d4eu-comment_body'] = array(
+    'bundle' => 'comment_node_video_d4eu',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'comment_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'comment',
+    'field_name' => 'comment_body',
+    'label' => 'Comment',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 10,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'comment-comment_node_video_d4eu-field_rate_comment'.
   $field_instances['comment-comment_node_video_d4eu-field_rate_comment'] = array(
     'bundle' => 'comment_node_video_d4eu',
     'default_value' => NULL,
@@ -484,7 +494,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_d4eu-body'
+  // Exported field_instance: 'node-event_d4eu-body'.
   $field_instances['node-event_d4eu-body'] = array(
     'bundle' => 'event_d4eu',
     'default_value' => NULL,
@@ -536,7 +546,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_d4eu-field_date_time'
+  // Exported field_instance: 'node-event_d4eu-field_date_time'.
   $field_instances['node-event_d4eu-field_date_time'] = array(
     'bundle' => 'event_d4eu',
     'deleted' => 0,
@@ -551,6 +561,7 @@ function futurium_d4eu_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
         'weight' => 2,
@@ -598,7 +609,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_ideas'
+  // Exported field_instance: 'node-ideas-field_ideas'.
   $field_instances['node-ideas-field_ideas'] = array(
     'bundle' => 'ideas',
     'default_value' => array(
@@ -679,7 +690,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_rate_ideas'
+  // Exported field_instance: 'node-ideas-field_rate_ideas'.
   $field_instances['node-ideas-field_rate_ideas'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -736,7 +747,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_related_documents'
+  // Exported field_instance: 'node-ideas-field_related_documents'.
   $field_instances['node-ideas-field_related_documents'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -793,7 +804,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_related_events'
+  // Exported field_instance: 'node-ideas-field_related_events'.
   $field_instances['node-ideas-field_related_events'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -850,7 +861,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_related_polls'
+  // Exported field_instance: 'node-ideas-field_related_polls'.
   $field_instances['node-ideas-field_related_polls'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -907,7 +918,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_related_videos'
+  // Exported field_instance: 'node-ideas-field_related_videos'.
   $field_instances['node-ideas-field_related_videos'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -964,7 +975,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-issue-field_issue'
+  // Exported field_instance: 'node-issue-field_issue'.
   $field_instances['node-issue-field_issue'] = array(
     'bundle' => 'issue',
     'default_value' => array(
@@ -1042,7 +1053,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-issue-field_rate_issue'
+  // Exported field_instance: 'node-issue-field_rate_issue'.
   $field_instances['node-issue-field_rate_issue'] = array(
     'bundle' => 'issue',
     'default_value' => NULL,
@@ -1099,7 +1110,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-issue-field_tags'
+  // Exported field_instance: 'node-issue-field_tags'.
   $field_instances['node-issue-field_tags'] = array(
     'bundle' => 'issue',
     'default_value' => NULL,
@@ -1147,7 +1158,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-video_d4eu-body'
+  // Exported field_instance: 'node-video_d4eu-body'.
   $field_instances['node-video_d4eu-body'] = array(
     'bundle' => 'video_d4eu',
     'default_value' => NULL,
@@ -1199,7 +1210,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_organisation'
+  // Exported field_instance: 'user-user-field_organisation'.
   $field_instances['user-user-field_organisation'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1264,7 +1275,7 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_register_url'
+  // Exported field_instance: 'user-user-field_register_url'.
   $field_instances['user-user-field_register_url'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1332,6 +1343,7 @@ function futurium_d4eu_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
+  t('Comment');
   t('Date & time');
   t('Event');
   t('Evidence');
@@ -1343,7 +1355,7 @@ function futurium_d4eu_field_default_field_instances() {
   t('Poll');
   t('Rate');
   t('Rate that idea.');
-  t("Rate the user\'s comment.");
+  t('Rate the user\'s comment.');
   t('Tags');
   t('Videos');
   t('Vote');

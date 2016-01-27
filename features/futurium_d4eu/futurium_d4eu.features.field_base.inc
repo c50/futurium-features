@@ -10,7 +10,7 @@
 function futurium_d4eu_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_issue'
+  // Exported field_base: 'field_issue'.
   $field_bases['field_issue'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function futurium_d4eu_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_organisation'
+  // Exported field_base: 'field_organisation'.
   $field_bases['field_organisation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -52,7 +52,7 @@ function futurium_d4eu_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_rate_comment'
+  // Exported field_base: 'field_rate_comment'.
   $field_bases['field_rate_comment'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -70,7 +70,7 @@ function futurium_d4eu_field_default_field_bases() {
     'type' => 'fivestar',
   );
 
-  // Exported field_base: 'field_rate_ideas'
+  // Exported field_base: 'field_rate_ideas'.
   $field_bases['field_rate_ideas'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -88,7 +88,7 @@ function futurium_d4eu_field_default_field_bases() {
     'type' => 'fivestar',
   );
 
-  // Exported field_base: 'field_rate_issue'
+  // Exported field_base: 'field_rate_issue'.
   $field_bases['field_rate_issue'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -106,7 +106,7 @@ function futurium_d4eu_field_default_field_bases() {
     'type' => 'fivestar',
   );
 
-  // Exported field_base: 'field_register_url'
+  // Exported field_base: 'field_register_url'.
   $field_bases['field_register_url'] = array(
     'active' => 1,
     'cardinality' => 1,
