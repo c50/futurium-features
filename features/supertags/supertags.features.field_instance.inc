@@ -1936,7 +1936,7 @@ function supertags_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 6,
     ),
   );
 
@@ -1976,6 +1976,44 @@ function supertags_field_default_field_instances() {
       ),
       'type' => 'options_onoff',
       'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-flavors-field_flavor_archived'.
+  $field_instances['taxonomy_term-flavors-field_flavor_archived'] = array(
+    'bundle' => 'flavors',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_flavor_archived',
+    'label' => 'Archived',
+    'required' => 0,
+    'settings' => array(
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 2,
     ),
   );
 
@@ -2042,7 +2080,7 @@ function supertags_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 1,
+      'weight' => 4,
     ),
   );
 
@@ -2074,7 +2112,7 @@ function supertags_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -2118,7 +2156,7 @@ function supertags_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 3,
+      'weight' => 7,
     ),
   );
 
@@ -2180,13 +2218,14 @@ function supertags_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 5,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Active');
+  t('Archived');
   t('Block Classes');
   t('Block Type');
   t('Block body');
