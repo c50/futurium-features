@@ -36,6 +36,12 @@ function supertags_views_default_views() {
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['style_options']['wrapper_class'] = 'flavour-boxes';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Footer: Global: Text area */
+  $handler->display->display_options['footer']['area']['id'] = 'area';
+  $handler->display->display_options['footer']['area']['table'] = 'views';
+  $handler->display->display_options['footer']['area']['field'] = 'area';
+  $handler->display->display_options['footer']['area']['content'] = '<a href=\'.\' class=\'archivesLinks\'>View archives</a>';
+  $handler->display->display_options['footer']['area']['format'] = 'filtered_html';
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
@@ -116,6 +122,10 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'flavour-[field_class]';
   $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
+  /* Sort criterion: Taxonomy term: Archived (field_flavor_archived) */
+  $handler->display->display_options['sorts']['field_flavor_archived_value']['id'] = 'field_flavor_archived_value';
+  $handler->display->display_options['sorts']['field_flavor_archived_value']['table'] = 'field_data_field_flavor_archived';
+  $handler->display->display_options['sorts']['field_flavor_archived_value']['field'] = 'field_flavor_archived_value';
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
@@ -134,6 +144,128 @@ function supertags_views_default_views() {
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['row_class'] = 'flavour-box flavour-[field_class] [field_flavor_archived]';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['style_options']['wrapper_class'] = 'flavour-boxes';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['path'] = '[name]';
+  $handler->display->display_options['fields']['name']['alter']['path_case'] = 'lower';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+  /* Field: Taxonomy term: Image */
+  $handler->display->display_options['fields']['field_flavor_image']['id'] = 'field_flavor_image';
+  $handler->display->display_options['fields']['field_flavor_image']['table'] = 'field_data_field_flavor_image';
+  $handler->display->display_options['fields']['field_flavor_image']['field'] = 'field_flavor_image';
+  $handler->display->display_options['fields']['field_flavor_image']['label'] = '';
+  $handler->display->display_options['fields']['field_flavor_image']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_flavor_image']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_flavor_image']['alter']['path'] = '[name]';
+  $handler->display->display_options['fields']['field_flavor_image']['alter']['path_case'] = 'lower';
+  $handler->display->display_options['fields']['field_flavor_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_flavor_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_flavor_image']['settings'] = array(
+    'image_style' => 'large',
+    'image_link' => '',
+  );
+  /* Field: Taxonomy term: Class */
+  $handler->display->display_options['fields']['field_class']['id'] = 'field_class';
+  $handler->display->display_options['fields']['field_class']['table'] = 'field_data_field_class';
+  $handler->display->display_options['fields']['field_class']['field'] = 'field_class';
+  $handler->display->display_options['fields']['field_class']['label'] = '';
+  $handler->display->display_options['fields']['field_class']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_class']['element_label_colon'] = FALSE;
+  /* Field: Taxonomy term: Path */
+  $handler->display->display_options['fields']['field_path']['id'] = 'field_path';
+  $handler->display->display_options['fields']['field_path']['table'] = 'field_data_field_path';
+  $handler->display->display_options['fields']['field_path']['field'] = 'field_path';
+  $handler->display->display_options['fields']['field_path']['label'] = '';
+  $handler->display->display_options['fields']['field_path']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_path']['alter']['text'] = '[field_path-value]/dashboard';
+  $handler->display->display_options['fields']['field_path']['element_label_colon'] = FALSE;
+  /* Field: Taxonomy term: Term description */
+  $handler->display->display_options['fields']['description']['id'] = 'description';
+  $handler->display->display_options['fields']['description']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['description']['field'] = 'description';
+  $handler->display->display_options['fields']['description']['label'] = '';
+  $handler->display->display_options['fields']['description']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['description']['alter']['text'] = '<h2>[name]</h2>
+  <div>
+    [description]
+  </div>
+  ';
+  $handler->display->display_options['fields']['description']['alter']['path'] = '[field_path]';
+  $handler->display->display_options['fields']['description']['alter']['link_class'] = 'flavour-link-[field_class]';
+  $handler->display->display_options['fields']['description']['alter']['max_length'] = '300';
+  $handler->display->display_options['fields']['description']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['description']['element_type'] = '0';
+  $handler->display->display_options['fields']['description']['element_label_type'] = '0';
+  $handler->display->display_options['fields']['description']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['description']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['description']['element_wrapper_class'] = 'flavour-box flavour-[field_class]';
+  $handler->display->display_options['fields']['description']['element_default_classes'] = FALSE;
+  /* Field: Taxonomy term: Archived */
+  $handler->display->display_options['fields']['field_flavor_archived']['id'] = 'field_flavor_archived';
+  $handler->display->display_options['fields']['field_flavor_archived']['table'] = 'field_data_field_flavor_archived';
+  $handler->display->display_options['fields']['field_flavor_archived']['field'] = 'field_flavor_archived';
+  $handler->display->display_options['fields']['field_flavor_archived']['label'] = '';
+  $handler->display->display_options['fields']['field_flavor_archived']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_flavor_archived']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<h2>[name] <span class=\'showArchived\'>[field_flavor_archived]<span></h2>
+  <div>
+    [description]  
+  </div>
+  ';
+  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['alter']['path'] = '[field_path]';
+  $handler->display->display_options['fields']['nothing']['alter']['link_class'] = 'flavour-link-[field_class]';
+  $handler->display->display_options['fields']['nothing']['element_type'] = '0';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'flavour-[field_class]';
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'flavors' => 'flavors',
+  );
+  /* Filter criterion: Taxonomy term: Active (field_flavor_active) */
+  $handler->display->display_options['filters']['field_flavor_active_value']['id'] = 'field_flavor_active_value';
+  $handler->display->display_options['filters']['field_flavor_active_value']['table'] = 'field_data_field_flavor_active';
+  $handler->display->display_options['filters']['field_flavor_active_value']['field'] = 'field_flavor_active_value';
+  $handler->display->display_options['filters']['field_flavor_active_value']['value'] = array(
+    1 => '1',
+  );
+  /* Filter criterion: Taxonomy term: Archived (field_flavor_archived) */
+  $handler->display->display_options['filters']['field_flavor_archived_value']['id'] = 'field_flavor_archived_value';
+  $handler->display->display_options['filters']['field_flavor_archived_value']['table'] = 'field_data_field_flavor_archived';
+  $handler->display->display_options['filters']['field_flavor_archived_value']['field'] = 'field_flavor_archived_value';
+  $handler->display->display_options['filters']['field_flavor_archived_value']['operator'] = 'not empty';
+  $handler->display->display_options['filters']['field_flavor_archived_value']['value'] = array(
+    0 => '0',
+  );
   $export['flavor_list'] = $view;
 
   $view = new view();

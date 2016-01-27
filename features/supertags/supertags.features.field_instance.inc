@@ -2000,7 +2000,7 @@ function supertags_field_default_field_instances() {
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_flavor_archived',
-    'label' => 'Archived',
+    'label' => t('Archived'),
     'required' => 0,
     'settings' => array(
       'user_field_privacy' => FALSE,
