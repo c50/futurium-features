@@ -5,6 +5,34 @@
  */
 
 /**
+ * Implements hook_views_api().
+ */
+function futurium_isa_extras_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function futurium_isa_extras_views_data_alter(&$data) {
+
+  $info = field_info_field('og_group_ref');
+  foreach ($info['bundles'] as $key => $value) {
+    // Filter content on user groups.
+    $data[$key]['user_og_nid'] = array(
+      'title' => t('Logged In User Groups/No Group content'),
+      'help' => t('Filters the content on the users groups.'),
+      'filter' => array(
+        'real field'=> 'gid',
+        'handler' => 'futurium_isa_extras_filter_group_content_or_not',
+      ),
+    );
+  }
+}
+
+/**
  * Implements hook_admin_paths_alter().
  */
 function futurium_isa_extras_admin_paths_alter(&$paths) {
@@ -441,8 +469,8 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
 
     $flag = flag_get_flag($extrafield_name);
     $count = $flag->get_count($node->nid);
-    $plural = format_plural($count, t('Like'), t('Likes'));
-    $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field like-count">' . $count . ' ' . $plural . '</div>');
+    $label = '<span class="label-wrapper">' . format_plural($count, t('Like'), t('Likes')) . '</span>';
+    $node->content[$extrafield_name] = array('#markup' => '<div class="field fake-field like-count">' . $count . ' ' . $label . '</div>');
   }
 
   // Attending.
@@ -453,7 +481,7 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
 
     $flag = flag_get_flag($extrafield_name);
     $count = $flag->get_count($node->nid);
-    $label = t('Going');
+    $label = '<span class="label-wrapper">' . t('Going') . '</span>';;
     $node->content[$extrafield_name] = array(
       '#markup' => '<div class="field fake-field attending-count">' . $count . ' ' . $label . '</div>',
     );
@@ -465,8 +493,9 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
       && isset($extrafields[$extrafield_name]['visible'])
       && $extrafields[$extrafield_name]['visible']) {
     $count = $node->comment_count;
+    $label = '<span class="label-wrapper">' . format_plural($count, t('Comment'), t('Comments')) . '</span>';
     $node->content[$extrafield_name] = array(
-      '#markup' => '<div class="field fake-field comment-count">' . $count . ' ' . format_plural($count, t('Comment'), t('Comments')) . '</div>',
+      '#markup' => '<div class="field fake-field comment-count">' . $count . ' ' . $label . '</div>',
     );
   }
 
@@ -799,7 +828,6 @@ function futurium_isa_extras_ckeditor_plugin() {
 function futurium_isa_extras_wysiwyg_plugin($editor, $version) {
   switch ($editor) {
     case 'ckeditor':
-      watchdog("WW", drupal_get_path('module', 'futurium_isa_extras') . '/plugins/ckeditor/confighelper/');
       return array(
         'confighelper' => array(
           'path' => drupal_get_path('module', 'futurium_isa_extras') . '/plugins/ckeditor/confighelper/',
@@ -812,24 +840,6 @@ function futurium_isa_extras_wysiwyg_plugin($editor, $version) {
       );
       break;
   }
-}
-
-function futurium_isa_extras_form_alter(&$form, $form_state, $form_id) {
-  $form['body']['#attributes']['placeholder'] = array("Something");
-}
-
-function futurium_isa_cron() {
-
-}
-
-function futurium_isa_extras_entity_info_alter(&$entity_info) {
-  //dsm($entity_info);
-  $entity_info['message']['access callback'] = 'futurium_isa_extras_message_access';
-}
-
-function futurium_isa_extras_message_access($op, $entity, $account = NULL, $entity_type = 'message') {
-  //dsm(get_defined_vars());
-  return FALSE;
 }
 
 // Modules likely to be disabled

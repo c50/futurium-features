@@ -149,5 +149,6 @@ function futurium_messages_default_rules_configuration() {
       ]
     }
   }');
+
   return $items;
 }

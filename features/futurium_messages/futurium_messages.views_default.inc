@@ -28,12 +28,18 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '6';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['class'] = 'nopadding';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: OG membership: OG membership from Message */
+  $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
+  $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'message';
+  $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
   /* Field: Message: Render message (Get text) */
   $handler->display->display_options['fields']['message_render']['id'] = 'message_render';
   $handler->display->display_options['fields']['message_render']['table'] = 'message';
@@ -47,6 +53,7 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['sorts']['timestamp']['table'] = 'message';
   $handler->display->display_options['sorts']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['sorts']['timestamp']['order'] = 'DESC';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
 
   /* Display: All */
   $handler = $view->new_display('block', 'All', 'block');
@@ -59,6 +66,17 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['fields']['message_render']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['message_render']['partials'] = 1;
   $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Message: Logged In User Groups/No Group content */
+  $handler->display->display_options['filters']['user_og_nid']['id'] = 'user_og_nid';
+  $handler->display->display_options['filters']['user_og_nid']['table'] = 'message';
+  $handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
+  $handler->display->display_options['filters']['user_og_nid']['group'] = 1;
 
   /* Display: Node Activity */
   $handler = $view->new_display('block', 'Node Activity', 'block_1');
@@ -205,6 +223,32 @@ function futurium_messages_views_default_views() {
     'title' => 'title',
     'field_evidence_body' => 'field_evidence_body',
     'term_node_tid' => 'term_node_tid',
+  );
+  $translatables['messages'] = array(
+    t('Master'),
+    t('Activity'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('OG membership from message'),
+    t('All'),
+    t('Node Activity'),
+    t('User Activity'),
+    t('Overview'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('No activity yet.'),
+    t('Content entity referenced from field_node_ref'),
+    t('Opportunity'),
+    t('Search'),
   );
   $export['messages'] = $view;
 

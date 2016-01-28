@@ -1459,30 +1459,7 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = 'd8a33c89-d231-461c-a7a6-dc1a5eb3a858';
     $display->content['new-d8a33c89-d231-461c-a7a6-dc1a5eb3a858'] = $pane;
-    $display->panels['row2l'][1] = 'new-d8a33c89-d231-461c-a7a6-dc1a5eb3a858';
-    $pane = new stdClass();
-    $pane->pid = 'new-403faacd-fb9d-4696-9b59-5210da3b0d2a';
-    $pane->panel = 'row2l';
-    $pane->type = 'block';
-    $pane->subtype = 'futurium_linker-futurium_linker';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '403faacd-fb9d-4696-9b59-5210da3b0d2a';
-    $display->content['new-403faacd-fb9d-4696-9b59-5210da3b0d2a'] = $pane;
-    $display->panels['row2l'][2] = 'new-403faacd-fb9d-4696-9b59-5210da3b0d2a';
+    $display->panels['row2l'][3] = 'new-d8a33c89-d231-461c-a7a6-dc1a5eb3a858';
     $pane = new stdClass();
     $pane->pid = 'new-99396859-4ddf-41d8-a8ef-d0472fa507ea';
     $pane->panel = 'row2l';
@@ -1504,11 +1481,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '99396859-4ddf-41d8-a8ef-d0472fa507ea';
     $display->content['new-99396859-4ddf-41d8-a8ef-d0472fa507ea'] = $pane;
-    $display->panels['row2l'][3] = 'new-99396859-4ddf-41d8-a8ef-d0472fa507ea';
+    $display->panels['row2l'][2] = 'new-99396859-4ddf-41d8-a8ef-d0472fa507ea';
     $pane = new stdClass();
     $pane->pid = 'new-187e3f2c-a257-4459-953b-ed3da549df42';
     $pane->panel = 'row2l';
@@ -1529,11 +1506,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = '187e3f2c-a257-4459-953b-ed3da549df42';
     $display->content['new-187e3f2c-a257-4459-953b-ed3da549df42'] = $pane;
-    $display->panels['row2l'][4] = 'new-187e3f2c-a257-4459-953b-ed3da549df42';
+    $display->panels['row2l'][1] = 'new-187e3f2c-a257-4459-953b-ed3da549df42';
     $pane = new stdClass();
     $pane->pid = 'new-aeabe19c-d13c-4013-951e-31484323427f';
     $pane->panel = 'row2r';
@@ -2725,21 +2702,15 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'node/%node/futures';
   $page->access = array(
-    'logic' => 'and',
     'plugins' => array(
       0 => array(
-        'context' => array(
-          0 => 'argument_entity_id:node_1',
-          1 => 'logged-in-user',
-        ),
-        'name' => 'og_member',
-        'settings' => array(
-          'state' => array(
-            1 => 1,
-          ),
-        ),
+        'name' => 'og_is_node_group',
+        'settings' => NULL,
+        'context' => 'argument_entity_id:node_1',
+        'not' => FALSE,
       ),
     ),
+    'logic' => 'and',
   );
   $page->menu = array(
     'type' => 'action',
@@ -3071,21 +3042,15 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'node/%node/ideas';
   $page->access = array(
-    'logic' => 'and',
     'plugins' => array(
       0 => array(
-        'context' => array(
-          0 => 'argument_entity_id:node_1',
-          1 => 'logged-in-user',
-        ),
-        'name' => 'og_member',
-        'settings' => array(
-          'state' => array(
-            1 => 1,
-          ),
-        ),
+        'name' => 'og_is_node_group',
+        'settings' => NULL,
+        'context' => 'argument_entity_id:node_1',
+        'not' => FALSE,
       ),
     ),
+    'logic' => 'and',
   );
   $page->menu = array(
     'type' => 'action',
@@ -3417,21 +3382,15 @@ function futurium_isa_default_page_manager_pages() {
   $page->admin_description = '';
   $page->path = 'node/%node/members';
   $page->access = array(
-    'logic' => 'and',
     'plugins' => array(
       0 => array(
-        'context' => array(
-          0 => 'argument_entity_id:node_1',
-          1 => 'logged-in-user',
-        ),
-        'name' => 'og_member',
-        'settings' => array(
-          'state' => array(
-            1 => 1,
-          ),
-        ),
+        'name' => 'og_is_node_group',
+        'settings' => NULL,
+        'context' => 'argument_entity_id:node_1',
+        'not' => FALSE,
       ),
     ),
+    'logic' => 'and',
   );
   $page->menu = array(
     'type' => 'action',
@@ -3732,18 +3691,7 @@ function futurium_isa_default_page_manager_pages() {
     $pane->subtype = 'futurium_isa_extras-group_add_member';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'context' => array(
-            0 => 'argument_entity_id:node_1',
-            1 => 'logged-in-user',
-          ),
-          'name' => 'og_perm',
-          'settings' => array(
-            'perm' => 'add user',
-          ),
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'override_title' => 1,
@@ -3768,18 +3716,7 @@ function futurium_isa_default_page_manager_pages() {
     $pane->subtype = 'futurium_isa_extras-group_send_message';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'context' => array(
-            0 => 'argument_entity_id:node_1',
-            1 => 'logged-in-user',
-          ),
-          'name' => 'og_perm',
-          'settings' => array(
-            'perm' => 'approve and deny subscription',
-          ),
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'override_title' => 1,
@@ -4868,7 +4805,7 @@ function futurium_isa_default_page_manager_pages() {
   $page->menu = array(
     'type' => 'action',
     'title' => 'Events',
-    'name' => 'navigation',
+    'name' => 'user-menu',
     'weight' => '5',
     'parent' => array(
       'type' => 'none',

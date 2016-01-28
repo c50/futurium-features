@@ -664,6 +664,7 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'mini';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -678,6 +679,10 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'Nothing to see here, move along...';
+  /* Relationship: OG membership: OG membership from Node */
+  $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
+  $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -707,9 +712,33 @@ function futurium_isa_views_default_views() {
     'future' => 'future',
     'ideas' => 'ideas',
   );
+  /* Filter criterion: Content: Logged In User Groups/No Group content */
+  $handler->display->display_options['filters']['user_og_nid']['id'] = 'user_og_nid';
+  $handler->display->display_options['filters']['user_og_nid']['table'] = 'node';
+  $handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
+  $translatables['homepage'] = array(
+    t('Master'),
+    t('Homepage'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Nothing to see here, move along...'),
+    t('OG membership from node'),
+    t('Block'),
+  );
   $export['homepage'] = $view;
 
   $view = new view();
