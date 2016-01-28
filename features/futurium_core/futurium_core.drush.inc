@@ -114,6 +114,9 @@ function drush_futurium_core_post_install_futurium() {
  */
 function drush_futurium_core_revert_futurium_config() {
 
+  // Disable not needed multisite modules
+  module_disable(array('nexteuropa_multilingual', 'ecas', 'tmgmt'));
+
   // Remove duplicate home button
   $links = menu_load_links('main-menu');
   foreach($links as $item) {
