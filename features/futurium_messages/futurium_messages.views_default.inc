@@ -67,16 +67,12 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['fields']['message_render']['partials'] = 1;
   $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['filter_groups']['operator'] = 'OR';
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'OR',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Message: Logged In User Groups/No Group content */
   $handler->display->display_options['filters']['user_og_nid']['id'] = 'user_og_nid';
   $handler->display->display_options['filters']['user_og_nid']['table'] = 'message';
   $handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
-  $handler->display->display_options['filters']['user_og_nid']['group'] = 1;
+  $handler->display->display_options['filters']['user_og_nid']['value']['value'] = 1;
 
   /* Display: Node Activity */
   $handler = $view->new_display('block', 'Node Activity', 'block_1');

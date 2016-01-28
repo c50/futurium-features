@@ -716,6 +716,7 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['filters']['user_og_nid']['id'] = 'user_og_nid';
   $handler->display->display_options['filters']['user_og_nid']['table'] = 'node';
   $handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
+  $handler->display->display_options['filters']['user_og_nid']['value']['value'] = 1;
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');

@@ -33,12 +33,15 @@ class futurium_isa_extras_filter_group_content_or_not extends views_handler_filt
   }
 
   function value_form(&$form, &$form_state) {
+    dsm($this);
 
-    $form['value'] = array(
+    $form['value']['#tree'] = TRUE;
+
+    $form['value']['value'] = array(
       '#type' => 'checkbox',
       '#title' => $this->value_value,
       '#options' => $this->value_options,
-      '#default_value' => $this->value,
+      '#default_value' => $this->value['value'],
       '#access' => !user_is_anonymous()
     );
 
