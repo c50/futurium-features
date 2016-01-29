@@ -243,6 +243,10 @@
     }
   }
 
+  .sidebar-right a {
+    color: inherit;
+  }
+
   .more-link a, a.more-link {
     @include btn-default($color);
   } 
@@ -367,6 +371,8 @@
   }
   
 }
+
+
 
 
 /* temp stuff */
