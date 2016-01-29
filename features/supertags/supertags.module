@@ -1880,7 +1880,7 @@ function supertags_node_access($node, $op, $account) {
   $archived_flavour = $node->field_default_flavour['und'][0]['tid'];
   // Disallow create an update access for Digital4eu.
   // TODO: make it generic for all achived flavors.
-  if (($op == 'create' || $op == 'update') && ($archived_flavour == 749 || drupal_match_path($path, 'digital4eu/add/*', 'Digital4EU/add/*'))) {
+  if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($archived_flavour == 749 || drupal_match_path($path, 'digital4eu/add/*', 'Digital4EU/add/*'))) {
     drupal_set_message(t('Dear @username, this publication belongs to an archived flavour.', array(
       '@username' => $account->name,
     )));
