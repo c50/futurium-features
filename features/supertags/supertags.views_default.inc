@@ -153,6 +153,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Taxonomy term: Name */
@@ -223,13 +224,18 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['field_flavor_archived']['field'] = 'field_flavor_archived';
   $handler->display->display_options['fields']['field_flavor_archived']['label'] = '';
   $handler->display->display_options['fields']['field_flavor_archived']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_flavor_archived']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_flavor_archived']['alter']['text'] = '<span class=\'showArchived\'>[field_flavor_archived]</span>';
   $handler->display->display_options['fields']['field_flavor_archived']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_flavor_archived']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_flavor_archived']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_flavor_archived']['empty_zero'] = TRUE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<h2>[name] <span class=\'showArchived\'>[field_flavor_archived]<span></h2>
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<h2>[name] [field_flavor_archived]</h2>
   <div>
     [description]  
   </div>
