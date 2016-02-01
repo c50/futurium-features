@@ -232,6 +232,17 @@
    /* display: inline-block; */
 }
 
+/* mixin user */
+
+@mixin round-userpicture {
+  border-radius:50%;
+  overflow:hidden;
+  width: 35px;
+  height: 35px;
+}
+
+
+
 /* mixin for layout content types (does markup of row1) */
 
 @mixin contenttype($color, $icon) {
@@ -349,6 +360,9 @@
     background: #f8f8f8;
     @include rem (border, 1px solid #d7d7d7);
     border-top: none;
+  }
+  .panel-pane {
+    border: none;
   }
 }
 

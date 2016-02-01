@@ -48,10 +48,12 @@
 /* My account hack in menu */
 /**************************/
 
+.no-text {
+ font-size:0 !important;
+}
 
-
-.glyphicon{
-  font-family: $header-font-stack; 
+.no-text:before {
+ font-size:16px;
 }
 
 

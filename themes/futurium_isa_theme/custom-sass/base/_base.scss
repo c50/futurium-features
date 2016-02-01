@@ -662,10 +662,7 @@ div.panel-pane li.views-row:last-child
     clear: both;
   }
   .field-name-ds-user-picture img, .views-field-picture img {
-    border-radius:50%;
-    overflow:hidden;
-    width: 35px;
-    height: 35px;
+    @include round-userpicture;
   }
 }
 
@@ -675,6 +672,17 @@ div.panel-pane li.views-row:last-child
   @include rem(padding, 20px);
   @include rem(margin, 0 0 20px 0);
 }
+
+/**********/
+/* USER  */
+/********/
+
+.sidebar-right {
+  .views-field-picture img {
+    @include round-userpicture;
+  }
+}
+
 
 /*****************/
 /* USER PROFILE */
