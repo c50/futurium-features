@@ -1867,6 +1867,28 @@ function _supertags_tag_context() {
 }
 
 /**
+ * DAE-1361: block node creation/update on archived flavors nodes.
+ *
+ * @param $node
+ * @param $op
+ * @param $account
+ *
+ * @return bool
+ */
+function supertags_node_access($node, $op, $account) {
+  $path = strtolower(current_path());
+  $archived_flavour = $node->field_default_flavour['und'][0]['tid'];
+  // Disallow create an update access for Digital4eu.
+  // TODO: make it generic for all achived flavors.
+  if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($archived_flavour == 749 || drupal_match_path($path, 'digital4eu/add/*'))) {
+    drupal_set_message(t('Dear @username, this publication belongs to an archived flavour.', array(
+      '@username' => $account->name,
+    )));
+    return NODE_ACCESS_DENY;
+  }
+}
+
+/**
  * Returns an array with supertags info on node.
  *
  * @param object $node
