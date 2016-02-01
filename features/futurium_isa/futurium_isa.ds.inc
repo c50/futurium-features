@@ -499,7 +499,6 @@ function futurium_isa_ds_layout_settings_info() {
         5 => 'body',
         6 => 'group_buttons',
         7 => 'node_link',
-        8 => 'flag_attending',
       ),
     ),
     'fields' => array(
@@ -511,7 +510,6 @@ function futurium_isa_ds_layout_settings_info() {
       'body' => 'ds_content',
       'group_buttons' => 'ds_content',
       'node_link' => 'ds_content',
-      'flag_attending' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

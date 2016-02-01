@@ -4,4 +4,5 @@ core = 7.x
 
 dependencies[] = countries
 dependencies[] = flag
-;dependencies[] = nodeaccess_userreference
+
+files[] = futurium_isa_extras_filter_group_content_or_not.inc

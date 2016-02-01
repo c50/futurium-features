@@ -41,5 +41,8 @@ function futurium_isa_extras_enable() {
   $contexts['site_wide'] = TRUE;
   variable_set('context_status', $contexts);
 
+  // Delete editorial_team content type
+  node_type_delete('editorial_team');
+
   drupal_flush_all_caches();
 }
