@@ -1887,7 +1887,6 @@ function supertags_node_access($node, $op, $account) {
   if ($node_default_flavor = taxonomy_term_load($node_default_flavor)){
     $default_archived = $node_default_flavor->field_flavor_archived[LANGUAGE_NONE][0]['value'];
     $default_archived_path = strtolower($node_default_flavor->name . '/add/*');
-    dsm($default_archived_path);
   }
 
   // Disallow create an update access for on a node for which the default flavor is archived.
