@@ -148,9 +148,7 @@ h4 a {
 /* DEFAULT MARKUP FOR CONTENTTYPE */
 /**********************************/
 
-/**
- * mixin that does all the colouring of buttons, text, ... 
- */
+/* all text elements white for row1 */
 
 .container-fullwidth.row1{
   color: #fff;
@@ -170,15 +168,18 @@ h4 a {
 }
 
 
+/**
+ * default settings for (new) contenttype
+ */
+
 .not-front{
   @include contenttype($mid-grey, wrench);
   @include teaser($mid-grey);
 }
 
 /**
- * settings for different content types 
-
-
+ * settings for different (existing) content types 
+ */
 
 /* idea */
 body.page-ideas, body.node-type-ideas {
@@ -903,6 +904,96 @@ div.panel-pane .preview .node{
   font-family: $header-font-stack;
 }
 
+/********************************/
+/* NEEDS TO MOVE TO COMPONENTS */
+/******************************/
+
+.carousel-control {
+  width: 5%;
+  height: 100%;
+}
+
+.carousel-control.left,
+.carousel-control.right {
+  width: 70px;
+  height: 350px;
+}
+
+.carousel-control.left {
+  background-image: linear-gradient(to left, rgba(0,0,0,0.0001) 0%, rgba(0,0,0,0.05) 100%);
+}
+
+.carousel-control.right {
+  background-image: linear-gradient(to right, rgba(0,0,0,0.0001) 0%, rgba(0,0,0,0.05) 100%);
+}
+
+
+/* show icon when hover */
+
+.glyphicon-chevron-right:hover:before {
+  content: "\e080";
+}
+
+.glyphicon-chevron-left:hover:before {
+  content: "\e079";
+}
+
+/* position carousel indicators */
+
+.carousel-indicators {
+  bottom: 5px;
+}
+
+.image-wrapper{
+  height: 338px;
+}
+
+.shadow {
+  opacity: 0.1;
+  position: absolute;
+  min-height: 350px;
+  width: 1160px;
+  margin: 0;
+  bottom: 0;
+  left: 0;
+  background: #000;
+}
+
+.shadow-content {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-45%);
+  padding: 10px 100px 10px 100px;
+  z-index: 20;
+  text-align: center;
+  @include respond-to(small) {
+    top: 46%;
+  }
+  h1 {
+    font-weight: bold;
+    color: #fff;
+    @include rem(font-size, 36px);
+    font-family: $header-font-stack;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    @include respond-to(small) {
+      @include rem(font-size, 24px);
+    }
+  }
+  a {
+    @include on-event {
+      text-decoration: none;
+    }
+  }
+}
+
+
+ 
+
+
+
 
 
 
@@ -915,44 +1006,5 @@ div.panel-pane .preview .node{
   border: 0;
 }
 
-.carousel-control {
-  width: 5%;
-}
 
-.slide-image-wrapper{
-  border-top: 5px solid $idea-color;
-}
-
-.image-wrapper{
-  height: 338px;
-}
-
-.shadow-content{
-  height: 130px;
-  width: 1160px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 10px 20px 10px 20px;
-  z-index: 20;
-  h1 {
-    font-weight: bold;
-    color: #fff;
-    @include rem(font-size, 36px);
-  }
-  .more-link a {
-    @include btn-default($idea-color);
-  }
-}
-
-.shadow {
-  opacity: 0.5;
-  position: absolute;
-  height: 130px;
-  width: 1160px;
-  margin: 0;
-  bottom: 0;
-  left: 0;
-  background: #000;
-}
 

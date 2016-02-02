@@ -8,14 +8,18 @@
   padding: 40px 0 40px 0;
 }
 
-.container-fullwidth.navbar {
-  padding: 0 0 0 0;
-}
-
+.container-fullwidth.navbar,
 .main-container.container-fullwidth {
   padding: 0 0 0 0;
 }
 
+.not-logged-in.page-user .container {
+  @include rem(padding-bottom, 30px);
+}
+
+.not-logged-in.page-user .container-top .container {
+  @include rem(padding-bottom, 0px);
+}
 
 /***************/
 /* NAVIGATION */

@@ -361,9 +361,6 @@
     @include rem (border, 1px solid #d7d7d7);
     border-top: none;
   }
-  .panel-pane {
-    border: none;
-  }
 }
 
 @mixin views-row-border {
