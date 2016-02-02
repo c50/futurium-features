@@ -1878,19 +1878,15 @@ function _supertags_tag_context() {
 function supertags_node_access($node, $op, $account) {
   // DAE-1361: block node creation/update on nodes for which the default flavor is archived.
 
-  $path = strtolower(current_path());
-
   // Return node field_default_flavor.`
   $node_default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
-  $queried_flavor = drupal_get_query_parameters();
 
   if ($node_default_flavor = taxonomy_term_load($node_default_flavor)){
     $default_archived = $node_default_flavor->field_flavor_archived[LANGUAGE_NONE][0]['value'];
-    $default_archived_path = strtolower($node_default_flavor->name . '/add/*');
   }
 
   // Disallow create an update access for on a node for which the default flavor is archived.
-  if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($default_archived == 1 || drupal_match_path($path, 'digital4eu/add/*'))) {
+  if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($default_archived == 1)) {
     return NODE_ACCESS_DENY;
   }
 }
