@@ -620,6 +620,44 @@ function futurium_futures_default_page_manager_handlers() {
     $display->content['new-eb78c4f8-920e-40a2-b6b7-3b317e59430f'] = $pane;
     $display->panels['row2r'][3] = 'new-eb78c4f8-920e-40a2-b6b7-3b317e59430f';
     $pane = new stdClass();
+    $pane->pid = 'new-3b770367-95c3-45b3-b155-242b450988cd';
+    $pane->panel = 'row2r';
+    $pane->type = 'views';
+    $pane->subtype = 'revisions';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '5',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block',
+      'context' => array(
+        0 => 'argument_entity_id:node_1.nid',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Contributors',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = '3b770367-95c3-45b3-b155-242b450988cd';
+    $display->content['new-3b770367-95c3-45b3-b155-242b450988cd'] = $pane;
+    $display->panels['row2r'][4] = 'new-3b770367-95c3-45b3-b155-242b450988cd';
+    $pane = new stdClass();
     $pane->pid = 'new-eb167954-f8c0-473b-b372-48ef2cb75348';
     $pane->panel = 'row3l';
     $pane->type = 'node_comments';
@@ -827,7 +865,7 @@ function futurium_futures_default_page_manager_pages() {
       'admin_title' => '',
       'title' => '',
       'body' => '<a class="btn" href="node/add/future">Add a Future</a>',
-      'format' => 'nowysiwig',
+      'format' => 'simple_wysiwig',
       'substitute' => TRUE,
     );
     $pane->cache = array();

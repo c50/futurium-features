@@ -28,11 +28,9 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '6';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['class'] = 'nopadding';
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -53,7 +51,6 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['sorts']['timestamp']['table'] = 'message';
   $handler->display->display_options['sorts']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['sorts']['timestamp']['order'] = 'DESC';
-  $handler->display->display_options['filter_groups']['operator'] = 'OR';
 
   /* Display: All */
   $handler = $view->new_display('block', 'All', 'block');
@@ -219,32 +216,6 @@ function futurium_messages_views_default_views() {
     'title' => 'title',
     'field_evidence_body' => 'field_evidence_body',
     'term_node_tid' => 'term_node_tid',
-  );
-  $translatables['messages'] = array(
-    t('Master'),
-    t('Activity'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('OG membership from message'),
-    t('All'),
-    t('Node Activity'),
-    t('User Activity'),
-    t('Overview'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
-    t('No activity yet.'),
-    t('Content entity referenced from field_node_ref'),
-    t('Opportunity'),
-    t('Search'),
   );
   $export['messages'] = $view;
 

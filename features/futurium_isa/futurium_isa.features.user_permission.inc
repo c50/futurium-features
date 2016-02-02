@@ -199,5 +199,32 @@ function futurium_isa_user_default_permissions() {
     'module' => 'futurium_linkafter',
   );
 
+  // Exported permission: 'use text format full'.
+  $permissions['use text format full'] = array(
+    'name' => 'use text format full',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'filter',
+  );
+
+  // Exported permission: 'use text format simple_text'.
+  $permissions['use text format simple_text'] = array(
+    'name' => 'use text format simple_text',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'filter',
+  );
+
+  // Exported permission: 'use text format simple_wysiwig'.
+  $permissions['use text format simple_wysiwig'] = array(
+    'name' => 'use text format simple_wysiwig',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'filter',
+  );
+
   return $permissions;
 }

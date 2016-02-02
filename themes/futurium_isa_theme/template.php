@@ -124,11 +124,38 @@ function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
  * Adds classes to user account menu item.
  */
 function futurium_isa_theme_menu_link(array $variables) {
+
+  $class = str_replace(" ", "-", strtolower($variables['element']['#title']));
+
+  $variables['element']['#attributes']['class'][] = 'menu-item';
+  $variables['element']['#attributes']['class'][] = $class;
+
   if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
-    ($variables['element']['#original_link']['link_path'] == 'user' || $variables['element']['#original_link']['link_path'] == 'user/login')) {
-    $variables['element']['#localized_options']['attributes']['class'][] = "no-text";
-    $variables['element']['#localized_options']['attributes']['class'][] = "glyphicon";
-    $variables['element']['#localized_options']['attributes']['class'][] = "glyphicon-user";
+      $variables['element']['#original_link']['link_path'] == 'user') {
+
+    if (user_is_logged_in()) {
+      $variables['element']['#localized_options']['html'] = TRUE;
+      global $user;
+      $account = user_load($user->uid);
+
+      $pic = !empty($account->picture->uri) ? $account->picture->uri : variable_get('user_picture_default');
+      $user_pic = theme(
+        'image_style', array(
+          'style_name' => 'user_picture_small',
+          'path' => $pic,
+          'attributes' => array(
+            'class' => 'logged-in-user-pic',
+            'title' => t("@username's profile", array('@username' => format_username($account))),
+          ),
+        )
+      );
+      $variables['element']['#title'] = $user_pic;
+    }
+  }
+
+  if ($variables['element']['#original_link']['link_path'] == 'user/login') {
+    $variables['element']['#localized_options']['html'] = TRUE;
+    $variables['element']['#title'] = '<span class="glyphicon-user"></span> ' . t("Login");
   }
 
   if ($variables['element']['#original_link']['menu_name'] == 'menu-user-tabs' ||

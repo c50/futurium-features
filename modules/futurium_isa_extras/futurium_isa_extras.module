@@ -246,7 +246,7 @@ function futurium_isa_extras_block_view($delta = '') {
           $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
           $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
           $links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
-          $links['add-event'] = l('Add Event', 'node/add/evidence', $link_options);
+          $links['add-event'] = l('Add Event', 'node/add/event-d4eu', $link_options);
          break;
 
         case 'node/%/futures':
@@ -403,6 +403,14 @@ function futurium_isa_extras_field_extra_fields() {
     );
   }
 
+  // Join group link.
+  $extrafield_name = 'join_group';
+  $extra['node']['futurium_group']['display'][$extrafield_name] = array(
+    'label' => t("Join Group"),
+    'description' => t('Join group.'),
+    'weight' => 51,
+  );
+
   // Edit profile link.
   $extrafield_name = 'edit_group';
   $extra['node']['futurium_group']['display'][$extrafield_name] = array(
@@ -527,10 +535,7 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
       $link_options = array(
         'attributes' => array(
           'class' => array(
-            'flag',
-            'flag-action',
-            'flag-link-toggle',
-            'flag-processed',
+            'btn',
           ),
         ),
       );
@@ -540,6 +545,38 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     }
   }
 
+  // Edit group.
+  $extrafield_name = 'join_group';
+  if (isset($extrafields[$extrafield_name])
+      && isset($extrafields[$extrafield_name]['visible'])
+      && $extrafields[$extrafield_name]['visible']) {
+
+    global $user;
+    $account = user_load($user->uid);
+    if (og_user_access('node', $node->nid, 'edit group', $account)) {
+      $link_options = array(
+        'attributes' => array(
+          'class' => array(
+            'flag',
+            'flag-action',
+            'flag-link-toggle',
+            'flag-processed',
+          ),
+        ),
+      );
+
+      $node->content[$extrafield_name] = array(
+        '#markup' => l(t('Join'), 'group/node/' . $node->nid . '/subscribe/og_user_node', $link_options),
+      );
+    }
+  }
+
+}
+
+function futurium_isa_extras_preprocess_link(&$variables) {
+  if (strpos($variables['path'], 'group/node') === 0) {
+    $variables['options']['attributes']['class'][] = 'btn';
+  }
 }
 
 /**
@@ -806,11 +843,20 @@ function futurium_isa_extras_get_users_in_group($gid) {
   return $result;
 }
 
+function futurium_isa_extras_form_node_form_alter(&$form, &$form_state) {
+  $arg1 = arg(1);
+  if (isset($arg1) && $arg1 == 'add'){
+    $form['revision_information']['#access'] = FALSE;
+  }
+  else {
+    $form['revision_information']['log']['#access'] = FALSE;
+  }
+}
+
 /**
  * Implements hook_ckeditor_plugin().
  */
 function futurium_isa_extras_ckeditor_plugin() {
-  watchdog("CP", drupal_get_path('module', 'futurium_isa_extras') . '/plugins/ckeditor/confighelper/');
   return array(
     'confighelper' => array(
       'name' => 'confighelper',
