@@ -33,7 +33,6 @@ class futurium_isa_extras_filter_group_content_or_not extends views_handler_filt
   }
 
   function value_form(&$form, &$form_state) {
-    dsm($this);
 
     $form['value']['#tree'] = TRUE;
 
@@ -66,7 +65,7 @@ class futurium_isa_extras_filter_group_content_or_not extends views_handler_filt
 
     // Private / Public Group
 
-    if (isset($gids['node']) && isset($this->value) && $this->value == 1) {
+    if (isset($gids['node']) && isset($this->value['value']) && $this->value['value'] == 1) {
       $this->query->add_where(
         $this->options['group'],
         db_or()
@@ -74,7 +73,7 @@ class futurium_isa_extras_filter_group_content_or_not extends views_handler_filt
           ->condition($field, $gids['node'], 'IS NULL')
       );
     }
-    if (!isset($gids['node']) && isset($this->value) && $this->value == 1) {
+    if (!isset($gids['node']) && isset($this->value['value']) && $this->value['value'] == 1) {
       $this->query->add_where(
         $this->options['group'],
         db_or()

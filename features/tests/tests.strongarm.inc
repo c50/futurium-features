@@ -123,13 +123,6 @@ function tests_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'radioactivity_last_cron_timestamp';
-  $strongarm->value = 1453970410;
-  $export['radioactivity_last_cron_timestamp'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'radioactivity_temp_dir';
   $strongarm->value = '/tmp';
   $export['radioactivity_temp_dir'] = $strongarm;

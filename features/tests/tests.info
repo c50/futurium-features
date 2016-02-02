@@ -1,6 +1,6 @@
 name = Tests
 core = 7.x
-package = Features
+package = Futurium
 version = 7.x-1.0
 dependencies[] = chart
 dependencies[] = features
@@ -27,7 +27,6 @@ features[variable][] = radioactivity_config_warning
 features[variable][] = radioactivity_drupal_root
 features[variable][] = radioactivity_flood_protection
 features[variable][] = radioactivity_flood_timeout
-features[variable][] = radioactivity_last_cron_timestamp
 features[variable][] = radioactivity_temp_dir
 features[views_view][] = statistics
 features[views_view][] = statistics_users

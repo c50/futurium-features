@@ -40,12 +40,12 @@ function futurium_messages_default_message_type() {
     "message_text" : { "en" : [
         {
           "value" : "\\u003Cspan class=\\u0022activity-message new-comment\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Ecommented on\\u003C\\/em\\u003E \\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E",
-          "format" : "nowysiwig",
+          "format" : "full",
           "safe_value" : "\\u003Cspan class=\\u0022activity-message new-comment\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Ecommented on\\u003C\\/em\\u003E \\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E"
         },
         {
           "value" : "\\u003Cdiv class=\\u0022node-[message:field-node-ref:content-type:machine-name]\\u0022\\u003E\\u003Ch3\\u003E\\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-user-ref:name] commented on [message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E",
-          "format" : "nowysiwig",
+          "format" : "full",
           "safe_value" : "\\u003Cdiv class=\\u0022node-[message:field-node-ref:content-type:machine-name]\\u0022\\u003E\\u003Ch3\\u003E\\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-user-ref:name] commented on [message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/h3\\u003E\\u003C\\/div\\u003E"
         }
       ]
@@ -67,12 +67,12 @@ function futurium_messages_default_message_type() {
     "message_text" : { "en" : [
         {
           "value" : "\\u003Cspan class=\\u0022activity-message new-content\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Ecreated\\u003C\\/em\\u003E \\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E",
-          "format" : "nowysiwig",
+          "format" : "full",
           "safe_value" : "\\u003Cspan class=\\u0022activity-message new-content\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Ecreated\\u003C\\/em\\u003E \\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E"
         },
         {
           "value" : "\\u003Cdiv class=\\u0022node-[message:field-node-ref:content-type:machine-name]\\u0022\\u003E\\u003Ch3\\u003E\\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-user-ref:name] created [message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E",
-          "format" : "nowysiwig",
+          "format" : "full",
           "safe_value" : "\\u003Cdiv class=\\u0022node-[message:field-node-ref:content-type:machine-name]\\u0022\\u003E\\u003Ch3\\u003E\\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-user-ref:name] created [message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/h3\\u003E\\u003C\\/div\\u003E"
         }
       ]
@@ -94,12 +94,12 @@ function futurium_messages_default_message_type() {
     "message_text" : { "en" : [
         {
           "value" : "\\u003Cspan class=\\u0022activity-message attending\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Eis going to\\u003C\\/em\\u003E \\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E",
-          "format" : "nowysiwig",
+          "format" : "full",
           "safe_value" : "\\u003Cspan class=\\u0022activity-message attending\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Eis going to\\u003C\\/em\\u003E \\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E"
         },
         {
           "value" : "\\u003Cdiv class=\\u0022node-[message:field-node-ref:content-type:machine-name]\\u0022\\u003E\\u003Ch3\\u003E\\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-user-ref:name] is going to [message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E",
-          "format" : "nowysiwig",
+          "format" : "full",
           "safe_value" : "\\u003Cdiv class=\\u0022node-[message:field-node-ref:content-type:machine-name]\\u0022\\u003E\\u003Ch3\\u003E\\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-user-ref:name] is going to [message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/h3\\u003E\\u003C\\/div\\u003E"
         }
       ]
@@ -121,12 +121,12 @@ function futurium_messages_default_message_type() {
     "message_text" : { "en" : [
         {
           "value" : "\\u003Cspan class=\\u0022activity-message liked\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Eliked\\u003C\\/em\\u003E \\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E",
-          "format" : "nowysiwig",
+          "format" : "full",
           "safe_value" : "\\u003Cspan class=\\u0022activity-message liked\\u0022\\u003E[message:field-user-ref:name] \\u003Cem\\u003Eliked\\u003C\\/em\\u003E \\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E"
         },
         {
           "value" : "\\u003Cdiv class=\\u0022node-[message:field-node-ref:content-type:machine-name]\\u0022\\u003E\\u003Ch3\\u003E\\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-user-ref:name] liked [message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/span\\u003E",
-          "format" : "nowysiwig",
+          "format" : "full",
           "safe_value" : "\\u003Cdiv class=\\u0022node-[message:field-node-ref:content-type:machine-name]\\u0022\\u003E\\u003Ch3\\u003E\\u003Ca href=\\u0022[message:field-node-ref:url]\\u0022\\u003E[message:field-user-ref:name] liked [message:field-node-ref:title]\\u003C\\/a\\u003E\\u003C\\/h3\\u003E\\u003C\\/div\\u003E"
         }
       ]

@@ -45,4 +45,38 @@ function futurium_isa_extras_enable() {
   node_type_delete('editorial_team');
 
   drupal_flush_all_caches();
+
+  //futurium_isa_extras_delete_crap();
+
+}
+
+function futurium_isa_extras_delete_crap() {
+  // Array of content types.
+  $types = array('video_d4eu', 'article', 'document');
+  foreach ($types as $type) {
+    // Gather all the example content that might have been created while this
+    // module was enabled.  Simple selects still use db_query().
+    // api.drupal.org/api/function/db_query/7
+    $sql = 'SELECT nid FROM {node} n WHERE n.type = :type';
+    $result = db_query($sql, array(':type' => $type));
+    $nids = array();
+    foreach ($result as $row) {
+      $nids[] = $row->nid;
+    }
+    // Delete all the nodes at once
+    // api.drupal.org/api/function/node_delete_multiple/7
+    node_delete_multiple($nids);
+    // Loop over each of the fields defined by this module and delete
+    // all instances of the field, their data, and the field itself.
+    // api.drupal.org/api/function/field_delete_field/7
+    foreach (field_info_instances('node', $type) as $field_name => $field) {
+      field_delete_field($field_name);
+    }
+    // Delete our content type
+    // api.drupal.org/api/function/node_type_delete/7
+    node_type_delete($type);
+    // Purge all field information
+    // api.drupal.org/api/function/field_purge_batch/7
+    field_purge_batch(1000);
+  }
 }
