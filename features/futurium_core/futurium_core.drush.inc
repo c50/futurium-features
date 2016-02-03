@@ -117,6 +117,22 @@ function drush_futurium_core_revert_futurium_config() {
   // Disable not needed multisite modules
   module_disable(array('nexteuropa_multilingual', 'ecas', 'tmgmt'));
 
+  // Set default moderation state as published.
+  $node_types = node_type_get_types();
+  foreach($node_types as $node){
+    variable_set('workbench_moderation_default_state_' . $node->type, workbench_moderation_state_published());
+  }
+
+  // Stage comment-CT-related variables.
+  $service = multisite_config_service('system');
+  $service->setVariable('comment_article', COMMENT_NODE_CLOSED);
+  $service->setVariable('comment_document', COMMENT_NODE_CLOSED);
+
+  // Remove Latest Content block from homepage context.
+  $context = module_invoke('context', 'load', 'homepage');
+  unset($context->reactions['block']['blocks']['views-multisite_settings_core-block_1']);
+  module_invoke('context', 'save', $context);
+
   // Remove duplicate home button
   $links = menu_load_links('main-menu');
   foreach($links as $item) {

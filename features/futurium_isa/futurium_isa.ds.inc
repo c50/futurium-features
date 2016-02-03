@@ -136,7 +136,7 @@ function futurium_isa_ds_field_settings_info() {
         ),
       ),
     ),
-    'body' => array(
+    'field_event_description' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_minimal',
@@ -187,7 +187,7 @@ function futurium_isa_ds_field_settings_info() {
         ),
       ),
     ),
-    'body' => array(
+    'field_event_description' => array(
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_minimal',
@@ -454,7 +454,7 @@ function futurium_isa_ds_layout_settings_info() {
         2 => 'addressfield_city',
         3 => 'group_date_vote_comment',
         4 => 'attending',
-        5 => 'body',
+        5 => 'field_event_description',
         6 => 'group_buttons',
         7 => 'flag_attending',
       ),
@@ -465,7 +465,7 @@ function futurium_isa_ds_layout_settings_info() {
       'addressfield_city' => 'ds_content',
       'group_date_vote_comment' => 'ds_content',
       'attending' => 'ds_content',
-      'body' => 'ds_content',
+      'field_event_description' => 'ds_content',
       'group_buttons' => 'ds_content',
       'flag_attending' => 'ds_content',
     ),
@@ -496,10 +496,9 @@ function futurium_isa_ds_layout_settings_info() {
         2 => 'addressfield_city',
         3 => 'group_date_vote_comment',
         4 => 'attending',
-        5 => 'body',
+        5 => 'field_event_description',
         6 => 'group_buttons',
         7 => 'node_link',
-        8 => 'flag_attending',
       ),
     ),
     'fields' => array(
@@ -511,7 +510,6 @@ function futurium_isa_ds_layout_settings_info() {
       'body' => 'ds_content',
       'group_buttons' => 'ds_content',
       'node_link' => 'ds_content',
-      'flag_attending' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

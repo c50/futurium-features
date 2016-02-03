@@ -562,7 +562,7 @@ function futurium_groups_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 20,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
@@ -570,8 +570,8 @@ function futurium_groups_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-futurium_group-field_leading_picture_d4eu'.
-  $field_instances['node-futurium_group-field_leading_picture_d4eu'] = array(
+  // Exported field_instance: 'node-futurium_group-group_picture
+  $field_instances['node-futurium_group-field_group_picture'] = array(
     'bundle' => 'futurium_group',
     'deleted' => 0,
     'description' => '',
