@@ -1877,9 +1877,7 @@ function _supertags_tag_context() {
  */
 function supertags_node_access($node, $op, $account) {
   // DAE-1361: block node creation/update on nodes for which the default flavor is archived.
-
-  // No active for the frontpage.
-  if(!drupal_is_front_page()) {
+  if(is_object($node)) {
     // Return node field_default_flavor.`
     $node_default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
 
