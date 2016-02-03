@@ -1877,17 +1877,25 @@ function _supertags_tag_context() {
  */
 function supertags_node_access($node, $op, $account) {
   // DAE-1361: block node creation/update on nodes for which the default flavor is archived.
-  if(is_object($node)) {
+  if (is_string($node)) {
+    $q = arg(0);
+    $term = _supertags_get_term_by_path($q);
+    dsm(get_defined_vars());
+    if ($term->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
+      return NODE_ACCESS_DENY;
+    }
+    return NODE_ACCESS_IGNORE;
+  }
+  if (is_object($node)) {
     // Return node field_default_flavor.`
     $node_default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
 
     if ($node_default_flavor = taxonomy_term_load($node_default_flavor)) {
       $default_archived = $node_default_flavor->field_flavor_archived[LANGUAGE_NONE][0]['value'];
     }
-
     // Disallow create an update access for on a node for which the default flavor is archived.
     if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($default_archived == 1)) {
-      return NODE_ACCESS_DENY;
+    return NODE_ACCESS_DENY;
     }
   }
 }
