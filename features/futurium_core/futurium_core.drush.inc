@@ -123,10 +123,12 @@ function drush_futurium_core_revert_futurium_config() {
   */
 
   // Changing Media Gallery Content type to Photo Gallery
+  /*
   $type = node_type_load('article');
   $type->name = "Post";
   $type->modified = TRUE;
   node_type_save($type);
+  */
 
   // Set default moderation state as published.
   $node_types = node_type_get_types();
@@ -155,7 +157,7 @@ function drush_futurium_core_revert_futurium_config() {
   }
 
   // Disable not needed multisite modules
-  module_disable(array('nexteuropa_multilingual', 'ecas'));
+  module_disable(array('nexteuropa_multilingual', 'ecas', 'tmgmt'));
 
   //Temporary, Publishes unpublished library items.
   $type = "document";

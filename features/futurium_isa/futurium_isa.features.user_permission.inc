@@ -68,7 +68,7 @@ function futurium_isa_user_default_permissions() {
   $permissions['edit any evidence content'] = array(
     'name' => 'edit any evidence content',
     'roles' => array(
-      'authenticated user' => 'authenticated user',
+      'administrator' => 'administrator',
     ),
     'module' => 'node',
   );

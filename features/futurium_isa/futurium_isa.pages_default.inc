@@ -4584,7 +4584,7 @@ function futurium_isa_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Add Idea Link',
       'title' => '',
-      'body' => '<a class="btn" href="node/add/ideas">Add an idea</a>',
+      'body' => '<a class="btn" href="node/add/ideas">Add an Idea</a>',
       'format' => 'simple_wysiwig',
       'substitute' => TRUE,
     );

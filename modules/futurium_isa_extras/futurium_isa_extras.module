@@ -851,6 +851,11 @@ function futurium_isa_extras_form_node_form_alter(&$form, &$form_state) {
   else {
     $form['revision_information']['log']['#access'] = FALSE;
   }
+
+  if (!isset($_GET['og_group_ref'])) {
+    $form['group_content_access']['#access'] = FALSE;
+  }
+
 }
 
 /**
