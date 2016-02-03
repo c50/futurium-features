@@ -106,6 +106,11 @@ function drush_futurium_core_post_install_futurium() {
   }
   user_save($user);
 
+  // Remove Latest Content block from homepage context.
+  $context = module_invoke('context', 'load', 'homepage');
+  unset($context->reactions['block']['blocks']['views-multisite_settings_core-block_1']);
+  module_invoke('context', 'save', $context);
+
   drush_print(dt('Futurium Post-Install operations performed.'));
 }
 
@@ -124,14 +129,9 @@ function drush_futurium_core_revert_futurium_config() {
   }
 
   // Stage comment-CT-related variables.
-  $service = multisite_config_service('system');
-  $service->setVariable('comment_article', COMMENT_NODE_CLOSED);
-  $service->setVariable('comment_document', COMMENT_NODE_CLOSED);
-
-  // Remove Latest Content block from homepage context.
-  $context = module_invoke('context', 'load', 'homepage');
-  unset($context->reactions['block']['blocks']['views-multisite_settings_core-block_1']);
-  module_invoke('context', 'save', $context);
+  // $service = multisite_config_service('system');
+  // $service->setVariable('comment_article', COMMENT_NODE_CLOSED);
+  // $service->setVariable('comment_document', COMMENT_NODE_CLOSED);
 
   // Remove duplicate home button
   $links = menu_load_links('main-menu');
