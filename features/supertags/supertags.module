@@ -1881,7 +1881,7 @@ function supertags_node_access($node, $op, $account) {
     $q = arg(0);
     $term = _supertags_get_term_by_path($q);
 
-    if ($term->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
+    if (is_object($term) && $term->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
       return NODE_ACCESS_DENY;
     }
     return NODE_ACCESS_IGNORE;
