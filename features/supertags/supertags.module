@@ -1319,16 +1319,8 @@ function _supertags_ctas_block_content() {
       ),
     );
     // DAE-1361: Cancel CTA box to join/register if the flavor is archived.
-    switch($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value']) {
-
-      case 0:
-        return $markup = l('<span>Join here</span><span>to take part</span>', 'user/register', $l_options);
-
-      default:
-        return $markup = '';
-
-        break;
-
+    if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0) {
+      $markup = l('<span>Join here</span><span>to take part</span>', 'user/register', $l_options);
     }
 
   }
@@ -1354,16 +1346,8 @@ function _supertags_ctas_block_content() {
         $label = strtolower($label);
 
         // DAE-1361: Cancel CTA box to add content if the flavor is archived.
-        switch($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value']) {
-
-          case 0:
-            return $markup = l('<span>Add</span><span>' . $label . '</span>', $path, $l_options);
-
-          default:
-            return $markup = '';
-
-          break;
-
+        if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0) {
+          $markup = l('<span>Add</span><span>' . $label . '</span>', $path, $l_options);
         }
       }
     }
@@ -1423,7 +1407,7 @@ function _supertags_block_content() {
 
     }
   }
-  if (isset($flavor_term)) {  
+  if (isset($flavor_term)) {
     $form = drupal_get_form('supertags_search_form', $flavor_term);
     $markup .= render($form);
   }
@@ -1896,16 +1880,10 @@ function _supertags_tag_context() {
 }
 
 /**
- * Implements hook_node_access.
- *
- * @param $node
- * @param $op
- * @param $account
- *
- * @return bool
+ * Implements hook_node_access().
  */
 function supertags_node_access($node, $op, $account) {
-  // DAE-1361: block node creation/update on nodes for which the default flavor is archived.
+  // DAE-1361: block creation/update on nodes if archived flavor.
   if (is_string($node)) {
     $q = arg(0);
     $term = _supertags_get_term_by_path($q);
@@ -1922,9 +1900,9 @@ function supertags_node_access($node, $op, $account) {
     if ($node_default_flavor = taxonomy_term_load($node_default_flavor)) {
       $default_archived = $node_default_flavor->field_flavor_archived[LANGUAGE_NONE][0]['value'];
     }
-    // Disallow create an update access for on a node for which the default flavor is archived.
+    // Disallow create/update access if default flavor is archived.
     if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($default_archived == 1)) {
-    return NODE_ACCESS_DENY;
+      return NODE_ACCESS_DENY;
     }
   }
 }
