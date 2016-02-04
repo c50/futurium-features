@@ -1880,7 +1880,7 @@ function supertags_node_access($node, $op, $account) {
   if (is_string($node)) {
     $q = arg(0);
     $term = _supertags_get_term_by_path($q);
-    dsm(get_defined_vars());
+
     if ($term->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
       return NODE_ACCESS_DENY;
     }
