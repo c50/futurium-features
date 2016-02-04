@@ -108,19 +108,20 @@
 }
 
 /*
+
 .node-type-futurium-group .bootstrap-twocol-tower > .container-fullwidth.row2,
 .node-type-futurium-group .bootstrap-threecol-tower > .container-fullwidth.row2,
 .page-user .container-fullwidth.row2 {
   padding-top: 0;
   padding-top: 0;
 }
-
 .node-type-futurium-group .bootstrap-twocol-tower > .container-fullwidth.row2,
 .node-type-futurium-group .bootstrap-threecol-tower > .container-fullwidth.row2,
 .page-user .container-fullwidth.row2 {
   background: url(http://futurium_isa.dev.europa.eu/sites/all/themes/futurium_isa_theme/assets/img/bg-user-menu.gif) left top;
   background-repeat: repeat-x;
 }
+
 */
 
 .view-messages.view-display-id-block_2 .node h3 {
@@ -132,6 +133,9 @@
 .node-type-futurium-group .container-fullwidth.row2,
 .node-type-futurium-group:not(.page-node-edit) .container-fullwidth.row2,
 .page-user:not(.page-user-edit) .container-fullwidth.row2 {
+
+.page-user:not(.page-user-edit) .container-fullwidth.row2,
+.node-type-futurium-group:not(.page-node-edit):not(.page-node-add) .container-fullwidth.row2 {
   height: 50px;
 }
 
