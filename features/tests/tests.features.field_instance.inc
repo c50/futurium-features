@@ -46,6 +46,7 @@ function tests_field_default_field_instances() {
     'label' => 'Activity Index',
     'required' => FALSE,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'history' => 0,
       'history_limit' => 8,
       'profile' => 'user_decay',

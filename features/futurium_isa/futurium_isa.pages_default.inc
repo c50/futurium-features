@@ -3909,18 +3909,7 @@ function futurium_isa_default_page_manager_pages() {
     'type' => 'none',
     'settings' => NULL,
   );
-  $page->menu = array(
-    'type' => 'normal',
-    'title' => 'Home',
-    'name' => 'main-menu',
-    'weight' => '-1',
-    'parent' => array(
-      'type' => 'none',
-      'title' => '',
-      'name' => 'navigation',
-      'weight' => '0',
-    ),
-  );
+  $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
     'admin_paths' => FALSE,
@@ -4013,8 +4002,36 @@ function futurium_isa_default_page_manager_pages() {
         'css_id' => '',
         'css_class' => '',
         'column' => array(
-          'xs' => '3',
-          'sm' => '3',
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '6',
+          'lg' => '6',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '3',
+          'lg' => '3',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
+      'row2c' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
           'md' => '3',
           'lg' => '3',
         ),
@@ -4033,44 +4050,16 @@ function futurium_isa_default_page_manager_pages() {
         'pull' => array(
           'xs' => '0',
           'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-      ),
-      'row2c' => array(
-        'css_id' => '',
-        'css_class' => '',
-        'column' => array(
-          'xs' => '6',
-          'sm' => '6',
           'md' => '6',
           'lg' => '6',
-        ),
-        'offset' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'push' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
-        ),
-        'pull' => array(
-          'xs' => '0',
-          'sm' => '0',
-          'md' => '0',
-          'lg' => '0',
         ),
       ),
       'row2r' => array(
         'css_id' => '',
         'css_class' => '',
         'column' => array(
-          'xs' => '3',
-          'sm' => '3',
+          'xs' => '12',
+          'sm' => '12',
           'md' => '3',
           'lg' => '3',
         ),
@@ -4123,40 +4112,6 @@ function futurium_isa_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-d1c09831-147b-4e02-8691-2ee50dcabd60';
-    $pane->panel = 'row1l';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Banner Image',
-      'title' => '',
-      'body' => '<div class="slide-image-wrapper">
-            <img src="http://www.opentaxconsultancy.co.uk/img/banner.jpg">
-
-            <div class="shadow-content">
-              <h1>Some random idea</h1>
-              <div class="more-link"><a href="#">Learn more</a></div>
-            </div>
-            <div class="shadow">
-            </div>
-          </div>',
-      'format' => 'simple_wysiwig',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'd1c09831-147b-4e02-8691-2ee50dcabd60';
-    $display->content['new-d1c09831-147b-4e02-8691-2ee50dcabd60'] = $pane;
-    $display->panels['row1l'][0] = 'new-d1c09831-147b-4e02-8691-2ee50dcabd60';
-    $pane = new stdClass();
     $pane->pid = 'new-7f2447a0-9a1e-4d5c-b20f-43f0f8da7f78';
     $pane->panel = 'row1l';
     $pane->type = 'views';
@@ -4186,49 +4141,14 @@ function futurium_isa_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '7f2447a0-9a1e-4d5c-b20f-43f0f8da7f78';
     $display->content['new-7f2447a0-9a1e-4d5c-b20f-43f0f8da7f78'] = $pane;
-    $display->panels['row1l'][1] = 'new-7f2447a0-9a1e-4d5c-b20f-43f0f8da7f78';
-    $pane = new stdClass();
-    $pane->pid = 'new-b7f8fe00-3b1f-443b-b634-c432fd0b6319';
-    $pane->panel = 'row2c';
-    $pane->type = 'views';
-    $pane->subtype = 'homepage';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '5',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block',
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'b7f8fe00-3b1f-443b-b634-c432fd0b6319';
-    $display->content['new-b7f8fe00-3b1f-443b-b634-c432fd0b6319'] = $pane;
-    $display->panels['row2c'][0] = 'new-b7f8fe00-3b1f-443b-b634-c432fd0b6319';
+    $display->panels['row1l'][0] = 'new-7f2447a0-9a1e-4d5c-b20f-43f0f8da7f78';
     $pane = new stdClass();
     $pane->pid = 'new-67a14805-8e21-485e-aaeb-464180c75f9f';
-    $pane->panel = 'row2l';
+    $pane->panel = 'row2c';
     $pane->type = 'views';
     $pane->subtype = 'futures';
     $pane->shown = TRUE;
@@ -4260,10 +4180,10 @@ function futurium_isa_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = '67a14805-8e21-485e-aaeb-464180c75f9f';
     $display->content['new-67a14805-8e21-485e-aaeb-464180c75f9f'] = $pane;
-    $display->panels['row2l'][0] = 'new-67a14805-8e21-485e-aaeb-464180c75f9f';
+    $display->panels['row2c'][0] = 'new-67a14805-8e21-485e-aaeb-464180c75f9f';
     $pane = new stdClass();
     $pane->pid = 'new-eb571c94-187d-4641-be18-43bfd228cb1f';
-    $pane->panel = 'row2l';
+    $pane->panel = 'row2c';
     $pane->type = 'views';
     $pane->subtype = 'ideas';
     $pane->shown = TRUE;
@@ -4295,7 +4215,42 @@ function futurium_isa_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = 'eb571c94-187d-4641-be18-43bfd228cb1f';
     $display->content['new-eb571c94-187d-4641-be18-43bfd228cb1f'] = $pane;
-    $display->panels['row2l'][1] = 'new-eb571c94-187d-4641-be18-43bfd228cb1f';
+    $display->panels['row2c'][1] = 'new-eb571c94-187d-4641-be18-43bfd228cb1f';
+    $pane = new stdClass();
+    $pane->pid = 'new-b7f8fe00-3b1f-443b-b634-c432fd0b6319';
+    $pane->panel = 'row2l';
+    $pane->type = 'views';
+    $pane->subtype = 'homepage';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '5',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block',
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b7f8fe00-3b1f-443b-b634-c432fd0b6319';
+    $display->content['new-b7f8fe00-3b1f-443b-b634-c432fd0b6319'] = $pane;
+    $display->panels['row2l'][0] = 'new-b7f8fe00-3b1f-443b-b634-c432fd0b6319';
     $pane = new stdClass();
     $pane->pid = 'new-23afba6b-bbb3-4126-9bd8-003e4b5952ce';
     $pane->panel = 'row2r';
