@@ -1307,7 +1307,6 @@ function _supertags_ctas_block_content() {
   global $user;
 
   $context = _supertags_get_context();
-  dsm($context);
   if (isset($context['flavor']['tid'])) {
     $enabled_content_types = _supertags_content_type_mapping($context['flavor']['tid']);
   }
@@ -1342,7 +1341,19 @@ function _supertags_ctas_block_content() {
         }
         $label = strtolower($label);
 
-        $markup = l('<span>Add</span><span>' . $label . '</span>', $path, $l_options);
+        switch($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value']) {
+
+          case 0:
+            return $markup = l('<span>Add</span><span>' . $label . '</span>', $path, $l_options);
+
+          case 1:
+            return $markup = '';
+
+          default:
+            return $markup = '';
+          break;
+
+        }
       }
     }
   }
