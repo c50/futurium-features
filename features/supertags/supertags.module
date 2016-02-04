@@ -1307,8 +1307,10 @@ function _supertags_ctas_block_content() {
   global $user;
 
   $context = _supertags_get_context();
-  $enabled_content_types = _supertags_content_type_mapping($context['flavor']['tid']);
-
+  dsm($context);
+  if (isset($context['flavor']['tid'])) {
+    $enabled_content_types = _supertags_content_type_mapping($context['flavor']['tid']);
+  }
   if ($user->uid == 0) {
     $l_options = array(
       'html' => TRUE,
@@ -1355,7 +1357,10 @@ function _supertags_ctas_block_content() {
  */
 function _supertags_block_content() {
   $flavor_context = _supertags_flavor_context();
-  $flavor_term = $flavor_context['term'];
+
+  if (isset($flavor_context['term'])) {
+    $flavor_term = $flavor_context['term'];
+  }
 
   $markup = "";
 
@@ -1396,8 +1401,10 @@ function _supertags_block_content() {
 
     }
   }
-  $form = drupal_get_form('supertags_search_form', $flavor_term);
-  $markup .= render($form);
+  if (isset($flavor_term)) {  
+    $form = drupal_get_form('supertags_search_form', $flavor_term);
+    $markup .= render($form);
+  }
 
   return $markup;
 }
