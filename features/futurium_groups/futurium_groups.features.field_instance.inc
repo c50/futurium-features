@@ -474,7 +474,7 @@ function futurium_groups_field_default_field_instances() {
   );
 
   // Exported field_instance: 'node-futurium_group-group_picture
-  $field_instances['node-futurium_group-field_group_picture'] = array(
+  $field_instances['node-futurium_group-field_leading_picture_d4eu'] = array(
     'bundle' => 'futurium_group',
     'deleted' => 0,
     'description' => '',

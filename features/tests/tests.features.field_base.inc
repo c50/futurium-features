@@ -24,7 +24,9 @@ function tests_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'radioactivity',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'radioactivity',
   );

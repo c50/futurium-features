@@ -131,6 +131,12 @@ function futurium_isa_theme_menu_link(array $variables) {
   $variables['element']['#attributes']['class'][] = $class;
 
   if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
+      $variables['element']['#original_link']['link_path'] == 'analytics') {
+    $variables['element']['#localized_options']['html'] = TRUE;
+    $variables['element']['#title'] = '<span class="glyphicons-signal"></span> ' . t("Stats");
+  }
+
+  if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
       $variables['element']['#original_link']['link_path'] == 'user') {
 
     if (user_is_logged_in()) {

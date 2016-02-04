@@ -321,26 +321,6 @@ function tests_views_default_views() {
   $handler->display->display_options['filters']['timestamp']['operator'] = '>=';
   $handler->display->display_options['filters']['timestamp']['value']['value'] = '-1 month';
   $handler->display->display_options['filters']['timestamp']['value']['type'] = 'offset';
-  $translatables['statistics'] = array(
-    t('Master'),
-    t('Statistics'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('No results for the selected period.'),
-    t('Votes'),
-    t('.'),
-    t('('),
-    t(')'),
-    t('Most Commented Futures'),
-    t('Most Voted Futures'),
-    t('Vote results'),
-    t('Most Commented Ideas'),
-    t('Most Voted Ideas'),
-  );
   $export['statistics'] = $view;
 
   $view = new view();
@@ -403,17 +383,6 @@ function tests_views_default_views() {
   $handler = $view->new_display('block', 'Most Active Users', 'block');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Most Active Users';
-  $translatables['statistics_users'] = array(
-    t('Master'),
-    t('Statistics'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Most Active Users'),
-  );
   $export['statistics_users'] = $view;
 
   return $export;

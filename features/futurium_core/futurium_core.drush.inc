@@ -95,6 +95,14 @@ function drush_futurium_core_features_revert_futurium() {
  */
 function drush_futurium_core_post_install_futurium() {
 
+  // Disable not needed multisite modules
+  module_disable(array('nexteuropa_multilingual', 'ecas', 'tmgmt', 'cce_basic_config', 'taxonomy_browser', 'multisite_settings_standard', 'nexteuropa_core'));
+
+  // Remove Latest Content block from homepage context.
+  $context = module_invoke('context', 'load', 'homepage');
+  unset($context->reactions['block']['blocks']['views-multisite_settings_core-block_1']);
+  module_invoke('context', 'save', $context);
+
   // Add editor role to user_editor.
   $user = user_load_by_name('user_editor');
   $role = user_role_load_by_name("editor");
@@ -106,6 +114,8 @@ function drush_futurium_core_post_install_futurium() {
   }
   user_save($user);
 
+  variable_set('site_homepage', 'home');
+
   drush_print(dt('Futurium Post-Install operations performed.'));
 }
 
@@ -114,20 +124,6 @@ function drush_futurium_core_post_install_futurium() {
  */
 function drush_futurium_core_revert_futurium_config() {
 
-  // Changing Event_d4eu content type to Event
-  /*
-  $type = node_type_load('event_d4eu');
-  $type->name = "event";
-  $type->modified = TRUE;
-  node_type_save($type);
-  */
-
-  // Changing Media Gallery Content type to Photo Gallery
-  $type = node_type_load('article');
-  $type->name = "Post";
-  $type->modified = TRUE;
-  node_type_save($type);
-
   // Set default moderation state as published.
   $node_types = node_type_get_types();
   foreach($node_types as $node){
@@ -135,27 +131,9 @@ function drush_futurium_core_revert_futurium_config() {
   }
 
   // Stage comment-CT-related variables.
-  $service = multisite_config_service('system');
-  $service->setVariable('comment_article', COMMENT_NODE_CLOSED);
-  $service->setVariable('comment_document', COMMENT_NODE_CLOSED);
-
-  // Remove Latest Content block from homepage context.
-  $context = module_invoke('context', 'load', 'homepage');
-  unset($context->reactions['block']['blocks']['views-multisite_settings_core-block_1']);
-  module_invoke('context', 'save', $context);
-
-  $links = menu_load_links('main-menu');
-  foreach($links as $item) {
-    if ($item['link_path'] == '<front>') {
-      $item['hidden'] = 1;
-      menu_link_save($item);
-      menu_cache_clear('main-menu');
-      break;
-    }
-  }
-
-  // Disable not needed multisite modules
-  module_disable(array('nexteuropa_multilingual', 'ecas'));
+  //$service = multisite_config_service('system');
+  //$service->setVariable('comment_article', COMMENT_NODE_CLOSED);
+  //$service->setVariable('comment_document', COMMENT_NODE_CLOSED);
 
   //Temporary, Publishes unpublished library items.
   $type = "document";
