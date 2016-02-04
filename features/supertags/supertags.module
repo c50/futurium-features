@@ -1318,7 +1318,19 @@ function _supertags_ctas_block_content() {
         'rel' => 'nofollow',
       ),
     );
-    $markup = l('<span>Join here</span><span>to take part</span>', 'user/register', $l_options);
+    // DAE-1361: Cancel CTA box to join/register if the flavor is archived.
+    switch($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value']) {
+
+      case 0:
+        return $markup = l('<span>Join here</span><span>to take part</span>', 'user/register', $l_options);
+
+      default:
+        return $markup = '';
+
+        break;
+
+    }
+
   }
   else {
     if (isset($context['content_type']) &&
