@@ -1341,16 +1341,15 @@ function _supertags_ctas_block_content() {
         }
         $label = strtolower($label);
 
+        // DAE-1361: Cancel CTA box to add content if the flavor is archived.
         switch($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value']) {
 
           case 0:
             return $markup = l('<span>Add</span><span>' . $label . '</span>', $path, $l_options);
 
-          case 1:
-            return $markup = '';
-
           default:
             return $markup = '';
+
           break;
 
         }
