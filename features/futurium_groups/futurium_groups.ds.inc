@@ -261,6 +261,7 @@ function futurium_groups_ds_layout_settings_info() {
         6 => 'field_group_description',
         7 => 'group_buttons',
         8 => 'edit_group',
+        9 => 'join_group',
       ),
     ),
     'fields' => array(
@@ -273,6 +274,7 @@ function futurium_groups_ds_layout_settings_info() {
       'field_group_description' => 'ds_content',
       'group_buttons' => 'ds_content',
       'edit_group' => 'ds_content',
+      'join_group' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(

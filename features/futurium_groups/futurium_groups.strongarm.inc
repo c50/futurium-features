@@ -22,30 +22,6 @@ function futurium_groups_strongarm() {
       'node_header' => array(
         'custom_settings' => TRUE,
       ),
-      'full' => array(
-        'custom_settings' => FALSE,
-      ),
-      'rss' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_index' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_result' => array(
-        'custom_settings' => FALSE,
-      ),
-      'diff_standard' => array(
-        'custom_settings' => FALSE,
-      ),
-      'print' => array(
-        'custom_settings' => FALSE,
-      ),
-      'token' => array(
-        'custom_settings' => FALSE,
-      ),
-      'revision' => array(
-        'custom_settings' => FALSE,
-      ),
       'teaser_w_pic' => array(
         'custom_settings' => TRUE,
       ),
@@ -90,6 +66,12 @@ function futurium_groups_strongarm() {
           'teaser_w_pic' => array(
             'weight' => '11',
             'visible' => FALSE,
+          ),
+        ),
+        'join_group' => array(
+          'node_header' => array(
+            'weight' => '53',
+            'visible' => TRUE,
           ),
         ),
       ),
