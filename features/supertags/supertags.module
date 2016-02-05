@@ -1915,10 +1915,12 @@ function supertags_page_alter(&$page) {
   $context = _supertags_get_context();
   $mark_archived = '<span class=\'showArchived\'>' . t('Archived') . '</span>';
 
-  if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
+  if (isset($context['flavor']['term']) {
+    if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
     $page['identity'] = array(
       '#markup' => $mark_archived,
     );
+    }
   }
 }
 
