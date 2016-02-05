@@ -357,7 +357,11 @@ row|Bootstrap Row
       ),
     ),
     'extra_fields' => array(
-      'form' => array(),
+      'form' => array(
+        'path' => array(
+          'weight' => 6,
+        ),
+      ),
       'display' => array(
         'flag_like' => array(
           'default' => array(

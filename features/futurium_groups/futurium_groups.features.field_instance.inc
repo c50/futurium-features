@@ -103,7 +103,7 @@ function futurium_groups_field_default_field_instances() {
       'module' => 'og',
       'settings' => array(),
       'type' => 'og_complex',
-      'weight' => 31,
+      'weight' => 7,
     ),
   );
 
