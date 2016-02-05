@@ -239,7 +239,7 @@ function futurium_isa_extras_block_view($delta = '') {
           break;
 
         case 'user/%/events':
-          $links['add-event'] = l('Add Event', 'node/add/evidence');
+          $links['add-event'] = l('Add Event', 'node/add/event-d4eu');
           break;
 
         case 'node/%':
