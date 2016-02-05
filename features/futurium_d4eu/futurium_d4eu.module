@@ -319,7 +319,7 @@ function futurium_d4eu_preprocess_node(&$vars) {
 function futurium_d4eu_preprocess_comment(&$vars) {
   // DAE-1361: Disallow comment reply on comment is context flavor is active.
   $context = _supertags_get_context();
-  dsm($context);
+
   if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
     unset($vars['content']['links']['comment']['#links']['comment-reply']);
   }
