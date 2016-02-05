@@ -1319,7 +1319,7 @@ function _supertags_ctas_block_content() {
       ),
     );
     // DAE-1361: Cancel CTA box to join/register if the flavor is archived.
-    if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0) {
+    if (isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0) {
       $markup = l('<span>Join here</span><span>to take part</span>', 'user/register', $l_options);
     }
 
