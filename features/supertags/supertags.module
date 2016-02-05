@@ -1908,6 +1908,21 @@ function supertags_node_access($node, $op, $account) {
 }
 
 /**
+ * Implements hook_page_alter().
+ */
+function supertags_page_alter(&$page) {
+  // Add markup to the identity region to stamp archived flavors.
+  $context = _supertags_get_context();
+  $mark_archived = '<span class=\'showArchived\'>' . t('Archived') . '</span>';
+
+  if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
+    $page['identity'] = array(
+      '#markup' => $mark_archived,
+    );
+  }
+}
+
+/**
  * Returns an array with supertags info on node.
  *
  * @param object $node
