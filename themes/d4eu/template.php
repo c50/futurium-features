@@ -256,7 +256,7 @@ function d4eu_preprocess_node(&$vars) {
   if ($node->comment == COMMENT_NODE_OPEN) {
     $context = _supertags_get_context();
 
-    if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0) {
+    if ((isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0)) {
       unset($vars['content']['links']['comment']['#links']['comment-reply']);
 
       $vars['open_to_comments'] = TRUE;
