@@ -44,10 +44,11 @@
     h2:before {
       @include fa(lightbulb-o);
     }
-    .views-field-count {
-      color: $mid-grey;
-    } 
   }
+
+  .views-field-count {
+    color: $mid-grey;
+  } 
 
   .pane-messages {
     @include blockhp($group-color); 
@@ -87,7 +88,8 @@
     }
   }
 
-  div.view div.node-teaser {
-    padding: 0;
+  .sidebar-right .panel-pane {
+    border: none;
   }
+
 }

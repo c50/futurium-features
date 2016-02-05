@@ -10,8 +10,8 @@
 function futurium_isa_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-event_d4eu-body'.
-  $field_instances['node-event_d4eu-body'] = array(
+  // Exported field_instance: 'node-event_d4eu-field_event_description'.
+  $field_instances['node-event_d4eu-field_event_description'] = array(
     'bundle' => 'event_d4eu',
     'default_value' => NULL,
     'deleted' => 0,
@@ -23,12 +23,6 @@ function futurium_isa_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 0,
-      ),
-      'mini_teaser' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
       ),
       'node_header' => array(
         'label' => 'hidden',
@@ -70,23 +64,35 @@ function futurium_isa_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
+    'field_name' => 'field_event_description',
+    'label' => 'Event Description',
     'required' => FALSE,
     'settings' => array(
-      'display_summary' => TRUE,
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'simple_wysiwig' => 'simple_wysiwig',
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'simple_wysiwig' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
       'entity_translation_sync' => FALSE,
       'text_processing' => 1,
-      'user_field_privacy' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
-        'summary_rows' => 5,
       ),
-      'type' => 'text_textarea_with_summary',
+      'type' => 'text_textarea',
       'weight' => 2,
     ),
   );
@@ -106,18 +112,6 @@ function futurium_isa_field_default_field_instances() {
         ),
         'type' => 'geofield_wkt',
         'weight' => 3,
-      ),
-      'groups_full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'groups_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'node_header' => array(
         'label' => 'above',
@@ -184,20 +178,6 @@ function futurium_isa_field_default_field_instances() {
         ),
         'type' => 'date_default',
         'weight' => 2,
-      ),
-      'mini_teaser' => array(
-        'label' => 'hidden',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 0,
       ),
       'node_header' => array(
         'label' => 'hidden',
@@ -276,18 +256,6 @@ function futurium_isa_field_default_field_instances() {
         'type' => 'addressfield_default',
         'weight' => 2,
       ),
-      'groups_full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'groups_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'node_header' => array(
         'label' => 'above',
         'settings' => array(),
@@ -331,14 +299,72 @@ function futurium_isa_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-ideas-field_feasibility_description'.
+  $field_instances['node-ideas-field_feasibility_description'] = array(
+    'bundle' => 'ideas',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 9,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_feasibility_description',
+    'label' => 'Feasibility description',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'simple_wysiwig' => 'simple_wysiwig',
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'simple_wysiwig' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-ideas-field_ideas'.
   $field_instances['node-ideas-field_ideas'] = array(
     'bundle' => 'ideas',
-    'default_value' => array(
-      0 => array(
-        'value' => '<h2>Your experience</h2><p>What would you like to share?</p><h2>Your ideas</h2><p>How would you improve your experience?</p>',
-      ),
-    ),
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Your ideas and experience.',
     'display' => array(
@@ -396,38 +422,88 @@ function futurium_isa_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_ideas',
-    'label' => 'Ideas and experience',
+    'label' => 'Summary',
     'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
+          'simple_wysiwig' => 'simple_wysiwig',
         ),
         'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
-            'basic_html' => array(
-              'weight' => 5,
-            ),
-            'filtered_html' => array(
-              'weight' => -9,
-            ),
-            'full_html' => array(
-              'weight' => -10,
-            ),
-            'plain_text' => array(
+            'simple_wysiwig' => array(
               'weight' => -8,
             ),
           ),
         ),
       ),
       'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 10,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-ideas-field_impact_description'.
+  $field_instances['node-ideas-field_impact_description'] = array(
+    'bundle' => 'ideas',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_impact_description',
+    'label' => 'Impact description',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'simple_wysiwig' => 'simple_wysiwig',
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'simple_wysiwig' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -437,93 +513,6 @@ function futurium_isa_field_default_field_instances() {
         'rows' => 20,
       ),
       'type' => 'text_textarea',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-ideas-field_leading_picture_d4eu'.
-  $field_instances['node-ideas-field_leading_picture_d4eu'] = array(
-    'bundle' => 'ideas',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
-        'weight' => 1,
-      ),
-      'mini_teaser' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-      'node_header' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_leading_picture_d4eu',
-    'label' => 'Leading picture',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'entity_translation_sync' => FALSE,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
-          'avportal' => 0,
-          'dailymotion' => 0,
-          'flickr' => 0,
-          'node' => 0,
-          'private' => 'private',
-          'public' => 'public',
-          'vimeo' => 0,
-          'youtube' => 0,
-        ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'document' => 0,
-          'image' => 'image',
-          'video' => 0,
-        ),
-        'browser_plugins' => array(
-          'elibrary_browser_tab--media_browser_1' => 0,
-          'media_default--media_browser_1' => 0,
-          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
-          'media_internet' => 'media_internet',
-          'upload' => 'upload',
-          'youtube' => 0,
-        ),
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'media_generic',
       'weight' => 2,
     ),
   );
@@ -609,31 +598,13 @@ function futurium_isa_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'nowysiwig' => 'nowysiwig',
+          'simple_wysiwig' => 'simple_wysiwig',
         ),
         'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
-            'basic_html' => array(
-              'weight' => 5,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => -9,
-            ),
-            'full_html' => array(
-              'weight' => -10,
-            ),
-            'nowysiwig' => array(
-              'weight' => 0,
-            ),
-            'plain_text' => array(
-              'weight' => -8,
-            ),
-            'wysiwyg' => array(
+            'simple_wysiwig' => array(
               'weight' => 0,
             ),
           ),
@@ -747,37 +718,13 @@ function futurium_isa_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'nowysiwig' => 'nowysiwig',
-          'plain_text' => 'plain_text',
-          'wysiwyg' => 'wysiwyg',
+          'simple_wysiwig' => 'simple_wysiwig',
         ),
         'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
-            'basic_html' => array(
-              'weight' => 5,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => -9,
-            ),
-            'full_html' => array(
-              'weight' => -10,
-            ),
-            'nowysiwig' => array(
-              'weight' => 0,
-            ),
-            'plain_text' => array(
-              'weight' => -8,
-            ),
-            'wysiwyg' => array(
+            'simple_wysiwig' => array(
               'weight' => 0,
             ),
           ),
@@ -931,37 +878,13 @@ function futurium_isa_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'nowysiwig' => 'nowysiwig',
-          'plain_text' => 'plain_text',
-          'wysiwyg' => 'wysiwyg',
+          'simple_wysiwig' => 'simple_wysiwig',
         ),
         'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
-            'basic_html' => array(
-              'weight' => 5,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => -9,
-            ),
-            'full_html' => array(
-              'weight' => -10,
-            ),
-            'nowysiwig' => array(
-              'weight' => 0,
-            ),
-            'plain_text' => array(
-              'weight' => -8,
-            ),
-            'wysiwyg' => array(
+            'simple_wysiwig' => array(
               'weight' => 0,
             ),
           ),
@@ -1040,6 +963,9 @@ function futurium_isa_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Feasibility description');
+  t('File');
+  t('Impact description');
   t('Age');
   t('Biography');
   t('Birthday');

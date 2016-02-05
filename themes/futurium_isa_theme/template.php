@@ -49,12 +49,14 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     'page_manager_user_view_page',
     'page_manager_user_edit_page',
     'page_manager_node_add',
-    'entity_translation_edit_page',
+    'page_manager_node_edit',
     'page_manager_term_view_page',
+    'entity_translation_edit_page',
   );
+
   $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks, TRUE);
 
-  $variables['show_title'] = !in_array($item['page_callback'], $panels_callbacks, TRUE);
+  $variables['show_title'] = $variables['content_wrapper'];
 
 }
 
@@ -122,12 +124,53 @@ function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
  * Adds classes to user account menu item.
  */
 function futurium_isa_theme_menu_link(array $variables) {
+
+  $class = str_replace(" ", "-", strtolower($variables['element']['#title']));
+
+  $variables['element']['#attributes']['class'][] = 'menu-item';
+  $variables['element']['#attributes']['class'][] = $class;
+
   if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
-    ($variables['element']['#original_link']['link_path'] == 'user' || $variables['element']['#original_link']['link_path'] == 'user/login')) {
-    $variables['element']['#localized_options']['attributes']['class'][] = "no-text";
-    $variables['element']['#localized_options']['attributes']['class'][] = "glyphicon";
-    $variables['element']['#localized_options']['attributes']['class'][] = "glyphicon-user";
+      $variables['element']['#original_link']['link_path'] == 'analytics') {
+    $variables['element']['#localized_options']['html'] = TRUE;
+    $variables['element']['#title'] = '<span class="glyphicons-signal"></span> ' . t("Stats");
   }
+
+  if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
+      $variables['element']['#original_link']['link_path'] == 'user') {
+
+    if (user_is_logged_in()) {
+      $variables['element']['#localized_options']['html'] = TRUE;
+      global $user;
+      $account = user_load($user->uid);
+
+      $pic = !empty($account->picture->uri) ? $account->picture->uri : variable_get('user_picture_default');
+      $user_pic = theme(
+        'image_style', array(
+          'style_name' => 'user_picture_small',
+          'path' => $pic,
+          'attributes' => array(
+            'class' => 'logged-in-user-pic',
+            'title' => t("@username's profile", array('@username' => format_username($account))),
+          ),
+        )
+      );
+      $variables['element']['#title'] = $user_pic;
+    }
+  }
+
+  if ($variables['element']['#original_link']['link_path'] == 'user/login') {
+    $variables['element']['#localized_options']['html'] = TRUE;
+    $variables['element']['#title'] = '<span class="glyphicon-user"></span> ' . t("Login");
+  }
+
+  if ($variables['element']['#original_link']['menu_name'] == 'menu-user-tabs' ||
+      $variables['element']['#original_link']['menu_name'] == 'menu-group-tabs') {
+    if ($variables['element']['#href'] != $_GET['q']) {
+      unset($variables['element']['#localized_options']['attributes']['class'][0]);
+    }
+  }
+
   return theme_menu_link($variables);
 }
 
@@ -337,4 +380,47 @@ function futurium_isa_theme_menu_tree__menu_user_tabs($variables) {
 
 function futurium_isa_theme_menu_tree__menu_group_tabs($variables) {
   return '<ul class="menu nav nav-pills">' . $variables['tree'] . '</ul>';
+}
+
+function futurium_isa_theme_quant_page($vars) {
+  $content = '';
+  $content .= $vars['form'];
+  if ($vars['charts']) {
+    foreach ($vars['charts'] as $chart) {
+      $content .= $chart;
+    }
+  }
+
+  $views['statistics_users'] = array(
+    'block',
+  );
+  $views['statistics'] = array(
+    'block',
+    'block_1',
+    'block_2',
+    'block_3',
+  );
+
+  $content .= '<br><br>';
+  foreach($views as $view_name => $displays) {
+    $content .= '<br>';
+    foreach ($displays as $k => $display) {
+      $view = views_get_view($view_name);
+      $view->set_display($display);
+      if (!empty($_GET['period'])) {
+        $filters = $view->display_handler->get_option('filters');
+        if (isset($filters['timestamp']['value'])) {
+          $p = '-' . str_replace('_', ' ', $_GET['period']);
+          $filters['timestamp']['value']['value'] = $p;
+          $view->display_handler->set_option('filters', $filters);
+          $view->pre_execute();
+        }
+      }
+      $content .= '<div class="stats-block"><h2>' . $view->get_title() . '</h2>';
+      $content .= $view->preview($display);
+      $content .= '</div>';
+    }
+  }
+
+  return '<div id="quant-page">' . $content . '</div>';
 }

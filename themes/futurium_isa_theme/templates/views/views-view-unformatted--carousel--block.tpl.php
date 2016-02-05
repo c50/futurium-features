@@ -32,8 +32,7 @@ $row_vars = $variables['view']->result;
             print theme_image_formatter($var);
           ?>
           <div class="shadow-content">
-            <h1><?php print $row->node_title ?></h1>
-            <div class="more-link"><?php print l(t("Learn more"), "node/" . $row->nid); ?></div>
+            <h1><?php print l($row->node_title, "node/" . $row->nid); ?></h1>
           </div>
           <div class="shadow">
           </div>
