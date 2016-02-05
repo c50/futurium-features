@@ -219,7 +219,7 @@ function futurium_isa_extras_block_view($delta = '') {
           $links['add-future'] = l('Add Future', 'node/add/future');
           $links['add-idea'] = l('Add Idea', 'node/add/ideas');
           $links['add-evidence'] = l('Add Evidence', 'node/add/evidence');
-          $links['add-event'] = l('Add Event', 'node/add/evidence');
+          $links['add-event'] = l('Add Event', 'node/add/event-d4eu');
           break;
 
         case 'user/%/groups':
