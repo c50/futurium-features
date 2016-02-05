@@ -256,9 +256,7 @@ function d4eu_preprocess_node(&$vars) {
   if ($node->comment == COMMENT_NODE_OPEN) {
     $context = _supertags_get_context();
 
-    if ((isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0)) {
-      unset($vars['content']['links']['comment']['#links']['comment-reply']);
-
+    if ((isset($context['flavor']['term']) &$context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0)) {
       $vars['open_to_comments'] = TRUE;
       /* Fake login/register form to comment while not logged in. */
       $destination                   = array('destination' => "comment/reply/$node->nid/#comment-form");
@@ -271,6 +269,9 @@ function d4eu_preprocess_node(&$vars) {
       $vars['comment_login_subject'] = t('Subject');
       $vars['comment_login_comment'] = t('Comment');
       $vars['comment_login_save']    = t('Save');
+    }
+    else {
+      unset($vars['content']['links']['comment']['#links']['comment-reply']);
     }
   }
 
@@ -320,15 +321,21 @@ function d4eu_preprocess_comment(&$vars) {
 
   $node = $vars['node'];
   $comment = $vars['comment']->cid;
+  $context = _supertags_get_context();
 
   if (!$user->uid) {
-    if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
-      $destination = array('destination' => "comment/reply/$node->nid/$comment#comment-form");
-      $vars['content']['links']['comment']['#links']['comment_forbidden']['title'] = t('<a href="@login">Log in</a> or <a href="@register">register</a> to reply to this comment',
-        array(
-          '@login' => url('user/login', array('query' => $destination)),
-          '@register' => url('user/register', array('query' => $destination)),
-        ));
+    if ((isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0)) {
+      if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
+        $destination                                                                 = array('destination' => "comment/reply/$node->nid/$comment#comment-form");
+        $vars['content']['links']['comment']['#links']['comment_forbidden']['title'] = t('<a href="@login">Log in</a> or <a href="@register">register</a> to reply to this comment',
+          array(
+            '@login'    => url('user/login', array('query' => $destination)),
+            '@register' => url('user/register', array('query' => $destination)),
+          ));
+      }
+    }
+    else {
+      $vars['content']['links']['comment']['#links']['comment_forbidden']['title'] = '';
     }
   }
 }
