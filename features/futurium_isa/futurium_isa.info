@@ -5,6 +5,7 @@ package = Futurium
 version = 7.x-1.18
 project = futurium_isa
 dependencies[] = addressfield
+dependencies[] = better_exposed_filters
 dependencies[] = boxes
 dependencies[] = computed_field
 dependencies[] = ctools_view_access

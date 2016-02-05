@@ -802,7 +802,34 @@ function futurium_futures_default_page_manager_pages() {
           'lg' => '0',
         ),
       ),
-      'row1l' => NULL,
+      'row1l' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '8',
+          'lg' => '8',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
       'row1r' => NULL,
       'row2l' => NULL,
       'row2r' => NULL,
@@ -814,6 +841,9 @@ function futurium_futures_default_page_manager_pages() {
       'row5r' => NULL,
     ),
     'style' => 'bootstrap_region',
+    'row1l' => array(
+      'style' => 'bootstrap_region',
+    ),
   );
   $display->cache = array();
   $display->title = '';
