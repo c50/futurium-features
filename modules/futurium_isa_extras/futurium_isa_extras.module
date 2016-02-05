@@ -192,6 +192,8 @@ function futurium_isa_extras_block_info() {
 function futurium_isa_extras_block_view($delta = '') {
   $block = array();
 
+  $is_group = FALSE;
+
   $item = menu_get_item();
   if (substr($item['path'],0, 5) == 'user/') {
     $uid = arg(1);
@@ -201,6 +203,7 @@ function futurium_isa_extras_block_view($delta = '') {
   if (substr($item['path'],0, 5) == 'node/') {
     $nid = arg(1);
     $obj = node_load($nid);
+    $is_group = TRUE;
     if ($obj->type == 'futurium_group') {
       $link_options = array(
         'query' => array(
@@ -243,22 +246,36 @@ function futurium_isa_extras_block_view($delta = '') {
           break;
 
         case 'node/%':
-          $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
-          $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
-          $links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
-          $links['add-event'] = l('Add Event', 'node/add/event-d4eu', $link_options);
-         break;
+          if ($is_group) {
+            if (og_user_access('node', $obj->nid, 'create future content')) {
+              $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
+            }
+            if (og_user_access('node', $obj->nid, 'create ideas content')) {
+              $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
+            }
+            if (og_user_access('node', $obj->nid, 'create evidence content')) {
+              $links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
+            }
+            if (og_user_access('node', $obj->nid, 'create event_d4eu content')) {
+              $links['add-event'] = l('Add Event', 'node/add/event-d4eu', $link_options);
+            }
+          }
+          break;
 
         case 'node/%/futures':
-         $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
-         break;
+          if (og_user_access('node', $obj->nid, 'create future content')) {
+            $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
+          }
+          break;
 
         case 'node/%/ideas':
-         $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
-         break;
+          if (og_user_access('node', $obj->nid, 'create ideas content')) {
+            $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
+          }
+          break;
 
         case 'node/%/members':
-         break;
+          break;
 
       }
 
@@ -561,8 +578,7 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
       );
     }
     else{
-      $user_roles = og_get_user_roles('node', $node->nid, $user->uid);
-      if (!in_array('administrator member', $user_roles, TRUE)) {
+      if ($node->uid != $account->uid) {
         $node->content[$extrafield_name] = array(
           '#markup' => l(t('Leave Group'), 'group/node/' . $node->nid . '/unsubscribe/og_user_node', $link_options),
         );

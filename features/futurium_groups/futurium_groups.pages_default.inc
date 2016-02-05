@@ -389,21 +389,21 @@ function futurium_groups_default_page_manager_handlers() {
       'title' => '',
       'body' => '<div class="group-just-created">
 
-  <div class="congratulations">
-  Congratulations! You just created a new group!
-  </div>
+    <div class="congratulations">
+    Congratulations! You just created a new group!
+    </div>
 
-  <div class="and-now">
-  And now?
-  </div>
+    <div class="and-now">
+    And now?
+    </div>
 
-  <div class="actions">
-  <div class="invite">Let\'s get started by inviting other people to join your group.</div>
-  <div class="add-vision">You can also submit your first Vision of the Future</div>
-  <div class="propose">or propose a fresh new Policy Idea.</div>
-  </div>
+    <div class="actions">
+    <div class="invite">Let\'s get started by inviting other people to join your group.</div>
+    <div class="add-vision">You can also submit your first Vision of the Future</div>
+    <div class="propose">or propose a fresh new Policy Idea.</div>
+    </div>
 
-  </div>',
+    </div>',
       'format' => 'full',
       'substitute' => 1,
     );
@@ -490,9 +490,11 @@ function futurium_groups_default_page_manager_handlers() {
     $pane->access = array(
       'plugins' => array(
         0 => array(
-          'name' => 'og_perm',
+          'name' => 'og_member',
           'settings' => array(
-            'perm' => 'update group',
+            'state' => array(
+              1 => '1',
+            ),
           ),
           'context' => array(
             0 => 'logged-in-user',

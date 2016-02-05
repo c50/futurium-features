@@ -553,6 +553,12 @@ function futurium_groups_field_default_field_instances() {
     'label' => 'Group description',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'simple_wysiwig' => 'simple_wysiwig',
+        ),
+        'allowed_formats_toggle' => 1,
+      ),
       'display_summary' => 1,
       'entity_translation_sync' => FALSE,
       'text_processing' => 1,
