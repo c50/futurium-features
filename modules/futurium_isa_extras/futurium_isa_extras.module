@@ -572,19 +572,20 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
 
     // Not a member, show join link
     // todo: group is invite only?
-    if (!og_is_member('node', $node->nid, 'user', $account)) {
-      $node->content[$extrafield_name] = array(
-        '#markup' => l(t('Join Group'), 'group/node/' . $node->nid . '/subscribe/og_user_node', $link_options),
-      );
-    }
-    else{
-      if ($node->uid != $account->uid) {
+    if ($user->uid != 0) {
+      if (!og_is_member('node', $node->nid, 'user', $account)) {
         $node->content[$extrafield_name] = array(
-          '#markup' => l(t('Leave Group'), 'group/node/' . $node->nid . '/unsubscribe/og_user_node', $link_options),
+          '#markup' => l(t('Join Group'), 'group/node/' . $node->nid . '/subscribe/og_user_node', $link_options),
         );
       }
+      else{
+        if ($node->uid != $account->uid) {
+          $node->content[$extrafield_name] = array(
+            '#markup' => l(t('Leave Group'), 'group/node/' . $node->nid . '/unsubscribe/og_user_node', $link_options),
+          );
+        }
+      }
     }
-
   }
 }
 
