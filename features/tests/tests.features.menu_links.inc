@@ -10,10 +10,10 @@
 function tests_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_stats:Analytics.
-  $menu_links['main-menu_stats:Analytics'] = array(
+  // Exported menu link: main-menu_stats:analytics.
+  $menu_links['main-menu_stats:analytics'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'Analytics',
+    'link_path' => 'analytics',
     'router_path' => 'analytics',
     'link_title' => 'Stats',
     'options' => array(
@@ -31,7 +31,7 @@ function tests_menu_default_menu_links() {
         'data-remove-class' => 0,
         'style' => '',
       ),
-      'identifier' => 'main-menu_stats:Analytics',
+      'identifier' => 'main-menu_stats:analytics',
     ),
     'module' => 'menu',
     'hidden' => 0,
