@@ -47,6 +47,13 @@ function futurium_messages_default_rules_configuration() {
       "TAGS" : [ "Futurium Messages" ],
       "REQUIRES" : [ "rules" ],
       "ON" : { "node_insert" : [] },
+      "IF" : [
+        { "NOT node_is_of_type" : {
+            "node" : [ "node" ],
+            "type" : { "value" : { "futurium_group" : "futurium_group" } }
+          }
+        }
+      ],
       "DO" : [
         { "entity_create" : {
             "USING" : {
@@ -149,5 +156,6 @@ function futurium_messages_default_rules_configuration() {
       ]
     }
   }');
+
   return $items;
 }

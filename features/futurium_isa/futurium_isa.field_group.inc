@@ -55,8 +55,7 @@ function futurium_isa_field_group_info() {
     'label' => 'group-buttons',
     'weight' => '4',
     'children' => array(
-      0 => 'flag_attending',
-      1 => 'node_link',
+      0 => 'node_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(

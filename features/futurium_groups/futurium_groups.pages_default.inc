@@ -404,7 +404,7 @@ function futurium_groups_default_page_manager_handlers() {
   </div>
 
   </div>',
-      'format' => 'nowysiwig',
+      'format' => 'full',
       'substitute' => 1,
     );
     $pane->cache = array();
