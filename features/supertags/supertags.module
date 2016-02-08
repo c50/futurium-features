@@ -1004,7 +1004,7 @@ function supertags_init() {
  * Implements hook_preprocess_node().
  */
 function supertags_preprocess_node(&$vars) {
-  $node = $vars['node'];
+  
   if ($vars['view_mode'] == 'mini_teaser') {
 
     $flavor = _supertags_flavor_context();
@@ -1058,6 +1058,8 @@ function supertags_preprocess_node(&$vars) {
       }
     }
   }
+
+  // Don't build the comment form for a node in context of an archived flavor.
   $context = _supertags_get_context();
   if (isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
     unset($vars['content']['comments']['comment_form']);
