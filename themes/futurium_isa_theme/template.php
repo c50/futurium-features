@@ -401,9 +401,7 @@ function futurium_isa_theme_quant_page($vars) {
     'block_3',
   );
 
-  $content .= '<br><br>';
   foreach($views as $view_name => $displays) {
-    $content .= '<br>';
     foreach ($displays as $k => $display) {
       $view = views_get_view($view_name);
       $view->set_display($display);
