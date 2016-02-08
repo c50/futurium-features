@@ -60,6 +60,32 @@ function futurium_isa_extras_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_init().
+ */
+function futurium_isa_extras_init() {
+  $obj = menu_get_object();
+  if (isset($obj->type)) {
+    switch($obj->type){
+      case 'futurium_group':
+        menu_tree_set_path('main-menu','groups');
+        break;
+      case 'future':
+        menu_tree_set_path('main-menu','futures');
+        break;
+      case 'event_d4eu':
+        menu_tree_set_path('main-menu','events');
+        break;
+      case 'ideas':
+        menu_tree_set_path('main-menu','ideas');
+        break;
+      case 'evidence':
+        menu_tree_set_path('main-menu','library');
+        break;
+    }
+  }
+}
+
+/**
  * Helper to set default theme settings.
  */
 function _bootstrap_default_settings() {
