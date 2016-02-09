@@ -10,21 +10,13 @@
 function supertags_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_block_body'
+  // Exported field_base: 'field_block_body'.
   $field_bases['field_block_body'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_block_body',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -39,21 +31,13 @@ function supertags_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_block_classes'
+  // Exported field_base: 'field_block_classes'.
   $field_bases['field_block_classes'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_block_classes',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -69,14 +53,13 @@ function supertags_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_block_delta'
+  // Exported field_base: 'field_block_delta'.
   $field_bases['field_block_delta'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_block_delta',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -135,20 +118,24 @@ function supertags_field_default_field_bases() {
     'type' => 'list_integer',
   );
 
-  // Exported field_base: 'field_block_region'
+  // Exported field_base: 'field_block_region'.
   $field_bases['field_block_region'] = array(
     'active' => 1,
     'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
     'field_name' => 'field_block_region',
     'indexes' => array(
       'value' => array(
         0 => 'value',
       ),
     ),
+    'locked' => 1,
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
         'content_top' => 'Landing page (Top)',
+        'issues_top' => 'Issue List (Top)',
         'ideas_top' => 'Ideas List (Top)',
         'evidence_top' => 'Evidence List (Top)',
         'videos_top' => 'Videos List (Top)',
@@ -157,18 +144,19 @@ function supertags_field_default_field_bases() {
         'events_top' => 'Events List (Top)',
         'people_top' => 'People List (Top)',
       ),
+      'allowed_values_function' => '',
     ),
+    'translatable' => 0,
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_block_type'
+  // Exported field_base: 'field_block_type'.
   $field_bases['field_block_type'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_block_type',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -189,14 +177,13 @@ function supertags_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_call_to_action'
+  // Exported field_base: 'field_call_to_action'.
   $field_bases['field_call_to_action'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_call_to_action',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 1,
     'module' => 'link',
@@ -220,21 +207,13 @@ function supertags_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_children_tags'
+  // Exported field_base: 'field_children_tags'.
   $field_bases['field_children_tags'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_children_tags',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -256,21 +235,13 @@ function supertags_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_class'
+  // Exported field_base: 'field_class'.
   $field_bases['field_class'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_class',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -286,21 +257,13 @@ function supertags_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_default_flavour'
+  // Exported field_base: 'field_default_flavour'.
   $field_bases['field_default_flavour'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_default_flavour',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -322,14 +285,69 @@ function supertags_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_flavor_active'
+  // Exported field_base: 'field_digital4eu_supertags'.
+  $field_bases['field_digital4eu_supertags'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_digital4eu_supertags',
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'tags',
+          'parent' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'i18n_taxonomy_allowed_values',
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_digital4eu_untags'.
+  $field_bases['field_digital4eu_untags'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_digital4eu_untags',
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'tags',
+          'parent' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'i18n_taxonomy_allowed_values',
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_flavor_active'.
   $field_bases['field_flavor_active'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_flavor_active',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -349,21 +367,13 @@ function supertags_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_flavor_image'
+  // Exported field_base: 'field_flavor_image'.
   $field_bases['field_flavor_image'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_flavor_image',
-    'foreign keys' => array(
-      'fid' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
     'indexes' => array(
       'fid' => array(
         0 => 'fid',
@@ -382,21 +392,13 @@ function supertags_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_flavor_s_'
+  // Exported field_base: 'field_flavor_s_'.
   $field_bases['field_flavor_s_'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_flavor_s_',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -418,14 +420,13 @@ function supertags_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_flavor_tree'
+  // Exported field_base: 'field_flavor_tree'.
   $field_bases['field_flavor_tree'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_flavor_tree',
-    'foreign keys' => array(),
     'indexes' => array(
       'revision_id' => array(
         0 => 'revision_id',
@@ -442,14 +443,13 @@ function supertags_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_link_type'
+  // Exported field_base: 'field_link_type'.
   $field_bases['field_link_type'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_link_type',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -469,14 +469,13 @@ function supertags_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_links'
+  // Exported field_base: 'field_links'.
   $field_bases['field_links'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_links',
-    'foreign keys' => array(),
     'indexes' => array(
       'revision_id' => array(
         0 => 'revision_id',
@@ -493,21 +492,46 @@ function supertags_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_parent_tag'
+  // Exported field_base: 'field_notification_list'.
+  $field_bases['field_notification_list'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_notification_list',
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(),
+      ),
+      'target_type' => 'user',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_parent_tag'.
   $field_bases['field_parent_tag'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_parent_tag',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -529,21 +553,13 @@ function supertags_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_path'
+  // Exported field_base: 'field_path'.
   $field_bases['field_path'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_path',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -559,14 +575,13 @@ function supertags_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_roles'
+  // Exported field_base: 'field_roles'.
   $field_bases['field_roles'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_roles',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',

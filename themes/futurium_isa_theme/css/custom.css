@@ -128,11 +128,18 @@
   display: none;
 }
 
+/*
+
+.node-type-futurium-group .container-fullwidth.row2,
+.node-type-futurium-group:not(.page-node-edit) .container-fullwidth.row2,
+.page-user:not(.page-user-edit) .container-fullwidth.row2 {
 
 .page-user:not(.page-user-edit) .container-fullwidth.row2,
 .node-type-futurium-group:not(.page-node-edit):not(.page-node-add) .container-fullwidth.row2 {
   height: 50px;
 }
+
+*/
 
 .page-user:not(.page-user-edit) .row3l .panel-pane {
   margin: 0 0 30px 0;

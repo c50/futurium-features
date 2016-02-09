@@ -174,16 +174,26 @@
     </div>
 
     <?php if ($content_wrapper): ?>
-      <div class="container">
+      <div class="container-fullwidth row1">
+        <div class="container row1">
     <?php endif; ?>
 
     <?php if (!empty($title) && $show_title):?>
     <?php print render($title_prefix); ?>
-      <h1 class="page-header"><?php print $title; ?></h1>
+      <h1 class="page-head"><?php print $title; ?></h1>
         <?php print render($title_suffix); ?>
     <?php endif; ?>
 
+    <?php if ($content_wrapper): ?>
+        </div>
+      </div>
+
+    <div class="container-fullwidth row2">
+      <div class="container row2">
+    <?php endif; ?>
+
     <?php print render($page['content']); ?>
+
     <?php if ($content_wrapper): ?>
         </div>
       </div>

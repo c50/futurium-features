@@ -24,6 +24,7 @@ function futurium_groups_field_group_info() {
     'weight' => '5',
     'children' => array(
       0 => 'edit_group',
+      1 => 'join_group',
     ),
     'format_type' => 'div',
     'format_settings' => array(

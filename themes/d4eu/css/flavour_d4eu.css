@@ -1,0 +1,201 @@
+.flavour-digital4eu .btn-default {
+  border-color: #faa83a;
+  color: #333;
+  background: rgb(235, 235, 235);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(230, 230, 230, 1)));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+}
+
+.flavour-digital4eu .btn:hover,
+.flavour-digital4eu .btn:focus,
+.flavour-digital4eu .btn:active,
+.flavour-digital4eu .btn.btn-primary:hover,
+.flavour-digital4eu .btn.btn-primary:focus,
+.flavour-digital4eu .btn.btn-primary:active {
+  border-color: #00444c;
+}
+
+.flavour-digital4eu #search-block-form .form-item input {
+  border-color: #faa83a;
+}
+
+/* identity block right */
+
+.flavour-digital4eu .identityBlock {
+  margin-bottom: 15px;
+  background: #00444c url(../images/theme/d4eu/baseline_theme.png) 50% 0 no-repeat;
+  padding: 60px 10px 0px;
+}
+
+.flavour-digital4eu .identityBlock:before,
+.flavour-digital4eu .identityBlock:after {
+  content: " ";
+  background: url(../images/theme/d4eu/yellow_corners.png) no-repeat;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 0px;
+}
+
+.front.flavour-digital4eu .identityBlock:before,
+.front.flavour-digital4eu .identityBlock:after {
+  top: 5px;
+}
+
+.flavour-digital4eu .identityBlock:after {
+  right: -5px;
+  background-position: -5px -5px;
+}
+
+.flavour-digital4eu .identityBlock:before {
+  left: -5px;
+  background-position: 0 -5px;
+}
+
+.flavour-digital4eu .identityBlock .CTAButton {
+  background: #fbe1bf;
+  border: 3px solid #faa635;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+  color: #00444c;
+  display: block;
+  font-size: 100%;
+  margin: 0px auto 15px;
+  overflow: hidden;
+}
+
+.flavour-digital4eu .identityBlock .CTAButton span:nth-child(1) {
+  background: #fff;
+  font-size: 160%;
+  padding: 10px 5px 5px;
+  display: block;
+}
+
+.flavour-digital4eu .identityBlock .CTAButton span:nth-child(2) {
+  padding: 0px 5px 5px;
+  display: block;
+}
+
+/* /identity block right */
+
+.flavour-digital4eu .view-recent-activity .panel-heading,
+.flavour-digital4eu .homepageContainer #block-views-recent-activity-block-whatnew .panel-heading {
+  color: #555555;
+}
+
+.flavour-digital4eu .homepageContainer .CTAButton {
+  background: #fff;
+  max-width: 230px;
+}
+
+.flavour-digital4eu .homepageContainer .CTAButton span:nth-child(1) {
+  background: #00444c;
+  color: #fff;
+}
+
+.flavour-digital4eu .flavor-tree *,
+.flavour-digital4eu .identityBlock .CTAButton span:nth-child(1),
+.flavour-digital4eu .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a:first-child,
+.flavour-digital4eu .homepageContainer .CTAButton,
+.flavour-digital4eu .mainContentSection h1#page-title,
+.flavour-digital4eu section h2,
+.flavour-digital4eu section h5,
+.flavour-digital4eu section h6 {
+  color: #00444c;
+}
+
+.flavour-digital4eu .identityContainer,
+.flavour-digital4eu .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a:first-child,
+.flavour-digital4eu .homepageContainer .CTAButton,
+.flavour-digital4eu .mainContentSection h1#page-title,
+.flavour-digital4eu .views-blog_d4eu-block_1 .panel-heading,
+.flavour-digital4eu #comment-form-container,
+.flavour-digital4eu #comments,
+.flavour-digital4eu .homepage-sidebar {
+  border-color: #faa635;
+}
+
+.flavour-digital4eu .homepageContainer .topHPcnt .mainBlocks .block-bean-highlight .panel-heading,
+.flavour-digital4eu .flavor-tree .flavor-name,
+.flavour-digital4eu .view-recent-activity .panel-heading,
+.flavour-digital4eu .homepageContainer #block-views-recent-activity-block-whatnew .panel-heading,
+.flavour-digital4eu .item-list > ul > li .views-field-title + div,
+.flavour-digital4eu section h2,
+.flavour-digital4eu .view-blog .media-body h3 + div,
+.flavour-digital4eu section .search-result .search-snippet-info {
+  border-color: #ffcd8a;
+}
+
+.flavour-digital4eu .flavor-tree .flavor-name:before {
+  background-image: url(../images/theme/d4eu/stamp50x50.png);
+}
+
+.flavour-digital4eu .flavor-tree .supertag-tree a {
+  color: #00444c;
+}
+
+.flavour-digital4eu .flavor-tree .supertag-tree ul.tree-root li.selected-tree-item > a {
+  color: #333;
+}
+
+.flavour-digital4eu .poll .bar .foreground {
+  background: rgb(0, 68, 76);
+  background: -moz-linear-gradient(left, rgba(0, 110, 122, 1) 0%, rgba(0, 68, 76, 1) 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(0, 110, 122, 1)), color-stop(100%, rgba(0, 68, 76, 1)));
+  background: -webkit-linear-gradient(left, rgba(0, 110, 122, 1) 0%, rgba(0, 68, 76, 1) 100%);
+  background: -o-linear-gradient(left, rgba(0, 110, 122, 1) 0%, rgba(0, 68, 76, 1) 100%);
+  background: -ms-linear-gradient(left, rgba(0, 110, 122, 1) 0%, rgba(0, 68, 76, 1) 100%);
+  background: linear-gradient(to right, rgba(0, 110, 122, 1) 0%, rgba(0, 68, 76, 1) 100%);
+}
+
+.flavour-digital4eu .invite-invite_add_invite_by_email {
+  border-color: #00444c;
+}
+
+.flavour-digital4eu .invite-invite_add_invite_by_email .panel-heading {
+  background: #00444c;
+  color: #fff;
+}
+
+.flavour-digital4eu .homepageContainer .block-bean-highlight {
+  background: #ffe9c2;
+  background: -moz-linear-gradient(top, #f5fbff 0%, #ffe9c2 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5fbff), color-stop(100%, #ffe9c2));
+  background: -webkit-linear-gradient(top, #f5fbff 0%, #ffe9c2 100%);
+  background: -o-linear-gradient(top, #f5fbff 0%, #ffe9c2 100%);
+  background: -ms-linear-gradient(top, #f5fbff 0%, #ffe9c2 100%);
+  background: linear-gradient(to bottom, #f5fbff 0%, #ffe9c2 100%);
+}
+
+.flavour-digital4eu .js-contentFilter .exposed_form_inner_container,
+.flavour-digital4eu #sidebarRight .exposed_form_inner_container {
+  background-color: #f6f2ea;
+}
+
+@media (max-width: 499px) {
+  .flavour-digital4eu #sidebarRight .identityBlock {
+    background-image: none;
+    padding-top: 18px;
+    border-top: solid 4px #faa635;
+    margin-top: 0px;
+  }
+
+  .flavour-digital4eu .identityContainer {
+    padding-top: 48px;
+    position: relative;
+  }
+
+  .flavour-digital4eu .identityContainer:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 50px;
+    background: url(../images/theme/d4eu/baseline_theme.png) 50% 0 repeat-x;
+    content: " ";
+  }
+}

@@ -20,6 +20,27 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_ideas';
+  $strongarm->value = '0';
+  $export['comment_anonymous_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_issue';
+  $strongarm->value = 0;
+  $export['comment_anonymous_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_poll';
+  $strongarm->value = '0';
+  $export['comment_anonymous_poll'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_video_d4eu';
   $strongarm->value = '0';
   $export['comment_anonymous_video_d4eu'] = $strongarm;
@@ -34,6 +55,27 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_ideas';
+  $strongarm->value = 1;
+  $export['comment_default_mode_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_issue';
+  $strongarm->value = 1;
+  $export['comment_default_mode_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_poll';
+  $strongarm->value = 1;
+  $export['comment_default_mode_poll'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_mode_video_d4eu';
   $strongarm->value = 1;
   $export['comment_default_mode_video_d4eu'] = $strongarm;
@@ -44,6 +86,27 @@ function futurium_d4eu_strongarm() {
   $strongarm->name = 'comment_default_per_page_event_d4eu';
   $strongarm->value = '50';
   $export['comment_default_per_page_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_ideas';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_issue';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_poll';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_poll'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -69,6 +132,27 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_ideas';
+  $strongarm->value = 1;
+  $export['comment_form_location_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_issue';
+  $strongarm->value = 1;
+  $export['comment_form_location_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_poll';
+  $strongarm->value = 1;
+  $export['comment_form_location_poll'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_video_d4eu';
   $strongarm->value = 1;
   $export['comment_form_location_video_d4eu'] = $strongarm;
@@ -76,9 +160,51 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_ideas';
+  $strongarm->value = '2';
+  $export['comment_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_issue';
+  $strongarm->value = '2';
+  $export['comment_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_poll';
+  $strongarm->value = '2';
+  $export['comment_poll'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_event_d4eu';
   $strongarm->value = '1';
   $export['comment_preview_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_ideas';
+  $strongarm->value = '1';
+  $export['comment_preview_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_issue';
+  $strongarm->value = '1';
+  $export['comment_preview_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_poll';
+  $strongarm->value = '1';
+  $export['comment_preview_poll'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -93,6 +219,27 @@ function futurium_d4eu_strongarm() {
   $strongarm->name = 'comment_subject_field_event_d4eu';
   $strongarm->value = 1;
   $export['comment_subject_field_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_ideas';
+  $strongarm->value = 1;
+  $export['comment_subject_field_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_issue';
+  $strongarm->value = 1;
+  $export['comment_subject_field_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_poll';
+  $strongarm->value = 1;
+  $export['comment_subject_field_poll'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -113,11 +260,28 @@ function futurium_d4eu_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__event_d4eu';
   $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'title' => array(
+          'weight' => '0',
+        ),
+        'path' => array(
+          'weight' => '1',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__ideas';
+  $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
-        'custom_settings' => TRUE,
-      ),
-      'mini_teaser' => array(
         'custom_settings' => TRUE,
       ),
       'full' => array(
@@ -141,6 +305,9 @@ function futurium_d4eu_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'mini_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
       'revision' => array(
         'custom_settings' => FALSE,
       ),
@@ -148,12 +315,36 @@ function futurium_d4eu_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '-5',
         ),
         'path' => array(
           'weight' => '1',
         ),
       ),
+      'display' => array(
+        'related_content' => array(
+          'default' => array(
+            'weight' => '8',
+            'visible' => TRUE,
+          ),
+          'mini_teaser' => array(
+            'weight' => '9',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
+    ),
+  );
+  $export['field_bundle_settings_node__ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__poll';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(),
       'display' => array(
         'language' => array(
           'default' => array(
@@ -172,7 +363,7 @@ function futurium_d4eu_strongarm() {
       ),
     ),
   );
-  $export['field_bundle_settings_node__event_d4eu'] = $strongarm;
+  $export['field_bundle_settings_node__poll'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -204,12 +395,6 @@ function futurium_d4eu_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
-      'mini_teaser' => array(
-        'custom_settings' => TRUE,
-      ),
-      'revision' => array(
-        'custom_settings' => FALSE,
-      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -220,22 +405,7 @@ function futurium_d4eu_strongarm() {
           'weight' => '1',
         ),
       ),
-      'display' => array(
-        'language' => array(
-          'default' => array(
-            'visible' => FALSE,
-            'weight' => 0,
-          ),
-          'teaser' => array(
-            'visible' => FALSE,
-            'weight' => 0,
-          ),
-          'mini_teaser' => array(
-            'visible' => FALSE,
-            'weight' => 0,
-          ),
-        ),
-      ),
+      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__video_d4eu'] = $strongarm;
@@ -253,6 +423,13 @@ function futurium_d4eu_strongarm() {
   $strongarm->name = 'i18n_node_extended_ideas';
   $strongarm->value = '12';
   $export['i18n_node_extended_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_issue';
+  $strongarm->value = 1;
+  $export['i18n_node_extended_issue'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -282,6 +459,13 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_issue';
+  $strongarm->value = array();
+  $export['i18n_node_options_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_options_video_d4eu';
   $strongarm->value = array(
     0 => 'required',
@@ -305,6 +489,13 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_sync_node_type_issue';
+  $strongarm->value = array();
+  $export['i18n_sync_node_type_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_sync_node_type_video_d4eu';
   $strongarm->value = array();
   $export['i18n_sync_node_type_video_d4eu'] = $strongarm;
@@ -315,6 +506,27 @@ function futurium_d4eu_strongarm() {
   $strongarm->name = 'language_content_type_event_d4eu';
   $strongarm->value = '0';
   $export['language_content_type_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_ideas';
+  $strongarm->value = 0;
+  $export['language_content_type_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_issue';
+  $strongarm->value = '0';
+  $export['language_content_type_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_poll';
+  $strongarm->value = 0;
+  $export['language_content_type_poll'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -335,6 +547,33 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_ideas';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_issue';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_poll';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_poll'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_video_d4eu';
   $strongarm->value = array(
     0 => 'main-menu',
@@ -347,6 +586,27 @@ function futurium_d4eu_strongarm() {
   $strongarm->name = 'menu_parent_event_d4eu';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_ideas';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_issue';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_poll';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_poll'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -368,6 +628,35 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_ideas';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_issue';
+  $strongarm->value = array(
+    0 => 'status',
+    1 => 'promote',
+  );
+  $export['node_options_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_poll';
+  $strongarm->value = array(
+    0 => 'status',
+    1 => 'revision',
+  );
+  $export['node_options_poll'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_video_d4eu';
   $strongarm->value = array(
     0 => 'status',
@@ -385,6 +674,27 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_ideas';
+  $strongarm->value = '1';
+  $export['node_preview_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_issue';
+  $strongarm->value = '1';
+  $export['node_preview_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_poll';
+  $strongarm->value = '1';
+  $export['node_preview_poll'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_video_d4eu';
   $strongarm->value = '0';
   $export['node_preview_video_d4eu'] = $strongarm;
@@ -395,6 +705,27 @@ function futurium_d4eu_strongarm() {
   $strongarm->name = 'node_submitted_event_d4eu';
   $strongarm->value = 1;
   $export['node_submitted_event_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_ideas';
+  $strongarm->value = 1;
+  $export['node_submitted_ideas'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_issue';
+  $strongarm->value = 1;
+  $export['node_submitted_issue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_poll';
+  $strongarm->value = 1;
+  $export['node_submitted_poll'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

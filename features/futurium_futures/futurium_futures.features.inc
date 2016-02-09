@@ -35,7 +35,7 @@ function futurium_futures_views_api($module = NULL, $api = NULL) {
 function futurium_futures_node_info() {
   $items = array(
     'future' => array(
-      'name' => t('Future'),
+      'name' => t('Futures'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

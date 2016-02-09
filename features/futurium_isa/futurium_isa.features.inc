@@ -314,5 +314,29 @@ function futurium_isa_image_default_styles() {
     ),
   );
 
+  // Exported image style: carousel_full.
+  $styles['carousel_full'] = array(
+    'label' => 'carousel_full',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1160,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1160,
+          'height' => 350,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
   return $styles;
 }

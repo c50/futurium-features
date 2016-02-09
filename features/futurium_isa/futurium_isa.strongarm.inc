@@ -357,7 +357,11 @@ row|Bootstrap Row
       ),
     ),
     'extra_fields' => array(
-      'form' => array(),
+      'form' => array(
+        'path' => array(
+          'weight' => 6,
+        ),
+      ),
       'display' => array(
         'flag_like' => array(
           'default' => array(
@@ -609,6 +613,20 @@ row|Bootstrap Row
   $strongarm->name = 'page_manager_user_view_disabled';
   $strongarm->value = FALSE;
   $export['page_manager_user_view_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'page_manager_user_edit_disabled';
+  $strongarm->value = FALSE;
+  $export['page_manager_user_edit_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'page_manager_term_view_disabled';
+  $strongarm->value = FALSE;
+  $export['page_manager_term_view_disabled'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

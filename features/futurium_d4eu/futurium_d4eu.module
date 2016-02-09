@@ -52,6 +52,10 @@ function futurium_d4eu_form_user_profile_form_alter(&$form, &$form_state, $form_
     $form['field_creator']['#access'] = FALSE;
     $form['field_register_url']['#access'] = FALSE;
   }
+  if (module_exists('password_policy')) {
+    // Modify the elements.
+    $form['account']['pass']['#description'] = '';
+  }
 }
 
 /**
@@ -74,6 +78,11 @@ function futurium_d4eu_permission() {
 function futurium_d4eu_form_user_register_form_alter(&$form, &$form_state, $form_id) {
   $reg_dest = drupal_get_destination();
   $form['field_register_url'][LANGUAGE_NONE][0]['value']['#default_value'] = $reg_dest['destination'];
+
+  if (module_exists('password_policy')) {
+    // Modify the elements.
+    $form['account']['pass']['#description'] = '';
+  }
 }
 
 /**
@@ -294,7 +303,8 @@ function futurium_d4eu_preprocess_node(&$vars) {
     $vars['theme_hook_suggestions'][] = 'node__mini_teaser';
     $vars['no_comment_text'] = '';
     $vars['comments_text'] = t('comments');
-    $vars['latest_ago'] = t('latest') . ': ';
+    $vars['latest_ago'] = t('latest:');
+    $vars['node_link'] = 'node/' . $vars['elements']['#node']->nid;
     if ($vars['node']->comment_count == 1) {
       $vars['comments_text'] = t('comment');
       $vars['latest_ago'] = '';
@@ -315,8 +325,27 @@ function futurium_d4eu_preprocess_comment(&$vars) {
       'word_boundary' => TRUE,
       'html'          => TRUE,
     );
-    $comment_to_trim = $vars['elements']['#comment']->comment_body['und'][0]['value'];
+    $comment_to_trim = drupal_html_to_text($vars['elements']['#comment']->comment_body['und'][0]['value']);
     $vars['trimmed_comment'] = views_trim_text($trim_config, $comment_to_trim);
+
+    $vars['node_link'] = 'node/' . $vars['elements']['#comment']->nid;
+
+    $vars['coml_options'] = array(
+      'attributes' => array(
+        'class' => 'latestComLink',
+      ),
+      'fragment' => 'comment-' . $vars['elements']['#comment']->cid,
+      'html' => TRUE,
+    );
+
+    $vars['nodl_options'] = array(
+      'attributes' => array(
+        'class' => 'latestNodeLink',
+      ),
+      'html' => TRUE,
+    );
+    $vars['comment_span'] = $vars['trimmed_comment'];
+    $vars['node_span'] = $vars['elements']['#node']->title;
   }
 }
 
@@ -346,6 +375,14 @@ function futurium_d4eu_views_data_alter(&$data) {
       'help' => t("The user's actual, raw, username."),
     ),
   );
+
+  foreach ($data as $table => $config) {
+    foreach ($config as $item => $item_config) {
+      if (isset($item_config['field']['handler']) && $item_config['field']['handler'] == 'views_handler_field_user_picture') {
+        $data[$table][$item]['field']['handler'] = 'ViewsFuturiumD4euHandlerFieldUserPicture';
+      }
+    }
+  }
 }
 
 /**
@@ -447,17 +484,21 @@ function futurium_d4eu_field_formatter_view($entity_type, $entity, $field, $inst
  */
 function _futurium_d4eu_tear_off_calendar($variables) {
   if ($variables['from_date']) {
-    $from_date = "<a href='{$variables['alias']}'>
-      <div class='day-event-front-page'>{$variables['from_date'][2]}</div>
+    $from_date = "<div class='day-event-front-page'>{$variables['from_date'][2]}</div>
       <div class='month-event-front-page'>{$variables['from_date'][1]}</div>
-      <div class='year-event-front-page'>{$variables['from_date'][0]}</div>
-    </a>";
+      <div class='year-event-front-page'>{$variables['from_date'][0]}</div>";
+    $from_date = l($from_date, $variables['alias'], array(
+      'html' => TRUE
+      )
+    );
     if ($variables['to_date'] > $variables['from_date']) {
-      $to_date = "<a href='{$variables['alias']}'>
-      <div class='day-event-front-page'>{$variables['to_date'][2]}</div>
+      $to_date = "<div class='day-event-front-page'>{$variables['to_date'][2]}</div>
       <div class='month-event-front-page'>{$variables['to_date'][1]}</div>
-      <div class='year-event-front-page'>{$variables['to_date'][0]}</div>
-    </a>";
+      <div class='year-event-front-page'>{$variables['to_date'][0]}</div>";
+      $to_date = l($to_date, $variables['alias'], array(
+        'html' => TRUE
+        )
+      );
       return $from_date . $to_date;
     }
     else {
@@ -516,6 +557,7 @@ function _futurium_d4eu_set_basic_perm() {
       'create document content' => 1,
       'create event_d4eu content' => 1,
       'create ideas content' => 1,
+      'create issue content' => 1,
       'create files' => 1,
       'create page content' => 0,
       'create poll content' => 1,
@@ -523,6 +565,7 @@ function _futurium_d4eu_set_basic_perm() {
       'delete own document files' => 1,
       'delete own event_d4eu content' => 1,
       'delete own ideas content' => 1,
+      'delete own issue content' => 1,
       'delete own page content' => 1,
       'delete own poll content' => 0,
       'delete own video files' => 1,
@@ -539,6 +582,7 @@ function _futurium_d4eu_set_basic_perm() {
       'edit own document files' => 1,
       'edit own event_d4eu content' => 1,
       'edit own image files' => 1,
+      'edit own issue content' => 1,
       'edit own poll content' => 1,
       'inspect all votes' => 0,
       'moderate content from draft to needs_review' => 1,
@@ -624,6 +668,7 @@ function _futurium_d4eu_set_editor_perm() {
       'delete any document files' => 1,
       'delete any event_d4eu content' => 1,
       'delete any ideas content' => 1,
+      'delete any issue content' => 1,
       'delete any image files' => 1,
       'delete any page content' => 1,
       'delete any poll content' => 1,
@@ -640,6 +685,7 @@ function _futurium_d4eu_set_editor_perm() {
       'edit any document files' => 1,
       'edit any event_d4eu content' => 1,
       'edit any ideas content' => 1,
+      'edit any issue content' => 1,
       'edit any image files' => 1,
       'edit any page content' => 1,
       "edit terms in {$vid}" => 1,
@@ -785,32 +831,6 @@ function futurium_d4eu_fivestar_widgets() {
 }
 
 /**
- * Implements hook_node_info().
- */
-function futurium_d4eu_node_info() {
-  $items = array(
-    'event_d4eu' => array(
-      'name' => t('Event'),
-      'base' => 'node_content',
-      'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-    'video_d4eu' => array(
-      'name' => t('Video'),
-      'base' => 'node_content',
-      'description' => t('Post a video'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-  );
-  drupal_alter('node_info', $items);
-  return $items;
-}
-
-/**
  * Implements hook_field_extra_fields().
  *
  * Defines the related content functionality as a pseudo field, allowing it to
@@ -889,25 +909,49 @@ function _futurium_d4eu_access_denied() {
 }
 
 /**
- * Implements hook_default_invite_type().
+ * Hook preprocess_user_picture.
  */
-function futurium_d4eu_default_invite_type() {
-      $items = array();
-      $items['invite_by_email'] = entity_import('invite_type', '{
-    "type" : "invite_by_email",
-    "label" : "Invite by e-mail",
-    "weight" : 0,
-    "argument_keys" : [],
-    "argument" : [],
-    "invite_sending_controller" : { "invite_by_email" : "invite_by_email" },
-    "description" : "Invitation by e-mail.",
-    "data" : { "invite_by_email" : {
-        "use_default" : true,
-        "message_editable" : false,
-        "replace_tokens" : false
+function futurium_d4eu_preprocess_user_picture(&$variables) {
+
+  $variables['user_picture'] = '';
+  if (variable_get('user_pictures', 0)) {
+    $account = $variables['account'];
+    if (!empty($account->picture)) {
+      if (is_numeric($account->picture)) {
+        $account->picture = file_load($account->picture);
       }
-    },
-    "rdf_mapping" : []
-  }');
-      return $items;
+      if (!empty($account->picture->uri)) {
+        $filepath = $account->picture->uri;
+      }
+    }
+    elseif (variable_get('user_picture_default', '')) {
+      $filepath = variable_get('user_picture_default', '');
+    }
+    if (isset($filepath)) {
+      $alt = t("@user", array('@user' => format_username($account)));
+
+      if (module_exists('image') && file_valid_uri($filepath) && $style = variable_get('user_picture_style', '')) {
+        $variables['user_picture'] = theme('image_style', array(
+            'style_name' => $style,
+            'path' => $filepath,
+            'alt' => $alt,
+          )
+        );
+      }
+      else {
+        $variables['user_picture'] = theme('image', array(
+            'path' => $filepath,
+            'alt' => $alt,
+          )
+        );
+      }
+      if (!empty($account->uid) && user_access('access user profiles')) {
+        $attributes = array(
+          'attributes' => array('title' => t('View user profile.')),
+          'html' => TRUE,
+        );
+        $variables['user_picture'] = l($variables['user_picture'], "user/$account->uid", $attributes);
+      }
+    }
+  }
 }

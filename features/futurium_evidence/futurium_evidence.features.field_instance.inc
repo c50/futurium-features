@@ -100,7 +100,7 @@ function futurium_evidence_field_default_field_instances() {
   );
 
   // Exported field_instance: 'node-evidence-field_files'.
-  $field_instances['node-evidence-field_evidence_files'] = array(
+  $field_instances['node-evidence-field_files'] = array(
     'bundle' => 'evidence',
     'deleted' => 0,
     'description' => '',

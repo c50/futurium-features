@@ -1,0 +1,230 @@
+.flavour-egov .btn-default {
+  border-color: #e98646;
+  color: #333;
+  background: rgb(235, 235, 235);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(230, 230, 230, 1)));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(230, 230, 230, 1) 100%);
+}
+
+.flavour-egov .btn:hover,
+.flavour-egov .btn:focus,
+.flavour-egov .btn:active,
+.flavour-egov .btn.btn-primary:hover,
+.flavour-egov .btn.btn-primary:focus,
+.flavour-egov .btn.btn-primary:active {
+  border-color: #285d93;
+}
+
+.flavour-egov #search-block-form .form-item input {
+  border-color: #93caed;
+}
+
+/* identity block right */
+
+.flavour-egov .identityBlock {
+  margin-bottom: 15px;
+  margin-top: -20px;
+  background: #308daf url(../images/theme/egov/baseline_theme.png) 50% 0 no-repeat;
+  padding: 42px 10px 0px;
+  border: solid 1px #c1deef;
+  border-top: 0;
+}
+
+.front.flavour-egov .identityBlock {
+  margin-top: -15px;
+}
+
+.flavour-egov .identityBlock > *:first-child {
+  margin-top: 18px;
+}
+
+.flavour-egov .identityBlock:before,
+.flavour-egov .identityBlock:after {
+  content: " ";
+  background: url(../images/theme/egov/corners.png) no-repeat;
+  width: 10px;
+  height: 5px;
+  position: absolute;
+  top: 0px;
+}
+
+.flavour-egov .identityBlock:after {
+  right: -5px;
+  background-position: 0px -5px;
+}
+
+.flavour-egov .identityBlock:before {
+  left: -5px;
+  background-position: 0 -5px;
+}
+
+.flavour-egov .identityBlock .CTAButton {
+  background: #1e6883;
+  border: 3px solid #308daf;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  display: block;
+  font-size: 100%;
+  margin: 0px auto 15px;
+  overflow: hidden;
+}
+
+.flavour-egov .identityBlock .CTAButton span:nth-child(1) {
+  background: #fff;
+  font-size: 160%;
+  padding: 10px 5px 5px;
+  display: block;
+  color: #1e6883;
+}
+
+.flavour-egov .identityBlock .CTAButton span:nth-child(2) {
+  padding: 0px 5px 5px;
+  display: block;
+}
+
+/* /identity block right */
+
+.flavour-egov .view-recent-activity .panel-heading,
+.flavour-egov .homepageContainer #block-views-recent-activity-block-whatnew .panel-heading {
+  color: #555555;
+}
+
+.flavour-egov .homepageContainer .CTAButton {
+  background: #fff;
+  max-width: 230px;
+}
+
+.flavour-egov .homepageContainer .CTAButton span:nth-child(1) {
+  background: #1e6883;
+  color: #fff;
+}
+
+.flavour-egov .flavor-tree *,
+.flavour-egov .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a:first-child,
+.flavour-egov .homepageContainer .CTAButton,
+.flavour-egov .mainContentSection h1#page-title,
+.flavour-egov section h2,
+.flavour-egov section h5,
+.flavour-egov section h6 {
+  color: #1e6883;
+}
+
+.flavour-egov .identityContainer,
+.flavour-egov .homepage-sidebar {
+  border-color: #308daf;
+}
+
+.flavour-egov #comments,
+.flavour-egov #comment-form-container,
+.flavour-egov .mainContentSection h1#page-title,
+.flavour-egov .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a:first-child {
+  border-color: #ffb281;
+}
+
+.flavour-egov .views-blog_d4eu-block_1 .panel-heading {
+  border-color: #dcdcdc;
+}
+
+.flavour-egov .homepageContainer .CTAButton {
+  border-color: #308daf;
+}
+
+.flavour-egov .homepageContainer .topHPcnt .mainBlocks .block-bean-highlight .panel-heading,
+.flavour-egov .flavor-tree .flavor-name,
+.flavour-egov .view-recent-activity .panel-heading,
+.flavour-egov .homepageContainer #block-views-recent-activity-block-whatnew .panel-heading,
+.flavour-egov .item-list > ul > li .views-field-title + div,
+.flavour-egov section h2,
+.flavour-egov .view-blog .media-body h3 + div,
+.flavour-egov section .search-result .search-snippet-info {
+  border-color: #fdd9c2;
+}
+
+.flavour-egov .flavor-tree .flavor-name:before {
+  background-image: url(../images/theme/egov/stamp50x50.png);
+}
+
+.flavour-egov .flavor-tree .supertag-tree a {
+  color: #297a97;
+}
+
+.flavour-egov .flavor-tree .supertag-tree ul.tree-root li.selected-tree-item > a {
+  color: #333;
+}
+
+.flavour-egov .poll .bar .foreground {
+  background: rgb(233, 134, 70);
+  background: -moz-linear-gradient(left, rgba(248, 214, 68, 1) 0%, rgba(233, 134, 70, 1) 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(248, 214, 681)), color-stop(100%, rgba(233, 134, 70, 1)));
+  background: -webkit-linear-gradient(left, rgba(248, 214, 68, 1) 0%, rgba(233, 134, 70, 1) 100%);
+  background: -o-linear-gradient(left, rgba(248, 214, 68, 1) 0%, rgba(233, 134, 70, 1) 100%);
+  background: -ms-linear-gradient(left, rgba(248, 214, 68, 1) 0%, rgba(233, 134, 70, 1) 100%);
+  background: linear-gradient(to right, rgba(248, 214, 68, 1) 0%, rgba(233, 134, 70, 1) 100%);
+}
+
+.flavour-egov .invite-invite_add_invite_by_email {
+  border-color: #308daf;
+}
+
+.flavour-egov .invite-invite_add_invite_by_email .panel-heading {
+  background: #1e6883;
+  color: #fff;
+}
+
+.flavour-egov .view-recent-activity .item-list li .node-event-d4eu .field-name-field-date-time a:first-child {
+  background: #e0f5fa;
+  background: -moz-linear-gradient(top, #f5fbff 0%, #e0f5fa 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5fbff), color-stop(100%, #e0f5fa));
+  background: -webkit-linear-gradient(top, #f5fbff 0%, #e0f5fa 100%);
+  background: -o-linear-gradient(top, #f5fbff 0%, #e0f5fa 100%);
+  background: -ms-linear-gradient(top, #f5fbff 0%, #e0f5fa 100%);
+  background: linear-gradient(to bottom, #f5fbff 0%, #e0f5fa 100%);
+}
+
+.flavour-egov .homepageContainer .block-bean-highlight {
+  background: #d7e9f4;
+  background: -moz-linear-gradient(top, #f5fbff 0%, #d7e9f4 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5fbff), color-stop(100%, #d7e9f4));
+  background: -webkit-linear-gradient(top, #f5fbff 0%, #d7e9f4 100%);
+  background: -o-linear-gradient(top, #f5fbff 0%, #d7e9f4 100%);
+  background: -ms-linear-gradient(top, #f5fbff 0%, #d7e9f4 100%);
+  background: linear-gradient(to bottom, #f5fbff 0%, #d7e9f4 100%);
+}
+
+.flavour-egov .js-contentFilter .exposed_form_inner_container,
+.flavour-egov #sidebarRight .exposed_form_inner_container {
+  background-color: #d2f1f9;
+}
+
+@media (max-width: 499px) {
+  .flavour-egov #sidebarRight .identityBlock {
+    background-image: none;
+    padding-top: 1px;
+    border-top: solid 4px #1e6883;
+    margin-top: 0px;
+  }
+
+  .flavour-egov .identityContainer {
+    padding-top: 42px;
+    position: relative;
+  }
+
+  .flavour-egov .identityContainer:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 44px;
+    background: url(../images/theme/egov/baseline_theme.png) 50% 0 repeat-x;
+    content: " ";
+  }
+
+  .flavour-egov #sidebarRight {
+    background: #308daf;
+  }
+}

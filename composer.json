@@ -1,0 +1,28 @@
+{
+  "name": "ec-europa/futurium-features",
+  "description": "Futurium features, modules and themes",
+  "type": "drupal-library",
+  "license": "GPL v2",
+  "homepage": "https://github.com/ec-europa/futurium-features",
+  "authors": [
+    {
+      "name": "Horacio Lopes",
+      "email": "Horacio.LOPES@ext.ec.europa.eu"
+    },
+    {
+      "name": "Peter Neyens",
+      "email": "Peter.NEYENS@ext.ec.europa.eu"
+    },
+    {
+      "name": "Eric Lemonne",
+      "email": "Eric.LEMONNE@ext.ec.europa.eu"
+    },
+    {
+      "name": "David Polido-Pilo",
+      "email": "David.POLIDO-PILO@ext.ec.europa.eu"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  }
+}

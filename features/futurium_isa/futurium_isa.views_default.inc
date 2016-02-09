@@ -206,17 +206,25 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['filters']['field_date_time_value']['operator'] = '>=';
   $handler->display->display_options['filters']['field_date_time_value']['default_date'] = 'now';
 
-  /* Display: Upcoming */
-  $handler = $view->new_display('block', 'Upcoming', 'upcoming');
+  /* Display: Events Block */
+  $handler = $view->new_display('block', 'Events Block', 'all_events');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Upcoming events';
+  $handler->display->display_options['title'] = 'Events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
-  $handler->display->display_options['css_class'] = 'omega-grid';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'Find more events';
   $handler->display->display_options['link_url'] = 'events';
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
+  $handler->display->display_options['pager']['type'] = 'mini';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '6';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'views_bootstrap_grid_plugin_style';
   $handler->display->display_options['style_options']['columns'] = '2';
@@ -280,30 +288,6 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'read more';
-
-  /* Display: Previous */
-  $handler = $view->new_display('block', 'Previous', 'block_1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Previous Events';
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'views_bootstrap_grid_plugin_style';
-  $handler->display->display_options['style_options']['columns'] = '2';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['links'] = FALSE;
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['header'] = FALSE;
-  $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Date &amp; time -  start date (field_date_time) */
-  $handler->display->display_options['sorts']['field_date_time_value']['id'] = 'field_date_time_value';
-  $handler->display->display_options['sorts']['field_date_time_value']['table'] = 'field_data_field_date_time';
-  $handler->display->display_options['sorts']['field_date_time_value']['field'] = 'field_date_time_value';
-  $handler->display->display_options['sorts']['field_date_time_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -324,7 +308,61 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['filters']['field_date_time_value']['id'] = 'field_date_time_value';
   $handler->display->display_options['filters']['field_date_time_value']['table'] = 'field_data_field_date_time';
   $handler->display->display_options['filters']['field_date_time_value']['field'] = 'field_date_time_value';
-  $handler->display->display_options['filters']['field_date_time_value']['operator'] = '<';
+  $handler->display->display_options['filters']['field_date_time_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_date_time_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_date_time_value']['expose']['operator_id'] = 'field_date_time_value_op';
+  $handler->display->display_options['filters']['field_date_time_value']['expose']['label'] = 'Date &amp; time -  start date (field_date_time)';
+  $handler->display->display_options['filters']['field_date_time_value']['expose']['operator'] = 'field_date_time_value_op';
+  $handler->display->display_options['filters']['field_date_time_value']['expose']['identifier'] = 'field_date_time_value';
+  $handler->display->display_options['filters']['field_date_time_value']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_date_time_value']['group_info']['label'] = 'Type';
+  $handler->display->display_options['filters']['field_date_time_value']['group_info']['identifier'] = 'field_date_time_value';
+  $handler->display->display_options['filters']['field_date_time_value']['group_info']['optional'] = FALSE;
+  $handler->display->display_options['filters']['field_date_time_value']['group_info']['default_group'] = '1';
+  $handler->display->display_options['filters']['field_date_time_value']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Upcoming',
+      'operator' => '>=',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => 'now',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'now',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'date',
+          'max' => NULL,
+          'default_to_date' => '',
+        ),
+      ),
+    ),
+    2 => array(
+      'title' => 'Past',
+      'operator' => '<',
+      'value' => array(
+        'value_group' => array(
+          'value_choose_input_type' => 'relative',
+          'value' => NULL,
+          'default_date' => 'now',
+        ),
+        'min_group' => array(
+          'min_choose_input_type' => 'relative',
+          'min' => NULL,
+          'default_date' => 'now',
+        ),
+        'max_group' => array(
+          'max_choose_input_type' => 'date',
+          'max' => NULL,
+          'default_to_date' => '',
+        ),
+      ),
+    ),
+  );
   $handler->display->display_options['filters']['field_date_time_value']['default_date'] = 'now';
 
   /* Display: Upcoming Sidebar */
@@ -444,75 +482,6 @@ function futurium_isa_views_default_views() {
   $handler->display->display_options['filters']['user_og_nid']['table'] = 'node';
   $handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
   $handler->display->display_options['filters']['user_og_nid']['value']['value'] = 1;
-
-  /* Display: Upcoming page */
-  $handler = $view->new_display('page', 'Upcoming page', 'page_1');
-  $handler->display->display_options['defaults']['use_more'] = FALSE;
-  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
-  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
-  $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'Find more events';
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '9';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_type'] = 'h3';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Field: Location */
-  $handler->display->display_options['fields']['field_location']['id'] = 'field_location';
-  $handler->display->display_options['fields']['field_location']['table'] = 'field_data_field_location';
-  $handler->display->display_options['fields']['field_location']['field'] = 'field_location';
-  $handler->display->display_options['fields']['field_location']['label'] = '';
-  $handler->display->display_options['fields']['field_location']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_location']['alter']['text'] = '[field_location-thoroughfare], [field_location-postal_code]';
-  $handler->display->display_options['fields']['field_location']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_location']['click_sort_column'] = 'country';
-  $handler->display->display_options['fields']['field_location']['settings'] = array(
-    'use_widget_handlers' => 1,
-    'format_handlers' => array(),
-  );
-  /* Field: Content: Date & time */
-  $handler->display->display_options['fields']['field_date_time']['id'] = 'field_date_time';
-  $handler->display->display_options['fields']['field_date_time']['table'] = 'field_data_field_date_time';
-  $handler->display->display_options['fields']['field_date_time']['field'] = 'field_date_time';
-  $handler->display->display_options['fields']['field_date_time']['label'] = '';
-  $handler->display->display_options['fields']['field_date_time']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_date_time']['settings'] = array(
-    'format_type' => 'long',
-    'fromto' => 'value',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'show_remaining_days' => 0,
-  );
-  /* Field: Content: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['alter']['strip_tags'] = TRUE;
-  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
-  $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '300',
-  );
-  /* Field: Content: Link */
-  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['label'] = '';
-  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['view_node']['text'] = 'read more';
-  $handler->display->display_options['path'] = 'events/all';
 
   /* Display: User Events */
   $handler = $view->new_display('block', 'User Events', 'block_3');

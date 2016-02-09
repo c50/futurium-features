@@ -720,6 +720,7 @@ function futurium_futures_default_page_manager_handlers() {
  * Implements hook_default_page_manager_pages().
  */
 function futurium_futures_default_page_manager_pages() {
+
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
@@ -801,7 +802,34 @@ function futurium_futures_default_page_manager_pages() {
           'lg' => '0',
         ),
       ),
-      'row1l' => NULL,
+      'row1l' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '8',
+          'lg' => '8',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
       'row1r' => NULL,
       'row2l' => NULL,
       'row2r' => NULL,
@@ -813,6 +841,9 @@ function futurium_futures_default_page_manager_pages() {
       'row5r' => NULL,
     ),
     'style' => 'bootstrap_region',
+    'row1l' => array(
+      'style' => 'bootstrap_region',
+    ),
   );
   $display->cache = array();
   $display->title = '';
@@ -827,10 +858,10 @@ function futurium_futures_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => '',
+      'admin_title' => 'Intro Text',
       'title' => '',
       'body' => '<h1>Share your vision of what the world might look like</h1><div class="intro">and the chalenges and opportunities associated with it.</div>',
-      'format' => 'full_html',
+      'format' => 'full',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -862,10 +893,10 @@ function futurium_futures_default_page_manager_pages() {
       ),
     );
     $pane->configuration = array(
-      'admin_title' => '',
+      'admin_title' => 'Add Future CTA',
       'title' => '',
       'body' => '<a class="btn" href="node/add/future">Add a Future</a>',
-      'format' => 'simple_wysiwig',
+      'format' => 'full',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -879,6 +910,44 @@ function futurium_futures_default_page_manager_pages() {
     $pane->uuid = 'ebe8fa1b-53a6-4faf-98b9-0e2bacdf2c91';
     $display->content['new-ebe8fa1b-53a6-4faf-98b9-0e2bacdf2c91'] = $pane;
     $display->panels['row1l'][1] = 'new-ebe8fa1b-53a6-4faf-98b9-0e2bacdf2c91';
+    $pane = new stdClass();
+    $pane->pid = 'new-f107093e-0242-41ff-adf9-db057e27ed44';
+    $pane->panel = 'row1l';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'role',
+          'settings' => array(
+            'rids' => array(
+              0 => 1,
+            ),
+          ),
+          'context' => 'logged-in-user',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'Login or Register',
+      'title' => '',
+      'body' => '<a class="btn" href="/user/login">Login</a> or <a class="btn" href="/user/register">Register</a> to create a Future',
+      'format' => 'full',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'f107093e-0242-41ff-adf9-db057e27ed44';
+    $display->content['new-f107093e-0242-41ff-adf9-db057e27ed44'] = $pane;
+    $display->panels['row1l'][2] = 'new-f107093e-0242-41ff-adf9-db057e27ed44';
     $pane = new stdClass();
     $pane->pid = 'new-bc6e6520-3b38-4fff-93d4-8bc820a39342';
     $pane->panel = 'row2l';

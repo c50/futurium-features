@@ -7,7 +7,7 @@
 /**
  * Expose flavor paths as a context condition.
  */
-class FlavorLandingPageCondition extends context_condition {
+class SupertagsFlavorLandingPageCondition extends context_condition {
   /**
    * Values to be present in the condition form.
    *

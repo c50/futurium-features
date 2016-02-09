@@ -31,7 +31,8 @@
   </div>
   <div class="listNodeUpdated"><?php print format_date($node->changed, 'custom', 'd/m/Y'); ?></div>
   <h2<?php print $title_attributes; ?>>
-    <a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+    <?php print l($title, $node_link, $options = array('html' => TRUE)); ?>
+  </h2>
   <?php print render($title_suffix); ?>
   <div class="content"<?php print $content_attributes; ?>>
     <?php
