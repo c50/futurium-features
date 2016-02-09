@@ -136,6 +136,7 @@ features[page_manager_handlers][] = node_view__panel_context_87bf91fd-f1b6-4de8-
 features[page_manager_handlers][] = term_view__panel_context_645c8220-980b-4c7b-b066-e549b2bfe76f
 features[page_manager_handlers][] = user_edit__panel_context_673c691d-27fe-45fb-8eaf-f2905dfccbc1
 features[page_manager_handlers][] = user_view__panel_context_6967673a-0888-4c18-a3f1-3e10c148e311
+features[page_manager_pages][] = about
 features[page_manager_pages][] = events
 features[page_manager_pages][] = group_futures
 features[page_manager_pages][] = group_ideas
