@@ -317,6 +317,13 @@ function futurium_d4eu_preprocess_node(&$vars) {
  * Implements template_preprocess_comment().
  */
 function futurium_d4eu_preprocess_comment(&$vars) {
+  // DAE-1361: Disallow comment reply on comment is context flavor is active.
+  $context = _supertags_get_context();
+
+  if (isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
+    unset($vars['content']['links']['comment']['#links']['comment-reply']);
+  }
+
   if ($vars['elements']['#view_mode'] == 'comment_teaser') {
     $vars['theme_hook_suggestions'][] = 'comment__comment_teaser';
     $trim_config    = array(
@@ -325,6 +332,7 @@ function futurium_d4eu_preprocess_comment(&$vars) {
       'word_boundary' => TRUE,
       'html'          => TRUE,
     );
+
     $comment_to_trim = drupal_html_to_text($vars['elements']['#comment']->comment_body['und'][0]['value']);
     $vars['trimmed_comment'] = views_trim_text($trim_config, $comment_to_trim);
 

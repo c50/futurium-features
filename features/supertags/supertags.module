@@ -1004,7 +1004,7 @@ function supertags_init() {
  * Implements hook_preprocess_node().
  */
 function supertags_preprocess_node(&$vars) {
-  $node = $vars['node'];
+  
   if ($vars['view_mode'] == 'mini_teaser') {
 
     $flavor = _supertags_flavor_context();
@@ -1057,6 +1057,12 @@ function supertags_preprocess_node(&$vars) {
         $vars['content']['links_to']['#markup'] = '<div class="shared-flavors"><label>' . t("Shared with") . ':</label>' . implode('', $links) . '</div>';
       }
     }
+  }
+
+  // Don't build the comment form for a node in context of an archived flavor.
+  $context = _supertags_get_context();
+  if (isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
+    unset($vars['content']['comments']['comment_form']);
   }
 }
 
@@ -1307,8 +1313,9 @@ function _supertags_ctas_block_content() {
   global $user;
 
   $context = _supertags_get_context();
-  $enabled_content_types = _supertags_content_type_mapping($context['flavor']['tid']);
-
+  if (isset($context['flavor']['tid'])) {
+    $enabled_content_types = _supertags_content_type_mapping($context['flavor']['tid']);
+  }
   if ($user->uid == 0) {
     $l_options = array(
       'html' => TRUE,
@@ -1317,7 +1324,11 @@ function _supertags_ctas_block_content() {
         'rel' => 'nofollow',
       ),
     );
-    $markup = l('<span>Join here</span><span>to take part</span>', 'user/register', $l_options);
+    // DAE-1361: Cancel CTA box to join/register if the flavor is archived.
+    if (isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0) {
+      $markup = l('<span>Join here</span><span>to take part</span>', 'user/register', $l_options);
+    }
+
   }
   else {
     if (isset($context['content_type']) &&
@@ -1340,7 +1351,10 @@ function _supertags_ctas_block_content() {
         }
         $label = strtolower($label);
 
-        $markup = l('<span>Add</span><span>' . $label . '</span>', $path, $l_options);
+        // DAE-1361: Cancel CTA box to add content if the flavor is archived.
+        if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0) {
+          $markup = l('<span>Add</span><span>' . $label . '</span>', $path, $l_options);
+        }
       }
     }
   }
@@ -1355,7 +1369,10 @@ function _supertags_ctas_block_content() {
  */
 function _supertags_block_content() {
   $flavor_context = _supertags_flavor_context();
-  $flavor_term = $flavor_context['term'];
+
+  if (isset($flavor_context['term'])) {
+    $flavor_term = $flavor_context['term'];
+  }
 
   $markup = "";
 
@@ -1396,8 +1413,10 @@ function _supertags_block_content() {
 
     }
   }
-  $form = drupal_get_form('supertags_search_form', $flavor_term);
-  $markup .= render($form);
+  if (isset($flavor_term)) {
+    $form = drupal_get_form('supertags_search_form', $flavor_term);
+    $markup .= render($form);
+  }
 
   return $markup;
 }
@@ -1864,6 +1883,51 @@ function _supertags_content_type_context() {
 function _supertags_tag_context() {
   $context = _supertags_get_context();
   return isset($context['tag']) ? $context['tag'] : NULL;
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function supertags_node_access($node, $op, $account) {
+  // DAE-1361: block creation/update on nodes if archived flavor.
+  if (is_string($node)) {
+    $q = arg(0);
+    $term = _supertags_get_term_by_path($q);
+
+    if (is_object($term) && $term->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
+      return NODE_ACCESS_DENY;
+    }
+    return NODE_ACCESS_IGNORE;
+  }
+  if (is_object($node)) {
+    // Return node field_default_flavor.`
+    $node_default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
+
+    if ($node_default_flavor = taxonomy_term_load($node_default_flavor)) {
+      $default_archived = $node_default_flavor->field_flavor_archived[LANGUAGE_NONE][0]['value'];
+    }
+    // Disallow create/update access if default flavor is archived.
+    if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($default_archived == 1)) {
+      return NODE_ACCESS_DENY;
+    }
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function supertags_page_alter(&$page) {
+  // Add markup to the identity region to stamp archived flavors.
+  $context = _supertags_get_context();
+  $mark_archived = '<span class=\'showArchived\'>' . t('Archived') . '</span>';
+
+  if (isset($context['flavor']['term'])) {
+    if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
+      $page['identity'] = array(
+        '#markup' => $mark_archived,
+      );
+    }
+  }
 }
 
 /**

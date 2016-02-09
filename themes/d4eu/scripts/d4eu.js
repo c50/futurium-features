@@ -234,9 +234,35 @@ D4EU.initResetFilterPositionForResp = function (isLast) {
   }
 }
 
-D4EU.focusRelContent = function (type) {
-  // To be done.
-}
+/**
+ * Initializes navigation for mobile devices.
+ */
+D4EU.initHpArchive = function (isLast) {
+  if (D4EU.initHpArchiveIsInit) {
+    return true;
+  }
+  if (isLast) {
+    D4EU.initHpArchiveIsInit = true;
+  }
+  var arch = jQuery(".flavour-landing-page .flavour-boxes .Archived");
+  if (arch) {
+    var lnk = jQuery(".archivesLinks")[0];
+    if(lnk){
+      lnk.arch=arch;
+      lnk.href="javascript:void(0)";
+      lnk.onclick=function(){
+        for(var i=0;i<this.arch.length;i++){
+          this.arch[i].style.display="inline-block";
+          this.style.display="none";
+        }
+      }
+    }
+    return true;
+  }
+  else {
+    return D4EU.initHpArchiveIsInit;
+  }
+};
 
 /**
  * Runs the initialization.
@@ -247,6 +273,7 @@ function initASAP() {
   isInit = isInit && (D4EU.setNavFollowingScrollIsInit = D4EU.setNavFollowingScroll());
   isInit = isInit && (D4EU.initPagerIsInit = D4EU.initPager());
   isInit = isInit && (D4EU.initResetFiltPosForRespIsInit = D4EU.initResetFilterPositionForResp());
+  isInit = isInit && (D4EU.initHpArchive = D4EU.initHpArchive());
 
   if (!isInit) {
     setTimeout(initASAP, 50);
@@ -265,6 +292,7 @@ initASAP();
       D4EU.setNavFollowingScroll(true);
       D4EU.initPager(true);
       D4EU.initResetFilterPositionForResp(true);
+      D4EU.initHpArchive(true);
     }
   };
 })(jQuery);
