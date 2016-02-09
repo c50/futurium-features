@@ -422,3 +422,27 @@ function futurium_isa_theme_quant_page($vars) {
 
   return '<div id="quant-page">' . $content . '</div>';
 }
+
+/**
+ * Theme wrapper for quant_time_form()
+ */
+function futurium_isa_theme_quant_time_form($vars) {
+  $form = $vars['form'];
+  $output = '';
+
+  $output .= '<fieldset>';
+
+  $output .= '<div class="description">';
+  $output .= drupal_render($form['message']);
+  $output .= '</div>';
+
+  $output .= '<div class="quant-option-row">';
+  $output .= drupal_render($form['period']);
+  $output .= '</div>';
+
+  $output .= drupal_render_children($form);
+
+  $output .= '</fieldset>';
+
+  return $output;
+}

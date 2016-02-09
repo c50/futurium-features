@@ -923,6 +923,42 @@ function futurium_isa_extras_wysiwyg_plugin($editor, $version) {
   }
 }
 
+/**
+ * Implements hook_views_query_alter().
+ */
+function futurium_isa_extras_views_query_alter(&$view, &$query) {
+  if ($view->name == 'events' && $view->current_display == 'all_events') {
+    if ($view->filter['field_date_time_value']->operator == '<') {
+      $query->orderby[0]['direction'] = 'DESC';
+    }
+    else{
+      $query->orderby[0]['direction'] = 'ASC';
+    }
+  }
+
+  if ($view->name == 'statistics' && ($view->current_display == 'block' || $view->current_display == 'block_2')) {
+    /*
+    dsm($query);
+    //$query->addExpression('COUNT(n.title)', 'ncount');
+    $join = new views_join();
+    $join->table = 'comment';
+    $join->field = 'nid';
+    $join->left_table = 'node';
+    $join->left_field = 'nid';
+    $join->type = 'INNER';
+    $query->add_relationship('comment', $join, 'node');
+    //if (isset($_GET['period'])) {
+      $_GET['period'] = '1_hour';
+      $time = '-' . str_replace('_', ' ', $_GET['period']);
+      $time = strtotime($time);
+      $query->add_where(1, 'comment.created', $time, '>=');
+      $query->add_where(1, 'comment.status', "1", '=');
+    //}
+    $query->set_distinct(TRUE, FALSE);
+    */
+  }
+}
+
 // Modules likely to be disabled
 /*
 Bootstrap - Photo Gallery
@@ -953,8 +989,6 @@ function futurium_isa_extras_views_query_alter(&$view, &$query) {
   dsm($query);
 }
 */
-function futurium_isa_extras_views_pre_execute(&$view) {
-  //dsm($view->name);
-  //dpq($view->build_info['query']);
-}
+
+
 

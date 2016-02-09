@@ -60,23 +60,21 @@ function tests_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Comment count */
-  $handler->display->display_options['fields']['comment_count']['id'] = 'comment_count';
-  $handler->display->display_options['fields']['comment_count']['table'] = 'node_comment_statistics';
-  $handler->display->display_options['fields']['comment_count']['field'] = 'comment_count';
-  $handler->display->display_options['fields']['comment_count']['label'] = '';
-  $handler->display->display_options['fields']['comment_count']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['comment_count']['separator'] = '';
-  $handler->display->display_options['fields']['comment_count']['format_plural'] = TRUE;
-  $handler->display->display_options['fields']['comment_count']['format_plural_singular'] = '1 comment';
-  $handler->display->display_options['fields']['comment_count']['format_plural_plural'] = '@count comments';
-  $handler->display->display_options['fields']['comment_count']['prefix'] = '(';
-  $handler->display->display_options['fields']['comment_count']['suffix'] = ')';
-  /* Sort criterion: Content: Comment count */
-  $handler->display->display_options['sorts']['comment_count']['id'] = 'comment_count';
-  $handler->display->display_options['sorts']['comment_count']['table'] = 'node_comment_statistics';
-  $handler->display->display_options['sorts']['comment_count']['field'] = 'comment_count';
-  $handler->display->display_options['sorts']['comment_count']['order'] = 'DESC';
+  /* Field: Futurium Extras: Comment count */
+  $handler->display->display_options['fields']['comment_count_1']['id'] = 'comment_count_1';
+  $handler->display->display_options['fields']['comment_count_1']['table'] = 'futurium_isa_extras_count_comments';
+  $handler->display->display_options['fields']['comment_count_1']['field'] = 'comment_count';
+  $handler->display->display_options['fields']['comment_count_1']['label'] = '';
+  $handler->display->display_options['fields']['comment_count_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['comment_count_1']['separator'] = '';
+  $handler->display->display_options['fields']['comment_count_1']['format_plural'] = TRUE;
+  $handler->display->display_options['fields']['comment_count_1']['format_plural_singular'] = '(1 comment)';
+  $handler->display->display_options['fields']['comment_count_1']['format_plural_plural'] = '(@count comments)';
+  /* Sort criterion: Futurium Extras: Comment count */
+  $handler->display->display_options['sorts']['comment_count_1']['id'] = 'comment_count_1';
+  $handler->display->display_options['sorts']['comment_count_1']['table'] = 'futurium_isa_extras_count_comments';
+  $handler->display->display_options['sorts']['comment_count_1']['field'] = 'comment_count';
+  $handler->display->display_options['sorts']['comment_count_1']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -96,6 +94,9 @@ function tests_views_default_views() {
   $handler = $view->new_display('block', 'Most Commented Futures', 'block');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Most Commented Futures';
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -106,6 +107,32 @@ function tests_views_default_views() {
     'comment_count' => 'comment_count',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Votes */
+  $handler->display->display_options['relationships']['votingapi_vote']['id'] = 'votingapi_vote';
+  $handler->display->display_options['relationships']['votingapi_vote']['table'] = 'node';
+  $handler->display->display_options['relationships']['votingapi_vote']['field'] = 'votingapi_vote';
+  $handler->display->display_options['relationships']['votingapi_vote']['votingapi'] = array(
+    'value_type' => '',
+    'tag' => '',
+  );
+  $handler->display->display_options['relationships']['votingapi_vote']['current_user'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'future' => 'future',
+  );
 
   /* Display: Most Voted Futures */
   $handler = $view->new_display('block', 'Most Voted Futures', 'block_1');
@@ -203,6 +230,9 @@ function tests_views_default_views() {
   $handler = $view->new_display('block', 'Most Commented Ideas', 'block_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Most Commented Ideas';
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -213,6 +243,16 @@ function tests_views_default_views() {
     'comment_count' => 'comment_count',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Votes */
+  $handler->display->display_options['relationships']['votingapi_vote']['id'] = 'votingapi_vote';
+  $handler->display->display_options['relationships']['votingapi_vote']['table'] = 'node';
+  $handler->display->display_options['relationships']['votingapi_vote']['field'] = 'votingapi_vote';
+  $handler->display->display_options['relationships']['votingapi_vote']['votingapi'] = array(
+    'value_type' => '',
+    'tag' => '',
+  );
+  $handler->display->display_options['relationships']['votingapi_vote']['current_user'] = 0;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
