@@ -23,8 +23,16 @@ function futurium_isa_default_box() {
 <li class="facebook"><a href="#"><span>Facebook</span></a></div>
 <li class="twitter"><a href="#"><span>Twitter</span></a></div>
 <li class="contact"><a href="#"><span>Contact</span></a></div>
-</ul>',
-      'format' => 'full_html',
+</ul>
+
+<ul class="util">
+<li class="about"><a href="/about"><span>About</span></a></div>
+</ul>
+
+<div class="powered">Powered by <a href="#">Futurium</a></div>
+',
+
+      'format' => 'full',
     ),
     'additional_classes' => 'col',
   );

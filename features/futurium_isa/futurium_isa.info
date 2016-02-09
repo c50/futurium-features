@@ -34,6 +34,7 @@ dependencies[] = views_field_view
 dependencies[] = views_fieldsets
 dependencies[] = quant
 features[box][] = footer_social_links
+features[context][] = site-wide
 features[ctools][] = boxes:box:1
 features[ctools][] = context:context:3
 features[ctools][] = ds:ds:1
