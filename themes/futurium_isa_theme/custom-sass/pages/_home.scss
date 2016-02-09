@@ -65,14 +65,8 @@
     h2:before {
       @include fa(user);
     }
-    .views-row {
-      @include rem(padding, 0 0 10px 0);
-    }
-    .left {
-      float:left;
-      @include rem(margin, 0 10px 0 0);
-    }
-    .views-field-nid{
+   
+    .views-field-nid {
       color: $mid-grey;
     }
   }

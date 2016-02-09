@@ -2,10 +2,44 @@
 /* CONTAINERS */
 /*************/
 
-
-
 .container-fullwidth {
-  padding: 40px 0 40px 0;
+  padding: 0 0 0 0;
+  .container {
+    padding: 30px 15px 30px 15px;
+  }
+}
+
+.front .container-fullwidth.row2 .container-fullwidth {
+  padding: 0 15px 0 15px;
+}
+
+
+.container-top .container {
+  padding: 0;
+}
+
+
+.container-fullwidth.navbar {
+  .container {
+    padding-top: 0;
+  }
+}
+
+
+.front .container.row1,
+.front .container.row2 {
+  background: #fff;
+}
+
+.front .container.row1 {
+  padding-top: 15px;
+  padding-bottom: 0px;
+}
+
+
+
+section.container-fullwidth {
+  @include rem(padding, 0);
 }
 
 .container-fullwidth.navbar,
@@ -25,13 +59,14 @@
 /* NAVIGATION */
 /*************/
 
-.navbar-brand {
+.navbar>.container .navbar-brand, 
+.navbar>.container-fluid .navbar-brand {
+  @include rem(margin, 0 0 20px 0);
   @include rem(padding, 0 0 20px 0);
+  color: $text-color;
 }
 
-.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-  @include rem(margin, 0 0 20px 0);
-}
+/*
 
 .navbar-header {
   float: left;
@@ -42,6 +77,8 @@
   float: left;
   width: 80%;
 }
+
+*/
 
 .container-fullwidth.row3 {
   @include rem(padding-top, 0);

@@ -10,6 +10,18 @@ html {
   box-sizing: border-box;
 }
 
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+
+
+
+
 /**
  * Make all elements from the DOM inherit from the parent box-sizing
  * Since `*` has a specificity of 0, it does not override the `html` value
@@ -122,7 +134,7 @@ h4 a {
   list-style: none;
   padding: 0;
   margin: 0;
-  li {
+  li{
     @include rem(padding, 15px 0 15px 0);
     @include rem(border-bottom, 1px solid #ebebeb);
     a {
@@ -175,6 +187,7 @@ h4 a {
 .not-front{
   @include contenttype($mid-grey, wrench);
   @include teaser($mid-grey);
+  @include rem(padding, 0);
 }
 
 /**
@@ -188,6 +201,7 @@ body.page-ideas, body.node-type-ideas {
 
 .node-teaser.node-ideas {
   @include teaser($idea-color);
+  /* @include rem(padding, 30px 0 30px 0); */
   h3:before {
     @include icon-node-teaser($idea-color, lightbulb-o);
     @include rem(padding, 6px 0 0 11px);
@@ -472,7 +486,7 @@ ul.rate-fivestar-processed{
 }
 
 div.panel-pane div.node-teaser { /* div.panel-pane to override panel.css */
-  @include rem(padding, 30px 0 30px 0);
+  @include rem(padding, 30px 0 30px 0); 
   border-bottom: 5px solid #d7d7d7;
 }
 
@@ -490,14 +504,6 @@ div.panel-pane li.views-row:last-child
     border-bottom: none;
   }
 }
-
-
-.page-customerror{
-  .container{
-    min-height: 800px;
-  }
-}
-
 
 /* icons for date - vote - comment */
 
@@ -535,7 +541,7 @@ div.panel-pane li.views-row:last-child
 }
 
 
-/**
+/*
  * Temp fix 
  */
 .views-row.nowrap {
@@ -554,10 +560,11 @@ div.panel-pane li.views-row:last-child
 .list-inline {
   margin: 0 0 0 0;
   padding: 0 0 0 0;
-  li{
-    padding-left: 0;
+  li {
+    @include rem(padding, 0 5px 5px 0);
   }
 }
+
 
 .authors-name, .authors-picture, .share-links li {
     float: left;
@@ -574,33 +581,44 @@ div.panel-pane li.views-row:last-child
 /* people */
 /*********/
 
-.view-people, .view-group-people {
-  .views-row {
+.view-people, .view-group-people, .view-revisions, .view-events{
+  div.views-row {
     @include rem(margin, 0 0 20px 0);
-    position: relative;
   }
+  
+  /*
+  .views-row-container {
+    @include make-row(0);
+  }
+
+  */
+
+  .views-row, .views-row-container {
+    @include make-row(0);
+  }  
+
   .left {
-    /* float: left; */
-    display: inline-block;
-    vertical-align: text-bottom;
-    .views-field-picture{
-      @include rem(margin, 0 10px 0 0);
-    }
+    @extend .col-xs-2;
+    padding: 0;
   }
   .middle {
-    display: inline-block;
+    @extend .col-xs-6;
+    padding: 0;
   }
   .right {
-    position: absolute;
-    right: 0;
-    top: 0;
+    @extend .col-xs-4;
+    text-align: right;
+    padding: 0;
   }
 }
 
+
+
 .front{
   .view-people{
-    .right{
-      position: relative;
+    .right {
+       @extend .col-xs-10;
+       text-align: left;
     }
   }
 }
@@ -612,6 +630,7 @@ div.panel-pane li.views-row:last-child
     border: 1px solid darken($light-grey, 10%);
     @include rem(padding, 15px);
     @include rem(margin, 0 0 30px 0);
+    position: relative;
   }
 }
 
@@ -692,7 +711,7 @@ div.panel-pane li.views-row:last-child
 
 /* create background for menu tabs on page-user and page-group */
 
-.page-user:not(.page-user-edit), .node-type-futurium-group {
+.logged-in.page-user:not(.page-user-edit), .node-type-futurium-group {
   .container-fullwidth.row2 {
     background: url(../assets/img/bg-user-menu.gif) left top;
     background-repeat: repeat-x;
@@ -836,27 +855,35 @@ div.panel-pane .preview .node{
   border:10px solid red;
 }
 
-
 .autocomplete-suggestion.node-type-future:before, 
 .view-node-relations .future:before,
-.futures-count:before {
+.futures-count:before
+{
   @include fa(rocket);
 }
 
 .autocomplete-suggestion.node-type-ideas:before, 
 .view-node-relations .ideas:before,
-.ideas-count:before {
+.ideas-count:before
+{
   @include fa(lightbulb-o);
 }
 
-.autocomplete-suggestion.node-type-event_d4eu:before, .view-node-relations .event_d4eu:before {
+.autocomplete-suggestion.node-type-event_d4eu:before, 
+.view-node-relations .event_d4eu:before {
   @include fa(calendar);
 }
 
-.autocomplete-suggestion.node-type-evidence:before, .view-node-relations .evidence:before{
+.autocomplete-suggestion.node-type-evidence:before, 
+.view-node-relations .evidence:before{
   @include fa(file-text-o);
 }
 
+span.futures-count,
+span.ideas-count,
+span.comment-count {
+  margin-right: 15px;
+}
 
 .btn-add-relation:before {
   @include fa(link);
@@ -904,9 +931,41 @@ div.panel-pane .preview .node{
   font-family: $header-font-stack;
 }
 
-/********************************/
-/* NEEDS TO MOVE TO COMPONENTS */
-/******************************/
+/**********************/
+/* CUSTOM ERROR PAGE */
+/********************/
+
+
+/*
+
+.page-customerror > section > .container {
+  @include rem(padding, 20px 15px 20px 15px);
+  min-height: 80vh;
+}
+
+
+section > .content-wrapper {
+  min-height: 80vh;
+}
+
+*/
+
+
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+  height: 100%;
+  margin: 0 auto -800px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer.container-fullwidth, .push {
+  height: 800px;
+}
+
+/*************/
+/* CAROUSEL */
+
 
 .carousel-control {
   width: 5%;
@@ -916,7 +975,6 @@ div.panel-pane .preview .node{
 .carousel-control.left,
 .carousel-control.right {
   width: 70px;
-  height: 350px;
 }
 
 .carousel-control.left {
@@ -952,7 +1010,7 @@ div.panel-pane .preview .node{
   opacity: 0.1;
   position: absolute;
   min-height: 350px;
-  width: 1160px;
+  width: 1170px;
   margin: 0;
   bottom: 0;
   left: 0;
@@ -989,6 +1047,14 @@ div.panel-pane .preview .node{
   }
 }
 
+/**********/
+/* STATS */
+/********/
+
+.stats-block {
+  @extend .col-xs-6;
+  @include rem(padding, 0 0 30px 0);
+}
 
  
 
