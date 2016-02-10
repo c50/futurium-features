@@ -99,7 +99,6 @@ D4EU.setNavFollowingScroll = function (isLast) {
         adminMenu = 0;
       }
       var topNavPos = nav.offsetTop + nav.offsetHeight - adminMenu;
-
       var scrTop = jQuery(window).scrollTop();
       var curState = {
         scrl: scrTop,
@@ -247,13 +246,13 @@ D4EU.initHpArchive = function (isLast) {
   var arch = jQuery(".flavour-landing-page .flavour-boxes .Archived");
   if (arch) {
     var lnk = jQuery(".archivesLinks")[0];
-    if(lnk){
-      lnk.arch=arch;
-      lnk.href="javascript:void(0)";
-      lnk.onclick=function(){
-        for(var i=0;i<this.arch.length;i++){
-          this.arch[i].style.display="inline-block";
-          this.style.display="none";
+    if (lnk) {
+      lnk.arch = arch;
+      lnk.href = "javascript:void(0)";
+      lnk.onclick = function() {
+        for (var i = 0; i < this.arch.length; i++) {
+          this.arch[i].style.display = "inline-block";
+          this.style.display = "none";
         }
       }
     }

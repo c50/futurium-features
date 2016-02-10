@@ -277,7 +277,7 @@ function d4eu_preprocess_node(&$vars) {
     }
   }
   $vars['hide'] = array();
-  $vars['show'] =  array(
+  $vars['show'] = array(
     'field_leading_picture_d4eu',
     'body',
     'field_ideas',
