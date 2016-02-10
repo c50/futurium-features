@@ -253,28 +253,29 @@ function d4eu_preprocess_node(&$vars) {
   $node = $vars['node'];
   $vars['open_to_comments'] = FALSE;
 
-  if ($node->comment == COMMENT_NODE_OPEN) {
-    $context = _supertags_get_context();
+  if (module_exists('supertags')) {
+    if ($node->comment == COMMENT_NODE_OPEN) {
+      $context = _supertags_get_context();
 
-    if ((isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0)) {
-      $vars['open_to_comments'] = TRUE;
-      /* Fake login/register form to comment while not logged in. */
-      $destination                   = array('destination' => "comment/reply/$node->nid/#comment-form");
-      $vars['comment_login_title']   = t('Add new comment');
-      $vars['comment_login']         = t("<a href='@login'>Login</a> or <a href='@register'>register</a> to add comment.",
-        array(
-          '@login'    => url('user/login', array('query' => $destination)),
-          '@register' => url('user/register', array('query' => $destination)),
-        ));
-      $vars['comment_login_subject'] = t('Subject');
-      $vars['comment_login_comment'] = t('Comment');
-      $vars['comment_login_save']    = t('Save');
-    }
-    else {
-      unset($vars['content']['links']['comment']['#links']['comment-reply']);
+      if ((isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0)) {
+        $vars['open_to_comments'] = TRUE;
+        /* Fake login/register form to comment while not logged in. */
+        $destination                   = array('destination' => "comment/reply/$node->nid/#comment-form");
+        $vars['comment_login_title']   = t('Add new comment');
+        $vars['comment_login']         = t("<a href='@login'>Login</a> or <a href='@register'>register</a> to add comment.",
+          array(
+            '@login'    => url('user/login', array('query' => $destination)),
+            '@register' => url('user/register', array('query' => $destination)),
+          ));
+        $vars['comment_login_subject'] = t('Subject');
+        $vars['comment_login_comment'] = t('Comment');
+        $vars['comment_login_save']    = t('Save');
+      }
+      else {
+        unset($vars['content']['links']['comment']['#links']['comment-reply']);
+      }
     }
   }
-
   $vars['hide'] = array();
   $vars['show'] =  array(
     'field_leading_picture_d4eu',
@@ -305,9 +306,11 @@ function d4eu_form_search_block_form_alter(&$form, &$form_state, $form_id) {
  * Changes search forms placeholder text.
  */
 function d4eu_form_alter(&$form, &$form_state, $form_id) {
-  $flavor = _supertags_flavor_context();
-  if ($form_id == 'search_block_form') {
-    $form['search_block_form']['#attributes']['placeholder'][] = $flavor['name'];
+  if (module_exists('supertags')) {
+    $flavor = _supertags_flavor_context();
+    if ($form_id == 'search_block_form') {
+      $form['search_block_form']['#attributes']['placeholder'][] = $flavor['name'];
+    }
   }
 }
 
@@ -321,7 +324,9 @@ function d4eu_preprocess_comment(&$vars) {
 
   $node = $vars['node'];
   $comment = $vars['comment']->cid;
-  $context = _supertags_get_context();
+  if (module_exists('supertags')) {
+    $context = _supertags_get_context();
+  }
 
   if (!$user->uid) {
     if ((isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0)) {
