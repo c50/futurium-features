@@ -255,9 +255,10 @@ function d4eu_preprocess_node(&$vars) {
 
   if (module_exists('supertags')) {
     if ($node->comment == COMMENT_NODE_OPEN) {
-      $context = _supertags_get_context();
+      $default_flavor = $vars['field_default_flavour'][LANGUAGE_NONE][0]['tid'];
+      $default_archived = _supertags_is_archived(taxonomy_term_load($default_flavor));
 
-      if ((isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0)) {
+      if ($default_archived == 0) {
         $vars['open_to_comments'] = TRUE;
         /* Fake login/register form to comment while not logged in. */
         $destination                   = array('destination' => "comment/reply/$node->nid/#comment-form");
@@ -271,6 +272,7 @@ function d4eu_preprocess_node(&$vars) {
         $vars['comment_login_comment'] = t('Comment');
         $vars['comment_login_save']    = t('Save');
       }
+
       else {
         unset($vars['content']['links']['comment']['#links']['comment-reply']);
       }
@@ -326,13 +328,15 @@ function d4eu_preprocess_comment(&$vars) {
   $comment = $vars['comment']->cid;
   if (module_exists('supertags')) {
     $context = _supertags_get_context();
+    $default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
+    $default_archived = _supertags_is_archived(taxonomy_term_load($default_flavor));
   }
 
   if (!$user->uid) {
-    if ((isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 0)) {
+    if ($default_archived == 0) {
       if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
         $destination                                                                 = array('destination' => "comment/reply/$node->nid/$comment#comment-form");
-        $vars['content']['links']['comment']['#links']['comment_forbidden']['title'] = t('<a href="@login">Log in</a> or <a href="@register">register</a> to reply to this comment',
+        $vars['content']['links']['comment']['#links']['comment_forbidden']['title'] = t('<a href="@login">Log in</a> or <a href="@register">register</a><br /> to reply to this comment',
           array(
             '@login'    => url('user/login', array('query' => $destination)),
             '@register' => url('user/register', array('query' => $destination)),
