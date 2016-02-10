@@ -1727,6 +1727,18 @@ iframe {
   font-size: 0.8em;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
 }
+.node h2 span.showArchived {
+  position: relative;
+  top: 3px;
+  right: 5px;
+  display: inline-block;
+  padding: 0.3em 1em 0.5em;
+  background: #fff;
+  color: #c00;
+  border: solid 1px #c00;
+  font-size: 0.8em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
 .identityBlock .showArchived {
   display: block;
   padding: 0.5em 1em 0.7em;
