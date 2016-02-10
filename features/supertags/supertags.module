@@ -1004,7 +1004,7 @@ function supertags_init() {
  * Implements hook_preprocess_node().
  */
 function supertags_preprocess_node(&$vars) {
-  
+
   if ($vars['view_mode'] == 'mini_teaser') {
 
     $flavor = _supertags_flavor_context();
@@ -1061,9 +1061,17 @@ function supertags_preprocess_node(&$vars) {
 
   // Don't build the comment form for a node in context of an archived flavor.
   $context = _supertags_get_context();
-  if (isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
+  $default_flavor = $vars['field_default_flavour'][LANGUAGE_NONE][0]['tid'];
+  $default_archived = _supertags_is_archived(taxonomy_term_load($default_flavor));
+
+  if ((isset($context['flavor']['term']) && $context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) ||
+        ($default_archived == 1)) {
     unset($vars['content']['comments']['comment_form']);
+    if ($default_archived == 1) {
+      $vars['title_suffix']['#markup'] = '<h2><span class="showArchived">Archived</span></h2>';
+    }
   }
+
 }
 
 /**
@@ -1904,7 +1912,7 @@ function supertags_node_access($node, $op, $account) {
     $node_default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
 
     if ($node_default_flavor = taxonomy_term_load($node_default_flavor)) {
-      $default_archived = $node_default_flavor->field_flavor_archived[LANGUAGE_NONE][0]['value'];
+      $default_archived = _supertags_is_archived($node_default_flavor);
     }
     // Disallow create/update access if default flavor is archived.
     if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($default_archived == 1)) {
@@ -2539,6 +2547,20 @@ function _supertags_is_flavor($term) {
 function _supertags_is_active($term) {
   if (_supertags_is_flavor($term)) {
     return $term->field_flavor_active[LANGUAGE_NONE][0]['value'] == "1";
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Helper function.
+ *
+ * Returns true if a Flavor is archived.
+ */
+function _supertags_is_archived($term) {
+  if (_supertags_is_flavor($term)) {
+    return $term->field_flavor_archived[LANGUAGE_NONE][0]['value'] == "1";
   }
   else {
     return FALSE;
