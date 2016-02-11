@@ -1068,7 +1068,7 @@ function supertags_preprocess_node(&$vars) {
         ($default_archived == 1)) {
     unset($vars['content']['comments']['comment_form']);
     if ($default_archived == 1) {
-      $vars['title_suffix']['#markup'] = '<h2><span class="showArchived">Archived</span></h2>';
+      $vars['title_suffix']['#markup'] = '<span class="showArchivedTitle">Archived</span>';
     }
   }
 
@@ -2292,6 +2292,9 @@ function supertags_form_node_form_alter(&$form, &$form_state) {
       }
     }
   }
+
+  $create_title = t('Create ') . $item['title'];
+  drupal_set_title($create_title);
 
 }
 

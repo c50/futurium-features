@@ -1428,6 +1428,10 @@ iframe {
 }
 /* /fix for view-flavors-listings-teaser */
 
+#block-system-main .view-flavors .view-content .views-row {
+  position: relative;
+}
+
 
 /* add arrow in front of replies */
 #comments .indented .panel-heading h4:before {
@@ -1750,6 +1754,30 @@ iframe {
   text-align: center;
   width: 80%;
   margin: 0 auto 1em;
+}
+
+.contentContainer .showArchivedTitle {
+  float: left;
+  padding: 0.3em 1em 0.5em;
+  background: #fff;
+  color: #c00;
+  border: solid 1px #c00;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  margin-right: 1em;
+  font-size: 1.4em;
+}
+.contentContainer h2+.showArchivedTitle {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: inline-block;
+  padding: 0em 1em 0.1em;
+  background: #fff;
+  color: #c00;
+  border: solid 1px #c00;
+  font-size: 0.8em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  line-height: 1.5em;
 }
 
 /* - */

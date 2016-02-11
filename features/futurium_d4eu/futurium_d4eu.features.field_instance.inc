@@ -614,7 +614,7 @@ function futurium_d4eu_field_default_field_instances() {
     'bundle' => 'ideas',
     'default_value' => array(
       0 => array(
-        'value' => '<h2>Your experience</h2><p>What would you like to share?</p><h2>Your ideas</h2><p>How would you improve your experience?</p>',
+        'value' => '',
       ),
     ),
     'deleted' => 0,
