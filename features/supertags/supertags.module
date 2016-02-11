@@ -2293,6 +2293,9 @@ function supertags_form_node_form_alter(&$form, &$form_state) {
     }
   }
 
+  $create_title = t('Create ') . $item['title'];
+  drupal_set_title($create_title);
+
 }
 
 /**
