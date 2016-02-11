@@ -1,7 +1,7 @@
 name = d4eu
 description = Futurium DSM sub theme of default theme, ec_resp
 package = CNECT
-version = "7.x-1.6"
+version = "7.x-1.7"
 core = "7.x"
 multisite_version = 2.1
 base theme = ec_resp
