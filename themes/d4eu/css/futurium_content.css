@@ -1428,6 +1428,10 @@ iframe {
 }
 /* /fix for view-flavors-listings-teaser */
 
+#block-system-main .view-flavors .view-content .views-row {
+  position: relative;
+}
+
 
 /* add arrow in front of replies */
 #comments .indented .panel-heading h4:before {
