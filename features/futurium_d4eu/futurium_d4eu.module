@@ -317,6 +317,14 @@ function futurium_d4eu_preprocess_node(&$vars) {
  * Implements template_preprocess_comment().
  */
 function futurium_d4eu_preprocess_comment(&$vars) {
+  // DAE-1361: Disallow comment reply on comment is default flavor is archived.
+  $default_flavor = $vars['node']->field_default_flavour[LANGUAGE_NONE][0]['tid'];
+  $default_archived = _supertags_is_archived(taxonomy_term_load($default_flavor));
+
+  if ($default_archived == 1) {
+    unset($vars['content']['links']['comment']['#links']['comment-reply']);
+  }
+
   if ($vars['elements']['#view_mode'] == 'comment_teaser') {
     $vars['theme_hook_suggestions'][] = 'comment__comment_teaser';
     $trim_config    = array(
@@ -325,6 +333,7 @@ function futurium_d4eu_preprocess_comment(&$vars) {
       'word_boundary' => TRUE,
       'html'          => TRUE,
     );
+
     $comment_to_trim = drupal_html_to_text($vars['elements']['#comment']->comment_body['und'][0]['value']);
     $vars['trimmed_comment'] = views_trim_text($trim_config, $comment_to_trim);
 
@@ -488,7 +497,7 @@ function _futurium_d4eu_tear_off_calendar($variables) {
       <div class='month-event-front-page'>{$variables['from_date'][1]}</div>
       <div class='year-event-front-page'>{$variables['from_date'][0]}</div>";
     $from_date = l($from_date, $variables['alias'], array(
-      'html' => TRUE
+      'html' => TRUE,
       )
     );
     if ($variables['to_date'] > $variables['from_date']) {
@@ -496,7 +505,7 @@ function _futurium_d4eu_tear_off_calendar($variables) {
       <div class='month-event-front-page'>{$variables['to_date'][1]}</div>
       <div class='year-event-front-page'>{$variables['to_date'][0]}</div>";
       $to_date = l($to_date, $variables['alias'], array(
-        'html' => TRUE
+        'html' => TRUE,
         )
       );
       return $from_date . $to_date;
