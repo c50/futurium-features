@@ -60,10 +60,31 @@
     @include menu(darken($user-color, 20%), user);
   }
   li.stats {
-    @include menu($event-color, pie-chart);
+    @include menu($mid-grey, pie-chart);
   }
   li.my-account {
     margin-top: -5px;
+  }
+}
+
+.page-node{
+  li.futures {
+    @include menu(darken($future-color, 20%), rocket);
+  }
+  li.ideas {
+    @include menu(darken($idea-color, 20%), lightbulb-o);
+  }
+  li.library {
+    @include menu(darken($library-color, 20%), file-text-o);
+  }
+  li.events {
+    @include menu(darken($event-color, 20%), calendar);
+  }
+  li.login {
+    @include menu(darken($user-color, 20%), user);
+  }
+  li.stats {
+    @include menu(darken($event-color, 20%), pie-chart);
   }
 }
 

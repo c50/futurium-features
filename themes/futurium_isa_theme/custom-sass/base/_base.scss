@@ -195,7 +195,8 @@ h4 a {
  */
 
 /* idea */
-body.page-ideas, body.node-type-ideas {
+body.page-ideas, 
+body.node-type-ideas {
   @include contenttype($idea-color, lightbulb-o);
 }
 
@@ -379,9 +380,11 @@ a.btn-more:before {
   @include fa(male);
 }
 
-.member-count:before {
+.member-count:before,
+.view-statistics-users .views-field-name:before {
   @include fa(user);
 }
+
 
 .location-city:before {
   @include fa(map-marker);
@@ -797,6 +800,180 @@ body .view-messages {
 }
 
 
+/**********/
+/* FORMS */
+/********/
+
+
+.form-select {
+  padding: 0;
+  margin: 0;
+  border: none;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+  transition: none;
+}
+
+
+
+.views-exposed-form {
+
+  .views-exposed-widget {
+    float: none;
+    max-width: 580px;
+    @include rem(margin, 0 0 20px 0);
+    @include respond-to(small) {
+      max-width: 250px;
+    }
+  }
+
+  .form-control.form-text {
+    @include rem(height, 40px);
+    border-radius: 0;
+    @include rem(font-size, 14px);
+    background: $light-grey;
+    border: 1px solid darken($light-grey, 10%);
+  }
+
+  .form-control.form-text:focus {
+    border: 1px solid darken($light-grey, 20%);
+  }
+
+  .chosen-container-single .chosen-single {
+    border-radius: 0;
+    padding: 7px;
+    height: auto;
+    background: $light-grey;
+    box-shadow: none;
+    color: #666;
+    border: 1px solid darken($light-grey, 10%);
+    @include rem(font-size, 14px);
+  }
+
+  /* search box in input type select */
+
+  .chosen-search {
+    background: $light-grey;
+  }
+
+  .chosen-container-single .chosen-search input[type="text"] {
+    @include rem(font-size, 14px);
+  }
+
+  /* border when item is selected */
+
+  .chosen-container-active .chosen-single {
+    border: 1px solid darken($light-grey, 20);
+  }
+
+  .chosen-container-single .chosen-drop {
+    border: 1px solid darken($light-grey, 20);
+    border-top: none;
+  }
+
+  .chosen-container-single .chosen-single div {
+    top: 7px;
+    width: 35px;
+  }
+
+  .chosen-container .chosen-results {
+    margin: 0;
+    padding: 0;
+    background: $light-grey;
+    color: #666;
+  }
+
+  .chosen-container .chosen-results li {
+    @include rem(padding, 10px 6px);
+    @include rem(font-size, 14px);
+  }
+
+  /* position arrow down */
+
+  .chosen-container-single .chosen-single div b {
+    background-position: 2px 2px;
+    background: none;
+    background: darken($light-grey, 15%);
+    color: #fff;
+    top: -7px;
+    position: absolute;
+    &:before {
+      @include fa(arrow-down);
+      margin-left: 12px;
+      margin-top: 14px;
+    } 
+  }
+
+  /* position arrow up */
+
+  .chosen-container-active.chosen-with-drop .chosen-single div b {
+    background-position: -16px 2px;
+    &:before {
+      @include fa(arrow-up);
+      margin-left: 12px;
+      margin-top: 14px;
+    } 
+  }
+
+  /* background color highlighted item */
+
+  .chosen-container .chosen-results li.highlighted {
+    background: darken($light-grey, 15%);
+  }
+
+  .form-control:focus {
+    border-color: initial;
+    box-shadow: none;
+  }
+
+  /* margin in between two input select of type dependent-options */
+
+  .dependent-options {
+    .views-operator {
+      @include rem(margin-bottom, 15px);
+    }
+  }
+
+  /* radio buttons */
+
+  .form-type-radio {
+    @include rem(margin, 7px 0 7px 0);
+    @include rem(font-size, 14px);
+  }
+
+  /* remove margin from button */
+
+  .views-exposed-widget .form-submit {
+    @include rem(margin-top, 0);
+  }
+}
+
+#edit-name {
+   background-color: #ffffff !important;
+}
+
+/* hide yellow background on /user page */
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+/* user login page */
+
+#user-login {
+  width: 50%;
+}
+
+
+
+
+
+
 
 /**************/
 /* REVISIONS */
@@ -857,14 +1034,18 @@ div.panel-pane .preview .node{
 
 .autocomplete-suggestion.node-type-future:before, 
 .view-node-relations .future:before,
-.futures-count:before
+.futures-count:before,
+.stats-most-commented-futures .views-field-title:before,
+.stats-most-voted-futures .views-field-title:before
 {
   @include fa(rocket);
 }
 
 .autocomplete-suggestion.node-type-ideas:before, 
 .view-node-relations .ideas:before,
-.ideas-count:before
+.ideas-count:before,
+.stats-most-commented-ideas .views-field-title:before,
+.stats-most-voted-ideas .views-field-title:before
 {
   @include fa(lightbulb-o);
 }
@@ -900,11 +1081,6 @@ span.comment-count {
 
 /* END STUFF FOR THE LINKER MODULE */
 
-.row2l{
-  .panel-pane{
-    @include rem(margin, 0 0 30px 0);
-  }
-}
 
 .bootstrap-panels-horizontal-tabs {
   @extend .col-lg-12;
@@ -1053,7 +1229,7 @@ section > .content-wrapper {
 
 .stats-block {
   @extend .col-xs-6;
-  @include rem(padding, 0 0 30px 0);
+  @include rem(padding, 30px 0 0 0);
 }
 
  
