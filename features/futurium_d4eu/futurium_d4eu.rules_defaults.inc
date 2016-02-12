@@ -22,8 +22,7 @@ function futurium_d4eu_default_rules_configuration() {
         { "NOT data_is_empty" : { "data" : [ "account:field-register-url" ] } }
       ],
       "DO" : [
-        { "redirect" : { "url" : "[account:field_register_url]", "destination" : "1" } },
-        { "data_set" : { "data" : [ "account:field-register-url" ] } }
+        { "redirect" : { "url" : "[account:field_register_url]", "destination" : "1" } }
       ]
     }
   }');
