@@ -96,8 +96,10 @@ function drush_futurium_core_features_revert_futurium() {
  */
 function drush_futurium_core_post_install_futurium() {
 
+  // Disable tmgmt first to avoid drush error
+  module_disable(array('tmgmt'));
   // Disable not needed multisite modules
-  module_disable(array('nexteuropa_multilingual', 'ecas', 'tmgmt', 'cce_basic_config', 'taxonomy_browser', 'multisite_settings_standard', 'nexteuropa_core'));
+  module_disable(array('nexteuropa_multilingual', 'ecas', 'cce_basic_config', 'taxonomy_browser', 'multisite_settings_standard', 'nexteuropa_core'));
 
   // Remove Latest Content block from homepage context.
   $context = module_invoke('context', 'load', 'homepage');
