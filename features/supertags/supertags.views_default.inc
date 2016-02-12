@@ -3091,6 +3091,104 @@ function supertags_views_default_views() {
 
   /* Display: Manage */
   $handler = $view->new_display('block', 'Manage', 'block_dashboard');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: User: Uid */
+  $handler->display->display_options['fields']['uid']['id'] = 'uid';
+  $handler->display->display_options['fields']['uid']['table'] = 'users';
+  $handler->display->display_options['fields']['uid']['field'] = 'uid';
+  $handler->display->display_options['fields']['uid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+  /* Field: Bulk operations: User */
+  $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
+  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'users';
+  $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
+    'action::user_block_user_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::views_bulk_operations_delete_item' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::views_bulk_operations_modify_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+      'settings' => array(
+        'show_all_tokens' => 1,
+        'display_values' => array(
+          '_all_' => '_all_',
+        ),
+      ),
+    ),
+    'action::views_bulk_operations_user_roles_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::system_send_email_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+  );
+  /* Field: User: Picture */
+  $handler->display->display_options['fields']['picture']['id'] = 'picture';
+  $handler->display->display_options['fields']['picture']['table'] = 'users';
+  $handler->display->display_options['fields']['picture']['field'] = 'picture';
+  $handler->display->display_options['fields']['picture']['image_style'] = 'media_thumbnail';
+  /* Field: User: Username */
+  $handler->display->display_options['fields']['username']['id'] = 'username';
+  $handler->display->display_options['fields']['username']['table'] = 'users';
+  $handler->display->display_options['fields']['username']['field'] = 'username';
+  /* Field: Realname: Real name */
+  $handler->display->display_options['fields']['realname']['id'] = 'realname';
+  $handler->display->display_options['fields']['realname']['table'] = 'realname';
+  $handler->display->display_options['fields']['realname']['field'] = 'realname';
+  $handler->display->display_options['fields']['realname']['label'] = 'Name/Username';
+  $handler->display->display_options['fields']['realname']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['realname']['alter']['text'] = '<a href="/futurium/en/user/[uid]/edit">[realname]</a> /
+  [username]';
+  /* Field: User: Created date */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'users';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['label'] = 'Member for';
+  $handler->display->display_options['fields']['created']['element_class'] = 'hidden-xs';
+  $handler->display->display_options['fields']['created']['element_label_class'] = 'hidden-xs';
+  $handler->display->display_options['fields']['created']['date_format'] = 'raw time span';
+  /* Field: User: Last access */
+  $handler->display->display_options['fields']['access']['id'] = 'access';
+  $handler->display->display_options['fields']['access']['table'] = 'users';
+  $handler->display->display_options['fields']['access']['field'] = 'access';
+  $handler->display->display_options['fields']['access']['element_class'] = 'hidden-xs';
+  $handler->display->display_options['fields']['access']['element_label_class'] = 'hidden-xs';
+  $handler->display->display_options['fields']['access']['date_format'] = 'time ago';
+  /* Field: User: E-mail */
+  $handler->display->display_options['fields']['mail']['id'] = 'mail';
+  $handler->display->display_options['fields']['mail']['table'] = 'users';
+  $handler->display->display_options['fields']['mail']['field'] = 'mail';
+  /* Field: User: register url */
+  $handler->display->display_options['fields']['field_register_url']['id'] = 'field_register_url';
+  $handler->display->display_options['fields']['field_register_url']['table'] = 'field_data_field_register_url';
+  $handler->display->display_options['fields']['field_register_url']['field'] = 'field_register_url';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: User: Name */
@@ -3218,6 +3316,53 @@ function supertags_views_default_views() {
     4 => 0,
     5 => 0,
   );
+  /* Filter criterion: User: register url (field_register_url) */
+  $handler->display->display_options['filters']['field_register_url_value']['id'] = 'field_register_url_value';
+  $handler->display->display_options['filters']['field_register_url_value']['table'] = 'field_data_field_register_url';
+  $handler->display->display_options['filters']['field_register_url_value']['field'] = 'field_register_url_value';
+  $handler->display->display_options['filters']['field_register_url_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_register_url_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_register_url_value']['expose']['operator_id'] = 'field_register_url_value_op';
+  $handler->display->display_options['filters']['field_register_url_value']['expose']['label'] = 'register url';
+  $handler->display->display_options['filters']['field_register_url_value']['expose']['description'] = 'e.g. digital4science';
+  $handler->display->display_options['filters']['field_register_url_value']['expose']['operator'] = 'field_register_url_value_op';
+  $handler->display->display_options['filters']['field_register_url_value']['expose']['identifier'] = 'field_register_url_value';
+  $handler->display->display_options['filters']['field_register_url_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+  );
+  $handler->display->display_options['filters']['field_register_url_value']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_register_url_value']['group_info']['label'] = 'Flavour registered';
+  $handler->display->display_options['filters']['field_register_url_value']['group_info']['description'] = 'The flavour is in the initial registered url';
+  $handler->display->display_options['filters']['field_register_url_value']['group_info']['identifier'] = 'field_register_url_value';
+  $handler->display->display_options['filters']['field_register_url_value']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Digital4Science',
+      'operator' => 'contains',
+      'value' => 'digital4science',
+    ),
+    2 => array(
+      'title' => 'Digital4EU',
+      'operator' => 'contains',
+      'value' => 'digital4eu',
+    ),
+    3 => array(
+      'title' => 'Innovation4EU',
+      'operator' => 'contains',
+      'value' => 'innovation4eu',
+    ),
+    4 => array(
+      'title' => 'Simplify ESIF',
+      'operator' => 'contains',
+      'value' => 'simplify-esif',
+    ),
+  );
+
   $export['flavors_people'] = $view;
 
   $view = new view();
