@@ -11,6 +11,13 @@ function futurium_isa_theme_preprocess_html(&$variables) {
     $class = 'node-type-' . str_replace("_", "-", $content_type);
     $variables['classes_array'][] = $class;
   }
+
+  if ($item['path'] == 'node/%/graph') {
+    $nid = arg(1);
+    $obj = node_load($nid);
+    $class = 'node-type-' . str_replace("_", "-", $obj->type);
+    $variables['classes_array'][] = $class;
+  }
 }
 
 /**
@@ -24,6 +31,21 @@ function futurium_isa_theme_preprocess_region(&$variables) {
 }
 
 function futurium_isa_theme_preprocess_page(&$variables) {
+
+  $item = menu_get_item();
+
+  if (isset($_GET['period'])) {
+    if ($_GET['q'] == 'analytics') {
+      $period = str_replace('1_', ' ', $_GET['period']);
+      $period = str_replace('_', ' ', $period);
+
+      $title = drupal_get_title();
+      $title .= ' - Last ' . $period;
+
+      drupal_set_title($title);
+    }
+  }
+
   unset($variables['navbar_classes_array'][1]);
   $variables['navbar_classes_array'][] = 'container-fullwidth';
 
@@ -41,8 +63,6 @@ function futurium_isa_theme_preprocess_page(&$variables) {
   $search_box = drupal_render($search_form);
   $variables['search_box'] = $search_box;
 
-  $item = menu_get_item();
-
   $panels_callbacks = array(
     'page_manager_page_execute',
     'page_manager_node_view_page',
@@ -52,6 +72,10 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     'page_manager_node_edit',
     'page_manager_term_view_page',
     'entity_translation_edit_page',
+    'user_pages_user_users',
+    'user_pages_user_user_login',
+    'user_pages_user_user_register',
+    'user_pages_user_user_password',
   );
 
   $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks, TRUE);
@@ -383,26 +407,52 @@ function futurium_isa_theme_menu_tree__menu_group_tabs($variables) {
 }
 
 function futurium_isa_theme_quant_page($vars) {
+
   $content = '';
+
   $content .= $vars['form'];
+
+  //$content .= '<h1>Content stats</h1>';
+
   if ($vars['charts']) {
     foreach ($vars['charts'] as $chart) {
       $content .= $chart;
     }
   }
 
-  $views['statistics_users'] = array(
-    'block',
-  );
-  $views['statistics'] = array(
-    'block',
-    'block_1',
-    'block_2',
-    'block_3',
+  $views['users'] = array(
+    'title' => t('Users'),
+    'view' => 'statistics_users',
+    'class' => 'stats-user',
+    'displays' => array(
+      'most_active_users',
+    ),
   );
 
-  foreach($views as $view_name => $displays) {
-    foreach ($displays as $k => $display) {
+  $views['futures'] = array(
+    'title' => t('Futures'),
+    'view' => 'statistics',
+    'class' => 'stats-futures ',
+    'displays' => array(
+      'most_commented_futures',
+      'most_voted_futures',
+    ),
+  );
+
+  $views['ideas'] = array(
+    'title' => t('Ideas'),
+    'view' => 'statistics',
+    'class' => 'stats-ideas',
+    'displays' => array(
+      'most_commented_ideas',
+      'most_voted_ideas',
+    ),
+  );
+
+  foreach($views as $group => $data) {
+    $view_name = $data['view'];
+    $content .= '<div class="' . $data['class'] . '"><h1 class="element-invisible">' . $data['title'] . '</h1>';
+    foreach ($data['displays'] as $k => $display) {
       $view = views_get_view($view_name);
       $view->set_display($display);
       if (!empty($_GET['period'])) {
@@ -418,6 +468,7 @@ function futurium_isa_theme_quant_page($vars) {
       $content .= $view->preview($display);
       $content .= '</div>';
     }
+    $content .= '</div>';
   }
 
   return '<div id="quant-page">' . $content . '</div>';
@@ -444,5 +495,26 @@ function futurium_isa_theme_quant_time_form($vars) {
 
   $output .= '</fieldset>';
 
+  return $output;
+}
+
+function futurium_isa_theme_textarea($variables) {
+  $element = $variables['element'];
+  element_set_attributes($element, array('id', 'name', 'cols', 'rows'));
+  _form_set_class($element, array('form-textarea'));
+
+  $wrapper_attributes = array(
+    'class' => array('form-textarea-wrapper'),
+  );
+
+  // Add resizable behavior.
+  if (!empty($element['#resizable'])) {
+    drupal_add_library('system', 'drupal.textarea');
+    $wrapper_attributes['class'][] = 'resizable';
+  }
+
+  $output = '<div' . drupal_attributes($wrapper_attributes) . '>';
+  $output .= '<textarea' . drupal_attributes($element['#attributes']) . '>' . check_plain($element['#value']) . '</textarea>';
+  $output .= '</div>';
   return $output;
 }

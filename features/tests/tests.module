@@ -12,9 +12,14 @@ function tests_form_quant_time_form_alter(&$form, $form_state) {
   $form['custom_from']['#access'] = FALSE;
   $form['custom_to']['#access'] = FALSE;
   $opts = $form['period']['#options'];
-  $form['period']['#title'] = t("See stats from the last");
+
+  $opts['1_week'] = 'week';
+  $opts['1_month'] = 'month';
+  $opts['1_year'] = 'year';
+
+  $form['period']['#title'] = t("See stats for the last");
   $form['period']['#options'] = array(
-    '1_day' => '1 day',
+    '1_day' => 'day',
     '3_days' => '3 days',
   ) + $opts;
 }

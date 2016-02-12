@@ -10,6 +10,186 @@
 function tests_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'node-event_d4eu-field_relation_graph'.
+  $field_instances['node-event_d4eu-field_relation_graph'] = array(
+    'bundle' => 'event_d4eu',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 4,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_relation_graph',
+    'label' => 'Relation graph',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'relation_type' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 33,
+    ),
+  );
+
+  // Exported field_instance: 'node-evidence-field_relation_graph'.
+  $field_instances['node-evidence-field_relation_graph'] = array(
+    'bundle' => 'evidence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 5,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_relation_graph',
+    'label' => 'Relation graph',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'relation_type' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 33,
+    ),
+  );
+
+  // Exported field_instance: 'node-future-field_relation_graph'.
+  $field_instances['node-future-field_relation_graph'] = array(
+    'bundle' => 'future',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 7,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_relation_graph',
+    'label' => 'Relation graph',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'relation_type' => array(),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-ideas-field_relation_graph'.
+  $field_instances['node-ideas-field_relation_graph'] = array(
+    'bundle' => 'ideas',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 10,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_relation_graph',
+    'label' => 'Relation graph',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'relation_type' => array(),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 7,
+    ),
+  );
+
   // Exported field_instance: 'user-user-field_activity_index'.
   $field_instances['user-user-field_activity_index'] = array(
     'bundle' => 'user',
@@ -64,6 +244,7 @@ function tests_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Activity Index');
+  t('Relation graph');
 
   return $field_instances;
 }

@@ -89,9 +89,10 @@ class futurium_isa_extras_filter_group_content_or_not extends views_handler_filt
       }
 
       if (!empty($public_groups)) {
-        $q->condition(db_and()
-          ->condition($field, $public_groups, 'IN')           // Public group content
-          ->condition($base_field, $private_nids, 'NOT IN')   // but not content set to "Private"
+        $q->condition(
+          db_and()
+            ->condition($field, $public_groups, 'IN')         // Public group content
+            ->condition($base_field, $private_nids, 'NOT IN') // but not content set to "Private"
         );
       }
 

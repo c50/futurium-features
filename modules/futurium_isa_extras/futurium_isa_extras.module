@@ -53,10 +53,17 @@ function futurium_isa_extras_preprocess_node(&$vars) {
 function futurium_isa_extras_menu_alter(&$items) {
   unset($items['message/create/private-message']);
   $items['search/site']['menu_name'] = 'navigation';
-  $items['user']['weight'] = 10000;
-  $items['user']['menu_name'] = 'main-menu';
-  $items['user/login']['weight'] = 10001;
-  $items['user/login']['menu_name'] = 'main-menu';
+  /* TEMP */
+  $items['user/%user/display']['access callback'] = FALSE;
+  $items['node/%node/display']['access callback'] = FALSE;
+  $items['node/%node/node_export']['access callback'] = FALSE;
+}
+
+function futurium_isa_extras_preprocess_block(&$variables) {
+  if ($variables['block']->region == 'footer') {
+    $variables['classes_array'][] = "footer-block";
+  }
+  $variables['classes_array'][] = str_replace("_", "-", $variables['block']->delta);
 }
 
 /**
@@ -242,7 +249,22 @@ function futurium_isa_extras_block_view($delta = '') {
   switch ($delta) {
     case 'contextualized_links':
 
+      //dsm($item);
+
       switch($item['path']) {
+        case 'user':
+        case 'user/login':
+          $links['register'] = l('Create new account', 'user/register');
+          $links['new-password'] = l('Request a new password', 'user/password');
+          break;
+        case 'user/register':
+          $links['login'] = l('Login', 'user');
+          $links['new-password'] = l('Request a new password', 'user/password');
+          break;
+        case 'user/password':
+          $links['login'] = l('Login', 'user');
+          $links['register'] = l('Create new account', 'user/register');
+          break;
         case 'user/%':
           $links['add-group'] = l('Add Group', 'node/add/futurium-group');
           $links['add-future'] = l('Add Future', 'node/add/future');
@@ -404,7 +426,7 @@ function futurium_isa_extras_block_view($delta = '') {
  * Implements hook_ctools_plugin_directory().
  */
 function futurium_isa_extras_ctools_plugin_directory($module, $plugin) {
-  if ($module == "panels" && in_array($plugin, array('layouts', 'styles'))) {
+  if (($module == "panels" || $module == "ctools") && in_array($plugin, array('access', 'layouts', 'styles'))) {
     return "plugins/$plugin";
   }
 }
@@ -915,7 +937,7 @@ function futurium_isa_extras_wysiwyg_plugin($editor, $version) {
           'file' => 'plugin.js',
           'load' => TRUE,
           'buttons' => array(
-            'heck_why_not' => t('Do something awesome'),
+            'PlaceholderAttribute' => t('Placeholder Attribute'),
           ),
         ),
       );
@@ -935,30 +957,45 @@ function futurium_isa_extras_views_query_alter(&$view, &$query) {
       $query->orderby[0]['direction'] = 'ASC';
     }
   }
-
-  if ($view->name == 'statistics' && ($view->current_display == 'block' || $view->current_display == 'block_2')) {
-    /*
-    dsm($query);
-    //$query->addExpression('COUNT(n.title)', 'ncount');
-    $join = new views_join();
-    $join->table = 'comment';
-    $join->field = 'nid';
-    $join->left_table = 'node';
-    $join->left_field = 'nid';
-    $join->type = 'INNER';
-    $query->add_relationship('comment', $join, 'node');
-    //if (isset($_GET['period'])) {
-      $_GET['period'] = '1_hour';
-      $time = '-' . str_replace('_', ' ', $_GET['period']);
-      $time = strtotime($time);
-      $query->add_where(1, 'comment.created', $time, '>=');
-      $query->add_where(1, 'comment.status', "1", '=');
-    //}
-    $query->set_distinct(TRUE, FALSE);
-    */
-  }
 }
 
+/**
+ * Implements hook_form_alter().
+ */
+function futurium_isa_extras_form_node_type_form_alter(&$form, &$form_state, $form_id) {
+
+  $form['futurium_extras'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Futurium Settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#group' => 'additional_settings',
+  );
+
+  $form['futurium_extras']['color'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content type color'),
+    '#size' => 8,
+    '#maxlength' => 6,
+    '#field_prefix' => '#',
+    '#default_value' => variable_get('color_' . $form['#node_type']->type, ''),
+  );
+
+}
+
+/**
+ * URL rewrites.
+ */
+/*
+function futurium_isa_extras_url_outbound_alter(&$path, &$options, $original_path) {
+  $path = str_replace('node/add/event-d4eu', 'node/add/event', $original_path);
+}
+
+
+function futurium_isa_extras_url_inbound_alter(&$path, $original_path, $path_language) {
+  $path = str_replace('node/add/event', 'node/add/event-d4eu', $original_path);
+}
+*/
 // Modules likely to be disabled
 /*
 Bootstrap - Photo Gallery

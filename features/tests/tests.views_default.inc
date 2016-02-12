@@ -90,13 +90,14 @@ function tests_views_default_views() {
     'future' => 'future',
   );
 
-  /* Display: Most Commented Futures */
-  $handler = $view->new_display('block', 'Most Commented Futures', 'block');
+  /* Display: Most Voted Ideas */
+  $handler = $view->new_display('block', 'Most Voted Ideas', 'most_voted_ideas');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Most Commented Futures';
-  $handler->display->display_options['defaults']['query'] = FALSE;
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
+  $handler->display->display_options['title'] = 'Most Voted Ideas';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'stats-most-voted-ideas';
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -104,7 +105,7 @@ function tests_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['inline'] = array(
     'title' => 'title',
-    'comment_count' => 'comment_count',
+    'value' => 'value',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -112,11 +113,52 @@ function tests_views_default_views() {
   $handler->display->display_options['relationships']['votingapi_vote']['id'] = 'votingapi_vote';
   $handler->display->display_options['relationships']['votingapi_vote']['table'] = 'node';
   $handler->display->display_options['relationships']['votingapi_vote']['field'] = 'votingapi_vote';
+  $handler->display->display_options['relationships']['votingapi_vote']['required'] = TRUE;
   $handler->display->display_options['relationships']['votingapi_vote']['votingapi'] = array(
     'value_type' => '',
     'tag' => '',
   );
   $handler->display->display_options['relationships']['votingapi_vote']['current_user'] = 0;
+  /* Relationship: Content: Vote results */
+  $handler->display->display_options['relationships']['votingapi_cache']['id'] = 'votingapi_cache';
+  $handler->display->display_options['relationships']['votingapi_cache']['table'] = 'node';
+  $handler->display->display_options['relationships']['votingapi_cache']['field'] = 'votingapi_cache';
+  $handler->display->display_options['relationships']['votingapi_cache']['votingapi'] = array(
+    'value_type' => '',
+    'tag' => '',
+    'function' => 'average',
+  );
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Vote results: Value */
+  $handler->display->display_options['fields']['value']['id'] = 'value';
+  $handler->display->display_options['fields']['value']['table'] = 'votingapi_cache';
+  $handler->display->display_options['fields']['value']['field'] = 'value';
+  $handler->display->display_options['fields']['value']['relationship'] = 'votingapi_cache';
+  $handler->display->display_options['fields']['value']['group_type'] = 'count_distinct';
+  $handler->display->display_options['fields']['value']['label'] = '';
+  $handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['value']['precision'] = '0';
+  $handler->display->display_options['fields']['value']['separator'] = '';
+  $handler->display->display_options['fields']['value']['format_plural'] = TRUE;
+  $handler->display->display_options['fields']['value']['format_plural_singular'] = '1 vote';
+  $handler->display->display_options['fields']['value']['format_plural_plural'] = '@count votes';
+  $handler->display->display_options['fields']['value']['prefix'] = '(';
+  $handler->display->display_options['fields']['value']['suffix'] = ')';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Vote results: Value */
+  $handler->display->display_options['sorts']['value']['id'] = 'value';
+  $handler->display->display_options['sorts']['value']['table'] = 'votingapi_cache';
+  $handler->display->display_options['sorts']['value']['field'] = 'value';
+  $handler->display->display_options['sorts']['value']['relationship'] = 'votingapi_cache';
+  $handler->display->display_options['sorts']['value']['group_type'] = 'count';
+  $handler->display->display_options['sorts']['value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -131,13 +173,23 @@ function tests_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'future' => 'future',
+    'ideas' => 'ideas',
   );
+  /* Filter criterion: Votes: Timestamp */
+  $handler->display->display_options['filters']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['filters']['timestamp']['table'] = 'votingapi_vote';
+  $handler->display->display_options['filters']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['filters']['timestamp']['relationship'] = 'votingapi_vote';
+  $handler->display->display_options['filters']['timestamp']['operator'] = '>=';
+  $handler->display->display_options['filters']['timestamp']['value']['value'] = '-1 month';
+  $handler->display->display_options['filters']['timestamp']['value']['type'] = 'offset';
 
   /* Display: Most Voted Futures */
-  $handler = $view->new_display('block', 'Most Voted Futures', 'block_1');
+  $handler = $view->new_display('block', 'Most Voted Futures', 'most_voted_futures');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Most Voted Futures';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'stats-most-voted-futures';
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -227,9 +279,11 @@ function tests_views_default_views() {
   $handler->display->display_options['filters']['timestamp']['value']['type'] = 'offset';
 
   /* Display: Most Commented Ideas */
-  $handler = $view->new_display('block', 'Most Commented Ideas', 'block_2');
+  $handler = $view->new_display('block', 'Most Commented Ideas', 'most_commented_ideas');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Most Commented Ideas';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'stats-most-commented-ideas';
   $handler->display->display_options['defaults']['query'] = FALSE;
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
@@ -240,7 +294,7 @@ function tests_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['inline'] = array(
     'title' => 'title',
-    'comment_count' => 'comment_count',
+    'comment_count_1' => 'comment_count_1',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -270,12 +324,15 @@ function tests_views_default_views() {
     'ideas' => 'ideas',
   );
 
-  /* Display: Most Voted Ideas */
-  $handler = $view->new_display('block', 'Most Voted Ideas', 'block_3');
+  /* Display: Most Commented Futures */
+  $handler = $view->new_display('block', 'Most Commented Futures', 'most_commented_futures');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Most Voted Ideas';
-  $handler->display->display_options['defaults']['group_by'] = FALSE;
-  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['title'] = 'Most Commented Futures';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'stats-most-commented-futures';
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -283,7 +340,7 @@ function tests_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['inline'] = array(
     'title' => 'title',
-    'value' => 'value',
+    'comment_count_1' => 'comment_count_1',
   );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -291,52 +348,11 @@ function tests_views_default_views() {
   $handler->display->display_options['relationships']['votingapi_vote']['id'] = 'votingapi_vote';
   $handler->display->display_options['relationships']['votingapi_vote']['table'] = 'node';
   $handler->display->display_options['relationships']['votingapi_vote']['field'] = 'votingapi_vote';
-  $handler->display->display_options['relationships']['votingapi_vote']['required'] = TRUE;
   $handler->display->display_options['relationships']['votingapi_vote']['votingapi'] = array(
     'value_type' => '',
     'tag' => '',
   );
   $handler->display->display_options['relationships']['votingapi_vote']['current_user'] = 0;
-  /* Relationship: Content: Vote results */
-  $handler->display->display_options['relationships']['votingapi_cache']['id'] = 'votingapi_cache';
-  $handler->display->display_options['relationships']['votingapi_cache']['table'] = 'node';
-  $handler->display->display_options['relationships']['votingapi_cache']['field'] = 'votingapi_cache';
-  $handler->display->display_options['relationships']['votingapi_cache']['votingapi'] = array(
-    'value_type' => '',
-    'tag' => '',
-    'function' => 'average',
-  );
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Vote results: Value */
-  $handler->display->display_options['fields']['value']['id'] = 'value';
-  $handler->display->display_options['fields']['value']['table'] = 'votingapi_cache';
-  $handler->display->display_options['fields']['value']['field'] = 'value';
-  $handler->display->display_options['fields']['value']['relationship'] = 'votingapi_cache';
-  $handler->display->display_options['fields']['value']['group_type'] = 'count_distinct';
-  $handler->display->display_options['fields']['value']['label'] = '';
-  $handler->display->display_options['fields']['value']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['value']['precision'] = '0';
-  $handler->display->display_options['fields']['value']['separator'] = '';
-  $handler->display->display_options['fields']['value']['format_plural'] = TRUE;
-  $handler->display->display_options['fields']['value']['format_plural_singular'] = '1 vote';
-  $handler->display->display_options['fields']['value']['format_plural_plural'] = '@count votes';
-  $handler->display->display_options['fields']['value']['prefix'] = '(';
-  $handler->display->display_options['fields']['value']['suffix'] = ')';
-  $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Vote results: Value */
-  $handler->display->display_options['sorts']['value']['id'] = 'value';
-  $handler->display->display_options['sorts']['value']['table'] = 'votingapi_cache';
-  $handler->display->display_options['sorts']['value']['field'] = 'value';
-  $handler->display->display_options['sorts']['value']['relationship'] = 'votingapi_cache';
-  $handler->display->display_options['sorts']['value']['group_type'] = 'count';
-  $handler->display->display_options['sorts']['value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -351,16 +367,8 @@ function tests_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'ideas' => 'ideas',
+    'future' => 'future',
   );
-  /* Filter criterion: Votes: Timestamp */
-  $handler->display->display_options['filters']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['filters']['timestamp']['table'] = 'votingapi_vote';
-  $handler->display->display_options['filters']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['filters']['timestamp']['relationship'] = 'votingapi_vote';
-  $handler->display->display_options['filters']['timestamp']['operator'] = '>=';
-  $handler->display->display_options['filters']['timestamp']['value']['value'] = '-1 month';
-  $handler->display->display_options['filters']['timestamp']['value']['type'] = 'offset';
   $export['statistics'] = $view;
 
   $view = new view();
@@ -420,9 +428,11 @@ function tests_views_default_views() {
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
 
   /* Display: Most Active Users */
-  $handler = $view->new_display('block', 'Most Active Users', 'block');
+  $handler = $view->new_display('block', 'Most Active Users', 'most_active_users');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Most Active Users';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'stats-most-active-users';
   $export['statistics_users'] = $view;
 
   return $export;
