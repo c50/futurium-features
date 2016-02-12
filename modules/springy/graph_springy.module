@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * @file graph_springy.module
+ * Provides integration with the Springy graph engine.
+ */
+
+/**
+ * Implements hook_libraries_info().
+ */
+function graph_springy_libraries_info() {
+  $libraries['springy'] = array(
+    'name' => 'Springy',
+    'vendor url' => 'http://getspringy.com/',
+    'download url' => 'https://github.com/dhotson/springy/zipball/master',
+    'version arguments' => array(
+      'file' => 'springy.js',
+      'pattern' => '/Springy v([\d.]+)/',
+    ),
+    'files' => array(
+      'js' => array(
+        'springy.js',
+        'springyui.js',
+      ),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_graphapi_formats().
+ */
+function graph_springy_graphapi_formats() {
+  return array(
+    'graph_springy' => 'Springy',
+  );
+}
+
+/**
+ * Implements hook_graphapi_settings_form().
+ */
+/*
+function graph_springy_graphapi_settings_form() {
+  // TODO!
+}
+*/
+
+/**
+ * Implements hook_graphapi_default_settings().
+ */
+/*
+// TODO!
+function graph_springy_graphapi_default_settings() {
+  // Settings used by the first graph engine.
+  $settings['my_first_engine']['contains'] = array(
+    'setting 1' => array('default' => NULL),
+    'setting 2' => array('default' => 1),
+    'setting 3' => array('default' => t('Some string')),
+  );
+  // Settings used by the second graph engine.
+  $settings['my_second_engine']['contains']['setting 1']['default'] = 1;
+  return $settings;
+}
+*/
+
+/**
+ * Implements hook_graphapi_node_properties().
+ */
+function graph_springy_graphapi_node_properties() {
+  return array(
+    'id' => 'ID',
+    'label' => 'Label',
+    'mass' => 'Mass',
+  );
+}
+
+/**
+ * Implements hook_graphapi_link_properties().
+ */
+function graph_springy_graphapi_link_properties() {
+  return array(
+    'color' => 'Color',
+    'directional' => 'Directional',
+    'weight' => 'Weight',
+  );
+}
+
+
+/**
+ * Implements theme_FORMAT_graphapi().
+ */
+function theme_graph_springy_graphapi($variables) {
+  // Create a unique ID for this graph.
+  $html_id = drupal_html_id('graph_springy_graphapi');
+
+  // Load the Springy library JS files.
+  libraries_load('springy');
+
+  if (!isset($variables['config']['engine'])) {
+
+  }
+
+  // Pass our graph to our JS script as a Drupal JS settings object.
+  $js_settings = array();
+  $js_settings['graphs'][] = array(
+    'id' => $html_id,
+    'graph' => $variables['graph'],
+  );
+  drupal_add_js(array('graph_springy' => $js_settings), 'setting');
+
+  // Add our JS file, which will create the graph.
+  drupal_add_js(drupal_get_path('module', 'graph_springy') . '/graph_springy.js', 'file');
+
+  if (count($variables['graph']) > 1) {
+    // Create the container canvas.
+    return "<canvas id=\"{$html_id}\" width=\"{$variables['config']['width']}\" height=\"{$variables['config']['height']}\"/>";
+  }
+  return;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function graph_springy_theme($existing, $type, $theme, $path) {  return array(
+    'graph_springy_graphapi' => array(
+      'variables' => array(
+        'graph' => NULL,
+        'config' => NULL,
+      ),
+    ),
+  );
+}

@@ -631,6 +631,34 @@ row|Bootstrap Row
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'user_pages_user_users_disabled';
+  $strongarm->value = FALSE;
+  $export['user_pages_user_users_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_pages_user_user_login_disabled';
+  $strongarm->value = FALSE;
+  $export['user_pages_user_user_login_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_pages_user_user_register_disabled';
+  $strongarm->value = FALSE;
+  $export['user_pages_user_user_register_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_pages_user_user_password_disabled';
+  $strongarm->value = FALSE;
+  $export['user_pages_user_user_password_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'rate_widgets';
   $strongarm->value = array(
     1 => (object) array(

@@ -34,6 +34,7 @@ function futurium_isa_wysiwyg_default_profiles() {
           'Cut' => 1,
           'Copy' => 1,
           'Paste' => 1,
+          'PlaceholderAttribute' => 1,
         ),
         'drupal' => array(
           'media' => 1,

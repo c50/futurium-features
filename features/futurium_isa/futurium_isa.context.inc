@@ -32,7 +32,18 @@ function futurium_isa_context_default_contexts() {
           'region' => 'footer',
           'weight' => '-10',
         ),
-/*
+        'views-events-footer' => array(
+          'module' => 'views',
+          'delta' => 'events-footer',
+          'region' => 'footer',
+          'weight' => '-9',
+        ),
+        'boxes-footer_social_links' => array(
+          'module' => 'boxes',
+          'delta' => 'footer_social_links',
+          'region' => 'footer',
+          'weight' => '-8',
+        ),
         'devel-execute_php' => array(
           'module' => 'devel',
           'delta' => 'execute_php',
@@ -45,7 +56,6 @@ function futurium_isa_context_default_contexts() {
           'region' => 'footer',
           'weight' => '-8',
         ),
-*/
       ),
     ),
   );
