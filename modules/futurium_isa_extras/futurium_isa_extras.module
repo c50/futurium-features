@@ -983,49 +983,6 @@ function futurium_isa_extras_form_node_type_form_alter(&$form, &$form_state, $fo
 
 }
 
-/**
- * URL rewrites.
- */
-/*
-function futurium_isa_extras_url_outbound_alter(&$path, &$options, $original_path) {
-  $path = str_replace('node/add/event-d4eu', 'node/add/event', $original_path);
+function futurium_isa_extras_libraries_info_alter(&$libraries) {
+  $libraries['springy']['files']['js'][1] = drupal_get_path('module', 'futurium_isa_extras') .' /js/springyui.js';
 }
-
-
-function futurium_isa_extras_url_inbound_alter(&$path, $original_path, $path_language) {
-  $path = str_replace('node/add/event', 'node/add/event-d4eu', $original_path);
-}
-*/
-// Modules likely to be disabled
-/*
-Bootstrap - Photo Gallery
-Dashboard
-Devel generate
-Feature Set
-JS injector
-Language selector (Page)
-Language selector (Site)
-Multisite autosave
-Multisite Create Button
-Multisite custom error
-Multisite Dynamic Base theme
-Multisite_Rules_Configuration
-NextEuropa Editorial
-NextEuropa Multilingual
-NextEuropa Pages
-NextEuropa Pages feature.
-solr_config
-TagClouds
-Testing
-Workbench Moderation View for multisite
- */
-
-/*
-function futurium_isa_extras_views_query_alter(&$view, &$query) {
-  dsm($view);
-  dsm($query);
-}
-*/
-
-
-
