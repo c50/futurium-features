@@ -114,6 +114,11 @@ function _futurium_linkafter_node_autocomplete($origin_nid, $bundles, $string) {
       }
     }
   }
+
+  $a = _futurium_linkafter_create_links($origin_nid);
+  $matches += $a;
+
+
   drupal_json_output($matches);
 }
 
@@ -215,7 +220,7 @@ function futurium_linkafter_form($form, &$form_state) {
   }
 
   if ($node) {
-    $links = _futurium_linkafter_create_links($node->nid);
+    //$links = _futurium_linkafter_create_links($node->nid);
 
     $current_bundle = 'node:' . $node->type;
     $relations = relation_get_types();
@@ -313,24 +318,6 @@ function futurium_linkafter_form($form, &$form_state) {
       '#suffix' => '</span>',
     );
 
-    $links_markup = "";
-    foreach ($links as $relation => $links) {
-      foreach($links as $index => $content_type_link) {
-        $links_markup .= $content_type_link . ' ';
-      }
-    }
-
-    $form['new'] = array(
-      '#prefix' => '<div class="no-content-wrap" style="display:none;">',
-      '#suffix' => '</div>',
-      '#markup' => '<div class="field-item">
-          <label>Not found.</label><br>
-          <label>Add new...</label>
-          <div class="content"> ' . $links_markup . '</div>
-        </div>
-      ',
-    );
-
   }
   return $form;
 
@@ -414,6 +401,8 @@ function _futurium_linkafter_link_nodes($nid1, $nid2, $relation_type = NULL) {
 
 
 function _futurium_linkafter_create_links($nid) {
+  $node = node_load($nid);
+
   $rels = _futurium_linkafter_get_node_possible_relations($nid);
   foreach($rels as $k => $relation_type) {
     $content_types[$relation_type] = _futurium_linkafter_get_related_content_types($nid, $relation_type);
@@ -425,20 +414,42 @@ function _futurium_linkafter_create_links($nid) {
       $relation = relation_type_load($relation_type);
       $content_type_name = node_type_get_name($value);
       $path = 'node/add/' . str_replace("_", "-", $value);
-      $link_options = array(
-        'query' => array(
-          'relation_type' => $relation_type,
-          'related_to' => $nid,
-        ),
-      );
-      $reverse = _futurium_linkafter_is_relation_reversed($nid, $relation_type);
+      $path .= '?related_to=' . $nid .'&relation_type=' . $relation_type;
+
+      $reverse = !_futurium_linkafter_is_relation_reversed($nid, $relation_type);
       $label = relation_get_type_label($relation, $reverse);
-      $links[$label][] = l(t('@content_type', array('@content_type' => $content_type_name)), $path, $link_options);
+
+      drupal_alter('relation_content_type_autocomplete', $content_type_name);
+      drupal_alter('relation_label_autocomplete', $label);
+
+      $links[$path][] = "+ Create new $content_type_name $label this";
+      $links[$path][] = "autocomplete-new $value";
     }
   }
+
   return $links;
 
 }
+
+function futurium_linkafter_relation_label_autocomplete_alter(&$label) {
+  switch($label) {
+    case 'supports':
+      $label = 'that supports';
+      break;
+  }
+}
+
+function futurium_linkafter_relation_content_type_autocomplete_alter(&$content_type) {
+  switch($content_type) {
+    case 'Ideas':
+      $content_type = 'Idea';
+      break;
+    case 'Futures':
+      $content_type = 'Future';
+      break;
+  }
+}
+
 
 function _futurium_linkafter_get_related_content_types($nid, $relation_type) {
   $relation = relation_type_load($relation_type);
