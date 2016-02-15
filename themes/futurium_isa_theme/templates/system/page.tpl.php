@@ -73,6 +73,7 @@
  * @ingroup themeable
  */
 ?>
+<div class="wrapper">
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
     <div class="navbar-header">
@@ -170,8 +171,8 @@
           </div>
         </div>
       </div>
-      <?php endif; ?>
     </div>
+    <?php endif; ?>
 
     <?php if ($content_wrapper): ?>
       <div class="container-fullwidth row1">
@@ -206,7 +207,7 @@
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
-
+    <div class="push"></div>
   </div>
 
 
