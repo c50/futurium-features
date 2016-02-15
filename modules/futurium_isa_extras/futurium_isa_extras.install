@@ -47,6 +47,9 @@ function futurium_isa_extras_enable() {
   variable_set('color_event_d4eu', 'E477C8');
   variable_set('color_evidence', '799BBE');
 
+  // Set chosen selectors
+  variable_set('chosen_jquery_selector', 'select[multiple="multiple"], .views-exposed-form select');
+
   drupal_flush_all_caches();
 
 }

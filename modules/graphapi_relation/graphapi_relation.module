@@ -324,7 +324,11 @@ function graphapi_relation_field_formatter_view($entity_type, $entity, $field, $
 
   // Maybe a different color, as is the center?
   $color = '#'.variable_get('color_' . $bundle, '000000');
-  graphapi_set_node_data($graph, $source_id, array('color' => $color, 'id' => $entity_id));
+  graphapi_set_node_data($graph, $source_id, array(
+    'color' => $color,
+    'id' => $entity_id,
+    )
+  );
 
   $level = 0;
   $max_level = isset($settings['levels']) ? $settings['levels'] : 1;
@@ -368,14 +372,19 @@ function loadsublevel(&$graph, &$config, $entity, $entity_type, $entity_id, $sou
               'ellipsis' => TRUE,
               'html' => FALSE,
             );
-            $linked_title = $label; //views_trim_text($trim_options, $label);
+            $linked_title = views_trim_text($trim_options, $label);
 
             list($e_id, $e_type, $bundle) = entity_extract_ids($entity_type, $related_entity);
             $color = '#' . variable_get('color_' . $bundle, '000000');
 
             graphapi_set_node_title($graph, $endpoint_id, $linked_title);
             graphapi_set_node_uri($graph, $endpoint_id, $uri['path']);
-            graphapi_set_node_data($graph, $endpoint_id, array('color' => $color, 'id' => $endpoint['entity_id']));
+            graphapi_set_node_data($graph, $endpoint_id, array(
+                'label' => $label,
+                'color' => $color,
+                'id' => $endpoint['entity_id'],
+              )
+            );
 
             if ($level < $max_level) {
               $field_items = field_view_field($endpoint['entity_type'], $related_entity, 'field_relation_graph');
