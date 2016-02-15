@@ -199,9 +199,11 @@
   border-radius: 0px;
   border: none;
   color: #fff;
+  @include transition(background .4s ease);
   @include on-event {
     background-color: darken($color, 10%); 
-    color: #fff; 
+    color: #fff;
+    text-decoration: none;
   } 
 }
 
@@ -258,7 +260,11 @@
     color: inherit;
   }
 
-  .more-link a, a.more-link {
+  .sidebar-right a.flag{
+    color: #fff;
+  }
+
+  .more-link a, a.more-link, .btn-info {
     @include btn-default($color);
   } 
 
@@ -301,9 +307,34 @@
     } 
   }
 
+  /* pagination */
+
+  .pagination>li>a {
+    border: 1px solid $color;
+  }
+
+  .pagination>li>a:hover,
+  .pagination>li>a:focus,
+   {
+    background-color: darken($color, 15%);
+    border: 1px solid darken($color, 15%);
+    color: #fff;
+  }
+
+  .pagination>.active>a {
+    background-color: $color;
+    color: #fff;
+  }
+
+  .pagination>li>a:hover, 
+  .pagination>li>a:focus {
+    border-color: darken($color, 15%);
+  }
+
   /* links to edit / manage display / ... */
   .container-top {
     background-color: darken($color, 20%);
+    @include rem(border-top, 3px solid darken($color, 40%));
     @include rem(padding, 20px 0 0 0);
     /* temp fix? should header1 be removed from page.tpl.php */
     .alert{
@@ -326,6 +357,7 @@
 
 
 @mixin teaser($color) {
+  @include rem(padding, 30px 0 30px 0); 
   a {
     color: $color;
     @include on-event {
@@ -341,8 +373,21 @@
   }
 
   .btn-primary, .flag-action, .unflag-action, .flag-like a, .more-link a, 
-  .share-links a, a.btn-more {
+  .share-links a, a.btn-more, .form-submit{
     @include btn-default($color);
+  }
+}
+
+@mixin menu($color, $icon) {
+  a:before {
+    @include fa($icon);
+    @include rem(font-size, 20px);
+  }
+  a.active-trail {
+    background: $color;
+    border: 3px solid darken($color, 15%);
+    border-bottom: none;
+    color: #fff;
   }
 }
 

@@ -6,30 +6,103 @@
 /* General navigation theming */
 /*****************************/
 
+
+.navbar > .container {
+  position: relative;
+  min-height: 80px;
+  @include respond-to(small) {
+    min-height: inherit;
+    padding-bottom: 0;
+  }
+}
+
 .navbar {
   margin-bottom: 0;
   font-family: $header-font-stack;
   text-transform: uppercase;
-  li>a {
+  .navbar-collapse {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+     @include respond-to(small) {
+      position: relative;
+    }
+  }
+
+  .navbar-nav li>a {
     @include rem(font-size, 18px);
-    @include rem(line-height, 80px);
+    @include rem(line-height, 50px);
     padding-top: 0;
     padding-bottom: 0;
+    @include rem(padding, 0px 20px 0px 20px);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    &:before {
+      width: 30px;
+    }
   }
-  li a.no-text{
-    
+  .glyphicon-user:before {
+    content: none;
   }
+  li.futures {
+    @include menu($future-color, rocket);
+  }
+  li.ideas {
+    @include menu($idea-color, lightbulb-o);
+  }
+  li.library {
+    @include menu($library-color, file-text-o);
+  }
+  li.events {
+    @include menu($event-color, calendar);
+  }
+  li.login {
+    @include menu(darken($user-color, 20%), user);
+  }
+  li.stats {
+    @include menu($mid-grey, pie-chart);
+  }
+  li.my-account {
+    margin-top: -5px;
+  }
+}
+
+.page-node{
+  li.futures {
+    @include menu(darken($future-color, 20%), rocket);
+  }
+  li.ideas {
+    @include menu(darken($idea-color, 20%), lightbulb-o);
+  }
+  li.library {
+    @include menu(darken($library-color, 20%), file-text-o);
+  }
+  li.events {
+    @include menu(darken($event-color, 20%), calendar);
+  }
+  li.login {
+    @include menu(darken($user-color, 20%), user);
+  }
+  li.stats {
+    @include menu(darken($event-color, 20%), pie-chart);
+  }
+}
+
+.logged-in-user-pic {
+  @include round-userpicture;
 }
 
 /*************************/
 /* Alignment navigation */
 /***********************/
 
-.navbar-nav{
-  float: right;
+.navbar-nav {
+  margin-bottom: -3px;
+  z-index: 100;
+  position: relative;
 }
 
-.navbar .logo{
+.navbar .logo {
   margin-left:20px;
 }
 
@@ -38,10 +111,10 @@
 /*******************************/
 
 .navbar>.container .navbar-brand{
-  @include rem(font-size, 18px);
-  @include rem(line-height, 80px);
-  padding-top: 0;
-  padding-bottom: 0;
+  @include rem(margin, 0 0 0 0);
+  @include rem(font-size, 24px);
+  padding: 0;
+  line-height: 80px;
 }
 
 /****************************/

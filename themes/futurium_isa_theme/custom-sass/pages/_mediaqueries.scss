@@ -5,11 +5,13 @@
 /* bottom aligned of right column in header */
 
 @include respond-to(large) {
+
   .row1 {
     display: flex;
     flex-direction: row;
     height: 100%;
     flex: 1 100%; /* We tell all items to be 100% width */
+   /* @include rem(padding-bottom, 15px); */
     .row1l {
       align-self: flex-start;
     }
@@ -20,6 +22,9 @@
   }
   div.panel-pane .col-lg-6 div.node-teaser {
     border-bottom: none;
+  }
+  .row.row1 {
+   padding-bottom: 0; 
   }
 }
 
@@ -38,7 +43,9 @@
   .container>.navbar-header {
   	width: 100%;
     float: left;
-    margin: 0 0 0 0;
+    @include rem(margin, 0 0 0 0);
+    @include rem(padding, 0 0 20px 0);
+
   }
   .container > .navbar-collapse {
     width: 100%;
@@ -54,12 +61,17 @@
     width: 100%;
     text-transform: lowercase;
     @include rem(margin, 0 0 20px 0);
-    li {
-      @include rem(padding, 10px 0 10px 0);
+    li.leaf {
+      @include rem(padding, 10px 10px 10px 10px);
       border-bottom: 1px solid darken($light-grey, 10%);
       width: 100%;
       @include on-event {
       	background: $light-grey;
+      }
+      a.active-trail {
+        background: none;
+        border: none;
+        color: inherit;
       }
     }
     li.last {
@@ -71,8 +83,9 @@
     }
   }
   
-  .navbar li>a {
+  .navbar .navbar-nav li>a {
     @include rem(line-height, 24px); 
+    @include rem(padding, 0);
   }
 
   /* responsive menu for page user & groups */

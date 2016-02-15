@@ -26,23 +26,35 @@ function futurium_isa_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'views-ideas-footer' => array(
+          'module' => 'views',
+          'delta' => 'ideas-footer',
+          'region' => 'footer',
+          'weight' => '-9',
+        ),
+        'views-events-footer' => array(
+          'module' => 'views',
+          'delta' => 'events-footer',
+          'region' => 'footer',
+          'weight' => '-8',
+        ),
         'boxes-footer_social_links' => array(
           'module' => 'boxes',
           'delta' => 'footer_social_links',
           'region' => 'footer',
-          'weight' => '-10',
+          'weight' => '-7',
         ),
         'devel-execute_php' => array(
           'module' => 'devel',
           'delta' => 'execute_php',
           'region' => 'footer',
-          'weight' => '-9',
+          'weight' => '-6',
         ),
         'devel-switch_user' => array(
           'module' => 'devel',
           'delta' => 'switch_user',
           'region' => 'footer',
-          'weight' => '-8',
+          'weight' => '-5',
         ),
       ),
     ),

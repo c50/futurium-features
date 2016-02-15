@@ -1,0 +1,6 @@
+name = GraphAPI Springy
+description = Provides GraphAPI integration with the Springy library.
+package = Visualization
+dependencies[] = libraries
+dependencies[] = graphapi
+core = 7.x

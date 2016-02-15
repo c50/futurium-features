@@ -53,10 +53,43 @@ function futurium_isa_extras_preprocess_node(&$vars) {
 function futurium_isa_extras_menu_alter(&$items) {
   unset($items['message/create/private-message']);
   $items['search/site']['menu_name'] = 'navigation';
-  $items['user']['weight'] = 10000;
-  $items['user']['menu_name'] = 'main-menu';
-  $items['user/login']['weight'] = 10001;
-  $items['user/login']['menu_name'] = 'main-menu';
+  /* TEMP */
+  $items['user/%user/display']['access callback'] = FALSE;
+  $items['node/%node/display']['access callback'] = FALSE;
+  $items['node/%node/node_export']['access callback'] = FALSE;
+}
+
+function futurium_isa_extras_preprocess_block(&$variables) {
+  if ($variables['block']->region == 'footer') {
+    $variables['classes_array'][] = "footer-block";
+  }
+  $variables['classes_array'][] = str_replace("_", "-", $variables['block']->delta);
+}
+
+/**
+ * Implements hook_init().
+ */
+function futurium_isa_extras_init() {
+  $obj = menu_get_object();
+  if (isset($obj->type)) {
+    switch($obj->type){
+      case 'futurium_group':
+        menu_tree_set_path('main-menu','groups');
+        break;
+      case 'future':
+        menu_tree_set_path('main-menu','futures');
+        break;
+      case 'event_d4eu':
+        menu_tree_set_path('main-menu','events');
+        break;
+      case 'ideas':
+        menu_tree_set_path('main-menu','ideas');
+        break;
+      case 'evidence':
+        menu_tree_set_path('main-menu','library');
+        break;
+    }
+  }
 }
 
 /**
@@ -192,6 +225,8 @@ function futurium_isa_extras_block_info() {
 function futurium_isa_extras_block_view($delta = '') {
   $block = array();
 
+  $is_group = FALSE;
+
   $item = menu_get_item();
   if (substr($item['path'],0, 5) == 'user/') {
     $uid = arg(1);
@@ -201,6 +236,7 @@ function futurium_isa_extras_block_view($delta = '') {
   if (substr($item['path'],0, 5) == 'node/') {
     $nid = arg(1);
     $obj = node_load($nid);
+    $is_group = TRUE;
     if ($obj->type == 'futurium_group') {
       $link_options = array(
         'query' => array(
@@ -213,13 +249,28 @@ function futurium_isa_extras_block_view($delta = '') {
   switch ($delta) {
     case 'contextualized_links':
 
+      //dsm($item);
+
       switch($item['path']) {
+        case 'user':
+        case 'user/login':
+          $links['register'] = l('Create new account', 'user/register');
+          $links['new-password'] = l('Request a new password', 'user/password');
+          break;
+        case 'user/register':
+          $links['login'] = l('Login', 'user');
+          $links['new-password'] = l('Request a new password', 'user/password');
+          break;
+        case 'user/password':
+          $links['login'] = l('Login', 'user');
+          $links['register'] = l('Create new account', 'user/register');
+          break;
         case 'user/%':
           $links['add-group'] = l('Add Group', 'node/add/futurium-group');
           $links['add-future'] = l('Add Future', 'node/add/future');
           $links['add-idea'] = l('Add Idea', 'node/add/ideas');
           $links['add-evidence'] = l('Add Evidence', 'node/add/evidence');
-          $links['add-event'] = l('Add Event', 'node/add/evidence');
+          $links['add-event'] = l('Add Event', 'node/add/event-d4eu');
           break;
 
         case 'user/%/groups':
@@ -239,33 +290,45 @@ function futurium_isa_extras_block_view($delta = '') {
           break;
 
         case 'user/%/events':
-          $links['add-event'] = l('Add Event', 'node/add/evidence');
+          $links['add-event'] = l('Add Event', 'node/add/event-d4eu');
           break;
 
         case 'node/%':
-          $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
-          $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
-          $links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
-          $links['add-event'] = l('Add Event', 'node/add/event-d4eu', $link_options);
-         break;
+          if ($is_group) {
+            if (og_user_access('node', $obj->nid, 'create future content')) {
+              $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
+            }
+            if (og_user_access('node', $obj->nid, 'create ideas content')) {
+              $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
+            }
+            if (og_user_access('node', $obj->nid, 'create evidence content')) {
+              $links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
+            }
+            if (og_user_access('node', $obj->nid, 'create event_d4eu content')) {
+              $links['add-event'] = l('Add Event', 'node/add/event-d4eu', $link_options);
+            }
+          }
+          break;
 
         case 'node/%/futures':
-         $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
-         break;
+          if (og_user_access('node', $obj->nid, 'create future content')) {
+            $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
+          }
+          break;
 
         case 'node/%/ideas':
-         $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
-         break;
+          if (og_user_access('node', $obj->nid, 'create ideas content')) {
+            $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
+          }
+          break;
 
         case 'node/%/members':
-         //$links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
-         break;
+          break;
 
       }
 
       $variables = array(
         'items' => array(),
-        // Leave the title element empty to omit the title.
         'title' => NULL,
         'type' => 'ul',
         'attributes' => array(
@@ -363,7 +426,7 @@ function futurium_isa_extras_block_view($delta = '') {
  * Implements hook_ctools_plugin_directory().
  */
 function futurium_isa_extras_ctools_plugin_directory($module, $plugin) {
-  if ($module == "panels" && in_array($plugin, array('layouts', 'styles'))) {
+  if (($module == "panels" || $module == "ctools") && in_array($plugin, array('access', 'layouts', 'styles'))) {
     return "plugins/$plugin";
   }
 }
@@ -469,6 +532,14 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
 
   $extrafields = field_extra_fields_get_display('node', $node->type, $view_mode);
 
+  $link_options = array(
+    'attributes' => array(
+      'class' => array(
+        'btn',
+      ),
+    ),
+  );
+
   // Likes.
   $extrafield_name = 'like';
   if (isset($extrafields[$extrafield_name])
@@ -532,13 +603,6 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
     global $user;
     $account = user_load($user->uid);
     if (og_user_access('node', $node->nid, 'edit group', $account)) {
-      $link_options = array(
-        'attributes' => array(
-          'class' => array(
-            'btn',
-          ),
-        ),
-      );
       $node->content[$extrafield_name] = array(
         '#markup' => l(t("Edit group"), 'node/' . $node->nid . '/edit', $link_options),
       );
@@ -553,24 +617,24 @@ function futurium_isa_extras_node_view($node, $view_mode, $langcode) {
 
     global $user;
     $account = user_load($user->uid);
-    if (og_user_access('node', $node->nid, 'edit group', $account)) {
-      $link_options = array(
-        'attributes' => array(
-          'class' => array(
-            'flag',
-            'flag-action',
-            'flag-link-toggle',
-            'flag-processed',
-          ),
-        ),
-      );
 
-      $node->content[$extrafield_name] = array(
-        '#markup' => l(t('Join'), 'group/node/' . $node->nid . '/subscribe/og_user_node', $link_options),
-      );
+    // Not a member, show join link
+    // todo: group is invite only?
+    if ($user->uid != 0) {
+      if (!og_is_member('node', $node->nid, 'user', $account)) {
+        $node->content[$extrafield_name] = array(
+          '#markup' => l(t('Join Group'), 'group/node/' . $node->nid . '/subscribe/og_user_node', $link_options),
+        );
+      }
+      else{
+        if ($node->uid != $account->uid) {
+          $node->content[$extrafield_name] = array(
+            '#markup' => l(t('Leave Group'), 'group/node/' . $node->nid . '/unsubscribe/og_user_node', $link_options),
+          );
+        }
+      }
     }
   }
-
 }
 
 function futurium_isa_extras_preprocess_link(&$variables) {
@@ -585,6 +649,14 @@ function futurium_isa_extras_preprocess_link(&$variables) {
 function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
 
   $extrafields = field_extra_fields_get_display('user', 'user', $view_mode);
+
+  $link_options = array(
+    'attributes' => array(
+      'class' => array(
+        'btn',
+      ),
+    ),
+  );
 
   // Follow.
   $extrafield_name = 'follow';
@@ -603,16 +675,6 @@ function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
 
     global $user;
     if ($user->uid == $account->uid || user_access('administer users')) {
-      $link_options = array(
-        'attributes' => array(
-          'class' => array(
-            'flag',
-            'flag-action',
-            'flag-link-toggle',
-            'flag-processed',
-          ),
-        ),
-      );
       $account->content[$extrafield_name] = array(
         '#markup' => l(t("Edit profile"), 'user/' . $account->uid . '/edit', $link_options),
       );
@@ -627,16 +689,6 @@ function futurium_isa_extras_user_view($account, $view_mode, $langcode) {
 
     global $user;
     if ($user->uid == $account->uid) {
-      $link_options = array(
-        'attributes' => array(
-          'class' => array(
-            'flag',
-            'flag-action',
-            'flag-link-toggle',
-            'flag-processed',
-          ),
-        ),
-      );
       $account->content[$extrafield_name] = array(
         '#markup' => l(t("Logout"), 'user/logout', $link_options),
       );
@@ -885,7 +937,7 @@ function futurium_isa_extras_wysiwyg_plugin($editor, $version) {
           'file' => 'plugin.js',
           'load' => TRUE,
           'buttons' => array(
-            'heck_why_not' => t('Do something awesome'),
+            'PlaceholderAttribute' => t('Placeholder Attribute'),
           ),
         ),
       );
@@ -893,26 +945,52 @@ function futurium_isa_extras_wysiwyg_plugin($editor, $version) {
   }
 }
 
-// Modules likely to be disabled
-/*
-Bootstrap - Photo Gallery
-Dashboard
-Devel generate
-Feature Set
-JS injector
-Language selector (Page)
-Language selector (Site)
-Multisite autosave
-Multisite Create Button
-Multisite custom error
-Multisite Dynamic Base theme
-Multisite_Rules_Configuration
-NextEuropa Editorial
-NextEuropa Multilingual
-NextEuropa Pages
-NextEuropa Pages feature.
-solr_config
-TagClouds
-Testing
-Workbench Moderation View for multisite
+/**
+ * Implements hook_views_query_alter().
  */
+function futurium_isa_extras_views_query_alter(&$view, &$query) {
+  if ($view->name == 'events' && $view->current_display == 'all_events') {
+    if ($view->filter['field_date_time_value']->operator == '<') {
+      $query->orderby[0]['direction'] = 'DESC';
+    }
+    else{
+      $query->orderby[0]['direction'] = 'ASC';
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function futurium_isa_extras_form_node_type_form_alter(&$form, &$form_state, $form_id) {
+
+  $form['futurium_extras'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Futurium Settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#group' => 'additional_settings',
+  );
+
+  $form['futurium_extras']['color'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content type color'),
+    '#size' => 8,
+    '#maxlength' => 6,
+    '#field_prefix' => '#',
+    '#default_value' => variable_get('color_' . $form['#node_type']->type, ''),
+  );
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function futurium_isa_extras_js_alter(&$js) {
+  // Override springyui renderer
+  if (isset($js['sites/all/libraries/springy/springyui.js'])) {
+    $new_ui = $js['sites/all/libraries/springy/springyui.js'];
+    $path = drupal_get_path('module', 'futurium_isa_extras') . '/js/springyui.js';
+    $new_ui['data'] = $path;
+    $js['sites/all/libraries/springy/springyui.js'] = $new_ui;
+  }
+}

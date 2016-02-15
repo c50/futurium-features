@@ -31,5 +31,22 @@ function tests_field_default_field_bases() {
     'type' => 'radioactivity',
   );
 
+  // Exported field_base: 'field_relation_graph'.
+  $field_bases['field_relation_graph'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_relation_graph',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'relation_dummy_field',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'relation',
+  );
+
   return $field_bases;
 }
