@@ -46,7 +46,7 @@ function futurium_isa_ds_field_settings_info() {
     'ds_user_picture' => array(
       'weight' => '3',
       'label' => 'hidden',
-      'format' => 'ds_picture_media_thumbnail_small',
+      'format' => 'ds_picture_user_picture_small',
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_minimal',
@@ -99,7 +99,7 @@ function futurium_isa_ds_field_settings_info() {
     'ds_user_picture' => array(
       'weight' => '3',
       'label' => 'hidden',
-      'format' => 'ds_picture_media_thumbnail_small',
+      'format' => 'ds_picture_user_picture_small',
       'formatter_settings' => array(
         'ft' => array(
           'func' => 'theme_ds_field_minimal',

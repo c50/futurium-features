@@ -1012,7 +1012,7 @@ $handler->display->display_options['fields']['picture']['element_label_colon'] =
 $handler->display->display_options['fields']['picture']['element_wrapper_type'] = 'div';
 $handler->display->display_options['fields']['picture']['element_wrapper_class'] = 'author-picture';
 $handler->display->display_options['fields']['picture']['element_default_classes'] = FALSE;
-$handler->display->display_options['fields']['picture']['image_style'] = 'media_thumbnail_small';
+$handler->display->display_options['fields']['picture']['image_style'] = 'user_picture_small';
 /* Field: Flags: Flag counter */
 $handler->display->display_options['fields']['count']['id'] = 'count';
 $handler->display->display_options['fields']['count']['table'] = 'flag_counts';
@@ -1587,7 +1587,7 @@ $handler->display->display_options['arguments']['uid']['summary_options']['items
   $handler->display->display_options['fields']['picture']['field'] = 'picture';
   $handler->display->display_options['fields']['picture']['label'] = '';
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['picture']['image_style'] = 'media_thumbnail_small';
+  $handler->display->display_options['fields']['picture']['image_style'] = 'user_picture_small';
   /* Field: Global: Fieldset */
   $handler->display->display_options['fields']['fieldset_1']['id'] = 'fieldset_1';
   $handler->display->display_options['fields']['fieldset_1']['table'] = 'views';
@@ -1678,7 +1678,7 @@ $handler->display->display_options['arguments']['uid']['summary_options']['items
   $handler->display->display_options['fields']['picture']['field'] = 'picture';
   $handler->display->display_options['fields']['picture']['label'] = '';
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['picture']['image_style'] = 'media_thumbnail_small';
+  $handler->display->display_options['fields']['picture']['image_style'] = 'user_picture_small';
   /* Field: Global: Fieldset */
   $handler->display->display_options['fields']['fieldset_1']['id'] = 'fieldset_1';
   $handler->display->display_options['fields']['fieldset_1']['table'] = 'views';
@@ -1767,7 +1767,7 @@ $handler->display->display_options['arguments']['uid']['summary_options']['items
   $handler->display->display_options['fields']['picture']['field'] = 'picture';
   $handler->display->display_options['fields']['picture']['label'] = '';
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['picture']['image_style'] = 'media_thumbnail_small';
+  $handler->display->display_options['fields']['picture']['image_style'] = 'user_picture_small';
   /* Field: Global: Fieldset */
   $handler->display->display_options['fields']['fieldset_1']['id'] = 'fieldset_1';
   $handler->display->display_options['fields']['fieldset_1']['table'] = 'views';
@@ -1899,7 +1899,7 @@ $handler->display->display_options['arguments']['uid']['summary_options']['items
   $handler->display->display_options['fields']['picture']['field'] = 'picture';
   $handler->display->display_options['fields']['picture']['label'] = '';
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['picture']['image_style'] = 'media_thumbnail_small';
+  $handler->display->display_options['fields']['picture']['image_style'] = 'user_picture_small';
   /* Field: Global: Fieldset */
   $handler->display->display_options['fields']['fieldset_2']['id'] = 'fieldset_2';
   $handler->display->display_options['fields']['fieldset_2']['table'] = 'views';
