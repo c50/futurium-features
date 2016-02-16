@@ -7323,7 +7323,34 @@ function futurium_isa_default_page_manager_pages() {
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
-      'default' => NULL,
+      'default' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
       'top' => NULL,
       'left' => NULL,
       'right' => NULL,
@@ -7339,12 +7366,63 @@ function futurium_isa_default_page_manager_pages() {
       'row5l' => NULL,
       'row5r' => NULL,
     ),
+    'style' => 'bootstrap_region',
   );
   $display->cache = array();
   $display->title = '';
   $display->uuid = 'e53db3c8-d04e-492b-b834-b554f52153d0';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-90dcdcea-3b50-4e80-912a-fabe71b27d80';
+    $pane->panel = 'row1l';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Page Title',
+      'title' => 'About Futurium',
+      'body' => 'Futurium is the online platform developed by the European Commission to facilitate citizen engagement in policy conversations. It combines the informal character of social networks with the support of evidence data to engage stakeholders in shaping the futures and the policy ideas that matter to them. ',
+      'format' => 'full',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '90dcdcea-3b50-4e80-912a-fabe71b27d80';
+    $display->content['new-90dcdcea-3b50-4e80-912a-fabe71b27d80'] = $pane;
+    $display->panels['row1l'][0] = 'new-90dcdcea-3b50-4e80-912a-fabe71b27d80';
+    $pane = new stdClass();
+    $pane->pid = 'new-631be3c3-320c-4e40-8e60-0fa3a496b522';
+    $pane->panel = 'row2l';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Content',
+      'title' => '',
+      'body' => '<h2>Engagement in policy making</h2><p><br>The Futurium aims to respond to the growing demand for civic participation in policy matters. Its structured approach to content co-creation and synthesis allows streamlining otherwise complex and expensive processes.&nbsp; Stakeholders use the platform to co-create visions (for instance the future of their city), anticipate possible challenges and opportunities, upload evidence (e.g. references to studies, statistics, etc.) to support their opinions, and propose ideas to their governments.&nbsp;</p><p>The online engagement process can be naturally combined with in-person conversations or brainstorming events. The content generated during the in-person events follows the same Futurium content\'s structure (visions, policies,…) and can therefore be easily integrated into the online platform.</p><p>This facilitates the creation of a viral process to attract more and more stakeholders into the online platform.</p><p>&nbsp;</p><p>&nbsp;</p><h2 class="StyleHeading214ptAfter6pt">Policy making as a collective intelligence process<o:p></o:p></h2><p>&nbsp;</p><p>The Futurium is based on the metaphor of "collective brain" (or collective intelligence) according to which stakeholders and policy makers form a social network to co-create policies on the basis of:</p><p>1.&nbsp;&nbsp; &nbsp;The aspirations of the social network, i.e. how participants imagine the future of their town, country, organisation, etc.<br>2.&nbsp;&nbsp; &nbsp;The evidence, stemming from the observation of the real world and elicited through data (e.g. trends, statistics,...).<br>3.&nbsp;&nbsp; &nbsp;The boundary constraints posed by the legal framework, i.e. policies have to comply with the rules and law.<br>4.&nbsp;&nbsp; &nbsp;Other factors reflecting the interest of the stakeholders reflecting their emotional reaction to a particular topic.&nbsp;</p><p>Once adopted and executed, the policies are expected to produce impacts on the real world (on people, economy, environment, etc.), that can in turn be monitored and reflected back into the policy making cycle, thus closing the loop.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '631be3c3-320c-4e40-8e60-0fa3a496b522';
+    $display->content['new-631be3c3-320c-4e40-8e60-0fa3a496b522'] = $pane;
+    $display->panels['row2l'][0] = 'new-631be3c3-320c-4e40-8e60-0fa3a496b522';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
