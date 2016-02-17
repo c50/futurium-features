@@ -1209,8 +1209,8 @@ $handler->display->display_options['fields']['count']['label'] = '';
 $handler->display->display_options['fields']['count']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['count']['separator'] = '';
 $handler->display->display_options['fields']['count']['format_plural'] = TRUE;
-$handler->display->display_options['fields']['count']['format_plural_singular'] = '(1 vote)';
-$handler->display->display_options['fields']['count']['format_plural_plural'] = '(@count votes)';
+$handler->display->display_options['fields']['count']['format_plural_singular'] = '(1 like)';
+$handler->display->display_options['fields']['count']['format_plural_plural'] = '(@count likes)';
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
 $handler->display->display_options['defaults']['filters'] = FALSE;
 /* Filter criterion: Content: Published */
