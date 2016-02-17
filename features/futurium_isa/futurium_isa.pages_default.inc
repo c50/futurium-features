@@ -7382,8 +7382,10 @@ function futurium_isa_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'admin_title' => 'Page Title',
-      'title' => 'About Futurium',
-      'body' => 'Futurium is the online platform developed by the European Commission to facilitate citizen engagement in policy conversations. It combines the informal character of social networks with the support of evidence data to engage stakeholders in shaping the futures and the policy ideas that matter to them. ',
+      'title' => '',
+      'body' => '<h1>About Futurium</h1>
+
+  Futurium is the online platform developed by the European Commission to facilitate citizen engagement in policy conversations. It combines the informal character of social networks with the support of evidence data to engage stakeholders in shaping the futures and the policy ideas that matter to them. ',
       'format' => 'full',
       'substitute' => TRUE,
     );
