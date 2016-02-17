@@ -363,21 +363,21 @@ function futurium_futures_default_page_manager_handlers() {
     $display->content['new-e6383812-7d9d-4f96-a5fa-03032daf4b81'] = $pane;
     $display->panels['row1r'][2] = 'new-e6383812-7d9d-4f96-a5fa-03032daf4b81';
     $pane = new stdClass();
-    $pane->pid = 'new-066e497e-dfbb-4edf-ab14-9f0509786a59';
+    $pane->pid = 'new-fac7f03a-66ed-47f7-af06-875fdf4369a7';
     $pane->panel = 'row2l';
     $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_description';
+    $pane->subtype = 'node:field_future_description';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'hidden',
+      'label' => 'title',
       'formatter' => 'text_default',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(),
       'context' => 'argument_entity_id:node_1',
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
@@ -389,9 +389,9 @@ function futurium_futures_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '066e497e-dfbb-4edf-ab14-9f0509786a59';
-    $display->content['new-066e497e-dfbb-4edf-ab14-9f0509786a59'] = $pane;
-    $display->panels['row2l'][0] = 'new-066e497e-dfbb-4edf-ab14-9f0509786a59';
+    $pane->uuid = 'fac7f03a-66ed-47f7-af06-875fdf4369a7';
+    $display->content['new-fac7f03a-66ed-47f7-af06-875fdf4369a7'] = $pane;
+    $display->panels['row2l'][0] = 'new-fac7f03a-66ed-47f7-af06-875fdf4369a7';
     $pane = new stdClass();
     $pane->pid = 'new-0be42eb3-b979-4a2a-ba78-dd362521e288';
     $pane->panel = 'row2l';
@@ -709,7 +709,7 @@ function futurium_futures_default_page_manager_handlers() {
     $display->content['new-64ae6372-32d7-44b1-b550-e188a2463d9c'] = $pane;
     $display->panels['row3l'][1] = 'new-64ae6372-32d7-44b1-b550-e188a2463d9c';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-066e497e-dfbb-4edf-ab14-9f0509786a59';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['node_view__panel_context_a5ff0abd-4cbe-4e62-87ce-5b1e69ab5fd7'] = $handler;
 
