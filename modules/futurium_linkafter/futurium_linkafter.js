@@ -182,7 +182,6 @@ Drupal.jsAC.prototype.found = function (matches) {
      * Hides the autocomplete suggestions.
      */
     Drupal.jsAC.prototype.hidePopup = function (keycode) {
-      /*
       // Select item if the right key or mousebutton was pressed.
       if (this.selected && ((keycode && keycode != 46 && keycode != 8 && keycode != 27) || !keycode)) {
         this.input.value = $(this.selected).data('autocompleteValue');
@@ -198,7 +197,6 @@ Drupal.jsAC.prototype.found = function (matches) {
       if (this.input.value.length > 3){
         $(this.input).trigger('autocompleteHidden');
       }
-      */
     };
   }
 })(jQuery);

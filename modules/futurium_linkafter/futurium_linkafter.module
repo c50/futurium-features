@@ -115,9 +115,7 @@ function _futurium_linkafter_node_autocomplete($origin_nid, $bundles, $string) {
     }
   }
 
-  $a = _futurium_linkafter_create_links($origin_nid);
-  $matches += $a;
-
+  $matches += _futurium_linkafter_create_links($origin_nid);
 
   drupal_json_output($matches);
 }
@@ -184,7 +182,6 @@ function _futurium_linkafter_link($form, &$form_state) {
   ctools_include('ajax');
   ctools_add_js('ajax-responder');
 
-
   $origin_nid = $form_state['input']['origin'];
   $target_nid = _futurium_linkafter_parse_result($form_state['input']['search']);
   $relation = _futurium_linkafter_parse_relation($form_state['input']['search']);
@@ -202,7 +199,7 @@ function _futurium_linkafter_link($form, &$form_state) {
   $commands[] = array('command' => 'fadeMessages');
 
   if ($message['type'] == 'status') {
-    $path = 'node/' . $target_nid;
+    $path = 'node/' . $origin_nid;
     $commands[] = ctools_ajax_command_redirect($path);
   }
 
