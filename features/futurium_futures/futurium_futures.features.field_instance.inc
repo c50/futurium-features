@@ -326,7 +326,7 @@ function futurium_futures_field_default_field_instances() {
         'label_position' => 'above',
         'no_fieldset' => 0,
         'text_parts' => array(),
-        'year_range' => '-3:+3',
+        'year_range' => '0:+30',
       ),
       'type' => 'date_popup',
       'weight' => 4,
