@@ -275,7 +275,7 @@ function futurium_isa_image_default_styles() {
       2 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 1160,
+          'width' => 1170,
           'height' => 350,
         ),
         'weight' => 2,
