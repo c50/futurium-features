@@ -1705,7 +1705,6 @@ function _supertags_get_context() {
   static $supertags_context;
 
   if (empty($supertags_context)) {
-    dsm("stuff");
     $item = menu_get_item();
 
     $vocab = taxonomy_vocabulary_machine_name_load('flavors');
