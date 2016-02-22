@@ -3875,7 +3875,7 @@ function futurium_isa_default_page_manager_pages() {
       'admin_title' => 'Intro Text',
       'title' => '',
       'body' => '<h1>Organise an event or take part in one near you</h1><div class="intro">Futurium offers you the possibility to set up your own meeting on a topic relevant to your town and to invite attendees or to find events organised by other [site:name] members.</div>',
-      'format' => 'full',
+      'format' => 'full_html',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -5217,7 +5217,7 @@ function futurium_isa_default_page_manager_pages() {
       'admin_title' => 'Intro Text',
       'title' => '',
       'body' => '<h1>Explore new ideas and find answers in the Ideas Market Place</h1><div class="intro">Ideas are solutions, policies, ways of realising futures. Link ideas to futures and vice-versa.</div>',
-      'format' => 'full',
+      'format' => 'full_html',
       'substitute' => TRUE,
     );
     $pane->cache = array();
@@ -5548,7 +5548,7 @@ function futurium_isa_default_page_manager_pages() {
       'admin_title' => 'Intro Text',
       'title' => '',
       'body' => '<h1>Explore the library</h1><div class="intro"><span>Upload evidence to link to your future or idea: reports, studies, articles. Search the library for existing material.</span></div>',
-      'format' => 'full',
+      'format' => 'full_html',
       'substitute' => TRUE,
     );
     $pane->cache = array();
