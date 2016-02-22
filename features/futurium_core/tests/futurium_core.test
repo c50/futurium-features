@@ -65,7 +65,7 @@ class FuturiumCoreQAWebTestCase extends DrupalWebTestCase {
 
     // Remove menu dependencies.
     if (array_key_exists('dependencies', $info)) {
-      // dependencies[] = "menu"
+      // dependencies[] = "menu".
       $this->assertFalse(in_array('menu', $info['dependencies']), 'There is no reference to the menu dependency.');
 
       // Remove taxonomy dependencies.
