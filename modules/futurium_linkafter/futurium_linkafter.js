@@ -74,108 +74,107 @@
       this.input.value = $(node).data('autocompleteValue');
     };
 
-/**
- * Fills the suggestion popup with any matches received.
- */
-Drupal.jsAC.prototype.found = function (matches) {
-  // If no value in the textfield, do not show the popup.
-  if (!this.input.value.length) {
-    return false;
-  }
-
-  // Prepare matches.
-  var ul = $('<ul></ul>');
-  var ac = this;
-  for (key in matches) {
-    if (Array.isArray(matches[key])){
-      $('<li class="'+matches[key][1]+'"></li>')
-        .html($('<div></div>').html(matches[key][0]))
-        .mousedown(function () { ac.select(this); })
-        .mouseover(function () { ac.highlight(this); })
-        .mouseout(function () { ac.unhighlight(this); })
-        .data('autocompleteValue', key)
-        .appendTo(ul);
+  /**
+   * Fills the suggestion popup with any matches received.
+   */
+  Drupal.jsAC.prototype.found = function (matches) {
+    // If no value in the textfield, do not show the popup.
+    if (!this.input.value.length) {
+      return false;
     }
-    else{
-      $('<li></li>')
-        .html($('<div></div>').html(matches[key]))
-        .mousedown(function () { ac.select(this); })
-        .mouseover(function () { ac.highlight(this); })
-        .mouseout(function () { ac.unhighlight(this); })
-        .data('autocompleteValue', key)
-        .appendTo(ul);
-    }
-  }
 
-  // Show popup with matches, if any.
-  if (this.popup) {
-    if (ul.children().length) {
-      $(this.popup).empty().append(ul).show();
-      $(this.ariaLive).html(Drupal.t('Autocomplete popup'));
+    // Prepare matches.
+    var ul = $('<ul></ul>');
+    var ac = this;
+    for (key in matches) {
+      if (Array.isArray(matches[key])){
+        $('<li class="'+matches[key][1]+'"></li>')
+          .html($('<div></div>').html(matches[key][0]))
+          .mousedown(function () { ac.select(this); })
+          .mouseover(function () { ac.highlight(this); })
+          .mouseout(function () { ac.unhighlight(this); })
+          .data('autocompleteValue', key)
+          .appendTo(ul);
+      }
+      else{
+        $('<li></li>')
+          .html($('<div></div>').html(matches[key]))
+          .mousedown(function () { ac.select(this); })
+          .mouseover(function () { ac.highlight(this); })
+          .mouseout(function () { ac.unhighlight(this); })
+          .data('autocompleteValue', key)
+          .appendTo(ul);
+      }
     }
-    else {
-      $(this.popup).css({ visibility: 'hidden' });
-      this.hidePopup();
+
+    // Show popup with matches, if any.
+    if (this.popup) {
+      if (ul.children().length) {
+        $(this.popup).empty().append(ul).show();
+        $(this.ariaLive).html(Drupal.t('Autocomplete popup'));
+      }
+      else {
+        $(this.popup).css({ visibility: 'hidden' });
+        this.hidePopup();
+      }
     }
-  }
-};
+  };
 
-
-/**
- * Fills the suggestion popup with any matches received.
- */
-Drupal.jsAC.prototype.found = function (matches) {
-  // If no value in the textfield, do not show the popup.
-  if (!this.input.value.length) {
-    return false;
-  }
-
-  // Prepare matches.
-  var ul = $('<ul class="dropdown-menu"></ul>');
-  var ac = this;
-  ul.css({
-    display: 'block',
-    right: 0
-  });
-  for (var key in matches) {
-    if (Array.isArray(matches[key])){
-      $('<li class="'+matches[key][1]+'"></li>')
-        .html($('<a href="#"></a>').html(matches[key][0]).click(function (e) { e.preventDefault(); }))
-        .mousedown(function () { ac.select(this); })
-        .mouseover(function () { ac.highlight(this); })
-        .mouseout(function () { ac.unhighlight(this); })
-        .data('autocompleteValue', key)
-        .appendTo(ul);
+  /**
+   * Fills the suggestion popup with any matches received.
+   */
+  Drupal.jsAC.prototype.found = function (matches) {
+    // If no value in the textfield, do not show the popup.
+    if (!this.input.value.length) {
+      return false;
     }
-    else{
-      $('<li></li>')
-        .html($('<a href="#"></a>').html(matches[key]).click(function (e) { e.preventDefault(); }))
-        .mousedown(function () { ac.select(this); })
-        .mouseover(function () { ac.highlight(this); })
-        .mouseout(function () { ac.unhighlight(this); })
-        .data('autocompleteValue', key)
-        .appendTo(ul);
-    }
-  }
 
-  // Show popup with matches, if any.
-  if (this.popup) {
-    if (ul.children().length) {
-      $(this.popup).empty().append(ul).show();
-      $(this.ariaLive).html(Drupal.t('Autocomplete popup'));
+    // Prepare matches.
+    var ul = $('<ul class="dropdown-menu"></ul>');
+    var ac = this;
+    ul.css({
+      display: 'block',
+      right: 0
+    });
+    for (var key in matches) {
+      if (Array.isArray(matches[key])){
+        $('<li class="'+matches[key][1]+'"></li>')
+          .html($('<a href="#"></a>').html(matches[key][0]).click(function (e) { e.preventDefault(); }))
+          .mousedown(function () { ac.select(this); })
+          .mouseover(function () { ac.highlight(this); })
+          .mouseout(function () { ac.unhighlight(this); })
+          .data('autocompleteValue', key)
+          .appendTo(ul);
+      }
+      else{
+        $('<li></li>')
+          .html($('<a href="#"></a>').html(matches[key]).click(function (e) { e.preventDefault(); }))
+          .mousedown(function () { ac.select(this); })
+          .mouseover(function () { ac.highlight(this); })
+          .mouseout(function () { ac.unhighlight(this); })
+          .data('autocompleteValue', key)
+          .appendTo(ul);
+      }
     }
-    else {
-      $(this.popup).css({ visibility: 'hidden' });
-      this.hidePopup();
+
+    // Show popup with matches, if any.
+    if (this.popup) {
+      if (ul.children().length) {
+        $(this.popup).empty().append(ul).show();
+        $(this.ariaLive).html(Drupal.t('Autocomplete popup'));
+      }
+      else {
+        $(this.popup).css({ visibility: 'hidden' });
+        this.hidePopup();
+      }
     }
-  }
 
-  // If no value in the textfield, do not show the popup.
-  if (!this.input.value.length) {
-    return false;
-  }
+    // If no value in the textfield, do not show the popup.
+    if (!this.input.value.length) {
+      return false;
+    }
 
-};
+  };
 
 
     /**
