@@ -1491,6 +1491,10 @@ $handler->display->display_options['defaults']['relationships'] = FALSE;
 $handler->display->display_options['relationships']['uid']['id'] = 'uid';
 $handler->display->display_options['relationships']['uid']['table'] = 'node';
 $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+/* Relationship: OG membership: OG membership from Node */
+$handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
+$handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
+$handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
 $handler->display->display_options['defaults']['fields'] = FALSE;
 /* Field: Content: Title */
 $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -1580,6 +1584,28 @@ $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
 $handler->display->display_options['fields']['nothing']['label'] = '';
 $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="authoring-info">Posted [created] by [view_user]</div><div class="comment-count">[comment_count]</div>';
 $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Published */
+$handler->display->display_options['filters']['status']['id'] = 'status';
+$handler->display->display_options['filters']['status']['table'] = 'node';
+$handler->display->display_options['filters']['status']['field'] = 'status';
+$handler->display->display_options['filters']['status']['value'] = 1;
+$handler->display->display_options['filters']['status']['group'] = 1;
+$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'evidence' => 'evidence',
+);
+/* Filter criterion: Field: Groups audience (og_group_ref) */
+$handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
+$handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
+$handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
 $handler->display->display_options['allow']['use_pager'] = 0;
 $handler->display->display_options['allow']['items_per_page'] = 0;
 $handler->display->display_options['allow']['offset'] = 0;
