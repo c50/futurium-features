@@ -1140,6 +1140,10 @@ $handler->display->display_options['relationships']['votingapi_cache']['votingap
   'tag' => '',
   'function' => 'count',
 );
+/* Relationship: OG membership: OG membership from Node */
+$handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
+$handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
+$handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
 $handler->display->display_options['defaults']['sorts'] = FALSE;
 /* Sort criterion: Content: Post date */
 $handler->display->display_options['sorts']['created']['id'] = 'created';
@@ -1162,12 +1166,37 @@ $handler->display->display_options['sorts']['value']['relationship'] = 'votingap
 $handler->display->display_options['sorts']['value']['exposed'] = TRUE;
 $handler->display->display_options['sorts']['value']['expose']['label'] = 'Votes';
 $handler->display->display_options['sorts']['value']['coalesce'] = 0;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Published */
+$handler->display->display_options['filters']['status']['id'] = 'status';
+$handler->display->display_options['filters']['status']['table'] = 'node';
+$handler->display->display_options['filters']['status']['field'] = 'status';
+$handler->display->display_options['filters']['status']['value'] = 1;
+$handler->display->display_options['filters']['status']['group'] = 1;
+$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'ideas' => 'ideas',
+);
+/* Filter criterion: Field: Groups audience (og_group_ref) */
+$handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
+$handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
+$handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
 
 /* Display: Ideas Home */
 $handler = $view->new_display('block', 'Ideas Home', 'block_3');
 $handler->display->display_options['defaults']['title'] = FALSE;
 $handler->display->display_options['title'] = 'Ideas';
 $handler->display->display_options['link_url'] = 'ideas';
+$handler->display->display_options['defaults']['query'] = FALSE;
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['query']['options']['distinct'] = TRUE;
 $handler->display->display_options['defaults']['pager'] = FALSE;
 $handler->display->display_options['pager']['type'] = 'some';
 $handler->display->display_options['pager']['options']['items_per_page'] = '3';
@@ -1244,11 +1273,12 @@ $handler->display->display_options['filters']['type']['field'] = 'type';
 $handler->display->display_options['filters']['type']['value'] = array(
   'ideas' => 'ideas',
 );
-/* Filter criterion: Content: Logged In User Groups/No Group content */
-$handler->display->display_options['filters']['user_og_nid']['id'] = 'user_og_nid';
-$handler->display->display_options['filters']['user_og_nid']['table'] = 'node';
-$handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
-$handler->display->display_options['filters']['user_og_nid']['value']['value'] = 1;
+/* Filter criterion: Field: Groups audience (og_group_ref) */
+$handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
+$handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
+$handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
 
 /* Display: User Ideas */
 $handler = $view->new_display('block', 'User Ideas', 'block_2');
@@ -1306,6 +1336,21 @@ $handler->display->display_options['defaults']['style_options'] = FALSE;
 $handler->display->display_options['defaults']['row_plugin'] = FALSE;
 $handler->display->display_options['row_plugin'] = 'fields';
 $handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+/* Relationship: Content: Author */
+$handler->display->display_options['relationships']['uid']['id'] = 'uid';
+$handler->display->display_options['relationships']['uid']['table'] = 'node';
+$handler->display->display_options['relationships']['uid']['field'] = 'uid';
+/* Relationship: Flags: like counter */
+$handler->display->display_options['relationships']['flag_count_rel']['id'] = 'flag_count_rel';
+$handler->display->display_options['relationships']['flag_count_rel']['table'] = 'node';
+$handler->display->display_options['relationships']['flag_count_rel']['field'] = 'flag_count_rel';
+$handler->display->display_options['relationships']['flag_count_rel']['required'] = 0;
+$handler->display->display_options['relationships']['flag_count_rel']['flag'] = 'like';
+/* Relationship: OG membership: OG membership from Node */
+$handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
+$handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
+$handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
 $handler->display->display_options['defaults']['fields'] = FALSE;
 /* Field: Content: Title */
 $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -1315,6 +1360,28 @@ $handler->display->display_options['fields']['title']['label'] = '';
 $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
 $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
 $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: Content: Published */
+$handler->display->display_options['filters']['status']['id'] = 'status';
+$handler->display->display_options['filters']['status']['table'] = 'node';
+$handler->display->display_options['filters']['status']['field'] = 'status';
+$handler->display->display_options['filters']['status']['value'] = 1;
+$handler->display->display_options['filters']['status']['group'] = 1;
+$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'ideas' => 'ideas',
+);
+/* Filter criterion: Field: Groups audience (og_group_ref) */
+$handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
+$handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
+$handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
   $export['ideas'] = $view;
 
 $view = new view();
