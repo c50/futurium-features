@@ -3874,7 +3874,7 @@ function futurium_isa_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Intro Text',
       'title' => '',
-      'body' => '<h1>Discover the next event near you</h1><div class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et neque metus. Sed aliquet ullamcorper sapien, vitae scelerisque nulla facilisis non. Cras lobortis eros non risus scelerisque tincidunt. Donec et felis sit amet nisl tincidunt tincidunt eget et ligula.</div>',
+      'body' => '<h1>Organise an event or take part in one near you</h1><div class="intro">Futurium offers you the possibility to set up your own meeting on a topic relevant to your town and to invite attendees or to find events organised by other [site:name] members.</div>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -5216,7 +5216,7 @@ function futurium_isa_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Intro Text',
       'title' => '',
-      'body' => '<h1>Explore new ideas and find answers in the Ideas Market Place</h1><div class="intro">This is the place where everybody can share, discuss and support ideas</div>',
+      'body' => '<h1>Explore new ideas and find answers in the Ideas Market Place</h1><div class="intro">Ideas are solutions, policies, ways of realising futures. Link ideas to futures and vice-versa.</div>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -5547,7 +5547,7 @@ function futurium_isa_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Intro Text',
       'title' => '',
-      'body' => '<h1>Explore the library</h1><div class="intro"><span>Navigate through evidences, scientific papers or case studies that support ideas</span></div>',
+      'body' => '<h1>Explore the library</h1><div class="intro"><span>Upload evidence to link to your future or idea: reports, studies, articles. Search the library for existing material.</span></div>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -5583,7 +5583,7 @@ function futurium_isa_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Add Library Item CTA',
       'title' => '',
-      'body' => '<a class="btn" href="node/add/evidence">Add a Library item</a>',
+      'body' => '<a class="btn" href="node/add/evidence">Add Evidence</a>',
       'format' => 'full',
       'substitute' => TRUE,
     );

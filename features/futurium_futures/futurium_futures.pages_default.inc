@@ -860,7 +860,7 @@ function futurium_futures_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Intro Text',
       'title' => '',
-      'body' => '<h1>Share your vision of what the world might look like</h1><div class="intro">and the chalenges and opportunities associated with it.</div>',
+      'body' => '<h1>Share your vision of what the world might look like</h1><div class="intro">Click on the button to create a future that you desire. A future is a policy outcome, with a practical or aspirational nature, like a new school bus route, or 0% unemployment in your town.</div>',
       'format' => 'full',
       'substitute' => TRUE,
     );
