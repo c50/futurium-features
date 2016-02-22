@@ -1704,8 +1704,8 @@ function _supertags_plural($string) {
 function _supertags_get_context() {
   static $supertags_context;
 
-  $item = menu_get_item();
   if (empty($supertags_context)) {
+    $item = menu_get_item();
 
     $vocab = taxonomy_vocabulary_machine_name_load('flavors');
 
@@ -1846,15 +1846,15 @@ function _supertags_get_context() {
         'class' => 'futurium',
       );
     }
-  }
-  $homes = array('home');
-  $vocab = taxonomy_vocabulary_machine_name_load('flavors');
-  if (!empty($vocab)) {
-    $tree = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
-    foreach ($tree as $key => $value) {
-      $homes[] = _supertags_term_path($value);
+    $homes = array('home');
+    $vocab = taxonomy_vocabulary_machine_name_load('flavors');
+    if (!empty($vocab)) {
+      $tree = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
+      foreach ($tree as $key => $value) {
+        $homes[] = _supertags_term_path($value);
+      }
+      $supertags_context['landing_page'] = in_array($item['path'], $homes);
     }
-    $supertags_context['landing_page'] = in_array($item['path'], $homes);
   }
   return $supertags_context;
 }
