@@ -190,13 +190,13 @@ function futurium_isa_user_default_permissions() {
     'module' => 'flag',
   );
 
-  // Exported permission: 'use futurium_linkafter'.
-  $permissions['use futurium_linkafter'] = array(
-    'name' => 'use futurium_linkafter',
+  // Exported permission: 'use futurium_linker'.
+  $permissions['use futurium_linker'] = array(
+    'name' => 'use futurium_linker',
     'roles' => array(
       'authenticated user' => 'authenticated user',
     ),
-    'module' => 'futurium_linkafter',
+    'module' => 'futurium_linker',
   );
 
   // Exported permission: 'use text format full'.

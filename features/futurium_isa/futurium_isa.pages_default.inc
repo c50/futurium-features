@@ -604,7 +604,7 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->pid = 'new-1dfbaa04-a09f-46b8-8868-6890804430b2';
     $pane->panel = 'row2r';
     $pane->type = 'block';
-    $pane->subtype = 'futurium_linkafter-relation_link_add';
+    $pane->subtype = 'futurium_linker-relation_link_add';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -1033,7 +1033,7 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->pid = 'new-a62ff16e-b240-4dad-91c1-ccdd65cb077b';
     $pane->panel = 'row2r';
     $pane->type = 'block';
-    $pane->subtype = 'futurium_linkafter-relation_link_add';
+    $pane->subtype = 'futurium_linker-relation_link_add';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -1611,7 +1611,7 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->pid = 'new-aeabe19c-d13c-4013-951e-31484323427f';
     $pane->panel = 'row2r';
     $pane->type = 'block';
-    $pane->subtype = 'futurium_linkafter-relation_link_add';
+    $pane->subtype = 'futurium_linker-relation_link_add';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(

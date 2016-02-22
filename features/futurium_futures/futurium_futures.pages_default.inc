@@ -486,7 +486,7 @@ function futurium_futures_default_page_manager_handlers() {
     $pane->pid = 'new-2bd4f214-ffcb-4461-a9c1-f7a98cdc273e';
     $pane->panel = 'row2r';
     $pane->type = 'block';
-    $pane->subtype = 'futurium_linkafter-relation_link_add';
+    $pane->subtype = 'futurium_linker-relation_link_add';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
