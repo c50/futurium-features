@@ -107,7 +107,6 @@ features[filter][] = full
 features[filter][] = simple_text
 features[filter][] = simple_wysiwig
 features[wysiwyg][] = simple_wysiwig
-features[flag][] = activity_tracker
 features[flag][] = attending
 features[flag][] = follow_user
 features[flag][] = like
