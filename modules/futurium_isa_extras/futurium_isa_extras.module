@@ -249,8 +249,6 @@ function futurium_isa_extras_block_view($delta = '') {
   switch ($delta) {
     case 'contextualized_links':
 
-      //dsm($item);
-
       switch($item['path']) {
         case 'user':
         case 'user/login':
@@ -266,59 +264,66 @@ function futurium_isa_extras_block_view($delta = '') {
           $links['register'] = l('Create new account', 'user/register');
           break;
         case 'user/%':
-          $links['add-group'] = l('Add Group', 'node/add/futurium-group');
-          $links['add-future'] = l('Add Future', 'node/add/future');
-          $links['add-idea'] = l('Add Idea', 'node/add/ideas');
-          $links['add-evidence'] = l('Add Evidence', 'node/add/evidence');
-          $links['add-event'] = l('Add Event', 'node/add/event-d4eu');
+          $links['title']  = t("Create new...");
+          $links['add-group'] = l('Group', 'node/add/futurium-group');
+          $links['add-future'] = l('Future', 'node/add/future');
+          $links['add-idea'] = l('Idea', 'node/add/ideas');
+          $links['add-evidence'] = l('Evidence', 'node/add/evidence');
+          $links['add-event'] = l('Event', 'node/add/event-d4eu');
           break;
 
         case 'user/%/groups':
-          $links['add-group'] = l('Add Group', 'node/add/futurium-group');
+          $links['title']  = t("Create new...");
+          $links['add-group'] = l('Group', 'node/add/futurium-group');
           break;
 
         case 'user/%/futures':
-          $links['add-future'] = l('Add Future', 'node/add/future');
+          $links['title']  = t("Create new...");
+          $links['add-future'] = l('Future', 'node/add/future');
           break;
 
         case 'user/%/ideas':
-          $links['add-idea'] = l('Add Idea', 'node/add/ideas');
+          $links['title']  = t("Create new...");
+          $links['add-idea'] = l('Idea', 'node/add/ideas');
           break;
 
         case 'user/%/evidence':
-          $links['add-evidence'] = l('Add Evidence', 'node/add/evidence');
+          $links['title']  = t("Create new...");
+          $links['add-evidence'] = l('Evidence', 'node/add/evidence');
           break;
 
         case 'user/%/events':
-          $links['add-event'] = l('Add Event', 'node/add/event-d4eu');
-          break;
-
-        case 'node/%':
-          if ($is_group) {
-            if (og_user_access('node', $obj->nid, 'create future content')) {
-              $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
-            }
-            if (og_user_access('node', $obj->nid, 'create ideas content')) {
-              $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
-            }
-            if (og_user_access('node', $obj->nid, 'create evidence content')) {
-              $links['add-evidence'] = l('Add Evidence', 'node/add/evidence', $link_options);
-            }
-            if (og_user_access('node', $obj->nid, 'create event_d4eu content')) {
-              $links['add-event'] = l('Add Event', 'node/add/event-d4eu', $link_options);
-            }
-          }
+          $links['title']  = t("Create new...");
+          $links['add-event'] = l('Event', 'node/add/event-d4eu');
           break;
 
         case 'node/%/futures':
           if (og_user_access('node', $obj->nid, 'create future content')) {
-            $links['add-future'] = l('Add Future', 'node/add/future', $link_options);
+            $links['add-future'] = l('Future', 'node/add/future', $link_options);
           }
           break;
 
         case 'node/%/ideas':
           if (og_user_access('node', $obj->nid, 'create ideas content')) {
-            $links['add-idea'] = l('Add Idea', 'node/add/ideas', $link_options);
+            $links['add-idea'] = l('Idea', 'node/add/ideas', $link_options);
+          }
+          break;
+
+        case 'node/%':
+          $links['title']  = t("Add new...");
+          if ($is_group) {
+            if (og_user_access('node', $obj->nid, 'create future content')) {
+              $links['add-future'] = l('Future', 'node/add/future', $link_options);
+            }
+            if (og_user_access('node', $obj->nid, 'create ideas content')) {
+              $links['add-idea'] = l('Idea', 'node/add/ideas', $link_options);
+            }
+            if (og_user_access('node', $obj->nid, 'create evidence content')) {
+              $links['add-evidence'] = l('Evidence', 'node/add/evidence', $link_options);
+            }
+            if (og_user_access('node', $obj->nid, 'create event_d4eu content')) {
+              $links['add-event'] = l('Event', 'node/add/event-d4eu', $link_options);
+            }
           }
           break;
 
@@ -340,13 +345,18 @@ function futurium_isa_extras_block_view($delta = '') {
 
       if (!empty($links)) {
         foreach($links as $k => $link) {
-          $variables['items'][] = array(
-            'data' => $link,
-            'class' => array($k),
-          );
+          if ($k == 'title') {
+            $block['subject'] = $link;
+          }
+          else{
+            $variables['items'][] = array(
+              'data' => $link,
+              'class' => array($k),
+            );
+          }
         }
 
-        $block['subject'] = t('Actions');
+
         $block['content'] = theme('item_list', $variables);
       }
       break;
@@ -901,7 +911,12 @@ function futurium_isa_extras_form_node_form_alter(&$form, &$form_state) {
     $form['revision_information']['#access'] = FALSE;
   }
   else {
-    $form['revision_information']['log']['#access'] = FALSE;
+    //$form['revision_information']['log']['#access'] = FALSE;
+  }
+
+  $form['revision_information']['#access'] = FALSE;
+  if ($form['#bundle'] == 'evidence' && isset($form['field_evidence_keywords'])) {
+    $form['field_evidence_keywords']['#access'] = FALSE;
   }
 
   if (!isset($_GET['og_group_ref'])) {
