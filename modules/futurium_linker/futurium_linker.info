@@ -1,0 +1,5 @@
+name = Futurium Linker
+description = A module to create relations between content.
+core = 7.x
+
+dependencies[] = relation
