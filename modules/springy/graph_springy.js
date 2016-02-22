@@ -69,18 +69,20 @@
       }
 
       var c = jQuery('#graph-springy-graphapi');
-      var ct = c.get(0).getContext('2d');
-      var container = jQuery(c).parent();
 
-      jQuery(window).resize( respondCanvas );
+      if(c.length) {
+        var ct = c.get(0).getContext('2d');
+        var container = jQuery(c).parent();
 
-      function respondCanvas(){
-          c.attr('width', jQuery(container).width() ); //max width
-          c.attr('height', jQuery(container).height() ); //max height
+        jQuery(window).resize( respondCanvas );
+
+        function respondCanvas(){
+            c.attr('width', jQuery(container).width() ); //max width
+            c.attr('height', jQuery(container).height() ); //max height
+        }
+
+        respondCanvas();
       }
-
-      respondCanvas();
-
     }
   };
 })(jQuery);
