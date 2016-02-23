@@ -117,6 +117,12 @@ function drush_futurium_core_post_install_futurium() {
 
   variable_set('site_homepage', 'home');
 
+  // Remove document field from document as it belongs to e_library_core and cannot re-export it.
+  $instance = field_info_instance('node', 'field_document', 'document');
+  field_delete_instance($instance, TRUE);
+  field_delete_field('field_document');
+  field_purge_batch(5);
+
   drush_print(dt('Futurium Post-Install operations performed.'));
 }
 
