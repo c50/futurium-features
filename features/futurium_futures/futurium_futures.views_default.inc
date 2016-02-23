@@ -253,8 +253,8 @@ $handler->display->display_options['filters']['group_content_access_value']['val
 );
 $handler->display->display_options['filters']['group_content_access_value']['group'] = 2;
 
-/* Display: Futures Home */
-$handler = $view->new_display('block', 'Futures Home', 'block_3');
+/* Display: Futures Home Block */
+$handler = $view->new_display('block', 'Futures Home Block', 'block_3');
 $handler->display->display_options['defaults']['title'] = FALSE;
 $handler->display->display_options['title'] = 'Futures';
 $handler->display->display_options['link_url'] = 'ideas';
@@ -319,6 +319,10 @@ $handler->display->display_options['fields']['count']['format_plural'] = TRUE;
 $handler->display->display_options['fields']['count']['format_plural_singular'] = '(1 vote)';
 $handler->display->display_options['fields']['count']['format_plural_plural'] = '(@count votes)';
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['filter_groups']['groups'] = array(
+  1 => 'AND',
+  2 => 'OR',
+);
 $handler->display->display_options['defaults']['filters'] = FALSE;
 /* Filter criterion: Content: Published */
 $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -334,11 +338,22 @@ $handler->display->display_options['filters']['type']['field'] = 'type';
 $handler->display->display_options['filters']['type']['value'] = array(
   'future' => 'future',
 );
-/* Filter criterion: Content: Logged In User Groups/No Group content */
-$handler->display->display_options['filters']['user_og_nid']['id'] = 'user_og_nid';
-$handler->display->display_options['filters']['user_og_nid']['table'] = 'node';
-$handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
-$handler->display->display_options['filters']['user_og_nid']['value']['value'] = 1;
+$handler->display->display_options['filters']['type']['group'] = 1;
+/* Filter criterion: Field: Groups audience (og_group_ref) */
+$handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
+$handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
+$handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
+$handler->display->display_options['filters']['og_group_ref_target_id']['group'] = 2;
+/* Filter criterion: Content: Group content visibility (group_content_access) */
+$handler->display->display_options['filters']['group_content_access_value']['id'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['table'] = 'field_data_group_content_access';
+$handler->display->display_options['filters']['group_content_access_value']['field'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['value'] = array(
+  1 => '1',
+);
+$handler->display->display_options['filters']['group_content_access_value']['group'] = 2;
 
 /* Display: User Futures */
 $handler = $view->new_display('block', 'User Futures', 'block_2');

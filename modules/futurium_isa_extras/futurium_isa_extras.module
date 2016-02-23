@@ -403,30 +403,34 @@ function futurium_isa_extras_block_view($delta = '') {
         'attributes' => array('class' => array('share-links', 'list-inline')),
       );
 
-      $url = urlencode(url(current_path(), array('absolute' => TRUE)));
+      $url = url($_GET['q'], array('absolute'=>true));
+      $address = urlencode($url);
 
-      $class = 'facebook';
-      $l_options = array('attributes' => array('class' => $class));
+      //$url = urlencode(url(current_path(), array('absolute' => TRUE)));
+
+      $class = 'facebook share';
+      $l_options = array('attributes' => array('class' => $class, 'target' => '_blank'));
       $variables['items'][] = array(
-        'data' => l(t("Facebook"), "https://www.facebook.com/sharer/sharer.php?u=" . $url, $l_options),
+        'data' => l(t("Facebook"), "https://www.facebook.com/sharer/sharer.php?u=" . $address, $l_options),
         'class' => array($class),
       );
 
-      $class = 'twitter';
-      $l_options = array('attributes' => array('class' => $class));
+      $class = 'twitter share';
+      $l_options = array('attributes' => array('class' => $class, 'target' => '_blank'));
       $variables['items'][] = array(
-        'data' => l(t("Twitter"), "https://twitter.com/home?status=" . $url, $l_options),
+        'data' => l(t("Twitter"), "https://twitter.com/home?status=" . $address, $l_options),
         'class' => array($class),
       );
 
-      $class = 'google-plus';
-      $l_options = array('attributes' => array('class' => $class));
+      $class = 'google-plus share';
+      $l_options = array('attributes' => array('class' => $class, 'target' => '_blank'));
       $variables['items'][] = array(
-        'data' => l(t("Google Plus"), "https://plus.google.com/share?url=" . $url, $l_options),
+        'data' => l(t("Google Plus"), "https://plus.google.com/share?url=" . $address, $l_options),
         'class' => array($class),
       );
 
-      $block['content'] = theme('item_list', $variables);
+      $block['content']['#markup'] = theme('item_list', $variables);
+      $block['content']['#attached']['js'][] = drupal_get_path('module', 'futurium_isa_extras') . '/js/misc.js';
       break;
   }
   return $block;
@@ -936,7 +940,6 @@ function futurium_isa_extras_form_node_form_alter(&$form, &$form_state) {
       }
     }
   }
-
 }
 
 /**
