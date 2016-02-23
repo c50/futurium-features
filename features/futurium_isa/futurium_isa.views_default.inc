@@ -242,6 +242,17 @@ $handler->display->display_options['empty']['area']['field'] = 'area';
 $handler->display->display_options['empty']['area']['empty'] = TRUE;
 $handler->display->display_options['empty']['area']['content'] = 'No events have been created yet.';
 $handler->display->display_options['empty']['area']['format'] = 'full_html';
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+/* Relationship: Flags: attending counter */
+$handler->display->display_options['relationships']['flag_count_rel']['id'] = 'flag_count_rel';
+$handler->display->display_options['relationships']['flag_count_rel']['table'] = 'node';
+$handler->display->display_options['relationships']['flag_count_rel']['field'] = 'flag_count_rel';
+$handler->display->display_options['relationships']['flag_count_rel']['required'] = 0;
+$handler->display->display_options['relationships']['flag_count_rel']['flag'] = 'attending';
+/* Relationship: OG membership: OG membership from Node */
+$handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
+$handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
+$handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
 $handler->display->display_options['defaults']['fields'] = FALSE;
 /* Field: Content: Title */
 $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -298,6 +309,10 @@ $handler->display->display_options['fields']['view_node']['label'] = '';
 $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['view_node']['text'] = 'read more';
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['filter_groups']['groups'] = array(
+  1 => 'AND',
+  2 => 'OR',
+);
 $handler->display->display_options['defaults']['filters'] = FALSE;
 /* Filter criterion: Content: Published */
 $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -313,11 +328,13 @@ $handler->display->display_options['filters']['type']['field'] = 'type';
 $handler->display->display_options['filters']['type']['value'] = array(
   'event_d4eu' => 'event_d4eu',
 );
+$handler->display->display_options['filters']['type']['group'] = 1;
 /* Filter criterion: Content: Date &amp; time -  start date (field_date_time) */
 $handler->display->display_options['filters']['field_date_time_value']['id'] = 'field_date_time_value';
 $handler->display->display_options['filters']['field_date_time_value']['table'] = 'field_data_field_date_time';
 $handler->display->display_options['filters']['field_date_time_value']['field'] = 'field_date_time_value';
 $handler->display->display_options['filters']['field_date_time_value']['operator'] = '>=';
+$handler->display->display_options['filters']['field_date_time_value']['group'] = 1;
 $handler->display->display_options['filters']['field_date_time_value']['exposed'] = TRUE;
 $handler->display->display_options['filters']['field_date_time_value']['expose']['operator_id'] = 'field_date_time_value_op';
 $handler->display->display_options['filters']['field_date_time_value']['expose']['label'] = 'Date &amp; time -  start date (field_date_time)';
@@ -373,6 +390,21 @@ $handler->display->display_options['filters']['field_date_time_value']['group_in
   ),
 );
 $handler->display->display_options['filters']['field_date_time_value']['default_date'] = 'now';
+/* Filter criterion: Field: Groups audience (og_group_ref) */
+$handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
+$handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
+$handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
+$handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
+$handler->display->display_options['filters']['og_group_ref_target_id']['group'] = 2;
+/* Filter criterion: Content: Group content visibility (group_content_access) */
+$handler->display->display_options['filters']['group_content_access_value']['id'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['table'] = 'field_data_group_content_access';
+$handler->display->display_options['filters']['group_content_access_value']['field'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['value'] = array(
+  1 => '1',
+);
+$handler->display->display_options['filters']['group_content_access_value']['group'] = 2;
 
 /* Display: Upcoming Sidebar */
 $handler = $view->new_display('block', 'Upcoming Sidebar', 'block_2');
@@ -863,6 +895,10 @@ $handler->display->display_options['sorts']['created']['id'] = 'created';
 $handler->display->display_options['sorts']['created']['table'] = 'node';
 $handler->display->display_options['sorts']['created']['field'] = 'created';
 $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+$handler->display->display_options['filter_groups']['groups'] = array(
+  1 => 'AND',
+  2 => 'OR',
+);
 /* Filter criterion: Content: Published */
 $handler->display->display_options['filters']['status']['id'] = 'status';
 $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -880,12 +916,22 @@ $handler->display->display_options['filters']['type']['value'] = array(
   'future' => 'future',
   'ideas' => 'ideas',
 );
+$handler->display->display_options['filters']['type']['group'] = 1;
 /* Filter criterion: Field: Groups audience (og_group_ref) */
 $handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
 $handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
 $handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
 $handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
 $handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
+$handler->display->display_options['filters']['og_group_ref_target_id']['group'] = 2;
+/* Filter criterion: Content: Group content visibility (group_content_access) */
+$handler->display->display_options['filters']['group_content_access_value']['id'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['table'] = 'field_data_group_content_access';
+$handler->display->display_options['filters']['group_content_access_value']['field'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['value'] = array(
+  1 => '1',
+);
+$handler->display->display_options['filters']['group_content_access_value']['group'] = 2;
 
 /* Display: Homepage feed */
 $handler = $view->new_display('block', 'Homepage feed', 'block');
@@ -1167,6 +1213,10 @@ $handler->display->display_options['sorts']['value']['exposed'] = TRUE;
 $handler->display->display_options['sorts']['value']['expose']['label'] = 'Votes';
 $handler->display->display_options['sorts']['value']['coalesce'] = 0;
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['filter_groups']['groups'] = array(
+  1 => 'AND',
+  2 => 'OR',
+);
 $handler->display->display_options['defaults']['filters'] = FALSE;
 /* Filter criterion: Content: Published */
 $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1182,12 +1232,22 @@ $handler->display->display_options['filters']['type']['field'] = 'type';
 $handler->display->display_options['filters']['type']['value'] = array(
   'ideas' => 'ideas',
 );
+$handler->display->display_options['filters']['type']['group'] = 1;
 /* Filter criterion: Field: Groups audience (og_group_ref) */
 $handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
 $handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
 $handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
 $handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
 $handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
+$handler->display->display_options['filters']['og_group_ref_target_id']['group'] = 2;
+/* Filter criterion: Content: Group content visibility (group_content_access) */
+$handler->display->display_options['filters']['group_content_access_value']['id'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['table'] = 'field_data_group_content_access';
+$handler->display->display_options['filters']['group_content_access_value']['field'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['value'] = array(
+  1 => '1',
+);
+$handler->display->display_options['filters']['group_content_access_value']['group'] = 2;
 
 /* Display: Ideas Home */
 $handler = $view->new_display('block', 'Ideas Home', 'block_3');
@@ -1585,6 +1645,10 @@ $handler->display->display_options['fields']['nothing']['label'] = '';
 $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="authoring-info">Posted [created] by [view_user]</div><div class="comment-count">[comment_count]</div>';
 $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['filter_groups']['groups'] = array(
+  1 => 'AND',
+  2 => 'OR',
+);
 $handler->display->display_options['defaults']['filters'] = FALSE;
 /* Filter criterion: Content: Published */
 $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1600,12 +1664,22 @@ $handler->display->display_options['filters']['type']['field'] = 'type';
 $handler->display->display_options['filters']['type']['value'] = array(
   'evidence' => 'evidence',
 );
+$handler->display->display_options['filters']['type']['group'] = 1;
 /* Filter criterion: Field: Groups audience (og_group_ref) */
 $handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
 $handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
 $handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
 $handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
 $handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
+$handler->display->display_options['filters']['og_group_ref_target_id']['group'] = 2;
+/* Filter criterion: Content: Group content visibility (group_content_access) */
+$handler->display->display_options['filters']['group_content_access_value']['id'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['table'] = 'field_data_group_content_access';
+$handler->display->display_options['filters']['group_content_access_value']['field'] = 'group_content_access_value';
+$handler->display->display_options['filters']['group_content_access_value']['value'] = array(
+  1 => '1',
+);
+$handler->display->display_options['filters']['group_content_access_value']['group'] = 2;
 $handler->display->display_options['allow']['use_pager'] = 0;
 $handler->display->display_options['allow']['items_per_page'] = 0;
 $handler->display->display_options['allow']['offset'] = 0;
