@@ -226,5 +226,21 @@ function futurium_isa_user_default_permissions() {
     'module' => 'filter',
   );
 
+  $permissions['access media browser'] = array(
+    'name' => 'access media browser',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'media',
+  );
+
+  $permissions['create files'] = array(
+    'name' => 'create files',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'file_entity',
+  );
+
   return $permissions;
 }

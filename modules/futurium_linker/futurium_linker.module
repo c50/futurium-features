@@ -74,16 +74,57 @@ function _futurium_linker_node_autocomplete($origin_nid, $bundles, $string) {
     $bundles = explode('+', $bundles);
 
     $query = db_select('node', 'n');
+    $query
+      ->fields('n', array('title', 'nid'));
+
+    if (module_exists('og')) {
+
+      $query->leftJoin('og_membership', 'og_membership_node', '(og_membership_node.etid = n.nid)');
+      $query->leftJoin('field_data_group_access', 'group_access', '(group_access.entity_id = n.nid)');
+      $query->leftJoin('field_data_group_content_access', 'group_content_access', '(group_content_access.entity_id = n.nid)');
+
+      $query->fields('og_membership_node', array('gid'));
+      $query->fields('group_content_access', array('group_content_access_value'));
+      $gids = og_get_entity_groups();
+
+      $base_field = "n.nid";
+      $field = "og_membership_node.gid";
+
+      $public_nids = db_select('field_data_group_content_access')
+        ->fields('field_data_group_content_access', array('entity_id'))
+        ->condition('entity_type', 'node', '=')
+        ->condition('group_content_access_value', 1, '=');
+
+    }
+
+    $query->condition(
+      db_and()
+        ->condition(db_or()
+          ->condition($base_field, $public_nids, 'IN')
+          ->isNull('og_membership_node.gid')
+          ->condition('og_membership_node.gid', $gids['node'], 'IN')
+      )
+    );
 
     $query
-      ->fields('n', array('title', 'nid'))
       ->condition('n.title', '%' . db_like($string) . '%', 'LIKE')
-      ->condition('n.type', $bundles, 'IN')
+      ->condition('n.type', $bundles, 'IN');
+
+    $query
+      ->distinct();
+
+    $query
+      ->groupBy('n.nid');
+
+    $query
       ->range(0, 15);
+
+    dpq($query);
 
     $result = $query->execute();
 
     while ($node = $result->fetchAssoc()) {
+
       $n = node_load($node['nid']);
       $classes = array('autocomplete-suggestion');
 

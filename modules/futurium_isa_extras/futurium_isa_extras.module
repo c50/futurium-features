@@ -439,6 +439,11 @@ function futurium_isa_extras_ctools_plugin_directory($module, $plugin) {
   if (($module == "panels" || $module == "ctools") && in_array($plugin, array('access', 'layouts', 'styles'))) {
     return "plugins/$plugin";
   }
+
+  if ($module == 'entityreference') {
+    return 'plugins/entityreference_' . $plugin;
+  }
+
 }
 
 /**
@@ -906,21 +911,30 @@ function futurium_isa_extras_get_users_in_group($gid) {
 }
 
 function futurium_isa_extras_form_node_form_alter(&$form, &$form_state) {
-  $arg1 = arg(1);
-  if (isset($arg1) && $arg1 == 'add'){
-    $form['revision_information']['#access'] = FALSE;
+  $node = $form_state['node'];
+  // Hide revision related fields
+  if (isset($node->nid) || !isset($node->is_new)) {
+    $form['revision_information']['log']['#access'] = FALSE;
   }
-  else {
-    //$form['revision_information']['log']['#access'] = FALSE;
-  }
-
   $form['revision_information']['#access'] = FALSE;
+
   if ($form['#bundle'] == 'evidence' && isset($form['field_evidence_keywords'])) {
     $form['field_evidence_keywords']['#access'] = FALSE;
   }
 
   if (!isset($_GET['og_group_ref'])) {
-    $form['group_content_access']['#access'] = FALSE;
+    if (isset($form['group_content_access'])) {
+      $lang = $form['group_content_access']['#language'];
+      $node = $form_state['node'];
+      if (!isset($node->nid) || isset($node->is_new)) {
+        // New node, if ?og_group_ref isn't set this won't belong to a group
+        // Normally is set to private,
+        // Set to public
+        $form['group_content_access'][LANGUAGE_NONE]['#default_value'][0] = 1;
+        // And hide the field
+        $form['group_content_access']['#attributes']['style'] = 'display:none';
+      }
+    }
   }
 
 }
