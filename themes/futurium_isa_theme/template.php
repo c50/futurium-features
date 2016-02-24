@@ -46,6 +46,10 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     }
   }
 
+  if (!user_is_logged_in()) {
+    unset($variables['tabs']);
+  }
+
   unset($variables['navbar_classes_array'][1]);
   $variables['navbar_classes_array'][] = 'container-fullwidth';
 
