@@ -2167,6 +2167,7 @@ function futurium_isa_default_page_manager_handlers() {
   $handler->conf['display'] = $display;
   $export['user_edit__panel_context_673c691d-27fe-45fb-8eaf-f2905dfccbc1'] = $handler;
 
+
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
