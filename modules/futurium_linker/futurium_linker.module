@@ -50,10 +50,23 @@ function futurium_linker_block_view($delta = '') {
   $block = array();
   switch ($delta) {
     case 'relation_link_add':
+      $block['subject'] = t("Add related content");
       if (user_access('use futurium_linker')) {
         $form = drupal_get_form('futurium_linker_form');
+        $block['content']['#markup'] = drupal_render($form);
+      }
+      else{
+        $destination = array('destination' => $_GET['q']);
+        if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
+          // Users can register themselves.
+          $link = t('<a href="@login">Log in</a> or <a href="@register">register</a> to create relations', array('@login' => url('user/login', array('query' => $destination)), '@register' => url('user/register', array('query' => $destination))));
+        }
+        else {
+          // Only admins can add new users, no public registration.
+          $link = t('<a href="@login">Log in</a> to create relations', array('@login' => url('user/login', array('query' => $destination))));
+        }
         $block['subject'] = t("Add related content");
-        $block['content'] = drupal_render($form);
+        $block['content']['#markup'] = $link;
       }
       break;
   }
