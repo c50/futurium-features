@@ -76,7 +76,34 @@ function tests_default_page_manager_pages() {
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
-      'default' => NULL,
+      'default' => array(
+        'css_id' => '',
+        'css_class' => '',
+        'column' => array(
+          'xs' => '12',
+          'sm' => '12',
+          'md' => '12',
+          'lg' => '12',
+        ),
+        'offset' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'push' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+        'pull' => array(
+          'xs' => '0',
+          'sm' => '0',
+          'md' => '0',
+          'lg' => '0',
+        ),
+      ),
       'row1l' => NULL,
       'row1r' => NULL,
       'row2l' => NULL,
@@ -88,6 +115,7 @@ function tests_default_page_manager_pages() {
       'row5l' => NULL,
       'row5r' => NULL,
     ),
+    'style' => 'bootstrap_region',
   );
   $display->cache = array();
   $display->title = '';
