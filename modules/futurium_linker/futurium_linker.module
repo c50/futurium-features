@@ -119,8 +119,6 @@ function _futurium_linker_node_autocomplete($origin_nid, $bundles, $string) {
     $query
       ->range(0, 15);
 
-    dpq($query);
-
     $result = $query->execute();
 
     while ($node = $result->fetchAssoc()) {
