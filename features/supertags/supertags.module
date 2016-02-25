@@ -1009,7 +1009,7 @@ function supertags_preprocess_node(&$vars) {
 
     $flavor = _supertags_flavor_context();
 
-    // FLavor fields aren't translated, so we should use LANGUAGE_NONE
+    // FLavor fields aren't translated, so we should use LANGUAGE_NONE.
     $lang = LANGUAGE_NONE;
     if (isset($vars['field_default_flavour'][$lang][0]['tid'])) {
       $default_flavor = $vars['field_default_flavour'][$lang][0]['tid'];
@@ -1908,7 +1908,7 @@ function supertags_node_access($node, $op, $account) {
     return NODE_ACCESS_IGNORE;
   }
   if (is_object($node)) {
-    // Return node field_default_flavor.`
+    // Return node field_default_flavor.
     $node_default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
 
     if ($node_default_flavor = taxonomy_term_load($node_default_flavor)) {
