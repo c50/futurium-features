@@ -50,8 +50,12 @@ function futurium_d4eu_form_user_profile_form_alter(&$form, &$form_state, $form_
   $current_user = user_uid_optional_load();
   if ($current_user->uid != 1) {
     $form['field_creator']['#access'] = FALSE;
+  }
+
+  if (!user_access('administer users', $current_user)) {
     $form['field_register_url']['#access'] = FALSE;
   }
+
   if (module_exists('password_policy')) {
     // Modify the elements.
     $form['account']['pass']['#description'] = '';
