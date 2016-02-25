@@ -103,7 +103,7 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['relationships']['relation_base_left_supports']['field'] = 'relation_base_left_supports';
   $handler->display->display_options['relationships']['relation_base_left_supports']['relationship'] = 'relation_supports_node';
   $handler->display->display_options['relationships']['relation_base_left_supports']['r_index'] = '-1';
-  $handler->display->display_options['relationships']['relation_base_left_supports']['entity_deduplication_left'] = 0;
+  $handler->display->display_options['relationships']['relation_base_left_supports']['entity_deduplication_left'] = 1;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
@@ -172,7 +172,7 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['field'] = 'relation_base_left_implemented_by';
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['relationship'] = 'relation_implemented_by_node';
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['r_index'] = '-1';
-  $handler->display->display_options['relationships']['relation_base_left_implemented_by']['entity_deduplication_left'] = 0;
+  $handler->display->display_options['relationships']['relation_base_left_implemented_by']['entity_deduplication_left'] = 1;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
@@ -241,7 +241,7 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['relationships']['relation_base_left_to_discuss']['field'] = 'relation_base_left_to_discuss';
   $handler->display->display_options['relationships']['relation_base_left_to_discuss']['relationship'] = 'relation_to_discuss_node';
   $handler->display->display_options['relationships']['relation_base_left_to_discuss']['r_index'] = '-1';
-  $handler->display->display_options['relationships']['relation_base_left_to_discuss']['entity_deduplication_left'] = 0;
+  $handler->display->display_options['relationships']['relation_base_left_to_discuss']['entity_deduplication_left'] = 1;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
