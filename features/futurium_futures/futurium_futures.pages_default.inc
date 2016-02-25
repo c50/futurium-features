@@ -529,7 +529,7 @@ function futurium_futures_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => '',
+      'override_title_text' => 'Supported by',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
