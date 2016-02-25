@@ -1136,11 +1136,11 @@ function futurium_isa_views_default_views() {
         'combine' => 1,
         'combine_param' => 'sort',
         'combine_rewrite' => 'Post date Asc|
-Post date Desc|Newest first
-Comment count Asc|
-Comment count Desc|Most commented
-Votes Asc|
-Votes Desc|Most voted',
+  Post date Desc|Newest first
+  Comment count Asc|
+  Comment count Desc|Most commented
+  Votes Asc|
+  Votes Desc|Most voted',
         'reset' => 0,
         'reset_label' => '',
         'is_secondary' => 0,
@@ -1286,7 +1286,7 @@ Votes Desc|Most voted',
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'No Ideas yet!
 
-          <a href="node/add/ideas">Create one now!</a>';
+            <a href="node/add/ideas">Create one now!</a>';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Author */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
@@ -1384,7 +1384,7 @@ Votes Desc|Most voted',
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'You haven\'t created any ideas yet.
 
-            <a href="/node/add/ideas">Create one now</a>!';
+              <a href="/node/add/ideas">Create one now</a>!';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Author uid */
   $handler->display->display_options['arguments']['uid']['id'] = 'uid';
@@ -1441,6 +1441,10 @@ Votes Desc|Most voted',
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1456,12 +1460,22 @@ Votes Desc|Most voted',
   $handler->display->display_options['filters']['type']['value'] = array(
     'ideas' => 'ideas',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Field: Groups audience (og_group_ref) */
   $handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
   $handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
   $handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
   $handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
   $handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
+  $handler->display->display_options['filters']['og_group_ref_target_id']['group'] = 2;
+  /* Filter criterion: Content: Group content visibility (group_content_access) */
+  $handler->display->display_options['filters']['group_content_access_value']['id'] = 'group_content_access_value';
+  $handler->display->display_options['filters']['group_content_access_value']['table'] = 'field_data_group_content_access';
+  $handler->display->display_options['filters']['group_content_access_value']['field'] = 'group_content_access_value';
+  $handler->display->display_options['filters']['group_content_access_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['group_content_access_value']['group'] = 2;
   $export['ideas'] = $view;
 
   $view = new view();
