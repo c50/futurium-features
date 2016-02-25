@@ -130,7 +130,8 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_wrapper_class'] = '[type_1]';
+  $handler->display->display_options['fields']['title']['element_wrapper_class'] = '[type_1] related-item';
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   /* Field: Relation: Delete link */
   $handler->display->display_options['fields']['delete']['id'] = 'delete';
   $handler->display->display_options['fields']['delete']['table'] = 'relation';
@@ -198,7 +199,8 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_wrapper_class'] = '[type_1]';
+  $handler->display->display_options['fields']['title']['element_wrapper_class'] = '[type_1] related-item';
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   /* Field: Relation: Delete link */
   $handler->display->display_options['fields']['delete']['id'] = 'delete';
   $handler->display->display_options['fields']['delete']['table'] = 'relation';
@@ -266,7 +268,8 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_wrapper_class'] = '[type_1]';
+  $handler->display->display_options['fields']['title']['element_wrapper_class'] = '[type_1] related-item';
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   /* Field: Relation: Delete link */
   $handler->display->display_options['fields']['delete']['id'] = 'delete';
   $handler->display->display_options['fields']['delete']['table'] = 'relation';
