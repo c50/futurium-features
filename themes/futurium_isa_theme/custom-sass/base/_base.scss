@@ -1,7 +1,3 @@
-// -----------------------------------------------------------------------------
-// This file contains very basic styles.
-// -----------------------------------------------------------------------------
-
 /**
  * Set up a decent box model on the root element
  */
@@ -18,16 +14,13 @@ html, body {
   height: 100%;
 }
 
-
-
-
-
 /**
  * Make all elements from the DOM inherit from the parent box-sizing
  * Since `*` has a specificity of 0, it does not override the `html` value
  * making all elements inheriting from the root box-sizing value
  * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
  */
+
 
 *, *::before, *::after {
   box-sizing: inherit;
@@ -45,18 +38,24 @@ a {
   }
 }
 
+
 p {
-  @include rem(margin-bottom, 20px);
+  margin: 0;
+  & + & {
+    @include rem(margin-top, 15px);
+  }
+  &:last-child {
+    @include rem(margin-bottom, 15px);
+  }
 }
 
-p:last-child {
-  @include rem(margin-bottom, 20px);
+ul {
+  @include rem(margin, 15px 0 15px 0);
 }
 
 /* Makes the images responsive */
 
 img {
-  /* display: block; */
   max-width: 100%;
   height: auto;
 }
@@ -108,35 +107,17 @@ h4 a {
   font-weight: normal;
 }
 
-/* hack to make long content in dropdownbox work */
-
-.dropdown-menu>li>a {
-  white-space: normal;
-  word-break: break-word;
-  line-height: 18px;
-}
-
-
-/******* */
-/* TABS */
-/***** */
-
-.nav-tabs{
-  border-bottom: none;
-}
-
 /*********************** */
 /* No padding for lists */
 /********************* */
-
 
 .nopadding {
   list-style: none;
   padding: 0;
   margin: 0;
-  li{
+  li {
     @include rem(padding, 15px 0 15px 0);
-    @include rem(border-bottom, 1px solid #ebebeb);
+    @include rem(border-bottom, 1px solid $lighter-grey);
     a {
       color: $text-color;
     }
@@ -149,27 +130,33 @@ h4 a {
   }
 }
 
-.wrapper-date-vote-comment{
-  .date{
-    font-family: $text-font-stack;
-    text-transform: inherit;
+/*************** */
+/* Inline lists */
+/************* */
+
+.list-inline {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  li {
+    @include rem(padding, 0 5px 5px 0);
   }
 }
 
 /***********************************/
-/* DEFAULT MARKUP FOR CONTENTTYPE */
+/* MARKUP FOR CONTENTTYPE (ROW1) */
 /**********************************/
 
 /* all text elements white for row1 */
 
 .container-fullwidth.row1{
   color: #fff;
-  a {
+  /* a {
     color: #fff;
     @include on-event {
     color: #fff;
     }
   }
+  */
   h1, h2, h3, p, div {
     color: #fff;
   }
@@ -179,63 +166,62 @@ h4 a {
   }
 }
 
-
 /**
  * default settings for (new) contenttype
+ * grey header / wrench icon, ...
+ * mixin contenttype does the coloring and icon setting
  */
 
 .not-front{
   @include contenttype($mid-grey, wrench);
-  @include teaser($mid-grey);
+  /* @include teaser($mid-grey, wrench); */
   @include rem(padding, 0);
 }
 
-/**
- * settings for different (existing) content types 
- */
+.wrapper-date-vote-comment{
+  .date{
+    font-family: $text-font-stack;
+    text-transform: inherit;
+  }
+}
 
-/* idea */
+.intro{
+  @include rem(margin, 0 0 25px 0);
+}
+
+/************************************************/
+ /* settings for (existing) defined content types 
+ ************************************************/
+
+/* content type idea */
 body.page-ideas, 
 body.node-type-ideas {
   @include contenttype($idea-color, lightbulb-o);
 }
 
 .node-teaser.node-ideas {
-  @include teaser($idea-color);
-  /* @include rem(padding, 30px 0 30px 0); */
+  @include teaser($idea-color, lightbulb-o);
   h3:before {
-    @include icon-node-teaser($idea-color, lightbulb-o);
+    /* positioning icon */
     @include rem(padding, 6px 0 0 11px);
     @include rem(font-size, 24px);
   }
 }
-
-.node-ideas {
-  h3:before {
-    @include icon-node-teaser($idea-color, lightbulb-o);
-    @include rem(padding, 6px 0 0 11px);
-    @include rem(font-size, 24px);
-  }
-}
-
 
 /* future */
-body.page-futures, body.node-type-future {
+body.page-futures, 
+body.node-type-future {
   @include contenttype($future-color, rocket);
 }
 
 .node-teaser.node-future{
-  @include teaser($future-color);
-}
-
-.node-future {
+  @include teaser($future-color, rocket);
+  /* positioning icon */
   h3:before {
-    @include icon-node-teaser($future-color, rocket);
     @include rem(padding, 8px 0 0 8px);
     @include rem(font-size, 18px);
   }
 }
-
 
 /* group */
 body.node-type-futurium-group {
@@ -243,54 +229,40 @@ body.node-type-futurium-group {
 }
 
 .node.node-futurium-group {
-  @include teaser($group-color);
-}
-
-.node-futurium-group {
+  @include teaser($group-color, group);
   h3:before {
-    @include icon-node-teaser($group-color, group);
     @include rem(padding, 8px 0 0 8px);
     @include rem(font-size, 18px);
   }
 }
 
 /* events */
-body.page-events, body.node-type-event-d4eu {
+body.page-events, 
+body.node-type-event-d4eu {
   @include contenttype($event-color, calendar);
 }
 
 .node-teaser.node-event-d4eu{
-  @include teaser($event-color);
-}
-
-.node-event-d4eu {
-  h3:before {
-    @include icon-node-teaser($event-color, calendar); 
+  @include teaser($event-color, calendar);
+   h3:before {
     @include rem(padding, 8px 0 0 9px);
     @include rem(font-size, 18px);
   }
 }
 
-
 /* evidence */
-.html.page-library, .node-type-evidence {
+.html.page-library, 
+.node-type-evidence {
   @include contenttype($library-color, file-text-o);
 }
 
-.node-evidence {
-h3:before {
-    @include icon-node-teaser($library-color, file-text-o);
+.node-teaser.node-evidence {
+  @include teaser($library-color, file-text-o);
+  h3:before {
     @include rem(padding, 8px 0 0 10px);
     @include rem(font-size, 18px);
   }
 }
-
-.node-teaser.node-evidence {
-  @include teaser($library-color);
-}
-
-
-
 
 /* user */
 .page-user{
@@ -300,9 +272,38 @@ h3:before {
   }
 }
 
-/**
- * Activity stuff
- */
+/* settings for row1 */
+
+.row1 {
+  .pane-rate-widget, 
+  .group-user-fields {
+    @include rem(padding, 20px);
+    @include rem(margin, 0 0 20px 0);
+  }
+}
+
+.pane-node-field-time-horizon {
+  @extend .pane-rate-widget;
+}
+
+.node-type-ideas .pane-rate-widget {
+  background: darken($idea-color, 10%);
+}
+
+.node-type-future .pane-node-field-time-horizon, 
+.node-type-future .pane-rate-widget {
+  background: darken($future-color, 10%);
+}
+
+.group-user-fields {
+  background: darken($user-color, 10%);
+}
+
+/***********************
+ ACTIVITY STUFF BOX
+ ... liked ...
+ ... commented on ...
+ **********************/
 
 .activity-message.attending:before {
   @include fa(user-plus);
@@ -320,48 +321,26 @@ h3:before {
   @include fa(comment);
 }
 
+/******************/
+/* BUTTONS & ICONS 
+ *****************/
 
-/* theming for stream */
-
-
-.field-type-taxonomy-term-reference {
-  .field-item {
-    display: inline-block;
-    @include rem(padding, 0 10px 0 0);
-  }
-}
-
-.field-type-entityreference {
-  .field-item {
-    @include rem(border-bottom, 1px dashed $mid-grey);
-    @include rem(padding, 10px 0 10px 0);
-  }
-}
-
-
-
-/* Buttons */
-
-
-
-.btn:not(.diff-revisions .btn){
-  @include btn-default($mid-grey);
-}
+/* social media buttons */
 
 a.facebook:before {
-    @include fa(facebook);
+  @include fa(facebook);
 }
 
 a.twitter:before {
-    @include fa(twitter);
+  @include fa(twitter);
 }
 
 a.google-plus:before {
-    @include fa(google-plus);
+  @include fa(google-plus);
 }
 
 a.btn-more:before {
-   @include fa(plus);
+  @include fa(plus);
 }
 
 .like-count:before {
@@ -385,7 +364,6 @@ a.btn-more:before {
   @include fa(user);
 }
 
-
 .location-city:before {
   @include fa(map-marker);
 }
@@ -402,7 +380,13 @@ a.btn-more:before {
   @include fa(thumbs-up);
 }
 
-/* menu add content */
+.btn:not(.diff-revisions .btn){
+  @include btn-default($mid-grey);
+}
+
+/***************************/
+/* menu (on user profile) */
+/*************************/
 
 .add-group a:before {
   @include fa(group);
@@ -424,16 +408,27 @@ a.btn-more:before {
   min-width: 10%;
 }
 
-
 .add-event a:before {
   @include fa(calendar);
   min-width: 10%;
 }
 
-/* rating */
+/***********/
+/* RATING */
+/*********/
+
+.rate-user .rate-fivestar-btn-filled {
+  background: none;
+}
 
 ul.rate-fivestar-processed{
   @include rem(padding, 0 0 0 0);
+  a {
+    color: #ffffff;
+    @include on-event {
+      color: #ffffff;
+    }
+  }
 }
 
 .futurium-rate-desirability:before {
@@ -448,49 +443,14 @@ ul.rate-fivestar-processed{
   @include fa(balance-scale);
 }
 
+/********************************/
+/* VIEWS-ROW BORDER MANAGEMENT */
+/******************************/
 
-.intro{
-  @include rem(margin, 0 0 25px 0);
-}
-
-.row1 {
-  .intro {
-    @include rem(font-size, 20px);
-    @include rem(line-height, 26px);
-  }
-  .pane-rate-widget, .group-user-fields {
-    @include rem(padding, 20px);
-    @include rem(margin, 0 0 20px 0);
-  }
-}
-
-.pane-node-field-time-horizon{
-  @extend .pane-rate-widget;
-}
-
-.node-type-ideas .pane-rate-widget {
-  background: darken($idea-color, 10%);
-}
-
-.node-type-future .pane-node-field-time-horizon, 
-.node-type-future .pane-rate-widget {
-  background: darken($future-color, 10%);
-}
-
-.group-user-fields{
-  background: darken($user-color, 10%);
-}
-
-
-/* views-row border management */
-
-.view-group-content {
-  @include views-row-border;
-}
-
-div.panel-pane div.node-teaser { /* div.panel-pane to override panel.css */
+div.panel-pane div.node-teaser { 
+  /* USE div.panel-pane to override panel.css */
   @include rem(padding, 30px 0 30px 0); 
-  border-bottom: 5px solid #d7d7d7;
+  border-bottom: 5px solid $lightmid-grey;
 }
 
 div.panel-pane div.views-row:first-child {
@@ -508,7 +468,9 @@ div.panel-pane li.views-row:last-child
   }
 }
 
-/* icons for date - vote - comment */
+/************************************************/
+/* WRAPPER WITH DATE / VOTE / COMMENT & AUTHOR */
+/**********************************************/
 
 .wrapper-date-vote-comment {
   @include rem(margin, 15px 0 20px 0);
@@ -519,59 +481,24 @@ div.panel-pane li.views-row:last-child
 }
 
 .field-name-author {
- /* @include rem(font-size, 18px); */
   @include rem(margin, 20px 0 0 0);
   @include rem(padding, 0 0 15px 0);
-  @include rem(border-bottom, 1px solid #ccc);
+  @include rem(border-bottom, 1px solid $lightmid-grey);
 }
 
 .node-event-d4eu .date{
   @extend .field-name-author;
 }
 
-.page-ideas, .page-libarary, .page-events{
-  h1.no-icon {
-    background: none;
-    padding: 0 0 0 0;
-  }
-}
 
-.summary {
-  @include rem(font-size, 16px);
-  @include rem(line-height, 24px);
-  font-weight: 600;
-  @include rem(margin, 0 0 20px 0);
-}
-
-
-/*
- * Temp fix 
- */
-.views-row.nowrap {
-  white-space: normal;
-}
-
-.authors-picture img {
-  border-radius: 50%;
-  shape-outside: border-box;
+/*************************/
+/* /USER PAGE (PROFILE) */
+/***********************/
+ 
+.authors-name, .authors-picture, 
+.share-links li {
   float: left;
-  border: 5px solid #fff;
-  width: 60px;
-  height: 60px;
 }
-
-.list-inline {
-  margin: 0 0 0 0;
-  padding: 0 0 0 0;
-  li {
-    @include rem(padding, 0 5px 5px 0);
-  }
-}
-
-
-.authors-name, .authors-picture, .share-links li {
-    float: left;
-  }
 
 .pane-futurium-isa-extras-node-social-share {
   .pane-content {
@@ -579,24 +506,22 @@ div.panel-pane li.views-row:last-child
   }
 }
 
+/**************************/
+/* List of people, users */
+/* ex. /people page     */
+/* views people        */
+/***********************/
 
-/******** **/
-/* people */
-/*********/
-
-.view-people, .view-group-people, .view-revisions, .view-events{
+.view-people, 
+.view-group-people, 
+.view-revisions, 
+.view-events {
   div.views-row {
     @include rem(margin, 0 0 20px 0);
   }
   
-  /*
+  .views-row, 
   .views-row-container {
-    @include make-row(0);
-  }
-
-  */
-
-  .views-row, .views-row-container {
     @include make-row(0);
   }  
 
@@ -615,8 +540,6 @@ div.panel-pane li.views-row:last-child
   }
 }
 
-
-
 .front{
   .view-people{
     .right {
@@ -627,7 +550,6 @@ div.panel-pane li.views-row:last-child
 }
 
 .page-people {
-  
   .views-row-container {
     background: $light-grey;
     border: 1px solid darken($light-grey, 10%);
@@ -655,7 +577,7 @@ div.panel-pane li.views-row:last-child
 }
 
 /*************/
-/* Comments */
+/* COMMENTS */
 /*************/
 
 .comment, .indented {
@@ -684,21 +606,22 @@ div.panel-pane li.views-row:last-child
     float: right;
     clear: both;
   }
-  .field-name-ds-user-picture img, .views-field-picture img {
+  .field-name-ds-user-picture img, 
+  .views-field-picture img {
     @include round-userpicture;
   }
 }
 
 
 .field-name-comment-body {
-  border: 1px solid #ccc;
+  border: 1px solid $lightmid-grey;
   @include rem(padding, 20px);
   @include rem(margin, 0 0 20px 0);
 }
 
-/**********/
-/* USER  */
-/********/
+/***************************/
+/* USER PICTURE SETTINGS  */
+/*************************/
 
 .sidebar-right {
   .views-field-picture img {
@@ -706,15 +629,28 @@ div.panel-pane li.views-row:last-child
   }
 }
 
+.views-field-picture img{
+  width:50px;
+  border-radius:50px;
+}
+
+.authors-picture img {
+  border-radius: 50%;
+  shape-outside: border-box;
+  float: left;
+  border: 5px solid #fff;
+  width: 60px;
+  height: 60px;
+}
 
 /*****************/
 /* USER PROFILE */
 /***************/
 
-
 /* create background for menu tabs on page-user and page-group */
 
-.logged-in.page-user:not(.page-user-edit), .node-type-futurium-group {
+.logged-in.page-user:not(.page-user-edit), 
+.node-type-futurium-group {
   .container-fullwidth.row2 {
     background: url(../assets/img/bg-user-menu.gif) left top;
     background-repeat: repeat-x;
@@ -744,7 +680,6 @@ div.panel-pane li.views-row:last-child
   }
 }
 
-/* TEMP TEMP STUF */
 
 /******************/
 /* VIEW MESSAGES */
@@ -769,9 +704,9 @@ body .view-messages {
   }
 }
 
-/***********/
-/* EVENTS */
-/***********/
+/****************/
+/* EVENTS PAGE */
+/**************/
 
 /* Event details block (address, ...) */
 
@@ -795,15 +730,9 @@ body .view-messages {
   }
 }
 
-.navbar-default {
-  border: none;
-}
-
-
 /**********/
 /* FORMS */
 /********/
-
 
 .form-select {
   padding: 0;
@@ -815,10 +744,7 @@ body .view-messages {
   transition: none;
 }
 
-
-
 .views-exposed-form {
-
   .views-exposed-widget {
     float: none;
     max-width: 580px;
@@ -846,7 +772,7 @@ body .view-messages {
     height: auto;
     background: $light-grey;
     box-shadow: none;
-    color: #666;
+    color: $text-color;
     border: 1px solid darken($light-grey, 10%);
     @include rem(font-size, 14px);
   }
@@ -881,7 +807,7 @@ body .view-messages {
     margin: 0;
     padding: 0;
     background: $light-grey;
-    color: #666;
+    color: $text-color;
   }
 
   .chosen-container .chosen-results li {
@@ -969,12 +895,6 @@ input:-webkit-autofill:focus {
   width: 50%;
 }
 
-
-
-
-
-
-
 /**************/
 /* REVISIONS */
 /************/
@@ -995,35 +915,23 @@ table tr.error {
   }
 }
 
-/********************************/
-/* NEEDS TO MOVE TO COMPONENTS */
-/******************************/
-
-.media-element-container {
-  @include rem(margin, 0 0 20px 0);
-  background: #fff;
-  .field-name-field-caption {
-    color: $mid-grey;  
-    @include rem(font-size, 14px);
-    @include rem(padding, 5px 10px 5px 10px);
-    font-style: italic;
-  }
-}
-
-
-
-/* STUFF FOR THE LINKER MODULE */
-
+/********************/
+/* RELATION MODULE */
+/******************/
 
 /* hide button from preview */
 .preview {
-  .flag-outer-attending .flag-link-toggle{
+  .flag-outer-attending .flag-link-toggle,
+  .more-link {
     display: none;
+  }
+  .intro {
+    margin: 0 0 0 0;
   }
 }
 
-/* settings for previewing content before linkinsg */
-div.panel-pane .preview .node{
+/* settings for previewing content before linking */
+div.panel-pane .preview .node {
   @include rem(margin, 0 0 20px 0);
   @include rem(padding, 20px);
   background: #000;
@@ -1056,8 +964,12 @@ div.panel-pane .preview .node{
 }
 
 .autocomplete-suggestion.node-type-evidence:before, 
-.view-node-relations .evidence:before{
+.view-node-relations .evidence:before {
   @include fa(file-text-o);
+}
+
+.btn-add-relation:before {
+  @include fa(link);
 }
 
 span.futures-count,
@@ -1066,11 +978,7 @@ span.comment-count {
   margin-right: 15px;
 }
 
-.btn-add-relation:before {
-  @include fa(link);
-}
-
-#node-preview{
+#node-preview {
   .node-teaser {
     @include rem(padding, 15px);
     background: $light-grey;
@@ -1081,67 +989,9 @@ span.comment-count {
 
 /* END STUFF FOR THE LINKER MODULE */
 
-
-.bootstrap-panels-horizontal-tabs {
-  @extend .col-lg-12;
-  .container{
-    padding: 0;
-  }
-}
-
-
-.page-taxonomy {
-  .content-wrapper{
-    margin-left: -15px;
-    margin-right: -15px;
-  }
-  .node-teaser{
-    @include rem(margin, 30px 0 0 0);
-  }  
-}
-
-
-.date a {
-  @include rem(font-size, 15px);
-  text-transform: uppercase;
-  font-family: $header-font-stack;
-}
-
-/**********************/
-/* CUSTOM ERROR PAGE */
-/********************/
-
-
-/*
-
-.page-customerror > section > .container {
-  @include rem(padding, 20px 15px 20px 15px);
-  min-height: 80vh;
-}
-
-
-section > .content-wrapper {
-  min-height: 80vh;
-}
-
-*/
-
-
-
-.wrapper {
-  min-height: 100%;
-  height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
-  height: 100%;
-  margin: 0 auto -800px; /* the bottom margin is the negative value of the footer's height */
-}
-
-.footer.container-fullwidth, .push {
-  height: 800px;
-}
-
 /*************/
 /* CAROUSEL */
-
+/*************/
 
 .carousel-control {
   width: 5%;
@@ -1176,6 +1026,7 @@ section > .content-wrapper {
 
 .carousel-indicators {
   bottom: 5px;
+  margin-bottom: 0;
 }
 
 .image-wrapper{
@@ -1199,11 +1050,12 @@ section > .content-wrapper {
   left: 0;
   top: 50%;
   transform: translateY(-45%);
-  padding: 10px 100px 10px 100px;
+  @include rem(padding, 10px 100px 10px 100px);
   z-index: 20;
   text-align: center;
   @include respond-to(small) {
     top: 46%;
+    padding: 10px 60px 10px 60px;
   }
   h1 {
     font-weight: bold;
@@ -1213,14 +1065,47 @@ section > .content-wrapper {
     text-transform: uppercase;
     letter-spacing: 2px;
     @include respond-to(small) {
-      @include rem(font-size, 24px);
+      @include rem(font-size, 16px);
     }
   }
+}
+
+.front .carousel {
   a {
+    color: #ffffff;
     @include on-event {
       text-decoration: none;
     }
   }
+}
+
+
+
+
+
+/******* */
+/* TABS */
+/***** */
+
+.nav-tabs{
+  border-bottom: none;
+}
+
+.bootstrap-panels-horizontal-tabs {
+  @extend .col-lg-12;
+  .container {
+    padding: 0;
+  }
+}
+
+/*************/
+/* TAXONOMY */
+/***********/
+
+.page-taxonomy {
+  .node-teaser {
+    @include rem(margin, 30px 0 0 0);
+  }  
 }
 
 /**********/
@@ -1232,21 +1117,93 @@ section > .content-wrapper {
   @include rem(padding, 30px 0 0 0);
 }
 
- 
+/***********/
+/* ALERTS */
+/*********/
+
+.alert>ul {
+  @include rem(margin, 15px 0 15px 0);
+}
 
 
+/********************** */
+/* STREAM ON USER PAGE */
+/******************** */
+
+.field-type-taxonomy-term-reference {
+  .field-item {
+    display: inline-block;
+    @include rem(padding, 0 10px 0 0);
+  }
+}
+
+.field-type-entityreference {
+  .field-item {
+    @include rem(border-bottom, 1px dashed $mid-grey);
+    @include rem(padding, 10px 0 10px 0);
+  }
+}
+
+/**********/
+/* HACKS */
+/********/
+
+/* hack to make long content in dropdownbox work */
+
+.dropdown-menu>li>a {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 18px;
+}
+
+.views-row.nowrap {
+  white-space: normal;
+}
+
+/*******************/
+/* media element container for adding media (images, ...) via wysiwyg */
+/* appears on library page */
+/*******************/
+
+.media-element-container {
+  @include rem(margin, 0 0 20px 0);
+  background: #fff;
+  /* caption under images */
+  .field-name-field-caption {
+    color: $mid-grey;  
+    @include rem(font-size, 14px);
+    @include rem(padding, 5px 10px 5px 10px);
+    font-style: italic;
+  }
+}
 
 
+/* TEASER */
 
+.summary {
+  @include rem(font-size, 16px);
+  @include rem(line-height, 24px);
+  font-weight: 600;
+  @include rem(margin, 0 0 20px 0);
+}
 
 /* TEMP STUFF --- TEMP STUFF */
 
-
-#path a, #path a:visited {
+#path a, 
+#path a:visited {
   color: #fff;
   text-decoration: none;
   border: 0;
 }
+
+
+.date a {
+  @include rem(font-size, 15px);
+  text-transform: uppercase;
+  font-family: $header-font-stack;
+}
+
+
 
 
 

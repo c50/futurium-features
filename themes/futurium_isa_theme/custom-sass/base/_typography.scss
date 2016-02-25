@@ -14,9 +14,4 @@ body {
   font-weight: normal;
 }
 
-p {
-  margin: 0;
-  & + & {
-    @include rem(margin-top, 15px);
-  }
-}
+
