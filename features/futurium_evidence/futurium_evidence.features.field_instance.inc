@@ -15,7 +15,7 @@ function futurium_evidence_field_default_field_instances() {
     'bundle' => 'evidence',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'If this field isn\'t filled in, we\'ll try to fill it automatically.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -24,7 +24,7 @@ function futurium_evidence_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
-      'teaser' => array(
+      'node_header' => array(
         'label' => 'hidden',
         'module' => 'smart_trim',
         'settings' => array(
@@ -43,7 +43,7 @@ function futurium_evidence_field_default_field_instances() {
         'type' => 'smart_trim_format',
         'weight' => 3,
       ),
-      'node_header' => array(
+      'teaser' => array(
         'label' => 'hidden',
         'module' => 'smart_trim',
         'settings' => array(
@@ -67,24 +67,53 @@ function futurium_evidence_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_evidence_body',
     'label' => 'Evidence',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
+          'basic_html' => 0,
+          'ds_code' => 0,
+          'filtered_html' => 0,
+          'full' => 0,
+          'full_html' => 0,
+          'plain_text' => 0,
+          'simple_text' => 0,
           'simple_wysiwig' => 'simple_wysiwig',
         ),
         'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
+            'basic_html' => array(
+              'weight' => 5,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -9,
+            ),
+            'full' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => -10,
+            ),
+            'plain_text' => array(
+              'weight' => -8,
+            ),
+            'simple_text' => array(
+              'weight' => 0,
+            ),
             'simple_wysiwig' => array(
               'weight' => 0,
             ),
           ),
         ),
       ),
+      'display_summary' => 0,
       'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -92,27 +121,25 @@ function futurium_evidence_field_default_field_instances() {
       'module' => 'text',
       'settings' => array(
         'rows' => 15,
-        'summary_rows' => 5,
       ),
       'type' => 'text_textarea',
       'weight' => 1,
     ),
   );
 
-  // Exported field_instance: 'node-evidence-field_files'.
-  $field_instances['node-evidence-field_files'] = array(
+  // Exported field_instance: 'node-evidence-field_evidence_keywords'.
+  $field_instances['node-evidence-field_evidence_keywords'] = array(
     'bundle' => 'evidence',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'mediafield',
-        'settings' => array(
-          'file_view_mode' => 'default',
-        ),
-        'type' => 'media',
-        'weight' => 4,
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
       ),
       'node_header' => array(
         'label' => 'above',
@@ -129,41 +156,135 @@ function futurium_evidence_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_files',
-    'label' => 'File(s)',
+    'field_name' => 'field_evidence_keywords',
+    'label' => 'Keywords',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'ds_code' => 'ds_code',
+          'filtered_html' => 'filtered_html',
+          'full' => 'full',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'simple_text' => 'simple_text',
+          'simple_wysiwig' => 'simple_wysiwig',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => 5,
+            ),
+            'ds_code' => array(
+              'weight' => 12,
+            ),
+            'filtered_html' => array(
+              'weight' => -9,
+            ),
+            'full' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => -10,
+            ),
+            'plain_text' => array(
+              'weight' => -8,
+            ),
+            'simple_text' => array(
+              'weight' => 0,
+            ),
+            'simple_wysiwig' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
       'entity_translation_sync' => FALSE,
-      'file_extensions' => 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm',
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'text',
       'settings' => array(
-        'allowed_schemes' => array(
-          'node' => 0,
-          'private' => 0,
-          'public' => 'public',
-          'vimeo' => 0,
-          'youtube' => 0,
-        ),
-        'allowed_types' => array(
-          'audio' => 'audio',
-          'document' => 'document',
-          'image' => 'image',
-          'video' => 'video',
-        ),
-        'browser_plugins' => array(
-          'elibrary_browser_tab--media_browser_1' => 0,
-          'media_default--media_browser_1' => 0,
-          'media_default--media_browser_my_files' => 0,
-          'media_internet' => 'media_internet',
-          'upload' => 'upload',
-          'youtube' => 0,
-        ),
+        'rows' => 5,
       ),
-      'type' => 'media_generic',
+      'type' => 'text_textarea',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-evidence-field_file'.
+  $field_instances['node-evidence-field_file'] = array(
+    'bundle' => 'evidence',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 7,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_file',
+    'label' => 'File',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => 'evidence',
+      'file_extensions' => 'pdf doc docx txt',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'filefield_sources' => array(
+          'filefield_sources' => array(
+            'attach' => 0,
+            'clipboard' => 0,
+            'plupload' => 0,
+            'reference' => 0,
+            'remote' => 'remote',
+            'upload' => 'upload',
+          ),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+            'search_all_fields' => 0,
+          ),
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
       'weight' => 2,
     ),
   );
@@ -173,7 +294,9 @@ function futurium_evidence_field_default_field_instances() {
     'bundle' => 'evidence',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Please separate tags with commas. For example <i>broadband, geoblocking, quantum mechanics, italy</i>.',
+    'description' => 'Please separate tags with commas. For example <i>broadband, geoblocking, quantum mechanics, italy</i>.
+
+If this field isn\'t filled in, we\'ll try to fill it automatically.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -195,6 +318,7 @@ function futurium_evidence_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'field_tags',
     'label' => 'Tags',
@@ -212,14 +336,19 @@ function futurium_evidence_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 6,
+      'weight' => 4,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Evidence');
-  t('Please separate tags with commas. For example <i>broadband, geoblocking, quantum mechanics, italy</i>.');
+  t('File');
+  t('If this field isn\'t filled in, we\'ll try to fill it automatically.');
+  t('Keywords');
+  t('Please separate tags with commas. For example <i>broadband, geoblocking, quantum mechanics, italy</i>.
+
+If this field isn\'t filled in, we\'ll try to fill it automatically.');
   t('Tags');
 
   return $field_instances;

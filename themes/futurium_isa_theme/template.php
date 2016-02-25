@@ -46,6 +46,10 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     }
   }
 
+  if (!user_is_logged_in()) {
+    unset($variables['tabs']);
+  }
+
   unset($variables['navbar_classes_array'][1]);
   $variables['navbar_classes_array'][] = 'container-fullwidth';
 
@@ -338,10 +342,10 @@ function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
 
   foreach ($links as $key => $link) {
     if ($results['rating'] >= $link['value']) {
-      $class = 'rate-fivestar-btn-filled';
+      $class = 'rate-fivestar-btn-filled rate-button';
     }
     else {
-      $class = 'rate-fivestar-btn-empty';
+      $class = 'rate-fivestar-btn-empty rate-button';
     }
     switch ($variables['display_options']['title']) {
       case 'Desirability':

@@ -402,7 +402,7 @@ function loadsublevel(&$graph, &$config, $entity, $entity_type, $entity_id, $sou
               $link_data['directional'] = false;
             }
 
-            $reverse = _futurium_linkafter_is_relation_reversed($entity_id, $relation_type->relation_type);
+            $reverse = _futurium_linker_is_relation_reversed($entity_id, $relation_type->relation_type);
             $rel_label = relation_get_type_label($relation_type, $reverse);
 
             if (!in_array($source_id.'-'.$endpoint_id, $visited, TRUE) && !in_array($endpoint_id.'-'.$source_id, $visited, TRUE)) {

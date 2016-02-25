@@ -24,7 +24,12 @@
             var node_parameters = {};
 
             node_parameters.label = node_data.data.title;
-            ['color', 'mass', 'uri'].map(function(property_name) {
+
+            var keys = [];
+            for(var k in node_data.data)
+              keys.push(k);
+
+            keys.map(function(property_name) {
               if (typeof node_data.data[property_name] != 'undefined') {
                 node_parameters[property_name] = node_data.data[property_name];
               }
@@ -43,7 +48,12 @@
               if (typeof edge_data.data.title != 'undefined') {
                 edge_parameters.label = edge_data.data.title;
               }
-              ['color', 'directional', 'weight'].map(function(property_name) {
+
+              var keys = [];
+              for(var k in edge_data.data)
+                keys.push(k);
+
+              keys.map(function(property_name) {
                 if (typeof edge_data.data[property_name] != 'undefined') {
                   edge_parameters[property_name] = edge_data.data[property_name];
                 }
@@ -59,18 +69,20 @@
       }
 
       var c = jQuery('#graph-springy-graphapi');
-      var ct = c.get(0).getContext('2d');
-      var container = jQuery(c).parent();
 
-      jQuery(window).resize( respondCanvas );
+      if(c.length) {
+        var ct = c.get(0).getContext('2d');
+        var container = jQuery(c).parent();
 
-      function respondCanvas(){
-          c.attr('width', jQuery(container).width() ); //max width
-          c.attr('height', jQuery(container).height() ); //max height
+        jQuery(window).resize( respondCanvas );
+
+        function respondCanvas(){
+            c.attr('width', jQuery(container).width() ); //max width
+            c.attr('height', jQuery(container).height() ); //max height
+        }
+
+        respondCanvas();
       }
-
-      respondCanvas();
-
     }
   };
 })(jQuery);

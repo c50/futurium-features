@@ -363,21 +363,21 @@ function futurium_futures_default_page_manager_handlers() {
     $display->content['new-e6383812-7d9d-4f96-a5fa-03032daf4b81'] = $pane;
     $display->panels['row1r'][2] = 'new-e6383812-7d9d-4f96-a5fa-03032daf4b81';
     $pane = new stdClass();
-    $pane->pid = 'new-066e497e-dfbb-4edf-ab14-9f0509786a59';
+    $pane->pid = 'new-fac7f03a-66ed-47f7-af06-875fdf4369a7';
     $pane->panel = 'row2l';
     $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_description';
+    $pane->subtype = 'node:field_future_description';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'hidden',
+      'label' => 'title',
       'formatter' => 'text_default',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(),
       'context' => 'argument_entity_id:node_1',
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
@@ -389,9 +389,9 @@ function futurium_futures_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '066e497e-dfbb-4edf-ab14-9f0509786a59';
-    $display->content['new-066e497e-dfbb-4edf-ab14-9f0509786a59'] = $pane;
-    $display->panels['row2l'][0] = 'new-066e497e-dfbb-4edf-ab14-9f0509786a59';
+    $pane->uuid = 'fac7f03a-66ed-47f7-af06-875fdf4369a7';
+    $display->content['new-fac7f03a-66ed-47f7-af06-875fdf4369a7'] = $pane;
+    $display->panels['row2l'][0] = 'new-fac7f03a-66ed-47f7-af06-875fdf4369a7';
     $pane = new stdClass();
     $pane->pid = 'new-0be42eb3-b979-4a2a-ba78-dd362521e288';
     $pane->panel = 'row2l';
@@ -486,7 +486,7 @@ function futurium_futures_default_page_manager_handlers() {
     $pane->pid = 'new-2bd4f214-ffcb-4461-a9c1-f7a98cdc273e';
     $pane->panel = 'row2r';
     $pane->type = 'block';
-    $pane->subtype = 'futurium_linkafter-relation_link_add';
+    $pane->subtype = 'futurium_linker-relation_link_add';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -544,7 +544,7 @@ function futurium_futures_default_page_manager_handlers() {
     $display->content['new-955c7b7e-d18b-43c2-a396-322767ac864b'] = $pane;
     $display->panels['row2r'][1] = 'new-955c7b7e-d18b-43c2-a396-322767ac864b';
     $pane = new stdClass();
-    $pane->pid = 'new-c2903b28-a841-4a10-9e45-7643fe90a944';
+    $pane->pid = 'new-0103d965-fe48-4cf5-937f-02471a276a93';
     $pane->panel = 'row2r';
     $pane->type = 'views';
     $pane->subtype = 'node_relations';
@@ -562,12 +562,12 @@ function futurium_futures_default_page_manager_handlers() {
       'link_to_view' => 0,
       'args' => '',
       'url' => '',
-      'display' => 'implement',
+      'display' => 'block_1',
       'context' => array(
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => '',
+      'override_title_text' => 'Implements',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -578,11 +578,11 @@ function futurium_futures_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = 'c2903b28-a841-4a10-9e45-7643fe90a944';
-    $display->content['new-c2903b28-a841-4a10-9e45-7643fe90a944'] = $pane;
-    $display->panels['row2r'][2] = 'new-c2903b28-a841-4a10-9e45-7643fe90a944';
+    $pane->uuid = '0103d965-fe48-4cf5-937f-02471a276a93';
+    $display->content['new-0103d965-fe48-4cf5-937f-02471a276a93'] = $pane;
+    $display->panels['row2r'][2] = 'new-0103d965-fe48-4cf5-937f-02471a276a93';
     $pane = new stdClass();
-    $pane->pid = 'new-eb78c4f8-920e-40a2-b6b7-3b317e59430f';
+    $pane->pid = 'new-43f2a4aa-b00f-4546-a8ef-aa03bd34a384';
     $pane->panel = 'row2r';
     $pane->type = 'views';
     $pane->subtype = 'node_relations';
@@ -600,12 +600,12 @@ function futurium_futures_default_page_manager_handlers() {
       'link_to_view' => 0,
       'args' => '',
       'url' => '',
-      'display' => 'discuss',
+      'display' => 'block_2',
       'context' => array(
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => '',
+      'override_title_text' => 'To be discussed at',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -616,9 +616,9 @@ function futurium_futures_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $pane->uuid = 'eb78c4f8-920e-40a2-b6b7-3b317e59430f';
-    $display->content['new-eb78c4f8-920e-40a2-b6b7-3b317e59430f'] = $pane;
-    $display->panels['row2r'][3] = 'new-eb78c4f8-920e-40a2-b6b7-3b317e59430f';
+    $pane->uuid = '43f2a4aa-b00f-4546-a8ef-aa03bd34a384';
+    $display->content['new-43f2a4aa-b00f-4546-a8ef-aa03bd34a384'] = $pane;
+    $display->panels['row2r'][3] = 'new-43f2a4aa-b00f-4546-a8ef-aa03bd34a384';
     $pane = new stdClass();
     $pane->pid = 'new-3b770367-95c3-45b3-b155-242b450988cd';
     $pane->panel = 'row2r';
@@ -709,7 +709,7 @@ function futurium_futures_default_page_manager_handlers() {
     $display->content['new-64ae6372-32d7-44b1-b550-e188a2463d9c'] = $pane;
     $display->panels['row3l'][1] = 'new-64ae6372-32d7-44b1-b550-e188a2463d9c';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-066e497e-dfbb-4edf-ab14-9f0509786a59';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['node_view__panel_context_a5ff0abd-4cbe-4e62-87ce-5b1e69ab5fd7'] = $handler;
 
@@ -860,7 +860,7 @@ function futurium_futures_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Intro Text',
       'title' => '',
-      'body' => '<h1>Share your vision of what the world might look like</h1><div class="intro">and the chalenges and opportunities associated with it.</div>',
+      'body' => '<h1>Share your vision of what the world might look like</h1><div class="intro">Click on the button to create a future that you desire. A future is a policy outcome, with a practical or aspirational nature, like a new school bus route, or 0% unemployment in your town.</div>',
       'format' => 'full',
       'substitute' => TRUE,
     );

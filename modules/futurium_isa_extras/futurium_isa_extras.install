@@ -48,7 +48,14 @@ function futurium_isa_extras_enable() {
   variable_set('color_evidence', '799BBE');
 
   // Set chosen selectors
-  variable_set('chosen_jquery_selector', 'select[multiple="multiple"], .views-exposed-form select');
+  variable_set('chosen_jquery_selector', 'select');
+
+  // Set variables to use with data analytics
+  $public_path = drupal_realpath("public://");
+  $private_path = drupal_realpath("private://");
+
+  variable_set("realpath_public", $public_path.'/');
+  variable_set("realpath_private", $private_path.'/');
 
   drupal_flush_all_caches();
 
