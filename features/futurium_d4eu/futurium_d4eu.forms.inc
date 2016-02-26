@@ -33,8 +33,8 @@ function _futurium_d4eu_link_document($form, &$form_state, $node) {
     '#type' => 'submit',
     '#value' => t('Add'),
   );
-  $form['#submit'][] = '_related_content_submit';
-  $form['#validate'][] = '_related_content_validate';
+  $form['#submit'][] = '_futurium_d4eu_related_content_submit';
+  $form['#validate'][] = '_futurium_d4eu_related_content_validate';
   return $form;
 }
 
@@ -66,8 +66,8 @@ function _futurium_d4eu_link_video($form, &$form_state, $node) {
     '#type' => 'submit',
     '#value' => t('Add'),
   );
-  $form['#submit'][] = '_related_content_submit';
-  $form['#validate'][] = '_related_content_validate';
+  $form['#submit'][] = '_futurium_d4eu_related_content_submit';
+  $form['#validate'][] = '_futurium_d4eu_related_content_validate';
   return $form;
 }
 
@@ -99,8 +99,8 @@ function _futurium_d4eu_link_event($form, &$form_state, $node) {
     '#type' => 'submit',
     '#value' => t('Add'),
   );
-  $form['#submit'][] = '_related_content_submit';
-  $form['#validate'][]  = '_related_content_validate';
+  $form['#submit'][] = '_futurium_d4eu_related_content_submit';
+  $form['#validate'][]  = '_futurium_d4eu_related_content_validate';
   return $form;
 }
 
@@ -132,8 +132,8 @@ function _futurium_d4eu_link_poll($form, &$form_state, $node) {
     '#type' => 'submit',
     '#value' => t('Add'),
   );
-  $form['#submit'][] = '_related_content_submit';
-  $form['#validate'][] = '_related_content_validate';
+  $form['#submit'][] = '_futurium_d4eu_related_content_submit';
+  $form['#validate'][] = '_futurium_d4eu_related_content_validate';
   return $form;
 }
 
