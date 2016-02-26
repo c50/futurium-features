@@ -1700,50 +1700,7 @@ function supertags_field_default_field_instances() {
   // Exported field_instance: 'node-video_d4eu-field_digital4eu_supertags'.
   $field_instances['node-video_d4eu-field_digital4eu_supertags'] = array(
     'bundle' => 'video_d4eu',
-    'default_value' => array(
-      0 => array(
-        'tid' => 527,
-        'vid' => 2,
-        'name' => 'digital4eu',
-        'description' => '',
-        'format' => 'filtered_html',
-        'weight' => 0,
-        'uuid' => '5e14b941-2e52-4599-99a8-929604ee1e2d',
-        'language' => 'und',
-        'i18n_tsid' => 0,
-        'vocabulary_machine_name' => 'tags',
-        'field_d4eulx' => array(),
-        'field_supertags' => array(),
-        'rdf_mapping' => array(
-          'description' => array(
-            'predicates' => array(
-              0 => 'skos:definition',
-            ),
-          ),
-          'name' => array(
-            'predicates' => array(
-              0 => 'rdfs:label',
-              1 => 'skos:prefLabel',
-            ),
-          ),
-          'parent' => array(
-            'predicates' => array(
-              0 => 'skos:broader',
-            ),
-            'type' => 'rel',
-          ),
-          'rdftype' => array(
-            0 => 'skos:Concept',
-          ),
-          'vid' => array(
-            'predicates' => array(
-              0 => 'skos:inScheme',
-            ),
-            'type' => 'rel',
-          ),
-        ),
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
