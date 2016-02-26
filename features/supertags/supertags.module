@@ -2573,7 +2573,7 @@ function _supertags_is_archived($term) {
 /**
  * Theme callback for the form table.
  */
-function theme_supertags_overrides_table_form_table(&$variables) {
+function _theme_supertags_overrides_table_form_table(&$variables) {
   // Get the useful values.
   $form = $variables['form'];
   $rows = $form['rows'];
