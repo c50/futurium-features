@@ -210,8 +210,8 @@ function futurium_d4eu_menu() {
     'file' => 'futurium_d4eu.admin.inc',
   );
 
-  $items['futurium_idea/related_content_autocomplete_callback'] = array(
-    'page callback' => '_futurium_idea_related_content_autocomplete_callback',
+  $items['futurium_d4eu/related_content_autocomplete_callback'] = array(
+    'page callback' => '_futurium_d4eu_related_content_autocomplete_callback',
     'type' => MENU_CALLBACK,
     'access arguments' => array('access content'),
   );
@@ -410,7 +410,7 @@ function futurium_d4eu_node_view($node, $view_mode, $langcode) {
 
       // Checks if the map field exists and then adds it to the node view.
       if (isset($extrafields['related_content']) && isset($extrafields['related_content']['visible']) && $extrafields['related_content']['visible']) {
-        $node->content['related_content'] = _futurium_idea_related_content($node);
+        $node->content['related_content'] = _futurium_d4eu_related_content($node);
       }
       menu_tree_set_path('main-menu', 'ideas');
       break;
@@ -856,16 +856,16 @@ function futurium_d4eu_field_extra_fields() {
  * Related content pseudo field is a kind of a block containing two lists and
  * four forms.
  */
-function _futurium_idea_related_content($node) {
+function _futurium_d4eu_related_content($node) {
   $account = user_uid_optional_load();
 
   // Adds the 4 quick forms if the user has permission to edit ideas.
   if (node_access("update", $node, $account) === TRUE) {
     $build = array();
-    $build['related_content']['link_document'] = drupal_get_form('futurium_idea_link_document', $node);
-    $build['related_content']['link_poll'] = drupal_get_form('futurium_idea_link_poll', $node);
-    $build['related_content']['link_video'] = drupal_get_form('futurium_idea_link_video', $node);
-    $build['related_content']['link_event'] = drupal_get_form('futurium_idea_link_event', $node);
+    $build['related_content']['link_document'] = drupal_get_form('_futurium_d4eu_link_document', $node);
+    $build['related_content']['link_poll'] = drupal_get_form('_futurium_d4eu_link_poll', $node);
+    $build['related_content']['link_video'] = drupal_get_form('_futurium_d4eu_link_video', $node);
+    $build['related_content']['link_event'] = drupal_get_form('_futurium_d4eu_link_event', $node);
     $build['related_content']['#prefix'] = '<a name="add-related-item"></a><div class="related-content-forms">';
     $build['related_content']['#suffix'] = '</div>';
     return $build;
@@ -875,7 +875,7 @@ function _futurium_idea_related_content($node) {
 /**
  * Returns json formatted query result for autocomplete callback.
  */
-function _futurium_idea_related_content_autocomplete_callback($type, $string = "") {
+function _futurium_d4eu_related_content_autocomplete_callback($type, $string = "") {
   $matches = array();
   if ($string) {
     $result = db_select('node')
