@@ -346,6 +346,17 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['picture']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['picture']['link_photo_to_profile'] = FALSE;
   $handler->display->display_options['fields']['picture']['image_style'] = 'media_thumbnail';
+  /* Field: User: Organisation */
+  $handler->display->display_options['fields']['field_organisation']['id'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['table'] = 'field_data_field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['field'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_organisation']['label'] = '';
+  $handler->display->display_options['fields']['field_organisation']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '<span class="userOrganisation">[field_organisation]</span>';
+  $handler->display->display_options['fields']['field_organisation']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_organisation']['hide_empty'] = TRUE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -355,6 +366,8 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['name']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name] [field_organisation]';
   /* Field: Taxonomy term: Path */
   $handler->display->display_options['fields']['field_path_1']['id'] = 'field_path_1';
   $handler->display->display_options['fields']['field_path_1']['table'] = 'field_data_field_path';
