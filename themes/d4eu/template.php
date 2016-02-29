@@ -247,7 +247,7 @@ function d4eu_preprocess_node(&$vars) {
   $vars['submitted']  = '<div class="authoring-info">';
   $vars['submitted'] .= '<span class="published-by">' . t("Published by") . ' </span>';
   $vars['submitted'] .= '<span class="username">' . theme('username', array('account' => $account)) . '</span>';
-  if ($organisation != (NULL || '')) {
+  if (isset($organisation) && ($organisation != (NULL || ''))) {
     $vars['submitted'] .= '<span class="organisation">' . $organisation . '</span>';
   }
   $vars['submitted'] .= '<span class="extra-on"> ' . t("on") . ' </span> ';
