@@ -242,12 +242,13 @@ function d4eu_html_head_alter(&$head_elements) {
  */
 function d4eu_preprocess_node(&$vars) {
   $account = user_load($vars['node']->uid);
-  $organisation = $account->field_organisation[LANGUAGE_NONE][0]['safe_value'];
-
+  if (isset($field_organisation)) {
+    $organisation = $account->field_organisation[LANGUAGE_NONE][0]['safe_value'];
+  }
   $vars['submitted']  = '<div class="authoring-info">';
   $vars['submitted'] .= '<span class="published-by">' . t("Published by") . ' </span>';
   $vars['submitted'] .= '<span class="username">' . theme('username', array('account' => $account)) . '</span>';
-  if (isset($organisation) && ($organisation != (NULL || ''))) {
+  if (isset($organisation) && ($organisation != '')) {
     $vars['submitted'] .= '<span class="organisation">' . $organisation . '</span>';
   }
   $vars['submitted'] .= '<span class="extra-on"> ' . t("on") . ' </span> ';
