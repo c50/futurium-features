@@ -1136,11 +1136,11 @@ function futurium_isa_views_default_views() {
         'combine' => 1,
         'combine_param' => 'sort',
         'combine_rewrite' => 'Post date Asc|
-  Post date Desc|Newest first
-  Comment count Asc|
-  Comment count Desc|Most commented
-  Votes Asc|
-  Votes Desc|Most voted',
+Post date Desc|Newest first
+Comment count Asc|
+Comment count Desc|Most commented
+Votes Asc|
+Votes Desc|Most voted',
         'reset' => 0,
         'reset_label' => '',
         'is_secondary' => 0,
