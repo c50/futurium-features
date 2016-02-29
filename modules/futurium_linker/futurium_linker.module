@@ -38,9 +38,9 @@ function futurium_linker_menu() {
 function futurium_linker_block_info() {
   $blocks['relation_link_add'] = array(
     'info' => t('Add relations'),
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_NO_CACHE ,
   );
-  return $blocks;
+  return$blocks;
 }
 
 /**

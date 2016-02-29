@@ -178,7 +178,10 @@ function futurium_isa_theme_menu_link(array $variables) {
           'style_name' => 'user_picture_small',
           'path' => $pic,
           'attributes' => array(
-            'class' => 'logged-in-user-pic',
+            'class' => array(
+              'logged-in-user-pic',
+              'img-circle',
+            ),
             'title' => t("@username's profile", array('@username' => format_username($account))),
           ),
         )

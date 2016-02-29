@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function roadmap_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'entityreference') {
+    return "plugins/entityreference/$plugin";
+  }
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function roadmap_field_widget_form_alter(&$element, &$form_state, $context) {
+  // Act on our behavior.
+  if (_roadmap_field_is_roadmap($context['field'])) {
+
+    $start_date_title = t("Start date");
+    $duration_title = t('Duration');
+
+    $delta = $element['target_id']['#delta'];
+
+    $date = isset($context['items'][$delta]['start_date']) ? date('Y-m-d', $context['items'][$delta]['start_date']) : NULL;
+    $format = 'd-m-Y';
+
+    $item_duration = isset($context['items'][$delta]['duration']) ? $context['items'][$delta]['duration'] : NULL;
+
+    $element['target_id']['#weight'] = 0;
+
+    $element['start_date'] = array(
+      '#type'     => 'date_popup',
+      '#title_display' => 'invisible',
+      '#title' => $start_date_title,
+      '#default_value' => $date,
+      '#date_format' => $format,
+      '#date_label_position' => 'hide',
+      '#attributes' => array('placeholder' => $start_date_title),
+      '#weight' => 1,
+    );
+
+    $element['duration'] = array(
+      '#type' => 'textfield',
+      '#title_display' => 'invisible',
+      '#title' => $duration_title,
+      '#attributes' => array(
+        'placeholder' => $duration_title,
+        'type' => 'number',
+      ),
+      '#default_value' => $item_duration,
+      '#maxlength' => 3,
+      '#mask' => '999',
+      '#weight' => 2,
+    );
+  }
+}
+
+/**
+ * Implements hook_field_attach_view_alter().
+ */
+function roadmap_field_attach_view_alter(&$output, $context) {
+  // Prefix the reference with the label.
+  foreach (element_children($output) as $field_name) {
+    $element = &$output[$field_name];
+    if ($element['#field_type'] == 'entityreference') {
+      $field = field_info_field($field_name);
+      if (_roadmap_field_is_roadmap($field)) {
+        foreach ($element['#items'] as $delta => $item) {
+          $element[$delta]['#markup'] .= "<br>{$item['start_date']}";
+          $element[$delta]['#markup'] .= "<br>{$item['duration']}";
+        }
+      }
+    }
+  }
+}
+
+/**
+* Implements hook_field_formatter_info().
+*/
+function roadmap_field_formatter_info() {
+  $info = array(
+    'website' => array(
+      'label' => t('Title as link, URL as plain text'),
+      'field types' => array('link_field'),
+      'description' => t('Displays Title as a link and URL as plain text.'),
+    ),
+  );
+  return $info;
+}
+
+function _roadmap_field_is_roadmap($field) {
+  return isset($field['settings']['handler_settings']['behaviors']['roadmap_behavior']) &&
+    $field['settings']['handler_settings']['behaviors']['roadmap_behavior']['status'];
+}
