@@ -158,10 +158,22 @@ function futurium_isa_theme_menu_link(array $variables) {
   $variables['element']['#attributes']['class'][] = 'menu-item';
   $variables['element']['#attributes']['class'][] = $class;
 
+  // Add stats glyphicon.
   if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
       $variables['element']['#original_link']['link_path'] == 'analytics') {
     $variables['element']['#localized_options']['html'] = TRUE;
     $variables['element']['#title'] = '<span class="glyphicons-signal"></span> ' . t("Stats");
+  }
+
+  // Remove active class from parent if in sub-menu pages.
+  if ($variables['element']['#original_link']['menu_name'] == 'menu-user-tabs' ||
+      $variables['element']['#original_link']['menu_name'] == 'menu-group-tabs') {
+    if ($variables['element']['#href'] != $_GET['q']) {
+      if (isset($variables['element']['#localized_options']['attributes']['class'])){
+        $active_class_key = array_search('active',$variables['element']['#localized_options']['attributes']['class']);
+        unset($variables['element']['#localized_options']['attributes']['class'][$active_class_key]);
+      }
+    }
   }
 
   return theme_menu_link($variables);
