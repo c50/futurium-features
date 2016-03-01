@@ -329,6 +329,19 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
 function d4eu_preprocess_comment(&$vars) {
   global $user;
 
+  $uid = $vars['comment']->uid;
+  $comment_user = array('account' => user_load($uid));
+
+  $organisation = '';
+  if (isset($comment_user['account']->field_organisation[LANGUAGE_NONE][0]['safe_value'])) {
+    if ($organisation != '') {
+      $organisation .= ' ';
+    }
+    $organisation .= '<div class="userOrganisation">' . $comment_user['account']->field_organisation[LANGUAGE_NONE][0]['safe_value'] . '</div>';
+  }
+
+  $vars['comment_user']['organisation'] = $organisation;
+
   $node = $vars['node'];
   $comment = $vars['comment']->cid;
   if (module_exists('supertags')) {
