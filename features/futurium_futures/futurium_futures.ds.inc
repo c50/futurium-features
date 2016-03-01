@@ -35,6 +35,14 @@ function futurium_futures_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'author',
     ),
+    'field_future_description' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'intro',
+        ),
+      ),
+    ),
     'post_date' => array(
       'weight' => '0',
       'label' => 'hidden',
@@ -140,8 +148,9 @@ function futurium_futures_ds_layout_settings_info() {
         3 => 'author',
         4 => 'comment_count',
         5 => 'group_date_vote_comment',
-        6 => 'group_buttons',
-        7 => 'flag_like',
+        6 => 'field_future_description',
+        7 => 'group_buttons',
+        8 => 'flag_like',
       ),
     ),
     'fields' => array(
@@ -151,6 +160,7 @@ function futurium_futures_ds_layout_settings_info() {
       'author' => 'ds_content',
       'comment_count' => 'ds_content',
       'group_date_vote_comment' => 'ds_content',
+      'field_future_description' => 'ds_content',
       'group_buttons' => 'ds_content',
       'flag_like' => 'ds_content',
     ),
