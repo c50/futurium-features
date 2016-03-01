@@ -10,76 +10,6 @@
 function futurium_isa_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_login:user/login.
-  $menu_links['main-menu_login:user/login'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'user/login',
-    'router_path' => 'user/login',
-    'link_title' => 'Login',
-    'options' => array(
-      'attributes' => array(
-        'data-image' => 'user',
-        'data-display-title' => 0,
-        'data-hide-children' => 0,
-        'data-remove-class' => 0,
-      ),
-      'item_attributes' => array(
-        'data-image' => '',
-        'data-display-title' => 1,
-        'data-hide-children' => 0,
-        'id' => '',
-        'class' => '',
-        'data-remove-class' => 0,
-        'style' => '',
-      ),
-      'identifier' => 'main-menu_login:user/login',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 1,
-    'weight' => 1000,
-    'customized' => 1,
-    'language' => 'und',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: main-menu_user-account:user.
-  $menu_links['main-menu_user-account:user'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'user',
-    'router_path' => 'user',
-    'link_title' => 'User account',
-    'options' => array(
-      'alter' => TRUE,
-      'attributes' => array(
-        'data-image' => 'user',
-        'data-display-title' => 0,
-        'data-hide-children' => 0,
-        'data-remove-class' => 0,
-      ),
-      'item_attributes' => array(
-        'data-image' => '',
-        'data-display-title' => 1,
-        'data-hide-children' => 0,
-        'id' => '',
-        'class' => '',
-        'data-remove-class' => 0,
-        'style' => '',
-      ),
-      'identifier' => 'main-menu_user-account:user',
-    ),
-    'module' => 'system',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => 1001,
-    'customized' => 1,
-    'language' => 'und',
-    'menu_links_customized' => 1,
-  );
-
   // Exported menu link: menu-group-tabs_futures:menutoken/56a0d5dea516a.
   $menu_links['menu-group-tabs_futures:menutoken/56a0d5dea516a'] = array(
     'menu_name' => 'menu-group-tabs',
@@ -260,6 +190,53 @@ function futurium_isa_menu_default_menu_links() {
     'language' => 'und',
     'menu_links_customized' => 1,
   );
+
+  // Exported menu link: user-menu_edit-account:menutoken/56d592e32daa1.
+  $menu_links['user-menu_edit-account:menutoken/56d592e32daa1'] = array(
+    'menu_name' => 'user-menu',
+    'link_path' => 'menutoken/56d592e32daa1',
+    'router_path' => 'menutoken/%',
+    'link_title' => 'Edit account',
+    'options' => array(
+      'attributes' => array(
+        'data-display-title' => 1,
+        'data-hide-children' => 0,
+        'data-remove-class' => 0,
+      ),
+      'item_attributes' => array(
+        'data-image' => '',
+        'data-display-title' => 1,
+        'data-hide-children' => 0,
+        'id' => '',
+        'class' => '',
+        'data-remove-class' => 0,
+        'style' => '',
+      ),
+      'menu_token_link_path' => 'user/[user:uid]/edit',
+      'menu_token_data' => array(
+        'user' => array(
+          'type' => 'user',
+          'plugin' => 'user_context',
+          'options' => array(),
+        ),
+      ),
+      'menu_token_options' => array(
+        'clear' => 0,
+      ),
+      'alter' => TRUE,
+      'identifier' => 'user-menu_edit-account:menutoken/56d592e32daa1',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 1,
+    'weight' => 2,
+    'customized' => 1,
+    'language' => 'und',
+    'menu_links_customized' => 1,
+  );
+
   // Exported menu link: menu-user-tabs_events:menutoken/56a0afd911c8f.
   $menu_links['menu-user-tabs_events:menutoken/56a0afd911c8f'] = array(
     'menu_name' => 'menu-user-tabs',
@@ -543,6 +520,7 @@ function futurium_isa_menu_default_menu_links() {
   t('Ideas');
   t('Members');
   t('Overview');
+  t('Edit account');
 
   return $menu_links;
 }

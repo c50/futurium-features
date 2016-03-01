@@ -204,6 +204,10 @@ function _bootstrap_default_settings() {
  * Implements hook_block_info().
  */
 function futurium_isa_extras_block_info() {
+  $blocks['user_actions_block'] = array(
+    'info' => t('Contextualized Links'),
+    'cache' => DRUPAL_CACHE_PER_USER,
+  );
   $blocks['contextualized_links'] = array(
     'info' => t('Contextualized Links'),
     'cache' => DRUPAL_NO_CACHE,
@@ -225,6 +229,15 @@ function futurium_isa_extras_block_info() {
     'cache' => DRUPAL_NO_CACHE,
   );
   return $blocks;
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function futurium_isa_extras_preprocess_page(&$vars) {
+  // Add the collapsible block to the page.
+  $block = module_invoke('futurium_isa_extras', 'block_view', 'user_actions_block');
+  $vars['collapsible_user_block'] = render($block['content']);
 }
 
 /**
@@ -255,6 +268,68 @@ function futurium_isa_extras_block_view($delta = '') {
   }
 
   switch ($delta) {
+    case 'user_actions_block':
+
+      $block['subject'] = '';
+
+      $block['content']['#markup'] = '<div class="container collapsed-user-block">';
+
+      if (user_is_anonymous()) {
+        $block['content']['#markup'] .= '<nav role="navigation">';
+        $block['content']['#markup'] .= '<a href="#login-collapse" class="btn btn-info" data-toggle="collapse">'.t("Login").'</a>';
+        $block['content']['#markup'] .= '</nav>';
+        $block['content']['#markup'] .= '<div id="login-collapse" class="collapse collapsed-user-block">';
+
+        $login_form = drupal_get_form("user_login");
+        $register_link = l(
+          t("Register"),
+          'user/register',
+          array(
+            'attributes' => array(
+              'class' => array('btn')
+            )
+          )
+        );
+
+        $block['content']['#markup'] .= '<div class="register">' . $register_link . '</div>';
+        $block['content']['#markup'] .= '<div class="login">' . render($login_form) . '</div>';
+        $block['content']['#markup'] .= '</div>';
+      }
+      else{
+        global $user;
+        $account = user_load($user->uid);
+        $username = format_username($account);
+
+        $pic = !empty($account->picture->uri) ? $account->picture->uri : variable_get('user_picture_default');
+        $user_pic = theme(
+          'image_style', array(
+            'style_name' => 'user_picture_small',
+            'path' => $pic,
+            'attributes' => array(
+              'class' => array(
+                'logged-in-user-pic',
+                'img-circle',
+              ),
+              'title' => t("@username's profile", array('@username' => $username)),
+            ),
+          )
+        );
+
+        $block['content']['#markup'] .= '<nav role="navigation">';
+        $block['content']['#markup'] .= '<a href="#login-collapse" class="btn btn-info" data-toggle="collapse">';
+        $block['content']['#markup'] .= '<span class="user-picture">' . $user_pic . '</span>';
+        $block['content']['#markup'] .= '<span class="user-name">' . $username . '</span>';
+        $block['content']['#markup'] .= '</a>';
+        $block['content']['#markup'] .= '</nav>';
+        $block['content']['#markup'] .= '<div id="login-collapse" class="collapse collapsed-user-block">';
+        $block['content']['#markup'] .= theme('links', array('links' => menu_navigation_links('user-menu'), 'attributes' => array('class'=> array('links', 'user-menu')) ));
+        $block['content']['#markup'].= '</div>';
+
+      }
+
+      $block['content']['#markup'] .= '</div>';
+
+      break;
     case 'contextualized_links':
 
       switch ($item['path']) {

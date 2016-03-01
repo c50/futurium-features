@@ -74,8 +74,18 @@
  */
 ?>
 <div class="wrapper">
+
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
+
+  <?php if ($collapsible_user_block): ?>
+  <div class="wrapper-pre-header">
+    <?php print $collapsible_user_block; ?>
+  </div>
+  <?php endif; ?>
+
+  <div class="wrapper-header">
   <div class="container">
+
     <div class="navbar-header">
       <?php if ($logo): ?>
       <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
