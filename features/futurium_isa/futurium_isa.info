@@ -249,7 +249,6 @@ features[variable][] = pcp_fields_order
 features[variable][] = pcp_hide_block_on_complete
 features[variable][] = pcp_login_message
 features[variable][] = pcp_login_message_role
-features[views_view][] = carousel
 features[views_view][] = events
 features[views_view][] = futurium_taxonomy_term
 features[views_view][] = homepage
