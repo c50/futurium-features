@@ -198,6 +198,14 @@ function futurium_isa_menu_default_menu_links() {
     'router_path' => 'menutoken/%',
     'link_title' => 'Edit account',
     'options' => array(
+      'menu_token_link_path' => 'user/[current-user:uid]/edit',
+      'menu_token_data' => array(),
+      'menu_token_options' => array(
+        'clear' => 0,
+      ),
+      'alter' => TRUE,
+      'identifier' => 'user-menu_edit-account:menutoken/56d592e32daa1',
+      'menu_token_link_uuid' => 'menutoken/56d592e32daa1',
       'attributes' => array(
         'data-display-title' => 1,
         'data-hide-children' => 0,
@@ -212,19 +220,6 @@ function futurium_isa_menu_default_menu_links() {
         'data-remove-class' => 0,
         'style' => '',
       ),
-      'menu_token_link_path' => 'user/[user:uid]/edit',
-      'menu_token_data' => array(
-        'user' => array(
-          'type' => 'user',
-          'plugin' => 'user_context',
-          'options' => array(),
-        ),
-      ),
-      'menu_token_options' => array(
-        'clear' => 0,
-      ),
-      'alter' => TRUE,
-      'identifier' => 'user-menu_edit-account:menutoken/56d592e32daa1',
     ),
     'module' => 'menu',
     'hidden' => 0,
