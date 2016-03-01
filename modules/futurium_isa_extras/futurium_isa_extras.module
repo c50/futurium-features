@@ -256,14 +256,16 @@ function futurium_isa_extras_block_view($delta = '') {
 
   if (substr($item['path'], 0, 5) == 'node/') {
     $nid = arg(1);
-    $obj = node_load($nid);
-    $is_group = TRUE;
-    if ($obj->type == 'futurium_group') {
-      $link_options = array(
-        'query' => array(
-          'og_group_ref' => $obj->nid,
-        ),
-      );
+    if ($nid != 'add') {
+      $obj = node_load($nid);
+      $is_group = TRUE;
+      if ($obj->type == 'futurium_group') {
+        $link_options = array(
+          'query' => array(
+            'og_group_ref' => $obj->nid,
+          ),
+        );
+      }
     }
   }
 
