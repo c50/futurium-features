@@ -939,7 +939,7 @@ row|Bootstrap Row
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pcp_enable_user_picture';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['pcp_enable_user_picture'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -953,14 +953,14 @@ row|Bootstrap Row
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pcp_fields_order';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['pcp_fields_order'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pcp_hide_block_on_complete';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['pcp_hide_block_on_complete'] = $strongarm;
 
   $strongarm = new stdClass();
