@@ -46,14 +46,6 @@ function futurium_evidence_ds_field_settings_info() {
         ),
       ),
     ),
-    'field_evidence_body' => array(
-      'formatter_settings' => array(
-        'ft' => array(
-          'func' => 'theme_ds_field_minimal',
-          'classes' => 'intro',
-        ),
-      ),
-    ),
   );
   $export['node|evidence|node_header'] = $ds_fieldsetting;
 
@@ -146,8 +138,7 @@ function futurium_evidence_ds_layout_settings_info() {
         1 => 'author',
         2 => 'group_date_vote_comment',
         3 => 'post_date',
-        4 => 'field_evidence_body',
-        5 => 'group_buttons',
+        4 => 'group_buttons',
       ),
     ),
     'fields' => array(
@@ -155,7 +146,6 @@ function futurium_evidence_ds_layout_settings_info() {
       'author' => 'ds_content',
       'group_date_vote_comment' => 'ds_content',
       'post_date' => 'ds_content',
-      'field_evidence_body' => 'ds_content',
       'group_buttons' => 'ds_content',
     ),
     'classes' => array(),
