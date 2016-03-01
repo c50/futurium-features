@@ -77,8 +77,16 @@ function futurium_isa_filter_default_formats() {
     'status' => 1,
     'weight' => 0,
     'filters' => array(
+      'opengraph_filter' => array(
+        'settings' => array(
+          'opengraph_filter_num' => 1,
+          'opengraph_filter_strip' => 1,
+        ),
+        'weight' => 1,
+        'status' => 1,
+      ),
       'filter_autop' => array(
-        'weight' => 0,
+        'weight' => 2,
         'status' => 1,
         'settings' => array(),
       ),
