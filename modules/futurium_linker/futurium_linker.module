@@ -96,34 +96,7 @@ function _futurium_linker_node_autocomplete($origin_nid, $bundles, $string) {
     $query
       ->fields('n', array('title', 'nid'));
 
-    if (module_exists('og')) {
-
-      $query->leftJoin('og_membership', 'og_membership_node', '(og_membership_node.etid = n.nid)');
-      $query->leftJoin('field_data_group_access', 'group_access', '(group_access.entity_id = n.nid)');
-      $query->leftJoin('field_data_group_content_access', 'group_content_access', '(group_content_access.entity_id = n.nid)');
-
-      $query->fields('og_membership_node', array('gid'));
-      $query->fields('group_content_access', array('group_content_access_value'));
-      $gids = og_get_entity_groups();
-
-      $base_field = "n.nid";
-      $field = "og_membership_node.gid";
-
-      $public_nids = db_select('field_data_group_content_access')
-        ->fields('field_data_group_content_access', array('entity_id'))
-        ->condition('entity_type', 'node', '=')
-        ->condition('group_content_access_value', 1, '=');
-
-    }
-
-    $query->condition(
-      db_and()
-        ->condition(db_or()
-          ->condition($base_field, $public_nids, 'IN')
-          ->isNull('og_membership_node.gid')
-          ->condition('og_membership_node.gid', $gids['node'], 'IN')
-      )
-    );
+    drupal_alter('futurium_linker_query', $query);
 
     $query
       ->condition('n.title', '%' . db_like($string) . '%', 'LIKE')
@@ -146,6 +119,9 @@ function _futurium_linker_node_autocomplete($origin_nid, $bundles, $string) {
       $classes = array('autocomplete-suggestion');
 
       $possible_relations = _futurium_linker_get_possible_relations($origin_nid, $n->nid);
+
+      drupal_alter('futurium_linker_possible_relations', $possible_relations);
+
       foreach ($possible_relations as $key => $value) {
         $relation = relation_type_load($value);
         $relations[] = $relation;
@@ -175,6 +151,35 @@ function _futurium_linker_node_autocomplete($origin_nid, $bundles, $string) {
   $matches += _futurium_linker_create_links($origin_nid);
 
   drupal_json_output($matches);
+}
+
+function futurium_linker_futurium_linker_query_alter(&$query) {
+  if (module_exists('og')) {
+    $query->leftJoin('og_membership', 'og_membership_node', '(og_membership_node.etid = n.nid)');
+    $query->leftJoin('field_data_group_access', 'group_access', '(group_access.entity_id = n.nid)');
+    $query->leftJoin('field_data_group_content_access', 'group_content_access', '(group_content_access.entity_id = n.nid)');
+
+    $query->fields('og_membership_node', array('gid'));
+    $query->fields('group_content_access', array('group_content_access_value'));
+    $gids = og_get_entity_groups();
+
+    $base_field = "n.nid";
+    $field = "og_membership_node.gid";
+
+    $public_nids = db_select('field_data_group_content_access')
+      ->fields('field_data_group_content_access', array('entity_id'))
+      ->condition('entity_type', 'node', '=')
+      ->condition('group_content_access_value', 1, '=');
+
+    $query->condition(
+      db_and()
+        ->condition(db_or()
+          ->condition($base_field, $public_nids, 'IN')
+          ->isNull('og_membership_node.gid')
+          ->condition('og_membership_node.gid', $gids['node'], 'IN')
+      )
+    );
+  }
 }
 
 /**
