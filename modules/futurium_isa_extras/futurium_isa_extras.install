@@ -50,12 +50,11 @@ function futurium_isa_extras_enable() {
   // Set chosen selectors
   variable_set('chosen_jquery_selector', 'select');
 
-  // Set variables to use with data analytics
-  $public_path = drupal_realpath("public://");
-  $private_path = drupal_realpath("private://");
-
-  variable_set("realpath_public", $public_path.'/');
-  variable_set("realpath_private", $private_path.'/');
+  // Unlock body field.
+  $field_name = 'body';
+  $field = field_read_field($field_name);
+  $field['locked'] = 0;
+  field_update_field($field);
 
   drupal_flush_all_caches();
 

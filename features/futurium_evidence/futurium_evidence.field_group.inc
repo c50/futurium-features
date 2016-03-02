@@ -22,9 +22,7 @@ function futurium_evidence_field_group_info() {
   $field_group->data = array(
     'label' => 'group-buttons',
     'weight' => '4',
-    'children' => array(
-      0 => 'flag_attending',
-    ),
+    'children' => array(),
     'format_type' => 'div',
     'format_settings' => array(
       'label' => 'group-buttons',

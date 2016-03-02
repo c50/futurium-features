@@ -38,9 +38,9 @@ function futurium_linker_menu() {
 function futurium_linker_block_info() {
   $blocks['relation_link_add'] = array(
     'info' => t('Add relations'),
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_NO_CACHE ,
   );
-  return $blocks;
+  return$blocks;
 }
 
 /**
@@ -55,11 +55,17 @@ function futurium_linker_block_view($delta = '') {
         $form = drupal_get_form('futurium_linker_form');
         $block['content']['#markup'] = drupal_render($form);
       }
-      else{
+      else {
         $destination = array('destination' => $_GET['q']);
         if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
           // Users can register themselves.
-          $link = t('<a href="@login">Log in</a> or <a href="@register">register</a> to create relations', array('@login' => url('user/login', array('query' => $destination)), '@register' => url('user/register', array('query' => $destination))));
+          $link = t(
+            '<a href="@login">Log in</a> or <a href="@register">register</a> to create relations',
+            array(
+              '@login' => url('user/login', array('query' => $destination)),
+              '@register' => url('user/register', array('query' => $destination)),
+            )
+          );
         }
         else {
           // Only admins can add new users, no public registration.
@@ -157,12 +163,11 @@ function _futurium_linker_node_autocomplete($origin_nid, $bundles, $string) {
         $classes[] = 'relation-type-' . $value;
         $label .= ' class="' . implode($classes, ' ') . '">';
 
-        $label .= t("@relation_label", array('@relation_label' => $rel_label)) .' '. check_plain($node['title']);
-
+        $label .= t("@relation_label", array('@relation_label' => $rel_label));
+        $label .= ' ' . check_plain($node['title']);
         $label .= '</span>';
 
-        $matches[$array_key] = $label ;
-
+        $matches[$array_key] = $label;
       }
     }
   }
@@ -258,6 +263,9 @@ function _futurium_linker_link($form, &$form_state) {
   return array('#type' => 'ajax', '#commands' => $commands);
 }
 
+/**
+ * Form to create relations.
+ */
 function futurium_linker_form($form, &$form_state) {
 
   $node = menu_get_object();
@@ -269,11 +277,9 @@ function futurium_linker_form($form, &$form_state) {
   }
 
   if ($node) {
-    //$links = _futurium_linker_create_links($node->nid);
-
     $current_bundle = 'node:' . $node->type;
     $relations = relation_get_types();
-    foreach($relations as $key => $relation) {
+    foreach ($relations as $key => $relation) {
       $bundles = array();
       $source_bundles = $relation->source_bundles;
       $target_bundles = $relation->target_bundles;
@@ -358,7 +364,7 @@ function futurium_linker_form($form, &$form_state) {
       '#attributes' => array(
         'class' => array(
           'btn-add-relation',
-        )
+        ),
       ),
       '#ajax' => array(
         'callback' => '_futurium_linker_link',
@@ -410,7 +416,7 @@ function _futurium_linker_link_nodes($nid1, $nid2, $relation_type = NULL) {
     if ($relation->directional) {
       $relation_label = relation_get_type_label($relation, $reverse);
     }
-    else{
+    else {
       $relation_label = $relation->label;
     }
 
@@ -448,12 +454,14 @@ function _futurium_linker_link_nodes($nid1, $nid2, $relation_type = NULL) {
 
 }
 
-
+/**
+ * Return links to create content that can be related to a node.
+ */
 function _futurium_linker_create_links($nid) {
   $node = node_load($nid);
 
   $rels = _futurium_linker_get_node_possible_relations($nid);
-  foreach($rels as $k => $relation_type) {
+  foreach ($rels as $k => $relation_type) {
     $content_types[$relation_type] = _futurium_linker_get_related_content_types($nid, $relation_type);
   }
 
@@ -463,7 +471,7 @@ function _futurium_linker_create_links($nid) {
       $relation = relation_type_load($relation_type);
       $content_type_name = node_type_get_name($value);
       $path = 'node/add/' . str_replace("_", "-", $value);
-      $path .= '?related_to=' . $nid .'&relation_type=' . $relation_type;
+      $path .= '?related_to=' . $nid . '&relation_type=' . $relation_type;
 
       $reverse = !_futurium_linker_is_relation_reversed($nid, $relation_type);
       $label = relation_get_type_label($relation, $reverse);
@@ -480,26 +488,36 @@ function _futurium_linker_create_links($nid) {
 
 }
 
+/**
+ * Implements relation_label_autocomplete_alter().
+ */
 function futurium_linker_relation_label_autocomplete_alter(&$label) {
-  switch($label) {
+  switch ($label) {
     case 'supports':
       $label = 'that supports';
       break;
+
   }
 }
 
+/**
+ * Implements relation_content_type_autocomplete_alter().
+ */
 function futurium_linker_relation_content_type_autocomplete_alter(&$content_type) {
-  switch($content_type) {
+  switch ($content_type) {
     case 'Ideas':
       $content_type = 'Idea';
       break;
+
     case 'Futures':
       $content_type = 'Future';
       break;
   }
 }
 
-
+/**
+ * Returns content types that can be related to a node.
+ */
 function _futurium_linker_get_related_content_types($nid, $relation_type) {
   $relation = relation_type_load($relation_type);
   $node = node_load($nid);
@@ -533,8 +551,9 @@ function _futurium_linker_get_related_content_types($nid, $relation_type) {
   return $bundles;
 }
 
-
-
+/**
+ * Return all possible relation types a node can be involved in.
+ */
 function _futurium_linker_get_node_possible_relations($nid1) {
   $o_n = node_load($nid1);
 
@@ -546,7 +565,9 @@ function _futurium_linker_get_node_possible_relations($nid1) {
   return $a_all;
 }
 
-
+/**
+ * Return all possible relation types between two nodes.
+ */
 function _futurium_linker_get_possible_relations($nid1, $nid2) {
 
   $o_n = node_load($nid1);
@@ -567,6 +588,9 @@ function _futurium_linker_get_possible_relations($nid1, $nid2) {
   return $all;
 }
 
+/**
+ * Helper function: check if a relation is reversed in a node context.
+ */
 function _futurium_linker_is_relation_reversed($nid1, $relation_type) {
   $o_n = node_load($nid1);
   $relation = relation_type_load($relation_type);
@@ -579,7 +603,9 @@ function _futurium_linker_is_relation_reversed($nid1, $relation_type) {
   return FALSE;
 }
 
-
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function futurium_linker_form_node_form_alter(&$form, $form_state) {
   if (isset($_GET['related_to']) && isset($_GET['relation_type'])) {
     $form['relation_type'] = array(
@@ -596,7 +622,9 @@ function futurium_linker_form_node_form_alter(&$form, $form_state) {
   }
 }
 
-
+/**
+ * Implements hook_node_insert().
+ */
 function futurium_linker_node_insert($node) {
   if (isset($node->relation_type) && isset($node->related_to)) {
     _futurium_linker_link_nodes($node->related_to, $node->nid, $node->relation_type);
@@ -613,7 +641,6 @@ function _relation_get_available_types($entity_type, $bundle, $endpoint = 'sourc
 
   foreach ($relation_types as $type => $relation_type) {
     $available = FALSE;
-    //$relation = relation_type_load($relation_type);
     if ($endpoint == 'source' || $endpoint == 'both') {
       if (in_array($bundle_key, $relation_type->source_bundles) || in_array($all_bundle_key, $relation_type->source_bundles)) {
         $available = TRUE;

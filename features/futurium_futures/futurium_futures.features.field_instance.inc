@@ -310,7 +310,7 @@ function futurium_futures_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
-      'default_value2' => 'same',
+      'default_value2' => 'now',
       'default_value_code' => '',
       'default_value_code2' => '',
       'entity_translation_sync' => FALSE,
@@ -326,7 +326,7 @@ function futurium_futures_field_default_field_instances() {
         'label_position' => 'above',
         'no_fieldset' => 0,
         'text_parts' => array(),
-        'year_range' => '0:+20',
+        'year_range' => '-0:+20',
       ),
       'type' => 'date_popup',
       'weight' => 4,

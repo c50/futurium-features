@@ -11,68 +11,6 @@ function futurium_isa_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'carousel';
-  $view->description = '';
-  $view->tag = 'default';
-  $view->base_table = 'node';
-  $view->human_name = 'Carousel';
-  $view->core = 7;
-  $view->api_version = '3.0';
-  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-  /* Display: Master */
-  $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Carousel';
-  $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'none';
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Content: Leading picture */
-  $handler->display->display_options['fields']['field_leading_picture_d4eu']['id'] = 'field_leading_picture_d4eu';
-  $handler->display->display_options['fields']['field_leading_picture_d4eu']['table'] = 'field_data_field_leading_picture_d4eu';
-  $handler->display->display_options['fields']['field_leading_picture_d4eu']['field'] = 'field_leading_picture_d4eu';
-  $handler->display->display_options['fields']['field_leading_picture_d4eu']['label'] = '';
-  $handler->display->display_options['fields']['field_leading_picture_d4eu']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_leading_picture_d4eu']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_leading_picture_d4eu']['settings'] = array(
-    'image_style' => '',
-    'image_link' => 'content',
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Leading picture (field_leading_picture_d4eu:fid) */
-  $handler->display->display_options['filters']['field_leading_picture_d4eu_fid']['id'] = 'field_leading_picture_d4eu_fid';
-  $handler->display->display_options['filters']['field_leading_picture_d4eu_fid']['table'] = 'field_data_field_leading_picture_d4eu';
-  $handler->display->display_options['filters']['field_leading_picture_d4eu_fid']['field'] = 'field_leading_picture_d4eu_fid';
-  $handler->display->display_options['filters']['field_leading_picture_d4eu_fid']['operator'] = 'not empty';
-
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block');
-  $export['carousel'] = $view;
-
-  $view = new view();
   $view->name = 'events';
   $view->description = '';
   $view->tag = 'default';
@@ -1286,7 +1224,7 @@ Votes Desc|Most voted',
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'No Ideas yet!
 
-        <a href="node/add/ideas">Create one now!</a>';
+              <a href="node/add/ideas">Create one now!</a>';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Author */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
@@ -1324,6 +1262,10 @@ Votes Desc|Most voted',
   $handler->display->display_options['fields']['count']['format_plural_singular'] = '(1 like)';
   $handler->display->display_options['fields']['count']['format_plural_plural'] = '(@count likes)';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1339,12 +1281,22 @@ Votes Desc|Most voted',
   $handler->display->display_options['filters']['type']['value'] = array(
     'ideas' => 'ideas',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Field: Groups audience (og_group_ref) */
   $handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
   $handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
   $handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
   $handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
   $handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
+  $handler->display->display_options['filters']['og_group_ref_target_id']['group'] = 2;
+  /* Filter criterion: Content: Group content visibility (group_content_access) */
+  $handler->display->display_options['filters']['group_content_access_value']['id'] = 'group_content_access_value';
+  $handler->display->display_options['filters']['group_content_access_value']['table'] = 'field_data_group_content_access';
+  $handler->display->display_options['filters']['group_content_access_value']['field'] = 'group_content_access_value';
+  $handler->display->display_options['filters']['group_content_access_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['group_content_access_value']['group'] = 2;
 
   /* Display: User Ideas */
   $handler = $view->new_display('block', 'User Ideas', 'block_2');
@@ -1370,7 +1322,7 @@ Votes Desc|Most voted',
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'You haven\'t created any ideas yet.
 
-          <a href="/node/add/ideas">Create one now</a>!';
+                <a href="/node/add/ideas">Create one now</a>!';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Author uid */
   $handler->display->display_options['arguments']['uid']['id'] = 'uid';
@@ -1392,6 +1344,9 @@ Votes Desc|Most voted',
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'Find more ideas';
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
@@ -1427,6 +1382,10 @@ Votes Desc|Most voted',
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -1442,12 +1401,22 @@ Votes Desc|Most voted',
   $handler->display->display_options['filters']['type']['value'] = array(
     'ideas' => 'ideas',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Field: Groups audience (og_group_ref) */
   $handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
   $handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
   $handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
   $handler->display->display_options['filters']['og_group_ref_target_id']['relationship'] = 'og_membership_rel';
   $handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
+  $handler->display->display_options['filters']['og_group_ref_target_id']['group'] = 2;
+  /* Filter criterion: Content: Group content visibility (group_content_access) */
+  $handler->display->display_options['filters']['group_content_access_value']['id'] = 'group_content_access_value';
+  $handler->display->display_options['filters']['group_content_access_value']['table'] = 'field_data_group_content_access';
+  $handler->display->display_options['filters']['group_content_access_value']['field'] = 'group_content_access_value';
+  $handler->display->display_options['filters']['group_content_access_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['group_content_access_value']['group'] = 2;
   $export['ideas'] = $view;
 
   $view = new view();

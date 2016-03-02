@@ -27,10 +27,10 @@ Copyright (c) 2010 Dennis Hotson
 
 jQuery.fn.springy = function(params) {
 	var graph = this.graph = params.graph || new Springy.Graph();
-	var nodeFont = "14px Helvetica, sans-serif";
-	var edgeFont = "10px Helvetica, sans-serif";
+	var nodeFont = "16px Helvetica, sans-serif";
+	var edgeFont = "16px Helvetica, sans-serif";
 	var stiffness = params.stiffness || 1000.0;
-	var repulsion = params.repulsion || 50.0;
+	var repulsion = params.repulsion || 25.0;
 	var damping = params.damping || 0.5;
 	var minEnergyThreshold = params.minEnergyThreshold || 0.00001;
 	var nodeSelected = params.nodeSelected || null;
@@ -281,9 +281,9 @@ jQuery.fn.springy = function(params) {
 				ctx.font = (edge.data.font !== undefined) ? edge.data.font : edgeFont;
 				ctx.fillStyle = stroke;
 				var angle = Math.atan2(s2.y - s1.y, s2.x - s1.x);
-				var displacement = -10;
+				var displacement = -16;
 				if (edgeLabelsUpright && (angle > Math.PI/2 || angle < -Math.PI/2)) {
-					displacement = 10;
+					displacement = 16;
 					angle += Math.PI;
 				}
 				var textPos = s1.add(s2).divide(2).add(normal.multiply(displacement));
@@ -417,6 +417,9 @@ jQuery.fn.springy = function(params) {
 	    ctx.fill();
 	  }
 	  if (stroke) {
+	  	// Change stroke style
+	  	ctx.strokeStyle="#000000";
+	  	ctx.lineWidth = 3;
 	    ctx.stroke();
 	  }
 
