@@ -102,7 +102,7 @@ function futurium_evidence_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '8',
         ),
       ),
       'display' => array(),

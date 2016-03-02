@@ -26,6 +26,7 @@ function futurium_evidence_field_default_field_instances() {
       ),
       'node_header' => array(
         'label' => 'hidden',
+        'settings' => array(),
         'type' => 'hidden',
         'weight' => 3,
       ),
@@ -110,6 +111,78 @@ function futurium_evidence_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-evidence-field_evidence_file'.
+  $field_instances['node-evidence-field_evidence_file'] = array(
+    'bundle' => 'evidence',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 101,
+      ),
+      'node_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_evidence_file',
+    'label' => 'File',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => 'evidence',
+      'file_extensions' => 'txt pdf doc docx rtf',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'filefield_sources' => array(
+          'filefield_sources' => array(
+            'attach' => 0,
+            'clipboard' => 0,
+            'plupload' => 0,
+            'reference' => 0,
+            'remote' => 0,
+            'upload' => 'upload',
+          ),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+            'search_all_fields' => 0,
+          ),
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 4,
     ),
   );
 
@@ -199,22 +272,23 @@ function futurium_evidence_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 6,
     ),
   );
 
-  // Exported field_instance: 'node-evidence-field_file'.
-  $field_instances['node-evidence-field_file'] = array(
+  // Exported field_instance: 'node-evidence-field_evidence_link'.
+  $field_instances['node-evidence-field_evidence_link'] = array(
     'bundle' => 'evidence',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'file',
+        'module' => 'link',
         'settings' => array(),
-        'type' => 'file_default',
-        'weight' => 7,
+        'type' => 'link_default',
+        'weight' => 100,
       ),
       'node_header' => array(
         'label' => 'above',
@@ -231,47 +305,39 @@ function futurium_evidence_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_file',
-    'label' => 'File',
+    'field_name' => 'field_evidence_link',
+    'label' => 'Link',
     'required' => 0,
     'settings' => array(
-      'description_field' => 0,
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
-      'file_directory' => 'evidence',
-      'file_extensions' => 'pdf doc docx txt',
-      'max_filesize' => '',
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
       'user_register_form' => FALSE,
+      'validate_url' => 1,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'file',
-      'settings' => array(
-        'filefield_sources' => array(
-          'filefield_sources' => array(
-            'attach' => 0,
-            'clipboard' => 0,
-            'plupload' => 0,
-            'reference' => 0,
-            'remote' => 'remote',
-            'upload' => 'upload',
-          ),
-          'source_attach' => array(
-            'absolute' => 0,
-            'attach_mode' => 'move',
-            'path' => 'file_attach',
-          ),
-          'source_imce' => array(
-            'imce_mode' => 0,
-          ),
-          'source_reference' => array(
-            'autocomplete' => 0,
-            'search_all_fields' => 0,
-          ),
-        ),
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'file_generic',
-      'weight' => 2,
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 5,
     ),
   );
 
@@ -322,7 +388,7 @@ If this field isn\'t filled in, we\'ll try to fill it automatically.',
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -332,6 +398,7 @@ If this field isn\'t filled in, we\'ll try to fill it automatically.',
   t('File');
   t('If this field isn\'t filled in, we\'ll try to fill it automatically.');
   t('Keywords');
+  t('Link');
   t('Please separate tags with commas. For example <i>broadband, geoblocking, quantum mechanics, italy</i>.
 
 If this field isn\'t filled in, we\'ll try to fill it automatically.');
