@@ -96,7 +96,7 @@
 
           <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12 submitted text-right">
             <small>
-              <div class="commenter-name"><?php print $author; ?>,</div>
+              <div class="commenter-name"><?php print $author; ?></div>
               <?php print $comment_user['organisation']; ?>
               <div class="comment-time text-muted"><?php print $comment_created; ?></div>
            </small>

@@ -520,9 +520,18 @@
   display: block;
   text-align: center;
   margin: 0 1px 1px;
-  color: #fff;
-  background: #555;
+  color: #333;
+  background: #fff;
   padding: 2px 2px 4px;
+}
+
+.views-blog_d4eu-block_1 .panel-body .views-row > div:nth-child(2) > span:first-child .userOrganisation{
+  display: block;
+  text-align: center;
+  margin: 0 1px 1px;
+  color: #777;
+  padding: 5px 0 2px;
+  font-style: italic;
 }
 
 .views-blog_d4eu-block_1 .panel-body .views-row .views-field-title h3 {
