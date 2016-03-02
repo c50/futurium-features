@@ -226,8 +226,8 @@
 /* mixin user */
 
 @mixin round-userpicture {
-  border-radius:50%;
-  overflow:hidden;
+  border-radius: 50%;
+  overflow: hidden;
   width: 35px;
   height: 35px;
 }
@@ -249,6 +249,47 @@
     color: inherit;
   }
 
+  /* add relation */
+
+  .sidebar-right .form-item .autocomplete-new a{
+    @include rem(padding, 10px 10px 10px 10px);
+    @include rem(margin, 5px 15px 10px 15px);
+    background: $light-grey;
+    @include rem(font-size, 13px);
+    font-weight: bold;
+
+    border: 1px solid $dark-grey;
+    color: $dark-grey;
+  }
+
+  .sidebar-right .form-item .autocomplete-new.ideas a {
+    @include on-event {
+      border: 1px solid darken($idea-color, 10%);
+      color: darken($idea-color, 10%);
+    }
+  }  
+
+  .sidebar-right .form-item .autocomplete-new.future a {
+    @include on-event {
+      border: 1px solid darken($future-color, 10%);
+      color: darken($future-color, 10%);
+    }
+  }
+
+  .sidebar-right .form-item .autocomplete-new.evidence a {
+    @include on-event {
+      border: 1px solid darken($library-color, 10%);
+      color: darken($library-color, 10%);
+    }
+  }
+
+  .sidebar-right .form-item .autocomplete-new.event_d4eu a {
+    @include on-event {
+      border: 1px solid darken($event-color, 10%);
+      color: darken($event-color, 10%);
+    }
+  }
+
   .sidebar-right a.flag{
     color: #fff;
   }
@@ -267,6 +308,8 @@
     }
   }
 
+
+
   .row1{
     a {
       color: #ffffff;
@@ -277,6 +320,10 @@
     .intro {
       @include rem(font-size, 20px);
       @include rem(line-height, 26px);
+      @include respond-to(small) {
+        @include rem(font-size, 18px);
+        @include rem(line-height, 24px);
+      }
     }
     .share-links a, .flag-link-toggle, a.btn-more, .more-link a, .btn {
       @include btn-default($color);
@@ -298,8 +345,14 @@
       text-align: center;
       border-radius: 50%;
       width: 70px;
-      line-height: 35px; 
+      @include rem(line-height, 35px); 
       background: #fff;
+      @include respond-to(small) {
+        width: 40px;
+        @include rem(line-height, 20px);
+        @include rem(padding, 10px);
+        @include rem(font-size, 20px); 
+      }
     }
     .group-shortcut-buttons a{
       @include rem(margin, 0 10px 0 0);
@@ -310,6 +363,15 @@
     a {
       color: $color;
     }
+    .field-type-taxonomy-term-reference {
+      .field-label {
+        width: 100%;
+        @include rem(margin-bottom, 15px);
+      }
+      a {
+       font-weight: bold;
+      }
+  }
   }
 
   .row2 .sidebar-right {
@@ -423,6 +485,12 @@
     border: 3px solid darken($color, 15%);
     border-bottom: none;
     color: #fff;
+    @include rem(margin-top, -3px);
+    @include respond-to(small) {
+      background: none;
+      border: none;
+      color: $text-color;
+    }
   }
 }
 

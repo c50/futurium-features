@@ -13,8 +13,6 @@
   }
 }
 
-
-
 .wrapper-header > .container{
   position: relative;
   display: flex;
@@ -31,6 +29,15 @@
   padding: 0 0 0 0;
   .container {
     @include rem(padding, 30px 15px 30px 15px);
+    @include respond-to(small) {
+      padding-bottom: 0;
+    }
+  }
+}
+
+@include respond-to(small) {
+  .container-fullwidth.row1 .container {
+    @include rem(padding-bottom, 30px);
   }
 }
 
@@ -79,7 +86,7 @@ section.container-fullwidth {
 }
 
 .front .container.row1 {
-  @include rem(padding-top, 15px);
+  @include rem(padding-top, 0);
   @include rem(padding-bottom, 0px);
 }
 
@@ -102,6 +109,23 @@ section.container-fullwidth {
 /* ROW1 SETTINGS*/
 /***************/
 
+@include respond-to(large) {
+  .row1 {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    flex: 1 100%; /* We tell all items to be 100% width */
+   /* @include rem(padding-bottom, 15px); */
+    .row1l {
+      align-self: flex-start;
+    }
+    .row1r {
+     /* align-self: flex-end; */
+     align-self: flex-end;
+    } 
+  }
+}
+
 .container-fullwidth.row1 {
   h1{
     margin-top: 0;
@@ -122,8 +146,22 @@ section.container-fullwidth {
   float: left;
 }
 
+/*****************/
+/* ROW2 SETTINGS*/
+/***************/
 
-.row2 .panel-pane.pane-menu-menu-user-tabs {
+.row2l{
+  .panel-pane {
+    @include rem(margin, 0 0 40px 0);
+    @include respond-to(small) {
+      margin: 0 0 20px 0;
+    }
+  }
+}
+
+.row2 .panel-pane.pane-menu-menu-user-tabs,
+.row2 .pane-menu-menu-group-tabs
+ {
   margin: 0 0 0 0;
 }
 
@@ -152,11 +190,8 @@ section.container-fullwidth {
   }
 }
 
-.row2l{
-  .panel-pane{
-    @include rem(margin, 0 0 40px 0);
-  }
-}
+
+
 
 /*******************/
 /* SIDEBAR REGION */

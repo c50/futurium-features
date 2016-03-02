@@ -6,20 +6,7 @@
 
 @include respond-to(large) {
 
-  .row1 {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    flex: 1 100%; /* We tell all items to be 100% width */
-   /* @include rem(padding-bottom, 15px); */
-    .row1l {
-      align-self: flex-start;
-    }
-    .row1r {
-     /* align-self: flex-end; */
-     align-self: flex-end;
-    } 
-  }
+  
   div.panel-pane .col-lg-6 div.node-teaser {
     border-bottom: none;
   }
@@ -30,97 +17,14 @@
 
 @include respond-to(small) {
   
-  .row1 .group-buttons{
-    @include rem(margin, 0 0 20px 0);
-    float: left; 
-  }
-
-  /* toggle button for responsive menu */
-  .navbar-toggle {
-    @include rem(margin, 20px 0 0 0);
-  }
-  /* overriding, margins and paddings for menu */
-  .container>.navbar-header {
-    float: left;
-    @include rem(margin, 0 0 0 0);
-    @include rem(padding, 0 0 20px 0);
-
-  }
-  .container > .navbar-collapse {
-    margin: 0;
-    padding: 0;
-    border: none;
-    float: left;
-  }
-  
-  ul.navbar-nav {
-    float: left;
-    font-family: $text-font-stack;
-    font-weight: normal;
-    width: 100%;
-    text-transform: lowercase;
-    @include rem(margin, 0 0 20px 0);
-    li.leaf {
-      @include rem(padding, 10px 10px 10px 10px);
-      border-bottom: 1px solid darken($light-grey, 10%);
-      width: 100%;
-      @include on-event {
-      	background: $light-grey;
-      }
-      a.active-trail {
-        background: none;
-        border: none;
-        color: inherit;
-      }
-    }
-    li.last {
-      border-bottom: none;
-    }
-    li.active-trail {
-      background: $light-grey;
-      font-weight: bold;
-    }
-  }
-  
-  .navbar .navbar-nav li>a {
-    @include rem(line-height, 24px); 
-    @include rem(padding, 0);
-  }
-
-  /* responsive menu for page user & groups */
-
-  .page-user:not(.page-user-edit) .container-fullwidth.row2, 
-  .node-type-futurium-group .container-fullwidth.row2 {
-    background: none;
-  }
-
+  /*
   ul.nav-pills {
     @include rem(margin, 30px 0 0 0);
   }
+  */
 
-  .nav-pills>li {
-    float: left;
-    width: 100%;
-    font-family: $text-font-stack;
-    text-transform: lowercase;
-    border-bottom: 1px solid darken($light-grey, 10%);
-    @include on-event {
-      background: $light-grey;
-    }
-    
-    a {
-      @include on-event {
-        color: #333;
-      }
-    }
-    
-  }
 
-  .nav-pills>li>a.active {
-    background: $light-grey;
-    border-bottom: none;
-    font-weight: bold;
-  }
+
 
   /* share links */
 

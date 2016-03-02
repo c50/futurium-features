@@ -19,13 +19,62 @@
 }
 
 .navbar-header {
- width: 20%;
- float: left;
- align-self: center;
- @include respond-to(small) {
-  width: 100%;
- }
+  width: 20%;
+  float: left;
+  align-self: center;
+  @include respond-to(small) {
+    width: 100%;
+  }
+}
 
+@include respond-to(small) {
+  .container>.navbar-header {
+    @include rem(padding, 0 0 15px 0); 
+    @include rem(margin, 0 0 0 0);
+  }
+
+  /* toggle button for responsive menu */
+  .navbar-toggle {
+    @include rem(margin, 15px 0 0 0);
+  }
+
+  /* nav menu for small devices */
+
+  ul.navbar-nav {
+    float: left;
+    font-family: $text-font-stack;
+    font-weight: normal;
+    width: 100%;
+    text-transform: lowercase;
+    @include rem(margin, 0 0 20px 0);
+    li.leaf {
+      @include rem(padding, 10px 10px 10px 10px);
+      border-bottom: 1px solid darken($light-grey, 10%);
+      width: 100%;
+      @include on-event {
+        background: $light-grey;
+      }
+      a.active-trail {
+        background: none;
+        border: none;
+        color: inherit;
+      }
+    }
+    li.last {
+      border-bottom: none;
+    }
+    li.active-trail {
+      background: $light-grey;
+      font-weight: bold;
+    }
+  }
+
+  /* responsive menu for page user & groups */
+
+  .page-user:not(.page-user-edit) .container-fullwidth.row2, 
+  .node-type-futurium-group .container-fullwidth.row2 {
+    background: none;
+  }
 }
 
 .navbar {
@@ -38,8 +87,12 @@
     align-self: flex-end;
     @include rem(margin, 20px 0 0 0);
     @include rem(padding, 0 0 0 15px);
-     @include respond-to(small) {
+    @include respond-to(small) {
       width: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
+      float: left;
     }
   }
 
@@ -51,6 +104,10 @@
     border-top-right-radius: 3px;
     &:before {
       width: 30px;
+    }
+    @include respond-to(small) {
+      @include rem(line-height, 24px); 
+      @include rem(padding, 0);
     }
   }
   .glyphicon-user:before {
@@ -79,6 +136,8 @@
   }
 }
 
+
+
 .logged-in.page-node{
   li.futures {
     @include menu(darken($future-color, 20%), rocket);
@@ -99,6 +158,8 @@
     @include menu(darken($event-color, 20%), pie-chart);
   }
 }
+
+
 
 .logged-in-user-pic {
   @include round-userpicture;
@@ -129,6 +190,7 @@
 
 .navbar-brand {
   @include rem(font-size, 24px);
+
 }
 
 .logo {

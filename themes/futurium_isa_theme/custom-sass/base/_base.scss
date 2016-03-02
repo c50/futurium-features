@@ -68,6 +68,9 @@ img {
 h1 {
   color: $dark-grey;
   font-family: $text-font-stack;
+  @include respond-to(small) {
+    font-size: 24px;
+  }
 }
 
 h2, h3, h4, h5, h6 {
@@ -101,6 +104,9 @@ h2.pane-title {
   @include rem(padding, 0 0 15px 0);
   @include rem(margin, 0 0 20px 0);
   @include rem(border-bottom, 1px solid $text-color);
+  @include respond-to(small) {
+     @include rem(font-size, 18px);
+  }
 }
 
 h4 a {
@@ -183,6 +189,11 @@ h4 a {
     font-family: $text-font-stack;
     text-transform: inherit;
   }
+  @include respond-to(small) {
+    .label-wrapper {
+      display: none;
+    }
+  }
 }
 
 .intro{
@@ -199,7 +210,8 @@ body.node-type-ideas {
   @include contenttype($idea-color, lightbulb-o);
 }
 
-.node-teaser.node-ideas {
+.node-teaser.node-ideas,
+.view-messages .node-ideas {
   @include teaser($idea-color, lightbulb-o);
   h3:before {
     /* positioning icon */
@@ -214,7 +226,8 @@ body.node-type-future {
   @include contenttype($future-color, rocket);
 }
 
-.node-teaser.node-future{
+.node-teaser.node-future,
+.view-messages .node-future {
   @include teaser($future-color, rocket);
   /* positioning icon */
   h3:before {
@@ -242,9 +255,11 @@ body.node-type-event-d4eu {
   @include contenttype($event-color, calendar);
 }
 
-.node-teaser.node-event-d4eu{
+.node-teaser.node-event-d4eu,
+.view-messages .node-event_d4eu
+{
   @include teaser($event-color, calendar);
-   h3:before {
+  h3:before {
     @include rem(padding, 8px 0 0 9px);
     @include rem(font-size, 18px);
   }
@@ -256,7 +271,8 @@ body.node-type-event-d4eu {
   @include contenttype($library-color, file-text-o);
 }
 
-.node-teaser.node-evidence {
+.node-teaser.node-evidence,
+.view-messages .node-evidence {
   @include teaser($library-color, file-text-o);
   h3:before {
     @include rem(padding, 8px 0 0 10px);
@@ -264,11 +280,40 @@ body.node-type-event-d4eu {
   }
 }
 
+/* overrides for profile page */
+
+.view-messages .node-ideas,
+.view-messages .node-future,
+.view-messages .node-event_d4eu,
+.view-messages .node-evidence {
+  @include rem(padding, 0);
+}
+
+
 /* user */
 .page-user{
   @include contenttype($greenblue, user);
   .row1 h1:before {
     content: none; /* remove icon on page-user */
+  }
+}
+
+.row1 {
+  .field-name-ds-user-picture {
+    text-align: center;
+    @include rem(margin, 0 0 20px 0);
+    img {
+      border-radius: 50%;
+      /* border: 5px solid darken($user-color, 10%); */
+      border: 5px solid $light-grey;
+      box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);  
+    }
+  }
+}
+
+@include respond-to(small) {
+  .field-name-name {
+    text-align: center;
   }
 }
 
@@ -279,6 +324,9 @@ body.node-type-event-d4eu {
   .group-user-fields {
     @include rem(padding, 20px);
     @include rem(margin, 0 0 20px 0);
+    h2.pane-title {
+      padding: 0;
+    }
   }
 }
 
@@ -413,6 +461,12 @@ a.btn-more:before {
   min-width: 10%;
 }
 
+.pane-futurium-isa-extras-contextualized-links {
+  a {
+    display: block;
+  }
+}
+
 /***********/
 /* RATING */
 /*********/
@@ -441,6 +495,7 @@ ul.rate-fivestar-processed{
 
 .futurium-rate-feasibility {
   @include fa(balance-scale);
+  @include rem(font-size, 20px);
 }
 
 /********************************/
@@ -474,9 +529,15 @@ div.panel-pane li.views-row:last-child
 
 .wrapper-date-vote-comment {
   @include rem(margin, 15px 0 20px 0);
+  @include respond-to(small) {
+    @include rem(margin, 10px 0 20px 0);
+  }
   .field {
     display: inline-block;
     @include rem(margin, 0 30px 10px 0);
+    @include respond-to(small) {
+      @include rem(margin, 0 20px 10px 0);
+    }
   }
 }
 
@@ -484,6 +545,10 @@ div.panel-pane li.views-row:last-child
   @include rem(margin, 20px 0 0 0);
   @include rem(padding, 0 0 15px 0);
   @include rem(border-bottom, 1px solid $lightmid-grey);
+  @include respond-to(small) {
+    @include rem(padding, 0 0 10px 0);
+
+  }
 }
 
 .node-event-d4eu .date{
@@ -612,7 +677,6 @@ div.panel-pane li.views-row:last-child
   }
 }
 
-
 .field-name-comment-body {
   border: 1px solid $lightmid-grey;
   @include rem(padding, 20px);
@@ -654,8 +718,11 @@ div.panel-pane li.views-row:last-child
   .container-fullwidth.row2 {
     background: url(../assets/img/bg-user-menu.gif) left top;
     background-repeat: repeat-x;
-    @include rem(min-height, 50px);
+    /* @include rem(min-height, 50px); */
     @include rem(padding, 0);
+    @include respond-to(small) {
+      background: none;
+    }
   }
 }
 
@@ -679,7 +746,6 @@ div.panel-pane li.views-row:last-child
     width: 55%;
   }
 }
-
 
 /******************/
 /* VIEW MESSAGES */
@@ -734,17 +800,24 @@ body .view-messages {
 /* FORMS */
 /********/
 
-.form-select {
-  padding: 0;
-  margin: 0;
-  border: none;
-  height: auto;
-  border-radius: 0;
-  box-shadow: none;
-  transition: none;
+.form-control {
+  width: auto;
 }
 
+
+
 .views-exposed-form {
+
+  .form-select {
+    padding: 0;
+    margin: 0;
+    border: none;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+    transition: none;
+  }
+
   .views-exposed-widget {
     float: none;
     max-width: 580px;
@@ -828,7 +901,7 @@ body .view-messages {
       @include fa(arrow-down);
       margin-left: 12px;
       margin-top: 14px;
-    } 
+    }
   }
 
   /* position arrow up */
@@ -889,10 +962,19 @@ input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
+
 /* user login page */
 
 #user-login {
   width: 50%;
+}
+
+/**********************/
+/* USER PROFILE FORM */
+/********************/
+
+#user-profile-form {
+
 }
 
 /**************/
@@ -937,7 +1019,7 @@ div.panel-pane .preview .node {
   background: #000;
   opacity: 0.5;
   z-index: 10;
-  border:10px solid red;
+  border: 5px solid $mid-grey;
 }
 
 .autocomplete-suggestion.node-type-future:before, 
@@ -985,6 +1067,11 @@ span.comment-count {
     border: 1px dashed $midmid-grey;
     @include rem(margin, 0 0 15px 0);
   }
+}
+
+.view-node-relations .views-field-title,
+.relation-delete-link {
+  display: inline-block;
 }
 
 /* END STUFF FOR THE LINKER MODULE */
@@ -1079,9 +1166,30 @@ span.comment-count {
   }
 }
 
+/************************* */
+/* PROFILE COMPLETE % BAR */
+/*********************** */
 
+.pane-pcp-pcp-profile-percent-complete {
+  em {
+    font-style: normal;
+  }
+  a {
+    text-decoration: underline;
+  }
+}
 
-
+.pcp-percent-bar-wrapper {
+  @include rem(margin, 15px 0 15px 0);
+  @include rem(padding, 0);
+  background: darken($light-grey, 15%);
+  @include rem(border, 1px solid $mid-grey);
+  .pcp-percent-bar {
+    @include rem(height, 30px);
+    @include rem(padding, 0);
+    background: $user-color;
+  }
+}
 
 /******* */
 /* TABS */
@@ -1124,7 +1232,6 @@ span.comment-count {
 .alert>ul {
   @include rem(margin, 15px 0 15px 0);
 }
-
 
 /********************** */
 /* STREAM ON USER PAGE */
