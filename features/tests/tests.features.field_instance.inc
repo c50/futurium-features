@@ -19,22 +19,21 @@ function tests_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
-        'weight' => 4,
+        'type' => 'hidden',
+        'weight' => 99,
       ),
       'node_header' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 99,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 99,
       ),
     ),
     'entity_type' => 'node',
@@ -50,7 +49,7 @@ function tests_field_default_field_instances() {
       'module' => 'relation_dummy_field',
       'settings' => array(),
       'type' => 'relation_default',
-      'weight' => 33,
+      'weight' => 99,
     ),
   );
 
@@ -63,22 +62,21 @@ function tests_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
-        'weight' => 5,
+        'type' => 'hidden',
+        'weight' => 99,
       ),
       'node_header' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 99,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 99,
       ),
     ),
     'entity_type' => 'node',
@@ -94,7 +92,7 @@ function tests_field_default_field_instances() {
       'module' => 'relation_dummy_field',
       'settings' => array(),
       'type' => 'relation_default',
-      'weight' => 33,
+      'weight' => 99,
     ),
   );
 
@@ -107,22 +105,21 @@ function tests_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
-        'weight' => 7,
+        'type' => 'hidden',
+        'weight' => 99,
       ),
       'node_header' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 99,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 99,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -140,7 +137,7 @@ function tests_field_default_field_instances() {
       'module' => 'relation_dummy_field',
       'settings' => array(),
       'type' => 'relation_default',
-      'weight' => 8,
+      'weight' => 99,
     ),
   );
 
@@ -153,22 +150,21 @@ function tests_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
-        'weight' => 10,
+        'type' => 'hidden',
+        'weight' => 99,
       ),
       'node_header' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 99,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 99,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -186,7 +182,7 @@ function tests_field_default_field_instances() {
       'module' => 'relation_dummy_field',
       'settings' => array(),
       'type' => 'relation_default',
-      'weight' => 7,
+      'weight' => 99,
     ),
   );
 
