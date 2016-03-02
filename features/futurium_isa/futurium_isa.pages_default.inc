@@ -2492,7 +2492,7 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'Title?',
+      'override_title_text' => 'Complete your profile.',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
