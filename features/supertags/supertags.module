@@ -1009,7 +1009,7 @@ function supertags_preprocess_node(&$vars) {
 
     $flavor = _supertags_flavor_context();
 
-    // FLavor fields aren't translated, so we should use LANGUAGE_NONE
+    // FLavor fields aren't translated, so we should use LANGUAGE_NONE.
     $lang = LANGUAGE_NONE;
     if (isset($vars['field_default_flavour'][$lang][0]['tid'])) {
       $default_flavor = $vars['field_default_flavour'][$lang][0]['tid'];
@@ -1704,8 +1704,8 @@ function _supertags_plural($string) {
 function _supertags_get_context() {
   static $supertags_context;
 
-  $item = menu_get_item();
   if (empty($supertags_context)) {
+    $item = menu_get_item();
 
     $vocab = taxonomy_vocabulary_machine_name_load('flavors');
 
@@ -1846,15 +1846,15 @@ function _supertags_get_context() {
         'class' => 'futurium',
       );
     }
-  }
-  $homes = array('home');
-  $vocab = taxonomy_vocabulary_machine_name_load('flavors');
-  if (!empty($vocab)) {
-    $tree = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
-    foreach ($tree as $key => $value) {
-      $homes[] = _supertags_term_path($value);
+    $homes = array('home');
+    $vocab = taxonomy_vocabulary_machine_name_load('flavors');
+    if (!empty($vocab)) {
+      $tree = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
+      foreach ($tree as $key => $value) {
+        $homes[] = _supertags_term_path($value);
+      }
+      $supertags_context['landing_page'] = in_array($item['path'], $homes);
     }
-    $supertags_context['landing_page'] = in_array($item['path'], $homes);
   }
   return $supertags_context;
 }
@@ -1908,7 +1908,7 @@ function supertags_node_access($node, $op, $account) {
     return NODE_ACCESS_IGNORE;
   }
   if (is_object($node)) {
-    // Return node field_default_flavor.`
+    // Return node field_default_flavor.
     $node_default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
 
     if ($node_default_flavor = taxonomy_term_load($node_default_flavor)) {
