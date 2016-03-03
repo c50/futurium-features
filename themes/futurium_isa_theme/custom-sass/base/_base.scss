@@ -113,6 +113,10 @@ h4 a {
   font-weight: normal;
 }
 
+.btn {
+  @include btn-default($mid-grey);
+}
+
 /*********************** */
 /* No padding for lists */
 /********************* */
@@ -802,6 +806,8 @@ body .view-messages {
 
 .form-control {
   width: auto;
+  height: auto;
+  border-radius: 0;
 }
 
 
@@ -965,9 +971,7 @@ input:-webkit-autofill:focus {
 
 /* user login page */
 
-#user-login {
-  width: 50%;
-}
+
 
 /**********************/
 /* USER PROFILE FORM */
@@ -1116,46 +1120,22 @@ span.comment-count {
   margin-bottom: 0;
 }
 
-.image-wrapper{
-  height: 338px;
-}
-
-.shadow {
-  opacity: 0.1;
-  position: absolute;
-  min-height: 350px;
-  width: 1170px;
-  margin: 0;
-  bottom: 0;
-  left: 0;
-  background: #000;
-}
-
-.shadow-content {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-45%);
-  @include rem(padding, 10px 100px 10px 100px);
-  z-index: 20;
-  text-align: center;
-  @include respond-to(small) {
-    top: 46%;
-    padding: 10px 60px 10px 60px;
-  }
-  h1 {
+.carousel-caption {
+  h3 {
     font-weight: bold;
     color: #fff;
     @include rem(font-size, 36px);
     font-family: $header-font-stack;
     text-transform: uppercase;
     letter-spacing: 2px;
+    z-index: 100;
     @include respond-to(small) {
       @include rem(font-size, 16px);
     }
   }
 }
+
+
 
 .front .carousel {
   a {

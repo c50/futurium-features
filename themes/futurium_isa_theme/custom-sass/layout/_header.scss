@@ -2,6 +2,63 @@
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
 
+
+/*****************************************/
+/* pre-wrapper with login collapse part */
+/***************************************/
+
+.logged-in .wrapper-pre-header .btn-info {
+    background: none;
+    border: none;
+    @include on-event {
+      background: none;
+    }
+}
+
+.collapsed-user-block {
+  @include rem(padding, 20px 0 20px 0);
+}
+
+.wrapper-pre-header {
+  a.btn, a {
+    color: #ffffff;
+  }
+  nav {
+    text-align: right;
+  }
+  .register {
+    @extend .col-lg-6;
+  }
+  .login {
+    @extend .col-lg-6;
+  }
+  .form-control{
+    width: 100%;
+    @include rem(height, 35px);
+  }
+  .user-name {
+    @include rem(margin-left, 10px);
+  }
+}
+
+.tooltip .tooltip-inner {
+  @include rem(font-size, 14px);
+  @extend .alert-success;
+}
+
+/* menu */
+
+.collapsed-user-block.in {
+  /* text-align: right; */
+}
+
+.user-menu {
+  text-align: right;
+  li {
+    list-style: none;
+  }
+}
+
 /*******************************/
 /* General navigation theming */
 /*****************************/
@@ -79,8 +136,6 @@
 
 .navbar {
   margin-bottom: 0;
-  font-family: $header-font-stack;
-  text-transform: uppercase;
   .navbar-collapse {
     float: right;
     width: 80%;
@@ -97,6 +152,8 @@
   }
 
   .navbar-nav li>a {
+    font-family: $header-font-stack;
+    text-transform: uppercase;
     @include rem(font-size, 18px);
     @include rem(line-height, 50px);
     @include rem(padding, 0px 20px 0px 20px);
@@ -190,6 +247,8 @@
 
 .navbar-brand {
   @include rem(font-size, 24px);
+  font-family: $header-font-stack;
+  text-transform: uppercase;
 
 }
 
