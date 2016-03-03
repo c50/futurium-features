@@ -89,6 +89,16 @@ function futurium_isa_theme_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_collapsible_user_block().
+ */
+function futurium_isa_theme_preprocess_collapsible_user_block(&$vars) {
+  if (user_is_logged_in()) {
+    $vars['account']['picture']['image_style'] = 'user_picture_small';
+    $vars['account']['picture']['class'] = array('img-circle', 'logged-in-user-pic');
+  }
+}
+
+/**
  * Implements hook_status_messages().
  */
 function futurium_isa_theme_status_messages($variables) {
@@ -498,4 +508,9 @@ function futurium_isa_theme_textarea($variables) {
   $output .= '<textarea' . drupal_attributes($element['#attributes']) . '>' . check_plain($element['#value']) . '</textarea>';
   $output .= '</div>';
   return $output;
+}
+
+function futurium_isa_theme_preprocess_loggedin_collapsible_block(&$vars) {
+  dsm($vars);
+  $vars['title'] = "WOOT";
 }
