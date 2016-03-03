@@ -26,21 +26,7 @@ function futurium_isa_field_default_field_instances() {
       ),
       'node_header' => array(
         'label' => 'hidden',
-        'module' => 'smart_trim',
-        'settings' => array(
-          'more_link' => FALSE,
-          'more_text' => 'Read more',
-          'summary_handler' => 'full',
-          'trim_length' => 300,
-          'trim_link' => FALSE,
-          'trim_options' => array(
-            'text' => 'text',
-          ),
-          'trim_preserve_tags' => '',
-          'trim_suffix' => '...',
-          'trim_type' => 'chars',
-        ),
-        'type' => 'smart_trim_format',
+        'type' => 'hidden',
         'weight' => 3,
       ),
       'teaser' => array(
@@ -357,7 +343,7 @@ function futurium_isa_field_default_field_instances() {
         'rows' => 20,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -448,7 +434,11 @@ function futurium_isa_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 10,
+        'maxlength_js' => 300,
+        'maxlength_js_enforce' => 1,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 1,
+        'rows' => 6,
       ),
       'type' => 'text_textarea',
       'weight' => 1,
@@ -660,7 +650,7 @@ function futurium_isa_field_default_field_instances() {
     'label' => 'Birthday',
     'required' => 0,
     'settings' => array(
-      'default_value' => 'now',
+      'default_value' => 'blank',
       'default_value2' => 'same',
       'default_value_code' => '',
       'default_value_code2' => '',

@@ -19,11 +19,13 @@ $rem-fallback: true !default;
 $rem-px-only: false !default;
 
 /// Copy text color
-$text-color: #666 !default;
+$text-color: #666 !default; 
+
+
 
 
 /// Main brand color
-$brand-color: #98CC4D !default;
+$brand-color: #98CC4D !default; /* green */
 $sec-color: #95c500 !default;
 
 /// Color for visions and ideas
@@ -32,16 +34,14 @@ $sec-color: #95c500 !default;
 
 $link-color: $brand-color;
 
-/// Medium grey
-$mid-grey: #999 !default;
-
 ///  grey
 $light-grey: #F8F8F8;
 $lighter-grey: #EBEBEB;
+$lightmid-grey: #d7d7d7;
+$mid-grey: #999 !default;
+$midmid-grey: #a4a4a4;
 $dark-grey: #090909 !default;
 
-
-$midmid-grey: #a4a4a4;
 $green: #65c250;
 $orange: #FF9137;
 $pink: #E477C8;

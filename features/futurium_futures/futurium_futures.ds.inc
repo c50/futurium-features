@@ -35,6 +35,14 @@ function futurium_futures_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'author',
     ),
+    'field_future_description' => array(
+      'formatter_settings' => array(
+        'ft' => array(
+          'func' => 'theme_ds_field_minimal',
+          'classes' => 'intro',
+        ),
+      ),
+    ),
     'post_date' => array(
       'weight' => '0',
       'label' => 'hidden',
@@ -43,14 +51,6 @@ function futurium_futures_ds_field_settings_info() {
         'ft' => array(
           'func' => 'theme_ds_field_minimal',
           'classes' => 'date',
-        ),
-      ),
-    ),
-    'field_future_description' => array(
-      'formatter_settings' => array(
-        'ft' => array(
-          'func' => 'theme_ds_field_minimal',
-          'classes' => 'intro',
         ),
       ),
     ),

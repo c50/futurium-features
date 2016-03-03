@@ -190,13 +190,13 @@ function futurium_isa_user_default_permissions() {
     'module' => 'flag',
   );
 
-  // Exported permission: 'use futurium_linkafter'.
-  $permissions['use futurium_linkafter'] = array(
-    'name' => 'use futurium_linkafter',
+  // Exported permission: 'use futurium_linker'.
+  $permissions['use futurium_linker'] = array(
+    'name' => 'use futurium_linker',
     'roles' => array(
       'authenticated user' => 'authenticated user',
     ),
-    'module' => 'futurium_linkafter',
+    'module' => 'futurium_linker',
   );
 
   // Exported permission: 'use text format full'.
@@ -224,6 +224,22 @@ function futurium_isa_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'filter',
+  );
+
+  $permissions['access media browser'] = array(
+    'name' => 'access media browser',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'media',
+  );
+
+  $permissions['create files'] = array(
+    'name' => 'create files',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'file_entity',
   );
 
   return $permissions;
