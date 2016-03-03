@@ -2192,6 +2192,11 @@ a:hover.CTAButton,
   margin: 0 10px;
 }
 
+.item-list .userOrganisation{
+  color: #777;
+  font-style: italic;
+}
+
 .profile {
   float: left;
   width: 100%;
@@ -2230,7 +2235,7 @@ a:hover.CTAButton,
   color: #999;
   font-style: italic;
   font-size: 110%;
-  padding-top: 0.5em;
+  padding-top: 0.2em;
 }
 .profile .userInfo .userSince{
   font-size: 110%;
