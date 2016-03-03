@@ -207,7 +207,6 @@ function _futurium_linker_results($form, &$form_state) {
   return array('#type' => 'ajax', '#commands' => $commands);
 }
 
-
 /**
  * Helper function to extract selected node from autocomplete field.
  */
@@ -585,7 +584,6 @@ function _futurium_linker_get_possible_relations($nid1, $nid2) {
   $bt = array_keys(_relation_get_available_types('node', $t_n->type, 'target'));
 
   $a_all = array_intersect($as, $bt);
-
   $b_all = array_intersect($bs, $at);
 
   $all = array_unique(array_merge($a_all, $b_all));
