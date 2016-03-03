@@ -88,7 +88,7 @@
   <?php endif; ?>
   <?php print render($title_suffix); ?>
   <div class="content clearfix"<?php print $content_attributes; ?>>
-    <?php if ($prefix_display):?>
+    <?php if ($prefix_display): ?>
     <div class="node-private label label-default clearfix">
       <span class="glyphicon glyphicon-lock"></span>
       <?php print t('This content is private'); ?>
@@ -96,8 +96,8 @@
     <?php endif; ?>
 
     <?php
-      foreach($content as $key => $value):
-        if(in_array($key, $show)):
+      foreach ($content as $key => $value):
+        if (in_array($key, $show)):
           print render($content[$key]);
         endif;
       endforeach;

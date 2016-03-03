@@ -35,7 +35,9 @@ $link-color: $brand-color;
 /// Medium grey
 $mid-grey: #999 !default;
 
-/// Dark grey
+///  grey
+$light-grey: #F8F8F8;
+$lighter-grey: #EBEBEB;
 $dark-grey: #090909 !default;
 
 
@@ -46,17 +48,17 @@ $pink: #E477C8;
 $blue-grey: #799bbe;
 $greenblue: #467E8A;
 $purple: #333366;
+$peterriver: #95a5a6;
 
 
-$group-color: $purple;
+$group-color: $peterriver;
 $future-color: $green;
 $idea-color: $orange;
 $event-color: $pink;
 $library-color: $blue-grey;
 $user-color: $greenblue;
 
-$light-grey: #F8F8F8;
-$lighter-grey: #EBEBEB;
+
 
 $facebook: "ico-facebook-small-white.png";
 $twitter: "ico-twitter-small-white.png";

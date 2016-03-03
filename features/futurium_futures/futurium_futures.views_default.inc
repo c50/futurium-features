@@ -110,7 +110,7 @@ function futurium_futures_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_tags']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
-  /* Field: Content: Ideas and experience */
+  /* Field: Content: Summary */
   $handler->display->display_options['fields']['field_ideas']['id'] = 'field_ideas';
   $handler->display->display_options['fields']['field_ideas']['table'] = 'field_data_field_ideas';
   $handler->display->display_options['fields']['field_ideas']['field'] = 'field_ideas';
@@ -197,7 +197,22 @@ function futurium_futures_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'No Futures yet!
 
-  <a href="node/add/future">Create one now!</a>';
+    <a href="node/add/future">Create one now!</a>';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Author */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'node';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  /* Relationship: Flags: like counter */
+  $handler->display->display_options['relationships']['flag_count_rel']['id'] = 'flag_count_rel';
+  $handler->display->display_options['relationships']['flag_count_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['flag_count_rel']['field'] = 'flag_count_rel';
+  $handler->display->display_options['relationships']['flag_count_rel']['required'] = 0;
+  $handler->display->display_options['relationships']['flag_count_rel']['flag'] = 'like';
+  /* Relationship: OG membership: OG membership from Node */
+  $handler->display->display_options['relationships']['og_membership_rel']['id'] = 'og_membership_rel';
+  $handler->display->display_options['relationships']['og_membership_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['og_membership_rel']['field'] = 'og_membership_rel';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -219,6 +234,27 @@ function futurium_futures_views_default_views() {
   $handler->display->display_options['fields']['count']['format_plural'] = TRUE;
   $handler->display->display_options['fields']['count']['format_plural_singular'] = '(1 vote)';
   $handler->display->display_options['fields']['count']['format_plural_plural'] = '(@count votes)';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'future' => 'future',
+  );
+  /* Filter criterion: Content: Logged In User Groups/No Group content */
+  $handler->display->display_options['filters']['user_og_nid']['id'] = 'user_og_nid';
+  $handler->display->display_options['filters']['user_og_nid']['table'] = 'node';
+  $handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
+  $handler->display->display_options['filters']['user_og_nid']['value']['value'] = 1;
 
   /* Display: Landing Page */
   $handler = $view->new_display('block', 'Landing Page', 'block_1');

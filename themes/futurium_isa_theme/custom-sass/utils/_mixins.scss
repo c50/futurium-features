@@ -232,6 +232,17 @@
    /* display: inline-block; */
 }
 
+/* mixin user */
+
+@mixin round-userpicture {
+  border-radius:50%;
+  overflow:hidden;
+  width: 35px;
+  height: 35px;
+}
+
+
+
 /* mixin for layout content types (does markup of row1) */
 
 @mixin contenttype($color, $icon) {
@@ -241,6 +252,10 @@
     @include on-event {
       color: $color;
     }
+  }
+
+  .sidebar-right a {
+    color: inherit;
   }
 
   .more-link a, a.more-link {
@@ -367,6 +382,8 @@
   }
   
 }
+
+
 
 
 /* temp stuff */

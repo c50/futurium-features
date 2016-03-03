@@ -8,12 +8,15 @@
 /**
  * Defines a form for linking ideas with documents.
  */
-function futurium_idea_link_document($form, &$form_state, $node) {
+function _futurium_d4eu_link_document($form, &$form_state, $node) {
+  $form['#attributes'] = array(
+    'id' => array('futurium-idea-link-document'),
+  );
   $form['link_content'] = array(
     '#title' => t('add evidence'),
     '#type' => 'textfield',
     '#size' => 12,
-    '#autocomplete_path' => 'futurium_idea/related_content_autocomplete_callback/document',
+    '#autocomplete_path' => 'futurium_d4eu/related_content_autocomplete_callback/document',
     '#attributes' => array(
       'class' => array('link-document'),
     ),
@@ -30,20 +33,23 @@ function futurium_idea_link_document($form, &$form_state, $node) {
     '#type' => 'submit',
     '#value' => t('Add'),
   );
-  $form['#submit'][] = '_related_content_submit';
-  $form['#validate'][] = '_related_content_validate';
+  $form['#submit'][] = '_futurium_d4eu_related_content_submit';
+  $form['#validate'][] = '_futurium_d4eu_related_content_validate';
   return $form;
 }
 
 /**
  * Defines a form for linking ideas with videos.
  */
-function futurium_idea_link_video($form, &$form_state, $node) {
+function _futurium_d4eu_link_video($form, &$form_state, $node) {
+  $form['#attributes'] = array(
+    'id' => array('futurium-idea-link-video'),
+  );
   $form['link_content'] = array(
     '#title' => t('add video'),
     '#type' => 'textfield',
     '#size' => 12,
-    '#autocomplete_path' => 'futurium_idea/related_content_autocomplete_callback/video_d4eu',
+    '#autocomplete_path' => 'futurium_d4eu/related_content_autocomplete_callback/video_d4eu',
     '#attributes' => array(
       'class' => array('link-video'),
     ),
@@ -60,20 +66,23 @@ function futurium_idea_link_video($form, &$form_state, $node) {
     '#type' => 'submit',
     '#value' => t('Add'),
   );
-  $form['#submit'][] = '_related_content_submit';
-  $form['#validate'][] = '_related_content_validate';
+  $form['#submit'][] = '_futurium_d4eu_related_content_submit';
+  $form['#validate'][] = '_futurium_d4eu_related_content_validate';
   return $form;
 }
 
 /**
  * Defines a form for linking ideas with events.
  */
-function futurium_idea_link_event($form, &$form_state, $node) {
+function _futurium_d4eu_link_event($form, &$form_state, $node) {
+  $form['#attributes'] = array(
+    'id' => array('futurium-idea-link-event'),
+  );
   $form['link_content'] = array(
     '#title' => t('add event'),
     '#type' => 'textfield',
     '#size' => 12,
-    '#autocomplete_path' => 'futurium_idea/related_content_autocomplete_callback/event_d4eu',
+    '#autocomplete_path' => 'futurium_d4eu/related_content_autocomplete_callback/event_d4eu',
     '#attributes' => array(
       'class' => array('link-event'),
     ),
@@ -90,20 +99,23 @@ function futurium_idea_link_event($form, &$form_state, $node) {
     '#type' => 'submit',
     '#value' => t('Add'),
   );
-  $form['#submit'][] = '_related_content_submit';
-  $form['#validate'][]  = '_related_content_validate';
+  $form['#submit'][] = '_futurium_d4eu_related_content_submit';
+  $form['#validate'][]  = '_futurium_d4eu_related_content_validate';
   return $form;
 }
 
 /**
  * Defines a form for linking ideas with polls.
  */
-function futurium_idea_link_poll($form, &$form_state, $node) {
+function _futurium_d4eu_link_poll($form, &$form_state, $node) {
+  $form['#attributes'] = array(
+    'id' => array('futurium-idea-link-poll'),
+  );
   $form['link_content'] = array(
     '#title' => t('add poll'),
     '#type' => 'textfield',
     '#size' => 12,
-    '#autocomplete_path' => 'futurium_idea/related_content_autocomplete_callback/poll',
+    '#autocomplete_path' => 'futurium_d4eu/related_content_autocomplete_callback/poll',
     '#attributes' => array(
       'class' => array('link-poll'),
     ),
@@ -120,8 +132,8 @@ function futurium_idea_link_poll($form, &$form_state, $node) {
     '#type' => 'submit',
     '#value' => t('Add'),
   );
-  $form['#submit'][] = '_related_content_submit';
-  $form['#validate'][] = '_related_content_validate';
+  $form['#submit'][] = '_futurium_d4eu_related_content_submit';
+  $form['#validate'][] = '_futurium_d4eu_related_content_validate';
   return $form;
 }
 
@@ -130,7 +142,7 @@ function futurium_idea_link_poll($form, &$form_state, $node) {
  *
  * Redirects the visitor to the result.
  */
-function _related_content_submit($form, &$form_state) {
+function _futurium_d4eu_related_content_submit($form, &$form_state) {
   $wrapper = entity_metadata_wrapper('node', $form_state['values']['node']);
   $related_nid = $form_state['values']['related_content_nid'];
   switch ($form_state['values']['content_type']) {
@@ -158,7 +170,7 @@ function _related_content_submit($form, &$form_state) {
  *
  * Verifies & extracts node id from input texts and provides the node ID.
  */
-function _related_content_validate($form, &$form_state) {
+function _futurium_d4eu_related_content_validate($form, &$form_state) {
   $node    = $form_state['values']['link_content'];
   $matches = array();
   $nid = 0;

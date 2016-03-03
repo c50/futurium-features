@@ -45,51 +45,27 @@ function futurium_futures_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'nowysiwig' => 'nowysiwig',
-          'plain_text' => 'plain_text',
-          'wysiwyg' => 'wysiwyg',
+          'simple_wysiwig' => 'simple_wysiwig',
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
-            'basic_html' => array(
-              'weight' => 5,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => -9,
-            ),
-            'full_html' => array(
-              'weight' => -10,
-            ),
-            'nowysiwig' => array(
-              'weight' => 0,
-            ),
-            'plain_text' => array(
-              'weight' => -8,
-            ),
-            'wysiwyg' => array(
+            'simple_wysiwig' => array(
               'weight' => 0,
             ),
           ),
         ),
       ),
       'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 20,
       ),
       'type' => 'text_textarea',
       'weight' => 2,
@@ -97,7 +73,7 @@ function futurium_futures_field_default_field_instances() {
   );
 
   // Exported field_instance: 'node-future-field_description'.
-  $field_instances['node-future-field_description'] = array(
+  $field_instances['node-future-field_future_description'] = array(
     'bundle' => 'future',
     'default_value' => NULL,
     'deleted' => 0,
@@ -151,51 +127,26 @@ function futurium_futures_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'node',
-    'field_name' => 'field_description',
+    'field_name' => 'field_future_description',
     'label' => 'Description',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'nowysiwig' => 'nowysiwig',
-          'plain_text' => 'plain_text',
-          'wysiwyg' => 'wysiwyg',
+          'simple_wysiwig' => 'simple_wysiwig',
         ),
         'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
-            'basic_html' => array(
-              'weight' => 5,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => -9,
-            ),
-            'full_html' => array(
-              'weight' => -10,
-            ),
-            'nowysiwig' => array(
-              'weight' => 0,
-            ),
-            'plain_text' => array(
-              'weight' => -8,
-            ),
-            'wysiwyg' => array(
+            'simple_wysiwig' => array(
               'weight' => 0,
             ),
           ),
         ),
       ),
-      'display_summary' => 0,
       'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -203,9 +154,8 @@ function futurium_futures_field_default_field_instances() {
       'module' => 'text',
       'settings' => array(
         'rows' => 10,
-        'summary_rows' => 5,
       ),
-      'type' => 'text_textarea_with_summary',
+      'type' => 'text_textarea',
       'weight' => 1,
     ),
   );
@@ -245,51 +195,27 @@ function futurium_futures_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'ds_code' => 'ds_code',
-          'filtered_html' => 'filtered_html',
-          'full_html' => 'full_html',
-          'nowysiwig' => 'nowysiwig',
-          'plain_text' => 'plain_text',
-          'wysiwyg' => 'wysiwyg',
+          'simple_wysiwig' => 'simple_wysiwig',
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
-            'basic_html' => array(
-              'weight' => 5,
-            ),
-            'ds_code' => array(
-              'weight' => 12,
-            ),
-            'filtered_html' => array(
-              'weight' => -9,
-            ),
-            'full_html' => array(
-              'weight' => -10,
-            ),
-            'nowysiwig' => array(
-              'weight' => 0,
-            ),
-            'plain_text' => array(
-              'weight' => -8,
-            ),
-            'wysiwyg' => array(
+            'simple_wysiwig' => array(
               'weight' => 0,
             ),
           ),
         ),
       ),
       'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 20,
       ),
       'type' => 'text_textarea',
       'weight' => 3,

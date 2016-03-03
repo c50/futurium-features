@@ -57,6 +57,7 @@ features[node][] = futurium_group
 features[page_manager_handlers][] = node_view__panel_context_65b8740b-e92d-4018-9bb0-b030b418a7a8
 features[page_manager_pages][] = groups
 features[variable][] = field_bundle_settings_node__futurium_group
+features[variable][] = comment_futurium_group
 features[views_view][] = group_content
 features[views_view][] = group_content_per_tag
 features[views_view][] = group_groups

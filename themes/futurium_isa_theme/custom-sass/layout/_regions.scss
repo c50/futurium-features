@@ -3,18 +3,23 @@
 /*************/
 
 
+
 .container-fullwidth {
   padding: 40px 0 40px 0;
 }
 
-.container-fullwidth.navbar {
-  padding: 0 0 0 0;
-}
-
+.container-fullwidth.navbar,
 .main-container.container-fullwidth {
   padding: 0 0 0 0;
 }
 
+.not-logged-in.page-user .container {
+  @include rem(padding-bottom, 30px);
+}
+
+.not-logged-in.page-user .container-top .container {
+  @include rem(padding-bottom, 0px);
+}
 
 /***************/
 /* NAVIGATION */
@@ -38,6 +43,10 @@
   width: 80%;
 }
 
+.container-fullwidth.row3 {
+  @include rem(padding-top, 0);
+}
+
 
 /*****************/
 /* ROW1 SETTINGS*/
@@ -50,6 +59,8 @@
   }
 }
 
+/* float to allow margin on group-buttons for responsiveness */
+
 .row1r { 
   .panel-pane {
     width: 100%;
@@ -57,9 +68,10 @@
   }
 }
 
-
-
-
+.row1 .group-right .field-group-div {
+  width: 100%;
+  float: left;
+}
 
 /*******************/
 /* BOXES SETTINGS */
@@ -131,11 +143,44 @@
   padding: 0;
 }
 
+/*
 
-div.panel-pane div.node.row {
-    margin-left: -15px;
-    padding-right: -15px;
+div.panel-pane div.view-mode-teaser_w_pic {
+  padding:15px 0 15px 0;
+  border-bottom: 5px solid #666;
+  .group-left, .group-right {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
+
+*/
+
+.view-user-groups .views-bootstrap-grid-plugin-style > .row {
+  @include rem(padding, 20px 0 20px 0);
+}
+
+
+
+
+div.panel-pane div.row{
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+
+
+
+/* Override from panels */ 
+
+
+
+
+
+
+
+
+
 
 
 

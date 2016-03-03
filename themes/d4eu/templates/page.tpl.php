@@ -9,7 +9,7 @@
 
   <header id="layout-header">
     <div class="container">
-      <?php echo $regions['header_top']; ?>
+      <?php print render($page['header_top']); ?>
       <div class="headerBannerContainer">
         <div id="main-logo"><img id="banner-flag" src="<?php echo $logo; ?>" alt="European Commission logo"></div>
         <div id="main-title"><span><?php echo $site_name; ?></span></div>
@@ -20,26 +20,26 @@
 
   <div id="path" class="hideWhenSmall">
     <div class="container">
-      <?php echo render($page['breadcrumbs']); ?>
+      <?php print render($page['breadcrumbs']); ?>
     </div>
   </div><!-- /div#path -->
 
   <?php if ($page['main_navigation']): ?>
   <nav id="main-navigation">
-    <div class="container"><?php echo render($page['main_navigation']); ?></div>
+    <div class="container"><?php print render($page['main_navigation']); ?></div>
   </nav>
   <?php endif; ?><!-- /nav#main-navigation -->
 
   <?php if ($page['banner']): ?>
   <div id="banner">
-    <div class="container"><?php echo render($page['banner']); ?></div>
+    <div class="container"><?php print render($page['banner']); ?></div>
   </div>
   <?php endif; ?><!-- /div# -->
 
   <div class="identityContainer">
     <div id="layout-body" class="container">
       <div id="pageCenter" class="clearfix">
-        <?php echo $regions['featured']; ?>
+        <?php print render($page['featured']); ?>
         <?php if ($regions['tools']): ?>
           <div class=""><?php echo $regions['tools']; ?></div>
         <?php endif; ?>
@@ -65,23 +65,23 @@
 
           <div class="contentContainer">
 
-        <?php echo $regions['content_top']; ?>
+        <?php print render($page['content_top']); ?>
 
         <a id="main-content"></a>
 
-        <?php echo $regions['help']; ?>
+        <?php print render($page['help']); ?>
 
         <?php if ($action_links): ?>
           <ul class="action-links">
             <?php echo render($action_links); ?>
           </ul>
 
-        <?php echo $regions['content']; ?>
+        <?php print render($page['content']); ?>
 
       </div>
 
       </section>
-      <?php echo $regions['content_bottom']; ?>
+      <?php print render($page['content_bottom']); ?>
 
       <?php endif; ?>
 
@@ -95,10 +95,10 @@
   <div class="container">
     <div id="footer">
       <div class="footer">
-        <?php echo $regions['footer']; ?>
+        <?php print render($page['footer']); ?>
       </div>
       <div class="footer_copyright">
-        <?php echo render($page['footer_copyright']); ?>
+        <?php print render($page['footer_copyright']); ?>
       </div>
     </div>
   </div>
