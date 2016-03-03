@@ -3941,6 +3941,33 @@ function futurium_isa_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['home'] = $page;
 
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'events';
+  $page->task = 'page';
+  $page->admin_title = 'Events';
+  $page->admin_description = '';
+  $page->path = 'events';
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
+  $page->menu = array(
+    'type' => 'normal',
+    'title' => 'Events',
+    'weight' => '3',
+    'name' => 'main-menu',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'weight' => 0,
+      'name' => 'navigation',
+    ),
+  );
+  $page->arguments = array();
+  $page->conf = array();
+  $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
@@ -4132,6 +4159,7 @@ function futurium_isa_default_page_manager_pages() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
   $pages['events'] = $page;
 
   $page = new stdClass();
@@ -5204,6 +5232,35 @@ function futurium_isa_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['group_members'] = $page;
 
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'ideas';
+  $page->task = 'page';
+  $page->admin_title = 'Ideas';
+  $page->admin_description = '';
+  $page->path = 'ideas';
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
+  $page->menu = array(
+    'type' => 'normal',
+    'title' => 'Ideas',
+    'name' => 'main-menu',
+    'weight' => '1',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
@@ -5397,8 +5454,38 @@ function futurium_isa_default_page_manager_pages() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
   $pages['ideas'] = $page;
 
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'library';
+  $page->task = 'page';
+  $page->admin_title = 'Library';
+  $page->admin_description = '';
+  $page->path = 'library';
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
+  $page->menu = array(
+    'type' => 'normal',
+    'title' => 'Library',
+    'name' => 'main-menu',
+    'weight' => '2',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
@@ -5640,6 +5727,7 @@ function futurium_isa_default_page_manager_pages() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
   $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
   $pages['library'] = $page;
 
   $page = new stdClass();
