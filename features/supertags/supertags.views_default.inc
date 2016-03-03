@@ -363,11 +363,11 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name] [field_organisation]';
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['name']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
-  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['name']['alter']['text'] = '[name] [field_organisation]';
   /* Field: Taxonomy term: Path */
   $handler->display->display_options['fields']['field_path_1']['id'] = 'field_path_1';
   $handler->display->display_options['fields']['field_path_1']['table'] = 'field_data_field_path';
@@ -1478,9 +1478,9 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = '';
   $handler->display->display_options['fields']['name']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['name']['alter']['text'] = '[name][field_organisation]';
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   /* Field: Content: Post date */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'node';
@@ -1488,7 +1488,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['created']['label'] = '';
   $handler->display->display_options['fields']['created']['exclude'] = TRUE;
   $handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['created']['date_format'] = 'short';
+  $handler->display->display_options['fields']['created']['date_format'] = 'day_fullmonth_year';
   $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
@@ -1521,14 +1521,14 @@ function supertags_views_default_views() {
               <div class="pull-right text-center">
                 [picture]
                 <div class="text-muted">
-                  [name]<br />
-                  <span class="label label-default">[created]</span>
+                  [name]
                 </div>
               </div>
               <div class="media-body">
                 <div class="pull-right">[value]</div>
                 <h3 class="media-heading"><a href="[path_1]">[title]</a></h3>
                 <div>
+                  <span class="blogListDate">[created]</span>
                   [body]
                   <div><a href="[path_1]">Read more</a></div>
                 </div>
