@@ -721,34 +721,6 @@ function futurium_futures_default_page_manager_handlers() {
  */
 function futurium_futures_default_page_manager_pages() {
 
-  $page = new stdClass();
-  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
-  $page->api_version = 1;
-  $page->name = 'futures';
-  $page->task = 'page';
-  $page->admin_title = 'Futures';
-  $page->admin_description = '';
-  $page->path = 'futures';
-  $page->access = array(
-    'type' => 'none',
-  );
-  $page->menu = array(
-    'type' => 'normal',
-    'title' => 'Futures',
-    'name' => 'main-menu',
-    'weight' => '1',
-    'parent' => array(
-      'type' => 'none',
-      'title' => '',
-      'name' => 'navigation',
-      'weight' => '0',
-    ),
-  );
-  $page->arguments = array();
-  $page->conf = array(
-    'admin_paths' => FALSE,
-  );
-  $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
@@ -882,20 +854,12 @@ function futurium_futures_default_page_manager_pages() {
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'context' => 'logged-in-user',
-          'name' => 'perm',
-          'settings' => array(
-            'perm' => 'create future content',
-          ),
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'admin_title' => 'Add Future CTA',
       'title' => '',
-      'body' => '<a class="btn" href="node/add/future">Add a Future</a>',
+      'body' => '<a class="btn btn-special btn-add-content" href="node/add/future">Add a Future</a>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -910,44 +874,6 @@ function futurium_futures_default_page_manager_pages() {
     $pane->uuid = 'ebe8fa1b-53a6-4faf-98b9-0e2bacdf2c91';
     $display->content['new-ebe8fa1b-53a6-4faf-98b9-0e2bacdf2c91'] = $pane;
     $display->panels['row1l'][1] = 'new-ebe8fa1b-53a6-4faf-98b9-0e2bacdf2c91';
-    $pane = new stdClass();
-    $pane->pid = 'new-f107093e-0242-41ff-adf9-db057e27ed44';
-    $pane->panel = 'row1l';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'role',
-          'settings' => array(
-            'rids' => array(
-              0 => 1,
-            ),
-          ),
-          'context' => 'logged-in-user',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Login or Register',
-      'title' => '',
-      'body' => '<a class="btn" href="/user/login">Login</a> or <a class="btn" href="/user/register">Register</a> to create a Future',
-      'format' => 'full',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = 'f107093e-0242-41ff-adf9-db057e27ed44';
-    $display->content['new-f107093e-0242-41ff-adf9-db057e27ed44'] = $pane;
-    $display->panels['row1l'][2] = 'new-f107093e-0242-41ff-adf9-db057e27ed44';
     $pane = new stdClass();
     $pane->pid = 'new-b78760ba-db75-4636-b9cf-2448e9ec0507';
     $pane->panel = 'row2l';
@@ -986,7 +912,6 @@ function futurium_futures_default_page_manager_pages() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-effa04b7-1c87-4f3d-bd6d-2fc3331cd13c';
   $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
   $pages['futures'] = $page;
 
   return $pages;

@@ -3941,33 +3941,6 @@ function futurium_isa_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['home'] = $page;
 
-  $page = new stdClass();
-  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
-  $page->api_version = 1;
-  $page->name = 'events';
-  $page->task = 'page';
-  $page->admin_title = 'Events';
-  $page->admin_description = '';
-  $page->path = 'events';
-  $page->access = array(
-    'type' => 'none',
-    'settings' => NULL,
-  );
-  $page->menu = array(
-    'type' => 'normal',
-    'title' => 'Events',
-    'weight' => '3',
-    'name' => 'main-menu',
-    'parent' => array(
-      'type' => 'none',
-      'title' => '',
-      'weight' => 0,
-      'name' => 'navigation',
-    ),
-  );
-  $page->arguments = array();
-  $page->conf = array();
-  $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
@@ -4101,20 +4074,12 @@ function futurium_isa_default_page_manager_pages() {
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'context' => 'logged-in-user',
-          'name' => 'perm',
-          'settings' => array(
-            'perm' => 'create event_d4eu content',
-          ),
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'admin_title' => 'Add Event CTA',
       'title' => '',
-      'body' => '<a class="btn" href="node/add/event-d4eu">Add an Event</a>',
+      'body' => '<a class="btn btn-special btn-add-content" href="node/add/event-d4eu">Add an Event</a>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -4129,44 +4094,6 @@ function futurium_isa_default_page_manager_pages() {
     $pane->uuid = 'ade53165-092f-4033-a482-632af772e197';
     $display->content['new-ade53165-092f-4033-a482-632af772e197'] = $pane;
     $display->panels['row1l'][1] = 'new-ade53165-092f-4033-a482-632af772e197';
-    $pane = new stdClass();
-    $pane->pid = 'new-8580d4ab-82bb-4985-a058-fb0fc278bc17';
-    $pane->panel = 'row1l';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'role',
-          'settings' => array(
-            'rids' => array(
-              0 => 1,
-            ),
-          ),
-          'context' => 'logged-in-user',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Login or Register',
-      'title' => '',
-      'body' => '<a class="btn" href="/user/login">Login</a> or <a class="btn" href="/user/register">Register</a> to create an Event',
-      'format' => 'full',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '8580d4ab-82bb-4985-a058-fb0fc278bc17';
-    $display->content['new-8580d4ab-82bb-4985-a058-fb0fc278bc17'] = $pane;
-    $display->panels['row1l'][2] = 'new-8580d4ab-82bb-4985-a058-fb0fc278bc17';
     $pane = new stdClass();
     $pane->pid = 'new-722b5121-ad49-404a-a300-c802e7aee61c';
     $pane->panel = 'row2l';
@@ -4205,7 +4132,6 @@ function futurium_isa_default_page_manager_pages() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
   $pages['events'] = $page;
 
   $page = new stdClass();
@@ -5278,35 +5204,6 @@ function futurium_isa_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['group_members'] = $page;
 
-  $page = new stdClass();
-  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
-  $page->api_version = 1;
-  $page->name = 'ideas';
-  $page->task = 'page';
-  $page->admin_title = 'Ideas';
-  $page->admin_description = '';
-  $page->path = 'ideas';
-  $page->access = array(
-    'type' => 'none',
-    'settings' => NULL,
-  );
-  $page->menu = array(
-    'type' => 'normal',
-    'title' => 'Ideas',
-    'name' => 'main-menu',
-    'weight' => '1',
-    'parent' => array(
-      'type' => 'none',
-      'title' => '',
-      'name' => 'navigation',
-      'weight' => '0',
-    ),
-  );
-  $page->arguments = array();
-  $page->conf = array(
-    'admin_paths' => FALSE,
-  );
-  $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
@@ -5442,20 +5339,12 @@ function futurium_isa_default_page_manager_pages() {
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'context' => 'logged-in-user',
-          'name' => 'perm',
-          'settings' => array(
-            'perm' => 'create ideas content',
-          ),
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'admin_title' => 'Add Idea CTA',
       'title' => '',
-      'body' => '<a class="btn" href="node/add/ideas">Add an Idea</a>',
+      'body' => '<a class="btn btn-special btn-add-content" href="node/add/ideas">Add an Idea</a>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -5470,44 +5359,6 @@ function futurium_isa_default_page_manager_pages() {
     $pane->uuid = '9f0ae900-5fe7-4817-b7d9-ee0620244fe8';
     $display->content['new-9f0ae900-5fe7-4817-b7d9-ee0620244fe8'] = $pane;
     $display->panels['row1l'][1] = 'new-9f0ae900-5fe7-4817-b7d9-ee0620244fe8';
-    $pane = new stdClass();
-    $pane->pid = 'new-01128eaa-6f57-43c9-8744-8fb3409f89a9';
-    $pane->panel = 'row1l';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'role',
-          'settings' => array(
-            'rids' => array(
-              0 => 1,
-            ),
-          ),
-          'context' => 'logged-in-user',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Login or Register',
-      'title' => '',
-      'body' => '<a class="btn" href="/user/login">Login</a> or <a class="btn" href="/user/register">Register</a> to create an Idea',
-      'format' => 'full',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '01128eaa-6f57-43c9-8744-8fb3409f89a9';
-    $display->content['new-01128eaa-6f57-43c9-8744-8fb3409f89a9'] = $pane;
-    $display->panels['row1l'][2] = 'new-01128eaa-6f57-43c9-8744-8fb3409f89a9';
     $pane = new stdClass();
     $pane->pid = 'new-74ab1b6e-8e8e-422a-8c59-757601a78377';
     $pane->panel = 'row2l';
@@ -5546,38 +5397,8 @@ function futurium_isa_default_page_manager_pages() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
   $pages['ideas'] = $page;
 
-  $page = new stdClass();
-  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
-  $page->api_version = 1;
-  $page->name = 'library';
-  $page->task = 'page';
-  $page->admin_title = 'Library';
-  $page->admin_description = '';
-  $page->path = 'library';
-  $page->access = array(
-    'type' => 'none',
-    'settings' => NULL,
-  );
-  $page->menu = array(
-    'type' => 'normal',
-    'title' => 'Library',
-    'name' => 'main-menu',
-    'weight' => '2',
-    'parent' => array(
-      'type' => 'none',
-      'title' => '',
-      'name' => 'navigation',
-      'weight' => '0',
-    ),
-  );
-  $page->arguments = array();
-  $page->conf = array(
-    'admin_paths' => FALSE,
-  );
-  $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
@@ -5773,21 +5594,12 @@ function futurium_isa_default_page_manager_pages() {
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'perm',
-          'settings' => array(
-            'perm' => 'create evidence content',
-          ),
-          'context' => 'logged-in-user',
-          'not' => FALSE,
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'admin_title' => 'Add Library Item CTA',
       'title' => '',
-      'body' => '<a class="btn" href="node/add/evidence">Add Evidence</a>',
+      'body' => '<a class="btn btn-special btn-add-content" href="node/add/evidence">Add Evidence</a>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -5802,44 +5614,6 @@ function futurium_isa_default_page_manager_pages() {
     $pane->uuid = '10914b57-4e0b-40f2-b0f8-381a52e2d005';
     $display->content['new-10914b57-4e0b-40f2-b0f8-381a52e2d005'] = $pane;
     $display->panels['row1l'][1] = 'new-10914b57-4e0b-40f2-b0f8-381a52e2d005';
-    $pane = new stdClass();
-    $pane->pid = 'new-56204ba5-7327-460f-babe-f017d4fb9b02';
-    $pane->panel = 'row1l';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'role',
-          'settings' => array(
-            'rids' => array(
-              0 => 1,
-            ),
-          ),
-          'context' => 'logged-in-user',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Login or Register',
-      'title' => '',
-      'body' => '<a class="btn" href="/user/login">Login</a> or <a class="btn" href="/user/register">Register</a> to create a Library Item',
-      'format' => 'full',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '56204ba5-7327-460f-babe-f017d4fb9b02';
-    $display->content['new-56204ba5-7327-460f-babe-f017d4fb9b02'] = $pane;
-    $display->panels['row1l'][2] = 'new-56204ba5-7327-460f-babe-f017d4fb9b02';
     $pane = new stdClass();
     $pane->pid = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
     $pane->panel = 'row2l';
@@ -5866,7 +5640,6 @@ function futurium_isa_default_page_manager_pages() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
   $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
   $pages['library'] = $page;
 
   $page = new stdClass();
