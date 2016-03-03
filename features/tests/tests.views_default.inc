@@ -36,16 +36,8 @@ function tests_views_default_views() {
   $handler->display->display_options['style_options']['indicators'] = 1;
   $handler->display->display_options['style_options']['pause'] = 0;
   $handler->display->display_options['row_plugin'] = 'views_bootstrap_carousel_plugin_rows';
-  $handler->display->display_options['row_options']['image'] = 'field_slideshow_image';
-  $handler->display->display_options['row_options']['title'] = 'title';
+  $handler->display->display_options['row_options']['image'] = 'nothing';
   $handler->display->display_options['row_options']['description'] = '';
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Field: Content: Link */
   $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
   $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
@@ -55,12 +47,20 @@ function tests_views_default_views() {
   $handler->display->display_options['fields']['field_link']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_link']['type'] = 'link_title_plain';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Field: Content: Image */
   $handler->display->display_options['fields']['field_slideshow_image']['id'] = 'field_slideshow_image';
   $handler->display->display_options['fields']['field_slideshow_image']['table'] = 'field_data_field_slideshow_image';
   $handler->display->display_options['fields']['field_slideshow_image']['field'] = 'field_slideshow_image';
   $handler->display->display_options['fields']['field_slideshow_image']['label'] = '';
-  $handler->display->display_options['fields']['field_slideshow_image']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_slideshow_image']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_slideshow_image']['alter']['path'] = '[field_link]';
   $handler->display->display_options['fields']['field_slideshow_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_slideshow_image']['element_default_classes'] = FALSE;
@@ -69,6 +69,18 @@ function tests_views_default_views() {
     'image_style' => 'carousel_full',
     'image_link' => '',
   );
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="[field_link]">
+  [field_slideshow_image]
+  <div class="carousel-caption">
+    <h3>[title]</h3>
+  </div>
+  </a>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

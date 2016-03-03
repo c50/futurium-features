@@ -1000,6 +1000,66 @@ function futurium_isa_default_page_manager_handlers() {
     $display->content['new-60bf6942-ee13-4028-83a1-e1cbb8686eef'] = $pane;
     $display->panels['row2l'][0] = 'new-60bf6942-ee13-4028-83a1-e1cbb8686eef';
     $pane = new stdClass();
+    $pane->pid = 'new-ac479bd3-6da6-47eb-a7a2-ead06772e712';
+    $pane->panel = 'row2l';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_evidence_file';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'file_default',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'ac479bd3-6da6-47eb-a7a2-ead06772e712';
+    $display->content['new-ac479bd3-6da6-47eb-a7a2-ead06772e712'] = $pane;
+    $display->panels['row2l'][1] = 'new-ac479bd3-6da6-47eb-a7a2-ead06772e712';
+    $pane = new stdClass();
+    $pane->pid = 'new-2a0b02da-11e0-43da-8d68-d592a57e3ce5';
+    $pane->panel = 'row2l';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_evidence_link';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'link_default',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '2a0b02da-11e0-43da-8d68-d592a57e3ce5';
+    $display->content['new-2a0b02da-11e0-43da-8d68-d592a57e3ce5'] = $pane;
+    $display->panels['row2l'][2] = 'new-2a0b02da-11e0-43da-8d68-d592a57e3ce5';
+    $pane = new stdClass();
     $pane->pid = 'new-d96246f7-eb84-4f14-b4aa-a958ee9caf00';
     $pane->panel = 'row2l';
     $pane->type = 'entity_field';
@@ -1024,11 +1084,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = 'd96246f7-eb84-4f14-b4aa-a958ee9caf00';
     $display->content['new-d96246f7-eb84-4f14-b4aa-a958ee9caf00'] = $pane;
-    $display->panels['row2l'][1] = 'new-d96246f7-eb84-4f14-b4aa-a958ee9caf00';
+    $display->panels['row2l'][3] = 'new-d96246f7-eb84-4f14-b4aa-a958ee9caf00';
     $pane = new stdClass();
     $pane->pid = 'new-a62ff16e-b240-4dad-91c1-ccdd65cb077b';
     $pane->panel = 'row2r';
@@ -3340,7 +3400,7 @@ function futurium_isa_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
@@ -4041,20 +4101,12 @@ function futurium_isa_default_page_manager_pages() {
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'context' => 'logged-in-user',
-          'name' => 'perm',
-          'settings' => array(
-            'perm' => 'create event_d4eu content',
-          ),
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'admin_title' => 'Add Event CTA',
       'title' => '',
-      'body' => '<a class="btn" href="node/add/event-d4eu">Add an Event</a>',
+      'body' => '<a class="btn btn-special btn-add-content" href="node/add/event-d4eu">Add an Event</a>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -4069,44 +4121,6 @@ function futurium_isa_default_page_manager_pages() {
     $pane->uuid = 'ade53165-092f-4033-a482-632af772e197';
     $display->content['new-ade53165-092f-4033-a482-632af772e197'] = $pane;
     $display->panels['row1l'][1] = 'new-ade53165-092f-4033-a482-632af772e197';
-    $pane = new stdClass();
-    $pane->pid = 'new-8580d4ab-82bb-4985-a058-fb0fc278bc17';
-    $pane->panel = 'row1l';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'role',
-          'settings' => array(
-            'rids' => array(
-              0 => 1,
-            ),
-          ),
-          'context' => 'logged-in-user',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Login or Register',
-      'title' => '',
-      'body' => '<a class="btn" href="/user/login">Login</a> or <a class="btn" href="/user/register">Register</a> to create an Event',
-      'format' => 'full',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '8580d4ab-82bb-4985-a058-fb0fc278bc17';
-    $display->content['new-8580d4ab-82bb-4985-a058-fb0fc278bc17'] = $pane;
-    $display->panels['row1l'][2] = 'new-8580d4ab-82bb-4985-a058-fb0fc278bc17';
     $pane = new stdClass();
     $pane->pid = 'new-722b5121-ad49-404a-a300-c802e7aee61c';
     $pane->panel = 'row2l';
@@ -5382,20 +5396,12 @@ function futurium_isa_default_page_manager_pages() {
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'context' => 'logged-in-user',
-          'name' => 'perm',
-          'settings' => array(
-            'perm' => 'create ideas content',
-          ),
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'admin_title' => 'Add Idea CTA',
       'title' => '',
-      'body' => '<a class="btn" href="node/add/ideas">Add an Idea</a>',
+      'body' => '<a class="btn btn-special btn-add-content" href="node/add/ideas">Add an Idea</a>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -5410,44 +5416,6 @@ function futurium_isa_default_page_manager_pages() {
     $pane->uuid = '9f0ae900-5fe7-4817-b7d9-ee0620244fe8';
     $display->content['new-9f0ae900-5fe7-4817-b7d9-ee0620244fe8'] = $pane;
     $display->panels['row1l'][1] = 'new-9f0ae900-5fe7-4817-b7d9-ee0620244fe8';
-    $pane = new stdClass();
-    $pane->pid = 'new-01128eaa-6f57-43c9-8744-8fb3409f89a9';
-    $pane->panel = 'row1l';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'role',
-          'settings' => array(
-            'rids' => array(
-              0 => 1,
-            ),
-          ),
-          'context' => 'logged-in-user',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Login or Register',
-      'title' => '',
-      'body' => '<a class="btn" href="/user/login">Login</a> or <a class="btn" href="/user/register">Register</a> to create an Idea',
-      'format' => 'full',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '01128eaa-6f57-43c9-8744-8fb3409f89a9';
-    $display->content['new-01128eaa-6f57-43c9-8744-8fb3409f89a9'] = $pane;
-    $display->panels['row1l'][2] = 'new-01128eaa-6f57-43c9-8744-8fb3409f89a9';
     $pane = new stdClass();
     $pane->pid = 'new-74ab1b6e-8e8e-422a-8c59-757601a78377';
     $pane->panel = 'row2l';
@@ -5713,21 +5681,12 @@ function futurium_isa_default_page_manager_pages() {
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
     $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'perm',
-          'settings' => array(
-            'perm' => 'create evidence content',
-          ),
-          'context' => 'logged-in-user',
-          'not' => FALSE,
-        ),
-      ),
+      'plugins' => array(),
     );
     $pane->configuration = array(
       'admin_title' => 'Add Library Item CTA',
       'title' => '',
-      'body' => '<a class="btn" href="node/add/evidence">Add Evidence</a>',
+      'body' => '<a class="btn btn-special btn-add-content" href="node/add/evidence">Add Evidence</a>',
       'format' => 'full',
       'substitute' => TRUE,
     );
@@ -5742,44 +5701,6 @@ function futurium_isa_default_page_manager_pages() {
     $pane->uuid = '10914b57-4e0b-40f2-b0f8-381a52e2d005';
     $display->content['new-10914b57-4e0b-40f2-b0f8-381a52e2d005'] = $pane;
     $display->panels['row1l'][1] = 'new-10914b57-4e0b-40f2-b0f8-381a52e2d005';
-    $pane = new stdClass();
-    $pane->pid = 'new-56204ba5-7327-460f-babe-f017d4fb9b02';
-    $pane->panel = 'row1l';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'role',
-          'settings' => array(
-            'rids' => array(
-              0 => 1,
-            ),
-          ),
-          'context' => 'logged-in-user',
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'admin_title' => 'Login or Register',
-      'title' => '',
-      'body' => '<a class="btn" href="/user/login">Login</a> or <a class="btn" href="/user/register">Register</a> to create a Library Item',
-      'format' => 'full',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '56204ba5-7327-460f-babe-f017d4fb9b02';
-    $display->content['new-56204ba5-7327-460f-babe-f017d4fb9b02'] = $pane;
-    $display->panels['row1l'][2] = 'new-56204ba5-7327-460f-babe-f017d4fb9b02';
     $pane = new stdClass();
     $pane->pid = 'new-f1142d9b-5be4-44ee-8970-0bb33ea67916';
     $pane->panel = 'row2l';
