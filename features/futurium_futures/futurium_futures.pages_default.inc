@@ -912,6 +912,7 @@ function futurium_futures_default_page_manager_pages() {
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-effa04b7-1c87-4f3d-bd6d-2fc3331cd13c';
   $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
   $pages['futures'] = $page;
 
   return $pages;
