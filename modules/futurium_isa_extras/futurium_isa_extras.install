@@ -56,6 +56,9 @@ function futurium_isa_extras_enable() {
   $field['locked'] = 0;
   field_update_field($field);
 
+  // Disable bartik and ec_resp themes.
+  theme_disable(array('bartik', 'ec_resp'));
+
   drupal_flush_all_caches();
 
 }
