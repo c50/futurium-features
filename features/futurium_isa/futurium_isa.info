@@ -19,6 +19,7 @@ dependencies[] = futurium_isa_extras
 dependencies[] = geocoder
 dependencies[] = geofield_map
 dependencies[] = hotjar
+dependencies[] = maxlength
 dependencies[] = media_vimeo
 dependencies[] = media_youtube
 dependencies[] = menu
