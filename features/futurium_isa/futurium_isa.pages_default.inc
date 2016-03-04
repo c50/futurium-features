@@ -3771,7 +3771,19 @@ function futurium_isa_default_page_manager_pages() {
     $pane->type = 'views';
     $pane->subtype = 'homepage';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'view_access',
+          'settings' => array(
+            'view_instance' => 'homepage:block',
+            'view_arguments' => '',
+            'label' => 'Homepage - block',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_pager_settings' => 0,
       'use_pager' => 0,
@@ -3800,6 +3812,43 @@ function futurium_isa_default_page_manager_pages() {
     $pane->uuid = 'b7f8fe00-3b1f-443b-b634-c432fd0b6319';
     $display->content['new-b7f8fe00-3b1f-443b-b634-c432fd0b6319'] = $pane;
     $display->panels['row2l'][0] = 'new-b7f8fe00-3b1f-443b-b634-c432fd0b6319';
+    $pane = new stdClass();
+    $pane->pid = 'new-29826a92-d14d-411f-9186-894f62ca82d7';
+    $pane->panel = 'row2l';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'view_access',
+          'settings' => array(
+            'view_instance' => 'homepage:block',
+            'view_arguments' => '',
+            'label' => 'Homepage - block',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'No content.',
+      'title' => '',
+      'body' => '<p>Welcome to your website.</p>',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '29826a92-d14d-411f-9186-894f62ca82d7';
+    $display->content['new-29826a92-d14d-411f-9186-894f62ca82d7'] = $pane;
+    $display->panels['row2l'][1] = 'new-29826a92-d14d-411f-9186-894f62ca82d7';
     $pane = new stdClass();
     $pane->pid = 'new-96ca7897-3f24-4cd3-84dd-68ad31538432';
     $pane->panel = 'row2r';
