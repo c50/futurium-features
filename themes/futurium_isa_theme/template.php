@@ -150,9 +150,19 @@ function futurium_isa_theme_status_messages($variables) {
  * Form alter to add missing bootstrap classes and role to search form.
  */
 function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'search_form') {
-    $form['#attributes']['class'][] = 'navbar-form';
-    $form['#attributes']['role'][] = 'search';
+  switch ($form_id) {
+    case 'search_form':
+      $form['#attributes']['class'][] = 'navbar-form';
+      $form['#attributes']['role'][] = 'search';
+      break;
+
+    case 'user_login':
+      $form['name']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['name']['#description'])));
+      $form['pass']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['pass']['#description'])));
+      $form['name']['#description'] = "";
+      $form['pass']['#description'] = "";
+      break;
+
   }
 }
 
@@ -508,9 +518,4 @@ function futurium_isa_theme_textarea($variables) {
   $output .= '<textarea' . drupal_attributes($element['#attributes']) . '>' . check_plain($element['#value']) . '</textarea>';
   $output .= '</div>';
   return $output;
-}
-
-function futurium_isa_theme_preprocess_loggedin_collapsible_block(&$vars) {
-  dsm($vars);
-  $vars['title'] = "WOOT";
 }
