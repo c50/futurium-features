@@ -7,11 +7,12 @@
 /* pre-wrapper with login collapse part */
 /***************************************/
 
-.logged-in .wrapper-pre-header .btn-info {
+.logged-in .wrapper-pre-header .btn-login {
     background: none;
     border: none;
     @include on-event {
       background: none;
+      border: none;
     }
 }
 

@@ -338,6 +338,10 @@ body.node-type-event-d4eu {
   @extend .pane-rate-widget;
 }
 
+.field-name-field-time-horizon {
+  @include rem(margin-top, 10px); 
+}
+
 .node-type-ideas .pane-rate-widget {
   background: darken($idea-color, 10%);
 }
@@ -357,7 +361,7 @@ body.node-type-event-d4eu {
  ... commented on ...
  **********************/
 
-.activity-message.attending:before {
+.activity-message.attending:before, {
   @include fa(user-plus);
 }
 
@@ -428,6 +432,12 @@ a.btn-more:before {
   @include fa(plus);
 }
 
+
+.btn-add-content:before {
+  @include fa(plus-circle);
+  font-size: 24px;
+}
+
 .flag-like a:before {
   @include fa(thumbs-up);
 }
@@ -490,12 +500,34 @@ ul.rate-fivestar-processed{
 }
 
 .futurium-rate-desirability:before {
-  @include fa(thumbs-up); 
+   @include fa(smile-o);  
 }
 
 .futurium-rate-impact {
-  @include fa(smile-o); 
+  @include fa(stop); 
+  vertical-align: botttom;
 }
+
+.rate-widget-3 ul li:first-child i{
+ font-size:12px;
+}
+
+.rate-widget-3 ul li:nth-child(2) i{
+ font-size:16px;
+}
+
+.rate-widget-3 ul li:nth-child(3) i{
+ font-size:20px;
+}
+
+.rate-widget-3 ul li:nth-child(4) i{
+ font-size:24px;
+}
+
+.rate-widget-3 ul li:nth-child(5) i{
+ font-size:28px;
+}
+
 
 .futurium-rate-feasibility {
   @include fa(balance-scale);
@@ -1115,12 +1147,17 @@ span.comment-count {
 
 /* position carousel indicators */
 
+.view-carousel {
+  border-top: 3px solid $text-color;
+}
+
 .carousel-indicators {
   bottom: 5px;
   margin-bottom: 0;
 }
 
 .carousel-caption {
+  top: 38%;
   h3 {
     font-weight: bold;
     color: #fff;
@@ -1133,6 +1170,10 @@ span.comment-count {
       @include rem(font-size, 16px);
     }
   }
+}
+
+.item.active a{
+  background:red;
 }
 
 
