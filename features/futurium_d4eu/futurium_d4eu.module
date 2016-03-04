@@ -73,11 +73,6 @@ function futurium_d4eu_form_comment_form_alter(&$form, &$form_state, $form_id) {
   if (!user_access('access custom futurium fields', $current_user)) {
     $form['field_important_or_conclusion']['#access'] = FALSE;
   }
-
-  if (module_exists('password_policy')) {
-    // Modify the elements.
-    $form['account']['pass']['#description'] = '';
-  }
 }
 
 /**
