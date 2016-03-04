@@ -1497,36 +1497,6 @@ function futurium_isa_default_page_manager_handlers() {
     $display->content['new-8dc41bbb-7faa-4476-843e-5f977a854684'] = $pane;
     $display->panels['row1r'][2] = 'new-8dc41bbb-7faa-4476-843e-5f977a854684';
     $pane = new stdClass();
-    $pane->pid = 'new-1c8c9caf-22fa-408f-a52e-f5e81b33b7dd';
-    $pane->panel = 'row2l';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_ideas';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'text_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '1c8c9caf-22fa-408f-a52e-f5e81b33b7dd';
-    $display->content['new-1c8c9caf-22fa-408f-a52e-f5e81b33b7dd'] = $pane;
-    $display->panels['row2l'][0] = 'new-1c8c9caf-22fa-408f-a52e-f5e81b33b7dd';
-    $pane = new stdClass();
     $pane->pid = 'new-314906e9-78f5-46eb-a69c-54aeb6fb63c4';
     $pane->panel = 'row2l';
     $pane->type = 'entity_field';
@@ -1551,11 +1521,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '314906e9-78f5-46eb-a69c-54aeb6fb63c4';
     $display->content['new-314906e9-78f5-46eb-a69c-54aeb6fb63c4'] = $pane;
-    $display->panels['row2l'][1] = 'new-314906e9-78f5-46eb-a69c-54aeb6fb63c4';
+    $display->panels['row2l'][0] = 'new-314906e9-78f5-46eb-a69c-54aeb6fb63c4';
     $pane = new stdClass();
     $pane->pid = 'new-83f666bc-4e94-425d-90bd-3e893ee439dc';
     $pane->panel = 'row2l';
@@ -1581,11 +1551,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '83f666bc-4e94-425d-90bd-3e893ee439dc';
     $display->content['new-83f666bc-4e94-425d-90bd-3e893ee439dc'] = $pane;
-    $display->panels['row2l'][2] = 'new-83f666bc-4e94-425d-90bd-3e893ee439dc';
+    $display->panels['row2l'][1] = 'new-83f666bc-4e94-425d-90bd-3e893ee439dc';
     $pane = new stdClass();
     $pane->pid = 'new-d8a33c89-d231-461c-a7a6-dc1a5eb3a858';
     $pane->panel = 'row2l';
@@ -1611,11 +1581,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = 'd8a33c89-d231-461c-a7a6-dc1a5eb3a858';
     $display->content['new-d8a33c89-d231-461c-a7a6-dc1a5eb3a858'] = $pane;
-    $display->panels['row2l'][3] = 'new-d8a33c89-d231-461c-a7a6-dc1a5eb3a858';
+    $display->panels['row2l'][2] = 'new-d8a33c89-d231-461c-a7a6-dc1a5eb3a858';
     $pane = new stdClass();
     $pane->pid = 'new-99396859-4ddf-41d8-a8ef-d0472fa507ea';
     $pane->panel = 'row2l';
@@ -1637,11 +1607,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = '99396859-4ddf-41d8-a8ef-d0472fa507ea';
     $display->content['new-99396859-4ddf-41d8-a8ef-d0472fa507ea'] = $pane;
-    $display->panels['row2l'][4] = 'new-99396859-4ddf-41d8-a8ef-d0472fa507ea';
+    $display->panels['row2l'][3] = 'new-99396859-4ddf-41d8-a8ef-d0472fa507ea';
     $pane = new stdClass();
     $pane->pid = 'new-187e3f2c-a257-4459-953b-ed3da549df42';
     $pane->panel = 'row2l';
@@ -1662,11 +1632,11 @@ function futurium_isa_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 4;
     $pane->locks = array();
     $pane->uuid = '187e3f2c-a257-4459-953b-ed3da549df42';
     $display->content['new-187e3f2c-a257-4459-953b-ed3da549df42'] = $pane;
-    $display->panels['row2l'][5] = 'new-187e3f2c-a257-4459-953b-ed3da549df42';
+    $display->panels['row2l'][4] = 'new-187e3f2c-a257-4459-953b-ed3da549df42';
     $pane = new stdClass();
     $pane->pid = 'new-aeabe19c-d13c-4013-951e-31484323427f';
     $pane->panel = 'row2r';
