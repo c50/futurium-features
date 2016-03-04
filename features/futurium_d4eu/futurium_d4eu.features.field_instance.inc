@@ -1209,12 +1209,51 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'comment-comment_node_blog_post-field_important_or_conclusion'.
+  $field_instances['comment-comment_node_issue-field_important_or_conclusion'] = array(
+    'bundle' => 'comment_node_issue',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'comment_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'comment',
+    'field_name' => 'field_important_or_conclusion',
+    'label' => 'Important or conclusion',
+    'required' => 0,
+    'settings' => array(
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-issue-field_rate_issue'.
   $field_instances['node-issue-field_rate_issue'] = array(
     'bundle' => 'issue',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Rate that idea.',
+    'description' => 'Rate that issue.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1512,6 +1551,7 @@ function futurium_d4eu_field_default_field_instances() {
   t('Poll');
   t('Rate');
   t('Rate that idea.');
+  t('Rate that issue.');
   t('Rate the user\'s comment.');
   t('Tags');
   t('Videos');
