@@ -1048,6 +1048,87 @@ function futurium_isa_extras_get_users_in_group($gid) {
   return $result;
 }
 
+
+/**
+ * implementing hook_node_presave
+ */
+function futurium_isa_extras_pdf_processor($form, $form_state) {
+  if (isset($form_state['fid'])) {
+    $file = file_load($form_state['fid']);
+    if (isset($file->uri)) {
+      $ip = $_SERVER['SERVER_ADDR'];
+      $port = 5002;
+      $url = "http://$ip:$port/enricher";
+      $uri = $file->uri;
+      $filepath = drupal_realpath($uri);
+
+      $headers = array('Content-Type' => 'application/json');
+      $data = array (
+        'filepath' => $filepath,
+        'link' => '',
+      );
+
+      $options = array(
+        'headers' => $headers,
+        'method' => 'POST',
+        'data' => drupal_json_encode($data)
+      );
+      $response = drupal_http_request($url, $options);
+
+      if ($response->code == 200) {
+        $json_obj = drupal_json_decode($response->data);
+
+        $keywords_by_count = $json_obj['keywords']['count'];
+
+        arsort($keywords_by_count, SORT_NUMERIC);
+        $keys = array_slice(array_keys($keywords_by_count), 0, 5);
+
+        for($x = 0; $x < 5; $x++) {
+          $keywords[] = $json_obj['keywords']['keywords'][$keys[$x]];
+        }
+
+        $intro = $json_obj['important_extracts_proposal_start']['abstract'];
+        if (!empty($intro)) {
+          $intro = preg_replace( "/\r|\n/", " ", $intro);
+          $intro = str_replace('  ', ' ', $intro);
+          $commands[] = ajax_command_invoke('.field-name-field-evidence-body textarea', 'val', array($intro));
+          if (!empty($keywords)) {
+            $commands[] = ajax_command_invoke('.field-name-field-tags input[type="text"]', 'val', array(implode(', ', $keywords)));
+          }
+          return array('#type' => 'ajax', '#commands' => $commands);
+        }
+      }
+    }
+  }
+}
+
+// Add extra button to process pdf.
+function futurium_isa_extras_field_widget_form_alter(&$element, &$form_state, $context) {
+  // If this is an image field type
+  if ($context['field']['field_name'] == 'field_evidence_file') {
+    $element[0]['#process'][] = '_futurium_isa_extras_process_file_upload';
+  }
+}
+
+// Add extra button to process pdf.
+function _futurium_isa_extras_process_file_upload($element, &$form_state, &$form) {
+  if(isset($element['fid']['#value']) && $element['fid']['#value'] != 0) {
+    $fid = $element['fid']['#value'];
+    $file = file_load($element['fid']['#value']);
+    if (substr($file->uri, -3) == 'pdf') {
+      $form_state['fid'] = $fid;
+      $element[0]['process_file'] = array(
+        '#type' => 'button',
+        '#value' => 'Extract from file',
+        '#ajax' => array(
+          'callback' => 'futurium_isa_extras_pdf_processor',
+        ),
+      );
+    }
+  }
+  return $element;
+}
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */
@@ -1059,8 +1140,10 @@ function futurium_isa_extras_form_node_form_alter(&$form, &$form_state) {
   }
   $form['revision_information']['#access'] = FALSE;
 
-  if ($form['#bundle'] == 'evidence' && isset($form['field_evidence_keywords'])) {
-    $form['field_evidence_keywords']['#access'] = FALSE;
+  if ($form['#bundle'] == 'evidence') {
+    if(isset($form['field_evidence_keywords'])) {
+      $form['field_evidence_keywords']['#access'] = FALSE;
+    }
   }
 
   if (!isset($_GET['og_group_ref'])) {
