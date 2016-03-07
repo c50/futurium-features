@@ -328,6 +328,9 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
  */
 function d4eu_preprocess_comment(&$vars) {
   global $user;
+  
+  // Hide Important or conclusion in comment view.
+  $vars['content']['field_important_or_conclusion'] = FALSE;
 
   $uid = $vars['comment']->uid;
   $comment_user = array('account' => user_load($uid));
