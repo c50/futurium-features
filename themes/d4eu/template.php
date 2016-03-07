@@ -422,7 +422,6 @@ function d4eu_preprocess_user_profile(&$variables) {
   }
 }
 
-
 /**
  * Implements theme_preprocess_view_view_fields().
  *
