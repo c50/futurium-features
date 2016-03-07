@@ -242,10 +242,15 @@ function d4eu_html_head_alter(&$head_elements) {
  */
 function d4eu_preprocess_node(&$vars) {
   $account = user_load($vars['node']->uid);
-
+  if (isset($account->field_organisation[LANGUAGE_NONE][0]['safe_value'])) {
+    $organisation = $account->field_organisation[LANGUAGE_NONE][0]['safe_value'];
+  }
   $vars['submitted']  = '<div class="authoring-info">';
   $vars['submitted'] .= '<span class="published-by">' . t("Published by") . ' </span>';
   $vars['submitted'] .= '<span class="username">' . theme('username', array('account' => $account)) . '</span>';
+  if (isset($organisation) && ($organisation != ' ')) {
+    $vars['submitted'] .= '<span class="organisation">' . $organisation . '</span>';
+  }
   $vars['submitted'] .= '<span class="extra-on"> ' . t("on") . ' </span> ';
   $vars['submitted'] .= '<span class="post-date">' . format_date($vars['node']->created, 'custom', 'l') . ', ' . format_date($vars['node']->created, 'custom', 'd/m/Y') . '</span>';
   $vars['submitted'] .= '</div>';
@@ -324,6 +329,19 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
 function d4eu_preprocess_comment(&$vars) {
   global $user;
 
+  $uid = $vars['comment']->uid;
+  $comment_user = array('account' => user_load($uid));
+
+  $organisation = '';
+  if (isset($comment_user['account']->field_organisation[LANGUAGE_NONE][0]['safe_value'])) {
+    if ($organisation != '') {
+      $organisation .= ' ';
+    }
+    $organisation .= '<div class="userOrganisation">' . $comment_user['account']->field_organisation[LANGUAGE_NONE][0]['safe_value'] . '</div>';
+  }
+
+  $vars['comment_user']['organisation'] = $organisation;
+
   $node = $vars['node'];
   $comment = $vars['comment']->cid;
   if (module_exists('supertags')) {
@@ -358,6 +376,52 @@ function d4eu_preprocess_page(&$vars) {
   $old_site_name = $vars['site_name'];
   $vars['site_name'] = '<a href="' . $vars['front_page'] . '">' . $old_site_name . '</a>';
 }
+
+/**
+ * Implements template_preprocess_user_profile().
+ */
+function d4eu_preprocess_user_profile(&$variables) {
+  // Format profile page.
+  $identity = '';
+  if (isset($variables['field_firstname'][0]['safe_value'])) {
+    $identity .= $variables['field_firstname'][0]['safe_value'];
+  }
+  if (isset($variables['field_lastname'][0]['safe_value'])) {
+    if ($identity != '') {
+      $identity .= ' ';
+    }
+    $identity .= $variables['field_lastname'][0]['safe_value'];
+  }
+
+  $organisation = '';
+  if (isset($variables['field_organisation'][0]['safe_value'])) {
+    if ($organisation != '') {
+      $organisation .= ' ';
+    }
+    $organisation .= '<div class="userOrganisation">' . $variables['field_organisation'][0]['safe_value'] . '</div>';
+  }
+
+  $date = '';
+  if ($user = user_load(arg(1))) {
+    $date_string = format_date($user->created, 'custom', 'd/m/Y');
+    $args = array('@date' => $date_string);
+    $date .= t('Member since @date', $args);
+  }
+
+  $variables['user_info']['name'] = $identity;
+  $variables['user_info']['organisation'] = $organisation;
+  $variables['user_info']['date'] = $date;
+
+  // Add contact form link on user profile page.
+  if (module_exists('contact')) {
+    $account = $variables['elements']['#account'];
+    $menu_item = menu_get_item("user/$account->uid/contact");
+    if (isset($menu_item['access']) && $menu_item['access'] == TRUE) {
+      $variables['contact_form'] = l(t('Contact this user'), 'user/' . $account->uid . '/contact', array('attributes' => array('type' => 'message')));
+    }
+  }
+}
+
 
 /**
  * Implements theme_preprocess_view_view_fields().
