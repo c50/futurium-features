@@ -1460,7 +1460,7 @@ a:hover.CTAButton,
 }
 
 .node .node-info .node-submitted .user-picture img {
-  width: 80px;
+  width: 76px;
 }
 
 .node-info .node-info-submitted .authoring-info {
@@ -1487,6 +1487,13 @@ a:hover.CTAButton,
   color: #333;
   text-decoration: none;
   display: block;
+}
+.node-info .node-info-submitted .authoring-info .organisation {
+  color: #999;
+  text-decoration: none;
+  display: block;
+  font-style: italic;
+  line-height: 1.5em;
 }
 
 .node-info .node-info-submitted .authoring-info .post-date {
@@ -2170,4 +2177,71 @@ a:hover.CTAButton,
 
 .region-content-top .user-blocks .views-row-odd {
   margin-right: 2.25%;
+}
+
+#comments ul.media-list .comment-links .commenter-name {
+  display: inline-block;  
+}
+#comments ul.media-list .comment-links .userOrganisation {
+  display: inline-block;
+  color: #777;
+  font-style: italic;
+}
+#comments ul.media-list .comment-links .userOrganisation:before {
+  content: "-";
+  margin: 0 10px;
+}
+
+.item-list .userOrganisation {
+  color: #777;
+  font-style: italic;
+}
+
+.profile {
+  float: left;
+  width: 100%;
+  background: #fafafa;
+  border: solid 1px #e8e8e8;
+  border-radius: 5px;
+}
+.profile .userPicture {
+  float: left;
+  background: #fff;
+  padding: 2px;
+  border: solid 1px #ccc;
+  margin: 0.5em;
+  width: 104px;
+  overflow: hidden;
+}
+.profile .userPicture .user-picture {
+  margin: 0;
+}
+.profile .userPicture .user-picture img {
+  width: 100%;
+  height: auto;
+}
+.profile .userInfo {
+  padding: 1.5em 0;
+  float: right;
+  width: calc(100% - 135px);
+}
+.profile .userInfo h3 {
+  color: #444;
+  font-size: 180%;
+  margin: 0;
+  padding: 0 1em 0 0;
+}
+.profile .userInfo .userOrganisation {
+  color: #999;
+  font-style: italic;
+  font-size: 110%;
+  padding-top: 0.2em;
+}
+.profile .userInfo .userSince {
+  font-size: 110%;
+  padding: 1em 0;
+}
+.profile .userInfo .userContact {
+  float: right;
+  margin-right: 1em;
 }
