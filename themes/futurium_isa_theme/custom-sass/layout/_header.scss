@@ -2,43 +2,169 @@
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
 
+
+/*****************************************/
+/* pre-wrapper with login collapse part */
+/***************************************/
+
+.logged-in .wrapper-pre-header .btn-info {
+    background: none;
+    border: none;
+    @include on-event {
+      background: none;
+    }
+}
+
+.collapsed-user-block {
+  @include rem(padding, 20px 0 20px 0);
+}
+
+.wrapper-pre-header {
+  a.btn, a {
+    color: #ffffff;
+  }
+  nav {
+    text-align: right;
+  }
+  .register {
+    @extend .col-lg-6;
+  }
+  .login {
+    @extend .col-lg-6;
+  }
+  .form-control{
+    width: 100%;
+    @include rem(height, 35px);
+  }
+  .user-name {
+    @include rem(margin-left, 10px);
+  }
+}
+
+.tooltip .tooltip-inner {
+  @include rem(font-size, 14px);
+  @extend .alert-success;
+}
+
+/* menu */
+
+.collapsed-user-block.in {
+  /* text-align: right; */
+}
+
+.user-menu {
+  text-align: right;
+  li {
+    list-style: none;
+  }
+}
+
 /*******************************/
 /* General navigation theming */
 /*****************************/
 
+.navbar-default {
+  border: none;
+}
 
 .navbar > .container {
   position: relative;
-  min-height: 80px;
   @include respond-to(small) {
     min-height: inherit;
     padding-bottom: 0;
   }
 }
 
+.navbar-header {
+  width: 20%;
+  float: left;
+  align-self: center;
+  @include respond-to(small) {
+    width: 100%;
+  }
+}
+
+@include respond-to(small) {
+  .container>.navbar-header {
+    @include rem(padding, 0 0 15px 0); 
+    @include rem(margin, 0 0 0 0);
+  }
+
+  /* toggle button for responsive menu */
+  .navbar-toggle {
+    @include rem(margin, 15px 0 0 0);
+  }
+
+  /* nav menu for small devices */
+
+  ul.navbar-nav {
+    float: left;
+    font-family: $text-font-stack;
+    font-weight: normal;
+    width: 100%;
+    text-transform: lowercase;
+    @include rem(margin, 0 0 20px 0);
+    li.leaf {
+      @include rem(padding, 10px 10px 10px 10px);
+      border-bottom: 1px solid darken($light-grey, 10%);
+      width: 100%;
+      @include on-event {
+        background: $light-grey;
+      }
+      a.active-trail {
+        background: none;
+        border: none;
+        color: inherit;
+      }
+    }
+    li.last {
+      border-bottom: none;
+    }
+    li.active-trail {
+      background: $light-grey;
+      font-weight: bold;
+    }
+  }
+
+  /* responsive menu for page user & groups */
+
+  .page-user:not(.page-user-edit) .container-fullwidth.row2, 
+  .node-type-futurium-group .container-fullwidth.row2 {
+    background: none;
+  }
+}
+
 .navbar {
   margin-bottom: 0;
-  font-family: $header-font-stack;
-  text-transform: uppercase;
   .navbar-collapse {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-     @include respond-to(small) {
-      position: relative;
+    float: right;
+    width: 80%;
+    align-self: flex-end;
+    @include rem(margin, 20px 0 0 0);
+    @include rem(padding, 0 0 0 15px);
+    @include respond-to(small) {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
+      float: left;
     }
   }
 
   .navbar-nav li>a {
+    font-family: $header-font-stack;
+    text-transform: uppercase;
     @include rem(font-size, 18px);
     @include rem(line-height, 50px);
-    padding-top: 0;
-    padding-bottom: 0;
     @include rem(padding, 0px 20px 0px 20px);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     &:before {
       width: 30px;
+    }
+    @include respond-to(small) {
+      @include rem(line-height, 24px); 
+      @include rem(padding, 0);
     }
   }
   .glyphicon-user:before {
@@ -67,7 +193,9 @@
   }
 }
 
-.page-node{
+
+
+.logged-in.page-node{
   li.futures {
     @include menu(darken($future-color, 20%), rocket);
   }
@@ -88,6 +216,8 @@
   }
 }
 
+
+
 .logged-in-user-pic {
   @include round-userpicture;
 }
@@ -100,21 +230,45 @@
   margin-bottom: -3px;
   z-index: 100;
   position: relative;
+  float: right;
 }
 
+
+/******* */
+/* LOGO & */
+/***** */
+
 .navbar .logo {
-  margin-left:20px;
+  margin-left: 0;
+  @include respond-to(small) {
+      width: 50%;
+  }
+}
+
+.navbar-brand {
+  @include rem(font-size, 24px);
+  font-family: $header-font-stack;
+  text-transform: uppercase;
+
+}
+
+.logo {
+  @include rem(margin, 15px 0 15px 0);
 }
 
 /*********************************/
 /* Brand theming (name website) */
 /*******************************/
 
-.navbar>.container .navbar-brand{
+.navbar .wrapper-header .navbar-brand{
   @include rem(margin, 0 0 0 0);
   @include rem(font-size, 24px);
   padding: 0;
-  line-height: 80px;
+  height: auto;
+  line-height: inherit;
+  @include respond-to(small) {
+    @include rem(margin-top, 20px);
+  }
 }
 
 /****************************/

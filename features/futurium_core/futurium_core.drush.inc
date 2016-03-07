@@ -99,7 +99,7 @@ function drush_futurium_core_post_install_futurium() {
   // Disable tmgmt first to avoid drush error
   module_disable(array('tmgmt'));
   // Disable not needed multisite modules
-  module_disable(array('nexteuropa_multilingual', 'ecas', 'cce_basic_config', 'taxonomy_browser', 'multisite_settings_standard', 'nexteuropa_core'));
+  module_disable(array('nexteuropa_multilingual', 'ecas', 'cce_basic_config', 'taxonomy_browser', 'multisite_settings_standard', 'nexteuropa_core', 'workbench'));
 
   // Remove Latest Content block from homepage context.
   $context = module_invoke('context', 'load', 'homepage');
@@ -118,6 +118,12 @@ function drush_futurium_core_post_install_futurium() {
   user_save($user);
 
   variable_set('site_homepage', 'home');
+
+  // Remove document field from document as it belongs to e_library_core and cannot re-export it.
+  $instance = field_info_instance('node', 'field_document', 'document');
+  field_delete_instance($instance, TRUE);
+  field_delete_field('field_document');
+  field_purge_batch(5);
 
   drush_print(dt('Futurium Post-Install operations performed.'));
 }

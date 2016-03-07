@@ -20,12 +20,18 @@
 }
 
 
-.container-fullwidth.footer{
+.container-fullwidth.footer {
   background: $dark-grey;
   @include rem(padding, 40px 0 40px 0);
 }
 
-.footer{
+.footer {
+  a {
+    color: $mid-grey;
+    @include on-event {
+      color: $mid-grey;
+    }
+  }
   margin: 0 0 0 0;
   .region-footer {
     @include make-row();

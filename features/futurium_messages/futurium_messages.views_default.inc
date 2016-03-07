@@ -54,6 +54,19 @@ function futurium_messages_views_default_views() {
 
   /* Display: All */
   $handler = $view->new_display('block', 'All', 'block');
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No activity yet.';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: OG membership: Message from OG membership */
+  $handler->display->display_options['relationships']['og_membership_related_message']['id'] = 'og_membership_related_message';
+  $handler->display->display_options['relationships']['og_membership_related_message']['table'] = 'og_membership';
+  $handler->display->display_options['relationships']['og_membership_related_message']['field'] = 'og_membership_related_message';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Message: Render message (Get text) */
   $handler->display->display_options['fields']['message_render']['id'] = 'message_render';
@@ -65,11 +78,11 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['fields']['message_render']['partials_delta'] = '0';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Message: Logged In User Groups/No Group content */
-  $handler->display->display_options['filters']['user_og_nid']['id'] = 'user_og_nid';
-  $handler->display->display_options['filters']['user_og_nid']['table'] = 'message';
-  $handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
-  $handler->display->display_options['filters']['user_og_nid']['value']['value'] = 1;
+  /* Filter criterion: Field: Groups audience (og_group_ref) */
+  $handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
+  $handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
+  $handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
+  $handler->display->display_options['filters']['og_group_ref_target_id']['operator'] = 'empty';
 
   /* Display: Node Activity */
   $handler = $view->new_display('block', 'Node Activity', 'block_1');
@@ -137,7 +150,7 @@ function futurium_messages_views_default_views() {
     'links' => 0,
     'use_content_language' => 0,
   );
-  /* Field: Content: Ideas and experience */
+  /* Field: Content: Summary */
   $handler->display->display_options['fields']['field_ideas']['id'] = 'field_ideas';
   $handler->display->display_options['fields']['field_ideas']['table'] = 'field_data_field_ideas';
   $handler->display->display_options['fields']['field_ideas']['field'] = 'field_ideas';
@@ -189,6 +202,7 @@ function futurium_messages_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'event_d4eu' => 'event_d4eu',
     'evidence' => 'evidence',
+    'future' => 'future',
     'ideas' => 'ideas',
     'poll' => 'poll',
   );
@@ -217,6 +231,11 @@ function futurium_messages_views_default_views() {
     'field_evidence_body' => 'field_evidence_body',
     'term_node_tid' => 'term_node_tid',
   );
+  /* Filter criterion: Message: Logged In User Groups/No Group content */
+  $handler->display->display_options['filters']['user_og_nid']['id'] = 'user_og_nid';
+  $handler->display->display_options['filters']['user_og_nid']['table'] = 'message';
+  $handler->display->display_options['filters']['user_og_nid']['field'] = 'user_og_nid';
+  $handler->display->display_options['filters']['user_og_nid']['value']['value'] = 1;
   $export['messages'] = $view;
 
   return $export;

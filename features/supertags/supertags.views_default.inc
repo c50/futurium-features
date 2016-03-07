@@ -1468,7 +1468,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['field_organisation']['label'] = '';
   $handler->display->display_options['fields']['field_organisation']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_organisation']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '<br /><span class="userOrganisation">[field_organisation]</span>';
+  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '<span class="userOrganisation">[field_organisation]</span>';
   $handler->display->display_options['fields']['field_organisation']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_organisation']['hide_empty'] = TRUE;
   /* Field: User: Name */

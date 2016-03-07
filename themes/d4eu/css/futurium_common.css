@@ -2179,7 +2179,7 @@ a:hover.CTAButton,
   margin-right: 2.25%;
 }
 
-#comments ul.media-list .comment-links .commenter-name{
+#comments ul.media-list .comment-links .commenter-name {
   display: inline-block;  
 }
 #comments ul.media-list .comment-links .userOrganisation {
@@ -2192,7 +2192,7 @@ a:hover.CTAButton,
   margin: 0 10px;
 }
 
-.item-list .userOrganisation{
+.item-list .userOrganisation {
   color: #777;
   font-style: italic;
 }
@@ -2216,7 +2216,7 @@ a:hover.CTAButton,
 .profile .userPicture .user-picture {
   margin: 0;
 }
-.profile .userPicture .user-picture img{
+.profile .userPicture .user-picture img {
   width: 100%;
   height: auto;
 }
@@ -2237,11 +2237,11 @@ a:hover.CTAButton,
   font-size: 110%;
   padding-top: 0.2em;
 }
-.profile .userInfo .userSince{
+.profile .userInfo .userSince {
   font-size: 110%;
   padding: 1em 0;
 }
-.profile .userInfo .userContact{
+.profile .userInfo .userContact {
   float: right;
   margin-right: 1em;
 }

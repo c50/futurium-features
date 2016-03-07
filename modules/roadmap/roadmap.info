@@ -1,0 +1,8 @@
+name = Roadmap Field
+description = "Extends Entity Reference to provide a Gantt chart."
+core = 7.x
+package = Fields
+
+dependencies[] = masked_input
+dependencies[] = entity
+dependencies[] = entityreference
