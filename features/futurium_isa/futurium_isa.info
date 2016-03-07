@@ -183,6 +183,7 @@ features[user_permission][] = use futurium_linker
 features[user_permission][] = use text format full
 features[user_permission][] = use text format simple_text
 features[user_permission][] = use text format simple_wysiwig
+features[user_permission][] = access administration theme
 features[variable][] = comment_anonymous_event_d4eu
 features[variable][] = comment_anonymous_ideas
 features[variable][] = comment_default_mode_event_d4eu
