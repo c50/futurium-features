@@ -272,7 +272,7 @@ function futurium_isa_extras_preprocess_collapsible_user_block(&$vars) {
 
   }
   else {
-    $account = $vars['user'];
+    $account = user_load($vars['user']->uid);
     $username = format_username($account);
 
     $vars['account']['name'] = $username;
