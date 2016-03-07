@@ -121,7 +121,12 @@ function drush_futurium_core_post_install_futurium() {
   $instance = field_info_instance('node', 'field_document', 'document');
   field_delete_instance($instance, TRUE);
   field_delete_field('field_document');
-  field_purge_batch(5);
+
+  // Delete comment fields
+  field_delete_field('comment_body');
+  drupal_cron_run();
+
+  field_purge_batch(10);
 
   drush_print(dt('Futurium Post-Install operations performed.'));
 }

@@ -242,5 +242,14 @@ function futurium_isa_user_default_permissions() {
     'module' => 'file_entity',
   );
 
+  // Exported permission: 'access administration theme'.
+  $permissions['access administration theme'] = array(
+    'name' => 'access administration theme',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'system',
+  );
+
   return $permissions;
 }
