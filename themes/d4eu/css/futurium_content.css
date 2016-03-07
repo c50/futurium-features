@@ -525,7 +525,7 @@
   padding: 2px 2px 4px;
 }
 
-.views-blog_d4eu-block_1 .panel-body .views-row > div:nth-child(2) > span:first-child .userOrganisation{
+.views-blog_d4eu-block_1 .panel-body .views-row > div:nth-child(2) > span:first-child .userOrganisation {
   display: block;
   text-align: center;
   margin: 0 1px 1px;
@@ -822,18 +822,18 @@
   border-bottom: 0 !important;
   padding-bottom: 2em;
 }
-.view-blog .item-list .username{
+.view-blog .item-list .username {
   display: block;
   font-size: 110%;
   padding: 0.3em 0.5em 0.5em;
 }
-.view-blog .item-list span.username{
+.view-blog .item-list span.username {
   color: #333;
 }
-.view-blog .item-list a.username{
+.view-blog .item-list a.username {
   text-decoration: none;
 }
-.view-blog .item-list .userOrganisation{
+.view-blog .item-list .userOrganisation {
   display: block;
   color: #999;
   margin-top: -0.5em;
