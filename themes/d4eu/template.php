@@ -428,7 +428,7 @@ function d4eu_preprocess_user_profile(&$variables) {
  * Show votes results by default in poll lists.
  */
 function d4eu_preprocess_views_view_fields(&$vars) {
-  if ($vars['view']->name = 'flavors' && $vars['view']->current_display == 'page_poll') {
+  if ($vars['view']->name == 'flavors' && $vars['view']->current_display == 'page_poll') {
     $poll_node = node_load($vars['row']->nid);
     $vars['fields']['active']->label_html = FALSE;
     $vars['fields']['active']->content = poll_view_results($poll_node, TRUE, FALSE);
