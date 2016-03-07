@@ -138,8 +138,8 @@ function futurium_futures_default_page_manager_handlers() {
         'css_id' => '',
         'css_class' => '',
         'column' => array(
-          'xs' => '8',
-          'sm' => '8',
+          'xs' => '12',
+          'sm' => '12',
           'md' => '8',
           'lg' => '8',
         ),
@@ -166,8 +166,8 @@ function futurium_futures_default_page_manager_handlers() {
         'css_id' => '',
         'css_class' => 'sidebar-right',
         'column' => array(
-          'xs' => '4',
-          'sm' => '4',
+          'xs' => '12',
+          'sm' => '12',
           'md' => '4',
           'lg' => '4',
         ),
@@ -194,8 +194,8 @@ function futurium_futures_default_page_manager_handlers() {
         'css_id' => '',
         'css_class' => '',
         'column' => array(
-          'xs' => '8',
-          'sm' => '8',
+          'xs' => '12',
+          'sm' => '12',
           'md' => '8',
           'lg' => '8',
         ),
