@@ -1078,13 +1078,16 @@ function futurium_isa_extras_pdf_processor($form, $form_state) {
       if ($response->code == 200) {
         $json_obj = drupal_json_decode($response->data);
 
-        $keywords_by_count = $json_obj['keywords']['count'];
+        if (!empty($json_obj['keywords']['count'])) {
 
-        arsort($keywords_by_count, SORT_NUMERIC);
-        $keys = array_slice(array_keys($keywords_by_count), 0, 5);
+          $keywords_by_count = $json_obj['keywords']['count'];
 
-        for($x = 0; $x < 5; $x++) {
-          $keywords[] = $json_obj['keywords']['keywords'][$keys[$x]];
+          arsort($keywords_by_count, SORT_NUMERIC);
+          $keys = array_slice(array_keys($keywords_by_count), 0, 5);
+
+          for($x = 0; $x < 5; $x++) {
+            $keywords[] = $json_obj['keywords']['keywords'][$keys[$x]];
+          }
         }
 
         $intro = $json_obj['important_extracts_proposal_start']['abstract'];
