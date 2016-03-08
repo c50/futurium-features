@@ -6,7 +6,7 @@
       </a>
     </nav>
     <div id="login-collapse" class="collapse row">
-      <div class="container">
+      <div class="containment">
         <?php echo $content; ?>
       </div>
     </div>
@@ -19,7 +19,7 @@
       </a>
     </nav>
     <div id="login-collapse" class="collapse row">
-      <div class="container">
+      <div class="containment">
         <div class="register">
           <h2><?php print $content['register']['title'] ?></h2>
           <div class="register-content-wrapper">

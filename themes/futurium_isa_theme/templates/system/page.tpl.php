@@ -73,7 +73,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="wrapper">
+<div class="wrapper <?php if($messages) echo "incoming-messages" ?>">
 
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
 

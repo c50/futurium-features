@@ -7,11 +7,19 @@
 /* pre-wrapper with login collapse part */
 /***************************************/
 
-.logged-in .wrapper-pre-header .btn-info {
+.btn-login .title:before {
+  @include fa(user);
+}
+
+.logged-in .wrapper-pre-header .btn-login {
     background: none;
     border: none;
     @include on-event {
       background: none;
+      border: none;
+    }
+    .title:before {
+      content: "";
     }
 }
 
@@ -165,6 +173,8 @@
     @include respond-to(small) {
       @include rem(line-height, 24px); 
       @include rem(padding, 0);
+      font-family: $text-font-stack;
+      text-transform: inherit;
     }
   }
   .glyphicon-user:before {

@@ -197,11 +197,32 @@
   background: $color;
   display: inline-block;
   border-radius: 0px;
-  border: none;
+  border: 1px solid darken($color, 10%);
   color: #fff;
   @include transition(background .4s ease);
   @include on-event {
-    background-color: darken($color, 10%); 
+    background-color: darken($color, 15%); 
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid darken($color, 20%);
+  } 
+}
+
+@mixin btn-special($color) {
+  @include rem(padding, 15px 15px 15px 15px);
+  /*font-family: $header-font-stack; */  
+  @include rem(font-size, 18px);
+  background: darken($color, 20%);
+  color: #fff;
+  text-align: center;
+  /* text-transform: uppercase; */   
+  cursor: pointer;
+  border: 1px solid darken($color, 25%);
+  font-weight: bold;
+  @include transition(background .4s ease);
+  @include on-event {
+    background-color: darken($color, 25%); 
+    border: 1px solid darken($color, 30%);
     color: #fff;
     text-decoration: none;
   } 
@@ -296,7 +317,7 @@
 
   .more-link a, a.more-link, .btn-info, .btn {
     @include btn-default($color);
-  } 
+  }
 
   /* row1 theming */
   .container-fullwidth.row1 {
@@ -307,8 +328,6 @@
       @include rem(border-bottom, 1px solid lighten($color, 20%));
     }
   }
-
-
 
   .row1{
     a {
@@ -332,6 +351,9 @@
         background-color: darken($color, 15%);
       }
     }
+    .btn.btn-special {
+      @include btn-special($color);
+    }  
     h1 {
       @include rem(padding, 0 0 0 0);
       @include rem(margin, 0 0 20px 0);
