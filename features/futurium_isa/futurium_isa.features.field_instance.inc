@@ -970,7 +970,7 @@ function futurium_isa_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'comment',
     'field_name' => 'field_body_comment',
-    'label' => 'Comment body',
+    'label' => 'Comment',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -1053,7 +1053,7 @@ function futurium_isa_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'comment',
     'field_name' => 'field_body_comment',
-    'label' => 'Comment body',
+    'label' => 'Comment',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -1136,7 +1136,7 @@ function futurium_isa_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'comment',
     'field_name' => 'field_body_comment',
-    'label' => 'Comment body',
+    'label' => 'Comment',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -1219,7 +1219,7 @@ function futurium_isa_field_default_field_instances() {
     'ds_extras_field_template' => '',
     'entity_type' => 'comment',
     'field_name' => 'field_body_comment',
-    'label' => 'Comment body',
+    'label' => 'Comment',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -1302,7 +1302,7 @@ function futurium_isa_field_default_field_instances() {
   t('Profession');
   t('Social Links');
   t('Your ideas and experience.');
-  t('Comment body');
+  t('Comment');
 
   return $field_instances;
 }

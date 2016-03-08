@@ -34,7 +34,7 @@ function futurium_evidence_field_default_field_bases() {
   // Exported field_base: 'field_evidence_file'.
   $field_bases['field_evidence_file'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_evidence_file',
@@ -81,7 +81,7 @@ function futurium_evidence_field_default_field_bases() {
   // Exported field_base: 'field_evidence_link'.
   $field_bases['field_evidence_link'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_evidence_link',
