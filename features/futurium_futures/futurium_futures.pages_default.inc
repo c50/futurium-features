@@ -499,7 +499,7 @@ function futurium_futures_default_page_manager_handlers() {
         0 => 'argument_entity_id:node_1.nid',
       ),
       'override_title' => 1,
-      'override_title_text' => 'Implemented on',
+      'override_title_text' => 'Implements',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -628,31 +628,6 @@ function futurium_futures_default_page_manager_handlers() {
     $display->content['new-3b770367-95c3-45b3-b155-242b450988cd'] = $pane;
     $display->panels['row2r'][4] = 'new-3b770367-95c3-45b3-b155-242b450988cd';
     $pane = new stdClass();
-    $pane->pid = 'new-64ae6372-32d7-44b1-b550-e188a2463d9c';
-    $pane->panel = 'row3l';
-    $pane->type = 'node_comment_form';
-    $pane->subtype = 'node_comment_form';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'anon_links' => 1,
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '64ae6372-32d7-44b1-b550-e188a2463d9c';
-    $display->content['new-64ae6372-32d7-44b1-b550-e188a2463d9c'] = $pane;
-    $display->panels['row3l'][0] = 'new-64ae6372-32d7-44b1-b550-e188a2463d9c';
-    $pane = new stdClass();
     $pane->pid = 'new-eb167954-f8c0-473b-b372-48ef2cb75348';
     $pane->panel = 'row3l';
     $pane->type = 'node_comments';
@@ -673,11 +648,36 @@ function futurium_futures_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = 'eb167954-f8c0-473b-b372-48ef2cb75348';
     $display->content['new-eb167954-f8c0-473b-b372-48ef2cb75348'] = $pane;
-    $display->panels['row3l'][1] = 'new-eb167954-f8c0-473b-b372-48ef2cb75348';
+    $display->panels['row3l'][0] = 'new-eb167954-f8c0-473b-b372-48ef2cb75348';
+    $pane = new stdClass();
+    $pane->pid = 'new-64ae6372-32d7-44b1-b550-e188a2463d9c';
+    $pane->panel = 'row3l';
+    $pane->type = 'node_comment_form';
+    $pane->subtype = 'node_comment_form';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'anon_links' => 1,
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '64ae6372-32d7-44b1-b550-e188a2463d9c';
+    $display->content['new-64ae6372-32d7-44b1-b550-e188a2463d9c'] = $pane;
+    $display->panels['row3l'][1] = 'new-64ae6372-32d7-44b1-b550-e188a2463d9c';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
