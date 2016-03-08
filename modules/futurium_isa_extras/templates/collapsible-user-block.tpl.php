@@ -6,7 +6,7 @@
       </a>
     </nav>
     <div id="login-collapse" class="collapse row">
-      <div class="containment">
+      <div class="container">
         <?php echo $content; ?>
       </div>
     </div>
