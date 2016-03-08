@@ -163,6 +163,15 @@ function futurium_d4eu_form_block_admin_configure_alter(&$form, &$form_state, $f
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Hide preview for comments on documents.
+ */
+function futurium_d4eu_form_comment_node_document_form_alter(&$form, &$form_state, $form_id) {
+  unset($form['actions']['preview']);
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  *
  * Cleans up the node edit form.
