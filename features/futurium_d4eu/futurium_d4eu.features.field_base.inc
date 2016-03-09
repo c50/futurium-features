@@ -22,12 +22,12 @@ function futurium_d4eu_field_default_field_bases() {
         0 => 'value',
       ),
     ),
-    'locked' => 0,
+    'locked' => 1,
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        0 => 'Conclusion',
-        1 => 'Important',
+        0 => 'Important',
+        1 => 'Conclusion',
       ),
       'allowed_values_function' => '',
     ),
