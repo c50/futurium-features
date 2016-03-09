@@ -10,6 +10,31 @@
 function futurium_d4eu_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'field_important_or_conclusion'.
+  $field_bases['field_important_or_conclusion'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_important_or_conclusion',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 1,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => 'Important',
+        1 => 'Conclusion',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_issue'.
   $field_bases['field_issue'] = array(
     'active' => 1,

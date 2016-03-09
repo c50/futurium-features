@@ -63,6 +63,19 @@ function futurium_d4eu_form_user_profile_form_alter(&$form, &$form_state, $form_
 }
 
 /**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Show field_important_or_conclusion to specific users.
+ */
+function futurium_d4eu_form_comment_form_alter(&$form, &$form_state, $form_id) {
+  $current_user = user_uid_optional_load();
+
+  if (!user_access('access custom futurium fields', $current_user)) {
+    $form['field_important_or_conclusion']['#access'] = FALSE;
+  }
+}
+
+/**
  * Implements hook_permission().
  */
 function futurium_d4eu_permission() {
