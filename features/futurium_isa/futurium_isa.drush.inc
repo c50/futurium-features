@@ -12,7 +12,7 @@
  *
  * @see drush_parse_command()
  */
-function futurium_core_drush_command() {
+function futurium_isa_drush_command() {
   $items = array();
 
   $items['features_revert_futurium'] = array(
@@ -39,7 +39,7 @@ function futurium_core_drush_command() {
 /**
  * Implements hook_drush_help().
  */
-function futurium_core_drush_help($section) {
+function futurium_isa_drush_help($section) {
   switch ($section) {
     case 'drush:features_revert_futurium':
       return dt("Revert all enabled feature module on your site that has the 'futurium_' prefix.");
@@ -53,7 +53,7 @@ function futurium_core_drush_help($section) {
 /**
  * Revert all enabled features to their definitions in code.
  */
-function drush_futurium_core_features_revert_futurium() {
+function drush_futurium_isa_features_revert_futurium() {
   module_load_include('inc', 'features', 'features.export');
   $force = drush_get_option('force');
 
@@ -94,16 +94,16 @@ function drush_futurium_core_features_revert_futurium() {
 /**
  * Futurium post installation configuration.
  */
-function drush_futurium_core_post_install_futurium() {
+function drush_futurium_isa_post_install_futurium() {
 
   // Disable tmgmt first to avoid drush error
   module_disable(array('tmgmt'));
   // Disable not needed multisite modules
-  module_disable(array('nexteuropa_multilingual', 'ecas', 'cce_basic_config', 'taxonomy_browser', 'multisite_settings_standard', 'nexteuropa_core', 'workbench'));
+  module_disable(array('nexteuropa_multilingual', 'ecas', 'cce_basic_config', 'taxonomy_browser', 'multisite_settings_standard', 'nexteuropa_isa', 'workbench'));
 
   // Remove Latest Content block from homepage context.
   $context = module_invoke('context', 'load', 'homepage');
-  unset($context->reactions['block']['blocks']['views-multisite_settings_core-block_1']);
+  unset($context->reactions['block']['blocks']['views-multisite_settings_isa-block_1']);
   module_invoke('context', 'save', $context);
 
   // Add editor role to user_editor.
@@ -119,7 +119,7 @@ function drush_futurium_core_post_install_futurium() {
 
   variable_set('site_homepage', 'home');
 
-  // Remove document field from document as it belongs to e_library_core and cannot re-export it.
+  // Remove document field from document as it belongs to e_library_isa and cannot re-export it.
   $instance = field_info_instance('node', 'field_document', 'document');
   field_delete_instance($instance, TRUE);
   field_delete_field('field_document');
@@ -136,7 +136,7 @@ function drush_futurium_core_post_install_futurium() {
 /**
  * Revert Futurium Configuration.
  */
-function drush_futurium_core_revert_futurium_config() {
+function drush_futurium_isa_revert_futurium_config() {
 
   // Set default moderation state as published.
   $node_types = node_type_get_types();
