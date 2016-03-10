@@ -948,19 +948,6 @@ function futurium_isa_extras_ds_field_ideas_count($field) {
 }
 
 /**
- * Helper function to set default user picture.
- */
-function futurium_isa_extras_set_default_pic() {
-  $module_path = drupal_get_path('module', 'futurium_isa_extras');
-  $full_path = $module_path . '/default_images/user_picture.png';
-
-  $source = drupal_realpath($full_path);
-
-  file_unmanaged_copy($source);
-  variable_set('user_picture_default', 'public://user_picture.png');
-}
-
-/**
  * Helper function to count group members.
  */
 function futurium_isa_extras_count_group_members($nid) {
