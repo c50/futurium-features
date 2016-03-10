@@ -36,7 +36,7 @@ function futurium_isa_extras_views_data_alter(&$data) {
  * Implements hook_admin_paths_alter().
  */
 function futurium_isa_extras_admin_paths_alter(&$paths) {
-  $paths['user/*/edit'] = TRUE;
+  $paths['user/*/edit'] = FALSE;
 }
 
 /**
@@ -197,7 +197,7 @@ function _bootstrap_default_settings() {
     }
   }
 
-  variable_set('node_admin_theme', 1);
+  variable_set('node_admin_theme', 0);
   variable_set('theme_futurium_isa_theme_settings', $settings);
 }
 
@@ -945,19 +945,6 @@ function futurium_isa_extras_ds_field_ideas_count($field) {
   $total = futurium_isa_extras_count_group_content($nid, 'ideas');
   $count = '<div class="field fake-field ideas-count">' . format_plural($total, '1 Idea', '@count Ideas') . '</div>';
   return render($count);
-}
-
-/**
- * Helper function to set default user picture.
- */
-function futurium_isa_extras_set_default_pic() {
-  $module_path = drupal_get_path('module', 'futurium_isa_extras');
-  $full_path = $module_path . '/default_images/user_picture.png';
-
-  $source = drupal_realpath($full_path);
-
-  file_unmanaged_copy($source);
-  variable_set('user_picture_default', 'public://user_picture.png');
 }
 
 /**
