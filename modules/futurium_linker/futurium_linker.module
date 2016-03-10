@@ -264,6 +264,10 @@ function _futurium_linker_link($form, &$form_state) {
     $commands[] = ctools_ajax_command_redirect($path);
   }
 
+  if ($message['type'] == 'warning') {
+    $commands[] = ajax_command_invoke('#linker #edit-search', 'val', array(''));
+  }
+
   return array('#type' => 'ajax', '#commands' => $commands);
 }
 
