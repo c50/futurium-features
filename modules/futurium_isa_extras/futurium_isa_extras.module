@@ -36,7 +36,7 @@ function futurium_isa_extras_views_data_alter(&$data) {
  * Implements hook_admin_paths_alter().
  */
 function futurium_isa_extras_admin_paths_alter(&$paths) {
-  $paths['user/*/edit'] = TRUE;
+  $paths['user/*/edit'] = FALSE;
 }
 
 /**
@@ -197,7 +197,7 @@ function _bootstrap_default_settings() {
     }
   }
 
-  variable_set('node_admin_theme', 1);
+  variable_set('node_admin_theme', 0);
   variable_set('theme_futurium_isa_theme_settings', $settings);
 }
 
