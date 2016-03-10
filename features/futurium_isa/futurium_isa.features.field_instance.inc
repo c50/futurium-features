@@ -1283,6 +1283,63 @@ function futurium_isa_field_default_field_instances() {
     ),
   );
 
+// Exported field_instance: 'user-user-field_picture'.
+  $field_instances['user-user-field_picture'] = array(
+    'bundle' => 'user',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 14,
+      ),
+      'user_header' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'user',
+    'field_name' => 'field_picture',
+    'label' => 'Picture',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 51,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => 'user_pictures',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'imagefield_crop',
+      'settings' => array(
+        'collapsible' => 2,
+        'croparea' => '300x0',
+        'enforce_minimum' => 1,
+        'enforce_ratio' => 1,
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+        'resolution' => '100x100',
+      ),
+      'type' => 'imagefield_crop_widget',
+      'weight' => 17,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Feasibility description');
@@ -1299,6 +1356,7 @@ function futurium_isa_field_default_field_instances() {
   t('Ideas and experience');
   t('Leading picture');
   t('Location');
+  t('Picture');
   t('Profession');
   t('Social Links');
   t('Your ideas and experience.');
