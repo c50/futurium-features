@@ -98,9 +98,15 @@ h2, h3{
   margin-top: 0;
 }
 
+h2 {
+  @include respond-to(small) {
+    @include rem(font-size, 20px);
+  }
+}
+
 h2.pane-title {
   font-weight: normal;
-  @include rem(font-size, 24px);
+  @include rem(font-size, 20px);
   @include rem(padding, 0 0 15px 0);
   @include rem(margin, 0 0 20px 0);
   @include rem(border-bottom, 1px solid $text-color);
@@ -160,16 +166,11 @@ h4 a {
 
 .container-fullwidth.row1{
   color: #fff;
-  /* a {
-    color: #fff;
-    @include on-event {
-    color: #fff;
-    }
-  }
-  */
+
   h1, h2, h3, p, div {
     color: #fff;
   }
+
   h2.pane-title {
     border: none;
     margin: 0;
@@ -432,7 +433,6 @@ a.btn-more:before {
   @include fa(plus);
 }
 
-
 .btn-add-content:before {
   @include fa(plus-circle);
   font-size: 24px;
@@ -528,7 +528,6 @@ ul.rate-fivestar-processed{
  font-size:28px;
 }
 
-
 .futurium-rate-feasibility {
   @include fa(balance-scale);
   @include rem(font-size, 20px);
@@ -590,7 +589,6 @@ div.panel-pane li.views-row:last-child
 .node-event-d4eu .date{
   @extend .field-name-author;
 }
-
 
 /*************************/
 /* /USER PAGE (PROFILE) */
@@ -719,6 +717,10 @@ div.panel-pane li.views-row:last-child
   @include rem(margin, 0 0 20px 0);
 }
 
+.pane-node-comment-form {
+  @include rem(margin, 0 0 40px 0);
+}
+
 /***************************/
 /* USER PICTURE SETTINGS  */
 /*************************/
@@ -832,17 +834,36 @@ body .view-messages {
   }
 }
 
+/****************/
+/* EVENTS PAGE */
+/**************/
+
+.field-type-file, .field-type-link-field {
+  .field-item {
+    @include rem(padding, 10px 0 10px 0);
+    @include rem(border-bottom, 1px solid darken($light-grey, 5%));
+  }
+}
+
 /**********/
 /* FORMS */
 /********/
 
 .form-control {
   width: auto;
-  height: auto;
+  @include rem(height, 35px);
   border-radius: 0;
 }
 
+ /* form links */
 
+ul.form-links {
+  list-style: none;
+  padding-left: 0;
+  a {
+    color: $text-color;
+  }
+}
 
 .views-exposed-form {
 
@@ -930,8 +951,8 @@ body .view-messages {
 
   .chosen-container-single .chosen-single div b {
     background-position: 2px 2px;
-    background: none;
-    background: darken($light-grey, 15%);
+    background-image: none !important; 
+    background: darken($light-grey, 15%) !important;
     color: #fff;
     top: -7px;
     position: absolute;
@@ -986,10 +1007,6 @@ body .view-messages {
   }
 }
 
-#edit-name {
-   background-color: #ffffff !important;
-}
-
 /* hide yellow background on /user page */
 
 input:-webkit-autofill {
@@ -998,19 +1015,6 @@ input:-webkit-autofill {
 
 input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
-}
-
-
-/* user login page */
-
-
-
-/**********************/
-/* USER PROFILE FORM */
-/********************/
-
-#user-profile-form {
-
 }
 
 /**************/
@@ -1105,9 +1109,13 @@ span.comment-count {
   }
 }
 
-.view-node-relations .views-field-title,
+.related-item,
 .relation-delete-link {
-  display: inline-block;
+  display: inline;
+}
+
+.relation-delete-link span:before {
+  @include fa(remove);
 }
 
 /* END STUFF FOR THE LINKER MODULE */
@@ -1134,7 +1142,6 @@ span.comment-count {
   background-image: linear-gradient(to right, rgba(0,0,0,0.0001) 0%, rgba(0,0,0,0.05) 100%);
 }
 
-
 /* show icon when hover */
 
 .glyphicon-chevron-right:hover:before {
@@ -1157,7 +1164,7 @@ span.comment-count {
 }
 
 .carousel-caption {
-  top: 38%;
+  top: 37%;
   h3 {
     font-weight: bold;
     color: #fff;
@@ -1170,13 +1177,14 @@ span.comment-count {
       @include rem(font-size, 16px);
     }
   }
+  @include respond-to(small) {
+    top:25%;
+  }
 }
 
 .item.active a{
   background:red;
 }
-
-
 
 .front .carousel {
   a {
@@ -1308,7 +1316,6 @@ span.comment-count {
   }
 }
 
-
 /* TEASER */
 
 .summary {
@@ -1326,7 +1333,6 @@ span.comment-count {
   text-decoration: none;
   border: 0;
 }
-
 
 .date a {
   @include rem(font-size, 15px);

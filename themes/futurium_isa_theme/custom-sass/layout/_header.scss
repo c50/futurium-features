@@ -7,45 +7,112 @@
 /* pre-wrapper with login collapse part */
 /***************************************/
 
-.btn-login .title:before {
-  @include fa(user);
-}
-
-.logged-in .wrapper-pre-header .btn-login {
-    background: none;
-    border: none;
-    @include on-event {
-      background: none;
-      border: none;
-    }
-    .title:before {
-      content: "";
-    }
-}
-
-.collapsed-user-block {
-  @include rem(padding, 20px 0 20px 0);
-}
 
 .wrapper-pre-header {
-  a.btn, a {
-    color: #ffffff;
+  color: $midmid-grey;
+  a.btn, .container a {
+    color: $light-grey;
   }
   nav {
     text-align: right;
   }
-  .register {
-    @extend .col-lg-6;
+  .container-inner {
+    @include rem(padding, 20px);
+    border: 1px solid lighten(#000000, 20%);
+    background: lighten(#000000, 15%);
+    box-shadow: 5px 5px 1px lighten(#000000, 10%);; 
   }
   .login {
-    @extend .col-lg-6;
+    @include respond-to(small) {
+      @include rem(margin-bottom, 20px);
+    }
   }
-  .form-control{
-    width: 100%;
-    @include rem(height, 35px);
+  .btn {
+    @include respond-to(small) {
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+    }
   }
   .user-name {
     @include rem(margin-left, 10px);
+  }
+}
+
+/* icon for btn-login */
+ 
+.btn-login .title:before {
+  @include fa(user);
+}
+
+/* 'btn-login' when user is logged-in */
+
+.logged-in .wrapper-pre-header .btn-login {
+  background: none;
+  border: none;
+  padding: 0;
+  @include on-event {
+    background: none;
+    border: none;
+  }
+  .title:before {
+    content: "";
+  }
+}
+
+.field-wrapper {
+  position: relative;
+}
+
+.field-wrapper:before {
+  position: absolute;
+  top: 10px;
+  left:10px;
+}
+
+/* padding for username & password field */
+
+.form-item-name .form-control,
+.form-type-password .form-control
+{
+  width: 100%;
+  @include rem(padding-left, 30px);
+}
+
+/* icon for username & password fied */
+
+.field-wrapper.name:before {
+  @include fa(user);
+}
+
+.field-wrapper.pass:before {
+  @include fa(lock);
+}
+
+/* wrapper to give padding */
+
+.containment {
+  @include rem(padding-top, 20px);
+  @include rem(padding-bottom, 20px);
+  width: 100%;
+  float: left;
+}
+
+
+
+.collapsed-user-block {
+  h2 {
+    color: $light-grey;
+  }
+  input {
+    background: $light-grey;
+  }
+  @include rem(padding, 20px 0 20px 0);
+  @include respond-to(small) {
+    .btn-login {
+      width: inherit;
+      width: auto;
+    }
   }
 }
 
@@ -203,9 +270,8 @@
   }
 }
 
-
-
-.logged-in.page-node{
+.logged-in.page-node, 
+.incoming-messages {
   li.futures {
     @include menu(darken($future-color, 20%), rocket);
   }
@@ -226,8 +292,6 @@
   }
 }
 
-
-
 .logged-in-user-pic {
   @include round-userpicture;
 }
@@ -243,9 +307,8 @@
   float: right;
 }
 
-
 /******* */
-/* LOGO & */
+/* LOGO */
 /***** */
 
 .navbar .logo {

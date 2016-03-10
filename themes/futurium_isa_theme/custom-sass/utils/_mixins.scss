@@ -366,11 +366,13 @@
       color: $color;
       text-align: center;
       border-radius: 50%;
-      width: 70px;
+      @include rem(width, 70px); 
+      @include rem(height, 70px); 
       @include rem(line-height, 35px); 
       background: #fff;
       @include respond-to(small) {
-        width: 40px;
+        @include rem(width, 40px);
+        @include rem(height, 40px); 
         @include rem(line-height, 20px);
         @include rem(padding, 10px);
         @include rem(font-size, 20px); 
