@@ -1,12 +1,7 @@
 <?php
 /**
  * @file
- * Hooks provided by the Futurium Linkafter module.
- */
-
-/**
- * @addtogroup hooks
- * @{
+ * Hooks provided by the Futurium Linker module.
  */
 
 /**
@@ -17,9 +12,9 @@ function hook_relation_label_autocomplete_alter(&$label) {
 }
 
 /**
- * Allows altering the label in the autocomplete.
+ * Allows altering the content type name in the autocomplete.
  */
-function hook_relation_label_autocomplete_alter(&$content_type) {
+function hook_relation_content_type_autocomplete_alter(&$content_type) {
   // Do whatever with $content_type.
 }
 

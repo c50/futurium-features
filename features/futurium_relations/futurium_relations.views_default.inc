@@ -89,6 +89,17 @@ function futurium_relations_views_default_views() {
   /* Display: Supports */
   $handler = $view->new_display('block', 'Supports', 'support');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['class'] = 'nopadding';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+    'delete' => 'delete',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Relation: supports (node → node) */
   $handler->display->display_options['relationships']['relation_supports_node']['id'] = 'relation_supports_node';
@@ -102,8 +113,16 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['relationships']['relation_base_left_supports']['table'] = 'node';
   $handler->display->display_options['relationships']['relation_base_left_supports']['field'] = 'relation_base_left_supports';
   $handler->display->display_options['relationships']['relation_base_left_supports']['relationship'] = 'relation_supports_node';
+  $handler->display->display_options['relationships']['relation_base_left_supports']['label'] = 'supports_rel';
   $handler->display->display_options['relationships']['relation_base_left_supports']['r_index'] = '-1';
   $handler->display->display_options['relationships']['relation_base_left_supports']['entity_deduplication_left'] = 1;
+  /* Relationship: Content: Relation: supports (node → relation) */
+  $handler->display->display_options['relationships']['relation_base_left_supports_1']['id'] = 'relation_base_left_supports_1';
+  $handler->display->display_options['relationships']['relation_base_left_supports_1']['table'] = 'node';
+  $handler->display->display_options['relationships']['relation_base_left_supports_1']['field'] = 'relation_base_left_supports';
+  $handler->display->display_options['relationships']['relation_base_left_supports_1']['label'] = 'supports_cnt';
+  $handler->display->display_options['relationships']['relation_base_left_supports_1']['r_index'] = '-1';
+  $handler->display->display_options['relationships']['relation_base_left_supports_1']['entity_deduplication_left'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
@@ -136,11 +155,9 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['fields']['delete']['id'] = 'delete';
   $handler->display->display_options['fields']['delete']['table'] = 'relation';
   $handler->display->display_options['fields']['delete']['field'] = 'delete';
-  $handler->display->display_options['fields']['delete']['relationship'] = 'relation_base_left_supports';
+  $handler->display->display_options['fields']['delete']['relationship'] = 'relation_base_left_supports_1';
   $handler->display->display_options['fields']['delete']['label'] = '';
   $handler->display->display_options['fields']['delete']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['delete']['element_wrapper_class'] = 'relation-delete-link';
-  $handler->display->display_options['fields']['delete']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['delete']['text'] = '✖';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -158,6 +175,17 @@ function futurium_relations_views_default_views() {
   /* Display: Implemented by */
   $handler = $view->new_display('block', 'Implemented by', 'block_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['class'] = 'nopadding';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+    'delete' => 'delete',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Relation: implemented by (node → node) */
   $handler->display->display_options['relationships']['relation_implemented_by_node']['id'] = 'relation_implemented_by_node';
@@ -173,6 +201,13 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['relationship'] = 'relation_implemented_by_node';
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['r_index'] = '-1';
   $handler->display->display_options['relationships']['relation_base_left_implemented_by']['entity_deduplication_left'] = 1;
+  /* Relationship: Content: Relation: implemented by (node → relation) */
+  $handler->display->display_options['relationships']['relation_base_left_implemented_by_1']['id'] = 'relation_base_left_implemented_by_1';
+  $handler->display->display_options['relationships']['relation_base_left_implemented_by_1']['table'] = 'node';
+  $handler->display->display_options['relationships']['relation_base_left_implemented_by_1']['field'] = 'relation_base_left_implemented_by';
+  $handler->display->display_options['relationships']['relation_base_left_implemented_by_1']['label'] = 'implemented by_cnt';
+  $handler->display->display_options['relationships']['relation_base_left_implemented_by_1']['r_index'] = '-1';
+  $handler->display->display_options['relationships']['relation_base_left_implemented_by_1']['entity_deduplication_left'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
@@ -205,7 +240,7 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['fields']['delete']['id'] = 'delete';
   $handler->display->display_options['fields']['delete']['table'] = 'relation';
   $handler->display->display_options['fields']['delete']['field'] = 'delete';
-  $handler->display->display_options['fields']['delete']['relationship'] = 'relation_base_left_implemented_by';
+  $handler->display->display_options['fields']['delete']['relationship'] = 'relation_base_left_implemented_by_1';
   $handler->display->display_options['fields']['delete']['label'] = '';
   $handler->display->display_options['fields']['delete']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete']['element_wrapper_class'] = 'relation-delete-link';
@@ -227,6 +262,17 @@ function futurium_relations_views_default_views() {
   /* Display: Discuss */
   $handler = $view->new_display('block', 'Discuss', 'block_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['class'] = 'nopadding';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+    'delete' => 'delete',
+  );
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Relation: to discuss (node → node) */
   $handler->display->display_options['relationships']['relation_to_discuss_node']['id'] = 'relation_to_discuss_node';
@@ -242,6 +288,13 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['relationships']['relation_base_left_to_discuss']['relationship'] = 'relation_to_discuss_node';
   $handler->display->display_options['relationships']['relation_base_left_to_discuss']['r_index'] = '-1';
   $handler->display->display_options['relationships']['relation_base_left_to_discuss']['entity_deduplication_left'] = 1;
+  /* Relationship: Content: Relation: to discuss (node → relation) */
+  $handler->display->display_options['relationships']['relation_base_left_to_discuss_1']['id'] = 'relation_base_left_to_discuss_1';
+  $handler->display->display_options['relationships']['relation_base_left_to_discuss_1']['table'] = 'node';
+  $handler->display->display_options['relationships']['relation_base_left_to_discuss_1']['field'] = 'relation_base_left_to_discuss';
+  $handler->display->display_options['relationships']['relation_base_left_to_discuss_1']['label'] = 'to discuss_cnt';
+  $handler->display->display_options['relationships']['relation_base_left_to_discuss_1']['r_index'] = '-1';
+  $handler->display->display_options['relationships']['relation_base_left_to_discuss_1']['entity_deduplication_left'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
@@ -274,7 +327,7 @@ function futurium_relations_views_default_views() {
   $handler->display->display_options['fields']['delete']['id'] = 'delete';
   $handler->display->display_options['fields']['delete']['table'] = 'relation';
   $handler->display->display_options['fields']['delete']['field'] = 'delete';
-  $handler->display->display_options['fields']['delete']['relationship'] = 'relation_base_left_to_discuss';
+  $handler->display->display_options['fields']['delete']['relationship'] = 'relation_base_left_to_discuss_1';
   $handler->display->display_options['fields']['delete']['label'] = '';
   $handler->display->display_options['fields']['delete']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['delete']['element_wrapper_class'] = 'relation-delete-link';
