@@ -11,14 +11,7 @@
 function futurium_isa_extras_enable() {
   // Site default settings.
   variable_set('site_frontpage', 'home');
-  variable_set('user_pictures', '1');
-  variable_set('user_picture_default', '');
-  variable_set('user_picture_dimensions', '185x185');
-  variable_set('user_picture_file_size', '150');
-  variable_set('user_picture_guidelines', '');
-  variable_set('user_picture_path', '');
-  variable_set('user_picture_style', '');
-  variable_set('user_register', '2');
+  variable_set('user_pictures', '0');
 
   // Theme settings.
   _bootstrap_default_settings();
@@ -29,9 +22,6 @@ function futurium_isa_extras_enable() {
     $allowed_tags .= 'h1';
     variable_set('security_allowed_tags', $allowed_tags);
   }
-
-  // Set default user picture.
-  futurium_isa_extras_set_default_pic();
 
   $contexts = variable_get('context_status', array());
   $contexts['site_wide'] = TRUE;
