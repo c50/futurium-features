@@ -157,11 +157,18 @@ function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
       break;
 
     case 'user_login':
-      $form['name']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['name']['#description'])));
-      $form['pass']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['pass']['#description'])));
-      $form['name']['#description'] = "";
-      $form['pass']['#description'] = "";
-      break;
+     $form['name']['#field_prefix'] = '<div class="field-wrapper name">';
+     $form['name']['#field_suffix'] = '</div>';
+     $form['name']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['name']['#description'])));
+     $form['name']['#description'] = "";
+
+     $form['pass']['#field_prefix'] = '<div class="field-wrapper pass">';
+     $form['pass']['#field_suffix'] = '</div>';
+     $form['pass']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['pass']['#description'])));
+     $form['pass']['#description'] = "";
+
+     $form['actions']['submit']['#prefix'] = '<ul class="form-links"><li>' . l(t('Forgot your password?'), 'user/password') . '</li></ul>';
+     break;
 
   }
 }
