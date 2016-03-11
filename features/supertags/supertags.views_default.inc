@@ -1781,7 +1781,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_date_time_value2']['year_range'] = '-1:+3';
 
   /* Display: Page past events */
-  $handler = $view->new_display('page', 'Page past events', 'page_1');
+  $handler = $view->new_display('page', 'Page past events', 'page_past_events');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Past Events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
