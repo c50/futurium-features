@@ -21,7 +21,9 @@ function supertags_context_default_contexts() {
       'values' => array(
         'digital4eu' => 'digital4eu',
         'digital4science' => 'digital4science',
-        'egov' => 'egov',
+        'egovernment4eu' => 'egovernment4eu',
+        'innovation4eu' => 'innovation4eu',
+        'simplify-esif' => 'simplify-esif',
       ),
     ),
   );
