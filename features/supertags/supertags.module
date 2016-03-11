@@ -886,6 +886,26 @@ function supertags_field_formatter_view($entity_type, $entity, $field, $instance
 }
 
 /**
+ * Implements hook_views_pre_render().
+ */
+function supertags_views_pre_render(&$view) {
+  // Correct past events links if there is no current links.
+  if ($view->current_display == 'page_event_d4eu') {
+    $context = _supertags_flavor_context();
+    $name = $context['name'];
+    $field_path = _supertags_term_path($context['term']);
+    $view->footer['area']->options['content'] = '<a href="../past-events/' . $field_path . '?flavour=' . $field_path . '">Past events for ' . $name .'</a>';
+    $view->display_handler->set_option('footer', $view->footer);
+  }
+  if ($view->current_display == 'page_past_events') {
+    $context = _supertags_flavor_context();
+    $name = $context['name'];
+    $view->footer['area']->options['content'] = '<a href="../%1/events">Planned events for ' . $name .'</a>';
+    $view->display_handler->set_option('footer', $view->footer);
+  }
+}
+
+/**
  * Implements theme_preprocess_html().
  */
 function supertags_preprocess_html(&$variables) {
