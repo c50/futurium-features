@@ -686,17 +686,16 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['title']['element_class'] = '[field_flavor]';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Ideas and experience */
-  $handler->display->display_options['fields']['field_ideas']['id'] = 'field_ideas';
-  $handler->display->display_options['fields']['field_ideas']['table'] = 'field_data_field_ideas';
-  $handler->display->display_options['fields']['field_ideas']['field'] = 'field_ideas';
-  $handler->display->display_options['fields']['field_ideas']['label'] = '';
-  $handler->display->display_options['fields']['field_ideas']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_ideas']['alter']['text'] = '[field_ideas] <a href="[path]" class="moreLink">Read more</a> ';
-  $handler->display->display_options['fields']['field_ideas']['alter']['strip_tags'] = TRUE;
-  $handler->display->display_options['fields']['field_ideas']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_ideas']['type'] = 'text_trimmed';
-  $handler->display->display_options['fields']['field_ideas']['settings'] = array(
+  /* Field: Content: Issue */
+  $handler->display->display_options['fields']['field_issue']['id'] = 'field_issue';
+  $handler->display->display_options['fields']['field_issue']['table'] = 'field_data_field_issue';
+  $handler->display->display_options['fields']['field_issue']['field'] = 'field_issue';
+  $handler->display->display_options['fields']['field_issue']['label'] = '';
+  $handler->display->display_options['fields']['field_issue']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_issue']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['field_issue']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_issue']['type'] = 'text_trimmed';
+  $handler->display->display_options['fields']['field_issue']['settings'] = array(
     'trim_length' => '300',
   );
   /* Field: Global: Custom text */
@@ -704,7 +703,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[body] <a href="[path]" class="moreLink">Read more</a> ';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_issue] <a href="[path]" class="moreLink">Read more</a> ';
   $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['preserve_tags'] = '<a>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
