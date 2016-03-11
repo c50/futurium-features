@@ -86,6 +86,7 @@ function supertags_context_default_contexts() {
     'path' => array(
       'values' => array(
         '*/ideas' => '*/ideas',
+        '*/issues' => '*/issues',
         '*/evidence' => '*/evidence',
         '*/videos' => '*/videos',
         '*/blogs' => '*/blogs',
@@ -94,6 +95,7 @@ function supertags_context_default_contexts() {
         '*/articles' => '*/articles',
         '*/pages' => '*/pages',
         '*/ideas/*' => '*/ideas/*',
+        '*/issues/*' => '*/issues/*',
         '*/evidence/*' => '*/evidence/*',
         '*/videos/*' => '*/videos/*',
         '*/blogs/*' => '*/blogs/*',
