@@ -1577,6 +1577,116 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'relation-has_evidence-endpoints'.
+  $field_instances['relation-has_evidence-endpoints'] = array(
+    'bundle' => 'has_evidence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_endpoint',
+        'settings' => array(
+          'view_modes' => array(
+            'bean' => 'default',
+            'comment' => 'default',
+            'field_collection_item' => 'default',
+            'file' => 'default',
+            'flagging' => 'default',
+            'i18n_translation' => 'default',
+            'invite' => 'default',
+            'invite_type' => 'default',
+            'node' => 'default',
+            'relation' => 'default',
+            'rules_config' => 'default',
+            'taxonomy_term' => 'default',
+            'taxonomy_vocabulary' => 'default',
+            'tmgmt_job' => 'default',
+            'tmgmt_job_item' => 'default',
+            'tmgmt_message' => 'default',
+            'tmgmt_remote' => 'default',
+            'tmgmt_translator' => 'default',
+            'user' => 'default',
+            'workbench_moderation_transition' => 'default',
+            'wysiwyg_profile' => 'default',
+          ),
+        ),
+        'type' => 'relation_endpoint',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'relation',
+    'field_name' => 'endpoints',
+    'label' => 'endpoints',
+    'required' => FALSE,
+    'settings' => array(
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'relation_endpoint',
+      'settings' => array(),
+      'type' => 'relation_endpoint',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance: 'relation-related_to-endpoints'.
+  $field_instances['relation-related_to-endpoints'] = array(
+    'bundle' => 'related_to',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_endpoint',
+        'settings' => array(
+          'view_modes' => array(
+            'bean' => 'default',
+            'comment' => 'default',
+            'field_collection_item' => 'default',
+            'file' => 'default',
+            'flagging' => 'default',
+            'i18n_translation' => 'default',
+            'invite' => 'default',
+            'invite_type' => 'default',
+            'node' => 'default',
+            'relation' => 'default',
+            'rules_config' => 'default',
+            'taxonomy_term' => 'default',
+            'taxonomy_vocabulary' => 'default',
+            'tmgmt_job' => 'default',
+            'tmgmt_job_item' => 'default',
+            'tmgmt_message' => 'default',
+            'tmgmt_remote' => 'default',
+            'tmgmt_translator' => 'default',
+            'user' => 'default',
+            'workbench_moderation_transition' => 'default',
+            'wysiwyg_profile' => 'default',
+          ),
+        ),
+        'type' => 'relation_endpoint',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'relation',
+    'field_name' => 'endpoints',
+    'label' => 'endpoints',
+    'required' => FALSE,
+    'settings' => array(
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'relation_endpoint',
+      'settings' => array(),
+      'type' => 'relation_endpoint',
+      'weight' => 0,
+    ),
+  );
+
   // Exported field_instance: 'user-user-field_organisation'.
   $field_instances['user-user-field_organisation'] = array(
     'bundle' => 'user',
@@ -1730,6 +1840,7 @@ function futurium_d4eu_field_default_field_instances() {
   t('Videos');
   t('Vote');
   t('Your ideas and experience.');
+  t('endpoints');
   t('register url');
 
   return $field_instances;
