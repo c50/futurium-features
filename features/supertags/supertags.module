@@ -176,27 +176,29 @@ function supertags_menu() {
 
           $type_url_str = str_replace('_', '-', $machine_name);
 
-          $items[$flavor_path . '/add/' . $type_url_str] = array(
-            'title' => $settings['label'],
-            'title callback' => 'check_plain',
-            'page callback' => 'node_add',
-            'page arguments' => array($machine_name),
-            'access callback' => 'node_access',
-            'access arguments' => array('create', $machine_name),
-            'description' => $content_type_object->description,
-            'file path' => drupal_get_path('module', 'node'),
-            'file' => 'node.pages.inc',
-          );
+          if (!_supertags_is_archived($value)) {
+            $items[$flavor_path . '/add/' . $type_url_str] = array(
+              'title'            => $settings['label'],
+              'title callback'   => 'check_plain',
+              'page callback'    => 'node_add',
+              'page arguments'   => array($machine_name),
+              'access callback'  => 'node_access',
+              'access arguments' => array('create', $machine_name),
+              'description'      => $content_type_object->description,
+              'file path'        => drupal_get_path('module', 'node'),
+              'file'             => 'node.pages.inc',
+            );
+          }
 
           $items[$flavor_path . '/' . $settings['path']] = array(
-            'title' => $settings['label_plural'],
-            'access callback' => '_supertags_flavor_pages_access',
+            'title'            => $settings['label_plural'],
+            'access callback'  => '_supertags_flavor_pages_access',
             'access arguments' => array($value),
-            'page callback' => '_supertags_flavor_page',
-            'page arguments' => array(0, 1, 2),
-            'menu_name' => $flavor_path . '-menu',
-            'weight' => $settings['weight'],
-            'type' => MENU_NORMAL_ITEM,
+            'page callback'    => '_supertags_flavor_page',
+            'page arguments'   => array(0, 1, 2),
+            'menu_name'        => $flavor_path . '-menu',
+            'weight'           => $settings['weight'],
+            'type'             => MENU_NORMAL_ITEM,
           );
         }
       }
@@ -1917,26 +1919,14 @@ function _supertags_tag_context() {
  * Implements hook_node_access().
  */
 function supertags_node_access($node, $op, $account) {
-  // DAE-1361: block creation/update on nodes if archived flavor.
-  if (is_string($node)) {
-    $q = arg(0);
-    $term = _supertags_get_term_by_path($q);
-
-    if (is_object($term) && $term->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
-      return NODE_ACCESS_DENY;
-    }
-    return NODE_ACCESS_IGNORE;
-  }
+  // Remove access on update/add on archived nodes.
   if (is_object($node)) {
-    // Return node field_default_flavor.
-    $node_default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
-
     if ($node_default_flavor = taxonomy_term_load($node_default_flavor)) {
       $default_archived = _supertags_is_archived($node_default_flavor);
-    }
-    // Disallow create/update access if default flavor is archived.
-    if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($default_archived == 1)) {
-      return NODE_ACCESS_DENY;
+      // Disallow create/update access if default flavor is archived.
+      if (($op == 'create' || $op == 'update') && (!empty($account->name)) && ($default_archived == 1)) {
+        return NODE_ACCESS_DENY;
+      }
     }
   }
 }
