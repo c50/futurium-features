@@ -7,14 +7,14 @@
 /**
  * Allows altering the label in the autocomplete.
  */
-function hook_relation_label_autocomplete_alter(&$label) {
+function hook_relation_d4eu_label_autocomplete_alter(&$label) {
   // Do whatever with $label.
 }
 
 /**
  * Allows altering the content type name in the autocomplete.
  */
-function hook_relation_content_type_autocomplete_alter(&$content_type) {
+function hook_relation_d4eu_content_type_autocomplete_alter(&$content_type) {
   // Do whatever with $content_type.
 }
 
