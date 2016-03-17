@@ -1,0 +1,5 @@
+name = Futurium D4eu Linker
+description = A custom module to create relations between content.
+core = 7.x
+
+dependencies[] = relation
