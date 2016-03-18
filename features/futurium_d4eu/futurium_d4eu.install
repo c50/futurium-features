@@ -273,5 +273,5 @@ function futurium_d4eu_update_7110() {
  */
 function futurium_d4eu_update_7111() {
   // Enable multisite links feature.
-  module_enable(array('links_standard'));
+  module_enable(array('links_standard', 'relation_ui'));
 }

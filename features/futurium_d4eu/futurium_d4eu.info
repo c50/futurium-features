@@ -16,7 +16,6 @@ dependencies[] = menu_block
 depencencies[] = relation
 dependencies[] = relation_dummy_field
 dependencies[] = relation_endpoint
-depencencies[] = relation_ui
 dependencies[] = supertags
 dependencies[] = user_registrationpassword
 dependencies[] = views_bulk_operations
