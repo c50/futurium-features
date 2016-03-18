@@ -271,7 +271,7 @@ function futurium_d4eu_update_7110() {
 /**
  * Updates to v1.8.
  */
-function futurium_d4eu_update_7118() {
+function futurium_d4eu_update_7111() {
   // Enable multisite links feature.
-  module_enable(array('links'));
+  module_enable(array('links_standard'));
 }
