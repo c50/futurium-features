@@ -1624,6 +1624,53 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-issue-field_evidence'.
+  $field_instances['node-issue-field_evidence'] = array(
+    'bundle' => 'issue',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 62,
+      ),
+      'mini_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_evidence',
+    'label' => 'Evidence',
+    'required' => 0,
+    'settings' => array(
+      'relation_type' => array(
+        'has_evidence' => 'has_evidence',
+      ),
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 63,
+    ),
+  );
+
   // Exported field_instance: 'node-issue-field_issue'.
   $field_instances['node-issue-field_issue'] = array(
     'bundle' => 'issue',
@@ -1756,6 +1803,53 @@ function futurium_d4eu_field_default_field_instances() {
       'settings' => array(),
       'type' => 'exposed',
       'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-issue-field_related'.
+  $field_instances['node-issue-field_related'] = array(
+    'bundle' => 'issue',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 63,
+      ),
+      'mini_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_related',
+    'label' => 'Related content',
+    'required' => 0,
+    'settings' => array(
+      'relation_type' => array(
+        'related_to' => 'related_to',
+      ),
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 65,
     ),
   );
 
