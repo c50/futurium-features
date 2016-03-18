@@ -373,7 +373,23 @@ function futurium_d4eu_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(),
     'extra_fields' => array(
-      'form' => array(),
+      'form' => array(
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'title' => array(
+          'weight' => '-5',
+        ),
+        'path' => array(
+          'weight' => '30',
+        ),
+        'choice_wrapper' => array(
+          'weight' => '-4',
+        ),
+        'settings' => array(
+          'weight' => '-3',
+        ),
+      ),
       'display' => array(
         'language' => array(
           'default' => array(
@@ -432,6 +448,9 @@ function futurium_d4eu_strongarm() {
         ),
         'path' => array(
           'weight' => '1',
+        ),
+        'metatags' => array(
+          'weight' => '40',
         ),
       ),
       'display' => array(),

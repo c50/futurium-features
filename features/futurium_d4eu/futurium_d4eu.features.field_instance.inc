@@ -1995,6 +1995,100 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-poll-field_evidence'.
+  $field_instances['node-poll-field_evidence'] = array(
+    'bundle' => 'poll',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 8,
+      ),
+      'mini_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_evidence',
+    'label' => 'Evidence',
+    'required' => 0,
+    'settings' => array(
+      'relation_type' => array(
+        'has_evidence' => 'has_evidence',
+      ),
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 44,
+    ),
+  );
+
+  // Exported field_instance: 'node-poll-field_related'.
+  $field_instances['node-poll-field_related'] = array(
+    'bundle' => 'poll',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 9,
+      ),
+      'mini_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_related',
+    'label' => 'Related content',
+    'required' => 0,
+    'settings' => array(
+      'relation_type' => array(
+        'related_to' => 'related_to',
+      ),
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 46,
+    ),
+  );
+
   // Exported field_instance: 'node-video_d4eu-body'.
   $field_instances['node-video_d4eu-body'] = array(
     'bundle' => 'video_d4eu',
@@ -2044,6 +2138,100 @@ function futurium_d4eu_field_default_field_instances() {
       ),
       'type' => 'text_textarea_with_summary',
       'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-video_d4eu-field_evidence'.
+  $field_instances['node-video_d4eu-field_evidence'] = array(
+    'bundle' => 'video_d4eu',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 8,
+      ),
+      'mini_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_evidence',
+    'label' => 'Evidence',
+    'required' => 0,
+    'settings' => array(
+      'relation_type' => array(
+        'has_evidence' => 'has_evidence',
+      ),
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 42,
+    ),
+  );
+
+  // Exported field_instance: 'node-video_d4eu-field_related'.
+  $field_instances['node-video_d4eu-field_related'] = array(
+    'bundle' => 'video_d4eu',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'relation_dummy_field',
+        'settings' => array(),
+        'type' => 'relation_default',
+        'weight' => 9,
+      ),
+      'mini_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_related',
+    'label' => 'Related content',
+    'required' => 0,
+    'settings' => array(
+      'relation_type' => array(
+        'related_to' => 'related_to',
+      ),
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'relation_dummy_field',
+      'settings' => array(),
+      'type' => 'relation_default',
+      'weight' => 44,
     ),
   );
 
