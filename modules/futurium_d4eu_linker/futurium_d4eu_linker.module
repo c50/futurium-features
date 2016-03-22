@@ -12,7 +12,7 @@ function futurium_d4eu_linker_permission() {
     'title' => t('Administer Linker'),
     'description' => t('Perform administration tasks for Futurium Links.'),
   );
-  $perms['use futurium_linker'] = array(
+  $perms['use futurium_d4eu_linker'] = array(
     'title' => t('Use Futurium Links'),
     'description' => t('Use Futurium Links to connect nodes.'),
   );
@@ -154,40 +154,40 @@ function _futurium_d4eu_linker_node_autocomplete($origin_nid, $bundles, $string)
 }
 
 function futurium_d4eu_linker_futurium_d4eu_linker_query_alter(&$query) {
-  if (module_exists('og')) {
-    $query->leftJoin('og_membership', 'og_membership_node', '(og_membership_node.etid = n.nid)');
-    $query->leftJoin('field_data_group_access', 'group_access', '(group_access.entity_id = n.nid)');
-    $query->leftJoin('field_data_group_content_access', 'group_content_access', '(group_content_access.entity_id = n.nid)');
-
-    $query->fields('og_membership_node', array('gid'));
-    $query->fields('group_content_access', array('group_content_access_value'));
-    $gids = og_get_entity_groups();
-
-    $base_field = "n.nid";
-    $field = "og_membership_node.gid";
-
-    $public_nids = db_select('field_data_group_content_access')
-      ->fields('field_data_group_content_access', array('entity_id'))
-      ->condition('entity_type', 'node', '=')
-      ->condition('group_content_access_value', 1, '=');
-
-    $query->condition(
-      db_and()
-        ->condition(db_or()
-          ->condition($base_field, $public_nids, 'IN')
-          ->isNull('og_membership_node.gid')
-          ->condition('og_membership_node.gid', $gids['node'], 'IN')
-      )
-    );
-  }
+//  if (module_exists('og')) {
+//    $query->leftJoin('og_membership', 'og_membership_node', '(og_membership_node.etid = n.nid)');
+//    $query->leftJoin('field_data_group_access', 'group_access', '(group_access.entity_id = n.nid)');
+//    $query->leftJoin('field_data_group_content_access', 'group_content_access', '(group_content_access.entity_id = n.nid)');
+//
+//    $query->fields('og_membership_node', array('gid'));
+//    $query->fields('group_content_access', array('group_content_access_value'));
+//    $gids = og_get_entity_groups();
+//
+//    $base_field = "n.nid";
+//    $field = "og_membership_node.gid";
+//
+//    $public_nids = db_select('field_data_group_content_access')
+//      ->fields('field_data_group_content_access', array('entity_id'))
+//      ->condition('entity_type', 'node', '=')
+//      ->condition('group_content_access_value', 1, '=');
+//
+//    $query->condition(
+//      db_and()
+//        ->condition(db_or()
+//          ->condition($base_field, $public_nids, 'IN')
+//          ->isNull('og_membership_node.gid')
+//          ->condition('og_membership_node.gid', $gids['node'], 'IN')
+//      )
+//    );
+//  }
 }
 
 /**
  * Ajax callback.
  */
 function _futurium_d4eu_linker_results($form, &$form_state) {
-  $target_nid = _futurium_linker_parse_result($form_state['input']['search']);
-  $target_relation = _futurium_linker_parse_relation($form_state['input']['search']);
+  $target_nid = _futurium_d4eu_linker_parse_result($form_state['input']['search']);
+  $target_relation = _futurium_d4eu_linker_parse_relation($form_state['input']['search']);
   $wrapper = '#linker';
 
   if ($target_nid !== FALSE) {
@@ -310,7 +310,7 @@ function futurium_d4eu_linker_form($form, &$form_state) {
       else {
         // The relation is not directional, in that case use sources as well.
         $bundles = implode('+', $source_bundles);
-        $direction = 0;
+        // $direction = 0;
       }
       $bundles = str_replace('node:', '', $bundles);
       $search_bundles[] = $bundles;
@@ -378,7 +378,7 @@ function futurium_d4eu_linker_form($form, &$form_state) {
       '#ajax' => array(
         'callback' => '_futurium_d4eu_linker_link',
       ),
-      '#prefix' => '<span class="button-wrap" style="display:none">',
+      '#prefix' => '<span class="button-wrap">',
       '#suffix' => '</span>',
     );
 
@@ -498,9 +498,9 @@ function _futurium_d4eu_linker_create_links($nid) {
 }
 
 /**
- * Implements relation_label_autocomplete_alter().
+ * Implements relation_d4eu_label_autocomplete_alter().
  */
-function futurium_d4eu_linker_relation_label_autocomplete_alter(&$label) {
+function futurium_d4eu_linker_d4eu_relation_label_autocomplete_alter(&$label) {
   switch ($label) {
     case 'supports':
       $label = 'that supports';
@@ -510,9 +510,9 @@ function futurium_d4eu_linker_relation_label_autocomplete_alter(&$label) {
 }
 
 /**
- * Implements relation_content_type_autocomplete_alter().
+ * Implements relation_d4eu_content_type_autocomplete_alter().
  */
-function futurium_d4eu_linker_relation_content_type_autocomplete_alter(&$content_type) {
+function futurium_d4eu_linker_relation_d4eu_content_type_autocomplete_alter(&$content_type) {
   switch ($content_type) {
     case 'Ideas':
       $content_type = 'Idea';

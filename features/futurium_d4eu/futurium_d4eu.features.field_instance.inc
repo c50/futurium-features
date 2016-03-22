@@ -778,7 +778,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 6,
       ),
       'mini_teaser' => array(
@@ -809,7 +809,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 112,
     ),
   );
@@ -825,7 +825,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 7,
       ),
       'mini_teaser' => array(
@@ -856,7 +856,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 114,
     ),
   );
@@ -872,7 +872,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 12,
       ),
       'mini_teaser' => array(
@@ -903,7 +903,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 130,
     ),
   );
@@ -919,7 +919,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 13,
       ),
       'mini_teaser' => array(
@@ -950,7 +950,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 132,
     ),
   );
@@ -1081,7 +1081,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 13,
       ),
       'mini_teaser' => array(
@@ -1112,7 +1112,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 130,
     ),
   );
@@ -1128,7 +1128,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 14,
       ),
       'mini_teaser' => array(
@@ -1159,7 +1159,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 132,
     ),
   );
@@ -1175,7 +1175,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 8,
       ),
       'mini_teaser' => array(
@@ -1206,7 +1206,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 41,
     ),
   );
@@ -1360,7 +1360,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 9,
       ),
       'mini_teaser' => array(
@@ -1391,7 +1391,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 41,
     ),
   );
@@ -1635,7 +1635,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 62,
       ),
       'mini_teaser' => array(
@@ -1666,7 +1666,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 63,
     ),
   );
@@ -1817,7 +1817,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 63,
       ),
       'mini_teaser' => array(
@@ -1848,7 +1848,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 65,
     ),
   );
@@ -1912,7 +1912,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 3,
       ),
       'mini_teaser' => array(
@@ -1943,7 +1943,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 112,
     ),
   );
@@ -1959,7 +1959,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 4,
       ),
       'mini_teaser' => array(
@@ -1990,7 +1990,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 114,
     ),
   );
@@ -2006,7 +2006,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 8,
       ),
       'mini_teaser' => array(
@@ -2037,7 +2037,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 44,
     ),
   );
@@ -2053,7 +2053,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 9,
       ),
       'mini_teaser' => array(
@@ -2084,7 +2084,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 46,
     ),
   );
@@ -2152,7 +2152,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 8,
       ),
       'mini_teaser' => array(
@@ -2183,7 +2183,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 42,
     ),
   );
@@ -2199,7 +2199,7 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'relation_dummy_field',
         'settings' => array(),
-        'type' => 'relation_default',
+        'type' => 'relation_otherendpoint',
         'weight' => 9,
       ),
       'mini_teaser' => array(
@@ -2230,7 +2230,7 @@ function futurium_d4eu_field_default_field_instances() {
       'active' => 0,
       'module' => 'relation_dummy_field',
       'settings' => array(),
-      'type' => 'relation_default',
+      'type' => 'relation_otherendpoint',
       'weight' => 44,
     ),
   );

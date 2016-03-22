@@ -3,3 +3,5 @@ description = A custom module to create relations between content.
 core = 7.x
 
 dependencies[] = relation
+files[] = futurium_d4eu_linker.css
+files[] = futurium_d4eu_linker.js
