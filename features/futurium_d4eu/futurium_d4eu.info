@@ -177,6 +177,7 @@ features[views_view][] = excel_export
 features[views_view][] = manage_members
 features[views_view][] = polls_d4eu
 features[views_view][] = recent_activity
+features[views_view][] = relations_to_nodes
 features_exclude[dependencies][comment] = comment
 features_exclude[dependencies][context] = context
 features_exclude[dependencies][ctools] = ctools

@@ -1124,7 +1124,7 @@ function supertags_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 9,
       ),
       'mini_teaser' => array(
         'label' => 'above',
@@ -1168,7 +1168,7 @@ function supertags_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 6,
       ),
       'mini_teaser' => array(
         'label' => 'above',
@@ -1215,7 +1215,7 @@ function supertags_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 7,
       ),
       'mini_teaser' => array(
         'label' => 'above',
@@ -1262,7 +1262,7 @@ function supertags_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 8,
       ),
       'mini_teaser' => array(
         'label' => 'above',
@@ -1957,7 +1957,7 @@ function supertags_field_default_field_instances() {
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_flavor_archived',
-    'label' => t('Archived'),
+    'label' => 'Archived',
     'required' => 0,
     'settings' => array(
       'user_field_privacy' => FALSE,
