@@ -1523,8 +1523,9 @@ function futurium_d4eu_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Related to';
+  $handler->display->display_options['title'] = 'Related content';
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -1532,20 +1533,29 @@ function futurium_d4eu_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Content: Relation: related to (node ↔ node) */
-  $handler->display->display_options['relationships']['relation_related_to_node']['id'] = 'relation_related_to_node';
-  $handler->display->display_options['relationships']['relation_related_to_node']['table'] = 'node';
-  $handler->display->display_options['relationships']['relation_related_to_node']['field'] = 'relation_related_to_node';
-  $handler->display->display_options['relationships']['relation_related_to_node']['entity_deduplication_left'] = 1;
-  $handler->display->display_options['relationships']['relation_related_to_node']['entity_deduplication_right'] = 0;
   /* Relationship: Content: Relation: related to (node → relation) */
   $handler->display->display_options['relationships']['relation_base_left_related_to']['id'] = 'relation_base_left_related_to';
   $handler->display->display_options['relationships']['relation_base_left_related_to']['table'] = 'node';
   $handler->display->display_options['relationships']['relation_base_left_related_to']['field'] = 'relation_base_left_related_to';
   $handler->display->display_options['relationships']['relation_base_left_related_to']['required'] = TRUE;
   $handler->display->display_options['relationships']['relation_base_left_related_to']['entity_deduplication_left'] = 0;
+  /* Relationship: Content: Relation: related to (node ↔ node) */
+  $handler->display->display_options['relationships']['relation_related_to_node']['id'] = 'relation_related_to_node';
+  $handler->display->display_options['relationships']['relation_related_to_node']['table'] = 'node';
+  $handler->display->display_options['relationships']['relation_related_to_node']['field'] = 'relation_related_to_node';
+  $handler->display->display_options['relationships']['relation_related_to_node']['required'] = TRUE;
+  $handler->display->display_options['relationships']['relation_related_to_node']['entity_deduplication_left'] = 0;
+  $handler->display->display_options['relationships']['relation_related_to_node']['entity_deduplication_right'] = 1;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1553,11 +1563,7 @@ function futurium_d4eu_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Relation: Rid */
-  $handler->display->display_options['fields']['rid']['id'] = 'rid';
-  $handler->display->display_options['fields']['rid']['table'] = 'relation';
-  $handler->display->display_options['fields']['rid']['field'] = 'rid';
-  $handler->display->display_options['fields']['rid']['relationship'] = 'relation_base_left_related_to';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   /* Field: Relation: Delete link */
   $handler->display->display_options['fields']['delete']['id'] = 'delete';
   $handler->display->display_options['fields']['delete']['table'] = 'relation';
@@ -1585,9 +1591,17 @@ function futurium_d4eu_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Relation: Relation type */
+  $handler->display->display_options['filters']['relation_type']['id'] = 'relation_type';
+  $handler->display->display_options['filters']['relation_type']['table'] = 'relation';
+  $handler->display->display_options['filters']['relation_type']['field'] = 'relation_type';
+  $handler->display->display_options['filters']['relation_type']['relationship'] = 'relation_base_left_related_to';
+  $handler->display->display_options['filters']['relation_type']['value'] = array(
+    'related_to' => 'related_to',
+  );
 
   /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block_relation');
+  $handler = $view->new_display('block', 'Block', 'blockrelated');
   $export['relations_to_nodes'] = $view;
 
   return $export;

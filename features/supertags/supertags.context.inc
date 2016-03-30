@@ -251,11 +251,11 @@ function supertags_context_default_contexts() {
           'region' => 'sidebar_right',
           'weight' => '-9',
         ),
-        'views-90e1d01ac529409b8fb6c462abcfbfd6' => array(
+        'views-relations_to_nodes-blockrelated' => array(
           'module' => 'views',
-          'delta' => '90e1d01ac529409b8fb6c462abcfbfd6',
-          'region' => 'content_bottom',
-          'weight' => '-10',
+          'delta' => 'relations_to_nodes-blockrelated',
+          'region' => 'content',
+          'weight' => '10',
         ),
       ),
     ),
