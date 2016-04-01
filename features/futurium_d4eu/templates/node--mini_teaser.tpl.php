@@ -42,6 +42,7 @@
     ?>
     <?php print render($content); ?>
     <?php print render($rid); ?>
+    <?php print render($delete_rid); ?>
     </div>
   <div class="listNodeComments">
     <a href="<?php print $node_url; ?>">
