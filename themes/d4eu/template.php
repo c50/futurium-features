@@ -297,7 +297,7 @@ function d4eu_preprocess_node(&$vars) {
   );
 
   if ( $node->view->current_display == 'relationteaser' ) {
-      $vars['rid'] = $node->view->result[ $node->view->row_index ]->relation_node_rid;
+      $vars['rid'] = $node->view->result[$node->view->row_index]->relation_node_rid;
   }
 }
 

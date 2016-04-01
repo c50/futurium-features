@@ -251,12 +251,6 @@ function supertags_context_default_contexts() {
           'region' => 'sidebar_right',
           'weight' => '-9',
         ),
-        'views-relations_to_nodes-blockrelated' => array(
-          'module' => 'views',
-          'delta' => 'relations_to_nodes-blockrelated',
-          'region' => 'content',
-          'weight' => '10',
-        ),
       ),
     ),
   );

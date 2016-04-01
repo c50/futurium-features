@@ -1602,6 +1602,41 @@ function futurium_d4eu_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'blockrelated');
+
+  /* Display: Block teaser */
+  $handler = $view->new_display('block', 'Block teaser', 'relationteaser');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['view_mode'] = 'mini_teaser';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Relation: Delete link */
+  $handler->display->display_options['fields']['delete']['id'] = 'delete';
+  $handler->display->display_options['fields']['delete']['table'] = 'relation';
+  $handler->display->display_options['fields']['delete']['field'] = 'delete';
+  $handler->display->display_options['fields']['delete']['relationship'] = 'relation_base_left_related_to';
+  $handler->display->display_options['fields']['delete']['label'] = 'Unlink';
   $export['relations_to_nodes'] = $view;
 
   return $export;
