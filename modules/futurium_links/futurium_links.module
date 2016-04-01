@@ -1,0 +1,65 @@
+<?php
+
+include_once 'futurium_links.blocks.inc';
+include_once 'futurium_links.forms.inc';
+include_once 'futurium_links.helper.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function futurium_links_menu() {
+
+  // Autocomplete.
+  $items['node/futurium_links/autocomplete'] = array(
+    'page callback' => '_futurium_links_node_autocomplete',
+    'page arguments' => array(3, 4, 5),
+    'access arguments' => array('use futurium links'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function futurium_links_permission() {
+  $perms['administer futurium links'] = array(
+    'title' => t('Administer Futurium Links'),
+    'description' => t('Perform administration tasks for Futurium Links.'),
+  );
+  $perms['use futurium links'] = array(
+    'title' => t('Use Futurium Links'),
+    'description' => t('Use Futurium Links to connect nodes.'),
+  );
+  return $perms;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function futurium_links_form_node_form_alter(&$form, $form_state) {
+  if (isset($_GET['related_to']) && isset($_GET['relation_type'])) {
+    $form['relation_type'] = array(
+      '#type' => 'hidden',
+      '#value' => $_GET['relation_type'],
+    );
+    $form['related_to'] = array(
+      '#type' => 'hidden',
+      '#value' => $_GET['related_to'],
+    );
+    if (isset($_GET['new_title'])) {
+      $form['title']['#default_value'] = $_GET['new_title'];
+    }
+  }
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function futurium_links_node_insert($node) {
+  if (isset($node->relation_type) && isset($node->related_to)) {
+    _futurium_links_link_nodes($node->related_to, $node->nid, $node->relation_type, 'insert');
+  }
+}
+
