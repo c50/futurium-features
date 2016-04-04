@@ -296,12 +296,14 @@ function d4eu_preprocess_node(&$vars) {
     'field_issue',
   );
 
-  $block = module_invoke('futurium_links', 'block_view', 'futurium_links');
-  $vars['select_relation'] = $block['content']['#markup'];
-
+  if ($vars['view_mode'] == 'full') {
+    $block = module_invoke('futurium_links', 'block_view', 'futurium_links');
+    $vars['select_relation'] = '<h2>' . render($block['subject']) . '</h2>';
+    $vars['select_relation'] .= render($block['content']);
+  }
   if ( $node->view->current_display == 'relationteaser' ) {
-      $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
-      $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete' , array('query' => array('destination' => $_GET['q']), 'attributes' => array('class' => 'unlink')));
+    $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
+    $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete' , array('query' => array('destination' => $_GET['q']), 'attributes' => array('class' => 'unlink')));
   }
 }
 
@@ -319,13 +321,32 @@ function d4eu_form_search_block_form_alter(&$form, &$form_state, $form_id) {
  *
  * Changes search forms placeholder text.
  */
-function d4eu_form_alter(&$form, &$form_state, $form_id) {
-  if (module_exists('supertags')) {
-    $flavor = _supertags_flavor_context();
-    if ($form_id == 'search_block_form') {
+function d4eu_form_alter(&$form, &$form_state, $form_id) {  switch($form_id) {
+  case 'search_block_form':
+    if (module_exists('supertags')) {
+      $flavor = _supertags_flavor_context();
       $form['search_block_form']['#attributes']['placeholder'][] = $flavor['name'];
     }
-  }
+    break;
+
+  case 'futurium_links_single_box_form':
+  case 'futurium_links_multiple_boxes_form':
+  case 'futurium_links_radio_choice_form':
+    
+    $override = array(
+        drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
+            'type' => 'file',
+            'scope' => 'footer',
+            'weight' => 101,
+        ),
+    );
+
+    $form['#attached']['js'] += $override;
+    unset($form['has_evidence']);
+    break;
+  
+}
+
 }
 
 /**

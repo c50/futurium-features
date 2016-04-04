@@ -130,6 +130,7 @@ features[variable][] = field_bundle_settings_node__ideas
 features[variable][] = field_bundle_settings_node__issue
 features[variable][] = field_bundle_settings_node__poll
 features[variable][] = field_bundle_settings_node__video_d4eu
+features[variable][] = futurium_links_settings
 features[variable][] = i18n_node_extended_event_d4eu
 features[variable][] = i18n_node_extended_ideas
 features[variable][] = i18n_node_extended_issue

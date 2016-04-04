@@ -461,6 +461,16 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'futurium_links_settings';
+  $strongarm->value = array(
+    'block_type' => 'multiple',
+    'preview_view_mode' => 'mini-teaser',
+  );
+  $export['futurium_links_settings'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_extended_event_d4eu';
   $strongarm->value = '12';
   $export['i18n_node_extended_event_d4eu'] = $strongarm;
