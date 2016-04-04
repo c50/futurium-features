@@ -42,7 +42,9 @@
     ?>
     <?php print render($content); ?>
     <?php print render($rid); ?>
-    <?php print render($delete_rid); ?>
+    <?php if ((user_is_logged_in() == TRUE)): ?>
+      <?php print render($delete_rid); ?>
+    <?php endif;?>
     </div>
   <div class="listNodeComments">
     <a href="<?php print $node_url; ?>">
