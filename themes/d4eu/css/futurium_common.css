@@ -838,6 +838,9 @@ section h5 + h6 {
   clear: both;
   position: relative;
 }
+#js-contentFilterContainer .js-contentFilter .exposed_form_outer_container{
+  margin-bottom: 3em;
+}
 
 .js-contentFilter .exposed_form_inner_container,
 #sidebarRight .exposed_form_inner_container {

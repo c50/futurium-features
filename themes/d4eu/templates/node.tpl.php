@@ -121,6 +121,7 @@
       ?>
     </div>
     <?php endif;?>
+    <div id="js-contentFilterContainer"></div>
 
     <?php
       hide($content['comments']);
@@ -129,7 +130,7 @@
     ?>
 
     <?php print render($content); ?>
-    <div class="embedded-view">
+    <div class="linkedContent view-recent-activity">
       <?php print views_embed_view('relations_to_nodes','relationteaser'); ?>
     </div>
     <?php print render($select_relation) ?>

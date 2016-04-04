@@ -169,7 +169,8 @@ D4EU.initResetFilterPositionForResp = function (isLast) {
   if (expForm) {
     var filtResp = jQuery("#block-system-main .item-list")[0];
     var filtRespHeader = jQuery("#block-system-main .view-header")[0];
-    if (filtResp || filtRespHeader) {
+    var filtTrg = jQuery("#js-contentFilterContainer")[0];
+    if (filtResp || filtRespHeader || filtTrg) {
       D4EU.rstFPfR = {
         cF: $dc("div"),
         sRcF: $dc("div"),
@@ -177,7 +178,10 @@ D4EU.initResetFilterPositionForResp = function (isLast) {
         form: expForm
       };
       D4EU.rstFPfR.cF.className = "js-contentFilter";
-      if (filtResp) {
+      if(filtTrg){
+        filtTrg.appendChild(D4EU.rstFPfR.cF);
+      }
+      else if (filtResp) {
         filtResp.insertBefore(D4EU.rstFPfR.cF, filtResp.firstChild);
       }
       else {
