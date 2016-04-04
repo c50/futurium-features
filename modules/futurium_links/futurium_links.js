@@ -5,7 +5,7 @@
 
 (function ($) {
 
-  if(Drupal.ajax) {
+  if (Drupal.ajax) {
     Drupal.ajax.prototype.commands.fadeMessages = function() {
       $('.temporary-messages').each(function() {
         element = $(this);
@@ -13,11 +13,8 @@
       });
     }
   }
-
-  /**
-   * Puts the currently highlighted suggestion into the autocomplete field.
-   * Overridden from misc/autocomplete.js to add an event trigger on autocomplete
-   */
+  // Puts the currently highlighted suggestion into the autocomplete field.
+  // Overridden from misc/autocomplete.js to add an event trigger on autocomplete.
   if (Drupal.jsAC) {
     Drupal.jsAC.prototype.temporaryMessage = function () {
       $('.temporary-message').each(function() {
@@ -46,18 +43,20 @@
         case 39: // Right arrow.
         case 40: // Down arrow.
           return true;
+        
         case 9:  // Tab.
         case 13: // Enter.
         case 27: // Esc.
-          //this.hidePopup(e.keyCode);
+          // this.hidePopup(e.keyCode);
           return true;
 
-        default: // All other keys.
+        // All other keys.
+        default:
           if (input.value.length > 0 && !input.readOnly) {
             this.populatePopup();
           }
           else {
-            //this.hidePopup(e.keyCode);
+            // this.hidePopup(e.keyCode);
             this.hidePreview(input);
           }
           return true;
@@ -98,7 +97,7 @@
       });
       for (var key in matches) {
         if (matches[key] !== null && typeof matches[key] === 'object') {
-          $('<li class="'+matches[key].class+'"></li>')
+          $('<li class="' + matches[key].class + '"></li>')
             .html($('<a href="#"></a>').html(matches[key].label))
             .mousedown(function () { ac.select(this); })
             .mouseover(function () { ac.highlight(this); })
@@ -106,7 +105,7 @@
             .data('autocompleteValue', key)
             .appendTo(ul);
         }
-        else{
+        else {
           $('<li></li>')
             .html($('<a href="#"></a>').html(matches[key]))
             .mousedown(function () { ac.select(this); })
@@ -146,7 +145,7 @@
       }
       this.selected = false;
       $(this.ariaLive).empty();
-      if (this.input.value.length > 3){
+      if (this.input.value.length > 3) {
         $(this.input).trigger('autocompleteHidden');
       }
     };
