@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * futurium_links.forms.inc
+ */
 
 /**
  * Form to create relations.
@@ -387,7 +391,6 @@ function _futurium_links_link($form, $form_state) {
 
   $path = 'node/' . $origin_nid;
   $commands[] = ctools_ajax_command_redirect($path);
-  dsm(get_defined_vars());
 
   return array('#type' => 'ajax', '#commands' => $commands);
 }
@@ -408,4 +411,3 @@ function _futurium_linker_add_autocomplete_js(&$form) {
   );
 
 }
-

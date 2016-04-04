@@ -1,3 +1,8 @@
+/**
+ * @file
+ * futurium_links.js
+ */
+
 (function ($) {
 
   if(Drupal.ajax) {

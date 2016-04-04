@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * futurium_links.blocks.inc
+ */
 
 /**
  * Implements hook_block_info().

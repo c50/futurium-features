@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * futurium_links.helper.inc
+ */
 
 /**
  * The original doesn't take into account directional relations.

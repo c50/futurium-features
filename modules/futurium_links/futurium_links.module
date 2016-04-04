@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * futurium_links.module
+ */
 
 include_once 'futurium_links.blocks.inc';
 include_once 'futurium_links.forms.inc';
@@ -62,4 +66,3 @@ function futurium_links_node_insert($node) {
     _futurium_links_link_nodes($node->related_to, $node->nid, $node->relation_type, 'insert');
   }
 }
-
