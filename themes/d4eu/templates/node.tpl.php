@@ -132,6 +132,7 @@
     <div class="embedded-view">
       <?php print views_embed_view('relations_to_nodes','relationteaser'); ?>
     </div>
+    <?php print render($select_relation) ?>
 
     <?php if ((user_is_logged_in() == FALSE) && ($open_to_comments == TRUE)): ?>
       <div id='comment-form-container'><figure class='loginToCommentCTA'>

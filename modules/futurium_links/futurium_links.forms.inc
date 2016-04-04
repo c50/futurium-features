@@ -300,16 +300,6 @@ function futurium_links_multiple_boxes_form_submit($form, $form_state) {
   }
 }
 
-/***
- *     ██████╗ █████╗ ██╗     ██╗     ██████╗  █████╗  ██████╗██╗  ██╗███████╗
- *    ██╔════╝██╔══██╗██║     ██║     ██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝
- *    ██║     ███████║██║     ██║     ██████╔╝███████║██║     █████╔╝ ███████╗
- *    ██║     ██╔══██║██║     ██║     ██╔══██╗██╔══██║██║     ██╔═██╗ ╚════██║
- *    ╚██████╗██║  ██║███████╗███████╗██████╔╝██║  ██║╚██████╗██║  ██╗███████║
- *     ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝
- *
- */
-
 /**
  * Ajax callback to show preview.
  */
@@ -397,6 +387,7 @@ function _futurium_links_link($form, $form_state) {
 
   $path = 'node/' . $origin_nid;
   $commands[] = ctools_ajax_command_redirect($path);
+  dsm(get_defined_vars());
 
   return array('#type' => 'ajax', '#commands' => $commands);
 }

@@ -296,6 +296,9 @@ function d4eu_preprocess_node(&$vars) {
     'field_issue',
   );
 
+  $block = module_invoke('futurium_links', 'block_view', 'futurium_links');
+  $vars['select_relation'] = $block['content']['#markup'];
+
   if ( $node->view->current_display == 'relationteaser' ) {
       $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
       $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete' , array('query' => array('destination' => $_GET['q']), 'attributes' => array('class' => 'unlink')));
