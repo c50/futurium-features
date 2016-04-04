@@ -332,7 +332,7 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {  switch($form_id) {
   case 'futurium_links_single_box_form':
   case 'futurium_links_multiple_boxes_form':
   case 'futurium_links_radio_choice_form':
-    
+
     $override = array(
         drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
             'type' => 'file',

@@ -464,7 +464,7 @@ function futurium_d4eu_strongarm() {
   $strongarm->name = 'futurium_links_settings';
   $strongarm->value = array(
     'block_type' => 'multiple',
-    'preview_view_mode' => 'mini_teaser',
+    'preview_view_mode' => 'teaser',
   );
   $export['futurium_links_settings'] = $strongarm;
 

@@ -259,7 +259,7 @@ D4EU.initHpArchive = function (isLast) {
     return true;
   }
   else {
-    return D4EU.initHpArchiveIsInit;
+    return D4EU.initHpArchiveIsIni
   }
 };
 
@@ -291,7 +291,9 @@ initASAP();
       D4EU.setNavFollowingScroll(true);
       D4EU.initPager(true);
       D4EU.initResetFilterPositionForResp(true);
-      D4EU.initHpArchive(true);
+      if ($(context).find('.flavour-landing-page').length) {
+        D4EU.initHpArchive(true);
+      }
     }
   };
 })(jQuery);
