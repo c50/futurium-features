@@ -1740,7 +1740,7 @@ function futurium_d4eu_field_default_field_instances() {
   t('Rate');
   t('Rate that idea.');
   t('Rate that issue.');
-  t('Rate the user\'s comment.');
+  t("Rate the user's comment.");
   t('Tags');
   t('Videos');
   t('Vote');
