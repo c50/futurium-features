@@ -303,7 +303,10 @@ function d4eu_preprocess_node(&$vars) {
   }
   if ( $node->view->current_display == 'relationteaser' ) {
     $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
-    $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete' , array('query' => array('destination' => $_GET['q']), 'attributes' => array('class' => 'unlink')));
+    $vars['delete_rid'] = '';
+    if (user_access('delete relations')) {
+      $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete' , array('query' => array('destination' => $_GET['q']), 'attributes' => array('class' => 'unlink')));
+    }
   }
 }
 

@@ -172,24 +172,6 @@ function futurium_links_block_view($delta = '', $edit = NULL) {
           }
           $block['content']['#markup'] = drupal_render($form);
         }
-        else {
-          $destination = array('destination' => $_GET['q']);
-          if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
-            // Users can register themselves.
-            $link = t(
-              '<a href="@login">Log in</a> or <a href="@register">register</a> to create relations',
-              array(
-                '@login' => url('user/login', array('query' => $destination)),
-                '@register' => url('user/register', array('query' => $destination)),
-              )
-            );
-          }
-          else {
-            // Only admins can add new users, no public registration.
-            $link = t('<a href="@login">Log in</a> to create relations', array('@login' => url('user/login', array('query' => $destination))));
-          }
-          $block['content']['#markup'] = $link;
-        }
         break;
 
       case 'futurium_links_relations':
