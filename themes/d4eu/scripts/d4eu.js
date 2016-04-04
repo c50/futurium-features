@@ -259,7 +259,7 @@ D4EU.initHpArchive = function (isLast) {
     return true;
   }
   else {
-    return D4EU.initHpArchiveIsIni
+    return D4EU.initHpArchiveIsInit;
   }
 };
 
