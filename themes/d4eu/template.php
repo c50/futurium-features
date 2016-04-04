@@ -324,31 +324,34 @@ function d4eu_form_search_block_form_alter(&$form, &$form_state, $form_id) {
  *
  * Changes search forms placeholder text.
  */
-function d4eu_form_alter(&$form, &$form_state, $form_id) {  switch($form_id) {
-  case 'search_block_form':
-    if (module_exists('supertags')) {
-      $flavor = _supertags_flavor_context();
-      $form['search_block_form']['#attributes']['placeholder'][] = $flavor['name'];
-    }
-    break;
+function d4eu_form_alter(&$form, &$form_state, $form_id) {
+  switch($form_id) {
 
-  case 'futurium_links_single_box_form':
-  case 'futurium_links_multiple_boxes_form':
-  case 'futurium_links_radio_choice_form':
+    case 'search_block_form':
+      if (module_exists('supertags')) {
+        $flavor = _supertags_flavor_context();
+        $form['search_block_form']['#attributes']['placeholder'][] = $flavor['name'];
+      }
+      break;
 
-    $override = array(
+    case 'futurium_links_single_box_form':
+    case 'futurium_links_multiple_boxes_form':
+    case 'futurium_links_radio_choice_form':
+      dsm($form['related_to']['new-wrap']['new']['item']);
+      $override = array(
         drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
             'type' => 'file',
             'scope' => 'footer',
             'weight' => 101,
         ),
-    );
+      );
 
     $form['#attached']['js'] += $override;
+    $form['related_to']['new-wrap']['new']['item']['#title'] = '<strong>Add or link</strong> another related content';
     unset($form['has_evidence']);
     break;
   
-}
+  }
 
 }
 
