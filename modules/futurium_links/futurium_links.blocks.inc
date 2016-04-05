@@ -164,7 +164,7 @@ function futurium_links_block_view($delta = '', $edit = NULL) {
     switch ($delta) {
       case 'futurium_links':
         if (user_access('use futurium links')) {
-          $block['subject'] = t("Create relations");
+          $block['subject'] = t("Create relation");
 
           $block_type = $settings['block_type'];
           switch ($block_type) {

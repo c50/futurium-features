@@ -346,7 +346,8 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
       );
 
     $form['#attached']['js'] += $override;
-    $form['related_to']['new-wrap']['new']['item']['#title'] = '<strong>Add or link</strong> another related content';
+    $form['related_to']['new-wrap']['new']['item']['#title'] = '<strong>Link</strong> further related content';
+    $form['related_to']['new-wrap']['new']['item']['#description'] = 'Search for <b>existing</b> content related with current page.';
     unset($form['has_evidence']);
     break;
   
