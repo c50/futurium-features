@@ -68,9 +68,9 @@ function futurium_links_block_configure($delta = '', $edit = NULL) {
 
     $form[$mb]['show_add_links'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Add content links'),
+      '#title' => t('Add create content links'),
       '#default_value' => $settings['show_add_links'],
-      '#description' => t('Check to show links to add content on the widget.'),
+      '#description' => t('Check to show links to create content on the widget.'),
     );
 
   }
