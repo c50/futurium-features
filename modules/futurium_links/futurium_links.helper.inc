@@ -293,7 +293,7 @@ function _futurium_links_get_related_items($entities, $relation_type, $settings 
 /**
  * Callback for autocomplete box.
  */
-function _futurium_links_node_autocomplete($relation_name, $nid, $string) {
+function _futurium_links_node_autocomplete($show_links, $relation_name, $nid, $string) {
 
   $matches = array();
   if ($relation_name == 'all') {
@@ -378,13 +378,15 @@ function _futurium_links_node_autocomplete($relation_name, $nid, $string) {
 
   drupal_alter('futurium_links_autocomplete_matches', $matches);
 
-  if ($relation_name == 'all') {
-    foreach ($relations as $key => $relation) {
-      $matches += _futurium_links_create_links($nid, $relation->relation_type);
+  if ($show_links == 'show') {
+    if ($relation_name == 'all') {
+      foreach ($relations as $key => $relation) {
+        $matches += _futurium_links_create_links($nid, $relation->relation_type);
+      }
     }
-  }
-  else {
-    $matches += _futurium_links_create_links($nid, $relation_name);
+    else {
+      $matches += _futurium_links_create_links($nid, $relation_name);
+    }
   }
   drupal_json_output($matches);
 }

@@ -42,9 +42,11 @@ function futurium_links_single_box_form($form, &$form_state, $node, $settings) {
       '#markup' => '<div class="feedback"></div>',
     );
 
+    $show_links = $settings['show_add_links'] ? 'show' : 'hide';
+
     $form['new']['new-wrapper']['search'] = array(
       '#type' => 'textfield',
-      '#autocomplete_path' => 'node/futurium_links/autocomplete/all/' . $node->nid,
+      '#autocomplete_path' => 'node/futurium_links/autocomplete/all/' . $show_links . '/' . $node->nid,
       '#attributes' => array(
         'placeholder' => t('Search for content to link'),
       ),
@@ -167,9 +169,11 @@ function futurium_links_radio_choice_form($form, $form_state, $node, $settings) 
     ),
   );
 
+  $show_links = $settings['show_add_links'] ? 'show' : 'hide';
+
   $form['new']['new-wrapper']['search'] = array(
     '#type' => 'textfield',
-    '#autocomplete_path' => 'node/futurium_links/autocomplete/' . $default . '/' . $node->nid,
+    '#autocomplete_path' => 'node/futurium_links/autocomplete/' . $show_links . '/' . $default . '/' . $node->nid,
     '#attributes' => array(
       'placeholder' => t('Search for content to link'),
     ),
@@ -258,11 +262,13 @@ function futurium_links_multiple_boxes_form($form, &$form_state, $node, $setting
       ),
     );
 
+    $show_links = $settings['show_add_links'] ? 'show' : 'hide';
+
     $form[$relation_name]['new-wrap']['new']['item'] = array(
       '#title' => t('New relation'),
       '#type' => 'textfield',
       '#description' => t("Search for content to create a relation or create new content."),
-      '#autocomplete_path' => 'node/futurium_links/autocomplete/' . $relation_name . '/' . $node->nid,
+      '#autocomplete_path' => 'node/futurium_links/autocomplete/' . $show_links . '/' . $relation_name . '/' . $node->nid,
       '#ajax' => array(
         'event' => 'autocompleteHidden',
         'callback' => "_futurium_links_show_preview",

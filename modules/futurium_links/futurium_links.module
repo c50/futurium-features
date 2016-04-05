@@ -16,7 +16,7 @@ function futurium_links_menu() {
   // Autocomplete.
   $items['node/futurium_links/autocomplete'] = array(
     'page callback' => '_futurium_links_node_autocomplete',
-    'page arguments' => array(3, 4, 5),
+    'page arguments' => array(3, 4, 5, 6),
     'access arguments' => array('use futurium links'),
     'type' => MENU_CALLBACK,
   );
