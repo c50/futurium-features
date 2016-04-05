@@ -65,6 +65,14 @@ function futurium_links_block_configure($delta = '', $edit = NULL) {
       '#description' => t('The view mode to use for the preview.'),
       '#required' => TRUE,
     );
+
+    $form[$mb]['show_add_links'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Add create content links'),
+      '#default_value' => $settings['show_add_links'],
+      '#description' => t('Check to show links to create content on the widget.'),
+    );
+
   }
 
   if ($delta == 'futurium_links_relations') {
@@ -231,6 +239,7 @@ function futurium_links_block_default_settings($delta = '', $edit = NULL) {
       $default_options  = array(
         'block_type' => 'single',
         'preview_view_mode' => 'teaser',
+        'show_add_links' => '0',
       );
       break;
 
