@@ -296,7 +296,7 @@ function d4eu_preprocess_node(&$vars) {
     'field_issue',
   );
 
-  if ($vars['view_mode'] == 'full') {
+  if ($vars['view_mode'] == 'full' && user_access('create relations')) {
     $block = module_invoke('futurium_links', 'block_view', 'futurium_links');
     $vars['select_relation'] = '<h2>' . render($block['subject']) . '</h2>';
     $vars['select_relation'] .= render($block['content']);
