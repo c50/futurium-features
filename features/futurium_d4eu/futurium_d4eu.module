@@ -226,6 +226,16 @@ function futurium_d4eu_menu() {
     'menu_name' => 'management',
   );
 
+  // Add a menu Dashboard for editors.
+  $items['admin/content/dashboard'] = array(
+      'title' => 'Dashboard',
+      'description' => 'Editors dashboard',
+      'page callback' => 'drupal_goto',
+      'page arguments' => array('dashboard'),
+      'access callback' => TRUE,
+      'menu_name' => 'management',
+  );
+
   $items['admin/config/content/futurium_d4eu'] = array(
     'title' => 'Futurium D4EU',
     'description' => 'Configuration for the Futurium D4eu module',
