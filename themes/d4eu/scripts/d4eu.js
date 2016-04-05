@@ -178,7 +178,7 @@ D4EU.initResetFilterPositionForResp = function (isLast) {
         form: expForm
       };
       D4EU.rstFPfR.cF.className = "js-contentFilter";
-      if(filtTrg){
+      if (filtTrg) {
         filtTrg.appendChild(D4EU.rstFPfR.cF);
       }
       else if (filtResp) {

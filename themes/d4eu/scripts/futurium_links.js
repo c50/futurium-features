@@ -1,11 +1,12 @@
-(function ($) {
+/**
+ * @file
+ * D4eu futurium_links.js.
+ */
 
-  /**
-   * Puts the currently highlighted suggestion into the autocomplete field.
-   * Overridden from misc/autocomplete.js to add an event trigger on autocomplete
-   */
+(function ($) {
+  // Puts the currently highlighted suggestion into the autocomplete field.
+  // Overridden from misc/autocomplete.js to add an event trigger on autocomplete.
   if (Drupal.jsAC) {
-    
     /**
      * Fills the suggestion popup with any matches received.
      */
@@ -20,7 +21,7 @@
       var ac = this;
       for (var key in matches) {
         if (matches[key] !== null && typeof matches[key] === 'object') {
-          $('<li class="'+matches[key].class+'"></li>')
+          $('<li class="' + matches[key].class + '"></li>')
             .html($('<a href="#linker"></a>').html(matches[key].label))
             .mousedown(function () { ac.select(this); })
             .mouseover(function () { ac.highlight(this); })
@@ -28,7 +29,7 @@
             .data('autocompleteValue', key)
             .appendTo(ul);
         }
-        else{
+        else {
           $('<li></li>')
             .html($('<a href="#linker"></a>').html(matches[key]))
             .mousedown(function () { ac.select(this); })

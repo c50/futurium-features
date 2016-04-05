@@ -838,7 +838,7 @@ section h5 + h6 {
   clear: both;
   position: relative;
 }
-#js-contentFilterContainer .js-contentFilter .exposed_form_outer_container{
+#js-contentFilterContainer .js-contentFilter .exposed_form_outer_container {
   margin-bottom: 3em;
 }
 
@@ -1618,7 +1618,7 @@ a:hover.CTAButton,
 }
 #comments .commentImportant .media-body {
   margin: 0 -1.0em;
-  padding:1em 1.0em;
+  padding: 1em 1.0em;
   border-top: solid 3px #fc9;
   border-bottom: solid 3px #fc9;
   border-left: solid 1px #fc9;
@@ -1639,7 +1639,7 @@ a:hover.CTAButton,
 }
 #comments .commentConclusion .media-body {
   margin: 0 -1.0em;
-  padding:1em 1.0em;
+  padding: 1em 1.0em;
   border: solid 2px #f63;
   border-radius: 10px;
   background: #fff6f3;
@@ -2226,7 +2226,7 @@ a:hover.CTAButton,
 }
 
 #comments ul.media-list .comment-links .commenter-name {
-  display: inline-block;  
+  display: inline-block;
 }
 #comments ul.media-list .comment-links .userOrganisation {
   display: inline-block;

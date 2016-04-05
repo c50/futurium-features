@@ -301,11 +301,11 @@ function d4eu_preprocess_node(&$vars) {
     $vars['select_relation'] = '<h2>' . render($block['subject']) . '</h2>';
     $vars['select_relation'] .= render($block['content']);
   }
-  if ( $node->view->current_display == 'relationteaser' ) {
+  if ($node->view->current_display == 'relationteaser') {
     $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
     $vars['delete_rid'] = '';
     if (user_access('delete relations')) {
-      $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete' , array('query' => array('destination' => $_GET['q']), 'attributes' => array('class' => 'unlink')));
+      $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete', array('query' => array('destination' => $_GET['q']), 'attributes' => array('class' => 'unlink')));
     }
   }
 }
@@ -325,7 +325,7 @@ function d4eu_form_search_block_form_alter(&$form, &$form_state, $form_id) {
  * Changes search forms placeholder text.
  */
 function d4eu_form_alter(&$form, &$form_state, $form_id) {
-  switch($form_id) {
+  switch ($form_id) {
 
     case 'search_block_form':
       if (module_exists('supertags')) {
@@ -339,18 +339,17 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
     case 'futurium_links_radio_choice_form':
       $override = array(
         drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
-            'type' => 'file',
-            'scope' => 'footer',
-            'weight' => 101,
+          'type' => 'file',
+          'scope' => 'footer',
+          'weight' => 101,
         ),
       );
 
-    $form['#attached']['js'] += $override;
-    $form['related_to']['new-wrap']['new']['item']['#title'] = '<strong>Link</strong> further related content';
-    $form['related_to']['new-wrap']['new']['item']['#description'] = 'Search for <b>existing</b> content related with current page.';
-    unset($form['has_evidence']);
-    break;
-  
+      $form['#attached']['js'] += $override;
+      $form['related_to']['new-wrap']['new']['item']['#title'] = '<strong>Link</strong> further related content';
+      $form['related_to']['new-wrap']['new']['item']['#description'] = 'Search for <b>existing</b> content related with current page.';
+      unset($form['has_evidence']);
+      break;
   }
 
 }
