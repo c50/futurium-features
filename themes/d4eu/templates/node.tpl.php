@@ -121,6 +121,7 @@
       ?>
     </div>
     <?php endif;?>
+    <div id="js-contentFilterContainer"></div>
 
     <?php
       hide($content['comments']);
@@ -129,6 +130,12 @@
     ?>
 
     <?php print render($content); ?>
+    <div class="linkedContent view-recent-activity">
+      <?php print views_embed_view('relations_to_nodes', 'relationteaser'); ?>
+    </div>
+    <?php if (user_is_logged_in() == TRUE): ?>
+      <div class="linkingForm"><?php print render($select_relation) ?></div>
+    <?php endif; ?>
 
     <?php if ((user_is_logged_in() == FALSE) && ($open_to_comments == TRUE)): ?>
       <div id='comment-form-container'><figure class='loginToCommentCTA'>
@@ -152,7 +159,6 @@
           </figcaption>
         </figure></div>
     <?php endif;?>
-
     <?php print render($content['comments']); ?>
 
   </div>

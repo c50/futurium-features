@@ -973,256 +973,129 @@ iframe {
   border: 1px solid #ccc;
 }
 
-/*related content*/
-.group-related-content {
-  margin-top: 2em;
+/* linked content */
+.group-related-content,
+.related-content-forms,
+#field-related-videos-add-more-wrapper,
+#field-related-polls-add-more-wrapper,
+#field-related-documents-add-more-wrapper,
+#field-related-events-add-more-wrapper {
+  display: none;
 }
 
-.group-related-content .field-type-entityreference {
-  position: relative;
-  margin: 0 0 0 3%;
-  border-bottom: solid 1px #ededed;
-  background: #ffffff;
-  background: -moz-linear-gradient(top, #ffffff 0%, #fbfbfb 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #fbfbfb));
-  background: -webkit-linear-gradient(top, #ffffff 0%, #fbfbfb 100%);
-  background: -o-linear-gradient(top, #ffffff 0%, #fbfbfb 100%);
-  background: -ms-linear-gradient(top, #ffffff 0%, #fbfbfb 100%);
-  background: linear-gradient(to bottom, #ffffff 0%, #fbfbfb 100%);
-  padding: 7px 10px 15px 80px;
-  min-height: 70px;
+.linkedContent {
+  padding-left: 40px;
 }
-
-.group-related-content h2 + .field-type-entityreference {
-  border-top: solid 1px #ededed;
-}
-
-.group-related-content .field-type-entityreference:before {
-  position: absolute;
-  content: ".";
-  overflow: hidden;
-  text-indent: -300px;
-  top: 5px;
-  left: 10px;
-  width: 70px;
-  height: 70px;
-  background: url("../images/theme/sprite_icons.png") no-repeat 0px 0px;
-}
-
-.group-related-content .field-type-entityreference.field-name-field-related-polls:before {
-  background-position: 0 -100px;
-}
-
-.group-related-content .field-type-entityreference.field-name-field-related-ideas:before {
-  background-position: 0 -200px;
-}
-
-.group-related-content .field-type-entityreference.field-name-field-related-discussions:before {
-  background-position: 0 -300px;
-}
-
-.group-related-content .field-type-entityreference.field-name-field-related-videos:before {
-  background-position: 0 -400px;
-}
-
-.group-related-content .field-type-entityreference.field-name-field-related-documents:before {
-  background-position: 0 -500px;
-}
-
-.group-related-content .field-type-entityreference.field-name-field-related-events:before {
-  background-position: 0 -600px;
-}
-
-.group-related-content .field-type-entityreference .field-label {
+.linkedContent .view-header h2 {
+  font-size: 20px;
   font-weight: normal;
-  display: block;
-  float: none !important;
-  font-size: 11px;
-  color: #999999;
+}
+.linkedContent .view-header h2:before {
+  content: " ";
+  display: inline-block;
+  width: 55px;
+  height: 30px;
+  background: url(../images/theme/sprite_linked.png) no-repeat 0 -116px;
+  margin-left: -55px;
+  margin-bottom: -4px;
+}
+.linkedContent .view-header + .view-content .item-list {
+  margin: -15px 0 25px;
+}
+.linkedContent #poll-view-voting {
+  display: none;
+}
+.linkedContent .unlink {
+  float: right;
+  color: #900;
+}
+.linkedContent .view-header + .view-content .item-list {
+  border: 0;
 }
 
-.group-related-content .field-type-entityreference .field-items {
-  display: block;
-  float: none !important;
+.linkingForm {
+  margin-left: 40px;
+  margin-bottom: 8em;
+  padding: 1em 2em;
+  border-top: solid 2px #cae3ee;
+  border-bottom: solid 2px #cae3ee;
+  background: #eaf5f9;
 }
-
-.group-related-content .field-type-entityreference .field-items .field-item:before {
-  content: "∙ ";
+.linkingForm:empty {
+  display: none;
 }
-
-.group-related-content .field-type-entityreference .field-items .field-item {
-  line-height: 1.1em;
-  padding: 5px 0 8px;
+.linkingForm .linkingForm {
+  display: none;
 }
-
-.group-related-content .field-type-entityreference .field-items .field-item a {
+.linkingForm legend {
+  display: none;
+}
+.linkingForm > h2 {
+  display: none;
+}
+.linkingForm .form-item,
+.linkingForm .form-actions {
+  margin: 0;
+}
+.linkingForm .form-item-related-to-new-wrap-new-item > label {
+  font-size: 130%;
+  font-weight: normal;
+  margin: 0.5em 0 1em;
+}
+.linkingForm .description {
+  margin: 0 0 1em;
+  font-size: 90%;
+}
+.linkingForm #autocomplete li {
+  padding: 0 1em;
+}
+.linkingForm #autocomplete li a {
+  color: #333;
   text-decoration: none;
 }
-
-.group-related-content .field-type-entityreference .field-items .field-item a:hover {
-  text-decoration: underline;
+.linkingForm #autocomplete li.selected {
+  background: #fff3a5;
 }
-
-.group-related-content h2 {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-.group-related-content .related-content-forms {
-  margin: 20px 0 20px 3%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  border-top: solid 2px #d6e9f2;
-  border-bottom: solid 2px #d6e9f2;
-  background: #eff7fa;
-}
-
-.group-related-content .related-content-forms .form-item {
-  display: inline-block;
-  width: 83%;
-  padding: 0;
-  margin: 0;
-}
-
-.group-related-content .related-content-forms .form-item label {
-  min-width: 100px;
-  width: 30%;
-  display: inline-block;
-  padding: 12px 0 15px 48px;
-  margin: 0;
-  background: url(../images/theme/sprite_icons.png) no-repeat 0px 3px;
-  background-size: 42px;
-}
-
-.group-related-content .related-content-forms #futurium-idea-link-document .form-item label {
-  background-position: 0px -359px;
-}
-
-.group-related-content .related-content-forms #futurium-idea-link-discussion .form-item label {
-  background-position: 0px -214px;
-}
-
-.group-related-content .related-content-forms #futurium-idea-link-poll .form-item label {
-  background-position: 0px -69px;
-}
-
-.group-related-content .related-content-forms #futurium-idea-link-video .form-item label {
-  background-position: 0px -286px;
-}
-
-.group-related-content .related-content-forms #futurium-idea-link-event .form-item label {
-  background-position: 0px -431px;
-}
-
-.group-related-content .related-content-forms #futurium-idea-link-ideas .form-item label {
-  background-position: 0px -141px;
-}
-
-.group-related-content .related-content-forms .form-item .form-text {
-  width: 65%;
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-}
-
-.group-related-content .related-content-forms .form-submit {
-  width: 15%;
-  display: inline-block;
-}
-
-/*related content*/
-
-/*links "add related" sidebarRight*/
-#block-futurium-idea-add-related-content.panel {
-  margin-left: -7.5% !important;
-  margin-right: -2% !important;
-  padding: 10px 2% 10px 0 !important;
-  display: block;
-  overflow: hidden;
-  clear: both;
+.linkingForm .preview {
   position: relative;
 }
-
-#block-futurium-idea-add-related-content.panel .panel-heading {
-  background: #ffffff;
-  border-top: solid 5px #fff;
-  border-right: solid 5px #fff;
-  border-radius: 0 5px 0 0;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-  padding: 10px 5% 15px;
-  margin: 15px 0 -5px !important;
+.linkingForm .preview .node {
+  overflow: auto;
+  padding: 1em;
+  background: #fff;
+  height: 30em;
+  border: solid 3px #fbda04;
+  margin-bottom: 2em;
+  position: static;
+}
+.linkingForm .preview .node:before {
+  content: " " !important;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(100% - 24px) !important;
+  height: calc(30em - 6px) !important;
+  background:rgba(255,255,255,0.5) !important;
+  visibility: visible !important;
+  display: block !important;
+  font-size: 100%;
+  z-index: 5;
+}
+.linkingForm .preview .node:after {
+  content:"preview" !important;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  padding:1px 5px 3px;
+  background: #fbda04;
+  z-index: 6;
+  visibility: visible !important;
+  display: block !important;
+  font-size: 11px;
+  height:auto;
 }
 
-#block-futurium-idea-add-related-content.panel .panel-body {
-  background: #e5f0f6 url(../images/theme/bg_dashes.png);
-  border: solid 5px #fff;
-  border-left: 0;
-  border-radius: 0 5px 5px 0;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-  padding: 5px 5% 5px;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-heading + .panel-body,
-#block-futurium-idea-add-related-content.panel .panel-heading + div + .panel-body {
-  border-top: 0px;
-  border-radius: 0 0 5px 0;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list {
-  margin: 0;
-  padding: 0;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list ul li {
-  border-bottom: 0px !important;
-  padding: 0 !important;
-  margin: 2px 0 !important;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list ul li a {
-  border-radius: 5px;
-  display: inline-block;
-  width: 100%;
-  padding: 6px 0 10px 40px;
-  background: url(../images/theme/sprite_icons.png) no-repeat 5px 3px;
-  background-size: 29px;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list ul li a:hover {
-  background-color: #fff;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list ul li.link-poll a {
-  background-position: 5px -47px;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list ul li.link-ideas a {
-  background-position: 5px -97px;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list ul li.link-discussion a {
-  background-position: 5px -147px;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list ul li.link-video a {
-  background-position: 5px -197px;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list ul li.link-document a {
-  background-position: 5px -247px;
-}
-
-#block-futurium-idea-add-related-content.panel .panel-body .item-list ul li.link-event a {
-  background-position: 5px -297px;
-}
-
-#block-futurium-idea-add-related-content.panel .item-list {
-  border: 0;
-  padding-top: 0 !important;
-}
-
-/*/links "add related" sidebarRight*/
+/* /linked content */
 
 /* blogs in sidebar right */
 #sidebarRight .views-blog_d4eu-block_1 {
@@ -1991,40 +1864,6 @@ iframe {
 /* /flavour specific */
 
 @media (max-width: 799px) {
-  .group-related-content .related-content-forms {
-    padding-top: 0;
-    margin-left: 0;
-  }
-
-  .group-related-content .related-content-forms .form-item label,
-  .group-related-content .related-content-forms .form-item .form-text {
-    width: 100%;
-  }
-
-  .group-related-content .btn-default {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  .group-related-content .related-content-forms form {
-    margin-top: 10px;
-    border-top: solid 1px #d6e9f2;
-  }
-
-  .group-related-content .related-content-forms form:first-child {
-    margin-top: 0px;
-    border-top: 0px;
-  }
-
-  .group-related-content .field-type-entityreference {
-    padding-left: 70px;
-    margin-left: 0px;
-  }
-
-  .group-related-content .field-type-entityreference::before {
-    left: 0px;
-  }
-
   .node-info {
     margin-right: 0;
   }

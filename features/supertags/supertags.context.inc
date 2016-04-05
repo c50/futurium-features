@@ -226,6 +226,8 @@ function supertags_context_default_contexts() {
         'document' => 'document',
         'event_d4eu' => 'event_d4eu',
         'ideas' => 'ideas',
+        'issue' => 'issue',
+        'links' => 'links',
         'poll' => 'poll',
         'video_d4eu' => 'video_d4eu',
       ),

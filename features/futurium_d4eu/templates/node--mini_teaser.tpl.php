@@ -41,7 +41,9 @@
     hide($content['links']);
     ?>
     <?php print render($content); ?>
-  </div>
+    <?php print render($rid); ?>
+      <?php print render($delete_rid); ?>
+    </div>
   <div class="listNodeComments">
     <a href="<?php print $node_url; ?>">
     <?php if ($node->comment_count != 0): ?>

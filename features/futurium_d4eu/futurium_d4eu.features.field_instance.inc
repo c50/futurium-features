@@ -882,53 +882,6 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_evidence'.
-  $field_instances['node-ideas-field_evidence'] = array(
-    'bundle' => 'ideas',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'relation_dummy_field',
-        'settings' => array(),
-        'type' => 'relation_default',
-        'weight' => 8,
-      ),
-      'mini_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_evidence',
-    'label' => 'Evidence',
-    'required' => 0,
-    'settings' => array(
-      'relation_type' => array(
-        'has_evidence' => 'has_evidence',
-      ),
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'relation_dummy_field',
-      'settings' => array(),
-      'type' => 'relation_default',
-      'weight' => 41,
-    ),
-  );
-
   // Exported field_instance: 'node-ideas-field_ideas'.
   $field_instances['node-ideas-field_ideas'] = array(
     'bundle' => 'ideas',
@@ -1064,53 +1017,6 @@ function futurium_d4eu_field_default_field_instances() {
       'settings' => array(),
       'type' => 'exposed',
       'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'node-ideas-field_related'.
-  $field_instances['node-ideas-field_related'] = array(
-    'bundle' => 'ideas',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'relation_dummy_field',
-        'settings' => array(),
-        'type' => 'relation_default',
-        'weight' => 9,
-      ),
-      'mini_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_related',
-    'label' => 'Related content',
-    'required' => 0,
-    'settings' => array(
-      'relation_type' => array(
-        'related_to' => 'related_to',
-      ),
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'relation_dummy_field',
-      'settings' => array(),
-      'type' => 'relation_default',
-      'weight' => 41,
     ),
   );
 
@@ -1834,8 +1740,7 @@ function futurium_d4eu_field_default_field_instances() {
   t('Rate');
   t('Rate that idea.');
   t('Rate that issue.');
-  t('Rate the user\'s comment.');
-  t('Related content');
+  t("Rate the user's comment.");
   t('Tags');
   t('Videos');
   t('Vote');
