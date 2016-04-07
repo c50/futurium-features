@@ -12,7 +12,6 @@ dependencies[] = futurium_core
 dependencies[] = invite_by_email
 dependencies[] = media_internet
 dependencies[] = menu_block
-dependencies[] = relation
 dependencies[] = supertags
 dependencies[] = user_registrationpassword
 dependencies[] = views_bulk_operations
