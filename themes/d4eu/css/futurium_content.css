@@ -1075,24 +1075,24 @@ iframe {
   left: 3px;
   width: calc(100% - 24px) !important;
   height: calc(30em - 6px) !important;
-  background:rgba(255,255,255,0.5) !important;
+  background: rgba(255,255,255,0.5) !important;
   visibility: visible !important;
   display: block !important;
   font-size: 100%;
   z-index: 5;
 }
 .linkingForm .preview .node:after {
-  content:"preview" !important;
+  content: "preview" !important;
   position: absolute;
   top: 5px;
   left: 5px;
-  padding:1px 5px 3px;
+  padding: 1px 5px 3px;
   background: #fbda04;
   z-index: 6;
   visibility: visible !important;
   display: block !important;
   font-size: 11px;
-  height:auto;
+  height: auto;
 }
 
 /* /linked content */
