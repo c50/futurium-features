@@ -316,7 +316,7 @@ function d4eu_preprocess_node(&$vars) {
  * Adding missing alternative text for WAI compliance.
  */
 function d4eu_form_search_block_form_alter(&$form, &$form_state, $form_id) {
-  $form['actions']['submit']['#attributes']['alt'] = 'Search';
+  $form['actions']['submit']['#attributes']['alt'] = t('Search');
 }
 
 /**
@@ -346,8 +346,8 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
       );
 
       $form['#attached']['js'] += $override;
-      $form['related_to']['new-wrap']['new']['item']['#title'] = '<strong>Link</strong> further related content';
-      $form['related_to']['new-wrap']['new']['item']['#description'] = 'Search for <b>existing</b> content related with current page.';
+      $form['related_to']['new-wrap']['new']['item']['#title'] = '<strong>' . t('Link') .'</strong>'. ' ' .t('further related content');
+      $form['related_to']['new-wrap']['new']['item']['#description'] = t('Search for') . ' <b>' . t('existing') . '</b> ' . t('content related with current page') .  '.';
       unset($form['has_evidence']);
       break;
   }
