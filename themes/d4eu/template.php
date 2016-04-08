@@ -371,13 +371,15 @@ function d4eu_preprocess_comment(&$vars) {
   }
   $uid = $vars['comment']->uid;
   $comment_user = array('account' => user_load($uid));
+  $field = field_get_items('user', $comment_user['account'], 'field_organisation');
+  $output = field_view_field('user', $comment_user['account'], 'field_organisation', $field[0]);
 
   $organisation = '';
-  if (isset($comment_user['account']->field_organisation[LANGUAGE_NONE][0]['safe_value'])) {
+  if (isset($field)) {
     if ($organisation != '') {
       $organisation .= ' ';
     }
-    $organisation .= '<div class="userOrganisation">' . $comment_user['account']->field_organisation[LANGUAGE_NONE][0]['safe_value'] . '</div>';
+    $organisation .= '<div class="userOrganisation">' . $output[0]['#markup'] . '</div>';
   }
 
   $vars['comment_user']['organisation'] = $organisation;
@@ -393,7 +395,7 @@ function d4eu_preprocess_comment(&$vars) {
   if (!$user->uid) {
     if ($default_archived == 0) {
       if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
-        $destination                                                                 = array('destination' => "comment/reply/$node->nid/$comment#comment-form");
+        $destination = array('destination' => "comment/reply/$node->nid/$comment#comment-form");
         $vars['content']['links']['comment']['#links']['comment_forbidden']['title'] = t('<a href="@login">Log in</a> or <a href="@register">register</a><br /> to reply to this comment',
           array(
             '@login'    => url('user/login', array('query' => $destination)),
