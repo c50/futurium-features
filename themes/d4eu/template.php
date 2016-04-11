@@ -305,7 +305,8 @@ function d4eu_preprocess_node(&$vars) {
     $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
     $vars['delete_rid'] = '';
     if (user_access('delete relations')) {
-      $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete', array('query' => array('destination' => $_GET['q']), 'attributes' => array('class' => 'unlink')));
+      $destination = drupal_get_query_parameters(NULL, array());
+      $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete', array('query' => array('destination' => $destination['q']), 'attributes' => array('class' => 'unlink')));
     }
   }
 }
