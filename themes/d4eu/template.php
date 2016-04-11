@@ -242,8 +242,12 @@ function d4eu_html_head_alter(&$head_elements) {
  */
 function d4eu_preprocess_node(&$vars) {
   $account = user_load($vars['node']->uid);
-  if (isset($account->field_organisation[LANGUAGE_NONE][0]['safe_value'])) {
-    $organisation = $account->field_organisation[LANGUAGE_NONE][0]['safe_value'];
+
+  $field_organisation = field_get_items('user', $account, 'field_organisation');
+  $organisation = field_view_value('user', $account, 'field_organisation', $field_organisation[0]);
+
+  if (isset($organisation)) {
+    $organisation = $organisation['#markup'];
   }
   $vars['submitted']  = '<div class="authoring-info">';
   $vars['submitted'] .= '<span class="published-by">' . t("Published by") . ' </span>';
@@ -424,24 +428,30 @@ function d4eu_preprocess_page(&$vars) {
  * Implements template_preprocess_user_profile().
  */
 function d4eu_preprocess_user_profile(&$variables) {
+
   // Format profile page.
   $identity = '';
-  if (isset($variables['field_firstname'][0]['safe_value'])) {
-    $identity .= $variables['field_firstname'][0]['safe_value'];
+  $first_name = field_view_value('user', $variables['user'], 'field_firstname', $variables['field_firstname'][0]);
+  $last_name = field_view_value('user', $variables['user'], 'field_lastname', $variables['field_lastname'][0]);
+
+  if (isset($first_name)) {
+    $identity .= $first_name['#markup'];
   }
-  if (isset($variables['field_lastname'][0]['safe_value'])) {
+  if (isset($last_name)) {
     if ($identity != '') {
       $identity .= ' ';
     }
-    $identity .= $variables['field_lastname'][0]['safe_value'];
+    $identity .= $last_name['#markup'];
   }
 
   $organisation = '';
-  if (isset($variables['field_organisation'][0]['safe_value'])) {
+  $user_organisation = field_view_value('user', $variables['user'], 'field_organisation', $variables['field_organisation'][0]);
+
+  if (isset($user_organisation)) {
     if ($organisation != '') {
       $organisation .= ' ';
     }
-    $organisation .= '<div class="userOrganisation">' . $variables['field_organisation'][0]['safe_value'] . '</div>';
+    $organisation .= '<div class="userOrganisation">' . $user_organisation['#markup'] . '</div>';
   }
 
   $date = '';
