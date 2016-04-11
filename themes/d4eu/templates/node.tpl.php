@@ -133,7 +133,7 @@
     <div class="linkedContent view-recent-activity">
       <?php print views_embed_view('relations_to_nodes', 'relationteaser'); ?>
     </div>
-    <?php if (user_is_logged_in() == TRUE): ?>
+    <?php if (user_is_logged_in()): ?>
       <div class="linkingForm"><?php print render($select_relation) ?></div>
     <?php endif; ?>
 
