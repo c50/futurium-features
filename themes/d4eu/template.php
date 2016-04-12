@@ -242,8 +242,12 @@ function d4eu_html_head_alter(&$head_elements) {
  */
 function d4eu_preprocess_node(&$vars) {
   $account = user_load($vars['node']->uid);
-  if (isset($account->field_organisation[LANGUAGE_NONE][0]['safe_value'])) {
-    $organisation = $account->field_organisation[LANGUAGE_NONE][0]['safe_value'];
+
+  $field_organisation = field_get_items('user', $account, 'field_organisation');
+  $organisation = field_view_value('user', $account, 'field_organisation', $field_organisation[0]);
+
+  if (isset($organisation)) {
+    $organisation = $organisation['#markup'];
   }
   $vars['submitted']  = '<div class="authoring-info">';
   $vars['submitted'] .= '<span class="published-by">' . t("Published by") . ' </span>';
@@ -305,7 +309,8 @@ function d4eu_preprocess_node(&$vars) {
     $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
     $vars['delete_rid'] = '';
     if (user_access('delete relations')) {
-      $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete', array('query' => array('destination' => $_GET['q']), 'attributes' => array('class' => 'unlink')));
+      $destination = drupal_get_query_parameters(NULL, array());
+      $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete', array('query' => array('destination' => $destination['q']), 'attributes' => array('class' => 'unlink')));
     }
   }
 }
@@ -316,7 +321,7 @@ function d4eu_preprocess_node(&$vars) {
  * Adding missing alternative text for WAI compliance.
  */
 function d4eu_form_search_block_form_alter(&$form, &$form_state, $form_id) {
-  $form['actions']['submit']['#attributes']['alt'] = 'Search';
+  $form['actions']['submit']['#attributes']['alt'] = t('Search');
 }
 
 /**
@@ -346,8 +351,8 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
       );
 
       $form['#attached']['js'] += $override;
-      $form['related_to']['new-wrap']['new']['item']['#title'] = '<strong>Link</strong> further related content';
-      $form['related_to']['new-wrap']['new']['item']['#description'] = 'Search for <b>existing</b> content related with current page.';
+      $form['related_to']['new-wrap']['new']['item']['#title'] = t('<strong>Link</strong> further related content');
+      $form['related_to']['new-wrap']['new']['item']['#description'] = t('Search for <b>existing</b> content related with current page.');
       unset($form['has_evidence']);
       break;
   }
@@ -371,13 +376,15 @@ function d4eu_preprocess_comment(&$vars) {
   }
   $uid = $vars['comment']->uid;
   $comment_user = array('account' => user_load($uid));
+  $field = field_get_items('user', $comment_user['account'], 'field_organisation');
+  $output = field_view_field('user', $comment_user['account'], 'field_organisation', $field[0]);
 
   $organisation = '';
-  if (isset($comment_user['account']->field_organisation[LANGUAGE_NONE][0]['safe_value'])) {
+  if (isset($field)) {
     if ($organisation != '') {
       $organisation .= ' ';
     }
-    $organisation .= '<div class="userOrganisation">' . $comment_user['account']->field_organisation[LANGUAGE_NONE][0]['safe_value'] . '</div>';
+    $organisation .= '<div class="userOrganisation">' . $output[0]['#markup'] . '</div>';
   }
 
   $vars['comment_user']['organisation'] = $organisation;
@@ -393,7 +400,7 @@ function d4eu_preprocess_comment(&$vars) {
   if (!$user->uid) {
     if ($default_archived == 0) {
       if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
-        $destination                                                                 = array('destination' => "comment/reply/$node->nid/$comment#comment-form");
+        $destination = array('destination' => "comment/reply/$node->nid/$comment#comment-form");
         $vars['content']['links']['comment']['#links']['comment_forbidden']['title'] = t('<a href="@login">Log in</a> or <a href="@register">register</a><br /> to reply to this comment',
           array(
             '@login'    => url('user/login', array('query' => $destination)),
@@ -421,24 +428,30 @@ function d4eu_preprocess_page(&$vars) {
  * Implements template_preprocess_user_profile().
  */
 function d4eu_preprocess_user_profile(&$variables) {
+
   // Format profile page.
   $identity = '';
-  if (isset($variables['field_firstname'][0]['safe_value'])) {
-    $identity .= $variables['field_firstname'][0]['safe_value'];
+  $first_name = field_view_value('user', $variables['user'], 'field_firstname', $variables['field_firstname'][0]);
+  $last_name = field_view_value('user', $variables['user'], 'field_lastname', $variables['field_lastname'][0]);
+
+  if (isset($first_name)) {
+    $identity .= $first_name['#markup'];
   }
-  if (isset($variables['field_lastname'][0]['safe_value'])) {
+  if (isset($last_name)) {
     if ($identity != '') {
       $identity .= ' ';
     }
-    $identity .= $variables['field_lastname'][0]['safe_value'];
+    $identity .= $last_name['#markup'];
   }
 
   $organisation = '';
-  if (isset($variables['field_organisation'][0]['safe_value'])) {
+  $user_organisation = field_view_value('user', $variables['user'], 'field_organisation', $variables['field_organisation'][0]);
+
+  if (isset($user_organisation)) {
     if ($organisation != '') {
       $organisation .= ' ';
     }
-    $organisation .= '<div class="userOrganisation">' . $variables['field_organisation'][0]['safe_value'] . '</div>';
+    $organisation .= '<div class="userOrganisation">' . $user_organisation['#markup'] . '</div>';
   }
 
   $date = '';

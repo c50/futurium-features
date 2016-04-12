@@ -32,16 +32,6 @@
  */
 ?>
 <div class="profile"<?php print $attributes; ?>>
-  <?php
-    // List basic fields.
-    $basic = array(
-      'field_firstname',
-      'field_lastname',
-      'user_picture',
-      'summary',
-    );
-  ?>
-
   <div class="userPicture">
     <?php print render($user_profile['user_picture']); ?>
   </div>

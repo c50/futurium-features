@@ -28,7 +28,7 @@ function futurium_d4eu_field_default_field_bases() {
         0 => 'r_index',
       ),
     ),
-    'locked' => 0,
+    'locked' => 1,
     'module' => 'relation_endpoint',
     'settings' => array(),
     'translatable' => 0,

@@ -17,7 +17,6 @@ dependencies[] = supertags
 dependencies[] = user_registrationpassword
 dependencies[] = views_bulk_operations
 dependencies[] = views_data_export
-depencencies[] = relation
 feature_sets[futurium_d4eu][title] = Futurium D4EU website settings
 feature_sets[futurium_d4eu][description] = Content types, views and settings for the Futurium D4EU (Digital Sigle Market) website
 feature_sets[futurium_d4eu][icon] = futurium_d4eu_icon.png
