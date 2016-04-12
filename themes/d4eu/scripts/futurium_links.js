@@ -23,18 +23,24 @@
         if (matches[key] !== null && typeof matches[key] === 'object') {
           $('<li class="' + matches[key].class + '"></li>')
             .html($('<a href="#linker"></a>').html(matches[key].label))
-            .mousedown(function () { ac.select(this); })
-            .mouseover(function () { ac.highlight(this); })
-            .mouseout(function () { ac.unhighlight(this); })
+            .mousedown(function () { ac.select(this);
+            })
+            .mouseover(function () { ac.highlight(this);
+            })
+            .mouseout(function () { ac.unhighlight(this);
+            })
             .data('autocompleteValue', key)
             .appendTo(ul);
         }
         else {
           $('<li></li>')
             .html($('<a href="#linker"></a>').html(matches[key]))
-            .mousedown(function () { ac.select(this); })
-            .mouseover(function () { ac.highlight(this); })
-            .mouseout(function () { ac.unhighlight(this); })
+            .mousedown(function () { ac.select(this);
+            })
+            .mouseover(function () { ac.highlight(this);
+            })
+            .mouseout(function () { ac.unhighlight(this);
+            })
             .data('autocompleteValue', key)
             .appendTo(ul);
         }
