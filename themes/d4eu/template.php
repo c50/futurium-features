@@ -351,8 +351,8 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
       );
 
       $form['#attached']['js'] += $override;
-      $form['related_to']['new-wrap']['new']['item']['#title'] = '<strong>' . t('Link') .'</strong>'. ' ' .t('further related content');
-      $form['related_to']['new-wrap']['new']['item']['#description'] = t('Search for') . ' <b>' . t('existing') . '</b> ' . t('content related with current page') .  '.';
+      $form['related_to']['new-wrap']['new']['item']['#title'] = t('<strong>Link</strong> further related content');
+      $form['related_to']['new-wrap']['new']['item']['#description'] = t('Search for <b>existing</b> content related with current page.');
       unset($form['has_evidence']);
       break;
   }
