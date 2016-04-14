@@ -305,12 +305,14 @@ function d4eu_preprocess_node(&$vars) {
     $vars['select_relation'] = '<h2>' . render($block['subject']) . '</h2>';
     $vars['select_relation'] .= render($block['content']);
   }
-  if ($node->view->current_display == 'relationteaser') {
-    $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
-    $vars['delete_rid'] = '';
-    if (user_access('delete relations')) {
-      $destination = drupal_get_query_parameters(NULL, array());
-      $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete', array('query' => array('destination' => $destination['q']), 'attributes' => array('class' => 'unlink')));
+  if (isset($node->view->current_display)) {
+    if ($node->view->current_display == 'relationteaser') {
+      $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
+      $vars['delete_rid'] = '';
+      if (user_access('delete relations')) {
+        $destination = drupal_get_query_parameters(NULL, array());
+        $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete', array('query' => array('destination' => $destination['q']), 'attributes' => array('class' => 'unlink')));
+      }
     }
   }
 }
@@ -384,7 +386,9 @@ function d4eu_preprocess_comment(&$vars) {
     if ($organisation != '') {
       $organisation .= ' ';
     }
-    $organisation .= '<div class="userOrganisation">' . $output[0]['#markup'] . '</div>';
+    if (isset($output[0])) {
+      $organisation .= '<div class="userOrganisation">' . $output[0]['#markup'] . '</div>';
+    }
   }
 
   $vars['comment_user']['organisation'] = $organisation;
