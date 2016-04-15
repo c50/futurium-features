@@ -462,7 +462,9 @@ function d4eu_preprocess_user_profile(&$variables) {
   }
 
   $organisation = '';
-  $user_organisation = field_view_value('user', $variables['user'], 'field_organisation', $variables['field_organisation'][0]);
+  if (isset($variables['field_organisation'][0])) {
+    $user_organisation = field_view_value( 'user', $variables['user'], 'field_organisation', $variables['field_organisation'][0] );
+  }
 
   if (isset($user_organisation)) {
     if ($organisation != '') {
