@@ -306,12 +306,14 @@ function d4eu_preprocess_node(&$vars) {
     $vars['select_relation'] .= render($block['content']);
   }
   if (isset($node->view->current_display)) {
-    if ($node->view->current_display == 'relationteaser') {
-      $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
+    if (in_array($node->view->current_display, ['relationteaser', 'evidence', 'parents'])) {
+      $rel_id             = $node->view->result[ $node->view->row_index ]->relation_node_rid;
       $vars['delete_rid'] = '';
-      if (user_access('delete relations')) {
-        $destination = drupal_get_query_parameters(NULL, array());
-        $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete', array('query' => array('destination' => $destination['q']), 'attributes' => array('class' => 'unlink')));
+      if ( user_access( 'delete relations' ) ) {
+        $destination        = drupal_get_query_parameters( NULL, array() );
+        $vars['delete_rid'] = l( t( 'Unlink' ), 'relation/' . $rel_id . '/delete', array( 'query'      => array( 'destination' => $destination['q'] ),
+                                                                                          'attributes' => array( 'class' => 'unlink' )
+        ) );
       }
     }
   }
@@ -343,7 +345,6 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
 
     case 'futurium_links_single_box_form':
     case 'futurium_links_multiple_boxes_form':
-    case 'futurium_links_radio_choice_form':
       $override = array(
         drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
           'type' => 'file',
@@ -351,11 +352,23 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
           'weight' => 101,
         ),
       );
-
       $form['#attached']['js'] += $override;
       $form['related_to']['new-wrap']['new']['item']['#title'] = t('<strong>Link</strong> further related content');
       $form['related_to']['new-wrap']['new']['item']['#description'] = t('Search for <b>existing</b> content related with current page.');
-      unset($form['has_evidence']);
+      break;
+
+    case 'futurium_links_radio_choice_form':
+      $override = array(
+          drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
+              'type' => 'file',
+              'scope' => 'footer',
+              'weight' => 101,
+          ),
+      );
+      $form['#attached']['js'] += $override;
+      $form['new']['link_type']['#options']['has_evidence'] = t('further <b>evidence</b>');
+      $form['new']['link_type']['#options']['related_to'] = t('further <b>related content</b>');
+      $form['#prefix'] .=  t('<label>Link</label>');
       break;
   }
 
@@ -383,10 +396,10 @@ function d4eu_preprocess_comment(&$vars) {
 
   $organisation = '';
   if (isset($field)) {
-    if ($organisation != '') {
+    if ( $organisation != '' ) {
       $organisation .= ' ';
     }
-    if (isset($output[0])) {
+    if ( isset( $output[0] ) ) {
       $organisation .= '<div class="userOrganisation">' . $output[0]['#markup'] . '</div>';
     }
   }

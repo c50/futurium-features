@@ -463,8 +463,9 @@ function futurium_d4eu_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'futurium_links_settings';
   $strongarm->value = array(
-    'block_type' => 'multiple',
-    'preview_view_mode' => 'teaser',
+    'block_type' => 'single_radios',
+    'preview_view_mode' => 'full',
+    'show_add_links' => 0,
   );
   $export['futurium_links_settings'] = $strongarm;
 

@@ -131,6 +131,8 @@
 
     <?php print render($content); ?>
     <div class="linkedContent view-recent-activity">
+      <?php print views_embed_view('relations_to_nodes', 'parents'); ?>
+      <?php print views_embed_view('relations_to_nodes', 'evidence'); ?>
       <?php print views_embed_view('relations_to_nodes', 'relationteaser'); ?>
     </div>
     <?php if (user_is_logged_in()): ?>

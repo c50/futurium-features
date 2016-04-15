@@ -264,6 +264,11 @@ function futurium_links_multiple_boxes_form($form, &$form_state, $node, $setting
 
     $show_links = $settings['show_add_links'] ? 'show' : 'hide';
 
+    $form['show_links'] = array(
+        '#type' => 'hidden',
+        '#value' => $show_links,
+    );
+
     $form[$relation_name]['new-wrap']['new']['item'] = array(
       '#title' => t('New relation'),
       '#type' => 'textfield',
@@ -351,7 +356,9 @@ function _futurium_links_radio_changed($form, &$form_state) {
   unset($form_state['input']['new']['new-wrapper']['search'], $form_state['values']['new']['new-wrapper']['search']);
 
   $origin_nid = $form_state['input']['origin'];
-  $form['new']['new-wrapper']['search']['#autocomplete_path'] = 'node/futurium_links/autocomplete/' . $type . '/' . $origin_nid;
+  $show_links = $form_state['input']['show_links'];
+  $form['new']['new-wrapper']['search']['#autocomplete_path'] = 'node/futurium_links/autocomplete/' . $show_links . '/' . $type . '/' . $origin_nid;
+
   $new_autocomplete = form_builder($form['#id'], $form['new']['new-wrapper']['search'], $form_state);
 
   $commands[] = ajax_command_html('#linker .feedback', '');
