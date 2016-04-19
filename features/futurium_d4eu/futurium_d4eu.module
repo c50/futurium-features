@@ -375,19 +375,28 @@ function futurium_d4eu_preprocess_comment(&$vars) {
 
     $vars['node_link'] = 'node/' . $vars['elements']['#comment']->nid;
 
+    // Be sure to catch the right anchors on comments if they are paginated.
+    $cid = $vars['elements']['#comment']->cid;
+    $comment = comment_load($cid);
+    $node = node_load($comment->nid);
+    $ordinal = comment_get_display_ordinal($cid, $node->type);
+    $comments_per_page = variable_get('comment_default_per_page_' . $node->type, 50);
+    $page = floor(($node->comment_count - $ordinal) / $comments_per_page);
+
     $vars['coml_options'] = array(
-      'attributes' => array(
-        'class' => 'latestComLink',
-      ),
-      'fragment' => 'comment-' . $vars['elements']['#comment']->cid,
-      'html' => TRUE,
+        'attributes' => array(
+            'class' => 'latestComLink',
+        ),
+        'query' => array('page' => $page),
+        'fragment' => 'comment-' . $vars['elements']['#comment']->cid,
+        'html' => TRUE,
     );
 
     $vars['nodl_options'] = array(
-      'attributes' => array(
-        'class' => 'latestNodeLink',
-      ),
-      'html' => TRUE,
+        'attributes' => array(
+            'class' => 'latestNodeLink',
+        ),
+        'html' => TRUE,
     );
     $vars['comment_span'] = $vars['trimmed_comment'];
     $vars['node_span'] = $vars['elements']['#node']->title;
