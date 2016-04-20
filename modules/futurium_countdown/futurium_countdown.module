@@ -148,7 +148,7 @@ function futurium_countdown_preprocess_field(&$variables) {
 
             if ($settings['countdown_show']) {
               $diff = _futurium_countdown_diff($current, $values['value'], $values['value2'], $settings['countdown_toggle']);
-              dsm($diff);
+
               $vars['diff'] = $diff;
               $vars['current_date'] = $current;
               $vars['start_date'] = $values['value'];
