@@ -375,6 +375,68 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event_d4eu-field_location'.
+  $field_instances['node-event_d4eu-field_location'] = array(
+    'bundle' => 'event_d4eu',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            0 => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 13,
+      ),
+      'mini_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_location',
+    'label' => 'Location',
+    'required' => 0,
+    'settings' => array(
+      'user_field_privacy' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'addressfield',
+      'settings' => array(
+        'available_countries' => array(),
+        'default_country' => 'site_default',
+        'format_handlers' => array(
+          'address' => 'address',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
+          'address-hide-country' => 0,
+          'organisation' => 0,
+          'name-full' => 0,
+          'name-oneline' => 0,
+          'address-optional' => 0,
+        ),
+      ),
+      'type' => 'addressfield_standard',
+      'weight' => 6,
+    ),
+  );
+
   // Exported field_instance: 'node-event_d4eu-field_tags'
   $field_instances['node-event_d4eu-field_tags'] = array(
     'bundle' => 'event_d4eu',

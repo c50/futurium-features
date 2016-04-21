@@ -298,6 +298,7 @@ function d4eu_preprocess_node(&$vars) {
     'field_document',
     'field_date_time',
     'field_issue',
+    'field_location',
   );
 
   if ($vars['view_mode'] == 'full' && user_access('create relations')) {
