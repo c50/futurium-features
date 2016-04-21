@@ -49,5 +49,5 @@ function futurium_core_update_7101() {
  */
 function futurium_core_update_7102() {
   // Enable multisite links feature.
-  module_enable(array('futurium_countdouwn'));
+  module_enable(array('futurium_countdouwn', 'addressfield'));
 }
