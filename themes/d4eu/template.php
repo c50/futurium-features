@@ -299,6 +299,7 @@ function d4eu_preprocess_node(&$vars) {
     'field_date_time',
     'field_issue',
     'field_location',
+    'field_registration_url',
   );
 
   if ($vars['view_mode'] == 'full' && user_access('create relations')) {
