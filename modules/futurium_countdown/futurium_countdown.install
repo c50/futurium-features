@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ * Installation file for countdown module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function futurium_countdown_schema() {
+
+  $schema['futurium_countdown'] = array(
+    'fields' => array(
+      'entity_type' => array(
+        'description' => 'The entity type.',
+        'type' => 'varchar',
+        'length' => 128,
+      ),
+      'bundle' => array(
+        'description' => 'The entity bundle.',
+        'type' => 'varchar',
+        'length' => 128,
+      ),
+      'entity_id' => array(
+        'description' => 'The entity id.',
+        'type' => 'int',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'revision_id' => array(
+        'description' => 'The revision id.',
+        'type' => 'int',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'field_name' => array(
+        'description' => 'The field name.',
+        'type' => 'varchar',
+        'length' => 32,
+      ),
+      'language' => array(
+        'description' => 'The entity language.',
+        'type' => 'varchar',
+        'length' => 32,
+      ),
+      'delta' => array(
+        'description' => 'The value delta.',
+        'type' => 'int',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'countdown_show' => array(
+        'description' => 'Show the countdown.',
+        'type' => 'int',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'countdown_toggle' => array(
+        'description' => 'Toggle the countdown.',
+        'type' => 'int',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('entity_type', 'entity_id', 'language', 'delta'),
+  );
+  return $schema;
+}

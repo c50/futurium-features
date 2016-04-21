@@ -2309,11 +2309,22 @@ function supertags_form_node_form_alter(&$form, &$form_state) {
     }
   }
 
-  if (isset($_GET['field_tags']) && is_numeric($_GET['field_tags'])) {
+  if (isset($_GET['field_tags'])) {
+    $tags = explode(',', $_GET['field_tags']);
     if (isset($form['field_tags'][LANGUAGE_NONE]['#default_value'])) {
-      $term = taxonomy_term_load($_GET['field_tags']);
+      $terms = taxonomy_term_load_multiple($tags);
+      $max = count($terms) - 1;
+      $terms_string = "";
+      foreach ($terms as $key => $value) {
+        $terms_string .= $value->name;
+        $terms_string .= ($max)
+          ? ', '
+          : '';
+
+        $max--;
+      }
       if ($term !== FALSE) {
-        $form['field_tags'][LANGUAGE_NONE]['#default_value'] = array($term->name);
+        $form['field_tags'][LANGUAGE_NONE]['#default_value'][] = $terms_string;
       }
     }
   }
