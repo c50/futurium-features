@@ -182,7 +182,7 @@ function futurium_d4eu_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_event_d4eu';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['comment_preview_event_d4eu'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -269,9 +269,6 @@ function futurium_d4eu_strongarm() {
         'path' => array(
           'weight' => '1',
         ),
-        'metatags' => array(
-          'weight' => '40',
-        ),
       ),
       'display' => array(),
     ),
@@ -323,9 +320,6 @@ function futurium_d4eu_strongarm() {
         'path' => array(
           'weight' => '1',
         ),
-        'metatags' => array(
-          'weight' => '40',
-        ),
       ),
       'display' => array(
         'related_content' => array(
@@ -346,50 +340,11 @@ function futurium_d4eu_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__issue';
-  $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(
-        'metatags' => array(
-          'weight' => '40',
-        ),
-        'title' => array(
-          'weight' => '-5',
-        ),
-        'path' => array(
-          'weight' => '30',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
-  $export['field_bundle_settings_node__issue'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__poll';
   $strongarm->value = array(
     'view_modes' => array(),
     'extra_fields' => array(
-      'form' => array(
-        'metatags' => array(
-          'weight' => '40',
-        ),
-        'title' => array(
-          'weight' => '-5',
-        ),
-        'path' => array(
-          'weight' => '30',
-        ),
-        'choice_wrapper' => array(
-          'weight' => '-4',
-        ),
-        'settings' => array(
-          'weight' => '-3',
-        ),
-      ),
+      'form' => array(),
       'display' => array(
         'language' => array(
           'default' => array(
@@ -449,25 +404,11 @@ function futurium_d4eu_strongarm() {
         'path' => array(
           'weight' => '1',
         ),
-        'metatags' => array(
-          'weight' => '40',
-        ),
       ),
       'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__video_d4eu'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'futurium_links_settings';
-  $strongarm->value = array(
-    'block_type' => 'single_radios',
-    'preview_view_mode' => 'full',
-    'show_add_links' => 0,
-  );
-  $export['futurium_links_settings'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -584,7 +525,7 @@ function futurium_d4eu_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_poll';
-  $strongarm->value = 0;
+  $strongarm->value = '0';
   $export['language_content_type_poll'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -792,6 +733,95 @@ function futurium_d4eu_strongarm() {
   $strongarm->name = 'node_submitted_video_d4eu';
   $strongarm->value = 1;
   $export['node_submitted_video_d4eu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_avoid_empty_subscribe_links';
+  $strongarm->value = 0;
+  $export['subscriptions_avoid_empty_subscribe_links'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_blocked_content_types';
+  $strongarm->value = array();
+  $export['subscriptions_blocked_content_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_blocked_nodes';
+  $strongarm->value = '';
+  $export['subscriptions_blocked_nodes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_form_expanded';
+  $strongarm->value = 0;
+  $export['subscriptions_form_expanded'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_form_in_block';
+  $strongarm->value = '0';
+  $export['subscriptions_form_in_block'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_form_link_only';
+  $strongarm->value = '0';
+  $export['subscriptions_form_link_only'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_omitted_taxa';
+  $strongarm->value = array(
+    4 => '4',
+    1 => '1',
+    3 => '3',
+    2 => '2',
+  );
+  $export['subscriptions_omitted_taxa'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_restricted_taxa';
+  $strongarm->value = array();
+  $export['subscriptions_restricted_taxa'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_show_by_author_options';
+  $strongarm->value = 0;
+  $export['subscriptions_show_by_author_options'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_show_install_info';
+  $strongarm->value = 1;
+  $export['subscriptions_show_install_info'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_static_content_types';
+  $strongarm->value = array();
+  $export['subscriptions_static_content_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscriptions_unlisted_content_types';
+  $strongarm->value = array();
+  $export['subscriptions_unlisted_content_types'] = $strongarm;
 
   return $export;
 }
