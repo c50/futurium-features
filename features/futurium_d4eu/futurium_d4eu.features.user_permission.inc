@@ -38,6 +38,24 @@ function futurium_d4eu_user_default_permissions() {
     'module' => 'subscriptions',
   );
 
+  // Exported permission: 'flag subscription_flag'.
+  $permissions['flag subscription_flag'] = array(
+    'name' => 'flag subscription_flag',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
+  // Exported permission: 'flag subscription_flavour_flag'.
+  $permissions['flag subscription_flavour_flag'] = array(
+    'name' => 'flag subscription_flavour_flag',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
   // Exported permission: 'subscribe to all content types'.
   $permissions['subscribe to all content types'] = array(
     'name' => 'subscribe to all content types',
@@ -101,6 +119,24 @@ function futurium_d4eu_user_default_permissions() {
       'sweaver designer' => 'sweaver designer',
     ),
     'module' => 'subscriptions',
+  );
+
+  // Exported permission: 'unflag subscription_flag'.
+  $permissions['unflag subscription_flag'] = array(
+    'name' => 'unflag subscription_flag',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
+  // Exported permission: 'unflag subscription_flavour_flag'.
+  $permissions['unflag subscription_flavour_flag'] = array(
+    'name' => 'unflag subscription_flavour_flag',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
   );
 
   return $permissions;

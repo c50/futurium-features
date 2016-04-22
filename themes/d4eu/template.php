@@ -235,6 +235,7 @@ function d4eu_html_head_alter(&$head_elements) {
   }
 }
 
+
 /**
  * Implements hook_preprocess_node().
  *
@@ -301,6 +302,16 @@ function d4eu_preprocess_node(&$vars) {
     'field_location',
     'field_registration_url',
   );
+
+  //subscription_node_flag
+  if (module_exists("subscriptions_ui")) {
+    $arg2 = subscriptions_arg(2);
+    if (subscriptions_ui_can_subscribe() && variable_get('subscriptions_form_in_block', 0) &&
+       (!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') ||
+       variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe' )) {
+          $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
+    }
+  }
 
   if ($vars['view_mode'] == 'full' && user_access('create relations')) {
     $block = module_invoke('futurium_links', 'block_view', 'futurium_links');
@@ -441,6 +452,14 @@ function d4eu_preprocess_comment(&$vars) {
 function d4eu_preprocess_page(&$vars) {
   $old_site_name = $vars['site_name'];
   $vars['site_name'] = '<a href="' . $vars['front_page'] . '">' . $old_site_name . '</a>';
+
+  //subscription_flavour_flag
+  if (module_exists("subscriptions_ui") && module_exists('supertags')) {
+    if (user_is_logged_in()) {
+      $context=_supertags_get_context();
+      $vars['subscriptions_flavor_flag'] = flag_create_link('subscription_flavour_flag', $context["flavor"]['tid']);
+    }
+  }
 }
 
 /**

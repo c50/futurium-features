@@ -589,6 +589,7 @@ function futurium_d4eu_field_default_field_instances() {
       'default_value2' => 'same',
       'default_value_code' => '',
       'default_value_code2' => '',
+      'enable_countdown' => FALSE,
       'entity_translation_sync' => FALSE,
       'user_field_privacy' => FALSE,
       'user_register_form' => FALSE,

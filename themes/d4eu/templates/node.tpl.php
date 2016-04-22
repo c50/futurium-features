@@ -105,6 +105,9 @@
 
     <?php if ($suffix_display): ?>
     <div class="row node-info">
+      <?php if ($subscriptions_node_flag): ?>
+        <?php print $subscriptions_node_flag ?>
+      <?php endif; ?>
       <div class="node-info-submitted col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-6 col-md-offset-6 col-sm-offset-6">
         <div class="well well-sm node-submitted clearfix">
           <small>
@@ -121,7 +124,6 @@
       ?>
     </div>
     <?php endif;?>
-    <div id="js-contentFilterContainer"></div>
 
     <?php
       hide($content['comments']);
@@ -130,14 +132,6 @@
     ?>
 
     <?php print render($content); ?>
-    <div class="linkedContent view-recent-activity">
-      <?php print views_embed_view('relations_to_nodes', 'parents'); ?>
-      <?php print views_embed_view('relations_to_nodes', 'evidence'); ?>
-      <?php print views_embed_view('relations_to_nodes', 'relationteaser'); ?>
-    </div>
-    <?php if (user_is_logged_in()): ?>
-      <div class="linkingForm"><?php print render($select_relation) ?></div>
-    <?php endif; ?>
 
     <?php if ((user_is_logged_in() == FALSE) && ($open_to_comments == TRUE)): ?>
       <div id='comment-form-container'><figure class='loginToCommentCTA'>
@@ -161,6 +155,7 @@
           </figcaption>
         </figure></div>
     <?php endif;?>
+
     <?php print render($content['comments']); ?>
 
   </div>
