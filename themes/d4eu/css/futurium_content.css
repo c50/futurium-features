@@ -993,11 +993,26 @@ iframe {
 .linkedContent .view-header h2:before {
   content: " ";
   display: inline-block;
-  width: 55px;
+  width: 60px;
   height: 30px;
-  background: url(../images/theme/sprite_linked.png) no-repeat 0 -116px;
-  margin-left: -55px;
+  background: url(../images/theme/sprite_linked.png) no-repeat;
+  margin-left: -60px;
   margin-bottom: -4px;
+  opacity:0.7;
+}
+.linkedContent .view-display-id-parents .view-header h2:before {
+  background-position: 0 0;
+}
+.linkedContent .view-display-id-evidence .view-header h2:before {
+  background-position: 0 -59px;
+}
+.linkedContent .view-display-id-relationteaser .view-header h2:before {
+  background-position: 0 -116px;
+  margin-left: -55px;
+  width: 55px;
+}
+.linkedContent .view-display-id-evidence {
+  margin-left: 2em;
 }
 .linkedContent .view-header + .view-content .item-list {
   margin: -15px 0 25px;
@@ -1011,6 +1026,10 @@ iframe {
 }
 .linkedContent .view-header + .view-content .item-list {
   border: 0;
+}
+.linkedContent .listNodeComments,
+.linkedContent .field-name-field-leading-picture-d4eu {
+  display: none;
 }
 
 .linkingForm {
@@ -1037,14 +1056,17 @@ iframe {
 .linkingForm .form-actions {
   margin: 0;
 }
-.linkingForm .form-item-related-to-new-wrap-new-item > label {
+.linkingForm #linker > label {
   font-size: 130%;
-  font-weight: normal;
-  margin: 0.5em 0 1em;
+  font-weight: bold;
+  margin: 0.5em 0 0.5em;
 }
 .linkingForm .description {
   margin: 0 0 1em;
   font-size: 90%;
+}
+.linkingForm .form-item-new-new-wrapper-search {
+  margin: 1em 0;
 }
 .linkingForm #autocomplete li {
   padding: 0 1em;
@@ -1058,6 +1080,14 @@ iframe {
 }
 .linkingForm .preview {
   position: relative;
+}
+.linkingForm .preview .preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  background: #eaf5f9;
 }
 .linkingForm .preview .node {
   overflow: auto;
@@ -1095,6 +1125,9 @@ iframe {
   height: auto;
 }
 
+.linkingForm input[type="submit"] {
+  margin-bottom: 1em;
+}
 /* /linked content */
 
 /* blogs in sidebar right */
