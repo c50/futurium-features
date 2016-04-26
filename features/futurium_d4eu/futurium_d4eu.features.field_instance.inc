@@ -827,16 +827,9 @@ function futurium_d4eu_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
+        'module' => 'futurium_d4eu',
+        'settings' => array(),
+        'type' => 'tear_off_calendar',
         'weight' => 2,
       ),
       'mini_teaser' => array(
@@ -860,11 +853,11 @@ function futurium_d4eu_field_default_field_instances() {
     'settings' => array(
       'default_value' => 'now',
       'default_value2' => 'same',
-      'enable_countdown' => 1,
-      'position_countdown' => 'prefix',
       'default_value_code' => '',
       'default_value_code2' => '',
+      'enable_countdown' => 1,
       'entity_translation_sync' => FALSE,
+      'position_countdown' => 'prefix',
       'user_field_privacy' => FALSE,
       'user_register_form' => FALSE,
     ),
