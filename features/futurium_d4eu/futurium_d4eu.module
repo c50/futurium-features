@@ -316,6 +316,13 @@ function futurium_d4eu_theme($existing, $type, $theme, $path) {
     ),
     'function' => '_futurium_d4eu_tear_off_calendar',
   );
+  $theme['tear_off_full_calendar'] = array(
+      'variables' => array(
+          'from_date' => NULL,
+          'to_date' => NULL,
+      ),
+      'function' => '_futurium_d4eu_tear_off_full_calendar',
+  );
   return $theme;
 }
 
@@ -487,6 +494,10 @@ function futurium_d4eu_field_formatter_info() {
       'label' => t('Tear-off calendar'),
       'field types' => array('date', 'datestamp', 'datetime'),
     ),
+    'tear_off_full_calendar' => array(
+        'label' => t('Tear-off full calendar'),
+        'field types' => array('date', 'datestamp', 'datetime'),
+    ),
   );
   return $formatters;
 }
@@ -514,6 +525,25 @@ function futurium_d4eu_field_formatter_view($entity_type, $entity, $field, $inst
           $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d'));
           $variables['to_date'] = explode('/', format_date($item['value2'], 'custom', 'Y/M/d'));
           $element[$delta] = array('#markup' => theme('tear_off_calendar', $variables));
+        }
+      }
+    }
+  }
+  
+  if ($display['type'] == 'tear_off_full_calendar') {
+    foreach ($items as $delta => $item) {
+      if (!empty($entity->date_id)) {
+        continue;
+      }
+      else {
+        if (empty($item['value2']) || $item['value'] == $item['value2']) {
+          $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d l'));
+          $element[$delta] = array('#markup' => theme('tear_off_full_calendar', $variables));
+        }
+        else {
+          $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d l'));
+          $variables['to_date'] = explode('/', format_date($item['value2'], 'custom', 'Y/M/d l'));
+          $element[$delta] = array('#markup' => theme('tear_off_full_calendar', $variables));
         }
       }
     }
@@ -550,6 +580,38 @@ function _futurium_d4eu_tear_off_calendar($variables) {
     return;
   }
 }
+
+/**
+ * Returns HTML for a date element formatted as a tear-off full calendar.
+ *
+ * Provides markup to display a date like a tear-off calendar like e.g.
+ * https://www.pinterest.com/pin/384705993142402467/ .
+ */
+function _futurium_d4eu_tear_off_full_calendar($variables) {
+  if ($variables['from_date']) {
+    dsm($variables['from_date']);
+    $from_date = "<div class='day-event-front-page'>{$variables['from_date'][2]}</div>
+      <div class='month-event-front-page'>{$variables['from_date'][1]}</div>
+      <div class='year-event-front-page'>{$variables['from_date'][0]}</div>";
+    $from_date = l($from_date, $variables['alias'], array('html' => TRUE));
+
+    if ($variables['to_date'] > $variables['from_date']) {
+      $to_date = "<div class='day-event-front-page'>{$variables['to_date'][2]}</div>
+      <div class='month-event-front-page'>{$variables['to_date'][1]}</div>
+      <div class='year-event-front-page'>{$variables['to_date'][0]}</div>";
+      $to_date = l($to_date, $variables['alias'], array('html' => TRUE));
+
+      return $from_date . $to_date;
+    }
+    else {
+      return $from_date;
+    }
+  }
+  else {
+    return;
+  }
+}
+
 
 /**
  * Sets basic roles permissions at once (anonymous and authenticated).
