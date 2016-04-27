@@ -320,6 +320,10 @@ function futurium_d4eu_theme($existing, $type, $theme, $path) {
       'variables' => array(
           'from_date' => NULL,
           'to_date' => NULL,
+          'from_day' => NULL,
+          'to_day' => NULL,
+          'from_time' => NULL,
+          'to_time' => NULL,
       ),
       'function' => '_futurium_d4eu_tear_off_full_calendar',
   );
@@ -529,7 +533,7 @@ function futurium_d4eu_field_formatter_view($entity_type, $entity, $field, $inst
       }
     }
   }
-  
+
   if ($display['type'] == 'tear_off_full_calendar') {
     foreach ($items as $delta => $item) {
       if (!empty($entity->date_id)) {
@@ -537,12 +541,19 @@ function futurium_d4eu_field_formatter_view($entity_type, $entity, $field, $inst
       }
       else {
         if (empty($item['value2']) || $item['value'] == $item['value2']) {
-          $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d l'));
+          $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d'));
+          $variables['from_day'] = explode('/', format_date($item['value'], 'custom', 'l'));
+          $variables['from_time'] = explode('/', format_date($item['value'], 'custom', 'H:i'));
+          $variables['to_time'] = explode('/', format_date($item['value2'], 'custom', 'H:i'));
           $element[$delta] = array('#markup' => theme('tear_off_full_calendar', $variables));
         }
         else {
-          $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d l'));
-          $variables['to_date'] = explode('/', format_date($item['value2'], 'custom', 'Y/M/d l'));
+          $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d'));
+          $variables['from_day'] = explode('/', format_date($item['value'], 'custom', 'l'));
+          $variables['from_time'] = explode('/', format_date($item['value'], 'custom', 'H:i'));
+          $variables['to_date'] = explode('/', format_date($item['value2'], 'custom', 'Y/M/d'));
+          $variables['to_day'] = explode('/', format_date($item['value2'], 'custom', 'l'));
+          $variables['to_time'] = explode('/', format_date($item['value2'], 'custom', 'H:i'));
           $element[$delta] = array('#markup' => theme('tear_off_full_calendar', $variables));
         }
       }
@@ -589,16 +600,19 @@ function _futurium_d4eu_tear_off_calendar($variables) {
  */
 function _futurium_d4eu_tear_off_full_calendar($variables) {
   if ($variables['from_date']) {
-    dsm($variables['from_date']);
-    $from_date = "<div class='day-event-front-page'>{$variables['from_date'][2]}</div>
-      <div class='month-event-front-page'>{$variables['from_date'][1]}</div>
-      <div class='year-event-front-page'>{$variables['from_date'][0]}</div>";
-    $from_date = l($from_date, $variables['alias'], array('html' => TRUE));
+    $from_date = "<div class='day-event'>{$variables['from_date'][2]}</div>
+      <div class='month-event'>{$variables['from_date'][1]}</div>
+      <div class='year-event'>{$variables['from_date'][0]}</div>
+      <div class='week-day-event'>{$variables['from_day'][0]}</div>
+      <div class='time-event'>{$variables['from_time'][0]}</div>";
+      $from_date = l($from_date, $variables['alias'], array('html' => TRUE));
 
-    if ($variables['to_date'] > $variables['from_date']) {
-      $to_date = "<div class='day-event-front-page'>{$variables['to_date'][2]}</div>
-      <div class='month-event-front-page'>{$variables['to_date'][1]}</div>
-      <div class='year-event-front-page'>{$variables['to_date'][0]}</div>";
+   if ($variables['to_date']) {
+      $to_date = "<div class='day-event'>{$variables['to_date'][2]}</div>
+      <div class='month-event'>{$variables['to_date'][1]}</div>
+      <div class='year-event'>{$variables['to_date'][0]}</div>
+      <div class='week-day-event'>{$variables['to_day'][0]}</div>
+      <div class='time-event'>{$variables['to_time'][0]}</div>";
       $to_date = l($to_date, $variables['alias'], array('html' => TRUE));
 
       return $from_date . $to_date;
