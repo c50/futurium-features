@@ -682,6 +682,7 @@ function _futurium_d4eu_set_editor_perm() {
   // (not specified values inherited by authenticated role permissions).
   user_role_change_permissions(5,
     array(
+      'access bean overview' => 1,
       'access administration menu' => 1,
       'access administration pages' => 1,
       'access content overview' => 1,
@@ -702,6 +703,7 @@ function _futurium_d4eu_set_editor_perm() {
       'administer worbench moderation' => 0,
       'bypass workbench moderation' => 1,
       'cancel own vote' => 1,
+      'create any user_blocks bean' => 1,
       'create blog_post content' => 1,
       'create page content' => 1,
       'delete any blog_post content' => 1,
@@ -731,6 +733,7 @@ function _futurium_d4eu_set_editor_perm() {
       'edit any page content' => 1,
       "edit terms in {$vid}" => 1,
       'edit any poll content' => 1,
+      'edit any user_blocks bean' => 1,
       'edit any video files' => 1,
       'edit any video_d4eu content' => 1,
       'edit own blog_post content' => 1,
