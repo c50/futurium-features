@@ -603,11 +603,17 @@ function _futurium_d4eu_tear_off_full_calendar($variables) {
     $from_date = "<div class='day-event'>{$variables['from_date'][2]}</div>
       <div class='month-event'>{$variables['from_date'][1]}</div>
       <div class='year-event'>{$variables['from_date'][0]}</div>
-      <div class='week-day-event'>{$variables['from_day'][0]}</div>
-      <div class='time-event'>{$variables['from_time'][0]}</div>";
-      $from_date = l($from_date, $variables['alias'], array('html' => TRUE));
+      <div class='week-day-event'>{$variables['from_day'][0]}</div>";
+      if (($variables['from_date'] == $variables['to_date']) && ($variables['from_time'] <> $variables['to_time'])) {
+        $from_date .= "<div class='time-event'><span class='fromHour'>{$variables['from_time'][0]}</span>
+          <span class='toLabel'> " . t('to') . " </span><span class='toHour'>{$variables['to_time'][0]}</span></div>";
+      }
+      else {
+        $from_date .= "<div class='time-event'>{$variables['from_time'][0]}</div>";
+      }
+    $from_date = l($from_date, $variables['alias'], array('html' => TRUE));
 
-   if ($variables['to_date']) {
+    if ($variables['to_date'] > $variables['from_date']) {
       $to_date = "<div class='day-event'>{$variables['to_date'][2]}</div>
       <div class='month-event'>{$variables['to_date'][1]}</div>
       <div class='year-event'>{$variables['to_date'][0]}</div>

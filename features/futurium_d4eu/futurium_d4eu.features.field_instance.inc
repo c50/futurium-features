@@ -779,7 +779,7 @@ function futurium_d4eu_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'mini_teaser' => array(
         'label' => 'hidden',
@@ -829,8 +829,8 @@ function futurium_d4eu_field_default_field_instances() {
         'label' => 'above',
         'module' => 'futurium_d4eu',
         'settings' => array(),
-        'type' => 'tear_off_calendar',
-        'weight' => 2,
+        'type' => 'tear_off_full_calendar',
+        'weight' => 1,
       ),
       'mini_teaser' => array(
         'label' => 'hidden',
