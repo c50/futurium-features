@@ -779,7 +779,7 @@ function futurium_d4eu_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'mini_teaser' => array(
         'label' => 'hidden',
