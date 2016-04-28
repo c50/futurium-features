@@ -709,7 +709,6 @@
 }
 .node-type-event-d4eu .field-name-field-date-time .countdown {
   float: left;
-  display: block;
   background: #ff9900;
   color: #fff;
   border-radius: 5px;
@@ -717,10 +716,6 @@
   width: 100%;
   max-width: 280px;
   position: relative;
-}
-.node-type-event-d4eu .field-name-field-date-time .countdown {
-  
-
 }
 .node-type-event-d4eu .field-name-field-date-time .countdown .time-left.days {
   font-size: 330%;
@@ -756,6 +751,130 @@
 }
 .node-type-event-d4eu .field-name-field-date-time .countdown.present:before {
   right: 0;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date {
+  float: left;
+  padding: 14px 0;
+  width: 100%;
+  max-width: 280px;
+  clear: left;
+  text-align: center;
+  position: relative;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date > a {
+  display: inline-block;
+  width: 5em;
+  background: #285d93;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  width:46%;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date > a + a {
+  background: #2c82b6;
+  margin-left: 8%;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date > a + a:before {
+  content: " ";
+  display: inline-block;
+  background: #285d93 url(../images/theme/sprite_event.png) no-repeat -32px 0;
+  position: absolute;
+  width:13px;
+  height:28px;
+  left: 46%;
+  top: 3em;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date .day-event {
+  font-size: 350%;
+  float: left;
+  width: 56%;
+  text-align: center;
+  line-height: 1.2em;
+  margin-left: 5%;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date .month-event {
+  font-size: 125%;
+  float: left;
+  width: 36%;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1.0em;
+  margin-top: 0.5em;
+  margin-right: 2%;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date .year-event {
+  font-size: 105%;
+  float: left;
+  width: 36%;
+  text-align: center;
+  line-height: 1.0em;
+  margin-top: 0.3em;
+  margin-right: 2%;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date .week-day-event {
+  float: left;
+  width: 100%;
+  text-align: center;
+  opacity: 0.7;
+  line-height: 1.3em;
+  margin-bottom: 0.8em;
+  font-size: 110%;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date .time-event {
+  background: #eee;
+  color: #333;
+  border-radius: 0 0 5px 5px;
+  margin-bottom: -2px;
+  padding: 0.3em 0 0.5em;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date .time-event .fromHour:before {
+  content: " ";
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-right: 0.5em;
+  margin-bottom: -2px;
+  background: url(../images/theme/sprite_event.png) no-repeat -3px -16px;
+}
+.node-type-event-d4eu .field-name-field-date-time .fromTo-date .time-event .toLabel {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-right: 0.5em;
+  margin-bottom: -2px;
+  background: url(../images/theme/sprite_event.png) no-repeat -16px -16px;
+  overflow: hidden;
+  text-indent: -200px;
+}
+
+.node-type-event-d4eu .field-name-field-location {
+  float: left;
+  clear: left;
+  color: #555;
+  border: solid 1px #dcdcdc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 280px;
+  line-height: 1.4em;
+  background: #fff;
+  background: #2c82b6;
+  padding: 0;
+}
+.node-type-event-d4eu .field-name-field-location:before {
+  content: " ";
+  float: left;
+  background: url(../images/theme/sprite_event.png) no-repeat 0 -31px;
+  width: 25px;
+  height: 35px;
+  margin: 1em 5% 0;
+}
+.node-type-event-d4eu .field-name-field-location .field-items {
+  background: #fff;
+  padding: 0.5em 1.3em 0.7em 1em;
+  display: inline-block;
+  width: calc(90% - 25px);
+  border-radius: 0 3px 3px 0;
 }
 /*/event*/
 
