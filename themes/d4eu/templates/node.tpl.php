@@ -106,9 +106,11 @@
     <div id="js-contentFilterContainer"></div>
 
     <?php
-      hide($content['comments']);
-      hide($content['links']);
-      hide($content['field_tags']);
+    hide($content['comments']);
+    hide($content['links']);
+    hide($content['field_tags']);
+    hide($content['field_rate_ideas']);
+    hide($content['field_rate_issue']);
     ?>
 
     <?php print render($content); ?>
@@ -124,8 +126,12 @@
           </div>
         </div>
       </div>
-
-
+      <div class="node-info-footer">
+        <?php
+        print render($content['field_rate_ideas']);
+        print render($content['field_rate_issue']);
+        ?>
+      </div>
     <?php endif;?>
 
     <div class="linkedContent view-recent-activity">
