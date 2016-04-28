@@ -704,37 +704,59 @@
 /*/poll*/
 
 /*event*/
-.node-type-event-d4eu .field-name-field-date-time .field-items {
-  color: #777;
-  margin: 10px 0;
-  padding: 5px 1% 5px 5%;
-  display: inline-block;
-  border: solid 1px #dcdcdc;
+.node-type-event-d4eu .field-name-field-date-time .field-label {
+  display: none;
+}
+.node-type-event-d4eu .field-name-field-date-time .countdown {
+  float: left;
+  display: block;
+  background: #ff9900;
+  color: #fff;
   border-radius: 5px;
+  padding:0.5em 1.3em 0.7em 0;
+  width: 100%;
+  max-width: 280px;
+  position: relative;
 }
+.node-type-event-d4eu .field-name-field-date-time .countdown {
+  
 
-.node-type-event-d4eu .field-name-field-date-time .date-display-single,
-.node-type-event-d4eu .field-name-field-date-time .date-display-start {
-  font-size: 110%;
-  display: block;
-  margin: 3px 0 5px -7%;
-  color: #333;
 }
-
-.node-type-event-d4eu .field-name-field-date-time .date-display-end {
-  font-size: 110%;
-  display: block;
-  margin: 0px 0 5px;
-  color: #333;
+.node-type-event-d4eu .field-name-field-date-time .countdown .time-left.days {
+  font-size: 330%;
+  float: left;
+  width: 35%;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.2em;
 }
-
-.node-type-event-d4eu .field-name-field-date-time .date-display-single .date-display-start,
-.node-type-event-d4eu .field-name-field-date-time .date-display-single .date-display-end {
+.node-type-event-d4eu .field-name-field-date-time .countdown .time-left.days-label,
+.node-type-event-d4eu .field-name-field-date-time .countdown .description.left {
+  font-size: 150%;
   display: inline-block;
-  font-size: 110%;
-  margin: 3px 10px 5px 10px;
+  line-height: 1.2em;
+  padding-top: 0.5em;
 }
-
+.node-type-event-d4eu .field-name-field-date-time .countdown .description.target {
+  display: block;
+  text-align: right;
+  line-height: 1.0em;
+}
+.node-type-event-d4eu .field-name-field-date-time .countdown:before {
+  position: absolute;
+  bottom: -12px;
+  content: " ";
+  width: 12px;
+  height: 16px;
+  background: #ff9900 url(../images/theme/sprite_event.png) no-repeat 0 4px;
+}
+.node-type-event-d4eu .field-name-field-date-time .countdown.future:before {
+  left: 0;
+  background-position: -18px 4px;
+}
+.node-type-event-d4eu .field-name-field-date-time .countdown.present:before {
+  right: 0;
+}
 /*/event*/
 
 /*blog*/

@@ -621,10 +621,10 @@ function _futurium_d4eu_tear_off_full_calendar($variables) {
       <div class='time-event'>{$variables['to_time'][0]}</div>";
       $to_date = l($to_date, $variables['alias'], array('html' => TRUE));
 
-      return $from_date . $to_date;
+      return "<div class='fromTo-Date'>" . $from_date . $to_date . "</div>";
     }
     else {
-      return $from_date;
+      return "<div class='fromTo-Date'>" . $from_date . "</div>";
     }
   }
   else {
