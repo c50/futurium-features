@@ -714,7 +714,6 @@
   border-radius: 5px;
   padding:0.5em 1.3em 0.7em 0;
   width: 100%;
-  max-width: 280px;
   position: relative;
 }
 .node-type-event-d4eu .field-name-field-date-time .countdown .time-left.days {
@@ -756,7 +755,6 @@
   float: left;
   padding: 14px 0;
   width: 100%;
-  max-width: 280px;
   clear: left;
   text-align: center;
   position: relative;
@@ -855,7 +853,6 @@
   border: solid 1px #dcdcdc;
   border-radius: 5px;
   width: 100%;
-  max-width: 280px;
   line-height: 1.4em;
   background: #fff;
   background: #2c82b6;
@@ -875,6 +872,50 @@
   display: inline-block;
   width: calc(90% - 25px);
   border-radius: 0 3px 3px 0;
+}
+.node-type-event-d4eu .group-venue {
+  float: left;
+  width: 45%;
+  margin-right: 3%;
+}
+.node-type-event-d4eu .group-body {
+  float: left;
+  width: 51%;
+}
+.node-type-event-d4eu .group-body + *:before {
+  content: " ";
+  display: block;
+  float: left;
+  width: 100%;
+  height: 1em;
+}
+@media screen and (max-width: 799px){
+  .node-type-event-d4eu .group-body + *:before {
+    float: none;
+    display: inline-block;
+  }
+}
+@media screen and (max-width: 699px){
+  .node-type-event-d4eu .group-venue,
+  .node-type-event-d4eu .group-body {
+    width: 100%;
+    clear: left;
+    margin-bottom: 2em;
+  }
+}
+
+.node-type-event-d4eu .field-name-field-registration-url .field-label{
+  display: none;
+}
+.node-type-event-d4eu .field-name-field-registration-url .field-item a{
+  background: -moz-linear-gradient(top, #ffffff 0%, #ececec 100%);
+  background: -webkit-linear-gradient(top, #ffffff 0%,#ececec 100%);
+  background: linear-gradient(to bottom, #ffffff 0%,#ececec 100%);
+  border: solid 1px #93caed;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 150%;
+  padding: 0.3em 1em 0.5em;
 }
 /*/event*/
 
