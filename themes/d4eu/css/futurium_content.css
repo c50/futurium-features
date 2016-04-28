@@ -857,6 +857,7 @@
   background: #fff;
   background: #2c82b6;
   padding: 0;
+  margin-top: 2em;
 }
 .node-type-event-d4eu .field-name-field-location:before {
   content: " ";
@@ -881,6 +882,7 @@
 .node-type-event-d4eu .group-body {
   float: left;
   width: 51%;
+  padding-top: 1em;
 }
 .node-type-event-d4eu .group-body + *:before {
   content: " ";
