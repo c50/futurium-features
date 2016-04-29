@@ -79,6 +79,9 @@
                     <?php if ($subscriptions_flavor_flag): ?>
                       <?php print $subscriptions_flavor_flag ?>
                     <?php endif; ?>
+                    <?php if ($subscriptions_settings_link): ?>
+                      <?php print $subscriptions_settings_link ?>
+                    <?php endif; ?>
                     <?php echo render($page['identity']); ?>
                   </div>
                   <?php endif; ?>

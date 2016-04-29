@@ -456,8 +456,37 @@ function d4eu_preprocess_page(&$vars) {
   //subscription_flavour_flag
   if (module_exists("subscriptions_ui") && module_exists('supertags')) {
     if (user_is_logged_in()) {
+
       $context=_supertags_get_context();
+      global $user;
+      $user_id = $user->uid;
+
+      $vars['subscriptions_settings_link'] = "<a href='/user/". $user_id ."/subscriptions'>settings</a>";
       $vars['subscriptions_flavor_flag'] = flag_create_link('subscription_flavour_flag', $context["flavor"]['tid']);
+    }
+  }
+}
+
+/**
+ * Implements theme_preprocess_flag().
+ *
+ * Override link on subscription flags.
+ */
+function d4eu_preprocess_flag(&$vars) {
+
+  $flag = &$vars['flag'];
+  $action = $vars['action'];
+
+  if ($flag->name == 'subscription_flavour_flag' && module_exists("subscriptions_ui") && module_exists('supertags')) {
+    if (user_is_logged_in()) {
+
+      $context=_supertags_get_context();
+
+      if ($action == 'flag') {
+        $vars['link_text'] = 'Follow ' . $context["flavor"]["name"];
+      } else {
+        $vars['link_text'] = 'Unfollow ' . $context["flavor"]["name"];
+      }
     }
   }
 }
