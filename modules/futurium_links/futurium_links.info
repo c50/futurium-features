@@ -2,4 +2,9 @@ name = Futurium Links
 description = A module to create relations between content.
 core = 7.x
 
+dependencies[] = ctools
 dependencies[] = relation
+dependencies[] = relation_ui
+
+multisite_version = 2.1
+php = 5.2.4

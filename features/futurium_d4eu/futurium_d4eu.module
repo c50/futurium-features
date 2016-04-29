@@ -50,11 +50,28 @@ function futurium_d4eu_form_user_profile_form_alter(&$form, &$form_state, $form_
   $current_user = user_uid_optional_load();
   if ($current_user->uid != 1) {
     $form['field_creator']['#access'] = FALSE;
+  }
+
+  if (!user_access('administer users', $current_user)) {
     $form['field_register_url']['#access'] = FALSE;
   }
+
   if (module_exists('password_policy')) {
     // Modify the elements.
     $form['account']['pass']['#description'] = '';
+  }
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Show field_important_or_conclusion to specific users.
+ */
+function futurium_d4eu_form_comment_form_alter(&$form, &$form_state, $form_id) {
+  $current_user = user_uid_optional_load();
+
+  if (!user_access('access custom futurium fields', $current_user)) {
+    $form['field_important_or_conclusion']['#access'] = FALSE;
   }
 }
 
@@ -159,6 +176,15 @@ function futurium_d4eu_form_block_admin_configure_alter(&$form, &$form_state, $f
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Hide preview for comments on documents.
+ */
+function futurium_d4eu_form_comment_node_document_form_alter(&$form, &$form_state, $form_id) {
+  unset($form['actions']['preview']);
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  *
  * Cleans up the node edit form.
@@ -198,6 +224,16 @@ function futurium_d4eu_menu() {
     'page arguments' => array('xls-all-content'),
     'access callback' => TRUE,
     'menu_name' => 'management',
+  );
+
+  // Add a menu Dashboard for editors.
+  $items['admin/content/dashboard'] = array(
+      'title' => 'Dashboard',
+      'description' => 'Editors dashboard',
+      'page callback' => 'drupal_goto',
+      'page arguments' => array('dashboard'),
+      'access callback' => TRUE,
+      'menu_name' => 'management',
   );
 
   $items['admin/config/content/futurium_d4eu'] = array(
@@ -340,18 +376,18 @@ function futurium_d4eu_preprocess_comment(&$vars) {
     $vars['node_link'] = 'node/' . $vars['elements']['#comment']->nid;
 
     $vars['coml_options'] = array(
-      'attributes' => array(
-        'class' => 'latestComLink',
-      ),
-      'fragment' => 'comment-' . $vars['elements']['#comment']->cid,
-      'html' => TRUE,
+        'attributes' => array(
+            'class' => 'latestComLink',
+        ),
+        'fragment' => 'comment-' . $vars['elements']['#comment']->cid,
+        'html' => TRUE,
     );
 
     $vars['nodl_options'] = array(
-      'attributes' => array(
-        'class' => 'latestNodeLink',
-      ),
-      'html' => TRUE,
+        'attributes' => array(
+            'class' => 'latestNodeLink',
+        ),
+        'html' => TRUE,
     );
     $vars['comment_span'] = $vars['trimmed_comment'];
     $vars['node_span'] = $vars['elements']['#node']->title;
@@ -646,6 +682,7 @@ function _futurium_d4eu_set_editor_perm() {
   // (not specified values inherited by authenticated role permissions).
   user_role_change_permissions(5,
     array(
+      'access bean overview' => 1,
       'access administration menu' => 1,
       'access administration pages' => 1,
       'access content overview' => 1,
@@ -666,6 +703,7 @@ function _futurium_d4eu_set_editor_perm() {
       'administer worbench moderation' => 0,
       'bypass workbench moderation' => 1,
       'cancel own vote' => 1,
+      'create any user_blocks bean' => 1,
       'create blog_post content' => 1,
       'create page content' => 1,
       'delete any blog_post content' => 1,
@@ -695,6 +733,7 @@ function _futurium_d4eu_set_editor_perm() {
       'edit any page content' => 1,
       "edit terms in {$vid}" => 1,
       'edit any poll content' => 1,
+      'edit any user_blocks bean' => 1,
       'edit any video files' => 1,
       'edit any video_d4eu content' => 1,
       'edit own blog_post content' => 1,
@@ -960,5 +999,26 @@ function futurium_d4eu_preprocess_user_picture(&$variables) {
         $variables['user_picture'] = l($variables['user_picture'], "user/$account->uid", $attributes);
       }
     }
+  }
+}
+
+/**
+ * Implements hook_query_TAG_alter() for comment.tpl.php.
+ *
+ * Alter comments query to order by DESC as well as the default ASC.
+ */
+function futurium_d4eu_query_comment_filter_alter(QueryAlterableInterface $query) {
+  $orderby = &$query->getOrderBy();
+  // Sorting for threaded comments.
+  if (isset($orderby['torder'])) {
+    // Sort by root parent first, then normal threaded.
+    $query->addExpression("SUBSTRING_INDEX(c.thread, '.', 1)", 'rparent');
+    $orderby = array('rparent' => 'DESC') + $orderby;
+  }
+  // Sorting for flat comments.
+  elseif (isset($orderby['c.cid'])) {
+    $direction = 'DESC';
+    $orderby['c.cid'] = $direction;
+    $orderby = array('c.created' => $direction) + $orderby;
   }
 }

@@ -2,7 +2,7 @@
 
 // 1. Vendors
 @import
-  'utils/variables', //import custom variables before the bootstrap variables
+  'utils/variables', //import custom variables before the bootstrap variables */
   'vendor/normalize',
   'vendor/bootstrap-sass/bootstrap',
   'vendor/font-awesome/font-awesome';
@@ -15,7 +15,7 @@
 
 // 3. Base stuff
 @import
-  'base/base',
+  'base/base', 
   'base/fonts',
   'base/typography',
   'base/helpers';

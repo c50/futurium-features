@@ -6,3 +6,5 @@ dependencies[] = countries
 dependencies[] = flag
 
 files[] = futurium_isa_extras_filter_group_content_or_not.inc
+files[] = views/futurium_isa_extras_count_comments.inc
+files[] = views/futurium_isa_extras_sort_count_comments.inc

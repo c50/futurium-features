@@ -5,3 +5,21 @@
  */
 
 include_once 'tests.features.inc';
+
+
+function tests_form_quant_time_form_alter(&$form, $form_state) {
+  $form['option']['#access'] = FALSE;
+  $form['custom_from']['#access'] = FALSE;
+  $form['custom_to']['#access'] = FALSE;
+  $opts = $form['period']['#options'];
+
+  $opts['1_week'] = 'week';
+  $opts['1_month'] = 'month';
+  $opts['1_year'] = 'year';
+
+  $form['period']['#title'] = t("See stats for the last");
+  $form['period']['#options'] = array(
+    '1_day' => 'day',
+    '3_days' => '3 days',
+  ) + $opts;
+}

@@ -11,14 +11,7 @@
 function futurium_isa_extras_enable() {
   // Site default settings.
   variable_set('site_frontpage', 'home');
-  variable_set('user_pictures', '1');
-  variable_set('user_picture_default', '');
-  variable_set('user_picture_dimensions', '85x85');
-  variable_set('user_picture_file_size', '30');
-  variable_set('user_picture_guidelines', '');
-  variable_set('user_picture_path', '');
-  variable_set('user_picture_style', '');
-  variable_set('user_register', '2');
+  variable_set('user_pictures', '0');
 
   // Theme settings.
   _bootstrap_default_settings();
@@ -30,19 +23,31 @@ function futurium_isa_extras_enable() {
     variable_set('security_allowed_tags', $allowed_tags);
   }
 
-  // Temporary, grants anonymous the right to see/edit every node.
-  //$drupal_role = user_role_load_by_name('anonymous user');
-  //user_role_change_permissions($drupal_role->rid, array('bypass node access' => TRUE));
-
-  // Set default user picture.
-  futurium_isa_extras_set_default_pic();
-
   $contexts = variable_get('context_status', array());
   $contexts['site_wide'] = TRUE;
   variable_set('context_status', $contexts);
 
-  // Delete editorial_team content type
+  // Delete editorial_team content type & content
   node_type_delete('editorial_team');
+  node_delete(1);
+
+  // Set node color vars
+  variable_set('color_future', '65C250');
+  variable_set('color_ideas', 'FF9137');
+  variable_set('color_event_d4eu', 'E477C8');
+  variable_set('color_evidence', '799BBE');
+
+  // Set chosen selectors
+  variable_set('chosen_jquery_selector', 'select');
+
+  // Unlock body field.
+  $field_name = 'body';
+  $field = field_read_field($field_name);
+  $field['locked'] = 0;
+  field_update_field($field);
+
+  // Disable bartik and ec_resp themes.
+  theme_disable(array('bartik', 'ec_resp'));
 
   drupal_flush_all_caches();
 

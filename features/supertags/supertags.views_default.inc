@@ -346,12 +346,25 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['picture']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['picture']['link_photo_to_profile'] = FALSE;
   $handler->display->display_options['fields']['picture']['image_style'] = 'media_thumbnail';
+  /* Field: User: Organisation */
+  $handler->display->display_options['fields']['field_organisation']['id'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['table'] = 'field_data_field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['field'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_organisation']['label'] = '';
+  $handler->display->display_options['fields']['field_organisation']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '<span class="userOrganisation">[field_organisation]</span>';
+  $handler->display->display_options['fields']['field_organisation']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_organisation']['hide_empty'] = TRUE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name] [field_organisation]';
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['name']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
@@ -673,17 +686,16 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['title']['element_class'] = '[field_flavor]';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Ideas and experience */
-  $handler->display->display_options['fields']['field_ideas']['id'] = 'field_ideas';
-  $handler->display->display_options['fields']['field_ideas']['table'] = 'field_data_field_ideas';
-  $handler->display->display_options['fields']['field_ideas']['field'] = 'field_ideas';
-  $handler->display->display_options['fields']['field_ideas']['label'] = '';
-  $handler->display->display_options['fields']['field_ideas']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_ideas']['alter']['text'] = '[field_ideas] <a href="[path]" class="moreLink">Read more</a> ';
-  $handler->display->display_options['fields']['field_ideas']['alter']['strip_tags'] = TRUE;
-  $handler->display->display_options['fields']['field_ideas']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_ideas']['type'] = 'text_trimmed';
-  $handler->display->display_options['fields']['field_ideas']['settings'] = array(
+  /* Field: Content: Issue */
+  $handler->display->display_options['fields']['field_issue']['id'] = 'field_issue';
+  $handler->display->display_options['fields']['field_issue']['table'] = 'field_data_field_issue';
+  $handler->display->display_options['fields']['field_issue']['field'] = 'field_issue';
+  $handler->display->display_options['fields']['field_issue']['label'] = '';
+  $handler->display->display_options['fields']['field_issue']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_issue']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['field_issue']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_issue']['type'] = 'text_trimmed';
+  $handler->display->display_options['fields']['field_issue']['settings'] = array(
     'trim_length' => '300',
   );
   /* Field: Global: Custom text */
@@ -691,16 +703,29 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[body] <a href="[path]" class="moreLink">Read more</a> ';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_issue] <a href="[path]" class="moreLink">Read more</a> ';
   $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['preserve_tags'] = '<a>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: User: Organisation */
+  $handler->display->display_options['fields']['field_organisation']['id'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['table'] = 'field_data_field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['field'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_organisation']['label'] = '';
+  $handler->display->display_options['fields']['field_organisation']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '- <span class="userOrganisation">[field_organisation]</span>';
+  $handler->display->display_options['fields']['field_organisation']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_organisation']['hide_empty'] = TRUE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Reporter';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name] [field_organisation]';
   /* Field: Content: Updated date */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
@@ -715,6 +740,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_tags']['alter']['path'] = '%1/ideas/%2';
   $handler->display->display_options['fields']['field_tags']['alter']['path_case'] = 'lower';
+  $handler->display->display_options['fields']['field_tags']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_tags']['type'] = 'supertags_taxonomy_term_reference_link';
   $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -850,12 +876,25 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_ideas] <a href="[path]" class="moreLink">Read more</a> ';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: User: Organisation */
+  $handler->display->display_options['fields']['field_organisation']['id'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['table'] = 'field_data_field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['field'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_organisation']['label'] = '';
+  $handler->display->display_options['fields']['field_organisation']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '- <span class="userOrganisation">[field_organisation]</span>';
+  $handler->display->display_options['fields']['field_organisation']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_organisation']['hide_empty'] = TRUE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Reporter';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name] [field_organisation]';
   /* Field: Content: Updated date */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
@@ -870,6 +909,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_tags']['alter']['path'] = '%1/ideas/%2';
   $handler->display->display_options['fields']['field_tags']['alter']['path_case'] = 'lower';
+  $handler->display->display_options['fields']['field_tags']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_tags']['type'] = 'supertags_taxonomy_term_reference_link';
   $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -1039,12 +1079,25 @@ function supertags_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  /* Field: User: Organisation */
+  $handler->display->display_options['fields']['field_organisation']['id'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['table'] = 'field_data_field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['field'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_organisation']['label'] = '';
+  $handler->display->display_options['fields']['field_organisation']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '- <span class="userOrganisation">[field_organisation]</span>';
+  $handler->display->display_options['fields']['field_organisation']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_organisation']['hide_empty'] = TRUE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Reporter';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name] [field_organisation]';
   /* Field: Content: Updated date */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
@@ -1205,12 +1258,25 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['preserve_tags'] = '<a>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: User: Organisation */
+  $handler->display->display_options['fields']['field_organisation']['id'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['table'] = 'field_data_field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['field'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_organisation']['label'] = '';
+  $handler->display->display_options['fields']['field_organisation']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '- <span class="userOrganisation">[field_organisation]</span>';
+  $handler->display->display_options['fields']['field_organisation']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_organisation']['hide_empty'] = TRUE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Reporter';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name] [field_organisation]';
   /* Field: Content: Updated date */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
@@ -1393,6 +1459,17 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['picture']['exclude'] = TRUE;
   $handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['picture']['image_style'] = 'medium';
+  /* Field: User: Organisation */
+  $handler->display->display_options['fields']['field_organisation']['id'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['table'] = 'field_data_field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['field'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_organisation']['label'] = '';
+  $handler->display->display_options['fields']['field_organisation']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '<span class="userOrganisation">[field_organisation]</span>';
+  $handler->display->display_options['fields']['field_organisation']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_organisation']['hide_empty'] = TRUE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -1400,6 +1477,8 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = '';
   $handler->display->display_options['fields']['name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name][field_organisation]';
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   /* Field: Content: Post date */
   $handler->display->display_options['fields']['created']['id'] = 'created';
@@ -1408,7 +1487,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['created']['label'] = '';
   $handler->display->display_options['fields']['created']['exclude'] = TRUE;
   $handler->display->display_options['fields']['created']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['created']['date_format'] = 'short';
+  $handler->display->display_options['fields']['created']['date_format'] = 'day_fullmonth_year';
   $handler->display->display_options['fields']['created']['second_date_format'] = 'long';
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
@@ -1441,14 +1520,14 @@ function supertags_views_default_views() {
               <div class="pull-right text-center">
                 [picture]
                 <div class="text-muted">
-                  [name]<br />
-                  <span class="label label-default">[created]</span>
+                  [name]
                 </div>
               </div>
               <div class="media-body">
                 <div class="pull-right">[value]</div>
                 <h3 class="media-heading"><a href="[path_1]">[title]</a></h3>
                 <div>
+                  <span class="blogListDate">[created]</span>
                   [body]
                   <div><a href="[path_1]">Read more</a></div>
                 </div>
@@ -1543,6 +1622,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'node';
@@ -1561,7 +1641,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['empty'] = TRUE;
-  $handler->display->display_options['footer']['area']['content'] = '<a href=\'../past-events/%1?flavour=%1\'>Past events for %1</a>';
+  $handler->display->display_options['footer']['area']['content'] = '<a href=\'../past-events/[field_path]?flavour=[field_path]\'>Past events for [name]</a>';
   $handler->display->display_options['footer']['area']['format'] = 'filtered_html';
   $handler->display->display_options['footer']['area']['tokenize'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -1620,6 +1700,20 @@ function supertags_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  /* Field: Taxonomy term: Path */
+  $handler->display->display_options['fields']['field_path']['id'] = 'field_path';
+  $handler->display->display_options['fields']['field_path']['table'] = 'field_data_field_path';
+  $handler->display->display_options['fields']['field_path']['field'] = 'field_path';
+  $handler->display->display_options['fields']['field_path']['relationship'] = 'field_default_flavour_tid';
+  $handler->display->display_options['fields']['field_path']['label'] = '';
+  $handler->display->display_options['fields']['field_path']['element_label_colon'] = FALSE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'field_default_flavour_tid';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Date &amp; time -  start date (field_date_time) */
   $handler->display->display_options['sorts']['field_date_time_value']['id'] = 'field_date_time_value';
@@ -1630,7 +1724,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['arguments']['tid_1']['id'] = 'tid_1';
   $handler->display->display_options['arguments']['tid_1']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['arguments']['tid_1']['field'] = 'tid';
-  $handler->display->display_options['arguments']['tid_1']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['arguments']['tid_1']['relationship'] = 'field_default_flavour_tid';
   $handler->display->display_options['arguments']['tid_1']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['tid_1']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['tid_1']['summary']['format'] = 'default_summary';
@@ -1687,7 +1781,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_date_time_value2']['year_range'] = '-1:+3';
 
   /* Display: Page past events */
-  $handler = $view->new_display('page', 'Page past events', 'page_1');
+  $handler = $view->new_display('page', 'Page past events', 'page_past_events');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Past Events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
@@ -1830,12 +1924,25 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['active']['table'] = 'poll';
   $handler->display->display_options['fields']['active']['field'] = 'active';
   $handler->display->display_options['fields']['active']['not'] = 0;
+  /* Field: User: Organisation */
+  $handler->display->display_options['fields']['field_organisation']['id'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['table'] = 'field_data_field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['field'] = 'field_organisation';
+  $handler->display->display_options['fields']['field_organisation']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_organisation']['label'] = '';
+  $handler->display->display_options['fields']['field_organisation']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_organisation']['alter']['text'] = '- <span class="userOrganisation">[field_organisation]</span>';
+  $handler->display->display_options['fields']['field_organisation']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_organisation']['hide_empty'] = TRUE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Posted by';
+  $handler->display->display_options['fields']['name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['text'] = '[name] [field_organisation]';
   /* Field: Content: Updated date */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
@@ -3362,7 +3469,6 @@ function supertags_views_default_views() {
       'value' => 'simplify-esif',
     ),
   );
-
   $export['flavors_people'] = $view;
 
   $view = new view();

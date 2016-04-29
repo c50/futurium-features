@@ -35,3 +35,19 @@ function futurium_core_uninstall() {
   $t = get_t();
   drupal_set_message($t('Futurium data feature is now uninstalled from your site.'));
 }
+
+/**
+ * Updates to v1.8.
+ */
+function futurium_core_update_7101() {
+  // Enable multisite links feature.
+  module_enable(array('futurium_links'));
+}
+
+/**
+ * Updates to v1.9.
+ */
+function futurium_core_update_7102() {
+  // Enable multisite links feature.
+  module_enable(array('futurium_countdouwn', 'addressfield'));
+}

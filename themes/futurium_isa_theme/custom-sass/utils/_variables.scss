@@ -2,12 +2,9 @@
 // This file contains all application-wide Sass variables.
 // -----------------------------------------------------------------------------
 
-
 // -----------------------------------------------------------------------------
 // CUSTOM VARIABLES
 // -----------------------------------------------------------------------------
-
-$test: 50%;
 
 /// Regular font family
 $text-font-stack: 'droid serif', serif;
@@ -19,44 +16,39 @@ $rem-fallback: true !default;
 $rem-px-only: false !default;
 
 /// Copy text color
-$text-color: #666 !default;
+$text-color: #666 !default; 
 
-
-/// Main brand color
-$brand-color: #98CC4D !default;
-$sec-color: #95c500 !default;
-
-/// Color for visions and ideas
-
-// Link color
-
-$link-color: $brand-color;
-
-/// Medium grey
-$mid-grey: #999 !default;
 
 ///  grey
 $light-grey: #F8F8F8;
 $lighter-grey: #EBEBEB;
+$lightmid-grey: #d7d7d7;
+$mid-grey: #999 !default;
+$midmid-grey: #a4a4a4;
 $dark-grey: #090909 !default;
 
-
-$midmid-grey: #a4a4a4;
 $green: #65c250;
 $orange: #FF9137;
 $pink: #E477C8;
 $blue-grey: #799bbe;
 $greenblue: #467E8A;
 $purple: #333366;
-$peterriver: #95a5a6;
+$riverblue: #95a5a6;
 
-
-$group-color: $peterriver;
+$group-color: $riverblue;
 $future-color: $green;
 $idea-color: $orange;
 $event-color: $pink;
 $library-color: $blue-grey;
 $user-color: $greenblue;
+
+/// Main brand color
+$brand-color: $greenblue !default; 
+$sec-color: #95c500 !default;
+
+// Link color
+
+$link-color: $brand-color;
 
 
 
@@ -64,13 +56,6 @@ $facebook: "ico-facebook-small-white.png";
 $twitter: "ico-twitter-small-white.png";
 $google-plus: "ico-googleplus-small-white.png";
 $plus: "ico-plus-small-white.png";
-
-
-
-
-
-
-
 
 /// Container's maximum width
 /// Below that is 100%

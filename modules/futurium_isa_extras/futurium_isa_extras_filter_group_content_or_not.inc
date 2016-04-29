@@ -85,20 +85,22 @@ class futurium_isa_extras_filter_group_content_or_not extends views_handler_filt
       $q = db_or();
 
       if (!empty($gids['node'])) {
-        $q->condition($field, $gids['node'], 'IS NULL');  // No groups
-        $q->condition($field, $gids['node'], 'IN');       // In my groups
+        $q->condition($field, $gids['node'], 'IN');           // In my groups
       }
 
       if (!empty($public_groups)) {
-        $q->condition(db_and()
-            ->condition($field, $public_groups, 'IN')    // Public groups
-            ->condition($base_field, $private_nids, 'NOT IN')
-          );
+        $q->condition(
+          db_and()
+            ->condition($field, $public_groups, 'IN')         // Public group content
+            ->condition($base_field, $private_nids, 'NOT IN') // but not content set to "Private"
+        );
       }
 
       if (!empty($public_nids)) {
-        $q->condition($base_field, $public_nids, 'IN');   // Public content
+        $q->condition($base_field, $public_nids, 'IN');       // Public content
       }
+
+      $q->where("$field IS NULL");                            // Content without Group
 
       $this->query->add_where(
         $this->options['group'],

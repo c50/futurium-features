@@ -1,0 +1,44 @@
+<?php
+/**
+ * Helper to replace default field base image.
+ *
+ * @param $field_name
+ * @param $filename
+ * @param $source
+ */
+
+function _futurium_isa_replace_default_image($field_name, $filename, $source) {
+  // Load field info.
+  $field = field_info_field($field_name);
+
+  // Create new file object and get new fid.
+  if (file_exists($source)) {
+    $file = new stdClass;
+    $file->filename = $filename;
+    $file->timestamp = REQUEST_TIME;
+    $file->uri = $source;
+    $file->filemime = file_get_mimetype($source);
+    $file->uid = 1;
+    $file->status = 1;
+    $file = file_copy($file, 'public://default_images', FILE_EXISTS_REPLACE);
+    $fid = $file->fid;
+
+    // Replace old fid with new fid.
+    $field['settings']['default_image'] = (string) $fid;
+
+    // Update field.
+    field_update_field($field);
+  }
+}
+
+function futurium_isa_post_features_revert($component) {
+  if ($component == 'field_instance') {
+    // $source should point to the new file. If you don't have "default_images"
+    // folder in your module, create it.
+    $field_name = 'field_picture';
+    $filename = 'user_picture.png';
+    $source = drupal_get_path('module', 'futurium_isa') . '/default_images'. '/' . $filename;
+    // Replace default image for $field_name field base.
+    _futurium_isa_replace_default_image($field_name, $filename, $source);
+  }
+}

@@ -243,9 +243,18 @@ function d4eu_html_head_alter(&$head_elements) {
 function d4eu_preprocess_node(&$vars) {
   $account = user_load($vars['node']->uid);
 
+  $field_organisation = field_get_items('user', $account, 'field_organisation');
+  $organisation = field_view_value('user', $account, 'field_organisation', $field_organisation[0]);
+
+  if (isset($organisation)) {
+    $organisation = $organisation['#markup'];
+  }
   $vars['submitted']  = '<div class="authoring-info">';
   $vars['submitted'] .= '<span class="published-by">' . t("Published by") . ' </span>';
   $vars['submitted'] .= '<span class="username">' . theme('username', array('account' => $account)) . '</span>';
+  if (isset($organisation) && ($organisation != ' ')) {
+    $vars['submitted'] .= '<span class="organisation">' . $organisation . '</span>';
+  }
   $vars['submitted'] .= '<span class="extra-on"> ' . t("on") . ' </span> ';
   $vars['submitted'] .= '<span class="post-date">' . format_date($vars['node']->created, 'custom', 'l') . ', ' . format_date($vars['node']->created, 'custom', 'd/m/Y') . '</span>';
   $vars['submitted'] .= '</div>';
@@ -289,8 +298,27 @@ function d4eu_preprocess_node(&$vars) {
     'field_document',
     'field_date_time',
     'field_issue',
+    'field_location',
+    'field_registration_url',
   );
 
+  if ($vars['view_mode'] == 'full' && user_access('create relations')) {
+    $block = module_invoke('futurium_links', 'block_view', 'futurium_links');
+    $vars['select_relation'] = '<h2>' . render($block['subject']) . '</h2>';
+    $vars['select_relation'] .= render($block['content']);
+  }
+  if (isset($node->view->current_display)) {
+    if (in_array($node->view->current_display, ['relationteaser', 'evidence', 'parents'])) {
+      $rel_id             = $node->view->result[ $node->view->row_index ]->relation_node_rid;
+      $vars['delete_rid'] = '';
+      if ( user_access( 'delete relations' ) ) {
+        $destination        = drupal_get_query_parameters( NULL, array() );
+        $vars['delete_rid'] = l( t( 'Unlink' ), 'relation/' . $rel_id . '/delete', array( 'query'      => array( 'destination' => $destination['q'] ),
+                                                                                          'attributes' => array( 'class' => 'unlink' )
+        ) );
+      }
+    }
+  }
 }
 
 /**
@@ -299,7 +327,7 @@ function d4eu_preprocess_node(&$vars) {
  * Adding missing alternative text for WAI compliance.
  */
 function d4eu_form_search_block_form_alter(&$form, &$form_state, $form_id) {
-  $form['actions']['submit']['#attributes']['alt'] = 'Search';
+  $form['actions']['submit']['#attributes']['alt'] = t('Search');
 }
 
 /**
@@ -308,12 +336,44 @@ function d4eu_form_search_block_form_alter(&$form, &$form_state, $form_id) {
  * Changes search forms placeholder text.
  */
 function d4eu_form_alter(&$form, &$form_state, $form_id) {
-  if (module_exists('supertags')) {
-    $flavor = _supertags_flavor_context();
-    if ($form_id == 'search_block_form') {
-      $form['search_block_form']['#attributes']['placeholder'][] = $flavor['name'];
-    }
+  switch ($form_id) {
+
+    case 'search_block_form':
+      if (module_exists('supertags')) {
+        $flavor = _supertags_flavor_context();
+        $form['search_block_form']['#attributes']['placeholder'][] = $flavor['name'];
+      }
+      break;
+
+    case 'futurium_links_single_box_form':
+    case 'futurium_links_multiple_boxes_form':
+      $override = array(
+        drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
+          'type' => 'file',
+          'scope' => 'footer',
+          'weight' => 101,
+        ),
+      );
+      $form['#attached']['js'] += $override;
+      $form['related_to']['new-wrap']['new']['item']['#title'] = t('<strong>Link</strong> further related content');
+      $form['related_to']['new-wrap']['new']['item']['#description'] = t('Search for <b>existing</b> content related with current page.');
+      break;
+
+    case 'futurium_links_radio_choice_form':
+      $override = array(
+          drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
+              'type' => 'file',
+              'scope' => 'footer',
+              'weight' => 101,
+          ),
+      );
+      $form['#attached']['js'] += $override;
+      $form['new']['link_type']['#options']['has_evidence'] = t('further <b>evidence</b>');
+      $form['new']['link_type']['#options']['related_to'] = t('further <b>related content</b>');
+      $form['#prefix'] .=  t('<label>Link</label>');
+      break;
   }
+
 }
 
 /**
@@ -323,6 +383,30 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
  */
 function d4eu_preprocess_comment(&$vars) {
   global $user;
+
+  // Hide Important or conclusion in comment view.
+  $vars['content']['field_important_or_conclusion'] = FALSE;
+  // Add a class to the markup.
+  if (!empty($vars['elements']['field_important_or_conclusion'])) {
+    $class = 'comment' . $vars['elements']['field_important_or_conclusion'][0]['#markup'];
+    $vars['classes_array'][] = $class;
+  }
+  $uid = $vars['comment']->uid;
+  $comment_user = array('account' => user_load($uid));
+  $field = field_get_items('user', $comment_user['account'], 'field_organisation');
+  $output = field_view_field('user', $comment_user['account'], 'field_organisation', $field[0]);
+
+  $organisation = '';
+  if (isset($field)) {
+    if ( $organisation != '' ) {
+      $organisation .= ' ';
+    }
+    if ( isset( $output[0] ) ) {
+      $organisation .= '<div class="userOrganisation">' . $output[0]['#markup'] . '</div>';
+    }
+  }
+
+  $vars['comment_user']['organisation'] = $organisation;
 
   $node = $vars['node'];
   $comment = $vars['comment']->cid;
@@ -335,7 +419,7 @@ function d4eu_preprocess_comment(&$vars) {
   if (!$user->uid) {
     if ($default_archived == 0) {
       if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
-        $destination                                                                 = array('destination' => "comment/reply/$node->nid/$comment#comment-form");
+        $destination = array('destination' => "comment/reply/$node->nid/$comment#comment-form");
         $vars['content']['links']['comment']['#links']['comment_forbidden']['title'] = t('<a href="@login">Log in</a> or <a href="@register">register</a><br /> to reply to this comment',
           array(
             '@login'    => url('user/login', array('query' => $destination)),
@@ -357,4 +441,70 @@ function d4eu_preprocess_comment(&$vars) {
 function d4eu_preprocess_page(&$vars) {
   $old_site_name = $vars['site_name'];
   $vars['site_name'] = '<a href="' . $vars['front_page'] . '">' . $old_site_name . '</a>';
+}
+
+/**
+ * Implements template_preprocess_user_profile().
+ */
+function d4eu_preprocess_user_profile(&$variables) {
+
+  // Format profile page.
+  $identity = '';
+  $first_name = field_view_value('user', $variables['user'], 'field_firstname', $variables['field_firstname'][0]);
+  $last_name = field_view_value('user', $variables['user'], 'field_lastname', $variables['field_lastname'][0]);
+
+  if (isset($first_name)) {
+    $identity .= $first_name['#markup'];
+  }
+  if (isset($last_name)) {
+    if ($identity != '') {
+      $identity .= ' ';
+    }
+    $identity .= $last_name['#markup'];
+  }
+
+  $organisation = '';
+  if (isset($variables['field_organisation'][0])) {
+    $user_organisation = field_view_value( 'user', $variables['user'], 'field_organisation', $variables['field_organisation'][0] );
+  }
+
+  if (isset($user_organisation)) {
+    if ($organisation != '') {
+      $organisation .= ' ';
+    }
+    $organisation .= '<div class="userOrganisation">' . $user_organisation['#markup'] . '</div>';
+  }
+
+  $date = '';
+  if ($user = user_load(arg(1))) {
+    $date_string = format_date($user->created, 'custom', 'd/m/Y');
+    $args = array('@date' => $date_string);
+    $date .= t('Member since @date', $args);
+  }
+
+  $variables['user_info']['name'] = $identity;
+  $variables['user_info']['organisation'] = $organisation;
+  $variables['user_info']['date'] = $date;
+
+  // Add contact form link on user profile page.
+  if (module_exists('contact')) {
+    $account = $variables['elements']['#account'];
+    $menu_item = menu_get_item("user/$account->uid/contact");
+    if (isset($menu_item['access']) && $menu_item['access'] == TRUE) {
+      $variables['contact_form'] = l(t('Contact this user'), 'user/' . $account->uid . '/contact', array('attributes' => array('type' => 'message')));
+    }
+  }
+}
+
+/**
+ * Implements theme_preprocess_view_view_fields().
+ *
+ * Show votes results by default in poll lists.
+ */
+function d4eu_preprocess_views_view_fields(&$vars) {
+  if ($vars['view']->name == 'flavors' && $vars['view']->current_display == 'page_poll') {
+    $poll_node = node_load($vars['row']->nid);
+    $vars['fields']['active']->label_html = FALSE;
+    $vars['fields']['active']->content = poll_view_results($poll_node, TRUE, FALSE);
+  }
 }

@@ -197,31 +197,43 @@
   background: $color;
   display: inline-block;
   border-radius: 0px;
-  border: none;
+  border: 1px solid darken($color, 10%);
   color: #fff;
+  @include transition(background .4s ease);
   @include on-event {
-    background-color: darken($color, 10%); 
-    color: #fff; 
+    background-color: darken($color, 15%); 
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid darken($color, 20%);
   } 
 }
 
-@mixin panel{
+@mixin btn-special($color) {
+  @include rem(padding, 15px 15px 15px 15px);
+  /*font-family: $header-font-stack; */  
+  @include rem(font-size, 18px);
+  background: darken($color, 20%);
+  color: #fff;
+  text-align: center;
+  /* text-transform: uppercase; */   
+  cursor: pointer;
+  border: 1px solid darken($color, 25%);
+  font-weight: bold;
+  @include transition(background .4s ease);
+  @include on-event {
+    background-color: darken($color, 25%); 
+    border: 1px solid darken($color, 30%);
+    color: #fff;
+    text-decoration: none;
+  } 
+}
+
+@mixin panel {
   @include rem(margin, 0 0 30px 0);
   background: $light-grey;
   border: 1px solid darken($light-grey, 10%);
 }
 
-/* sets an icon for the teaser title */
-
-@mixin icon-node-teaser($color, $icon) {
-  color:#fff;
-  border-radius: 50%;
-  @include rem(width, 35px);
-  @include rem(height, 35px);
-  @include rem(margin-right, 10px);
-  background: $color;
-  @include fa($icon);    
-}
 
 /* mixin for the font awesome icons */
 
@@ -235,8 +247,8 @@
 /* mixin user */
 
 @mixin round-userpicture {
-  border-radius:50%;
-  overflow:hidden;
+  border-radius: 50%;
+  overflow: hidden;
   width: 35px;
   height: 35px;
 }
@@ -247,7 +259,7 @@
 
 @mixin contenttype($color, $icon) {
     
-  a {
+  a:not(.container-top a) {
     color: $color;
     @include on-event {
       color: $color;
@@ -258,9 +270,54 @@
     color: inherit;
   }
 
-  .more-link a, a.more-link {
+  /* add relation */
+
+  .sidebar-right .form-item .autocomplete-new a{
+    @include rem(padding, 10px 10px 10px 10px);
+    @include rem(margin, 5px 15px 10px 15px);
+    background: $light-grey;
+    @include rem(font-size, 13px);
+    font-weight: bold;
+
+    border: 1px solid $dark-grey;
+    color: $dark-grey;
+  }
+
+  .sidebar-right .form-item .autocomplete-new.ideas a {
+    @include on-event {
+      border: 1px solid darken($idea-color, 10%);
+      color: darken($idea-color, 10%);
+    }
+  }  
+
+  .sidebar-right .form-item .autocomplete-new.future a {
+    @include on-event {
+      border: 1px solid darken($future-color, 10%);
+      color: darken($future-color, 10%);
+    }
+  }
+
+  .sidebar-right .form-item .autocomplete-new.evidence a {
+    @include on-event {
+      border: 1px solid darken($library-color, 10%);
+      color: darken($library-color, 10%);
+    }
+  }
+
+  .sidebar-right .form-item .autocomplete-new.event_d4eu a {
+    @include on-event {
+      border: 1px solid darken($event-color, 10%);
+      color: darken($event-color, 10%);
+    }
+  }
+
+  .sidebar-right a.flag{
+    color: #fff;
+  }
+
+  .more-link a, a.more-link, .btn-info, .btn {
     @include btn-default($color);
-  } 
+  }
 
   /* row1 theming */
   .container-fullwidth.row1 {
@@ -273,6 +330,20 @@
   }
 
   .row1{
+    a {
+      color: #ffffff;
+      on-event {
+        color: #ffffff;
+      }
+    }
+    .intro {
+      @include rem(font-size, 20px);
+      @include rem(line-height, 26px);
+      @include respond-to(small) {
+        @include rem(font-size, 18px);
+        @include rem(line-height, 24px);
+      }
+    }
     .share-links a, .flag-link-toggle, a.btn-more, .more-link a, .btn {
       @include btn-default($color);
       background-color: darken($color, 10%); 
@@ -280,6 +351,9 @@
         background-color: darken($color, 15%);
       }
     }
+    .btn.btn-special {
+      @include btn-special($color);
+    }  
     h1 {
       @include rem(padding, 0 0 0 0);
       @include rem(margin, 0 0 20px 0);
@@ -292,18 +366,77 @@
       color: $color;
       text-align: center;
       border-radius: 50%;
-      width: 70px;
-      line-height: 35px; 
+      @include rem(width, 70px); 
+      @include rem(height, 70px); 
+      @include rem(line-height, 35px); 
       background: #fff;
+      @include respond-to(small) {
+        @include rem(width, 40px);
+        @include rem(height, 40px); 
+        @include rem(line-height, 20px);
+        @include rem(padding, 10px);
+        @include rem(font-size, 20px); 
+      }
     }
     .group-shortcut-buttons a{
       @include rem(margin, 0 10px 0 0);
     } 
   }
 
+  .row2{
+    a {
+      color: $color;
+    }
+    .field-type-taxonomy-term-reference {
+      .field-label {
+        width: 100%;
+        @include rem(margin-bottom, 15px);
+      }
+      a {
+       font-weight: bold;
+      }
+  }
+  }
+
+  .row2 .sidebar-right {
+    a {
+      color: $text-color;
+    }
+    .form-item a{
+      @include on-event {
+        background: $light-grey;
+      }
+    }
+  } 
+
+  /* pagination */
+
+  .pagination>li>a {
+    border: 1px solid $color;
+  }
+
+  .pagination>li>a:hover,
+  .pagination>li>a:focus,
+   {
+    background-color: darken($color, 15%);
+    border: 1px solid darken($color, 15%);
+    color: #fff;
+  }
+
+  .pagination>.active>a {
+    background-color: $color;
+    color: #fff;
+  }
+
+  .pagination>li>a:hover, 
+  .pagination>li>a:focus {
+    border-color: darken($color, 15%);
+  }
+
   /* links to edit / manage display / ... */
   .container-top {
     background-color: darken($color, 20%);
+    @include rem(border-top, 3px solid darken($color, 40%));
     @include rem(padding, 20px 0 0 0);
     /* temp fix? should header1 be removed from page.tpl.php */
     .alert{
@@ -312,11 +445,14 @@
     h1.page-header {
       display: none;
     }
-    a {
+    .nav li a {
       color: #fff;
       @include on-event {
         color: $text-color;
       }
+    }
+    .nav li.active a {
+      color: $text-color;
     }
 
   }
@@ -325,7 +461,8 @@
 
 
 
-@mixin teaser($color) {
+@mixin teaser($color, $icon) {
+  @include rem(padding, 30px 0 30px 0); 
   a {
     color: $color;
     @include on-event {
@@ -340,9 +477,44 @@
     }
   }
 
+  /* todo */
+
+  h3:before {
+    /* @include icon-node-teaser($idea-color, lightbulb-o); */
+
+    background: $color;
+    color:#fff;
+    border-radius: 50%;
+    @include rem(width, 35px);
+    @include rem(height, 35px);
+    @include rem(margin-right, 10px);
+    @include fa($icon);    
+    @include rem(padding, 6px 0 0 6px);
+    @include rem(font-size, 24px);
+  }
+
   .btn-primary, .flag-action, .unflag-action, .flag-like a, .more-link a, 
-  .share-links a, a.btn-more {
+  .share-links a, a.btn-more, .form-submit{
     @include btn-default($color);
+  }
+}
+
+@mixin menu($color, $icon) {
+  a:before {
+    @include fa($icon);
+    @include rem(font-size, 20px);
+  }
+  a.active-trail {
+    background: $color;
+    border: 3px solid darken($color, 15%);
+    border-bottom: none;
+    color: #fff;
+    @include rem(margin-top, -3px);
+    @include respond-to(small) {
+      background: none;
+      border: none;
+      color: $text-color;
+    }
   }
 }
 
@@ -357,34 +529,11 @@
   }
   .pane-content {
     @include rem(padding, 15px);
-    background: #f8f8f8;
-    @include rem (border, 1px solid #d7d7d7);
+    background: $light-grey;
+    @include rem (border, 1px solid $lightmid-grey);
     border-top: none;
   }
 }
-
-@mixin views-row-border {
-  .views-row {
-    @include rem(padding, 40px 0 40px 0);
-    @include rem(border-bottom, 5px solid #d7d7d7);
-    div.node-teaser {
-      padding: 0;
-    }
-  }
-  .views-row-first {
-    @include rem(padding-top, 0);
-  }
-  .views-row-last {
-    border-bottom: none;
-  } 
-  h3 {
-    margin-top: 0;
-  }
-  
-}
-
-
-
 
 /* temp stuff */
 

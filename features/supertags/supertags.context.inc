@@ -21,7 +21,9 @@ function supertags_context_default_contexts() {
       'values' => array(
         'digital4eu' => 'digital4eu',
         'digital4science' => 'digital4science',
-        'egov' => 'egov',
+        'egovernment4eu' => 'egovernment4eu',
+        'innovation4eu' => 'innovation4eu',
+        'simplify-esif' => 'simplify-esif',
       ),
     ),
   );
@@ -84,6 +86,7 @@ function supertags_context_default_contexts() {
     'path' => array(
       'values' => array(
         '*/ideas' => '*/ideas',
+        '*/issues' => '*/issues',
         '*/evidence' => '*/evidence',
         '*/videos' => '*/videos',
         '*/blogs' => '*/blogs',
@@ -92,6 +95,7 @@ function supertags_context_default_contexts() {
         '*/articles' => '*/articles',
         '*/pages' => '*/pages',
         '*/ideas/*' => '*/ideas/*',
+        '*/issues/*' => '*/issues/*',
         '*/evidence/*' => '*/evidence/*',
         '*/videos/*' => '*/videos/*',
         '*/blogs/*' => '*/blogs/*',
@@ -222,6 +226,8 @@ function supertags_context_default_contexts() {
         'document' => 'document',
         'event_d4eu' => 'event_d4eu',
         'ideas' => 'ideas',
+        'issue' => 'issue',
+        'links' => 'links',
         'poll' => 'poll',
         'video_d4eu' => 'video_d4eu',
       ),

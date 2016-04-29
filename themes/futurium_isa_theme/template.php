@@ -11,6 +11,13 @@ function futurium_isa_theme_preprocess_html(&$variables) {
     $class = 'node-type-' . str_replace("_", "-", $content_type);
     $variables['classes_array'][] = $class;
   }
+
+  if ($item['path'] == 'node/%/graph') {
+    $nid = arg(1);
+    $obj = node_load($nid);
+    $class = 'node-type-' . str_replace("_", "-", $obj->type);
+    $variables['classes_array'][] = $class;
+  }
 }
 
 /**
@@ -24,6 +31,25 @@ function futurium_isa_theme_preprocess_region(&$variables) {
 }
 
 function futurium_isa_theme_preprocess_page(&$variables) {
+
+  $item = menu_get_item();
+
+  if (isset($_GET['period'])) {
+    if ($_GET['q'] == 'analytics') {
+      $period = str_replace('1_', ' ', $_GET['period']);
+      $period = str_replace('_', ' ', $period);
+
+      $title = drupal_get_title();
+      $title .= ' - Last ' . $period;
+
+      drupal_set_title($title);
+    }
+  }
+
+  if (!user_is_logged_in()) {
+    unset($variables['tabs']);
+  }
+
   unset($variables['navbar_classes_array'][1]);
   $variables['navbar_classes_array'][] = 'container-fullwidth';
 
@@ -41,8 +67,6 @@ function futurium_isa_theme_preprocess_page(&$variables) {
   $search_box = drupal_render($search_form);
   $variables['search_box'] = $search_box;
 
-  $item = menu_get_item();
-
   $panels_callbacks = array(
     'page_manager_page_execute',
     'page_manager_node_view_page',
@@ -52,12 +76,26 @@ function futurium_isa_theme_preprocess_page(&$variables) {
     'page_manager_node_edit',
     'page_manager_term_view_page',
     'entity_translation_edit_page',
+    'user_pages_user_users',
+    'user_pages_user_user_login',
+    'user_pages_user_user_register',
+    'user_pages_user_user_password',
   );
 
   $variables['content_wrapper'] = !in_array($item['page_callback'], $panels_callbacks, TRUE);
 
   $variables['show_title'] = $variables['content_wrapper'];
 
+}
+
+/**
+ * Implements hook_preprocess_collapsible_user_block().
+ */
+function futurium_isa_theme_preprocess_collapsible_user_block(&$vars) {
+  if (user_is_logged_in()) {
+    $vars['account']['picture']['image_style'] = 'user_picture_small';
+    $vars['account']['picture']['class'] = array('img-circle', 'logged-in-user-pic');
+  }
 }
 
 /**
@@ -112,9 +150,26 @@ function futurium_isa_theme_status_messages($variables) {
  * Form alter to add missing bootstrap classes and role to search form.
  */
 function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'search_form') {
-    $form['#attributes']['class'][] = 'navbar-form';
-    $form['#attributes']['role'][] = 'search';
+  switch ($form_id) {
+    case 'search_form':
+      $form['#attributes']['class'][] = 'navbar-form';
+      $form['#attributes']['role'][] = 'search';
+      break;
+
+    case 'user_login':
+     $form['name']['#field_prefix'] = '<div class="field-wrapper name">';
+     $form['name']['#field_suffix'] = '</div>';
+     $form['name']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['name']['#description'])));
+     $form['name']['#description'] = "";
+
+     $form['pass']['#field_prefix'] = '<div class="field-wrapper pass">';
+     $form['pass']['#field_suffix'] = '</div>';
+     $form['pass']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['pass']['#description'])));
+     $form['pass']['#description'] = "";
+
+     $form['actions']['submit']['#prefix'] = '<ul class="form-links"><li>' . l(t('Forgot your password?'), 'user/password') . '</li></ul>';
+     break;
+
   }
 }
 
@@ -130,44 +185,21 @@ function futurium_isa_theme_menu_link(array $variables) {
   $variables['element']['#attributes']['class'][] = 'menu-item';
   $variables['element']['#attributes']['class'][] = $class;
 
+  // Add stats glyphicon.
   if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
       $variables['element']['#original_link']['link_path'] == 'analytics') {
     $variables['element']['#localized_options']['html'] = TRUE;
     $variables['element']['#title'] = '<span class="glyphicons-signal"></span> ' . t("Stats");
   }
 
-  if ($variables['element']['#original_link']['menu_name'] == 'main-menu' &&
-      $variables['element']['#original_link']['link_path'] == 'user') {
-
-    if (user_is_logged_in()) {
-      $variables['element']['#localized_options']['html'] = TRUE;
-      global $user;
-      $account = user_load($user->uid);
-
-      $pic = !empty($account->picture->uri) ? $account->picture->uri : variable_get('user_picture_default');
-      $user_pic = theme(
-        'image_style', array(
-          'style_name' => 'user_picture_small',
-          'path' => $pic,
-          'attributes' => array(
-            'class' => 'logged-in-user-pic',
-            'title' => t("@username's profile", array('@username' => format_username($account))),
-          ),
-        )
-      );
-      $variables['element']['#title'] = $user_pic;
-    }
-  }
-
-  if ($variables['element']['#original_link']['link_path'] == 'user/login') {
-    $variables['element']['#localized_options']['html'] = TRUE;
-    $variables['element']['#title'] = '<span class="glyphicon-user"></span> ' . t("Login");
-  }
-
+  // Remove active class from parent if in sub-menu pages.
   if ($variables['element']['#original_link']['menu_name'] == 'menu-user-tabs' ||
       $variables['element']['#original_link']['menu_name'] == 'menu-group-tabs') {
     if ($variables['element']['#href'] != $_GET['q']) {
-      unset($variables['element']['#localized_options']['attributes']['class'][0]);
+      if (isset($variables['element']['#localized_options']['attributes']['class'])){
+        $active_class_key = array_search('active',$variables['element']['#localized_options']['attributes']['class']);
+        unset($variables['element']['#localized_options']['attributes']['class'][$active_class_key]);
+      }
     }
   }
 
@@ -314,10 +346,10 @@ function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
 
   foreach ($links as $key => $link) {
     if ($results['rating'] >= $link['value']) {
-      $class = 'rate-fivestar-btn-filled';
+      $class = 'rate-fivestar-btn-filled rate-button';
     }
     else {
-      $class = 'rate-fivestar-btn-empty';
+      $class = 'rate-fivestar-btn-empty rate-button';
     }
     switch ($variables['display_options']['title']) {
       case 'Desirability':
@@ -383,28 +415,52 @@ function futurium_isa_theme_menu_tree__menu_group_tabs($variables) {
 }
 
 function futurium_isa_theme_quant_page($vars) {
+
   $content = '';
+
   $content .= $vars['form'];
+
+  //$content .= '<h1>Content stats</h1>';
+
   if ($vars['charts']) {
     foreach ($vars['charts'] as $chart) {
       $content .= $chart;
     }
   }
 
-  $views['statistics_users'] = array(
-    'block',
-  );
-  $views['statistics'] = array(
-    'block',
-    'block_1',
-    'block_2',
-    'block_3',
+  $views['users'] = array(
+    'title' => t('Users'),
+    'view' => 'statistics_users',
+    'class' => 'stats-user',
+    'displays' => array(
+      'most_active_users',
+    ),
   );
 
-  $content .= '<br><br>';
-  foreach($views as $view_name => $displays) {
-    $content .= '<br>';
-    foreach ($displays as $k => $display) {
+  $views['futures'] = array(
+    'title' => t('Futures'),
+    'view' => 'statistics',
+    'class' => 'stats-futures ',
+    'displays' => array(
+      'most_commented_futures',
+      'most_voted_futures',
+    ),
+  );
+
+  $views['ideas'] = array(
+    'title' => t('Ideas'),
+    'view' => 'statistics',
+    'class' => 'stats-ideas',
+    'displays' => array(
+      'most_commented_ideas',
+      'most_voted_ideas',
+    ),
+  );
+
+  foreach($views as $group => $data) {
+    $view_name = $data['view'];
+    $content .= '<div class="' . $data['class'] . '"><h1 class="element-invisible">' . $data['title'] . '</h1>';
+    foreach ($data['displays'] as $k => $display) {
       $view = views_get_view($view_name);
       $view->set_display($display);
       if (!empty($_GET['period'])) {
@@ -420,7 +476,53 @@ function futurium_isa_theme_quant_page($vars) {
       $content .= $view->preview($display);
       $content .= '</div>';
     }
+    $content .= '</div>';
   }
 
   return '<div id="quant-page">' . $content . '</div>';
+}
+
+/**
+ * Theme wrapper for quant_time_form()
+ */
+function futurium_isa_theme_quant_time_form($vars) {
+  $form = $vars['form'];
+  $output = '';
+
+  $output .= '<fieldset>';
+
+  $output .= '<div class="description">';
+  $output .= drupal_render($form['message']);
+  $output .= '</div>';
+
+  $output .= '<div class="quant-option-row">';
+  $output .= drupal_render($form['period']);
+  $output .= '</div>';
+
+  $output .= drupal_render_children($form);
+
+  $output .= '</fieldset>';
+
+  return $output;
+}
+
+function futurium_isa_theme_textarea($variables) {
+  $element = $variables['element'];
+  element_set_attributes($element, array('id', 'name', 'cols', 'rows'));
+  _form_set_class($element, array('form-textarea'));
+
+  $wrapper_attributes = array(
+    'class' => array('form-textarea-wrapper'),
+  );
+
+  // Add resizable behavior.
+  if (!empty($element['#resizable'])) {
+    drupal_add_library('system', 'drupal.textarea');
+    $wrapper_attributes['class'][] = 'resizable';
+  }
+
+  $output = '<div' . drupal_attributes($wrapper_attributes) . '>';
+  $output .= '<textarea' . drupal_attributes($element['#attributes']) . '>' . check_plain($element['#value']) . '</textarea>';
+  $output .= '</div>';
+  return $output;
 }

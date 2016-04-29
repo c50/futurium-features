@@ -3,44 +3,64 @@
 /*************/
 
 
+/* general container settings */
+
+.container-fullwidth.navbar > .wrapper-pre-header {
+  background: $dark-grey;
+  .container {
+    @include rem(padding, 10px 15px 10px 15px);
+  }
+}
+
+.wrapper-header > .container{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  flex: 1 100%; /* We tell all items to be 100% width */
+  @include rem(padding, 10px 15px 0 15px);
+  @include respond-to(small) {
+    display: block;
+  }
+}
 
 .container-fullwidth {
-  padding: 40px 0 40px 0;
-}
-
-.container-fullwidth.navbar,
-.main-container.container-fullwidth {
   padding: 0 0 0 0;
+  .container {
+    @include rem(padding, 30px 15px 30px 15px);
+    @include respond-to(small) {
+      padding-bottom: 0;
+    }
+  }
 }
 
-.not-logged-in.page-user .container {
-  @include rem(padding-bottom, 30px);
+@include respond-to(small) {
+  .container-fullwidth.row1 .container {
+    @include rem(padding-bottom, 30px);
+  }
+}
+
+.container-fullwidth .wrapper-header {
+  .container {
+    @include rem(padding, 0 15px 0 15px);
+  }
+}
+
+
+/*
+section.container-fullwidth {
+  @include rem(padding, 0);
+}
+*/
+
+
+
+.container-top .container {
+  @include rem(padding, 0 15px 0 15px);
 }
 
 .not-logged-in.page-user .container-top .container {
   @include rem(padding-bottom, 0px);
-}
-
-/***************/
-/* NAVIGATION */
-/*************/
-
-.navbar-brand {
-  @include rem(padding, 0 0 20px 0);
-}
-
-.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-  @include rem(margin, 0 0 20px 0);
-}
-
-.navbar-header {
-  float: left;
-  width: 20%;
-}
-
-.navbar-collapse {
-  float: left;
-  width: 80%;
 }
 
 .container-fullwidth.row3 {
@@ -48,10 +68,62 @@
 }
 
 
+/*
+
+.container-fullwidth.navbar,
+.main-container.container-fullwidth {
+  padding: 0 0 0 0;
+}
+
+*/
+
+/* front container settings */
+
+.front .container.row1,
+.front .container.row2 {
+  background: #fff;
+}
+
+.front .container.row1 {
+  @include rem(padding-top, 0);
+  @include rem(padding-bottom, 0px);
+}
+
+.front .container-fullwidth.row2 .container-fullwidth {
+  @include rem(padding, 0 15px 0 15px);
+}
+
+/***************/
+/* NAVIGATION */
+/*************/
+
+.navbar>.container .navbar-brand, 
+.navbar>.container-fluid .navbar-brand {
+  @include rem(margin, 0 0 20px 0);
+  @include rem(padding, 0 0 20px 0);
+  color: $text-color;
+}
+
 /*****************/
 /* ROW1 SETTINGS*/
 /***************/
 
+@include respond-to(large) {
+  .row1 {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    flex: 1 100%; /* We tell all items to be 100% width */
+   /* @include rem(padding-bottom, 15px); */
+    .row1l {
+      align-self: flex-start;
+    }
+    .row1r {
+     /* align-self: flex-end; */
+     align-self: flex-end;
+    } 
+  }
+}
 
 .container-fullwidth.row1 {
   h1{
@@ -71,6 +143,25 @@
 .row1 .group-right .field-group-div {
   width: 100%;
   float: left;
+}
+
+/*****************/
+/* ROW2 SETTINGS*/
+/***************/
+
+.row2l{
+  .panel-pane {
+    @include rem(margin, 0 0 40px 0);
+    @include respond-to(small) {
+      margin: 0 0 20px 0;
+    }
+  }
+}
+
+.row2 .panel-pane.pane-menu-menu-user-tabs,
+.row2 .pane-menu-menu-group-tabs
+ {
+  margin: 0 0 0 0;
 }
 
 /*******************/
@@ -97,6 +188,9 @@
     @include rem(margin-bottom, 40px);
   }
 }
+
+
+
 
 /*******************/
 /* SIDEBAR REGION */
@@ -143,35 +237,15 @@
   padding: 0;
 }
 
-/*
-
-div.panel-pane div.view-mode-teaser_w_pic {
-  padding:15px 0 15px 0;
-  border-bottom: 5px solid #666;
-  .group-left, .group-right {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-*/
-
 .view-user-groups .views-bootstrap-grid-plugin-style > .row {
   @include rem(padding, 20px 0 20px 0);
 }
-
-
-
 
 div.panel-pane div.row{
   margin-left: -15px;
   margin-right: -15px;
 }
 
-
-
-
-/* Override from panels */ 
 
 
 

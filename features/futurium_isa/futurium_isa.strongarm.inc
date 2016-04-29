@@ -357,7 +357,11 @@ row|Bootstrap Row
       ),
     ),
     'extra_fields' => array(
-      'form' => array(),
+      'form' => array(
+        'path' => array(
+          'weight' => 6,
+        ),
+      ),
       'display' => array(
         'flag_like' => array(
           'default' => array(
@@ -627,6 +631,34 @@ row|Bootstrap Row
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'user_pages_user_users_disabled';
+  $strongarm->value = FALSE;
+  $export['user_pages_user_users_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_pages_user_user_login_disabled';
+  $strongarm->value = FALSE;
+  $export['user_pages_user_user_login_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_pages_user_user_register_disabled';
+  $strongarm->value = FALSE;
+  $export['user_pages_user_user_register_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_pages_user_user_password_disabled';
+  $strongarm->value = FALSE;
+  $export['user_pages_user_user_password_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'rate_widgets';
   $strongarm->value = array(
     1 => (object) array(
@@ -885,6 +917,86 @@ row|Bootstrap Row
     ),
   );
   $export['socialfield_services'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pcp_enabled_fields';
+  $strongarm->value = array(
+    'user:user:field_firstname' => 'user:user:field_firstname',
+    'user:user:field_lastname' => 'user:user:field_lastname',
+    'user:user:field_age' => 'user:user:field_age',
+    'user:user:field_biography' => 'user:user:field_biography',
+    'user:user:field_birthday' => 'user:user:field_birthday',
+    'user:user:field_education' => 'user:user:field_education',
+    'user:user:field_gender' => 'user:user:field_gender',
+    'user:user:field_location' => 'user:user:field_location',
+    'user:user:field_profession' => 'user:user:field_profession',
+    'user:user:field_picture' => 'user:user:field_picture',
+  );
+  $export['pcp_enabled_fields'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pcp_fields_open_option';
+  $strongarm->value = '_self';
+  $export['pcp_fields_open_option'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pcp_fields_order';
+  $strongarm->value = '1';
+  $export['pcp_fields_order'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pcp_hide_block_on_complete';
+  $strongarm->value = 1;
+  $export['pcp_hide_block_on_complete'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pcp_login_message';
+  $strongarm->value = 'Your Profile is not complete. Filling out remaining fields will make it 100%. Now you\'ve reached [pcp-user:pcp-user]%.';
+  $export['pcp_login_message'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pcp_login_message_role';
+  $strongarm->value = array(
+    2 => 0,
+    4 => 0,
+    3 => 0,
+    5 => 0,
+    6 => 0,
+  );
+  $export['pcp_login_message_role'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_picture_field_source_bundle';
+  $strongarm->value = '';
+  $export['user_picture_field_source_bundle'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_picture_field_source_entity';
+  $strongarm->value = 'user';
+  $export['user_picture_field_source_entity'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'user_picture_field_source_field';
+  $strongarm->value = 'field_picture';
+  $export['user_picture_field_source_field'] = $strongarm;
 
   return $export;
 }
