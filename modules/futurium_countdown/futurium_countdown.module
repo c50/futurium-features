@@ -150,6 +150,7 @@ function futurium_countdown_preprocess_field(&$variables) {
               $diff = _futurium_countdown_diff($current, $values['value'], $values['value2'], $settings['countdown_toggle']);
 
               $vars['diff'] = $diff;
+              dsm($diff);
               $vars['current_date'] = $current;
               $vars['start_date'] = $values['value'];
               $vars['end_date'] = $values['value2'];
@@ -329,30 +330,31 @@ function theme_futurium_countdown_diff(&$variables) {
     }
 
     $minutes_label = '';
-    if ($minutes > 0) {
+    if ($minutes > 0 && !$variables['diff']->invert) {
       $minutes_label .= format_plural($minutes, 'minute', 'minutes');
       $label_parts[] = '<span class="time-left minutes">' . $minutes . '</span>';
       $label_parts[] = '<span class="time-left minutes-label">' . $minutes_label . '</span>';
     }
-
   }
 
-  $label_parts[] = '<span class="description left">' . t('left') . '</span>';
+  if (!empty($label_parts)) {
+    $label_parts[] = '<span class="description left">' . t('left') . '</span>';
 
-  if ($variables['current_date'] > $variables['start_date']) {
-    if ($variables['current_date'] < $variables['end_date']) {
-      // Started but not finished.
-      // Check if settings are set to target end date.
-      if ($variables['settings']['countdown_toggle']) {
-        $classes_array[] = 'present';
-        $label_parts[] = '<span class="description target">' . t('to closing date') . '</span>';
+    if ($variables['current_date'] > $variables['start_date']) {
+      if ($variables['current_date'] < $variables['end_date']) {
+        // Started but not finished.
+        // Check if settings are set to target end date.
+        if ($variables['settings']['countdown_toggle']) {
+          $classes_array[] = 'present';
+          $label_parts[] = '<span class="description target">' . t('to closing date') . '</span>';
+        }
       }
     }
-  }
-  else {
-    // Hasn't started yet.
-    $classes_array[] = 'future';
-    $label_parts[] = '<span class="description target">' . t('to starting date') . '</span>';
+    else {
+      // Hasn't started yet.
+      $classes_array[] = 'future';
+      $label_parts[] = '<span class="description target">' . t('to starting date') . '</span>';
+    }
   }
 
   $classes = implode($classes_array, ' ');
