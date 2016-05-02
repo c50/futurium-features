@@ -281,5 +281,5 @@ function futurium_d4eu_update_7111() {
  */
 function futurium_d4eu_update_7112() {
   // Enable multisite links feature.
-  module_enable(array('subscriptions', 'subscriptions_content', 'subscriptions_ui','subscriptions_taxonomy','subscriptions_rules'));
+  module_enable(array('subscriptions', 'subscriptions_content', 'subscriptions_ui','subscriptions_taxonomy'));
 }
