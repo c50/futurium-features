@@ -76,12 +76,14 @@
                 <div class="homepage-sidebar">
                   <?php if($identity): ?>
                   <div class="identityBlock">
+                    <div class='subscription-flavor-bar'>
                     <?php if ($subscriptions_flavor_flag): ?>
                       <?php print $subscriptions_flavor_flag ?>
                     <?php endif; ?>
                     <?php if ($subscriptions_settings_link): ?>
                       <?php print $subscriptions_settings_link ?>
                     <?php endif; ?>
+                    </div>
                     <?php echo render($page['identity']); ?>
                   </div>
                   <?php endif; ?>
