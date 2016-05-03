@@ -105,9 +105,6 @@
 
     <?php if ($suffix_display): ?>
     <div class="row node-info">
-      <?php if ($subscriptions_node_flag): ?>
-        <?php print $subscriptions_node_flag ?>
-      <?php endif; ?>
       <div class="node-info-submitted col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-6 col-md-offset-6 col-sm-offset-6">
         <div class="well well-sm node-submitted clearfix">
           <small>
@@ -118,6 +115,9 @@
       </div>
     </div>
     <div class="node-info-footer">
+      <?php if ($subscriptions_node_flag): ?>
+        <?php print $subscriptions_node_flag ?>
+      <?php endif; ?>
       <?php
         print render($content['field_rate_ideas']);
         print render($content['field_rate_issue']);
