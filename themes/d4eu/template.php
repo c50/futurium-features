@@ -305,11 +305,14 @@ function d4eu_preprocess_node(&$vars) {
 
   //subscription_node_flag
   if (module_exists("subscriptions_ui")) {
+
     $arg2 = subscriptions_arg(2);
-    if (subscriptions_ui_can_subscribe() && variable_get('subscriptions_form_in_block', 0) &&
+    if (subscriptions_ui_can_subscribe() &&
        (!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') ||
        variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe' )) {
-          $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
+
+        $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
+        unset($vars['content']['subscriptions_ui']);
     }
   }
 
