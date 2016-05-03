@@ -719,10 +719,34 @@
 .node-type-event-d4eu .field-name-field-date-time .countdown .time-left.days {
   font-size: 330%;
   float: left;
-  width: 35%;
+  width: 44%;
   text-align: center;
   font-weight: bold;
   line-height: 1.2em;
+  max-width: 3em;
+}
+.node-type-event-d4eu .field-name-field-date-time .countdown .time-left.hours,
+.node-type-event-d4eu .field-name-field-date-time .countdown .time-left.minutes {
+  font-size: 330%;
+  float: left;
+  width: 35%;
+  padding-left: 6%;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.2em;
+  max-width: 3em;
+}
+.node-type-event-d4eu .field-name-field-date-time .countdown .time-left.hours-label,
+.node-type-event-d4eu .field-name-field-date-time .countdown .time-left.minutes-label {
+  display: inline-block;
+  padding-left: 0.3em;
+  line-height: 1.2em;
+  font-size: 150%;
+}
+.node-type-event-d4eu .field-name-field-date-time .countdown .time-left.and,
+.node-type-event-d4eu .field-name-field-date-time .countdown .time-left.and + .minutes,
+.node-type-event-d4eu .field-name-field-date-time .countdown .time-left.and + .minutes + .minutes-label {
+  display: none;
 }
 .node-type-event-d4eu .field-name-field-date-time .countdown .time-left.days-label,
 .node-type-event-d4eu .field-name-field-date-time .countdown .description.left {
