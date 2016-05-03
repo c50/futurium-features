@@ -300,14 +300,14 @@ function theme_futurium_countdown_diff(&$variables) {
   }
 
   $current_day = date('G', $variables['current_date']);
-  if ($variables['diff']->d >= 1 && $variables['diff']->h > 0) {
-    $variables['diff']->d+=1;
+  if ($variables['diff']->days >= 1 && $variables['diff']->h > 0) {
+    $variables['diff']->days+=1;
   }
 
   $classes_array[] = 'countdown';
   $label_parts = array();
 
-  $days = $variables['diff']->d;
+  $days = $variables['diff']->days;
   if ($days > 0) {
     $days_label = format_plural($days, 'day', 'days');
     $label_parts[] = '<span class="time-left days">' . $days . '</span>';
