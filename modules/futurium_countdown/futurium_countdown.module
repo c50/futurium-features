@@ -69,7 +69,6 @@ function futurium_countdown_date_combo_process_alter(&$element, $form_state, $co
     '#type' => 'checkbox',
     '#title' => t('Show countdown timer?'),
     '#default_value' => isset($result['countdown_show']) ? $result['countdown_show'] : 0,
-    '#fiis' => TRUE,
   );
 
   $element['countdown_toggle'] = array(
@@ -77,7 +76,6 @@ function futurium_countdown_date_combo_process_alter(&$element, $form_state, $co
     '#title' => t('Toggle countdown to end date?'),
     '#description' => t("Check this box if the countdown timer should switch to a countdown to end date after the start date has passed."),
     '#default_value' => isset($result['countdown_toggle']) ? $result['countdown_toggle'] : 0,
-    '#fiis' => TRUE,
     '#states' => array(
       'visible' => array(
         $input_name => array('checked' => TRUE),
@@ -301,6 +299,11 @@ function theme_futurium_countdown_diff(&$variables) {
     return;
   }
 
+  $current_day = date('G', $variables['current_date']);
+  if ($variables['diff']->days >= 1 && $variables['diff']->h > 0) {
+    $variables['diff']->days+=1;
+  }
+
   $classes_array[] = 'countdown';
   $label_parts = array();
 
@@ -311,10 +314,12 @@ function theme_futurium_countdown_diff(&$variables) {
     $label_parts[] = '<span class="time-left days-label">' . $days_label . '</span>';
   }
   else {
+
     $classes_array[] = 'less-than-a-day';
     $hours = $variables['diff']->format("%h");
 
     if ($hours > 0) {
+
       $hours_label = format_plural($hours, 'hour', 'hours');
 
       $label_parts[] = '<span class="time-left hours">' . $hours . '</span>';
@@ -329,36 +334,39 @@ function theme_futurium_countdown_diff(&$variables) {
     }
 
     $minutes_label = '';
-    if ($minutes > 0) {
+    if ($minutes > 0 && !$variables['diff']->invert) {
       $minutes_label .= format_plural($minutes, 'minute', 'minutes');
       $label_parts[] = '<span class="time-left minutes">' . $minutes . '</span>';
       $label_parts[] = '<span class="time-left minutes-label">' . $minutes_label . '</span>';
     }
-
   }
 
-  $label_parts[] = '<span class="description left">' . t('left') . '</span>';
+  if (!empty($label_parts)) {
+    $label_parts[] = '<span class="description left">' . t('left') . '</span>';
 
-  if ($variables['current_date'] > $variables['start_date']) {
-    if ($variables['current_date'] < $variables['end_date']) {
-      // Started but not finished.
-      // Check if settings are set to target end date.
-      if ($variables['settings']['countdown_toggle']) {
-        $classes_array[] = 'present';
-        $label_parts[] = '<span class="description target">' . t('to closing date') . '</span>';
+    if ($variables['current_date'] > $variables['start_date']) {
+      if ($variables['current_date'] < $variables['end_date']) {
+        // Started but not finished.
+        // Check if settings are set to target end date.
+        if ($variables['settings']['countdown_toggle']) {
+          $classes_array[] = 'present';
+          $label_parts[] = '<span class="description target">' . t('to closing date') . '</span>';
+        }
       }
     }
-  }
-  else {
-    // Hasn't started yet.
-    $classes_array[] = 'future';
-    $label_parts[] = '<span class="description target">' . t('to starting date') . '</span>';
+    else {
+      // Hasn't started yet.
+      $classes_array[] = 'future';
+      $label_parts[] = '<span class="description target">' . t('to starting date') . '</span>';
+    }
   }
 
   $classes = implode($classes_array, ' ');
   $label = implode($label_parts, ' ');
 
-  $return = '<div class="' . $classes . '">' . $label . '</div>';
+  $return = !empty($label)
+    ? '<div class="' . $classes . '">' . $label . '</div>'
+    : '';
 
   return $return;
 }
