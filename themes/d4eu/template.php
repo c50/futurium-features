@@ -471,7 +471,7 @@ function d4eu_preprocess_page(&$vars) {
       global $user;
       $user_id = $user->uid;
 
-      $vars['subscriptions_settings_link'] = "<a href='/user/" . $user_id . "/subscriptions'>settings</a>";
+      $vars['subscriptions_settings_link'] = "<a href='/user/". $user_id ."/subscriptions?flavour=" . $context['flavor']['path'] . "' title='edit what you are following'>edit what you are following</a>";
       $vars['subscriptions_flavor_flag'] = flag_create_link('subscription_flavour_flag', $context["flavor"]['tid']);
     }
   }
@@ -493,10 +493,9 @@ function d4eu_preprocess_flag(&$vars) {
       $context = _supertags_get_context();
 
       if ($action == 'flag') {
-        $vars['link_text'] = 'Follow ' . $context["flavor"]["name"];
-      }
-      else {
-        $vars['link_text'] = 'Unfollow ' . $context["flavor"]["name"];
+        $vars['link_text'] = '<span class="subscribe"><b>follow</b> ' . '<span class="flavourName">' . $context["flavor"]["name"] . '</span></span>';
+      } else {
+        $vars['link_text'] = '<span class="unsubscribe"><b>unfollow</b> ' . '<span class="flavourName">' . $context["flavor"]["name"] . '</span></span>';
       }
     }
   }

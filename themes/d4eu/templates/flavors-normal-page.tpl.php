@@ -87,10 +87,10 @@
         <div class="identityBlock">
           <div class='subscription-flavor-bar'>
           <?php if ($subscriptions_flavor_flag): ?>
-            <?php print $subscriptions_flavor_flag ?>
+            <span class="followLink"><?php print $subscriptions_flavor_flag ?></span>
           <?php endif; ?>
           <?php if ($subscriptions_settings_link): ?>
-            <?php print $subscriptions_settings_link ?>
+            <span class="settings"><?php print $subscriptions_settings_link ?></span>
           <?php endif; ?>
           </div>
           <?php echo render($page['identity']); ?>
