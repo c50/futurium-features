@@ -25,10 +25,14 @@
 
 /* identity block right */
 
+.flavour-digital4science .subscription-flavor-bar{
+  background: #285d93;
+}
+
 .flavour-digital4science .identityBlock {
   margin-bottom: 15px;
   margin-top: -20px;
-  background: #e7faff url(../images/theme/d4science/baseline_theme.png) 50% 0 no-repeat;
+  background: #e7faff url(../images/theme/d4science/baseline_theme.png) 50% 25px no-repeat;
   padding: 42px 10px 0px;
   border: solid 1px #c1deef;
   border-top: 0;
@@ -38,8 +42,8 @@
   margin-top: -15px;
 }
 
-.flavour-digital4science .identityBlock > *:first-child {
-  margin-top: 18px;
+.flavour-digital4science .identityBlock > *:nth-child(2) {
+  margin-top: 43px;
 }
 
 .flavour-digital4science .identityBlock:before,

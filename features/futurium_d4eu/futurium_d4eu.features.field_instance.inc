@@ -11,45 +11,6 @@ function futurium_d4eu_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'comment-comment_node_blog_post-field_important_or_conclusion'.
-  $field_instances['comment-comment_node_blog_post-field_important_or_conclusion'] = array(
-    'bundle' => 'comment_node_blog_post',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'comment_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'field_important_or_conclusion',
-    'label' => 'Important or conclusion',
-    'required' => 0,
-    'settings' => array(
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance:
   // 'comment-comment_node_blog_post-field_rate_comment'.
   $field_instances['comment-comment_node_blog_post-field_rate_comment'] = array(
     'bundle' => 'comment_node_blog_post',
@@ -98,45 +59,6 @@ function futurium_d4eu_field_default_field_instances() {
       'settings' => array(),
       'type' => 'exposed',
       'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'comment-comment_node_document-field_important_or_conclusion'.
-  $field_instances['comment-comment_node_document-field_important_or_conclusion'] = array(
-    'bundle' => 'comment_node_document',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'comment_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'field_important_or_conclusion',
-    'label' => 'Important or conclusion',
-    'required' => 0,
-    'settings' => array(
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 3,
     ),
   );
 
@@ -234,45 +156,6 @@ function futurium_d4eu_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'comment-comment_node_event_d4eu-field_important_or_conclusion'.
-  $field_instances['comment-comment_node_event_d4eu-field_important_or_conclusion'] = array(
-    'bundle' => 'comment_node_event_d4eu',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'comment_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'field_important_or_conclusion',
-    'label' => 'Important or conclusion',
-    'required' => 0,
-    'settings' => array(
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance:
   // 'comment-comment_node_event_d4eu-field_rate_comment'.
   $field_instances['comment-comment_node_event_d4eu-field_rate_comment'] = array(
     'bundle' => 'comment_node_event_d4eu',
@@ -365,45 +248,6 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'comment-comment_node_ideas-field_important_or_conclusion'.
-  $field_instances['comment-comment_node_ideas-field_important_or_conclusion'] = array(
-    'bundle' => 'comment_node_ideas',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'comment_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'field_important_or_conclusion',
-    'label' => 'Important or conclusion',
-    'required' => 0,
-    'settings' => array(
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 3,
-    ),
-  );
-
   // Exported field_instance: 'comment-comment_node_ideas-field_rate_comment'.
   $field_instances['comment-comment_node_ideas-field_rate_comment'] = array(
     'bundle' => 'comment_node_ideas',
@@ -455,45 +299,6 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'comment-comment_node_issue-field_important_or_conclusion'.
-  $field_instances['comment-comment_node_issue-field_important_or_conclusion'] = array(
-    'bundle' => 'comment_node_issue',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'comment_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'field_important_or_conclusion',
-    'label' => 'Important or conclusion',
-    'required' => 0,
-    'settings' => array(
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 3,
-    ),
-  );
-
   // Exported field_instance: 'comment-comment_node_issue-field_rate_comment'.
   $field_instances['comment-comment_node_issue-field_rate_comment'] = array(
     'bundle' => 'comment_node_issue',
@@ -542,45 +347,6 @@ function futurium_d4eu_field_default_field_instances() {
       'settings' => array(),
       'type' => 'exposed',
       'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'comment-comment_node_poll-field_important_or_conclusion'.
-  $field_instances['comment-comment_node_poll-field_important_or_conclusion'] = array(
-    'bundle' => 'comment_node_poll',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'comment_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'field_important_or_conclusion',
-    'label' => 'Important or conclusion',
-    'required' => 0,
-    'settings' => array(
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 4,
     ),
   );
 
@@ -673,45 +439,6 @@ function futurium_d4eu_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'comment-comment_node_video_d4eu-field_important_or_conclusion'.
-  $field_instances['comment-comment_node_video_d4eu-field_important_or_conclusion'] = array(
-    'bundle' => 'comment_node_video_d4eu',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'comment_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'comment',
-    'field_name' => 'field_important_or_conclusion',
-    'label' => 'Important or conclusion',
-    'required' => 0,
-    'settings' => array(
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 4,
     ),
   );
 
@@ -860,10 +587,9 @@ function futurium_d4eu_field_default_field_instances() {
     'settings' => array(
       'default_value' => 'now',
       'default_value2' => 'same',
-      'enable_countdown' => 1,
-      'position_countdown' => 'prefix',
       'default_value_code' => '',
       'default_value_code2' => '',
+      'enable_countdown' => FALSE,
       'entity_translation_sync' => FALSE,
       'user_field_privacy' => FALSE,
       'user_register_form' => FALSE,
@@ -1333,7 +1059,7 @@ function futurium_d4eu_field_default_field_instances() {
     'bundle' => 'issue',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Rate that issue.',
+    'description' => 'Rate that idea.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1485,116 +1211,6 @@ function futurium_d4eu_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'relation-has_evidence-endpoints'.
-  $field_instances['relation-has_evidence-endpoints'] = array(
-    'bundle' => 'has_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'relation_endpoint',
-        'settings' => array(
-          'view_modes' => array(
-            'bean' => 'default',
-            'comment' => 'default',
-            'field_collection_item' => 'default',
-            'file' => 'default',
-            'flagging' => 'default',
-            'i18n_translation' => 'default',
-            'invite' => 'default',
-            'invite_type' => 'default',
-            'node' => 'default',
-            'relation' => 'default',
-            'rules_config' => 'default',
-            'taxonomy_term' => 'default',
-            'taxonomy_vocabulary' => 'default',
-            'tmgmt_job' => 'default',
-            'tmgmt_job_item' => 'default',
-            'tmgmt_message' => 'default',
-            'tmgmt_remote' => 'default',
-            'tmgmt_translator' => 'default',
-            'user' => 'default',
-            'workbench_moderation_transition' => 'default',
-            'wysiwyg_profile' => 'default',
-          ),
-        ),
-        'type' => 'relation_endpoint',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'relation',
-    'field_name' => 'endpoints',
-    'label' => 'endpoints',
-    'required' => FALSE,
-    'settings' => array(
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'relation_endpoint',
-      'settings' => array(),
-      'type' => 'relation_endpoint',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'relation-related_to-endpoints'.
-  $field_instances['relation-related_to-endpoints'] = array(
-    'bundle' => 'related_to',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'relation_endpoint',
-        'settings' => array(
-          'view_modes' => array(
-            'bean' => 'default',
-            'comment' => 'default',
-            'field_collection_item' => 'default',
-            'file' => 'default',
-            'flagging' => 'default',
-            'i18n_translation' => 'default',
-            'invite' => 'default',
-            'invite_type' => 'default',
-            'node' => 'default',
-            'relation' => 'default',
-            'rules_config' => 'default',
-            'taxonomy_term' => 'default',
-            'taxonomy_vocabulary' => 'default',
-            'tmgmt_job' => 'default',
-            'tmgmt_job_item' => 'default',
-            'tmgmt_message' => 'default',
-            'tmgmt_remote' => 'default',
-            'tmgmt_translator' => 'default',
-            'user' => 'default',
-            'workbench_moderation_transition' => 'default',
-            'wysiwyg_profile' => 'default',
-          ),
-        ),
-        'type' => 'relation_endpoint',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'relation',
-    'field_name' => 'endpoints',
-    'label' => 'endpoints',
-    'required' => FALSE,
-    'settings' => array(
-      'user_field_privacy' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'relation_endpoint',
-      'settings' => array(),
-      'type' => 'relation_endpoint',
-      'weight' => 0,
-    ),
-  );
-
   // Exported field_instance: 'user-user-field_organisation'.
   $field_instances['user-user-field_organisation'] = array(
     'bundle' => 'user',
@@ -1733,7 +1349,6 @@ function futurium_d4eu_field_default_field_instances() {
   t('Event');
   t('Evidence');
   t('Ideas and experience');
-  t('Important or conclusion');
   t('Issue');
   t('Issue.');
   t('Organisation');
@@ -1741,13 +1356,11 @@ function futurium_d4eu_field_default_field_instances() {
   t('Poll');
   t('Rate');
   t('Rate that idea.');
-  t('Rate that issue.');
-  t("Rate the user's comment.");
+  t('Rate the user\'s comment.');
   t('Tags');
   t('Videos');
   t('Vote');
   t('Your ideas and experience.');
-  t('endpoints');
   t('register url');
 
   return $field_instances;

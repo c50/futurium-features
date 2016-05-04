@@ -1022,3 +1022,226 @@ function futurium_d4eu_query_comment_filter_alter(QueryAlterableInterface $query
     $orderby = array('c.created' => $direction) + $orderby;
   }
 }
+
+
+/**
+ * Rule rules_subscriptions_unfollow callback
+ *
+ * Allow Unsubscribe to a node.
+ */
+function futurium_d4eu_flag_unflag($flag, $entity_id, $account, $flagging){
+
+  switch($flag->name) {
+    case "subscription_flag" :
+      $node = node_load($entity_id);
+      futurium_d4eu_unsubscribe_content($node, $account);
+      break;
+    case "subscription_flavour_flag" :
+      $term=taxonomy_term_load($entity_id);
+      futurium_d4eu_unsubscribe_term($term, $account);
+      break;
+  }
+}
+
+
+/**
+ * Rule rules_subscriptions_follow callback
+ *
+ * Allow Subscribe to a node.
+ */
+function futurium_d4eu_flag_flag($flag, $entity_id, $account, $flagging){
+
+  switch($flag->name) {
+    case "subscription_flag" :
+      $node = node_load($entity_id);
+      futurium_d4eu_subscribe_content($node, $account);
+      break;
+    case "subscription_flavour_flag" :
+      $term=taxonomy_term_load($entity_id);
+      futurium_d4eu_subscribe_term($term, $account);
+      break;
+  }
+}
+
+/**
+ * Rule subscriptions_add_user_content callback
+ */
+function futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_interval = "") {
+  // Get existed
+  $sid = subscriptions_get_subscription($user->uid, 'node', 'nid', $node->nid);
+  $args = array (
+      0 => 'node',
+      1 => 'nid',
+      2 => $node->nid,
+      3 => -1, // DEBUG $node->uid,
+      4 => $user->uid,
+      5 => is_numeric($send_interval) ? $send_interval : _subscriptions_get_setting('send_interval', $user),
+      6 => $type == 'node',
+      7 => $type == 'comment',
+  );
+
+  if ($sid) {
+    // Add more value to existed subscription_content row
+    $update = db_update('subscriptions')
+        ->condition('module', $args[0])
+        ->condition('field', $args[1])
+        ->condition('value', $args[2])
+        ->condition('author_uid', $args[3])
+        ->condition('recipient_uid', $args[4]);
+
+    if ($args[6]) {
+      $update->fields(array(
+          'send_updates' => 1,
+      ));
+    }
+
+    if ($args[7]) {
+      $update->fields(array(
+          'send_comments' => 1,
+      ));
+    }
+
+    $ret = $update->execute();
+  }
+  else {
+    $ret = call_user_func_array('subscriptions_write_subscription', $args);
+  }
+
+  return $ret;
+}
+
+/**
+ * Rule subscriptions_remove_user_content callback
+ */
+function futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
+  $args = array (
+      0 => 'node',
+      1 => 'nid',
+      2 => $node->nid,
+      3 => -1, // DEBUG $node->uid,
+      4 => $user->uid,
+      5 => _subscriptions_get_setting('send_interval', $user),
+      6 => $type == 'node',
+      7 => $type == 'comment',
+  );
+
+  // Delete single rows
+  $delete = db_delete('subscriptions')
+      ->condition('module', $args[0])
+      ->condition('field', $args[1])
+      ->condition('value', $args[2])
+      ->condition('author_uid', $args[3])
+      ->condition('recipient_uid', $args[4]);
+
+  // Update row that has both comments and update
+  $update = db_update('subscriptions')
+      ->condition('module', $args[0])
+      ->condition('field', $args[1])
+      ->condition('value', $args[2])
+      ->condition('author_uid', $args[3])
+      ->condition('recipient_uid', $args[4]);
+
+  // Remove node rows
+  if ($args[6]) {
+    $delete->condition('send_updates', 1);
+    $delete->condition('send_comments', 0);
+    $update->fields(array(
+        'send_updates' => 0
+    ));
+  }
+
+  // Remove comments rows
+  if ($args[7]) {
+    $delete->condition('send_updates', 0);
+    $delete->condition('send_comments', 1);
+    $update->fields(array(
+        'send_comments' => 0,
+    ));
+  }
+
+  $ret = $delete->execute() || $update->execute();
+
+  return $ret;
+}
+
+
+/**
+ * Rule subscriptions_add_user_term callback
+ *
+ * Allow Subscribe to Taxonomy Rule:
+ * https://www.drupal.org/node/2005224
+ */
+function futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interval = "") {
+  // Get existing
+  $sid = subscriptions_get_subscription($user->uid, 'node', 'tid', $term->tid);
+  $args = array (
+      0 => 'node',
+      1 => 'tid',
+      2 => $term->tid,
+      3 => -1,
+      4 => $user->uid,
+      5 => is_numeric($send_interval) ? $send_interval : _subscriptions_get_setting('send_interval', $user),
+      6 => TRUE,
+      7 => TRUE,
+  );
+
+  if ($sid) {
+    // Add more value to existed subscription_content row
+    $update = db_update('subscriptions')
+        ->condition('module', $args[0])
+        ->condition('field', $args[1])
+        ->condition('value', $args[2])
+        ->condition('author_uid', $args[3])
+        ->condition('recipient_uid', $args[4]);
+
+    if ($args[6]) {
+      $update->fields(array(
+          'send_updates' => 1,
+      ));
+    }
+
+    if ($args[7]) {
+      $update->fields(array(
+          'send_comments' => 1,
+      ));
+    }
+
+    $ret = $update->execute();
+  }
+  else {
+    $ret = call_user_func_array('subscriptions_write_subscription', $args);
+  }
+
+  return $ret;
+}
+
+/**
+ * Rule subscriptions_remove_user_term callback
+ *
+ * Allow Subscribe to Taxonomy Rule:
+ * https://www.drupal.org/node/2005224
+ */
+function futurium_d4eu_unsubscribe_term($term, $user, $type = 'node') {
+  $args = array (
+      0 => 'node',
+      1 => 'tid',
+      2 => $term->tid,
+      3 => -1,
+      4 => $user->uid,
+      5 => _subscriptions_get_setting('send_interval', $user),
+      6 => TRUE,
+      7 => TRUE,
+  );
+
+  // Delete single rows
+  $delete = db_delete('subscriptions')
+      ->condition('module', $args[0])
+      ->condition('field', $args[1])
+      ->condition('value', $args[2])
+      ->condition('author_uid', $args[3])
+      ->condition('recipient_uid', $args[4]);
+
+  $ret = $delete->execute();
+
+  return $ret;
+}

@@ -96,11 +96,11 @@
     <?php endif; ?>
 
     <?php
-      foreach ($content as $key => $value):
-        if (in_array($key, $show)):
+      foreach ($content as $key => $value) {
+        if (in_array($key, $show)) {
           print render($content[$key]);
-        endif;
-      endforeach;
+        }
+      }
     ?>
 
     <?php if ($suffix_display): ?>
@@ -115,13 +115,15 @@
       </div>
     </div>
     <div class="node-info-footer">
+      <?php if ($subscriptions_node_flag): ?>
+        <?php print $subscriptions_node_flag ?>
+      <?php endif; ?>
       <?php
         print render($content['field_rate_ideas']);
         print render($content['field_rate_issue']);
       ?>
     </div>
     <?php endif;?>
-    <div id="js-contentFilterContainer"></div>
 
     <?php
       hide($content['comments']);
@@ -130,37 +132,32 @@
     ?>
 
     <?php print render($content); ?>
-    <div class="linkedContent view-recent-activity">
-      <?php print views_embed_view('relations_to_nodes', 'parents'); ?>
-      <?php print views_embed_view('relations_to_nodes', 'evidence'); ?>
-      <?php print views_embed_view('relations_to_nodes', 'relationteaser'); ?>
-    </div>
-    <?php if (user_is_logged_in()): ?>
-      <div class="linkingForm"><?php print render($select_relation) ?></div>
-    <?php endif; ?>
 
     <?php if ((user_is_logged_in() == FALSE) && ($open_to_comments == TRUE)): ?>
-      <div id='comment-form-container'><figure class='loginToCommentCTA'>
+      <div id='comment-form-container'>
+        <figure class='loginToCommentCTA'>
           <h2 class='title comment-form'><?php print $comment_login_title ?></h2>
-                        <span class='form-item'>
-                          <label><?php print $comment_login_subject ?> </label><input class='form-control form-text' type='text' size='60'>
-                        </span>
-                        <span>
-                        <span class='form-item'>
-                          <label><?php print $comment_login_comment ?>
-                            <span class='form-required'>*</span>
-                          </label>
-                          <textarea class='form-control' cols='60' rows='5'></textarea>
-                         </span>
-                       </span>
-                       <span class='form-item'>
-                         <button class='btn btn-default'><?php print $comment_login_save ?></button>
-                       </span>
+            <span class='form-item'>
+              <label><?php print $comment_login_subject ?> </label><input class='form-control form-text' type='text' size='60'>
+            </span>
+            <span>
+              <span class='form-item'>
+                <label><?php print $comment_login_comment ?>
+                  <span class='form-required'>*</span>
+                </label>
+                <textarea class='form-control' cols='60' rows='5'></textarea>
+              </span>
+            </span>
+            <span class='form-item'>
+              <button class='btn btn-default'><?php print $comment_login_save ?></button>
+            </span>
           <figcaption class='loginToCommentCTAMask'>
             <p><?php print $comment_login ?></p>
           </figcaption>
-        </figure></div>
+        </figure>
+      </div>
     <?php endif;?>
+
     <?php print render($content['comments']); ?>
 
   </div>
