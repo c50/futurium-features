@@ -336,6 +336,39 @@ function d4eu_preprocess_node(&$vars) {
 }
 
 /**
+ * Implements hook_preprocess_node().
+ *
+ * Changes on submitted label.
+ */
+function d4eu_views_pre_render(&$view) {
+  if(user_is_logged_in()){
+    if ($view->name == 'flavors'){
+      foreach($view->result as $row){
+        $flaglink = flag_create_link('subscription_flag', $row->nid);
+        $row->flaglink[0]['rendered']['#markup'] = $flaglink;
+        //$row->field_field_ideas[0]['rendered']['#markup'] = $flaglink . $row->field_field_ideas[0]['rendered']['#markup'];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Changes on submitted label.
+ */
+function d4eu_views_post_render(&$view, &$output, &$cache) {
+  if(user_is_logged_in()){
+    if ($view->name == 'flavors'){
+      foreach($view->result as $row){
+        $row->field_field_ideas[0]['rendered']['#markup'] = $row->flaglink[0]['rendered']['#markup'].$row->field_field_ideas[0]['rendered']['#markup'];
+      }
+    }
+  }
+}
+
+
+/**
  * Implements hook_FORM_ID_form_alter().
  *
  * Adding missing alternative text for WAI compliance.
