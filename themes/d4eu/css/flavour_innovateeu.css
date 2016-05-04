@@ -1,6 +1,9 @@
 .flavour-innovateeu .mainContentSection a {
   color: #297a97;
 }
+.flavour-innovateeu .mainContentSection .subscription-flavor-bar a{
+  color: #fff;
+}
 .flavour-innovateeu .mainContentSection .block-bean a {
   color: #bc5e0b;
 }
@@ -34,7 +37,7 @@
 .flavour-innovateeu .identityBlock {
   margin-bottom: 15px;
   margin-top: -20px;
-  background: #bc5e0b url(../images/theme/innovateeu/baseline_theme.png) 50% 0 no-repeat;
+  background: #bc5e0b url(../images/theme/innovateeu/baseline_theme.png) 50% 25px no-repeat;
   padding: 77px 10px 0px;
   border: 0;
   border-top: 0;
@@ -44,8 +47,8 @@
   margin-top: -15px;
 }
 
-.flavour-innovateeu .identityBlock > *:first-child {
-  margin-top: 18px;
+.flavour-innovateeu .identityBlock > *:nth-child(2) {
+  margin-top: 43px;
 }
 
 .flavour-innovateeu .identityBlock:before,
