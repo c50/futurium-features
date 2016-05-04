@@ -1186,14 +1186,10 @@ fieldset[disabled] .btn-default.active {
 .identityBlock {
   margin: -20px 0 15px;
   background: #a7c8d6;
-  background: -moz-linear-gradient(top, #a7c8d6 0%, #225789 100%);
-  background: -webkit-linear-gradient(top, #a7c8d6 0%,#225789 100%);
-  background: linear-gradient(to bottom, #a7c8d6 0%,#225789 100%);
   padding: 15px 10px 0px;
   border-radius: 0px 0px 5px 5px;
   text-align: center;
   position: relative;
-  min-height: 27px;
 }
 
 /* /identity block right */
@@ -1686,100 +1682,6 @@ a:hover.CTAButton,
   display: inline-block;
   padding-right: 2em;
 }
-
-
-/* follow */
-.flag-subscription-flag{
-  float: left;
-  margin: 0 2em 0 0.5em; 
-}
-.item-list .flag-subscription-flag{
-  float: right;
-  margin: 0 0.5em 0 2em; 
-}
-.flag-subscription-flag a{
-  text-transform: lowercase;
-  font-weight: bold;
-  border: solid 1px #93caed;
-  text-decoration: none;
-  padding: 0.2em 0.7em 0.5em;
-  background: #fff;
-  border-radius: 5px;
-}
-.flag-subscription-flag a:before{
-  content: " ";
-  background: url(../images/theme/sprite_follow.png) no-repeat 0 -47px;
-  display: inline-block;
-  width: 25px;
-  height: 18px;
-  vertical-align: middle;
-  margin-right: 0.8em;
-}
-.flag-subscription-flag a.unflag-action{
-  font-weight: normal;
-}
-.flag-subscription-flag a.unflag-action:before{
-  background-position: 0 -70px;
-}
-.flag-subscription-flag a:hover{
-  background: #285d93;
-  color: #fff;
-}
-.subscription-flavor-bar{
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-.subscription-flavor-bar a{
-  color: #fff;
-  text-decoration: none;
-}
-.subscription-flavor-bar a:hover{
-  text-decoration: underline;
-}
-.subscription-flavor-bar .followLink{
-  float: left;
-  font-weight: bold;
-}
-.subscription-flavor-bar .followLink .flavourName{
-  font-weight: normal;
-}
-.subscription-flavor-bar .followLink .subscribe:before{
-  content: " ";
-  background: url(../images/theme/sprite_follow.png) no-repeat 0 -1px;
-  display: inline-block;
-  width: 25px;
-  height: 20px;
-  vertical-align: middle;
-  margin: 0 0.6em 0 0.8em;
-}
-.subscription-flavor-bar .followLink .unsubscribe:before{
-  content: " ";
-  background: url(../images/theme/sprite_follow.png) no-repeat 0 -25px;
-  display: inline-block;
-  width: 25px;
-  height: 20px;
-  vertical-align: middle;
-  margin: 0 0.6em 0 0.8em;
-}
-.subscription-flavor-bar .settings a{
-  float: right;
-  margin-right: 8px;
-  margin-top: 3px;
-  width: 20px;
-  height: 20px;
-  background: url(../images/theme/sprite_follow.png) no-repeat 50% -92px;
-  text-indent: -2000px;
-  overflow: hidden;
-}
-
-/* /follow */
-
-
 
 /* --- RESPONSIVE PART --- */
 

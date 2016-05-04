@@ -237,7 +237,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<h2>[name] [field_flavor_archived]</h2>
   <div>
-    [description]
+    [description]  
   </div>
   ';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
@@ -513,12 +513,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['relationships']['field_default_flavour_tid']['table'] = 'field_data_field_default_flavour';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['field'] = 'field_default_flavour_tid';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['label'] = 'default_flavour';
-  /* Relationship: Flags: subscription_flag */
-  $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
-  $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
-  $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
-  $handler->display->display_options['relationships']['flag_content_rel']['required'] = 0;
-  $handler->display->display_options['relationships']['flag_content_rel']['flag'] = 'subscription_flag';
   /* Field: Content: Path */
   $handler->display->display_options['fields']['path']['id'] = 'path';
   $handler->display->display_options['fields']['path']['table'] = 'node';
@@ -680,13 +674,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['text'] = '[path][field_path]';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
-  /* Field: Flags: Flag link */
-  $handler->display->display_options['fields']['ops']['id'] = 'ops';
-  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
-  $handler->display->display_options['fields']['ops']['field'] = 'ops';
-  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
-  $handler->display->display_options['fields']['ops']['label'] = '';
-  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -857,13 +844,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['text'] = '[path][field_path]';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
-  /* Field: Flags: Flag link */
-  $handler->display->display_options['fields']['ops']['id'] = 'ops';
-  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
-  $handler->display->display_options['fields']['ops']['field'] = 'ops';
-  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
-  $handler->display->display_options['fields']['ops']['label'] = '';
-  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1051,13 +1031,6 @@ function supertags_views_default_views() {
     'image_style' => 'media_thumbnail',
     'image_link' => '',
   );
-  /* Field: Flags: Flag link */
-  $handler->display->display_options['fields']['ops']['id'] = 'ops';
-  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
-  $handler->display->display_options['fields']['ops']['field'] = 'ops';
-  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
-  $handler->display->display_options['fields']['ops']['label'] = '';
-  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1251,13 +1224,6 @@ function supertags_views_default_views() {
     'image_style' => 'preview',
     'image_link' => 'content',
   );
-  /* Field: Flags: Flag link */
-  $handler->display->display_options['fields']['ops']['id'] = 'ops';
-  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
-  $handler->display->display_options['fields']['ops']['field'] = 'ops';
-  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
-  $handler->display->display_options['fields']['ops']['label'] = '';
-  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1443,13 +1409,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['relationships']['field_default_flavour_tid']['table'] = 'field_data_field_default_flavour';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['field'] = 'field_default_flavour_tid';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['label'] = 'default_flavour';
-  /* Relationship: Flags: subscription_flag */
-  $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
-  $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
-  $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
-  $handler->display->display_options['relationships']['flag_content_rel']['required'] = 0;
-  $handler->display->display_options['relationships']['flag_content_rel']['flag'] = 'subscription_flag';
-  $handler->display->display_options['relationships']['flag_content_rel']['user_scope'] = 'any';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Taxonomy term: Path */
   $handler->display->display_options['fields']['field_path']['id'] = 'field_path';
@@ -1469,13 +1428,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['path_1']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['path_1']['alter']['text'] = '[path_1][field_path]';
   $handler->display->display_options['fields']['path_1']['element_label_colon'] = FALSE;
-  /* Field: Flags: Flag link */
-  $handler->display->display_options['fields']['ops']['id'] = 'ops';
-  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
-  $handler->display->display_options['fields']['ops']['field'] = 'ops';
-  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
-  $handler->display->display_options['fields']['ops']['label'] = '';
-  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1565,22 +1517,22 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['path']['label'] = '';
   $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['text'] = '<div class="media">
-                <div class="pull-right text-center">
-                  [picture]
-                  <div class="text-muted">
-                    [name]
-                  </div>
+              <div class="pull-right text-center">
+                [picture]
+                <div class="text-muted">
+                  [name]
                 </div>
-                <div class="media-body">
-                  <div class="pull-right">[value]</div>
-                  <h3 class="media-heading"><a href="[path_1]">[title]</a></h3>
-                  <div>
-                    <span class="blogListDate">[created]</span>
-                    [body]
-                    <div><a href="[path_1]">Read more</a></div>
-                  </div>
+              </div>
+              <div class="media-body">
+                <div class="pull-right">[value]</div>
+                <h3 class="media-heading"><a href="[path_1]">[title]</a></h3>
+                <div>
+                  <span class="blogListDate">[created]</span>
+                  [body]
+                  <div><a href="[path_1]">Read more</a></div>
                 </div>
-              </div>';
+              </div>
+            </div>';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   /* Field: Field: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
@@ -1722,20 +1674,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['relationships']['field_default_flavour_tid']['table'] = 'field_data_field_default_flavour';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['field'] = 'field_default_flavour_tid';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['label'] = 'default_flavour';
-  /* Relationship: Flags: subscription_flag */
-  $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
-  $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
-  $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
-  $handler->display->display_options['relationships']['flag_content_rel']['required'] = 0;
-  $handler->display->display_options['relationships']['flag_content_rel']['flag'] = 'subscription_flag';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Flags: Flag link */
-  $handler->display->display_options['fields']['ops']['id'] = 'ops';
-  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
-  $handler->display->display_options['fields']['ops']['field'] = 'ops';
-  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
-  $handler->display->display_options['fields']['ops']['label'] = '';
-  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1968,13 +1907,6 @@ function supertags_views_default_views() {
     'image_style' => 'preview',
     'image_link' => '',
   );
-  /* Field: Flags: Flag link */
-  $handler->display->display_options['fields']['ops']['id'] = 'ops';
-  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
-  $handler->display->display_options['fields']['ops']['field'] = 'ops';
-  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
-  $handler->display->display_options['fields']['ops']['label'] = '';
-  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';

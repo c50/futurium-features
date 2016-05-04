@@ -28,7 +28,7 @@
 .flavour-egov .identityBlock {
   margin-bottom: 15px;
   margin-top: -20px;
-  background: #308daf url(../images/theme/egov/baseline_theme.png) 50% 25px no-repeat;
+  background: #308daf url(../images/theme/egov/baseline_theme.png) 50% 0 no-repeat;
   padding: 42px 10px 0px;
   border: solid 1px #c1deef;
   border-top: 0;
@@ -38,8 +38,8 @@
   margin-top: -15px;
 }
 
-.flavour-egov .identityBlock > *:nth-child(2) {
-  margin-top: 43px;
+.flavour-egov .identityBlock > *:first-child {
+  margin-top: 18px;
 }
 
 .flavour-egov .identityBlock:before,

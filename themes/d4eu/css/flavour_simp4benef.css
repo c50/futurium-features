@@ -28,7 +28,7 @@
 .flavour-simp4benef .identityBlock {
   margin-bottom: 15px;
   margin-top: -20px;
-  background: #894b94 url(../images/theme/simp4benef/baseline_theme.png) 50% 25px no-repeat;
+  background: #894b94 url(../images/theme/simp4benef/baseline_theme.png) 50% 0 no-repeat;
   padding: 42px 10px 0px;
   border: 0;
   border-top: 0;
@@ -38,8 +38,8 @@
   margin-top: -15px;
 }
 
-.flavour-simp4benef .identityBlock > *:nth-child(2) {
-  margin-top: 43px;
+.flavour-simp4benef .identityBlock > *:first-child {
+  margin-top: 18px;
 }
 
 .flavour-simp4benef .identityBlock:before,
