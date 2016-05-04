@@ -96,11 +96,11 @@
     <?php endif; ?>
 
     <?php
-      foreach ($content as $key => $value):
-        if (in_array($key, $show)):
+      foreach ($content as $key => $value) {
+        if (in_array($key, $show)) {
           print render($content[$key]);
-        endif;
-      endforeach;
+        }
+      }
     ?>
 
     <?php if ($suffix_display): ?>
@@ -134,26 +134,28 @@
     <?php print render($content); ?>
 
     <?php if ((user_is_logged_in() == FALSE) && ($open_to_comments == TRUE)): ?>
-      <div id='comment-form-container'><figure class='loginToCommentCTA'>
+      <div id='comment-form-container'>
+        <figure class='loginToCommentCTA'>
           <h2 class='title comment-form'><?php print $comment_login_title ?></h2>
-                        <span class='form-item'>
-                          <label><?php print $comment_login_subject ?> </label><input class='form-control form-text' type='text' size='60'>
-                        </span>
-                        <span>
-                        <span class='form-item'>
-                          <label><?php print $comment_login_comment ?>
-                            <span class='form-required'>*</span>
-                          </label>
-                          <textarea class='form-control' cols='60' rows='5'></textarea>
-                         </span>
-                       </span>
-                       <span class='form-item'>
-                         <button class='btn btn-default'><?php print $comment_login_save ?></button>
-                       </span>
+            <span class='form-item'>
+              <label><?php print $comment_login_subject ?> </label><input class='form-control form-text' type='text' size='60'>
+            </span>
+            <span>
+              <span class='form-item'>
+                <label><?php print $comment_login_comment ?>
+                  <span class='form-required'>*</span>
+                </label>
+                <textarea class='form-control' cols='60' rows='5'></textarea>
+              </span>
+            </span>
+            <span class='form-item'>
+              <button class='btn btn-default'><?php print $comment_login_save ?></button>
+            </span>
           <figcaption class='loginToCommentCTAMask'>
             <p><?php print $comment_login ?></p>
           </figcaption>
-        </figure></div>
+        </figure>
+      </div>
     <?php endif;?>
 
     <?php print render($content['comments']); ?>
