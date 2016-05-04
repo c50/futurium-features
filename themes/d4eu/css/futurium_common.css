@@ -1693,6 +1693,10 @@ a:hover.CTAButton,
   float: left;
   margin: 0 2em 0 0.5em; 
 }
+.item-list .flag-subscription-flag{
+  float: right;
+  margin: 0 0.5em 0 2em; 
+}
 .flag-subscription-flag a{
   text-transform: lowercase;
   font-weight: bold;
@@ -1772,6 +1776,7 @@ a:hover.CTAButton,
   text-indent: -2000px;
   overflow: hidden;
 }
+
 /* /follow */
 
 
