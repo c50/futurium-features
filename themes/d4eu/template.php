@@ -302,6 +302,18 @@ function d4eu_preprocess_node(&$vars) {
     'field_registration_url',
   );
 
+  // subscription_node_flag.
+  if (module_exists("subscriptions_ui")) {
+    $arg2 = subscriptions_arg(2);
+    if (subscriptions_ui_can_subscribe() &&
+      (!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') ||
+      variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe' )) {
+
+         $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
+         unset($vars['content']['subscriptions_ui']);
+    }
+  }
+
   if ($vars['view_mode'] == 'full' && user_access('create relations')) {
     $block = module_invoke('futurium_links', 'block_view', 'futurium_links');
     $vars['select_relation'] = '<h2>' . render($block['subject']) . '</h2>';
@@ -309,13 +321,22 @@ function d4eu_preprocess_node(&$vars) {
   }
   if (isset($node->view->current_display)) {
     if (in_array($node->view->current_display, ['relationteaser', 'evidence', 'parents'])) {
-      $rel_id             = $node->view->result[ $node->view->row_index ]->relation_node_rid;
+      $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
       $vars['delete_rid'] = '';
-      if ( user_access( 'delete relations' ) ) {
-        $destination        = drupal_get_query_parameters( NULL, array() );
-        $vars['delete_rid'] = l( t( 'Unlink' ), 'relation/' . $rel_id . '/delete', array( 'query'      => array( 'destination' => $destination['q'] ),
-                                                                                          'attributes' => array( 'class' => 'unlink' )
-        ) );
+      if (user_access('delete relations')) {
+        $destination = drupal_get_query_parameters(NULL, array());
+        $vars['delete_rid'] = l(
+          t('Unlink'),
+          'relation/' . $rel_id . '/delete',
+          array(
+            'query' => array(
+              'destination' => $destination['q'],
+            ),
+            'attributes' => array(
+              'class' => 'unlink',
+            ),
+          )
+        );
       }
     }
   }
@@ -361,16 +382,16 @@ function d4eu_form_alter(&$form, &$form_state, $form_id) {
 
     case 'futurium_links_radio_choice_form':
       $override = array(
-          drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
-              'type' => 'file',
-              'scope' => 'footer',
-              'weight' => 101,
-          ),
+        drupal_get_path('theme', 'd4eu') . '/scripts/futurium_links.js' => array(
+          'type' => 'file',
+          'scope' => 'footer',
+          'weight' => 101,
+        ),
       );
       $form['#attached']['js'] += $override;
       $form['new']['link_type']['#options']['has_evidence'] = t('further <b>evidence</b>');
       $form['new']['link_type']['#options']['related_to'] = t('further <b>related content</b>');
-      $form['#prefix'] .=  t('<label>Link</label>');
+      $form['#prefix'] .= t('<label>Link</label>');
       break;
   }
 
@@ -398,10 +419,10 @@ function d4eu_preprocess_comment(&$vars) {
 
   $organisation = '';
   if (isset($field)) {
-    if ( $organisation != '' ) {
+    if ($organisation != '') {
       $organisation .= ' ';
     }
-    if ( isset( $output[0] ) ) {
+    if (isset($output[0])) {
       $organisation .= '<div class="userOrganisation">' . $output[0]['#markup'] . '</div>';
     }
   }
@@ -414,6 +435,16 @@ function d4eu_preprocess_comment(&$vars) {
     $context = _supertags_get_context();
     $default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
     $default_archived = _supertags_is_archived(taxonomy_term_load($default_flavor));
+  }
+
+  // Subscription_node_flag.
+  if (module_exists("subscriptions_ui")) {
+    $arg2 = subscriptions_arg(2);
+    if (subscriptions_ui_can_subscribe() && variable_get('subscriptions_form_in_block', 0) &&
+       (!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') ||
+       variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe')) {
+      $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
+    }
   }
 
   if (!$user->uid) {
@@ -441,6 +472,44 @@ function d4eu_preprocess_comment(&$vars) {
 function d4eu_preprocess_page(&$vars) {
   $old_site_name = $vars['site_name'];
   $vars['site_name'] = '<a href="' . $vars['front_page'] . '">' . $old_site_name . '</a>';
+
+  // Subscription_flavour_flag.
+  if (module_exists("subscriptions_ui") && module_exists('supertags')) {
+    if (user_is_logged_in()) {
+      $context = _supertags_get_context();
+      if (isset($context["flavor"]['tid'])) {
+        global $user;
+        $user_id = $user->uid;
+
+        $vars['subscriptions_settings_link'] = "<a href='/user/". $user_id ."/subscriptions?flavour=" . $context['flavor']['path'] . "' title='edit what you are following'>edit what you are following</a>";
+        $vars['subscriptions_flavor_flag'] = flag_create_link('subscription_flavour_flag', $context["flavor"]['tid']);
+      }
+    }
+  }
+}
+
+/**
+ * Implements theme_preprocess_flag().
+ *
+ * Override link on subscription flags.
+ */
+function d4eu_preprocess_flag(&$vars) {
+
+  $flag = &$vars['flag'];
+  $action = $vars['action'];
+
+  if ($flag->name == 'subscription_flavour_flag' && module_exists("subscriptions_ui") && module_exists('supertags')) {
+    if (user_is_logged_in()) {
+
+      $context=_supertags_get_context();
+
+      if ($action == 'flag') {
+        $vars['link_text'] = '<span class="subscribe"><b>follow</b> ' . '<span class="flavourName">' . $context["flavor"]["name"] . '</span></span>';
+      } else {
+        $vars['link_text'] = '<span class="unsubscribe"><b>unfollow</b> ' . '<span class="flavourName">' . $context["flavor"]["name"] . '</span></span>';
+      }
+    }
+  }
 }
 
 /**
@@ -465,7 +534,7 @@ function d4eu_preprocess_user_profile(&$variables) {
 
   $organisation = '';
   if (isset($variables['field_organisation'][0])) {
-    $user_organisation = field_view_value( 'user', $variables['user'], 'field_organisation', $variables['field_organisation'][0] );
+    $user_organisation = field_view_value('user', $variables['user'], 'field_organisation', $variables['field_organisation'][0]);
   }
 
   if (isset($user_organisation)) {

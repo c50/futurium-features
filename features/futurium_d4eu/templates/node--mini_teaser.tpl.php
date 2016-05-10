@@ -8,6 +8,9 @@
 
 <div id="node-<?php print $node->nid; ?>"
      class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+  <?php if ($subscriptions_node_flag): ?>
+    <?php print $subscriptions_node_flag ?>
+  <?php endif; ?>
   <?php print render($title_prefix); ?>
   <?php if ($node->type != 'video_d4eu'):
     ?>
