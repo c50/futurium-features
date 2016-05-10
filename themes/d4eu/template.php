@@ -287,6 +287,22 @@ function d4eu_preprocess_node(&$vars) {
       }
     }
   }
+
+  $context = _supertags_get_context();
+  $default_flavor = $vars['field_default_flavour'][LANGUAGE_NONE][0]['tid'];
+  $default_archived = _supertags_is_archived(taxonomy_term_load($default_flavor));
+
+  if ($default_archived == 0 && !$context['landing_page']) {
+    if (module_exists("subscriptions_ui")) {
+      $arg2 = subscriptions_arg(2);
+
+      if ($default_archived == 0 && (!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') || variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe')) {
+        $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
+      }
+      unset($vars['content']['subscriptions_ui']);
+    }
+  }
+
   $vars['hide'] = array();
   $vars['show'] = array(
     'field_leading_picture_d4eu',
@@ -301,18 +317,6 @@ function d4eu_preprocess_node(&$vars) {
     'field_location',
     'field_registration_url',
   );
-
-  // subscription_node_flag.
-  if (module_exists("subscriptions_ui")) {
-    $arg2 = subscriptions_arg(2);
-    if (subscriptions_ui_can_subscribe() &&
-      (!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') ||
-      variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe')) {
-
-      $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
-      unset($vars['content']['subscriptions_ui']);
-    }
-  }
 
   if ($vars['view_mode'] == 'full' && user_access('create relations')) {
     $block = module_invoke('futurium_links', 'block_view', 'futurium_links');
@@ -432,16 +436,6 @@ function d4eu_preprocess_comment(&$vars) {
     $context = _supertags_get_context();
     $default_flavor = $node->field_default_flavour[LANGUAGE_NONE][0]['tid'];
     $default_archived = _supertags_is_archived(taxonomy_term_load($default_flavor));
-  }
-
-  // Subscription_node_flag.
-  if (module_exists("subscriptions_ui")) {
-    $arg2 = subscriptions_arg(2);
-    if (subscriptions_ui_can_subscribe() && variable_get('subscriptions_form_in_block', 0) &&
-       (!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') ||
-       variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe')) {
-      $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
-    }
   }
 
   if (!$user->uid) {
@@ -573,5 +567,23 @@ function d4eu_preprocess_views_view_fields(&$vars) {
     $poll_node = node_load($vars['row']->nid);
     $vars['fields']['active']->label_html = FALSE;
     $vars['fields']['active']->content = poll_view_results($poll_node, TRUE, FALSE);
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Remove follow link from views list for archived flavors.
+ */
+function d4eu_views_pre_render(&$view) {
+  if (user_is_logged_in()) {
+    if ($view->name == 'flavors') {
+      $context = _supertags_get_context();
+      if (isset($context['flavor']['term'])) {
+        if (_supertags_is_archived($context['flavor']['term'])) {
+          unset($view->field['ops']);
+        }
+      }
+    }
   }
 }
