@@ -1693,6 +1693,11 @@ a:hover.CTAButton,
   float: left;
   margin: 0 2em 0 0.5em;
 }
+.view-flavors-whats-new .flag-subscription-flag,
+.view-flavors .flag-subscription-flag {
+    float: right;
+    margin: 0 0em 0 2em;
+}
 .flag-subscription-flag a{
   text-transform: lowercase;
   font-weight: bold;

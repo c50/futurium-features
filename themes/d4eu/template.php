@@ -295,10 +295,8 @@ function d4eu_preprocess_node(&$vars) {
     if (module_exists("subscriptions_ui")) {
       $arg2 = subscriptions_arg(2);
 
-      if ((!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') || variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe')) {
-        if ($default_archived == 0) {
-          $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
-        }
+      if ($default_archived == 0 && (!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') || variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe')) {
+        $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
       }
       unset($vars['content']['subscriptions_ui']);
     }
@@ -568,5 +566,21 @@ function d4eu_preprocess_views_view_fields(&$vars) {
     $poll_node = node_load($vars['row']->nid);
     $vars['fields']['active']->label_html = FALSE;
     $vars['fields']['active']->content = poll_view_results($poll_node, TRUE, FALSE);
+  }
+}
+
+/**
+ * Remove follow link from views list for archived flavors.
+ */
+function d4eu_views_pre_render(&$view) {
+  if(user_is_logged_in()){
+    if ($view->name == 'flavors'){
+      $context = _supertags_get_context();
+      if (isset($context['flavor']['term'])) {
+        if (_supertags_is_archived($context['flavor']['term'])) {
+          unset($view->field['ops']);
+        }
+      }
+    }
   }
 }
