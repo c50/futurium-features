@@ -10,7 +10,7 @@
 function futurium_d4eu_wysiwyg_default_profiles() {
   $profiles = array();
 
-  // Exported profile: basic_html
+  // Exported profile: basic_html.
   $profiles['basic_html'] = (object) array(
     'format' => 'basic_html',
     'editor' => 'ckeditor',
@@ -18,7 +18,7 @@ function futurium_d4eu_wysiwyg_default_profiles() {
     'rdf_mapping' => array(),
   );
 
-  // Exported profile: filtered_html
+  // Exported profile: filtered_html.
   $profiles['filtered_html'] = (object) array(
     'format' => 'filtered_html',
     'editor' => 'ckeditor',
@@ -71,7 +71,7 @@ function futurium_d4eu_wysiwyg_default_profiles() {
     'rdf_mapping' => array(),
   );
 
-  // Exported profile: full_html
+  // Exported profile: full_html.
   $profiles['full_html'] = (object) array(
     'format' => 'full_html',
     'editor' => 'ckeditor',

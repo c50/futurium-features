@@ -127,6 +127,9 @@
         </div>
       </div>
       <div class="node-info-footer">
+        <?php if ($subscriptions_node_flag): ?>
+          <?php print $subscriptions_node_flag ?>
+        <?php endif; ?>
         <?php
         print render($content['field_rate_ideas']);
         print render($content['field_rate_issue']);

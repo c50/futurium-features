@@ -9,7 +9,6 @@
  */
 function supertags_views_default_views() {
   $export = array();
-
   $view = new view();
   $view->name = 'flavor_list';
   $view->description = '';
@@ -19,7 +18,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Manage';
@@ -140,7 +138,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_flavor_active_value']['value'] = array(
     1 => '1',
   );
-
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -237,7 +234,7 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<h2>[name] [field_flavor_archived]</h2>
   <div>
-    [description]  
+    [description]
   </div>
   ';
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
@@ -273,7 +270,6 @@ function supertags_views_default_views() {
     0 => '0',
   );
   $export['flavor_list'] = $view;
-
   $view = new view();
   $view->name = 'flavor_misc_blocks';
   $view->description = '';
@@ -283,7 +279,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Blog';
@@ -447,14 +442,12 @@ function supertags_views_default_views() {
     'blog_post' => 'blog_post',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-
   /* Display: Blog Sidebar */
   $handler = $view->new_display('block', 'Blog Sidebar', 'block_1');
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'views-blog_d4eu-block_1';
   $handler->display->display_options['block_description'] = 'Flavor Blog Sidebar (3 items)';
   $export['flavor_misc_blocks'] = $view;
-
   $view = new view();
   $view->name = 'flavors';
   $view->description = '';
@@ -464,7 +457,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Flavor';
@@ -513,6 +505,12 @@ function supertags_views_default_views() {
   $handler->display->display_options['relationships']['field_default_flavour_tid']['table'] = 'field_data_field_default_flavour';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['field'] = 'field_default_flavour_tid';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['label'] = 'default_flavour';
+  /* Relationship: Flags: subscription_flag */
+  $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
+  $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
+  $handler->display->display_options['relationships']['flag_content_rel']['required'] = 0;
+  $handler->display->display_options['relationships']['flag_content_rel']['flag'] = 'subscription_flag';
   /* Field: Content: Path */
   $handler->display->display_options['fields']['path']['id'] = 'path';
   $handler->display->display_options['fields']['path']['table'] = 'node';
@@ -641,7 +639,6 @@ function supertags_views_default_views() {
     3 => 0,
   );
   $handler->display->display_options['filters']['field_tags_tid']['vocabulary'] = 'tags';
-
   /* Display: Issues */
   $handler = $view->new_display('block', 'Issues', 'page_issue');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -674,6 +671,13 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['text'] = '[path][field_path]';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  /* Field: Flags: Flag link */
+  $handler->display->display_options['fields']['ops']['id'] = 'ops';
+  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
+  $handler->display->display_options['fields']['ops']['field'] = 'ops';
+  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
+  $handler->display->display_options['fields']['ops']['label'] = '';
+  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -811,7 +815,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'issue' => 'issue',
   );
-
   /* Display: Ideas */
   $handler = $view->new_display('block', 'Ideas', 'page_ideas');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -844,6 +847,13 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['text'] = '[path][field_path]';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  /* Field: Flags: Flag link */
+  $handler->display->display_options['fields']['ops']['id'] = 'ops';
+  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
+  $handler->display->display_options['fields']['ops']['field'] = 'ops';
+  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
+  $handler->display->display_options['fields']['ops']['label'] = '';
+  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -980,7 +990,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'ideas' => 'ideas',
   );
-
   /* Display: Evidence */
   $handler = $view->new_display('block', 'Evidence', 'page_document');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -1031,6 +1040,13 @@ function supertags_views_default_views() {
     'image_style' => 'media_thumbnail',
     'image_link' => '',
   );
+  /* Field: Flags: Flag link */
+  $handler->display->display_options['fields']['ops']['id'] = 'ops';
+  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
+  $handler->display->display_options['fields']['ops']['field'] = 'ops';
+  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
+  $handler->display->display_options['fields']['ops']['label'] = '';
+  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1180,7 +1196,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'document' => 'document',
   );
-
   /* Display: Videos */
   $handler = $view->new_display('block', 'Videos', 'page_video_d4eu');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -1224,6 +1239,13 @@ function supertags_views_default_views() {
     'image_style' => 'preview',
     'image_link' => 'content',
   );
+  /* Field: Flags: Flag link */
+  $handler->display->display_options['fields']['ops']['id'] = 'ops';
+  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
+  $handler->display->display_options['fields']['ops']['field'] = 'ops';
+  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
+  $handler->display->display_options['fields']['ops']['label'] = '';
+  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1358,7 +1380,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'video_d4eu' => 'video_d4eu',
   );
-
   /* Display: Blogs */
   $handler = $view->new_display('block', 'Blogs', 'page_blog_post');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -1409,6 +1430,13 @@ function supertags_views_default_views() {
   $handler->display->display_options['relationships']['field_default_flavour_tid']['table'] = 'field_data_field_default_flavour';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['field'] = 'field_default_flavour_tid';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['label'] = 'default_flavour';
+  /* Relationship: Flags: subscription_flag */
+  $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
+  $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
+  $handler->display->display_options['relationships']['flag_content_rel']['required'] = 0;
+  $handler->display->display_options['relationships']['flag_content_rel']['flag'] = 'subscription_flag';
+  $handler->display->display_options['relationships']['flag_content_rel']['user_scope'] = 'any';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Taxonomy term: Path */
   $handler->display->display_options['fields']['field_path']['id'] = 'field_path';
@@ -1428,6 +1456,13 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['path_1']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['path_1']['alter']['text'] = '[path_1][field_path]';
   $handler->display->display_options['fields']['path_1']['element_label_colon'] = FALSE;
+  /* Field: Flags: Flag link */
+  $handler->display->display_options['fields']['ops']['id'] = 'ops';
+  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
+  $handler->display->display_options['fields']['ops']['field'] = 'ops';
+  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
+  $handler->display->display_options['fields']['ops']['label'] = '';
+  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1517,22 +1552,22 @@ function supertags_views_default_views() {
   $handler->display->display_options['fields']['path']['label'] = '';
   $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['text'] = '<div class="media">
-              <div class="pull-right text-center">
-                [picture]
-                <div class="text-muted">
-                  [name]
+                <div class="pull-right text-center">
+                  [picture]
+                  <div class="text-muted">
+                    [name]
+                  </div>
                 </div>
-              </div>
-              <div class="media-body">
-                <div class="pull-right">[value]</div>
-                <h3 class="media-heading"><a href="[path_1]">[title]</a></h3>
-                <div>
-                  <span class="blogListDate">[created]</span>
-                  [body]
-                  <div><a href="[path_1]">Read more</a></div>
+                <div class="media-body">
+                  <div class="pull-right">[value]</div>
+                  <h3 class="media-heading"><a href="[path_1]">[title]</a></h3>
+                  <div>
+                    <span class="blogListDate">[created]</span>
+                    [body]
+                    <div><a href="[path_1]">Read more</a></div>
+                  </div>
                 </div>
-              </div>
-            </div>';
+              </div>';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   /* Field: Field: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
@@ -1610,7 +1645,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'blog_post' => 'blog_post',
   );
-
   /* Display: Events */
   $handler = $view->new_display('block', 'Events', 'page_event_d4eu');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -1674,7 +1708,20 @@ function supertags_views_default_views() {
   $handler->display->display_options['relationships']['field_default_flavour_tid']['table'] = 'field_data_field_default_flavour';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['field'] = 'field_default_flavour_tid';
   $handler->display->display_options['relationships']['field_default_flavour_tid']['label'] = 'default_flavour';
+  /* Relationship: Flags: subscription_flag */
+  $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
+  $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
+  $handler->display->display_options['relationships']['flag_content_rel']['required'] = 0;
+  $handler->display->display_options['relationships']['flag_content_rel']['flag'] = 'subscription_flag';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Flags: Flag link */
+  $handler->display->display_options['fields']['ops']['id'] = 'ops';
+  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
+  $handler->display->display_options['fields']['ops']['field'] = 'ops';
+  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
+  $handler->display->display_options['fields']['ops']['label'] = '';
+  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1779,7 +1826,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_date_time_value2']['form_type'] = 'date_text';
   $handler->display->display_options['filters']['field_date_time_value2']['default_date'] = 'now';
   $handler->display->display_options['filters']['field_date_time_value2']['year_range'] = '-1:+3';
-
   /* Display: Page past events */
   $handler = $view->new_display('page', 'Page past events', 'page_past_events');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -1862,7 +1908,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_date_time_value2']['default_date'] = 'now';
   $handler->display->display_options['filters']['field_date_time_value2']['year_range'] = '-3:+0';
   $handler->display->display_options['path'] = 'past-events';
-
   /* Display: Polls */
   $handler = $view->new_display('block', 'Polls', 'page_poll');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -1907,6 +1952,13 @@ function supertags_views_default_views() {
     'image_style' => 'preview',
     'image_link' => '',
   );
+  /* Field: Flags: Flag link */
+  $handler->display->display_options['fields']['ops']['id'] = 'ops';
+  $handler->display->display_options['fields']['ops']['table'] = 'flagging';
+  $handler->display->display_options['fields']['ops']['field'] = 'ops';
+  $handler->display->display_options['fields']['ops']['relationship'] = 'flag_content_rel';
+  $handler->display->display_options['fields']['ops']['label'] = '';
+  $handler->display->display_options['fields']['ops']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -2026,7 +2078,6 @@ function supertags_views_default_views() {
     'poll' => 'poll',
   );
   $export['flavors'] = $view;
-
   $view = new view();
   $view->name = 'flavors_admin_blocks';
   $view->description = '';
@@ -2036,7 +2087,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Flavors Admin Blocks';
@@ -2101,11 +2151,9 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'user_blocks' => 'user_blocks',
   );
-
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $export['flavors_admin_blocks'] = $view;
-
   $view = new view();
   $view->name = 'flavors_admin_comments';
   $view->description = '';
@@ -2115,7 +2163,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Comments';
@@ -2331,11 +2378,9 @@ function supertags_views_default_views() {
     4 => 0,
     5 => 0,
   );
-
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $export['flavors_admin_comments'] = $view;
-
   $view = new view();
   $view->name = 'flavors_admin_content';
   $view->description = '';
@@ -2345,7 +2390,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Content for %1';
@@ -2535,11 +2579,9 @@ function supertags_views_default_views() {
     4 => 0,
     5 => 0,
   );
-
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $export['flavors_admin_content'] = $view;
-
   $view = new view();
   $view->name = 'flavors_blocks';
   $view->description = '';
@@ -2549,7 +2591,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
@@ -2614,11 +2655,9 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'block' => 'block',
   );
-
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $export['flavors_blocks'] = $view;
-
   $view = new view();
   $view->name = 'flavors_listings_teaser';
   $view->description = '';
@@ -2628,7 +2667,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['css_class'] = 'listings-teaser';
@@ -2679,7 +2717,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_block_region_value']['value'] = array(
     'ideas_top' => 'ideas_top',
   );
-
   /* Display: Issues */
   $handler = $view->new_display('block', 'Issues', 'issue_label');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
@@ -2698,10 +2735,8 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_block_region_value']['value'] = array(
     'issues_top' => 'issues_top',
   );
-
   /* Display: Ideas */
   $handler = $view->new_display('block', 'Ideas', 'ideas_label');
-
   /* Display: Evidence */
   $handler = $view->new_display('block', 'Evidence', 'evidences_label');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
@@ -2720,7 +2755,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_block_region_value']['value'] = array(
     'evidence_top' => 'evidence_top',
   );
-
   /* Display: Videos */
   $handler = $view->new_display('block', 'Videos', 'videos_label');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
@@ -2739,7 +2773,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_block_region_value']['value'] = array(
     'videos_top' => 'videos_top',
   );
-
   /* Display: Polls */
   $handler = $view->new_display('block', 'Polls', 'polls_label');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
@@ -2758,7 +2791,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_block_region_value']['value'] = array(
     'polls_top' => 'polls_top',
   );
-
   /* Display: Blogs */
   $handler = $view->new_display('block', 'Blogs', 'blogs_label');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
@@ -2777,7 +2809,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_block_region_value']['value'] = array(
     'blogs_top' => 'blogs_top',
   );
-
   /* Display: Events */
   $handler = $view->new_display('block', 'Events', 'events_label');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
@@ -2796,7 +2827,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_block_region_value']['value'] = array(
     'events_top' => 'events_top',
   );
-
   /* Display: People */
   $handler = $view->new_display('block', 'People', 'people_label');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
@@ -2816,7 +2846,6 @@ function supertags_views_default_views() {
     'people_top' => 'people_top',
   );
   $export['flavors_listings_teaser'] = $view;
-
   $view = new view();
   $view->name = 'flavors_people';
   $view->description = 'People Listings.';
@@ -2826,7 +2855,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'People';
@@ -3093,7 +3121,6 @@ function supertags_views_default_views() {
     4 => 0,
     5 => 0,
   );
-
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_people');
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -3195,7 +3222,6 @@ function supertags_views_default_views() {
     4 => 0,
     5 => 0,
   );
-
   /* Display: Manage */
   $handler = $view->new_display('block', 'Manage', 'block_dashboard');
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -3470,7 +3496,6 @@ function supertags_views_default_views() {
     ),
   );
   $export['flavors_people'] = $view;
-
   $view = new view();
   $view->name = 'flavors_whats_new';
   $view->description = '';
@@ -3480,7 +3505,6 @@ function supertags_views_default_views() {
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Recent activity';
@@ -3515,7 +3539,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-
   /* Display: What is new */
   $handler = $view->new_display('block', 'What is new', 'block_whatnew');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -3585,7 +3608,6 @@ function supertags_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['block_description'] = 'Flavor: What is New';
-
   /* Display: New Events */
   $handler = $view->new_display('block', 'New Events', 'block_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -3657,7 +3679,6 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['field_date_time_value2']['default_date'] = 'now';
   $handler->display->display_options['filters']['field_date_time_value2']['year_range'] = '-1:+3';
   $handler->display->display_options['block_description'] = 'Flavor: Events - What is New';
-
   /* Display: New content (Context) */
   $handler = $view->new_display('block', 'New content (Context)', 'block_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -3745,7 +3766,6 @@ function supertags_views_default_views() {
   );
   $handler->display->display_options['block_description'] = 'Flavor: What is New (Contextualized)';
   $export['flavors_whats_new'] = $view;
-
   $view = new view();
   $view->name = 'latest_comments';
   $view->description = 'Contains a block to list latest comments on a view mode.';
@@ -3755,7 +3775,6 @@ function supertags_views_default_views() {
   $view->core = 0;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Latest comments';
@@ -3841,11 +3860,9 @@ function supertags_views_default_views() {
   $handler->display->display_options['filters']['status_extra']['field'] = 'status_extra';
   $handler->display->display_options['filters']['status_extra']['relationship'] = 'nid';
   $handler->display->display_options['filters']['status_extra']['group'] = 0;
-
   /* Display: Flavor comments */
   $handler = $view->new_display('block', 'Flavor comments', 'flavor_comm');
   $handler->display->display_options['block_description'] = 'Latest comments';
   $export['latest_comments'] = $view;
-
   return $export;
 }
