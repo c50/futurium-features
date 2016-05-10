@@ -281,5 +281,7 @@ function futurium_d4eu_update_7111() {
  */
 function futurium_d4eu_update_7112() {
   // Enable subscriptions modules.
-  module_enable(array('subscriptions', 'subscriptions_content', 'subscriptions_ui','subscriptions_taxonomy'));
+  module_enable(array('subscriptions', 'subscriptions_content',
+    'subscriptions_ui', 'subscriptions_taxonomy',
+  ));
 }

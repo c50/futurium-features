@@ -1168,13 +1168,13 @@ function futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_int
 
     if ($args[6]) {
       $update->fields(array(
-          'send_updates' => 1,
+        'send_updates' => 1,
       ));
     }
 
     if ($args[7]) {
       $update->fields(array(
-          'send_comments' => 1,
+        'send_comments' => 1,
       ));
     }
 
@@ -1232,7 +1232,7 @@ function futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
     $delete->condition('send_updates', 0);
     $delete->condition('send_comments', 1);
     $update->fields(array(
-        'send_comments' => 0,
+      'send_comments' => 0,
     ));
   }
 
@@ -1269,13 +1269,13 @@ function futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interv
 
     if ($args[6]) {
       $update->fields(array(
-          'send_updates' => 1,
+        'send_updates' => 1,
       ));
     }
 
     if ($args[7]) {
       $update->fields(array(
-          'send_comments' => 1,
+        'send_comments' => 1,
       ));
     }
 

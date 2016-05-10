@@ -901,9 +901,9 @@ function supertags_views_pre_render(&$view) {
       $link_path = '../past-events/' . $field_path;
       $destination = array('flavour' => $field_path);
       $view->footer['area']->options['content'] = l($link_text, $link_path, array(
-          'html'  => TRUE,
-          'query' => $destination,
-        )
+        'html'  => TRUE,
+        'query' => $destination,
+      )
       );
       $view->display_handler->set_option('footer', $view->footer);
     }
