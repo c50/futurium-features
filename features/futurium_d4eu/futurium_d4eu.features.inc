@@ -32,7 +32,7 @@ function futurium_d4eu_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
 
-/*
+/**
  * Implements hook_flag_default_flags().
  */
 function futurium_d4eu_flag_default_flags() {

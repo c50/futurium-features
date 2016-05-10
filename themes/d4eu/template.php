@@ -307,10 +307,10 @@ function d4eu_preprocess_node(&$vars) {
     $arg2 = subscriptions_arg(2);
     if (subscriptions_ui_can_subscribe() &&
       (!variable_get('subscriptions_form_link_only', 0) && (empty($arg2) || $arg2 == 'view') ||
-      variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe' )) {
+      variable_get('subscriptions_form_link_only', 0) && $arg2 == 'subscribe')) {
 
-         $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
-         unset($vars['content']['subscriptions_ui']);
+      $vars['subscriptions_node_flag'] = flag_create_link('subscription_flag', $node->nid);
+      unset($vars['content']['subscriptions_ui']);
     }
   }
 
@@ -481,7 +481,7 @@ function d4eu_preprocess_page(&$vars) {
         global $user;
         $user_id = $user->uid;
 
-        $vars['subscriptions_settings_link'] = "<a href='/user/". $user_id ."/subscriptions?flavour=" . $context['flavor']['path'] . "' title='edit what you are following'>edit what you are following</a>";
+        $vars['subscriptions_settings_link'] = "<a href='/user/" . $user_id . "/subscriptions?flavour=" . $context['flavor']['path'] . "' title='edit what you are following'>edit what you are following</a>";
         $vars['subscriptions_flavor_flag'] = flag_create_link('subscription_flavour_flag', $context["flavor"]['tid']);
       }
     }
@@ -501,11 +501,12 @@ function d4eu_preprocess_flag(&$vars) {
   if ($flag->name == 'subscription_flavour_flag' && module_exists("subscriptions_ui") && module_exists('supertags')) {
     if (user_is_logged_in()) {
 
-      $context=_supertags_get_context();
+      $context = _supertags_get_context();
 
       if ($action == 'flag') {
         $vars['link_text'] = '<span class="subscribe"><b>follow</b> ' . '<span class="flavourName">' . $context["flavor"]["name"] . '</span></span>';
-      } else {
+      }
+      else {
         $vars['link_text'] = '<span class="unsubscribe"><b>unfollow</b> ' . '<span class="flavourName">' . $context["flavor"]["name"] . '</span></span>';
       }
     }

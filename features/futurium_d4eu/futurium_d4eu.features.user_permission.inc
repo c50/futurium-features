@@ -3,6 +3,7 @@
  * @file
  * futurium_d4eu.features.user_permission.inc
  */
+
 /**
  * Implements hook_user_default_permissions().
  */
