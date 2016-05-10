@@ -570,11 +570,13 @@ function d4eu_preprocess_views_view_fields(&$vars) {
 }
 
 /**
+ * Implements hook_views_pre_render().
+ *
  * Remove follow link from views list for archived flavors.
  */
 function d4eu_views_pre_render(&$view) {
-  if(user_is_logged_in()){
-    if ($view->name == 'flavors'){
+  if (user_is_logged_in()) {
+    if ($view->name == 'flavors') {
       $context = _supertags_get_context();
       if (isset($context['flavor']['term'])) {
         if (_supertags_is_archived($context['flavor']['term'])) {
