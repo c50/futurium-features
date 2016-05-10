@@ -228,12 +228,12 @@ function futurium_d4eu_menu() {
 
   // Add a menu Dashboard for editors.
   $items['admin/content/dashboard'] = array(
-      'title' => 'Dashboard',
-      'description' => 'Editors dashboard',
-      'page callback' => 'drupal_goto',
-      'page arguments' => array('dashboard'),
-      'access callback' => TRUE,
-      'menu_name' => 'management',
+    'title' => 'Dashboard',
+    'description' => 'Editors dashboard',
+    'page callback' => 'drupal_goto',
+    'page arguments' => array('dashboard'),
+    'access callback' => TRUE,
+    'menu_name' => 'management',
   );
 
   $items['admin/config/content/futurium_d4eu'] = array(
@@ -317,15 +317,15 @@ function futurium_d4eu_theme($existing, $type, $theme, $path) {
     'function' => '_futurium_d4eu_tear_off_calendar',
   );
   $theme['tear_off_full_calendar'] = array(
-      'variables' => array(
-          'from_date' => NULL,
-          'to_date' => NULL,
-          'from_day' => NULL,
-          'to_day' => NULL,
-          'from_time' => NULL,
-          'to_time' => NULL,
-      ),
-      'function' => '_futurium_d4eu_tear_off_full_calendar',
+    'variables' => array(
+      'from_date' => NULL,
+      'to_date' => NULL,
+      'from_day' => NULL,
+      'to_day' => NULL,
+      'from_time' => NULL,
+      'to_time' => NULL,
+    ),
+    'function' => '_futurium_d4eu_tear_off_full_calendar',
   );
   return $theme;
 }
@@ -387,18 +387,18 @@ function futurium_d4eu_preprocess_comment(&$vars) {
     $vars['node_link'] = 'node/' . $vars['elements']['#comment']->nid;
 
     $vars['coml_options'] = array(
-        'attributes' => array(
-            'class' => 'latestComLink',
-        ),
-        'fragment' => 'comment-' . $vars['elements']['#comment']->cid,
-        'html' => TRUE,
+      'attributes' => array(
+        'class' => 'latestComLink',
+      ),
+      'fragment' => 'comment-' . $vars['elements']['#comment']->cid,
+      'html' => TRUE,
     );
 
     $vars['nodl_options'] = array(
-        'attributes' => array(
-            'class' => 'latestNodeLink',
-        ),
-        'html' => TRUE,
+      'attributes' => array(
+        'class' => 'latestNodeLink',
+      ),
+      'html' => TRUE,
     );
     $vars['comment_span'] = $vars['trimmed_comment'];
     $vars['node_span'] = $vars['elements']['#node']->title;
@@ -499,8 +499,8 @@ function futurium_d4eu_field_formatter_info() {
       'field types' => array('date', 'datestamp', 'datetime'),
     ),
     'tear_off_full_calendar' => array(
-        'label' => t('Tear-off full calendar'),
-        'field types' => array('date', 'datestamp', 'datetime'),
+      'label' => t('Tear-off full calendar'),
+      'field types' => array('date', 'datestamp', 'datetime'),
     ),
   );
   return $formatters;
@@ -604,13 +604,13 @@ function _futurium_d4eu_tear_off_full_calendar($variables) {
       <div class='month-event'>{$variables['from_date'][1]}</div>
       <div class='year-event'>{$variables['from_date'][0]}</div>
       <div class='week-day-event'>{$variables['from_day'][0]}</div></div>";
-      if (($variables['from_date'] == $variables['to_date']) && ($variables['from_time'] <> $variables['to_time'])) {
-        $from_date .= "<div class='time-event'><span class='fromHour'>{$variables['from_time'][0]}</span>
-          <span class='toLabel'> " . t('to') . " </span><span class='toHour'>{$variables['to_time'][0]}</span></div>";
-      }
-      else {
-        $from_date .= "<div class='time-event'><span class='fromHour'>{$variables['from_time'][0]}</span></div>";
-      }
+    if (($variables['from_date'] == $variables['to_date']) && ($variables['from_time'] <> $variables['to_time'])) {
+      $from_date .= "<div class='time-event'><span class='fromHour'>{$variables['from_time'][0]}</span>
+        <span class='toLabel'> " . t('to') . " </span><span class='toHour'>{$variables['to_time'][0]}</span></div>";
+    }
+    else {
+      $from_date .= "<div class='time-event'><span class='fromHour'>{$variables['from_time'][0]}</span></div>";
+    }
     $from_date = l($from_date, $variables['alias'], array('html' => TRUE));
 
     if ($variables['to_date'] > $variables['from_date']) {
@@ -1103,4 +1103,215 @@ function futurium_d4eu_query_comment_filter_alter(QueryAlterableInterface $query
     $orderby['c.cid'] = $direction;
     $orderby = array('c.created' => $direction) + $orderby;
   }
+}
+
+/**
+ * Implements hook_flag_flag().
+ */
+function futurium_d4eu_flag_flag($flag, $entity_id, $account, $flagging) {
+
+  switch ($flag->name) {
+    case "subscription_flag":
+      $node = node_load($entity_id);
+      futurium_d4eu_subscribe_content($node, $account);
+      break;
+
+    case "subscription_flavour_flag":
+      $term = taxonomy_term_load($entity_id);
+      futurium_d4eu_subscribe_term($term, $account);
+      break;
+  }
+}
+
+/**
+ * Implements hook_flag_unflag().
+ */
+function futurium_d4eu_flag_unflag($flag, $entity_id, $account, $flagging) {
+  switch ($flag->name) {
+    case "subscription_flag":
+      $node = node_load($entity_id);
+      futurium_d4eu_unsubscribe_content($node, $account);
+      break;
+
+    case "subscription_flavour_flag":
+      $term = taxonomy_term_load($entity_id);
+      futurium_d4eu_unsubscribe_term($term, $account);
+      break;
+  }
+}
+
+/**
+ * Subscribe user from node.
+ */
+function futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_interval = "") {
+  // Get existing.
+  $sid = subscriptions_get_subscription($user->uid, 'node', 'nid', $node->nid);
+  $args = array(
+    0 => 'node',
+    1 => 'nid',
+    2 => $node->nid,
+    3 => -1,
+    4 => $user->uid,
+    5 => is_numeric($send_interval) ? $send_interval : _subscriptions_get_setting('send_interval', $user),
+    6 => $type == 'node',
+    7 => $type == 'comment',
+  );
+
+  if ($sid) {
+    // Add more value to existed subscription_content row.
+    $update = db_update('subscriptions')
+        ->condition('module', $args[0])
+        ->condition('field', $args[1])
+        ->condition('value', $args[2])
+        ->condition('author_uid', $args[3])
+        ->condition('recipient_uid', $args[4]);
+
+    if ($args[6]) {
+      $update->fields(array(
+        'send_updates' => 1,
+      ));
+    }
+
+    if ($args[7]) {
+      $update->fields(array(
+        'send_comments' => 1,
+      ));
+    }
+
+    $ret = $update->execute();
+  }
+  else {
+    $ret = call_user_func_array('subscriptions_write_subscription', $args);
+  }
+
+  return $ret;
+}
+
+/**
+ * Unsubscribe user from node.
+ */
+function futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
+  $args = array(
+    0 => 'node',
+    1 => 'nid',
+    2 => $node->nid,
+    3 => -1,
+    4 => $user->uid,
+    5 => _subscriptions_get_setting('send_interval', $user),
+    6 => $type == 'node',
+    7 => $type == 'comment',
+  );
+
+  // Delete single rows.
+  $delete = db_delete('subscriptions')
+      ->condition('module', $args[0])
+      ->condition('field', $args[1])
+      ->condition('value', $args[2])
+      ->condition('author_uid', $args[3])
+      ->condition('recipient_uid', $args[4]);
+
+  // Update row that has both comments and update.
+  $update = db_update('subscriptions')
+      ->condition('module', $args[0])
+      ->condition('field', $args[1])
+      ->condition('value', $args[2])
+      ->condition('author_uid', $args[3])
+      ->condition('recipient_uid', $args[4]);
+
+  // Remove node rows.
+  if ($args[6]) {
+    $delete->condition('send_updates', 1);
+    $delete->condition('send_comments', 0);
+    $update->fields(array(
+      'send_updates' => 0,
+    ));
+  }
+
+  // Remove comments rows.
+  if ($args[7]) {
+    $delete->condition('send_updates', 0);
+    $delete->condition('send_comments', 1);
+    $update->fields(array(
+      'send_comments' => 0,
+    ));
+  }
+
+  $ret = $delete->execute() || $update->execute();
+
+  return $ret;
+}
+
+/**
+ * Subscribe user from term.
+ */
+function futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interval = "") {
+  // Get existing.
+  $sid = subscriptions_get_subscription($user->uid, 'node', 'tid', $term->tid);
+  $args = array(
+    0 => 'node',
+    1 => 'tid',
+    2 => $term->tid,
+    3 => -1,
+    4 => $user->uid,
+    5 => is_numeric($send_interval) ? $send_interval : _subscriptions_get_setting('send_interval', $user),
+    6 => TRUE,
+    7 => TRUE,
+  );
+
+  if ($sid) {
+    // Add more value to existed subscription_content row.
+    $update = db_update('subscriptions')
+        ->condition('module', $args[0])
+        ->condition('field', $args[1])
+        ->condition('value', $args[2])
+        ->condition('author_uid', $args[3])
+        ->condition('recipient_uid', $args[4]);
+
+    if ($args[6]) {
+      $update->fields(array(
+        'send_updates' => 1,
+      ));
+    }
+
+    if ($args[7]) {
+      $update->fields(array(
+        'send_comments' => 1,
+      ));
+    }
+
+    $ret = $update->execute();
+  }
+  else {
+    $ret = call_user_func_array('subscriptions_write_subscription', $args);
+  }
+
+  return $ret;
+}
+
+/**
+ * Unsubscribe user from term.
+ */
+function futurium_d4eu_unsubscribe_term($term, $user, $type = 'node') {
+  $args = array(
+    0 => 'node',
+    1 => 'tid',
+    2 => $term->tid,
+    3 => -1,
+    4 => $user->uid,
+    5 => _subscriptions_get_setting('send_interval', $user),
+    6 => TRUE,
+    7 => TRUE,
+  );
+
+  // Delete single rows.
+  $delete = db_delete('subscriptions')
+      ->condition('module', $args[0])
+      ->condition('field', $args[1])
+      ->condition('value', $args[2])
+      ->condition('author_uid', $args[3])
+      ->condition('recipient_uid', $args[4]);
+
+  $ret = $delete->execute();
+
+  return $ret;
 }

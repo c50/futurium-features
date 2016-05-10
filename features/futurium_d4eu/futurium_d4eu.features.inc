@@ -33,6 +33,84 @@ function futurium_d4eu_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_flag_default_flags().
+ */
+function futurium_d4eu_flag_default_flags() {
+  $flags = array();
+  // Exported flag: "subscription_node_flag".
+  $flags['subscription_flag'] = array(
+    'entity_type' => 'node',
+    'title' => 'subscription_node_flag',
+    'global' => 0,
+    'types' => array(),
+    'flag_short' => 'Follow',
+    'flag_long' => '',
+    'flag_message' => '',
+    'unflag_short' => 'Unfollow',
+    'unflag_long' => '',
+    'unflag_message' => '',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'weight' => 0,
+    'show_in_links' => array(
+      'full' => 0,
+      'teaser' => 0,
+      'rss' => 0,
+      'search_index' => 0,
+      'search_result' => 0,
+      'diff_standard' => 0,
+      'mini_teaser' => 0,
+      'print' => 0,
+      'token' => 0,
+    ),
+    'show_as_field' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'show_contextual_link' => 0,
+    'i18n' => 0,
+    'api_version' => 3,
+    'module' => 'futurium_d4eu',
+    'locked' => array(
+      0 => 'name',
+    ),
+  );
+  // Exported flag: "subscription_flavor_flag".
+  $flags['subscription_flavour_flag'] = array(
+    'entity_type' => 'taxonomy_term',
+    'title' => 'subscription_flavor_flag',
+    'global' => 0,
+    'types' => array(
+      0 => 'flavors',
+    ),
+    'flag_short' => 'Follow',
+    'flag_long' => '',
+    'flag_message' => '',
+    'unflag_short' => 'Unfollow',
+    'unflag_long' => '',
+    'unflag_message' => '',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'weight' => 0,
+    'show_in_links' => array(
+      'full' => 0,
+      'diff_standard' => 0,
+      'token' => 0,
+    ),
+    'show_as_field' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'show_contextual_link' => 0,
+    'api_version' => 3,
+    'module' => 'futurium_d4eu',
+    'locked' => array(
+      0 => 'name',
+    ),
+  );
+  return $flags;
+
+}
+
+/**
  * Implements hook_image_default_styles().
  */
 function futurium_d4eu_image_default_styles() {
