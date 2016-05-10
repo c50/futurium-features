@@ -325,18 +325,15 @@ function d4eu_preprocess_node(&$vars) {
       $vars['delete_rid'] = '';
       if (user_access('delete relations')) {
         $destination = drupal_get_query_parameters(NULL, array());
-        $vars['delete_rid'] = l(
-          t('Unlink'),
-          'relation/' . $rel_id . '/delete',
-          array(
-            'query' => array(
-              'destination' => $destination['q'],
+        $link_opts = array(
+          'query' => array('destination' => $destination['q']),
+          'attributes' => array(
+            'class' => array(
+              'unlink',
             ),
-            'attributes' => array(
-              'class' => 'unlink',
-            ),
-          )
+          ),
         );
+        $vars['delete_rid'] = l(t('Unlink'), 'relation/' . $rel_id . '/delete', $link_opts);
       }
     }
   }
