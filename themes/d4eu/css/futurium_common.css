@@ -1694,7 +1694,8 @@ a:hover.CTAButton,
   margin: 0 2em 0 0.5em;
 }
 .view-flavors-whats-new .flag-subscription-flag,
-.view-flavors .flag-subscription-flag {
+.view-flavors .flag-subscription-flag,
+.mini-teaser .flag-subscription-flag {
     float: right;
     margin: 0 0em 0 2em;
 }

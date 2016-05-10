@@ -288,10 +288,11 @@ function d4eu_preprocess_node(&$vars) {
     }
   }
 
+  $context = _supertags_get_context();
   $default_flavor = $vars['field_default_flavour'][LANGUAGE_NONE][0]['tid'];
   $default_archived = _supertags_is_archived(taxonomy_term_load($default_flavor));
 
-  if ($default_archived == 0) {
+  if ($default_archived == 0 && !$context['landing_page']) {
     if (module_exists("subscriptions_ui")) {
       $arg2 = subscriptions_arg(2);
 
