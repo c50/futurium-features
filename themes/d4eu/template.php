@@ -324,7 +324,9 @@ function d4eu_preprocess_node(&$vars) {
     $vars['select_relation'] .= render($block['content']);
   }
   if (isset($node->view->current_display)) {
-    if (in_array($node->view->current_display, ['relationteaser', 'evidence', 'parents'])) {
+    if (in_array($node->view->current_display, ['relationteaser', 'evidence',
+      'parents',
+    ])) {
       $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
       $vars['delete_rid'] = '';
       if (user_access('delete relations')) {

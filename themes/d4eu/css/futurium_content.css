@@ -712,7 +712,7 @@
   background: #ff9900;
   color: #fff;
   border-radius: 5px;
-  padding:0.5em 1.3em 0.7em 0;
+  padding: 0.5em 1.3em 0.7em 0;
   width: 100%;
   position: relative;
 }
@@ -790,7 +790,7 @@
   border-radius: 5px;
   color: #fff;
   text-decoration: none;
-  width:46%;
+  width: 46%;
 }
 .node-type-event-d4eu .field-name-field-date-time .fromTo-date > a + a {
   background: #2c82b6;
@@ -801,8 +801,8 @@
   display: inline-block;
   background: #285d93 url(../images/theme/sprite_event.png) no-repeat -32px 0;
   position: absolute;
-  width:13px;
-  height:28px;
+  width: 13px;
+  height: 28px;
   left: 46%;
   top: 3em;
 }
@@ -915,13 +915,13 @@
   width: 100%;
   height: 1em;
 }
-@media screen and (max-width: 799px){
+@media screen and (max-width: 799px) {
   .node-type-event-d4eu .group-body + *:before {
     float: none;
     display: inline-block;
   }
 }
-@media screen and (max-width: 699px){
+@media screen and (max-width: 699px) {
   .node-type-event-d4eu .group-venue,
   .node-type-event-d4eu .group-body {
     width: 100%;
@@ -930,10 +930,10 @@
   }
 }
 
-.node-type-event-d4eu .field-name-field-registration-url .field-label{
+.node-type-event-d4eu .field-name-field-registration-url .field-label {
   display: none;
 }
-.node-type-event-d4eu .field-name-field-registration-url .field-item a{
+.node-type-event-d4eu .field-name-field-registration-url .field-item a {
   background: -moz-linear-gradient(top, #ffffff 0%, #ececec 100%);
   background: -webkit-linear-gradient(top, #ffffff 0%,#ececec 100%);
   background: linear-gradient(to bottom, #ffffff 0%,#ececec 100%);
@@ -1206,7 +1206,7 @@ iframe {
   background: url(../images/theme/sprite_linked.png) no-repeat;
   margin-left: -60px;
   margin-bottom: -4px;
-  opacity:0.7;
+  opacity: 0.7;
 }
 .linkedContent .view-display-id-parents .view-header h2:before {
   background-position: 0 0;
