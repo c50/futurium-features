@@ -103,33 +103,37 @@
       endforeach;
     ?>
 
-    <?php if ($suffix_display): ?>
-    <div class="row node-info">
-      <div class="node-info-submitted col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-6 col-md-offset-6 col-sm-offset-6">
-        <div class="well well-sm node-submitted clearfix">
-          <small>
-          <?php print $user_picture; ?>
-          <?php print $submitted; ?>
-          </small>
-        </div>
-      </div>
-    </div>
-    <div class="node-info-footer">
-      <?php
-        print render($content['field_rate_ideas']);
-        print render($content['field_rate_issue']);
-      ?>
-    </div>
-    <?php endif;?>
     <div id="js-contentFilterContainer"></div>
 
     <?php
-      hide($content['comments']);
-      hide($content['links']);
-      hide($content['field_tags']);
+    hide($content['comments']);
+    hide($content['links']);
+    hide($content['field_tags']);
+    hide($content['field_rate_ideas']);
+    hide($content['field_rate_issue']);
     ?>
 
     <?php print render($content); ?>
+
+    <?php if ($suffix_display): ?>
+      <div class="row node-info">
+        <div class="node-info-submitted col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-6 col-md-offset-6 col-sm-offset-6">
+          <div class="well well-sm node-submitted clearfix">
+            <small>
+              <?php print $user_picture; ?>
+              <?php print $submitted; ?>
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="node-info-footer">
+        <?php
+        print render($content['field_rate_ideas']);
+        print render($content['field_rate_issue']);
+        ?>
+      </div>
+    <?php endif;?>
+
     <div class="linkedContent view-recent-activity">
       <?php print views_embed_view('relations_to_nodes', 'parents'); ?>
       <?php print views_embed_view('relations_to_nodes', 'evidence'); ?>
