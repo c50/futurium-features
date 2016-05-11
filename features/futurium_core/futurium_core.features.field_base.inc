@@ -10,7 +10,7 @@
 function futurium_core_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_authors_d4eu'
+  // Exported field_base: 'field_authors_d4eu'.
   $field_bases['field_authors_d4eu'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_date_time'
+  // Exported field_base: 'field_date_time'.
   $field_bases['field_date_time'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -62,7 +62,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'datestamp',
   );
 
-  // Exported field_base: 'field_ideas'
+  // Exported field_base: 'field_ideas'.
   $field_bases['field_ideas'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -83,7 +83,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_leading_picture_d4eu'
+  // Exported field_base: 'field_leading_picture_d4eu'.
   $field_bases['field_leading_picture_d4eu'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -108,7 +108,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_link_d4eu'
+  // Exported field_base: 'field_link_d4eu'.
   $field_bases['field_link_d4eu'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -182,7 +182,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_related_documents'
+  // Exported field_base: 'field_related_documents'.
   $field_bases['field_related_documents'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -218,7 +218,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_related_events'
+  // Exported field_base: 'field_related_events'.
   $field_bases['field_related_events'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -254,7 +254,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_related_polls'
+  // Exported field_base: 'field_related_polls'.
   $field_bases['field_related_polls'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -290,7 +290,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_related_videos'
+  // Exported field_base: 'field_related_videos'.
   $field_bases['field_related_videos'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -326,7 +326,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_videosd4eu'
+  // Exported field_base: 'field_videosd4eu'.
   $field_bases['field_videosd4eu'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -347,7 +347,7 @@ function futurium_core_field_default_field_bases() {
     'type' => 'media',
   );
 
-  // Exported field_base: 'field_year_of_publication_d4eu'
+  // Exported field_base: 'field_year_of_publication_d4eu'.
   $field_bases['field_year_of_publication_d4eu'] = array(
     'active' => 1,
     'cardinality' => 1,
