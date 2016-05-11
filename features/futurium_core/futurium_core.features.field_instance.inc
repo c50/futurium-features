@@ -10,7 +10,7 @@
 function futurium_core_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-document-field_authors_d4eu'
+  // Exported field_instance: 'node-document-field_authors_d4eu'.
   $field_instances['node-document-field_authors_d4eu'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -84,7 +84,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_leading_picture_d4eu'
+  // Exported field_instance: 'node-document-field_leading_picture_d4eu'.
   $field_instances['node-document-field_leading_picture_d4eu'] = array(
     'bundle' => 'document',
     'deleted' => 0,
@@ -169,7 +169,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_link_d4eu'
+  // Exported field_instance: 'node-document-field_link_d4eu'.
   $field_instances['node-document-field_link_d4eu'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -232,7 +232,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-document-field_year_of_publication_d4eu'
+  // Exported field_instance: 'node-document-field_year_of_publication_d4eu'.
   $field_instances['node-document-field_year_of_publication_d4eu'] = array(
     'bundle' => 'document',
     'default_value' => array(),
@@ -294,7 +294,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_d4eu-field_leading_picture_d4eu'
+  // Exported field_instance: 'node-event_d4eu-field_leading_picture_d4eu'.
   $field_instances['node-event_d4eu-field_leading_picture_d4eu'] = array(
     'bundle' => 'event_d4eu',
     'deleted' => 0,
@@ -506,7 +506,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_d4eu-field_tags'
+  // Exported field_instance: 'node-event_d4eu-field_tags'.
   $field_instances['node-event_d4eu-field_tags'] = array(
     'bundle' => 'event_d4eu',
     'default_value' => NULL,
@@ -554,7 +554,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ideas-field_tags'
+  // Exported field_instance: 'node-ideas-field_tags'.
   $field_instances['node-ideas-field_tags'] = array(
     'bundle' => 'ideas',
     'default_value' => NULL,
@@ -602,7 +602,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-poll-field_leading_picture_d4eu'
+  // Exported field_instance: 'node-poll-field_leading_picture_d4eu'.
   $field_instances['node-poll-field_leading_picture_d4eu'] = array(
     'bundle' => 'poll',
     'deleted' => 0,
@@ -683,7 +683,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-poll-field_tags'
+  // Exported field_instance: 'node-poll-field_tags'.
   $field_instances['node-poll-field_tags'] = array(
     'bundle' => 'poll',
     'default_value' => NULL,
@@ -731,7 +731,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-video_d4eu-field_leading_picture_d4eu'
+  // Exported field_instance: 'node-video_d4eu-field_leading_picture_d4eu'.
   $field_instances['node-video_d4eu-field_leading_picture_d4eu'] = array(
     'bundle' => 'video_d4eu',
     'deleted' => 0,
@@ -812,7 +812,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-video_d4eu-field_tags'
+  // Exported field_instance: 'node-video_d4eu-field_tags'.
   $field_instances['node-video_d4eu-field_tags'] = array(
     'bundle' => 'video_d4eu',
     'default_value' => NULL,
@@ -860,7 +860,7 @@ function futurium_core_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-video_d4eu-field_videosd4eu'
+  // Exported field_instance: 'node-video_d4eu-field_videosd4eu'.
   $field_instances['node-video_d4eu-field_videosd4eu'] = array(
     'bundle' => 'video_d4eu',
     'deleted' => 0,
