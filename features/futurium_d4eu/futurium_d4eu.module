@@ -551,18 +551,18 @@ function futurium_d4eu_field_formatter_view($entity_type, $entity, $field, $inst
       else {
         if (empty($item['value2']) || $item['value'] == $item['value2']) {
           $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d'));
-          $variables['from_day'] = explode('/', format_date($item['value'], 'custom', 'l'));
-          $variables['from_time'] = explode('/', format_date($item['value'], 'custom', 'H:i'));
-          $variables['to_time'] = explode('/', format_date($item['value2'], 'custom', 'H:i'));
+          $variables['from_day'] = format_date($item['value'], 'custom', 'l');
+          $variables['from_time'] = format_date($item['value'], 'custom', 'H:i');
+          $variables['to_time'] = format_date($item['value2'], 'custom', 'H:i');
           $element[$delta] = array('#markup' => theme('tear_off_full_calendar', $variables));
         }
         else {
           $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d'));
-          $variables['from_day'] = explode('/', format_date($item['value'], 'custom', 'l'));
-          $variables['from_time'] = explode('/', format_date($item['value'], 'custom', 'H:i'));
+          $variables['from_day'] = format_date($item['value'], 'custom', 'l');
+          $variables['from_time'] = format_date($item['value'], 'custom', 'H:i');
           $variables['to_date'] = explode('/', format_date($item['value2'], 'custom', 'Y/M/d'));
-          $variables['to_day'] = explode('/', format_date($item['value2'], 'custom', 'l'));
-          $variables['to_time'] = explode('/', format_date($item['value2'], 'custom', 'H:i'));
+          $variables['to_day'] = format_date($item['value2'], 'custom', 'l');
+          $variables['to_time'] = format_date($item['value2'], 'custom', 'H:i');
           $element[$delta] = array('#markup' => theme('tear_off_full_calendar', $variables));
         }
       }
