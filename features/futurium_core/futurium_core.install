@@ -21,22 +21,6 @@ function futurium_core_disable() {
 }
 
 /**
- * Implements hook_install().
- */
-function futurium_core_install() {
-  $t = get_t();
-  drupal_set_message($t('Futurium data feature is now installed on your site.'));
-}
-
-/**
- * Implements hook_uninstall().
- */
-function futurium_core_uninstall() {
-  $t = get_t();
-  drupal_set_message($t('Futurium data feature is now uninstalled from your site.'));
-}
-
-/**
  * Updates to v1.8.
  */
 function futurium_core_update_7101() {
