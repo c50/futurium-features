@@ -1122,12 +1122,12 @@ function futurium_d4eu_flag_flag($flag, $entity_id, $account, $flagging) {
   switch ($flag->name) {
     case "subscription_flag":
       $node = node_load($entity_id);
-      futurium_d4eu_subscribe_content($node, $account);
+      _futurium_d4eu_subscribe_content($node, $account);
       break;
 
     case "subscription_flavour_flag":
       $term = taxonomy_term_load($entity_id);
-      futurium_d4eu_subscribe_term($term, $account);
+      _futurium_d4eu_subscribe_term($term, $account);
       break;
   }
 }
@@ -1139,12 +1139,12 @@ function futurium_d4eu_flag_unflag($flag, $entity_id, $account, $flagging) {
   switch ($flag->name) {
     case "subscription_flag":
       $node = node_load($entity_id);
-      futurium_d4eu_unsubscribe_content($node, $account);
+      _futurium_d4eu_unsubscribe_content($node, $account);
       break;
 
     case "subscription_flavour_flag":
       $term = taxonomy_term_load($entity_id);
-      futurium_d4eu_unsubscribe_term($term, $account);
+      _futurium_d4eu_unsubscribe_term($term, $account);
       break;
   }
 }
@@ -1152,7 +1152,7 @@ function futurium_d4eu_flag_unflag($flag, $entity_id, $account, $flagging) {
 /**
  * Subscribe user from node.
  */
-function futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_interval = "") {
+function _futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_interval = "") {
   // Get existing.
   $sid = subscriptions_get_subscription($user->uid, 'node', 'nid', $node->nid);
   $args = array(
@@ -1199,7 +1199,7 @@ function futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_int
 /**
  * Unsubscribe user from node.
  */
-function futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
+function _futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
   $args = array(
     0 => 'node',
     1 => 'nid',
@@ -1253,7 +1253,7 @@ function futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
 /**
  * Subscribe user from term.
  */
-function futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interval = "") {
+function _futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interval = "") {
   // Get existing.
   $sid = subscriptions_get_subscription($user->uid, 'node', 'tid', $term->tid);
   $args = array(
@@ -1300,7 +1300,7 @@ function futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interv
 /**
  * Unsubscribe user from term.
  */
-function futurium_d4eu_unsubscribe_term($term, $user, $type = 'node') {
+function _futurium_d4eu_unsubscribe_term($term, $user, $type = 'node') {
   $args = array(
     0 => 'node',
     1 => 'tid',
