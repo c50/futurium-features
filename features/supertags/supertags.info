@@ -124,6 +124,5 @@ features_exclude[dependencies][strongarm] = strongarm
 features_exclude[dependencies][taxonomy] = taxonomy
 features_exclude[dependencies][views] = views
 files[] = supertags_tree.class.inc
-files[] = tests/supertags.test
 multisite_version = 2.1
 php = 5.3.29

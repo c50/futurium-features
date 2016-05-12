@@ -49,6 +49,5 @@ features[field_instance][] = node-video_d4eu-field_videosd4eu
 features[node][] = ideas
 features[node][] = event_d4eu
 features[node][] = video_d4eu
-files[] = tests/futurium_core.test
 multisite_version = 2.1
 php = 5.2.4

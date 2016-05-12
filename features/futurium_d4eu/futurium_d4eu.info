@@ -253,7 +253,5 @@ features_exclude[field_instance][node-video-body] = node-video-body
 features_exclude[field_instance][node-video-field_video] = node-video-field_video
 features_exclude[taxonomy][super_tags] = super_tags
 files[] = user_picture.class.inc
-files[] = tests/futurium_d4eu.test
-files[] = tests/futurium_d4eu.common.test
 multisite_version = 2.1
 php = 5.2.4
