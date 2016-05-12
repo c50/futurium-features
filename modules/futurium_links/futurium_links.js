@@ -9,7 +9,8 @@
     Drupal.ajax.prototype.commands.fadeMessages = function() {
       $('.temporary-messages').each(function() {
         element = $(this);
-        setTimeout(function(){ element.fadeOut(); }, 5000)
+        setTimeout(function(){ element.fadeOut();
+        }, 5000)
       });
     }
   }
@@ -19,7 +20,8 @@
     Drupal.jsAC.prototype.temporaryMessage = function () {
       $('.temporary-message').each(function() {
         element = $(this);
-        setTimeout(function(){ element.fadeOut(); }, 3000)
+        setTimeout(function(){ element.fadeOut();
+        }, 3000)
       });
     };
     /**
@@ -30,24 +32,39 @@
         e = window.event;
       }
       switch (e.keyCode) {
-        case 16: // Shift.
-        case 17: // Ctrl.
-        case 18: // Alt.
-        case 20: // Caps lock.
-        case 33: // Page up.
-        case 34: // Page down.
-        case 35: // End.
-        case 36: // Home.
-        case 37: // Left arrow.
-        case 38: // Up arrow.
-        case 39: // Right arrow.
-        case 40: // Down arrow.
+        // Shift.
+        case 16:
+          // Ctrl.
+        case 17:
+          // Alt.
+        case 18:
+          // Caps lock.
+        case 20:
+          // Page up.
+        case 33:
+          // Page down.
+        case 34:
+          // End.
+        case 35:
+          // Home.
+        case 36:
+          // Left arrow.
+        case 37:
+          // Up arrow.
+        case 38:
+          // Right arrow.
+        case 39:
+          // Down arrow.
+        case 40:
           return true;
-        
-        case 9:  // Tab.
-        case 13: // Enter.
-        case 27: // Esc.
-          // this.hidePopup(e.keyCode);
+
+        // Tab.
+        case 9:
+          // Enter.
+        case 13:
+          // Esc.
+        case 27:
+          // this.hidePopup(e.keyCode);.
           return true;
 
         // All other keys.
@@ -56,7 +73,7 @@
             this.populatePopup();
           }
           else {
-            // this.hidePopup(e.keyCode);
+            // this.hidePopup(e.keyCode);.
             this.hidePreview(input);
           }
           return true;
@@ -99,18 +116,24 @@
         if (matches[key] !== null && typeof matches[key] === 'object') {
           $('<li class="' + matches[key].class + '"></li>')
             .html($('<a href="#"></a>').html(matches[key].label))
-            .mousedown(function () { ac.select(this); })
-            .mouseover(function () { ac.highlight(this); })
-            .mouseout(function () { ac.unhighlight(this); })
+            .mousedown(function () { ac.select(this);
+            })
+            .mouseover(function () { ac.highlight(this);
+            })
+            .mouseout(function () { ac.unhighlight(this);
+            })
             .data('autocompleteValue', key)
             .appendTo(ul);
         }
         else {
           $('<li></li>')
             .html($('<a href="#"></a>').html(matches[key]))
-            .mousedown(function () { ac.select(this); })
-            .mouseover(function () { ac.highlight(this); })
-            .mouseout(function () { ac.unhighlight(this); })
+            .mousedown(function () { ac.select(this);
+            })
+            .mouseover(function () { ac.highlight(this);
+            })
+            .mouseout(function () { ac.unhighlight(this);
+            })
             .data('autocompleteValue', key)
             .appendTo(ul);
         }
@@ -141,7 +164,8 @@
       var popup = this.popup;
       if (popup) {
         this.popup = null;
-        $(popup).fadeOut('fast', function () { $(popup).remove(); });
+        $(popup).fadeOut('fast', function () { $(popup).remove();
+        });
       }
       this.selected = false;
       $(this.ariaLive).empty();

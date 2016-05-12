@@ -89,10 +89,10 @@ function _futurium_links_link_nodes($nid1, $nid2, $relation_type = NULL, $type =
         '@relation_label' => strtolower($relation_label),
       );
 
-      $message = $reverse 
+      $message = $reverse
          ? t('Relation created: @target_node is <em>@relation_label</em> @origin_node', $vars)
          : t('Relation created: @origin_node is <em>@relation_label</em> @target_node', $vars);
-      
+
       $message_type = 'status';
       $fade = TRUE;
     }

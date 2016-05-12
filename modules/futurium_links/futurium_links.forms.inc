@@ -265,8 +265,8 @@ function futurium_links_multiple_boxes_form($form, &$form_state, $node, $setting
     $show_links = $settings['show_add_links'] ? 'show' : 'hide';
 
     $form['show_links'] = array(
-        '#type' => 'hidden',
-        '#value' => $show_links,
+      '#type' => 'hidden',
+      '#value' => $show_links,
     );
 
     $form[$relation_name]['new-wrap']['new']['item'] = array(

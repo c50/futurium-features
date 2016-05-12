@@ -9,30 +9,30 @@
  * Implements hook_enable().
  */
 function futurium_links_enable() {
-	$t = get_t();
-	drupal_set_message($t('Futurium links module is now active on your site.'));
+  $t = get_t();
+  drupal_set_message($t('Futurium links module is now active on your site.'));
 }
 
 /**
  * Implements hook_disable().
  */
 function futurium_links_disable() {
-	$t = get_t();
-	drupal_set_message($t('Futurium links module is now disabled on your site.'));
+  $t = get_t();
+  drupal_set_message($t('Futurium links module is now disabled on your site.'));
 }
 
 /**
  * Implements hook_install().
  */
 function futurium_links_install() {
-	$t = get_t();
-	drupal_set_message($t('Futurium links module is now installed on your site.'));
+  $t = get_t();
+  drupal_set_message($t('Futurium links module is now installed on your site.'));
 }
 
 /**
  * Implements hook_uninstall().
  */
 function futurium_links_uninstall() {
-	$t = get_t();
-	drupal_set_message($t('Futurium links module is now uninstalled from your site.'));
+  $t = get_t();
+  drupal_set_message($t('Futurium links module is now uninstalled from your site.'));
 }
