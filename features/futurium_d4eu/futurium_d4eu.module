@@ -220,7 +220,7 @@ function futurium_d4eu_menu() {
   $items['admin/content/xls-all-content'] = array(
     'title' => 'Download all content in Excel file',
     'description' => 'Download content in Excel file (all content-types)',
-    'page callback' => 'drupal_goto',
+    'page callback' => '_futurium_d4eu_goto',
     'page arguments' => array('xls-all-content'),
     'access callback' => TRUE,
     'menu_name' => 'management',
@@ -230,7 +230,7 @@ function futurium_d4eu_menu() {
   $items['admin/content/dashboard'] = array(
     'title' => 'Dashboard',
     'description' => 'Editors dashboard',
-    'page callback' => 'drupal_goto',
+    'page callback' => '_futurium_d4eu_goto',
     'page arguments' => array('dashboard'),
     'access callback' => TRUE,
     'menu_name' => 'management',
@@ -260,6 +260,15 @@ function futurium_d4eu_menu() {
   );
 
   return $items;
+}
+
+/**
+ * Redirection callback for the hook_menu().
+ */
+function _futurium_d4eu_goto($path) {
+  if (!empty($path)) {
+    drupal_goto($path);
+  }
 }
 
 /**
