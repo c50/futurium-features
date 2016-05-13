@@ -82,15 +82,15 @@
 <div class='fromTo-date'>
   <a href="">
   <div class='dateColour clearfix'>
-    <div class='day-event'><?php print($from_date[2]); ?></div>
-    <div class='month-event'><?php print($from_date[1]); ?></div>
-    <div class='year-event'><?php print($from_date[0]); ?></div>
-    <div class='week-day-event'><?php print($from_day); ?></div>
+    <div class='day-event'><?php print ($from_date[2]); ?></div>
+    <div class='month-event'><?php print ($from_date[1]); ?></div>
+    <div class='year-event'><?php print ($from_date[0]); ?></div>
+    <div class='week-day-event'><?php print ($from_day); ?></div>
   </div>
   <?php if ($from_time): ?>
-    <div class='time-event'><span class='fromHour'><?php print($from_time) ?></span>
+    <div class='time-event'><span class='fromHour'><?php print ($from_time) ?></span>
     <?php if ($from_date == $to_date): ?>
-    <span class='toLabel'> <?php t('to') ?> </span><span class='toHour'><?php print($to_time) ?></span>
+    <span class='toLabel'> <?php t('to') ?> </span><span class='toHour'><?php print ($to_time) ?></span>
     <?php endif ?>
     </div>
   <?php endif ?>
@@ -99,12 +99,12 @@
 <?php if ($to_date): ?>
     <a href="">
     <div class='dateColour clearfix'>
-      <div class='day-event'><?php print($to_date[2]) ?></div>
-      <div class='month-event'><?php print($to_date[1]) ?></div>
-      <div class='year-event'><?php print($to_date[0]) ?></div>
-      <div class='week-day-event'><?php print($to_day) ?></div>
+      <div class='day-event'><?php print ($to_date[2]) ?></div>
+      <div class='month-event'><?php print ($to_date[1]) ?></div>
+      <div class='year-event'><?php print ($to_date[0]) ?></div>
+      <div class='week-day-event'><?php print ($to_day) ?></div>
     </div>
-    <div class='time-event'><span class='fromHour'><?php print($to_time) ?></span>
+    <div class='time-event'><span class='fromHour'><?php print ($to_time) ?></span>
     </div>
   <?php endif ?>
   </a>
