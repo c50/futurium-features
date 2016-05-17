@@ -1111,6 +1111,18 @@ function futurium_d4eu_flag_unflag($flag, $entity_id, $account, $flagging) {
 
 /**
  * Subscribe user from node.
+ *
+ * @param object $node
+ *   The node.
+ * @param object $user
+ *   The user.
+ * @param string $type
+ *   The type of content.
+ * @param string $send_interval
+ *   The send interval.
+ *
+ * @return mixed
+ *   Return parameters to create the subscription.
  */
 function _futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_interval = "") {
   // Get existing.
@@ -1158,6 +1170,16 @@ function _futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_in
 
 /**
  * Unsubscribe user from node.
+ *
+ * @param object $node
+ *   The node.
+ * @param object $user
+ *   The user.
+ * @param string $type
+ *   The type of content.
+ *
+ * @return mixed
+ *   Return parameters to cancel the subscription.
  */
 function _futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
   $args = array(
@@ -1212,6 +1234,16 @@ function _futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
 
 /**
  * Subscribe user from term.
+ *
+ * @param object $term
+ *   The term.
+ * @param object $user
+ *   The user.
+ * @param string $type
+ *   The type of content.
+ *
+ * @return mixed
+ *   Return parameters to create the subscription.
  */
 function _futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interval = "") {
   // Get existing.
@@ -1259,6 +1291,16 @@ function _futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_inter
 
 /**
  * Unsubscribe user from term.
+ *
+ * @param object $term
+ *   The term.
+ * @param object $user
+ *   The user.
+ * @param string $type
+ *   The type of content.
+ *
+ * @return mixed
+ *   Return parameters to cancel the subscription.
  */
 function _futurium_d4eu_unsubscribe_term($term, $user, $type = 'node') {
   $args = array(
