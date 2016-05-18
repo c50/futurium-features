@@ -9,6 +9,7 @@ dependencies[] = date_views
 dependencies[] = field_group
 dependencies[] = fivestar
 dependencies[] = flag
+dependencies[] = futurium_countdown
 dependencies[] = futurium_core
 dependencies[] = invite_by_email
 dependencies[] = media_internet

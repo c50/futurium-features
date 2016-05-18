@@ -1,5 +1,7 @@
 name = Futurium Countdown
 description = Add a countdown to date fields.
 core = 7.x
+package = Futurium
 dependencies[] = date
-
+multisite_version = 2.1
+php = 5.2.4

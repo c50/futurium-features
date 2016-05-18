@@ -6,6 +6,22 @@
  */
 
 /**
+ * Implements hook_enable().
+ */
+function futurium_countdown_enable() {
+    $t = get_t();
+    drupal_set_message($t('Futurium countdown feature is now active on your site.'));
+}
+
+/**
+ * Implements hook_disable().
+ */
+function futurium_coutdown_disable() {
+    $t = get_t();
+    drupal_set_message($t('Futurium countdown feature is now disabled on your site.'));
+}
+
+/**
  * Implements hook_schema().
  */
 function futurium_countdown_schema() {
