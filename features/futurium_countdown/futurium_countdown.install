@@ -16,7 +16,7 @@ function futurium_countdown_enable() {
 /**
  * Implements hook_disable().
  */
-function futurium_coutdown_disable() {
+function futurium_countdown_disable() {
     $t = get_t();
     drupal_set_message($t('Futurium countdown feature is now disabled on your site.'));
 }
