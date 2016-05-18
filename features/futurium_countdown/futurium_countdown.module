@@ -301,7 +301,7 @@ function theme_futurium_countdown_diff(&$variables) {
 
   $current_day = date('G', $variables['current_date']);
   if ($variables['diff']->days >= 1 && $variables['diff']->h > 0) {
-    $variables['diff']->days+=1;
+    $variables['diff']->days += 1;
   }
 
   $classes_array[] = 'countdown';
