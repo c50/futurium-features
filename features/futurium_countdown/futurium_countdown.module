@@ -166,6 +166,25 @@ function futurium_countdown_preprocess_field(&$variables) {
  * Helper function.
  *
  * Get the countdown settings for a specific field.
+ *
+ * @param string $entity_type
+ *   The entity type.
+ * @param string $bundle
+ *   The bundle.
+ * @param string $entity_id
+ *   The entity id.
+ * @param string $revision_id
+ *   The revision id.
+ * @param string $field
+ *   The field.
+ * @param string $language
+ *   The language selected.
+ *
+ * @delta integer $delta
+ *   The index of the condition.
+ *
+ * @return array
+ *   The countdown settings.
  */
 function _futurium_countdown_get_countdown_instance_settings($entity_type, $bundle, $entity_id, $revision_id, $field, $language, $delta) {
 
@@ -195,6 +214,18 @@ function _futurium_countdown_get_countdown_instance_settings($entity_type, $bund
  * Helper function.
  *
  * Calculates difference between two dates.
+ *
+ * @param int $current
+ *   The current date.
+ * @param string $start
+ *   The start date.
+ * @param string $final
+ *   The final date.
+ * @param bool $toggle
+ *   The toggle to end date option.
+ *
+ * @return object
+ *   The date interval result.
  */
 function _futurium_countdown_diff($current, $start, $final = NULL, $toggle = FALSE) {
   $date_format = 'Y-m-d H:i:s';
