@@ -20,18 +20,18 @@ function futurium_countdown_form_field_ui_field_edit_form_alter(&$form, $form_st
 
     $form['instance']['settings']['enable_countdown'] = array(
       '#type' => 'checkbox',
-      '#title' => 'Enable countdown options',
+      '#title' => t('Enable countdown options'),
       '#default_value' => isset($form['#instance']['settings']['enable_countdown']) ? $form['#instance']['settings']['enable_countdown'] : 0,
       '#weight' => 90,
     );
 
     $form['instance']['settings']['position_countdown'] = array(
       '#type' => 'radios',
-      '#title' => 'Position of the countdown',
+      '#title' => t('Position of the countdown'),
       '#default_value' => isset($form['#instance']['settings']['position_countdown']) ? $form['#instance']['settings']['position_countdown'] : 'prefix',
       '#options' => array(
-        'prefix' => 'Before the date',
-        'suffix' => 'After the date',
+        'prefix' => t('Before the date'),
+        'suffix' => t('After the date'),
       ),
       '#description' => t("Position of the countdown relative to date."),
       '#states' => array(
@@ -199,9 +199,9 @@ function _futurium_countdown_get_countdown_instance_settings($entity_type, $bund
 function _futurium_countdown_diff($current, $start, $final = NULL, $toggle = FALSE) {
   $date_format = 'Y-m-d H:i:s';
 
-  $current = date($date_format, $current);
-  $start = date($date_format, $start);
-  $final = date($date_format, $final);
+  $current = format_date($current, 'custom', $date_format);
+  $start = format_date($start, 'custom', $date_format);
+  $final = format_date($final, 'custom', $date_format);
 
   $diff = array();
 
@@ -299,7 +299,7 @@ function theme_futurium_countdown_diff(&$variables) {
     return;
   }
 
-  $current_day = date('G', $variables['current_date']);
+  $current_day = format_date($variables['current_date'], 'custom', 'G');
   if ($variables['diff']->days >= 1 && $variables['diff']->h > 0) {
     $variables['diff']->days += 1;
   }
