@@ -53,36 +53,40 @@ function futurium_countdown_form_field_ui_field_edit_form_alter(&$form, $form_st
  */
 function futurium_countdown_date_combo_process_alter(&$element, $form_state, $context) {
 
-  $input_name = '#' . $element['#id'] . '-show-todate';
-  $input_name2 = '#' . $element['#id'] . '-countdown-show';
+  if ($context['instance']['settings']['enable_countdown']) {
 
-  $field = $element['#field_name'];
-  $delta = $element['#delta'];
-  $entity = $element['#entity'];
-  $entity_type = $element['#entity_type'];
-  $language = $element['#language'];
+    $input_name = '#' . $element['#id'] . '-show-todate';
+    $input_name2 = '#' . $element['#id'] . '-countdown-show';
 
-  list($entity_id, $revision_id, $bundle) = entity_extract_ids($entity_type, $entity);
-  $result = _futurium_countdown_get_countdown_instance_settings($entity_type, $bundle, $entity_id, $revision_id, $field, $language, $delta);
+    $field = $element['#field_name'];
+    $delta = $element['#delta'];
+    $entity = $element['#entity'];
+    $entity_type = $element['#entity_type'];
+    $language = $element['#language'];
 
-  $element['countdown_show'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Show countdown timer?'),
-    '#default_value' => isset($result['countdown_show']) ? $result['countdown_show'] : 0,
-  );
+    list($entity_id, $revision_id, $bundle) = entity_extract_ids($entity_type, $entity);
+    $result = _futurium_countdown_get_countdown_instance_settings($entity_type, $bundle, $entity_id, $revision_id, $field, $language, $delta);
 
-  $element['countdown_toggle'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Toggle countdown to end date?'),
-    '#description' => t("Check this box if the countdown timer should switch to a countdown to end date after the start date has passed."),
-    '#default_value' => isset($result['countdown_toggle']) ? $result['countdown_toggle'] : 0,
-    '#states' => array(
-      'visible' => array(
-        $input_name => array('checked' => TRUE),
-        $input_name2 => array('checked' => TRUE),
+    $element['countdown_show'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Show countdown timer?'),
+      '#default_value' => isset($result['countdown_show']) ? $result['countdown_show'] : 0,
+    );
+
+    $element['countdown_toggle'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Toggle countdown to end date?'),
+      '#description' => t("Check this box if the countdown timer should switch to a countdown to end date after the start date has passed."),
+      '#default_value' => isset($result['countdown_toggle']) ? $result['countdown_toggle'] : 0,
+      '#states' => array(
+        'visible' => array(
+          $input_name => array('checked' => TRUE),
+          $input_name2 => array('checked' => TRUE),
+        ),
       ),
-    ),
-  );
+    );
+
+  }
 }
 
 /**
