@@ -127,7 +127,7 @@
         </div>
       </div>
       <div class="node-info-footer">
-        <?php if ($subscriptions_node_flag): ?>
+        <?php if (isset($subscriptions_node_flag)): ?>
           <?php print $subscriptions_node_flag ?>
         <?php endif; ?>
         <?php
