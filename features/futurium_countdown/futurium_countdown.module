@@ -387,6 +387,10 @@ function theme_futurium_countdown_diff(&$variables) {
           $classes_array[] = 'present';
           $label_parts[] = '<span class="description target">' . t('to closing date') . '</span>';
         }
+        // Not targeting end date.
+        else{
+          $label_parts = array();
+        }
       }
     }
     else {
