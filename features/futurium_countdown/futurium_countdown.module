@@ -138,11 +138,9 @@ function futurium_countdown_preprocess_field(&$variables) {
       if ($field['#view_mode'] == 'full') {
         list($entity_id, $revision_id, $bundle) = entity_extract_ids($field['#entity_type'], $field['#object']);
         $field_info = field_info_instance($field['#entity_type'], $field['#field_name'], $field['#bundle']);
-        $position = $field_info['settings']['position_countdown'];
-        $translated = field_is_translatable($field['#entity_type'], $field_info);
-        $language = $translated ? $field['#object']->language : LANGUAGE_NONE;
-
         if ($field_info['settings']['enable_countdown']) {
+          $position = $field_info['settings']['position_countdown'];
+          $language = $field['#object']->language;
           $variables['classes_array'][] = 'with-countdown';
           $current = time();
           foreach ($field['#items'] as $delta => $values) {
@@ -388,7 +386,7 @@ function theme_futurium_countdown_diff(&$variables) {
           $label_parts[] = '<span class="description target">' . t('to closing date') . '</span>';
         }
         // Not targeting end date.
-        else{
+        else {
           $label_parts = array();
         }
       }
