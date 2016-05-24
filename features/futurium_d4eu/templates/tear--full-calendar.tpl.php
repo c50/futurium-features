@@ -78,97 +78,34 @@
  * @see template_process()
  */
 ?>
-<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-
-  <?php print render($title_prefix); ?>
-  <?php if (!$page): ?>
-    <h2<?php print $title_attributes; ?>>
-      <a href="<?php print filter_xss($node_url); ?>"><?php print $title; ?></a>
-    </h2>
-  <?php endif; ?>
-  <?php print render($title_suffix); ?>
-  <div class="content clearfix"<?php print $content_attributes; ?>>
-    <?php if ($prefix_display): ?>
-    <div class="node-private label label-default clearfix">
-      <span class="glyphicon glyphicon-lock"></span>
-      <?php print t('This content is private'); ?>
-    </div>
-    <?php endif; ?>
-
-    <?php
-      foreach ($content as $key => $value):
-        if (in_array($key, $show)):
-          print render($content[$key]);
-        endif;
-      endforeach;
-    ?>
-
-    <div id="js-contentFilterContainer"></div>
-
-    <?php
-    hide($content['comments']);
-    hide($content['links']);
-    hide($content['field_tags']);
-    hide($content['field_rate_ideas']);
-    hide($content['field_rate_issue']);
-    ?>
-
-    <?php print render($content); ?>
-
-    <?php if ($suffix_display): ?>
-      <div class="row node-info">
-        <div class="node-info-submitted col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-6 col-md-offset-6 col-sm-offset-6">
-          <div class="well well-sm node-submitted clearfix">
-            <small>
-              <?php print $user_picture; ?>
-              <?php print $submitted; ?>
-            </small>
-          </div>
-        </div>
-      </div>
-      <div class="node-info-footer">
-        <?php if (isset($subscriptions_node_flag)): ?>
-          <?php print $subscriptions_node_flag ?>
-        <?php endif; ?>
-        <?php
-        print render($content['field_rate_ideas']);
-        print render($content['field_rate_issue']);
-        ?>
-      </div>
-    <?php endif;?>
-
-    <div class="linkedContent view-recent-activity">
-      <?php print views_embed_view('relations_to_nodes', 'parents'); ?>
-      <?php print views_embed_view('relations_to_nodes', 'evidence'); ?>
-      <?php print views_embed_view('relations_to_nodes', 'relationteaser'); ?>
-    </div>
-    <?php if (user_is_logged_in()): ?>
-      <div class="linkingForm"><?php print render($select_relation) ?></div>
-    <?php endif; ?>
-
-    <?php if ((user_is_logged_in() == FALSE) && ($open_to_comments == TRUE)): ?>
-      <div id='comment-form-container'><figure class='loginToCommentCTA'>
-          <h2 class='title comment-form'><?php print $comment_login_title ?></h2>
-                        <span class='form-item'>
-                          <label><?php print $comment_login_subject ?> </label><input class='form-control form-text' type='text' size='60'>
-                        </span>
-                        <span>
-                        <span class='form-item'>
-                          <label><?php print $comment_login_comment ?>
-                            <span class='form-required'>*</span>
-                          </label>
-                          <textarea class='form-control' cols='60' rows='5'></textarea>
-                         </span>
-                       </span>
-                       <span class='form-item'>
-                         <button class='btn btn-default'><?php print $comment_login_save ?></button>
-                       </span>
-          <figcaption class='loginToCommentCTAMask'>
-            <p><?php print $comment_login ?></p>
-          </figcaption>
-        </figure></div>
-    <?php endif;?>
-    <?php print render($content['comments']); ?>
-
+<?php if ($from_date): ?>
+<div class='fromTo-date'>
+  <a href="">
+  <div class='dateColour clearfix'>
+    <div class='day-event'><?php print ($from_date[2]); ?></div>
+    <div class='month-event'><?php print ($from_date[1]); ?></div>
+    <div class='year-event'><?php print ($from_date[0]); ?></div>
+    <div class='week-day-event'><?php print ($from_day); ?></div>
   </div>
+  <?php if ($from_time): ?>
+    <div class='time-event'><span class='fromHour'><?php print ($from_time) ?></span>
+    <?php if ($from_date == $to_date): ?>
+    <span class='toLabel'> <?php t('to') ?> </span><span class='toHour'><?php print ($to_time) ?></span>
+    <?php endif ?>
+    </div>
+  <?php endif ?>
+<?php endif ?>
+
+<?php if ($to_date): ?>
+    <a href="">
+    <div class='dateColour clearfix'>
+      <div class='day-event'><?php print ($to_date[2]) ?></div>
+      <div class='month-event'><?php print ($to_date[1]) ?></div>
+      <div class='year-event'><?php print ($to_date[0]) ?></div>
+      <div class='week-day-event'><?php print ($to_day) ?></div>
+    </div>
+    <div class='time-event'><span class='fromHour'><?php print ($to_time) ?></span>
+    </div>
+  <?php endif ?>
+  </a>
 </div>

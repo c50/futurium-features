@@ -220,7 +220,7 @@ function futurium_d4eu_menu() {
   $items['admin/content/xls-all-content'] = array(
     'title' => 'Download all content in Excel file',
     'description' => 'Download content in Excel file (all content-types)',
-    'page callback' => 'drupal_goto',
+    'page callback' => '_futurium_d4eu_goto',
     'page arguments' => array('xls-all-content'),
     'access callback' => TRUE,
     'menu_name' => 'management',
@@ -230,7 +230,7 @@ function futurium_d4eu_menu() {
   $items['admin/content/dashboard'] = array(
     'title' => 'Dashboard',
     'description' => 'Editors dashboard',
-    'page callback' => 'drupal_goto',
+    'page callback' => '_futurium_d4eu_goto',
     'page arguments' => array('dashboard'),
     'access callback' => TRUE,
     'menu_name' => 'management',
@@ -260,6 +260,15 @@ function futurium_d4eu_menu() {
   );
 
   return $items;
+}
+
+/**
+ * Redirection callback for the hook_menu().
+ */
+function _futurium_d4eu_goto($path) {
+  if (!empty($path)) {
+    drupal_goto($path);
+  }
 }
 
 /**
@@ -325,7 +334,8 @@ function futurium_d4eu_theme($existing, $type, $theme, $path) {
       'from_time' => NULL,
       'to_time' => NULL,
     ),
-    'function' => '_futurium_d4eu_tear_off_full_calendar',
+    'template' => 'tear--full-calendar',
+    'path' => drupal_get_path('module', 'futurium_d4eu') . '/templates',
   );
   return $theme;
 }
@@ -542,18 +552,18 @@ function futurium_d4eu_field_formatter_view($entity_type, $entity, $field, $inst
       else {
         if (empty($item['value2']) || $item['value'] == $item['value2']) {
           $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d'));
-          $variables['from_day'] = explode('/', format_date($item['value'], 'custom', 'l'));
-          $variables['from_time'] = explode('/', format_date($item['value'], 'custom', 'H:i'));
-          $variables['to_time'] = explode('/', format_date($item['value2'], 'custom', 'H:i'));
+          $variables['from_day'] = format_date($item['value'], 'custom', 'l');
+          $variables['from_time'] = format_date($item['value'], 'custom', 'H:i');
+          $variables['to_time'] = format_date($item['value2'], 'custom', 'H:i');
           $element[$delta] = array('#markup' => theme('tear_off_full_calendar', $variables));
         }
         else {
           $variables['from_date'] = explode('/', format_date($item['value'], 'custom', 'Y/M/d'));
-          $variables['from_day'] = explode('/', format_date($item['value'], 'custom', 'l'));
-          $variables['from_time'] = explode('/', format_date($item['value'], 'custom', 'H:i'));
+          $variables['from_day'] = format_date($item['value'], 'custom', 'l');
+          $variables['from_time'] = format_date($item['value'], 'custom', 'H:i');
           $variables['to_date'] = explode('/', format_date($item['value2'], 'custom', 'Y/M/d'));
-          $variables['to_day'] = explode('/', format_date($item['value2'], 'custom', 'l'));
-          $variables['to_time'] = explode('/', format_date($item['value2'], 'custom', 'H:i'));
+          $variables['to_day'] = format_date($item['value2'], 'custom', 'l');
+          $variables['to_time'] = format_date($item['value2'], 'custom', 'H:i');
           $element[$delta] = array('#markup' => theme('tear_off_full_calendar', $variables));
         }
       }
@@ -591,47 +601,6 @@ function _futurium_d4eu_tear_off_calendar($variables) {
     return;
   }
 }
-
-/**
- * Returns HTML for a date element formatted as a tear-off full calendar.
- *
- * Provides markup to display a date like a tear-off calendar like e.g.
- * https://www.pinterest.com/pin/384705993142402467/ .
- */
-function _futurium_d4eu_tear_off_full_calendar($variables) {
-  if ($variables['from_date']) {
-    $from_date = "<div class='dateColour clearfix'><div class='day-event'>{$variables['from_date'][2]}</div>
-      <div class='month-event'>{$variables['from_date'][1]}</div>
-      <div class='year-event'>{$variables['from_date'][0]}</div>
-      <div class='week-day-event'>{$variables['from_day'][0]}</div></div>";
-    if (($variables['from_date'] == $variables['to_date']) && ($variables['from_time'] <> $variables['to_time'])) {
-      $from_date .= "<div class='time-event'><span class='fromHour'>{$variables['from_time'][0]}</span>
-        <span class='toLabel'> " . t('to') . " </span><span class='toHour'>{$variables['to_time'][0]}</span></div>";
-    }
-    else {
-      $from_date .= "<div class='time-event'><span class='fromHour'>{$variables['from_time'][0]}</span></div>";
-    }
-    $from_date = l($from_date, $variables['alias'], array('html' => TRUE));
-
-    if ($variables['to_date'] > $variables['from_date']) {
-      $to_date = "<div class='dateColour clearfix'><div class='day-event'>{$variables['to_date'][2]}</div>
-      <div class='month-event'>{$variables['to_date'][1]}</div>
-      <div class='year-event'>{$variables['to_date'][0]}</div>
-      <div class='week-day-event'>{$variables['to_day'][0]}</div></div>
-      <div class='time-event'><span class='fromHour'>{$variables['to_time'][0]}</span></div>";
-      $to_date = l($to_date, $variables['alias'], array('html' => TRUE));
-
-      return "<div class='fromTo-date'>" . $from_date . $to_date . "</div>";
-    }
-    else {
-      return "<div class='fromTo-date'>" . $from_date . "</div>";
-    }
-  }
-  else {
-    return;
-  }
-}
-
 
 /**
  * Sets basic roles permissions at once (anonymous and authenticated).
@@ -1113,12 +1082,12 @@ function futurium_d4eu_flag_flag($flag, $entity_id, $account, $flagging) {
   switch ($flag->name) {
     case "subscription_flag":
       $node = node_load($entity_id);
-      futurium_d4eu_subscribe_content($node, $account);
+      _futurium_d4eu_subscribe_content($node, $account);
       break;
 
     case "subscription_flavour_flag":
       $term = taxonomy_term_load($entity_id);
-      futurium_d4eu_subscribe_term($term, $account);
+      _futurium_d4eu_subscribe_term($term, $account);
       break;
   }
 }
@@ -1130,20 +1099,32 @@ function futurium_d4eu_flag_unflag($flag, $entity_id, $account, $flagging) {
   switch ($flag->name) {
     case "subscription_flag":
       $node = node_load($entity_id);
-      futurium_d4eu_unsubscribe_content($node, $account);
+      _futurium_d4eu_unsubscribe_content($node, $account);
       break;
 
     case "subscription_flavour_flag":
       $term = taxonomy_term_load($entity_id);
-      futurium_d4eu_unsubscribe_term($term, $account);
+      _futurium_d4eu_unsubscribe_term($term, $account);
       break;
   }
 }
 
 /**
  * Subscribe user from node.
+ *
+ * @param object $node
+ *   The node.
+ * @param object $user
+ *   The user.
+ * @param string $type
+ *   The type of content.
+ * @param string $send_interval
+ *   The send interval.
+ *
+ * @return mixed
+ *   Return parameters to create the subscription.
  */
-function futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_interval = "") {
+function _futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_interval = "") {
   // Get existing.
   $sid = subscriptions_get_subscription($user->uid, 'node', 'nid', $node->nid);
   $args = array(
@@ -1189,8 +1170,18 @@ function futurium_d4eu_subscribe_content($node, $user, $type = 'node', $send_int
 
 /**
  * Unsubscribe user from node.
+ *
+ * @param object $node
+ *   The node.
+ * @param object $user
+ *   The user.
+ * @param string $type
+ *   The type of content.
+ *
+ * @return mixed
+ *   Return parameters to cancel the subscription.
  */
-function futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
+function _futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
   $args = array(
     0 => 'node',
     1 => 'nid',
@@ -1243,8 +1234,18 @@ function futurium_d4eu_unsubscribe_content($node, $user, $type = 'node') {
 
 /**
  * Subscribe user from term.
+ *
+ * @param object $term
+ *   The term.
+ * @param object $user
+ *   The user.
+ * @param string $type
+ *   The type of content.
+ *
+ * @return mixed
+ *   Return parameters to create the subscription.
  */
-function futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interval = "") {
+function _futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interval = "") {
   // Get existing.
   $sid = subscriptions_get_subscription($user->uid, 'node', 'tid', $term->tid);
   $args = array(
@@ -1290,8 +1291,18 @@ function futurium_d4eu_subscribe_term($term, $user, $type = 'node', $send_interv
 
 /**
  * Unsubscribe user from term.
+ *
+ * @param object $term
+ *   The term.
+ * @param object $user
+ *   The user.
+ * @param string $type
+ *   The type of content.
+ *
+ * @return mixed
+ *   Return parameters to cancel the subscription.
  */
-function futurium_d4eu_unsubscribe_term($term, $user, $type = 'node') {
+function _futurium_d4eu_unsubscribe_term($term, $user, $type = 'node') {
   $args = array(
     0 => 'node',
     1 => 'tid',

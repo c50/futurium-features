@@ -390,7 +390,7 @@ function supertags_social_form($form, $form_state, $flavor = NULL) {
   );
 
   $form['settings'] = array(
-    '#title' => 'Settings',
+    '#title' => t('Settings'),
     '#type' => 'fieldset',
     '#group' => 'tabs',
     '#collapsible' => TRUE,
@@ -398,14 +398,14 @@ function supertags_social_form($form, $form_state, $flavor = NULL) {
   );
 
   $form['settings']['intro'] = array(
-    '#title' => 'Description',
+    '#title' => t('Description'),
     '#type' => 'textarea',
     '#default_value' => $flavor->description,
-    '#description' => 'The text that appears in the homepage block.',
+    '#description' => t('The text that appears in the homepage block.'),
   );
 
   $form['settings']['save'] = array(
-    '#value' => 'Save',
+    '#value' => t('Save'),
     '#type' => 'submit',
   );
 
@@ -414,7 +414,7 @@ function supertags_social_form($form, $form_state, $flavor = NULL) {
   );
 
   $form['social'] = array(
-    '#title' => 'Social media',
+    '#title' => t('Social media'),
     '#type' => 'fieldset',
     '#group' => 'tabs',
     '#collapsible' => TRUE,
@@ -426,7 +426,7 @@ function supertags_social_form($form, $form_state, $flavor = NULL) {
     '#type' => 'textfield',
     '#default_value' => isset($defaults['facebook']) ? $defaults['facebook'] : '',
     '#attributes' => array(
-      'placeholder' => 'URL of a Facebook page',
+      'placeholder' => t('URL of a Facebook page'),
     ),
   );
 
@@ -435,7 +435,7 @@ function supertags_social_form($form, $form_state, $flavor = NULL) {
     '#type' => 'textfield',
     '#default_value' => isset($defaults['pinterest']) ? $defaults['pinterest'] : '',
     '#attributes' => array(
-      'placeholder' => 'URL of a Pinterest page',
+      'placeholder' => t('URL of a Pinterest page'),
     ),
   );
 
@@ -444,7 +444,7 @@ function supertags_social_form($form, $form_state, $flavor = NULL) {
     '#type' => 'textfield',
     '#default_value' => isset($defaults['linkedin']) ? $defaults['linkedin'] : '',
     '#attributes' => array(
-      'placeholder' => 'URL of a LinkedIn page',
+      'placeholder' => t('URL of a LinkedIn page'),
     ),
   );
 
@@ -453,7 +453,7 @@ function supertags_social_form($form, $form_state, $flavor = NULL) {
     '#type' => 'textfield',
     '#default_value' => isset($defaults['youtube']) ? $defaults['youtube'] : '',
     '#attributes' => array(
-      'placeholder' => 'URL of a Youtube page',
+      'placeholder' => t('URL of a Youtube page'),
     ),
   );
 
@@ -462,22 +462,30 @@ function supertags_social_form($form, $form_state, $flavor = NULL) {
     '#type' => 'textfield',
     '#default_value' => isset($defaults['twitter']) ? $defaults['twitter'] : '',
     '#attributes' => array(
-      'placeholder' => 'URL of a Twitter page',
+      'placeholder' => t('URL of a Twitter page'),
     ),
   );
 
   $new_widget = 'https://twitter.com/settings/widgets/new';
   $widget_list = 'https://twitter.com/settings/widgets';
+  $url_opts = array('external' => TRUE);
+
+  $description_params = array(
+    '@widget_list' => url($widget_list, $url_opts),
+    '@new_widget' => url($new_widget, $url_opts),
+  );
+
+  $description = t('Get a widget from <a target="_blank" href="@widget_list">your widgets</a> or <a target="_blank" href="@new_widget">create a new one</a> and paste the widget code here.', $description_params);
 
   $form['social']['twitter_widget'] = array(
     '#title' => 'Twitter Widget',
     '#type' => 'textarea',
     '#default_value' => isset($defaults['twitter_widget']) ? $defaults['twitter_widget'] : '',
-    '#description' => 'Get a widget from <a target="_blank" href="' . $widget_list . '">your widgets</a> or <a target="_blank" href="' . $new_widget . '">create a new one</a> and paste the widget code here.',
+    '#description' => $description,
   );
 
   $form['social']['submit'] = array(
-    '#value' => 'Save',
+    '#value' => t('Save'),
     '#type' => 'submit',
   );
 
@@ -666,27 +674,27 @@ function supertags_block_view($delta = '') {
 
             case 'facebook':
               $id = 'fb';
-              $title = $flavor->name . ' on Facebook';
+              $title = t('@flavor_name on Facebook', array('@flavor_name' => $flavor->name));
               break;
 
             case 'pinterest':
               $id = 'pi';
-              $title = $flavor->name . ' on Pinterest';
+              $title = t('@flavor_name on Pinterest', array('@flavor_name' => $flavor->name));
               break;
 
             case 'linkedin':
               $id = 'li';
-              $title = $flavor->name . ' on LinkedIn';
+              $title = t('@flavor_name on LinkedIn', array('@flavor_name' => $flavor->name));
               break;
 
             case 'youtube':
               $id = 'yt';
-              $title = $flavor->name . ' on Youtube';
+              $title = t('@flavor_name on Youtube', array('@flavor_name' => $flavor->name));
               break;
 
             case 'twitter':
               $id = 'tw';
-              $title = $flavor->name . ' on Twitter';
+              $title = t('@flavor_name on Twitter', array('@flavor_name' => $flavor->name));
               break;
 
           }
@@ -909,11 +917,12 @@ function supertags_views_pre_render(&$view) {
     }
 
     if ($view->current_display == 'page_past_events') {
+      $query = drupal_get_query_parameters();
       $context = _supertags_flavor_context();
       $name = $context['name'];
       $link_text = t('Planned events for');
       $link_text .= ' ' . $name . ' ';
-      $link_path = '../' . $_GET['flavour'] . '/events';
+      $link_path = '../' . $query['flavour'] . '/events';
       $view->footer['area']->options['content'] = l($link_text, $link_path, array('html' => TRUE));
       $view->display_handler->set_option('footer', $view->footer);
     }
@@ -1025,7 +1034,8 @@ function supertags_init() {
   $content_type = _supertags_content_type_context();
   if (isset($flavor['term']) && arg(0) != 'search') {
     if ($content_type['machine_name'] == 'page') {
-      $path = $_GET['q'];
+      $query = drupal_get_query_parameters(NULL, array());
+      $path = $query['q'];
     }
     else {
       $path = _supertags_contextual_link(NULL, $flavor['term']);
@@ -1821,8 +1831,10 @@ function _supertags_get_context() {
 
     }
 
-    if (isset($_GET['flavour'])) {
-      $flavor_term = _supertags_get_term_by_path($_GET['flavour']);
+    $query = drupal_get_query_parameters();
+
+    if (isset($query['flavour'])) {
+      $flavor_term = _supertags_get_term_by_path($query['flavour']);
     }
 
     if (isset($flavor_term)) {
@@ -1866,7 +1878,7 @@ function _supertags_get_context() {
       }
       else {
         if ($item['path'] == 'user/%' || arg(1) == 'people') {
-          $supertags_context['content_type']['name'] = 'People';
+          $supertags_context['content_type']['name'] = t('People');
           $supertags_context['content_type']['machine_name'] = 'people';
           $supertags_context['content_type']['path'] = 'people';
           $supertags_context['content_type']['mapped_path'] = 'people';
@@ -1876,7 +1888,7 @@ function _supertags_get_context() {
     }
     else {
       $supertags_context['flavor'] = array(
-        'name' => 'Futurium',
+        'name' => t('Futurium'),
         'path' => 'futurium',
         'class' => 'futurium',
       );
@@ -1952,7 +1964,7 @@ function supertags_node_access($node, $op, $account) {
 function supertags_page_alter(&$page) {
   // Add markup to the identity region to stamp archived flavors.
   $context = _supertags_get_context();
-  $mark_archived = '<span class=\'showArchived\'>' . t('Archived') . '</span>';
+  $mark_archived = '<span class="showArchived">' . t('Archived') . '</span>';
 
   if (isset($context['flavor']['term'])) {
     if ($context['flavor']['term']->field_flavor_archived[LANGUAGE_NONE][0]['value'] == 1) {
@@ -2287,6 +2299,7 @@ function supertags_form_node_form_alter(&$form, &$form_state) {
   $fields = _supertags_fields();
   $context = _supertags_get_context();
   $item = menu_get_item();
+  $query = drupal_get_query_parameters();
 
   if (!user_access('edit supertags fields')) {
     $form['field_digital4eu_supertags']['#attributes']['style'][] = 'display:none;';
@@ -2302,15 +2315,15 @@ function supertags_form_node_form_alter(&$form, &$form_state) {
       $form[$fields['flavor_primary']][LANGUAGE_NONE]['#default_value'] = $flavor->tid;
       $form[$fields['flavor']][LANGUAGE_NONE]['#default_value'] = array($flavor->tid);
     }
-    elseif (isset($_GET['flavor'])) {
-      $flavor = _supertags_get_term_by_path($_GET['flavor']);
+    elseif (isset($query['flavor'])) {
+      $flavor = _supertags_get_term_by_path($query['flavor']);
       $form[$fields['flavor_primary']][LANGUAGE_NONE]['#default_value'] = $flavor->tid;
       $form[$fields['flavor']][LANGUAGE_NONE]['#default_value'] = array($flavor->tid);
     }
   }
 
-  if (isset($_GET['field_tags'])) {
-    $tags = explode(',', $_GET['field_tags']);
+  if (isset($query['field_tags'])) {
+    $tags = explode(',', $query['field_tags']);
     if (isset($form['field_tags'][LANGUAGE_NONE]['#default_value'])) {
       $terms = taxonomy_term_load_multiple($tags);
       $max = count($terms) - 1;
@@ -2329,7 +2342,7 @@ function supertags_form_node_form_alter(&$form, &$form_state) {
     }
   }
 
-  $create_title = t('Create@space', array('@space' => ' ')) . $item['title'];
+  $create_title = t('Create @title', array('@title' => $item['title']));
   drupal_set_title($create_title);
 
 }
@@ -2355,12 +2368,12 @@ function supertags_form_taxonomy_form_term_alter(&$form, &$form_state) {
     $rows['#tree'] = TRUE;
 
     $header = array(
-      'Content type',
-      'Call to action label',
-      'List titles',
-      'List path',
-      'Order',
-      'Enabled',
+      t('Content type'),
+      t('Call to action label'),
+      t('List titles'),
+      t('List path'),
+      t('Order'),
+      t('Enabled'),
     );
 
     $descriptions = array(
@@ -2491,9 +2504,10 @@ function supertags_preprocess_link(array &$variables) {
   global $theme;
   if ($theme == 'd4eu') {
     $path = $variables['path'];
+    $query = drupal_get_query_parameters(NULL, array());
 
     // Fix active class when urls have &.
-    $q = str_replace('&amp;', '&', $_GET['q']);
+    $q = str_replace('&amp;', '&', $query['q']);
     if ($path === $q) {
       $variables['options']['attributes']['class'][] = 'active';
     }

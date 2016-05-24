@@ -324,7 +324,9 @@ function d4eu_preprocess_node(&$vars) {
     $vars['select_relation'] .= render($block['content']);
   }
   if (isset($node->view->current_display)) {
-    if (in_array($node->view->current_display, ['relationteaser', 'evidence', 'parents'])) {
+    if (in_array($node->view->current_display, ['relationteaser', 'evidence',
+      'parents',
+    ])) {
       $rel_id = $node->view->result[$node->view->row_index]->relation_node_rid;
       $vars['delete_rid'] = '';
       if (user_access('delete relations')) {
@@ -472,7 +474,7 @@ function d4eu_preprocess_page(&$vars) {
         global $user;
         $user_id = $user->uid;
 
-        $vars['subscriptions_settings_link'] = "<a href='/user/" . $user_id . "/subscriptions?flavour=" . $context['flavor']['path'] . "' title='edit what you are following'>edit what you are following</a>";
+        $vars['subscriptions_settings_link'] = l(t('edit what you are following'), 'user/' . $user_id . '/subscriptions/' . $context['flavor']['path'], array('attributes' => array('title' => 'edit what you are following')));
         $vars['subscriptions_flavor_flag'] = flag_create_link('subscription_flavour_flag', $context["flavor"]['tid']);
       }
     }

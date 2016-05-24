@@ -1689,17 +1689,17 @@ a:hover.CTAButton,
 
 
 /* follow */
-.flag-subscription-flag{
+.flag-subscription-flag {
   float: left;
   margin: 0 2em 0 0.5em;
 }
 .view-flavors-whats-new .flag-subscription-flag,
 .view-flavors .flag-subscription-flag,
 .mini-teaser .flag-subscription-flag {
-    float: right;
-    margin: 0 0em 0 2em;
+  float: right;
+  margin: 0 0em 0 2em;
 }
-.flag-subscription-flag a{
+.flag-subscription-flag a {
   text-transform: lowercase;
   font-weight: bold;
   border: solid 1px #93caed;
@@ -1708,7 +1708,7 @@ a:hover.CTAButton,
   background: #fff;
   border-radius: 5px;
 }
-.flag-subscription-flag a:before{
+.flag-subscription-flag a:before {
   content: " ";
   background: url(../images/theme/sprite_follow.png) no-repeat 0 -47px;
   display: inline-block;
@@ -1717,17 +1717,17 @@ a:hover.CTAButton,
   vertical-align: middle;
   margin-right: 0.8em;
 }
-.flag-subscription-flag a.unflag-action{
+.flag-subscription-flag a.unflag-action {
   font-weight: normal;
 }
-.flag-subscription-flag a.unflag-action:before{
+.flag-subscription-flag a.unflag-action:before {
   background-position: 0 -70px;
 }
-.flag-subscription-flag a:hover{
+.flag-subscription-flag a:hover {
   background: #285d93;
   color: #fff;
 }
-.subscription-flavor-bar{
+.subscription-flavor-bar {
   position: absolute;
   top: 0;
   left: 0;
@@ -1736,21 +1736,21 @@ a:hover.CTAButton,
   padding: 0;
   margin: 0;
 }
-.subscription-flavor-bar a{
+.subscription-flavor-bar a {
   color: #fff;
   text-decoration: none;
 }
-.subscription-flavor-bar a:hover{
+.subscription-flavor-bar a:hover {
   text-decoration: underline;
 }
-.subscription-flavor-bar .followLink{
+.subscription-flavor-bar .followLink {
   float: left;
   font-weight: bold;
 }
-.subscription-flavor-bar .followLink .flavourName{
+.subscription-flavor-bar .followLink .flavourName {
   font-weight: normal;
 }
-.subscription-flavor-bar .followLink .subscribe:before{
+.subscription-flavor-bar .followLink .subscribe:before {
   content: " ";
   background: url(../images/theme/sprite_follow.png) no-repeat 0 -1px;
   display: inline-block;
@@ -1759,7 +1759,7 @@ a:hover.CTAButton,
   vertical-align: middle;
   margin: 0 0.6em 0 0.8em;
 }
-.subscription-flavor-bar .followLink .unsubscribe:before{
+.subscription-flavor-bar .followLink .unsubscribe:before {
   content: " ";
   background: url(../images/theme/sprite_follow.png) no-repeat 0 -25px;
   display: inline-block;
@@ -1768,7 +1768,7 @@ a:hover.CTAButton,
   vertical-align: middle;
   margin: 0 0.6em 0 0.8em;
 }
-.subscription-flavor-bar .settings a{
+.subscription-flavor-bar .settings a {
   float: right;
   margin-right: 8px;
   margin-top: 3px;
@@ -1779,7 +1779,6 @@ a:hover.CTAButton,
   overflow: hidden;
 }
 /* /follow */
-
 
 
 /* --- RESPONSIVE PART --- */

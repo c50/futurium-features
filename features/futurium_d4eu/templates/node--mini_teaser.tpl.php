@@ -8,7 +8,7 @@
 
 <div id="node-<?php print $node->nid; ?>"
      class="mini-teaser <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php if ($subscriptions_node_flag): ?>
+  <?php if (isset($subscriptions_node_flag)): ?>
     <?php print $subscriptions_node_flag ?>
   <?php endif; ?>
   <?php print render($title_prefix); ?>

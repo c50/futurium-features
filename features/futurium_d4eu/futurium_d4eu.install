@@ -54,22 +54,6 @@ function futurium_d4eu_disable() {
 }
 
 /**
- * Implements hook_install().
- */
-function futurium_d4eu_install() {
-  $t = get_t();
-  drupal_set_message($t('Futurium d4eu feature is now installed on your site.'));
-}
-
-/**
- * Implements hook_uninstall().
- */
-function futurium_d4eu_uninstall() {
-  $t = get_t();
-  drupal_set_message($t('Futurium d4eu feature is now uninstalled from your site.'));
-}
-
-/**
  * Disable default contexts.
  */
 function futurium_d4eu_update_7100() {

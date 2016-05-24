@@ -20,18 +20,18 @@ function futurium_countdown_form_field_ui_field_edit_form_alter(&$form, $form_st
 
     $form['instance']['settings']['enable_countdown'] = array(
       '#type' => 'checkbox',
-      '#title' => 'Enable countdown options',
+      '#title' => t('Enable countdown options'),
       '#default_value' => isset($form['#instance']['settings']['enable_countdown']) ? $form['#instance']['settings']['enable_countdown'] : 0,
       '#weight' => 90,
     );
 
     $form['instance']['settings']['position_countdown'] = array(
       '#type' => 'radios',
-      '#title' => 'Position of the countdown',
+      '#title' => t('Position of the countdown'),
       '#default_value' => isset($form['#instance']['settings']['position_countdown']) ? $form['#instance']['settings']['position_countdown'] : 'prefix',
       '#options' => array(
-        'prefix' => 'Before the date',
-        'suffix' => 'After the date',
+        'prefix' => t('Before the date'),
+        'suffix' => t('After the date'),
       ),
       '#description' => t("Position of the countdown relative to date."),
       '#states' => array(
@@ -53,36 +53,40 @@ function futurium_countdown_form_field_ui_field_edit_form_alter(&$form, $form_st
  */
 function futurium_countdown_date_combo_process_alter(&$element, $form_state, $context) {
 
-  $input_name = '#' . $element['#id'] . '-show-todate';
-  $input_name2 = '#' . $element['#id'] . '-countdown-show';
+  if ($context['instance']['settings']['enable_countdown']) {
 
-  $field = $element['#field_name'];
-  $delta = $element['#delta'];
-  $entity = $element['#entity'];
-  $entity_type = $element['#entity_type'];
-  $language = $element['#language'];
+    $input_name = '#' . $element['#id'] . '-show-todate';
+    $input_name2 = '#' . $element['#id'] . '-countdown-show';
 
-  list($entity_id, $revision_id, $bundle) = entity_extract_ids($entity_type, $entity);
-  $result = _futurium_countdown_get_countdown_instance_settings($entity_type, $bundle, $entity_id, $revision_id, $field, $language, $delta);
+    $field = $element['#field_name'];
+    $delta = $element['#delta'];
+    $entity = $element['#entity'];
+    $entity_type = $element['#entity_type'];
+    $language = $element['#language'];
 
-  $element['countdown_show'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Show countdown timer?'),
-    '#default_value' => isset($result['countdown_show']) ? $result['countdown_show'] : 0,
-  );
+    list($entity_id, $revision_id, $bundle) = entity_extract_ids($entity_type, $entity);
+    $result = _futurium_countdown_get_countdown_instance_settings($entity_type, $bundle, $entity_id, $revision_id, $field, $language, $delta);
 
-  $element['countdown_toggle'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Toggle countdown to end date?'),
-    '#description' => t("Check this box if the countdown timer should switch to a countdown to end date after the start date has passed."),
-    '#default_value' => isset($result['countdown_toggle']) ? $result['countdown_toggle'] : 0,
-    '#states' => array(
-      'visible' => array(
-        $input_name => array('checked' => TRUE),
-        $input_name2 => array('checked' => TRUE),
+    $element['countdown_show'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Show countdown timer?'),
+      '#default_value' => isset($result['countdown_show']) ? $result['countdown_show'] : 0,
+    );
+
+    $element['countdown_toggle'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Toggle countdown to end date?'),
+      '#description' => t("Check this box if the countdown timer should switch to a countdown to end date after the start date has passed."),
+      '#default_value' => isset($result['countdown_toggle']) ? $result['countdown_toggle'] : 0,
+      '#states' => array(
+        'visible' => array(
+          $input_name => array('checked' => TRUE),
+          $input_name2 => array('checked' => TRUE),
+        ),
       ),
-    ),
-  );
+    );
+
+  }
 }
 
 /**
@@ -134,11 +138,9 @@ function futurium_countdown_preprocess_field(&$variables) {
       if ($field['#view_mode'] == 'full') {
         list($entity_id, $revision_id, $bundle) = entity_extract_ids($field['#entity_type'], $field['#object']);
         $field_info = field_info_instance($field['#entity_type'], $field['#field_name'], $field['#bundle']);
-        $position = $field_info['settings']['position_countdown'];
-        $translated = field_is_translatable($field['#entity_type'], $field_info);
-        $language = $translated ? $field['#object']->language : LANGUAGE_NONE;
-
         if ($field_info['settings']['enable_countdown']) {
+          $position = $field_info['settings']['position_countdown'];
+          $language = $field['#object']->language;
           $variables['classes_array'][] = 'with-countdown';
           $current = time();
           foreach ($field['#items'] as $delta => $values) {
@@ -166,6 +168,25 @@ function futurium_countdown_preprocess_field(&$variables) {
  * Helper function.
  *
  * Get the countdown settings for a specific field.
+ *
+ * @param string $entity_type
+ *   The entity type.
+ * @param string $bundle
+ *   The bundle.
+ * @param string $entity_id
+ *   The entity id.
+ * @param string $revision_id
+ *   The revision id.
+ * @param string $field
+ *   The field.
+ * @param string $language
+ *   The language selected.
+ *
+ * @delta integer $delta
+ *   The index of the condition.
+ *
+ * @return array
+ *   The countdown settings.
  */
 function _futurium_countdown_get_countdown_instance_settings($entity_type, $bundle, $entity_id, $revision_id, $field, $language, $delta) {
 
@@ -195,13 +216,25 @@ function _futurium_countdown_get_countdown_instance_settings($entity_type, $bund
  * Helper function.
  *
  * Calculates difference between two dates.
+ *
+ * @param int $current
+ *   The current date.
+ * @param string $start
+ *   The start date.
+ * @param string $final
+ *   The final date.
+ * @param bool $toggle
+ *   The toggle to end date option.
+ *
+ * @return object
+ *   The date interval result.
  */
 function _futurium_countdown_diff($current, $start, $final = NULL, $toggle = FALSE) {
   $date_format = 'Y-m-d H:i:s';
 
-  $current = date($date_format, $current);
-  $start = date($date_format, $start);
-  $final = date($date_format, $final);
+  $current = format_date($current, 'custom', $date_format);
+  $start = format_date($start, 'custom', $date_format);
+  $final = format_date($final, 'custom', $date_format);
 
   $diff = array();
 
@@ -299,9 +332,9 @@ function theme_futurium_countdown_diff(&$variables) {
     return;
   }
 
-  $current_day = date('G', $variables['current_date']);
+  $current_day = format_date($variables['current_date'], 'custom', 'G');
   if ($variables['diff']->days >= 1 && $variables['diff']->h > 0) {
-    $variables['diff']->days+=1;
+    $variables['diff']->days += 1;
   }
 
   $classes_array[] = 'countdown';
@@ -351,6 +384,10 @@ function theme_futurium_countdown_diff(&$variables) {
         if ($variables['settings']['countdown_toggle']) {
           $classes_array[] = 'present';
           $label_parts[] = '<span class="description target">' . t('to closing date') . '</span>';
+        }
+        // Not targeting end date.
+        else {
+          $label_parts = array();
         }
       }
     }

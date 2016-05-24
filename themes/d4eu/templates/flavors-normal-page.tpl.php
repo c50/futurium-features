@@ -86,12 +86,12 @@
       <div id="sidebarRight">
         <div class="identityBlock">
           <div class='subscription-flavor-bar'>
-            <?php if ($subscriptions_flavor_flag): ?>
+            <?php if (isset($subscriptions_flavor_flag)): ?>
               <span class="followLink">
                 <?php print $subscriptions_flavor_flag ?>
               </span>
             <?php endif; ?>
-            <?php if ($subscriptions_settings_link): ?>
+            <?php if (isset($subscriptions_settings_link)): ?>
               <span class="settings">
                 <?php print $subscriptions_settings_link ?>
               </span>
