@@ -140,7 +140,9 @@ function futurium_countdown_preprocess_field(&$variables) {
         $field_info = field_info_instance($field['#entity_type'], $field['#field_name'], $field['#bundle']);
         if ($field_info['settings']['enable_countdown']) {
           $position = $field_info['settings']['position_countdown'];
-          $language = $field['#object']->language;
+          $translated = field_is_translatable($field['#entity_type'], $field_info);
+          $language = $translated ? $field['#object']->language : LANGUAGE_NONE;
+
           $variables['classes_array'][] = 'with-countdown';
           $current = time();
           foreach ($field['#items'] as $delta => $values) {
