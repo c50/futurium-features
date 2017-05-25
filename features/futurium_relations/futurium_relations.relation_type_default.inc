@@ -9,7 +9,7 @@
  */
 function futurium_relations_relation_default_relation_types() {
   $export = array();
-/*
+  /*
   $relation_type = new stdClass();
   $relation_type->disabled = FALSE;
   $relation_type->api_version = 1;
@@ -22,13 +22,13 @@ function futurium_relations_relation_default_relation_types() {
   $relation_type->min_arity = 2;
   $relation_type->max_arity = 2;
   $relation_type->source_bundles = array(
-    0 => 'node:event_d4eu',
-    1 => 'node:evidence',
-    2 => 'node:ideas',
+  0 => 'node:event_d4eu',
+  1 => 'node:evidence',
+  2 => 'node:ideas',
   );
   $relation_type->target_bundles = array();
   $export['related'] = $relation_type;
-*/
+   */
   $relation_type = new stdClass();
   $relation_type->disabled = FALSE; /* Edit this to true to make a default relation_type disabled initially */
   $relation_type->api_version = 1;

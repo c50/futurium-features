@@ -1283,7 +1283,7 @@ function futurium_isa_field_default_field_instances() {
     ),
   );
 
-// Exported field_instance: 'user-user-field_picture'.
+  // Exported field_instance: 'user-user-field_picture'.
   $field_instances['user-user-field_picture'] = array(
     'bundle' => 'user',
     'deleted' => 0,

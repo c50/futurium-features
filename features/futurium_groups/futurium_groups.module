@@ -24,7 +24,9 @@ function futurium_groups_administration() {
 
 }
 
-
+/**
+ * Hook_menu.
+ */
 function futurium_groups_menu() {
 
   $items['admin/config/futurium_groups'] = array(
@@ -123,7 +125,9 @@ function futurium_groups_url_outbound_alter(&$path, &$options, $original_path) {
   }
 }
 
-
+/**
+ * Hook_url_inbound _alter.
+ */
 function futurium_groups_url_inbound_alter(&$path, $original_path, $path_language) {
   $rewrite_enabled = variable_get('futurium_groups_rewrite_group_urls', FALSE);
   if ($rewrite_enabled) {
@@ -162,4 +166,3 @@ function futurium_groups_url_inbound_alter(&$path, $original_path, $path_languag
     }
   }
 }
-

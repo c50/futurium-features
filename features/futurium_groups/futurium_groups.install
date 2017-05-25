@@ -1,5 +1,12 @@
 <?php
+/**
+ * @file
+ * Install/enable functions.
+ */
 
+/**
+ * Hook_install.
+ */
 function futurium_groups_install() {
   db_update('system')
     ->fields(array('weight' => -1))
@@ -12,9 +19,12 @@ function futurium_groups_install() {
     ->execute();
 }
 
+/**
+ * Hook_enable.
+ */
 function futurium_groups_post_features_enable_feature($component) {
   // Rebuild permissions
-  // Should go into futurium groups
+  // Should go into futurium groups.
   if ($component == 'views_view') {
 
     $og_roles = og_roles('node', 'futurium_group');

@@ -396,12 +396,12 @@ If this field isn\'t filled in, we\'ll try to fill it automatically.',
   // Included for use with string extractors like potx.
   t('Evidence');
   t('File');
-  t('If this field isn\'t filled in, we\'ll try to fill it automatically.');
+  t("If this field isn't filled in, we'll try to fill it automatically.");
   t('Keywords');
   t('Link');
-  t('Please separate tags with commas. For example <i>broadband, geoblocking, quantum mechanics, italy</i>.
+  t("Please separate tags with commas. For example <i>broadband, geoblocking, quantum mechanics, italy</i>.
 
-If this field isn\'t filled in, we\'ll try to fill it automatically.');
+If this field isn't filled in, we'll try to fill it automatically.");
   t('Tags');
 
   return $field_instances;

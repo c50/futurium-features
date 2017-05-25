@@ -1,7 +1,8 @@
 name = Futurium Evidence
 core = 7.x
 package = Futurium
-version = 7.x-1.4
+#version = 7.x-1.4
+description = Evidences for Futurium
 dependencies[] = ctools
 dependencies[] = ds
 dependencies[] = features

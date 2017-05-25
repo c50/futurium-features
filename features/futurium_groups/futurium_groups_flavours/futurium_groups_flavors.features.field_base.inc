@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * asagsags.features.field_base.inc
+ * Asagsags.features.field_base.inc.
  */
 
 /**
@@ -10,7 +10,7 @@
 function futurium_groups_flavors_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_css_class'
+  // Exported field_base: 'field_css_class'.
   $field_bases['field_futurium_group_css_class'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function futurium_groups_flavors_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_group_path'
+  // Exported field_base: 'field_group_path'.
   $field_bases['field_futurium_group_path'] = array(
     'active' => 1,
     'cardinality' => 1,

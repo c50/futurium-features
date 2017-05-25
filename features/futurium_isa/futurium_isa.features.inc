@@ -10,7 +10,7 @@
 function futurium_isa_wysiwyg_default_profiles() {
   $profiles = array();
 
-  // Exported profile: basic_html
+  // Exported profile: basic_html.
   $profiles['simple_wysiwig'] = (object) array(
     'format' => 'simple_wysiwig',
     'editor' => 'ckeditor',

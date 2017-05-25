@@ -7,6 +7,9 @@
 include_once 'tests.features.inc';
 
 
+/**
+ * Implements hook_form_alter().
+ */
 function tests_form_quant_time_form_alter(&$form, $form_state) {
   $form['option']['#access'] = FALSE;
   $form['custom_from']['#access'] = FALSE;
