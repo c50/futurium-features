@@ -1,4 +1,9 @@
-<?php if (user_is_logged_in()): ?>
+<?php
+/**
+ * @file
+ * Collapsible block template.
+ */
+if (user_is_logged_in()): ?>
   <div class="container collapsed-user-block">
     <nav role="navigation">
       <a href="#login-collapse" class="btn btn-login" data-toggle="collapse">

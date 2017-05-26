@@ -73,7 +73,9 @@
  * @ingroup themeable
  */
 ?>
-<div class="wrapper <?php if($messages) echo "incoming-messages" ?>">
+<div class="wrapper <?php if($messages): ?>
+<?php echo "incoming-messages" ?>
+<?php endif ?>">
 
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
 
@@ -148,14 +150,14 @@
     </aside>  <!-- /#sidebar-first -->
   <?php endif; ?>
 
-  <section<?php //print $content_column_class; ?>>
+  <section<?php
+  // Print $content_column_class.
+  ?>>
     <?php
     if (
       !empty($page['highlighted']) ||
-      //!empty($breadcrumb) ||
       !empty($messages) ||
       !empty($tabs['#primary']) ||
-      //!empty($action_links) ||
       !empty($page['help'])
     ):
     ?>
@@ -166,7 +168,9 @@
           <?php if (!empty($page['highlighted'])): ?>
             <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
           <?php endif; ?>
-          <?php //if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+          <?php
+          // If (!empty($breadcrumb)): print $breadcrumb; endif;.
+          ?>
           <a id="main-content"></a>
           <?php print $messages; ?>
           <?php if (!empty($tabs)): ?>

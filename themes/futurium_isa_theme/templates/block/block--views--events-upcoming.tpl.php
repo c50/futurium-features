@@ -49,7 +49,7 @@
   <?php print render($title_prefix); ?>
 <?php if ($block->subject): ?>
   <h2<?php print $title_attributes; ?>><?php
-// Print $block->subject ?></h2>
+// Print $block->subject. ?></h2>
 <?php endif;?>
   <?php print render($title_suffix); ?>
 

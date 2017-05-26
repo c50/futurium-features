@@ -4,6 +4,9 @@
  * template.php
  */
 
+/**
+ * Implements hook_preprocess_html().
+ */
 function futurium_isa_theme_preprocess_html(&$variables) {
   $item = menu_get_item();
   if (substr($item['path'], 0, 8) == 'node/add') {
@@ -30,6 +33,9 @@ function futurium_isa_theme_preprocess_region(&$variables) {
   $variables['wrapper_classes'] = implode(' ', $wrapper_classes_array);
 }
 
+/**
+ * Implements hook_preprocess_page().
+ */
 function futurium_isa_theme_preprocess_page(&$variables) {
 
   $item = menu_get_item();
@@ -157,18 +163,18 @@ function futurium_isa_theme_form_alter(&$form, &$form_state, $form_id) {
       break;
 
     case 'user_login':
-     $form['name']['#field_prefix'] = '<div class="field-wrapper name">';
-     $form['name']['#field_suffix'] = '</div>';
-     $form['name']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['name']['#description'])));
-     $form['name']['#description'] = "";
+      $form['name']['#field_prefix'] = '<div class="field-wrapper name">';
+      $form['name']['#field_suffix'] = '</div>';
+      $form['name']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['name']['#description'])));
+      $form['name']['#description'] = "";
 
-     $form['pass']['#field_prefix'] = '<div class="field-wrapper pass">';
-     $form['pass']['#field_suffix'] = '</div>';
-     $form['pass']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['pass']['#description'])));
-     $form['pass']['#description'] = "";
+      $form['pass']['#field_prefix'] = '<div class="field-wrapper pass">';
+      $form['pass']['#field_suffix'] = '</div>';
+      $form['pass']['#attributes']['placeholder'] = array(t('@username', array('@username' => $form['pass']['#description'])));
+      $form['pass']['#description'] = "";
 
-     $form['actions']['submit']['#prefix'] = '<ul class="form-links"><li>' . l(t('Forgot your password?'), 'user/password') . '</li></ul>';
-     break;
+      $form['actions']['submit']['#prefix'] = '<ul class="form-links"><li>' . l(t('Forgot your password?'), 'user/password') . '</li></ul>';
+      break;
 
   }
 }
@@ -196,8 +202,8 @@ function futurium_isa_theme_menu_link(array $variables) {
   if ($variables['element']['#original_link']['menu_name'] == 'menu-user-tabs' ||
       $variables['element']['#original_link']['menu_name'] == 'menu-group-tabs') {
     if ($variables['element']['#href'] != $_GET['q']) {
-      if (isset($variables['element']['#localized_options']['attributes']['class'])){
-        $active_class_key = array_search('active',$variables['element']['#localized_options']['attributes']['class']);
+      if (isset($variables['element']['#localized_options']['attributes']['class'])) {
+        $active_class_key = array_search('active', $variables['element']['#localized_options']['attributes']['class']);
         unset($variables['element']['#localized_options']['attributes']['class'][$active_class_key]);
       }
     }
@@ -210,13 +216,6 @@ function futurium_isa_theme_menu_link(array $variables) {
  * Implements hook_date_display_range().
  */
 function futurium_isa_theme_date_display_range(&$variables) {
-  $date1 = $variables['date1'];
-  $date2 = $variables['date2'];
-  $timezone = $variables['timezone'];
-
-  $attributes_start = $variables['attributes_start'];
-  $attributes_end = $variables['attributes_end'];
-
   $start_date_obj = $variables['dates']['value']['db']['object'];
   $end_date_obj = $variables['dates']['value2']['db']['object'];
 
@@ -279,7 +278,7 @@ function futurium_isa_theme_date_display_range(&$variables) {
 /**
  * Implements hook_date_display_single().
  */
-function futurium_isa_theme_date_display_single($variables) {
+function futurium_isa_theme_date_display_single(&$variables) {
 
   $date = $variables['date'];
   $timezone = $variables['timezone'];
@@ -288,11 +287,10 @@ function futurium_isa_theme_date_display_single($variables) {
   $start_date_obj = $variables['dates']['value']['db']['object'];
   $end_date_obj = $variables['dates']['value2']['db']['object'];
 
+  $string = '!start-day !start-month !start-year - !start-hour';
+
   if ($start_date_obj != $end_date_obj) {
     $string = '!start-day !start-month !start-year - !start-hour - !end-hour';
-  }
-  else {
-    $string = '!start-day !start-month !start-year - !start-hour';
   }
 
   $start_day = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'j');
@@ -301,6 +299,13 @@ function futurium_isa_theme_date_display_single($variables) {
   $start_hour = format_date($start_date_obj->originalTime, $type = 'custom', $format = 'H:i');
   $end_hour = format_date($end_date_obj->originalTime, $type = 'custom', $format = 'H:i');
 
+  $obj = menu_get_object();
+  if (!empty($obj)) {
+    if ($obj->type == 'future') {
+      return $date;
+    }
+  }
+
   $date_vars = array(
     '!start-day' => $start_day,
     '!start-month' => $start_month,
@@ -308,13 +313,6 @@ function futurium_isa_theme_date_display_single($variables) {
     '!start-hour' => $start_hour,
     '!end-hour' => $end_hour,
   );
-
-  $obj = menu_get_object();
-  if (!empty($obj)) {
-    if ($obj->type == 'future') {
-      return $date;
-    }
-  }
 
   return t($string, $date_vars);
 }
@@ -393,6 +391,9 @@ function futurium_isa_theme_preprocess_rate_template_fivestar(&$variables) {
 
 }
 
+/**
+ * Theme_views_view_grouping.
+ */
 function futurium_isa_theme_views_view_grouping($vars) {
   $view = $vars['view'];
   $title = $vars['title'];
@@ -400,28 +401,36 @@ function futurium_isa_theme_views_view_grouping($vars) {
 
   $output = '<div class="view-grouping">';
   $output .= '<div class="view-grouping-header">' . $title . '</div>';
-  $output .= '<div class="view-grouping-content">' . $content . '</div>' ;
+  $output .= '<div class="view-grouping-content">' . $content . '</div>';
   $output .= '</div>';
 
   return $output;
 }
 
+/**
+ * Menu_tree__menu_user_tabs.
+ */
 function futurium_isa_theme_menu_tree__menu_user_tabs($variables) {
   return '<ul class="menu nav nav-pills">' . $variables['tree'] . '</ul>';
 }
 
+/**
+ * Menu_tree__menu_group_tabs.
+ */
 function futurium_isa_theme_menu_tree__menu_group_tabs($variables) {
   return '<ul class="menu nav nav-pills">' . $variables['tree'] . '</ul>';
 }
 
+/**
+ * Quant_page.
+ */
 function futurium_isa_theme_quant_page($vars) {
 
   $content = '';
 
   $content .= $vars['form'];
 
-  //$content .= '<h1>Content stats</h1>';
-
+  // $content .= '<h1>Content stats</h1>';.
   if ($vars['charts']) {
     foreach ($vars['charts'] as $chart) {
       $content .= $chart;
@@ -457,7 +466,7 @@ function futurium_isa_theme_quant_page($vars) {
     ),
   );
 
-  foreach($views as $group => $data) {
+  foreach ($views as $group => $data) {
     $view_name = $data['view'];
     $content .= '<div class="' . $data['class'] . '"><h1 class="element-invisible">' . $data['title'] . '</h1>';
     foreach ($data['displays'] as $k => $display) {
@@ -483,7 +492,7 @@ function futurium_isa_theme_quant_page($vars) {
 }
 
 /**
- * Theme wrapper for quant_time_form()
+ * Theme wrapper for quant_time_form().
  */
 function futurium_isa_theme_quant_time_form($vars) {
   $form = $vars['form'];
@@ -506,6 +515,9 @@ function futurium_isa_theme_quant_time_form($vars) {
   return $output;
 }
 
+/**
+ * Implements hook_textarea().
+ */
 function futurium_isa_theme_textarea($variables) {
   $element = $variables['element'];
   element_set_attributes($element, array('id', 'name', 'cols', 'rows'));

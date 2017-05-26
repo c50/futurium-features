@@ -1,8 +1,16 @@
 <?php
 
+/**
+ * @file
+ * Frontpage layout.
+ */
+
+/**
+ * Implements hook_panels_layouts().
+ */
 function futurium_isa_panels_layouts() {
 
-  // Plugin definition
+  // Plugin definition.
   $plugin = array(
     'title' => t('Futurium Frontpage'),
     'category' => t('Bootstrap'),

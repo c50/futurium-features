@@ -124,7 +124,7 @@
   </header> <!-- /#page-header -->
 
   <section class="container-fullwidth">
-    <?php if( !empty($title) || !empty($breadcrumb) || !empty($messages) ): ?>
+    <?php if(!empty($title) || !empty($breadcrumb) || !empty($messages)): ?>
         <?php if (!empty($title)): ?>
           <h1 id="page-title"><?php print $title ?></h1>
         <?php endif; ?>
@@ -145,4 +145,3 @@
   </footer>
 
 </div>
-
